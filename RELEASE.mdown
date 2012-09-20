@@ -13,6 +13,7 @@
   * [Add Product selected Hidden Code to Learn More](https://agilezen.com/project/18091/story/673)
   * [Replace Most Popular with Recommended on Homepage.](https://agilezen.com/project/18091/story/675)
   * [Fix global header on 404 page.](https://agilezen.com/project/18091/story/677)
+  * [Text update for product page](https://agilezen.com/project/18091/story/680)
 
 ### Bug Fix
   * [AutoComplete Issues](https://agilezen.com/project/18091/story/659)
