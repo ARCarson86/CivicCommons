@@ -14,6 +14,8 @@ gem 'fb_graph'
 gem 'rails', "~> 3.1.0"
 gem 'jquery-rails', '>= 1.0.3'
 
+gem 'rails-dev-tweaks', '~> 0.6.1'
+
 gem 'haml', '~> 3.1.4'
 
 gem 'uglifier'
