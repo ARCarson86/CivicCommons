@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The Civic Commons</title>
+      <meta name="title" content="The Civic Commons" />
+      <meta name="description" content="The Civic Commons is a new way to bring communities together with conversation and emerging technology. We’re focused on building conversations and connections that have the power to become informed, productive collective civic action." />
+        <link rel="image_src" href="/images/cc_podcast_small.jpg" />
+      <meta name="medium" content="blog" />
+      <meta name="medium" content="blog" />
+      <script src="/assets/application.js?body=1" type="text/javascript"></script>
+      <script src="/assets/jquery/jquery-1.4.4.min.js?body=1" type="text/javascript"></script>
+      <script src="/assets/jquery/jquery-ui-1.8.16.custom.min.js?body=1" type="text/javascript"></script>
+      <script src="/assets/jquery/jquery-ui-timepicker-addon-0.5.min.js?body=1" type="text/javascript"></script>
+      <script src="/assets/modernizr-1.5.min.js?body=1" type="text/javascript"></script>
+      <script src="/assets/underscore.js?body=1" type="text/javascript"></script>
+      <script src="/assets/backbone-0.5.3.js?body=1" type="text/javascript"></script>
+      <script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
+      <script src="/assets/jquery/jquery.colorbox-min.js?body=1" type="text/javascript"></script>
+      <script src="/assets/jquery/jquery.form.js?body=1" type="text/javascript"></script>
+      <script src="/assets/jquery/jquery.remotipart.js?body=1" type="text/javascript"></script>
+      <script src="/assets/jquery/jquery.loadmask.min.js?body=1" type="text/javascript"></script>
+      <script src="/assets/jquery/jquery.hashchange.min.js?body=1" type="text/javascript"></script>
+      <script src="/assets/jquery/jquery.easytabs.js?body=1" type="text/javascript"></script>
+      <script src="/assets/jquery/jquery.cookie.js?body=1" type="text/javascript"></script>
+      <script src="/assets/authentication.js?body=1" type="text/javascript"></script>
+      <script src="/assets/omniauth_handler.js?body=1" type="text/javascript"></script>
+      <script src="/assets/conversations/rating_button.js?body=1" type="text/javascript"></script>
+      <script src="/assets/master.js?body=1" type="text/javascript"></script>
+      <script src="/assets/chosen_issues.js?body=1" type="text/javascript"></script>
+      <script src="/assets/jquery-plugins/mask-me.js?body=1" type="text/javascript"></script>
+      <script src="/assets/jquery-plugins/jquery.cycle.all?body=1" type="text/javascript"></script>
+      <script src="/assets/elements/togglable_field.js?body=1" type="text/javascript"></script>
+      <script src="/assets/dropdown.js?body=1" type="text/javascript"></script>
+      <script src="/assets/alert.js?body=1" type="text/javascript"></script>
+      <script src="/assets/upgrade-browser.js?body=1" type="text/javascript"></script>
+      <script src="/assets/jquery/jquery.ui.touch-punch.min.js?body=1" type="text/javascript"></script>
+      
+      <!--[if gte IE 7]><!-->
+      <link href="/assets/application.css?body=1" media="screen, projection" rel="stylesheet" type="text/css" />
+      <!--<![endif]-->
+    <script type='text/javascript'>
+      //<![CDATA[
+        $(document).ready(function(){
+        
+          $("input.datetime").datetimepicker({
+            ampm: true,
+            stepMinute: 15
+          });
+
+        });
+        
+        /* Google Analytics */
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-19685339-1']);
+        _gaq.push(['_setDomainName', '.theciviccommons.com']);
+        _gaq.push(['_trackPageview']);
+        
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+      //]]>
+    </script>
+    
+    <link href="http://feeds.theciviccommons.com/civiccommons_new_conversations" rel="alternate" title="The Civic Commons: Conversations" type="application/rss+xml" />
+    <link href="http://feeds.theciviccommons.com/civiccommonsblog" rel="alternate" title="The Civic Commons: Common Blog" type="application/rss+xml" />
+    <link href="http://feeds.theciviccommons.com/civiccommonsradio" rel="alternate" title="The Civic Commons Radio Show" type="application/rss+xml" />
+    <link href="http://feeds.theciviccommons.com/civiccommonsnews" rel="alternate" title="The Civic Commons In The News" type="application/rss+xml" />
+    <meta name="csrf-param" content="authenticity_token"/>
+    <meta name="csrf-token" content="GLjeV6f0fZDyeZjS82efM0HXC11PLyqhm97kDg9PFX0="/>
+  </head>
+  <body>
+    <!--[if lte IE 6]>
+      <div class="global-warning">You are using a browser which isn't supported.  Try using <a href="http://www.firefox.com">Firefox</a>, <a href="http://www.apple.com/safari">Safari</a> or <a href="http://www.google.com/chrome">Chrome</a>.</div>
+    <![endif]-->
+    <div id='header-wrapper'>
+      <div id='header'>
+        <a href="http://localhost:3000/" id="logo" title="The Civic Commons">The Civic Commons</a>
+      </div>
+    </div>
+    <div id="nav">
+      <ul class="main-nav">
+        <li>
+          <a href="/" title="Home">Home</a>
+        </li>
+        <li>
+          <a href="/conversations" title="Conversations">Conversations</a>
+        </li>
+        <li>
+          <a href="/issues" title="Issues">Issues</a>
+        </li>
+        <li>
+          <a href="/projects" title="Projects">Projects</a>
+        </li>
+        <li>
+          <a href="/community" title="Community">Community</a>
+        </li>
+      </ul>
+      <div class="nav-search">
+        <div id="search" class="">
+          <form accept-charset="UTF-8" action="/search/results" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>
+            <input class="textbox" id="q" name="q" placeholder="What are you looking for?" type="text">
+            
+            <input class="submit" id="Search" type="submit" value="Search">
+        </form></div>
+      </div>
+    </div>
+    <div class="wrapper">
+      <div class="content-container">
+        <div class="main-content">
+          <div class="media">
+            <div class="img img-lrg">
+              <img src="http://placehold.it/250x125" alt="" class="mbm" />
+              <div class="btn-group">
+                <a href="#" class="button tertiary">Share</a>
+                <a href="#" class="button tertiary">Embed Conversation</a>
+              </div>
+            </div>
+            <div class="bd">
+              <h1>Charting the Future of Fracking</h1>
+              <p class="meta">Daryl Rowland, August 1, 2012</p>
+              <div class="conv-content">
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin augue nisi, fermentum vitae, imperdiet a, auctor eu, mi. Nulla imperdiet molestie purus. Duis arcu dui, pretium in, molestie id, convallis eget, orci. Praesent eget purus. Nullam sed nunc. Etiam quis orci ac metus consectetuer consequat. Sed pulvinar aliquam sem. Vestibulum convallis. Pellentesque vestibulum dapibus est. Morbi iaculis. Morbi molestie molestie libero. Ut metus. Phasellus pulvinar. Aenean rutrum tristique neque. Morbi vulputate. Curabitur pretium, arcu a accumsan pretium, augue mi ullamcorper ligula, at tristique ligula purus quis mi. Etiam blandit arcu et lorem. Nam ligula. Aliquam nisi sem, euismod id, pharetra vitae, ullamcorper et, pede.</p>
+              </div>
+              <a href="#" class="button tertiary">Expand</a>
+            </div>
+          </div>
+        </div><!-- /.main-content -->
+        <div class="aside">
+          <p><i class="icon-bullhorn"></i> <a href="#">Actions</a></p> 
+          <p><i class="icon-leaf"></i> <a href="#">Reflections</a></p> 
+          <div class="mod-content">
+            <h3>Participants</h3>
+            <div class="photobank">
+              <a href="http://localhost:3000/user/dan-moulthrop" title="Dan Moulthrop"><img alt="Dan Moulthrop" class="callout" height="40" src="http://s3.amazonaws.com/com.theciviccommons.production/avatars/9/standard/IMG_8012.jpg?1337365528" title="Dan Moulthrop" width="40"></a>
+              <a href="http://localhost:3000/user/nancy-reeves" title="Nancy Reeves"><img alt="Nancy Reeves" class="callout" height="40" src="http://s3.amazonaws.com/com.theciviccommons.production/avatars/893/standard/MS150.jpg?1304999301" title="Nancy Reeves" width="40"></a>
+              <a href="http://localhost:3000/user/josh-destardi" title="Josh Destardi"><img alt="Josh Destardi" class="callout" height="40" src="https://graph.facebook.com/574895156/picture" title="Josh Destardi" width="40"></a>
+              <a href="http://localhost:3000/user/jill-miller-zimon--2" title="Jill Miller Zimon"><img alt="Jill Miller Zimon" class="callout" height="40" src="http://s3.amazonaws.com/com.theciviccommons.production/avatars/100/standard/IMG_7864.JPG?1332879967" title="Jill Miller Zimon" width="40"></a>
+              <a href="http://localhost:3000/user/penny-jeffrey" title="PENNY JEFFREY"><img alt="PENNY JEFFREY" class="callout" height="40" src="http://s3.amazonaws.com/com.theciviccommons.production/avatars/default/avatar_70.gif" title="PENNY JEFFREY" width="40"></a>
+              <a href="http://localhost:3000/user/dan-moulthrop" title="Dan Moulthrop"><img alt="Dan Moulthrop" class="callout" height="40" src="http://s3.amazonaws.com/com.theciviccommons.production/avatars/9/standard/IMG_8012.jpg?1337365528" title="Dan Moulthrop" width="40"></a>
+              <a href="http://localhost:3000/user/nancy-reeves" title="Nancy Reeves"><img alt="Nancy Reeves" class="callout" height="40" src="http://s3.amazonaws.com/com.theciviccommons.production/avatars/893/standard/MS150.jpg?1304999301" title="Nancy Reeves" width="40"></a>
+              <a href="http://localhost:3000/user/josh-destardi" title="Josh Destardi"><img alt="Josh Destardi" class="callout" height="40" src="https://graph.facebook.com/574895156/picture" title="Josh Destardi" width="40"></a>
+              <a href="http://localhost:3000/user/jill-miller-zimon--2" title="Jill Miller Zimon"><img alt="Jill Miller Zimon" class="callout" height="40" src="http://s3.amazonaws.com/com.theciviccommons.production/avatars/100/standard/IMG_7864.JPG?1332879967" title="Jill Miller Zimon" width="40"></a>
+              <a href="http://localhost:3000/user/penny-jeffrey" title="PENNY JEFFREY"><img alt="PENNY JEFFREY" class="callout" height="40" src="http://s3.amazonaws.com/com.theciviccommons.production/avatars/default/avatar_70.gif" title="PENNY JEFFREY" width="40"></a>
+              <a href="http://localhost:3000/user/dan-moulthrop" title="Dan Moulthrop"><img alt="Dan Moulthrop" class="callout" height="40" src="http://s3.amazonaws.com/com.theciviccommons.production/avatars/9/standard/IMG_8012.jpg?1337365528" title="Dan Moulthrop" width="40"></a>
+              <a href="http://localhost:3000/user/nancy-reeves" title="Nancy Reeves"><img alt="Nancy Reeves" class="callout" height="40" src="http://s3.amazonaws.com/com.theciviccommons.production/avatars/893/standard/MS150.jpg?1304999301" title="Nancy Reeves" width="40"></a>
+              <a href="http://localhost:3000/user/josh-destardi" title="Josh Destardi"><img alt="Josh Destardi" class="callout" height="40" src="https://graph.facebook.com/574895156/picture" title="Josh Destardi" width="40"></a>
+              <a href="http://localhost:3000/user/jill-miller-zimon--2" title="Jill Miller Zimon"><img alt="Jill Miller Zimon" class="callout" height="40" src="http://s3.amazonaws.com/com.theciviccommons.production/avatars/100/standard/IMG_7864.JPG?1332879967" title="Jill Miller Zimon" width="40"></a>
+              <a href="http://localhost:3000/user/penny-jeffrey" title="PENNY JEFFREY"><img alt="PENNY JEFFREY" class="callout" height="40" src="http://s3.amazonaws.com/com.theciviccommons.production/avatars/default/avatar_70.gif" title="PENNY JEFFREY" width="40"></a>
+            </div>
+          </div>
+        </div><!-- /.aside -->
+      </div><!-- /.content-container -->
+    </div><!-- /.wrapper -->
+    <div class="wrapper">
+      <div class="content-container">
+        <div class="btn-group btn-group-large full-width">
+          <div>
+            <a href="#" class="button tertiary">Contribute</a>
+            <a href="#" class="button tertiary">Take Action</a>
+            <a href="#" class="button tertiary">Reflect</a>
+            <a href="#" class="button tertiary">Favorite</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="wrapper">
+      <div class="content-container">
+        <div class="row col-center">
+          <div class="inset col-6">
+            <h2>No contributions have been made, be the first!</h2>
+            <fieldset class="form-group top-align">
+              <div class="form-block">
+                <label for="add-contribution" class="mbm">Add Your Contribution:</label>
+                <div class="media">
+                  <div class="img">
+                    <img src="http://placehold.it/40x40" alt="" />
+                  </div>
+                  <div class="bd">
+                    <textarea style="width: 390px" class="textbox mtn" id="add-contribution" name="add-contribution" size="30" type="text"></textarea>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='footer' id='footer'>
+      <div id='footer-inner'>
+        <div class='four-col'>
+          <div class='cols'>
+            <h3>About the Commons</h3>
+            <ul class='sub-nav'>
+              <li>
+                <a href="http://localhost:3000/about">About Us</a>
+              </li>
+              <li>
+                <a href="http://localhost:3000/team">Team</a>
+              </li>
+              <li>
+                <a href="http://localhost:3000/principles">Mission &amp; Principles</a>
+              </li>
+              <li>
+                <a href="http://localhost:3000/faq">FAQ</a>
+              </li>
+              <li>
+                <a href="http://localhost:3000/jobs">Careers</a>
+              </li>
+            </ul>
+          </div>
+          <div class='cols'>
+            <h3>Keep Up with the Commons</h3>
+            <ul class='sub-nav'>
+              <li>
+                <a href="http://localhost:3000/blog">Blog</a>
+              </li>
+              <li>
+                <a href="http://localhost:3000/press">In The News</a>
+              </li>
+              <li>
+                <a href="http://localhost:3000/radioshow">Radio Show</a>
+              </li>
+              <li>
+                <a href="http://localhost:3000/feeds">RSS Feeds</a>
+              </li>
+              <li>
+                <a href="http://status.theciviccommons.com/">Server Status</a>
+              </li>
+            </ul>
+          </div>
+          <div class='cols'>
+            <h3>Work with the Commons</h3>
+            <ul class='sub-nav'>
+              <li>
+                <a href="http://getsatisfaction.com/theciviccommons">Help and Support</a>
+              </li>
+              <li>
+                <a href="http://localhost:3000/contact_us">Contact Us</a>
+              </li>
+              <li>
+                <a href="http://localhost:3000/partners">Partners</a>
+              </li>
+              <li>
+                <a href="http://localhost:3000/terms">Terms of Use</a>
+              </li>
+              <li>
+                <a href="http://localhost:3000/privacy">Privacy Policy</a>
+              </li>
+            </ul>
+          </div>
+          <div class='cols'>
+            <h3>The Civic Commons Elsewhere</h3>
+            <ul class='social-media'>
+              <li>
+                <a href='http://www.facebook.com/pages/Civic-Commons/143930632284131' class='social-media-ico facebook_ico'>Facebook</a>
+              </li>
+              <li>
+                <a href='http://twitter.com/civiccommons' class='social-media-ico twitter_ico'>Twitter</a>
+              </li>
+              <li>
+                <a href='http://www.youtube.com/user/neociviccommons' class='social-media-ico youtube_ico'>YouTube</a>
+              </li>
+              <li>
+                <a href='http://localhost:3000/feeds' class='social-media-ico rss_ico'>RSS</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div id="cc-footer">
+        	<p>
+        	<img alt="Cc_by-nc-sa" src="/images/cc_by-nc-sa.png?1303596124" style="float: left; margin-right: 10px;" />
+        	Conversation text and related responses copyright &copy; The Civic Commons and are available under the
+        	<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike License</a>;
+        	additional terms may apply.
+        	</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+
+<script type="text/javascript" charset="utf-8">
+  var is_ssl = ("https:" == document.location.protocol);
+  var asset_host = is_ssl ? "https://s3.amazonaws.com/getsatisfaction.com/" : "http://s3.amazonaws.com/getsatisfaction.com/";
+  document.write(unescape("%3Cscript src='" + asset_host + "javascripts/feedback-v2.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<script type="text/javascript" charset="utf-8">
+  var feedback_widget_options = {};
+
+  feedback_widget_options.display = "overlay";  
+  feedback_widget_options.company = "theciviccommons";
+  feedback_widget_options.placement = "left";
+  feedback_widget_options.color = "#51778E";
+  feedback_widget_options.style = "question";
+
+  var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
+</script>
