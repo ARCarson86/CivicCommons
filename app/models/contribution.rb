@@ -298,7 +298,7 @@ class Contribution < ActiveRecord::Base
       false
     end
   end
-  
+
   def region_metrocodes
     item.region_metrocodes if item
   end

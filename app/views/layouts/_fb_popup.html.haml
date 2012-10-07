@@ -2,10 +2,7 @@
 %html
   %head
     %title Civic Commons
-    = stylesheet_link_tag "reset", :media => "screen, projection"
-    = stylesheet_link_tag "master", :media => "screen, projection"
-    = stylesheet_link_tag "ie", :media => "screen, projection"
-    = stylesheet_link_tag "ui-lightness/jquery-ui-1.8.16.custom", :media => "screen, projection"
+    = stylesheet_link_tag 'application', :media => "screen, projection"
     :plain
       <!--<![endif]-->
     = yield :header
