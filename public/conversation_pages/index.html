@@ -112,7 +112,7 @@
           <div class="media">
             <div class="img img-lrg">
               <img src="http://placehold.it/250x125" alt="" class="mbm" />
-              <a href="#" class="button tertiary"><i class="icon-share"></i> Share</a>
+              <a href="#" class="button tertiary js-modal-launch-1"><i class="icon-share"></i> Share</a>
               <a href="#" class="button tertiary">Embed Conversation</a>
             </div>
             <div class="bd">
@@ -121,7 +121,7 @@
               <div class="conv-content">
                 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin augue nisi, fermentum vitae, imperdiet a, auctor eu, mi. Nulla imperdiet molestie purus. Duis arcu dui, pretium in, molestie id, convallis eget, orci. Praesent eget purus. Nullam sed nunc. Etiam quis orci ac metus consectetuer consequat. Sed pulvinar aliquam sem. Vestibulum convallis. Pellentesque vestibulum dapibus est. Morbi iaculis. Morbi molestie molestie libero. Ut metus. Phasellus pulvinar. Aenean rutrum tristique neque. Morbi vulputate. Curabitur pretium, arcu a accumsan pretium, augue mi ullamcorper ligula, at tristique ligula purus quis mi. Etiam blandit arcu et lorem. Nam ligula. Aliquam nisi sem, euismod id, pharetra vitae, ullamcorper et, pede.</p>
               </div>
-              <a href="#" class="button tertiary"><i class="icon-chevron-down"></i> Expand</a>
+              <a href="#" class="button tertiary js-modal-launch-3"><i class="icon-chevron-down"></i> Expand</a>
             </div>
           </div>
         </div><!-- /.main-content -->
@@ -157,7 +157,7 @@
       <div class="content-container">
         <div class="btn-group btn-group-large full-width">
           <div>
-            <a href="#" class="button tertiary"><i class="icon-plus"></i> Contribute</a>
+            <a href="#" class="button tertiary js-modal-launch-2"><i class="icon-plus"></i> Contribute</a>
             <a href="#" class="button tertiary"><i class="icon-bullhorn"></i> Take Action</a>
             <a href="#" class="button tertiary"><i class="icon-eye-open"></i> Reflect</a>
             <a href="#" class="button tertiary"><i class="icon-star"></i> Favorite</a>
@@ -179,7 +179,7 @@
                 <p>Etiam quis orci ac metus consectetuer consequat. Sed pulvinar aliquam sem. Vestibulum convallis. Pellentesque vestibulum dapibus est. Morbi iaculis. Morbi molestie molestie libero. Ut metus. Phasellus pulvinar. Aenean rutrum tristique neque.</p>
                 <div class="action-bar">
                   <div class="fl-right">
-                    <a href="#" class="button tertiary">Expand</a>
+                    <a href="#" class="button tertiary"><i class="icon-chevron-down"></i> Expand</a>
                   </div>
                   <div class="actions">
                     <a href="#" class="button tertiary"><i class="icon-plus"></i></a>
@@ -200,7 +200,7 @@
                 <p>Etiam quis orci ac metus consectetuer consequat. Sed pulvinar aliquam sem. Vestibulum convallis. Pellentesque vestibulum dapibus est. Morbi iaculis. Morbi molestie molestie libero. Ut metus. Phasellus pulvinar. Aenean rutrum tristique neque.</p>
                 <div class="action-bar">
                   <div class="fl-right">
-                    <a href="#" class="button tertiary">Expand</a>
+                    <a href="#" class="button tertiary"><i class="icon-chevron-down"></i> Expand</a>
                   </div>
                   <div class="actions">
                     <a href="#" class="button tertiary"><i class="icon-plus"></i></a>
@@ -221,7 +221,7 @@
                 <p>Etiam quis orci ac metus consectetuer consequat. Sed pulvinar aliquam sem. Vestibulum convallis. Pellentesque vestibulum dapibus est. Morbi iaculis. Morbi molestie molestie libero. Ut metus. Phasellus pulvinar. Aenean rutrum tristique neque.</p>
                 <div class="action-bar">
                   <div class="fl-right">
-                    <a href="#" class="button tertiary">Expand</a>
+                    <a href="#" class="button tertiary"><i class="icon-chevron-down"></i> Expand</a>
                   </div>
                   <div class="actions">
                     <a href="#" class="button tertiary"><i class="icon-plus"></i></a>
@@ -365,8 +365,6 @@
     </div>
   </body>
 </html>
-
-
 <script type="text/javascript" charset="utf-8">
   var is_ssl = ("https:" == document.location.protocol);
   var asset_host = is_ssl ? "https://s3.amazonaws.com/getsatisfaction.com/" : "http://s3.amazonaws.com/getsatisfaction.com/";
@@ -383,4 +381,13 @@
   feedback_widget_options.style = "question";
 
   var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
+</script>
+
+<script type="text/javascript">
+  // TODO: Move this to an external script
+  $(document).ready(function() {
+    $('a.js-modal-launch-1').colorbox({href:'share_convo.html', width:'500px', transition: 'fade'});
+    $('a.js-modal-launch-2').colorbox({href:'add_convo.html', width:'600px', transition: 'fade'});
+    $('a.js-modal-launch-3').colorbox({href:'expand_convo.html', width:'700px', transition: 'fade'});
+  });
 </script>

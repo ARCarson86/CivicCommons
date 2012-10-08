@@ -42,3 +42,29 @@ form#comment-form textarea {
 .checkbox-inline span {
   padding-left: 18px;
 }
+
+.form-horizontal {
+  input, 
+  textarea,
+  select,
+  label {
+    margin-bottom: 0;
+    vertical-align: middle;
+    @include inline-block;
+  }
+} 
+
+// Special styles for share checkboxes
+
+.inline-check-share {
+  position: relative;
+
+  .check-share {
+    position: absolute;
+    top: 8px;
+  }
+
+  img {
+    padding-left: 20px;
+  }
+}
