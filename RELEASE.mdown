@@ -7,12 +7,21 @@
   * [Update Start a Conversation Page.](https://agilezen.com/project/18091/story/691)
   * [Homepage Blog Panel Styling](https://agilezen.com/project/18091/story/695)
   * [Fix whitespace issue on blog carousel](https://agilezen.com/project/18091/story/707)
+  * [Adjust Background Color to Match body_bg.gif more closely.](https://agilezen.com/project/18091/story/711)
+  * [Add Clearfix Code to Clear Button.](https://agilezen.com/project/18091/story/711)
 
 ### Bug Fix
   * [Ability to Select Index Page for Managed Issue Pages](https://agilezen.com/project/18091/story/676)
   * [Regional Filter Tab Missing When Other 3 Filters are Engaged](https://agilezen.com/project/18091/story/700)
+  * [Update Admin Interface Styling.](https://agilezen.com/project/18091/story/701)
   * [Styling of Static Assets - The "We'll be right back." has no styling.](https://agilezen.com/project/18091/story/703)
   * [Facebook Popup Causes Error on Server.](https://agilezen.com/project/18091/story/710)
+  * [all browsers - add a conversation broken](https://agilezen.com/project/18091/story/712)
+  * [respond to a conversation broken - all browsers](https://agilezen.com/project/18091/story/713)
+  * [conversation edit - delete not working in any browser](https://agilezen.com/project/18091/story/714)
+  * [Most Recent & Recommended Should Show Different Conversations](https://agilezen.com/project/18091/story/715)
+  * [ie9, ie8 missing ckeditor from vote, reflection](https://agilezen.com/project/18091/story/717)
+  * [Add "Services" Top Navigation - go to services page.](https://agilezen.com/project/18091/story/724)
 
 ### Chores
   * [Migrate App to Use Rails Asset Pipeline](https://agilezen.com/project/18091/story/646)

@@ -10,6 +10,15 @@ GIT
   specs:
     query_reviewer (0.1.5)
 
+GIT
+  remote: git://github.com/paramaw/ckeditor.git
+  revision: 97855e1700ec4530f7a31dc68380cd1831ababb2
+  branch: master
+  specs:
+    ckeditor (3.7.3)
+      mime-types
+      orm_adapter
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -80,9 +89,6 @@ GEM
     childprocess (0.3.2)
       ffi (~> 1.0.6)
     chunky_png (1.2.6)
-    ckeditor (3.7.3)
-      mime-types
-      orm_adapter
     coffee-rails (3.1.1)
       coffee-script (>= 2.2.0)
       railties (~> 3.1.0)
@@ -432,7 +438,7 @@ DEPENDENCIES
   cancan (= 1.6.8)
   capybara (~> 1.1.2)
   carrierwave
-  ckeditor (= 3.7.3)
+  ckeditor!
   coffee-rails
   compass-rails
   daemons

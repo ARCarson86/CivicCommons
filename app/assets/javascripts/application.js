@@ -4,18 +4,18 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
 //
-//= require 'jquery/jquery-1.4.4.min'
-//= require 'jquery/jquery-ui-1.8.16.custom.min'
-//= require 'jquery/jquery-ui-timepicker-addon-0.5.min'
-//= require 'modernizr-1.5.min'
+//= require 'jquery/jquery-1.4.4'
+//= require 'jquery/jquery-ui-1.8.16'
+//= require 'jquery/jquery-ui-timepicker-addon-0.5'
+//= require 'modernizr-2.6.1'
 //= require 'underscore.js'
 //= require 'backbone-0.5.3.js'
 //= require 'jquery_ujs'
-//= require 'jquery/jquery.colorbox-min'
+//= require 'jquery/jquery.colorbox-1.3.15'
 //= require 'jquery/jquery.form'
 //= require 'jquery/jquery.remotipart'
-//= require 'jquery/jquery.loadmask.min'
-//= require 'jquery/jquery.hashchange.min'
+//= require 'jquery/jquery.loadmask'
+//= require 'jquery/jquery.hashchange'
 //= require 'jquery/jquery.easytabs'
 //= require 'jquery/jquery.cookie'
 //= require 'authentication'
@@ -29,9 +29,9 @@
 //= require 'dropdown.js'
 //= require 'alert.js'
 //= require "upgrade-browser.js"
-//= require "jquery/jquery.ui.touch-punch.min.js"
+//= require "jquery/jquery.ui.touch-punch.js"
 //= require 'ckeditor/init'
-//= require jquery/jquery.fancybox-1.3.4.pack.js
+//= require jquery/jquery.fancybox-1.3.4.js
 
 //= require 'tiny_mce/jquery.tinymce.js'
 //= require 'contributions/contribution_tool.js'

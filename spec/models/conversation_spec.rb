@@ -402,6 +402,23 @@ describe Conversation do
       cr.include?(@conversation_r2).should be_true
     end
 
+    it "will select all unfiltered recommanded conversations that are not filtered out" do
+      cr = Conversation.recommended(filter:@conversation_r2)
+      cr.include?(@conversation_nr1).should be_false
+      cr.include?(@conversation_nr2).should be_false
+      cr.include?(@conversation_r1).should be_true
+      cr.include?(@conversation_r2).should be_false
+    end
+
+    it "will select zero recommanded conversations when the conversations are filtered out" do
+      cr = Conversation.recommended(filter:[@conversation_r1, @conversation_r2])
+      cr.include?(@conversation_nr1).should be_false
+      cr.include?(@conversation_nr2).should be_false
+      cr.include?(@conversation_r1).should be_false
+      cr.include?(@conversation_r2).should be_false
+      cr.present?.should be_false
+    end
+
     context "filted" do
       it "will select all recommanded conversations that are not filtered out" do
         cr = Conversation.random_recommended(1, @conversation_r1)

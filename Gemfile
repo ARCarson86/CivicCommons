@@ -64,7 +64,8 @@ gem 'sixarm_ruby_email_address_validation'
 
 gem 'profanity_filter', :git => 'git://github.com/CivicCommons/profanity_filter.git'
 
-gem "ckeditor", "3.7.3"
+gem 'ckeditor', :git => 'git://github.com/paramaw/ckeditor.git', :branch  => "master" # a bug was introduced to 3.7.3 that made ckeditor unable to work with IE
+
 gem 'prawn_rails'
 gem 'prawn', '>= 1.0.0.rc1'
 

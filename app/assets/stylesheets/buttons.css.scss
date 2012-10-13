@@ -206,6 +206,11 @@ a.button:active span.stitcher {
 }
 
 .btn-group:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
   @include clearfix;
 }
 

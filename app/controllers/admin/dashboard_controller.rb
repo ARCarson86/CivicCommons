@@ -1,6 +1,6 @@
 require 'socket'
 class Admin::DashboardController < ApplicationController
-  
+
   before_filter :require_user
   authorize_resource :class => :admin_dashboard
 
@@ -9,5 +9,5 @@ class Admin::DashboardController < ApplicationController
   def show
     @host = Socket.gethostname
   end
-  
+
 end

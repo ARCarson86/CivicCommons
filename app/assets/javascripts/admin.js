@@ -1,5 +1,5 @@
-//=require 'jquery/jquery-1.4.4.min'
-//=require 'jquery/jquery-ui-1.8.16.custom.min.js'
+//=require 'jquery/jquery-1.4.4'
+//=require 'jquery/jquery-ui-1.8.16'
 //=require 'jquery_ujs'
 //=require 'tiny_mce/jquery.tinymce.js'
 //=require 'jquery/jquery.tablesorter.min'

@@ -210,8 +210,15 @@ class Conversation < ActiveRecord::Base
     r.sample(select)
   end
 
-  def self.recommended
-    Conversation.where('staff_pick = true').order('position ASC')
+  def self.recommended(options = {})
+    options.reverse_merge!(filter:0)
+    filter = options[:filter]
+    filter = [filter] unless options[:filter].respond_to?(:flatten) || filter.nil?
+    filter.flatten!
+
+    Conversation.where('staff_pick = true').
+                 where("conversations.id not in (?)", filter).
+                 order('position ASC')
   end
 
   def self.filtered(filter)
