@@ -167,6 +167,7 @@ a.button:active span.stitcher {
 
 .btn-group {
 	position: relative;
+  @include pie-clearfix;
 }
 
 .btn-group .button {
@@ -203,15 +204,6 @@ a.button:active span.stitcher {
 
 .btn-group .text p {
   padding: 0 10px 0 5px;
-}
-
-.btn-group:after {
-  content: ".";
-  display: block;
-  height: 0;
-  clear: both;
-  visibility: hidden;
-  @include clearfix;
 }
 
 // Large button group
