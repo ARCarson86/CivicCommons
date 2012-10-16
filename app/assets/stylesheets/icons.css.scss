@@ -602,3 +602,22 @@
   background: image-url("cc_embed_icon.png") no-repeat 0 0;
   padding: 5px 0 5px 30px;
 }
+
+// Convo Reconcept Icons
+
+.convo-icons-sm {
+  display: inline-block;
+  margin-right: 5px;
+  width: 33px;
+  height: 33px;
+  vertical-align: middle;
+}
+
+.convo-icons-text {
+  position: relative;
+  top: 3px;
+  font-size: 16px;
+}
+
+@import "convo-icons-sm/*.png";
+@include all-convo-icons-sm-sprites;
