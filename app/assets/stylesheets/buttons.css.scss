@@ -105,22 +105,22 @@ a.button.active {
   border-color: #bbb;
   color: #555;
   text-shadow: 0 1px 0px rgba(255,255,255,.3);
-  background-color: #e6e6e6;
-  @include background-image(linear-gradient(top, rgb(237, 237, 237), rgb(224, 224, 224)));
-  @include filter-gradient(rgb(237, 237, 237), rgb(224, 224, 224), vertical);
+  background-color: #f3f3f3;
+  @include background-image(linear-gradient(top, rgb(255, 255, 255), rgb(231, 231, 231)));
+  @include filter-gradient(rgb(255, 255, 255), rgb(231, 231, 231), vertical);
 }
 
 .button.tertiary:hover {
-  background-color: #d4d7d7;
-  @include background-image(linear-gradient(top, rgb(224, 226, 226), rgb(201, 204, 204)));
-  @include filter-gradient(rgb(224, 226, 226), rgb(201, 204, 204), vertical);
+  background-color: #ededed;
+  @include background-image(linear-gradient(top, rgb(244, 244, 244), rgb(230, 230, 230)));
+  @include filter-gradient(rgb(244, 244, 244), rgb(230, 230, 230), vertical);
 }
 
 .button.tertiary:active,
 .button.tertiary.active {
-  background-color: #cbcfcf;
-  @include background-image(linear-gradient(top, rgb(206, 210, 210), rgb(201, 204, 204)));
-  @include filter-gradient(rgb(206, 210, 210), rgb(201, 204, 204), vertical);
+  background-color: #d8d8d8;
+  @include background-image(linear-gradient(top, rgb(203, 203, 203), rgb(230, 230, 230)));
+  @include filter-gradient(rgb(203, 203, 203), rgb(230, 230, 230), vertical);
 }
 
 // Radio show buttons
@@ -212,6 +212,20 @@ a.button:active span.stitcher {
   font-size: 13px;
 	padding: 8px 15px;
 	width: 150px;
+}
+
+.btn-group.btn-group-x-large .button {
+  font-size: 22px;
+	padding: 12px 18px;
+	width: 150px;
+
+  &:first-child {
+    @include border-radius(6px 0 0 6px);
+  }
+
+  &:last-child {
+    @include border-radius(0 6px 6px 0);
+  }
 }
 
  // TODO: Need to refactor and make large buttons indepenedent of button group (BD)
