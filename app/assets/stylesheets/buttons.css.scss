@@ -105,21 +105,21 @@ a.button.active {
   border-color: #bbb;
   color: #555;
   text-shadow: 0 1px 0px rgba(255,255,255,.3);
-  background-color: #f3f3f3;
-  @include background-image(linear-gradient(top, rgb(255, 255, 255), rgb(231, 231, 231)));
-  @include filter-gradient(rgb(255, 255, 255), rgb(231, 231, 231), vertical);
+  background-color: #eeeeee;
+  @include background-image(linear-gradient(top, rgb(255, 255, 255), rgb(221, 221, 221)));
+  @include filter-gradient(rgb(255, 255, 255), rgb(221, 221, 221), vertical);
 }
 
 .button.tertiary:hover {
-  background-color: #ededed;
-  @include background-image(linear-gradient(top, rgb(244, 244, 244), rgb(230, 230, 230)));
-  @include filter-gradient(rgb(244, 244, 244), rgb(230, 230, 230), vertical);
+  background-color: #ebebeb;
+  @include background-image(linear-gradient(top, rgb(244, 244, 244), rgb(215, 215, 215)));
+  @include filter-gradient(rgb(255, 255, 255), rgb(215, 215, 215), vertical);
 }
 
 .button.tertiary:active,
 .button.tertiary.active {
   background-color: #d8d8d8;
-  @include background-image(linear-gradient(top, rgb(203, 203, 203), rgb(230, 230, 230)));
+  @include background-image(linear-gradient(top, rgb(203, 203, 203), rgb(215, 215, 215)));
   @include filter-gradient(rgb(203, 203, 203), rgb(230, 230, 230), vertical);
 }
 
@@ -206,6 +206,15 @@ a.button:active span.stitcher {
   padding: 0 10px 0 5px;
 }
 
+.btn-group.btn-group-full .button {
+  margin-left: 10px;
+  width: 189px;
+
+  &:first-child {
+    margin-left: 0;
+  }
+}
+
 // Large button group
 
 .btn-group.btn-group-large .button {
@@ -214,18 +223,12 @@ a.button:active span.stitcher {
 	width: 150px;
 }
 
+// Xtra Large Buttons
+
 .btn-group.btn-group-x-large .button {
   font-size: 22px;
 	padding: 12px 18px;
-	width: 150px;
-
-  &:first-child {
-    @include border-radius(6px 0 0 6px);
-  }
-
-  &:last-child {
-    @include border-radius(0 6px 6px 0);
-  }
+  @include border-radius(6px);
 }
 
  // TODO: Need to refactor and make large buttons indepenedent of button group (BD)
