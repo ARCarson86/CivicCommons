@@ -7,8 +7,8 @@ class CommunityController < ApplicationController
     paginated_people
     @regions = Region.all
   end
-  
-  private    
+
+  private
   def ordered_people
     @order = params[:order] || 'newest-member'
     case @order
@@ -23,19 +23,19 @@ class CommunityController < ApplicationController
       @community = @issue.present? ? @issue.most_newest_users : Person.find_confirmed_order_by_recency
     end
   end
-  
+
   def filtered_people
     @current_filter = params[:filter] || 'all'
     case @current_filter
     when 'all'
-      @community 
+      @community
     when 'people'
       @community = @community.only_people
     when 'organizations'
       @community = @community.only_organizations
     end
   end
-  
+
   def paginated_people
     @community = @community.paginate(:page => params[:page], :per_page => 16)
   end

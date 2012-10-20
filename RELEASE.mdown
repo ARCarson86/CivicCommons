@@ -1,3 +1,14 @@
+## 3.3
+
+### External Changes
+  * [Edit Content on Services Page.](https://agilezen.com/project/18091/story/726)
+
+### Bug Fix
+  * [Ability to Click Retrieve Password Link](https://agilezen.com/project/18091/story/727)
+
+### Chores
+
+
 ## 3.2
 
 ### External Changes

@@ -14,15 +14,15 @@ $(document).ready(function(){
       return false;
     }
   });
-  
+
   // user registration form
   $("a.no-fb").click(function() {
     $(".regular-reg").fadeIn();
     $(".facebook-auth").hide();
     return false;
   });
-  
-  $('a.cancel').click(function() {
+
+  $('.register a.cancel').click(function() {
     $(".regular-reg").hide();
     $(".facebook-auth").show();
     return false;
