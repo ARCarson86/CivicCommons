@@ -39,11 +39,11 @@
 	position: absolute;
   top: 0;
   right: 0;
-  width: 240px;
 	background: #fff;
 	border: 1px solid #ccc;
   @include border-radius(4px);
 }
+
 .arrow_box_left:after, .arrow_box_left:before {
 	right: 100%;
 	border: solid transparent;
@@ -58,13 +58,14 @@
 	border-color: transparent;
 	border-right-color: #fff;
 	border-width: 10px;
-	top: 50%;
+	top: 25px;
 	margin-top: -10px;
 }
+
 .arrow_box_left:before {
 	border-color: transparent;
 	border-right-color: #aaa;
 	border-width: 11px;
-	top: 50%;
+	top: 25px;
 	margin-top: -11px;
 }
