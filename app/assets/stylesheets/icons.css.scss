@@ -613,6 +613,19 @@
   vertical-align: middle;
 }
 
+
+.convo-icons-sm {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  *margin-right: .3em;
+  line-height: 14px;
+  vertical-align: text-top;
+  background-image: image-url("glyphicons-halflings.png");
+  background-position: 14px 14px;
+  background-repeat: no-repeat;
+}
+
 .convo-icons-text {
   position: relative;
   top: 5px;
@@ -622,3 +635,6 @@
 
 @import "convo_icons/*.png";
 @include all-convo_icons-sprites;
+
+@import "convo-icons-xsm/*.png";
+@include all-convo-icons-xsm-sprites;
