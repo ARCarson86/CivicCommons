@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/CivicCommons/profanity_filter.git
-  revision: 709b45a9a2b0dc25f00b02e8db1bb530496385b1
+  revision: bfae5dbcbd5a5dd9421c003e550282e52f209d86
   specs:
     profanity_filter (0.1.1)
 

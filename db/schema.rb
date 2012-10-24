@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120921141759) do
+ActiveRecord::Schema.define(:version => 20121020233121) do
 
   create_table "actions", :force => true do |t|
     t.integer  "conversation_id"
@@ -451,7 +451,19 @@ ActiveRecord::Schema.define(:version => 20120921141759) do
     t.datetime "expire_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "item_created_at"
+    t.integer  "conversation_id"
+    t.integer  "issue_id"
+    t.integer  "receiver_id"
+    t.string   "notification_type"
   end
+
+  add_index "notifications", ["conversation_id"], :name => "index_notifications_on_conversation_id"
+  add_index "notifications", ["issue_id"], :name => "index_notifications_on_issue_id"
+  add_index "notifications", ["item_created_at"], :name => "index_notifications_on_item_created_at"
+  add_index "notifications", ["item_id"], :name => "index_notifications_on_item_id"
+  add_index "notifications", ["item_type"], :name => "index_notifications_on_item_type"
+  add_index "notifications", ["receiver_id"], :name => "index_notifications_on_receiver_id"
 
   create_table "organization_details", :force => true do |t|
     t.integer  "person_id"

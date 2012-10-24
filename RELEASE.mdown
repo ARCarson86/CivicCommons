@@ -2,6 +2,7 @@
 
 ### External Changes
   * [Edit Content on Services Page.](https://agilezen.com/project/18091/story/726)
+  * [Use updated profanitfy filter to allow keyword he'll](https://agilezen.com/project/18091/story/729)
 
 ### Bug Fix
   * [Ability to Click Retrieve Password Link](https://agilezen.com/project/18091/story/727)
