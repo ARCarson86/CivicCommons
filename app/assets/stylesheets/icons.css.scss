@@ -633,8 +633,8 @@
   color: #666;
 }
 
-@import "convo_icons/*.png";
-@include all-convo_icons-sprites;
+@import "convo-icons-lrg/*.png";
+@include all-convo-icons-lrg-sprites;
 
 @import "convo-icons-xsm/*.png";
 @include all-convo-icons-xsm-sprites;
