@@ -213,6 +213,7 @@ Civiccommons::Application.routes.draw do
     root      to: "dashboard#show"
     resources :articles
     resources :content_items do#, only: [:index, :show, :new, :create, :update, :destroy]
+      get '/summary_preview', to: 'content_items#summary_preview'
       resources :content_items_people, :only => [:index, :new, :create, :destroy], :path => 'people'
       resources :content_item_links, :path => 'links'
     end

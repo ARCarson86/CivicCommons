@@ -189,6 +189,7 @@ GEM
     hike (1.2.1)
     hominid (3.0.4)
     hpricot (0.8.6)
+    htmlentities (4.3.1)
     httparty (0.8.3)
       multi_json (~> 1.0)
       multi_xml
@@ -400,6 +401,7 @@ GEM
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
+    truncate_html (0.5.5)
     ttfunk (1.0.3)
     typhoeus (0.4.2)
       ffi (~> 1.0)
@@ -464,6 +466,7 @@ DEPENDENCIES
   highline
   hominid (~> 3.0.2)
   hpricot
+  htmlentities
   httparty
   jasmine (~> 1.1.2)
   jasmine-headless-webkit (~> 0.8.4)
@@ -504,6 +507,7 @@ DEPENDENCIES
   sunspot_rails
   sunspot_solr
   timecop (~> 0.3.5)
+  truncate_html
   uglifier
   webmock (~> 1.6.2)
   webrat (~> 0.7.3)

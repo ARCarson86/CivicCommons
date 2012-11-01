@@ -112,6 +112,28 @@ class Admin::ContentItemsController < Admin::DashboardController
     end
   end
 
+  ##
+  # Returns the truncated summary text; this is to allow admins
+  # to see what the summary will look like when it is displayed on
+  # the home page and the blog post landing page.
+  # 
+  # The truncated text is displayed in a div on the admin page. This 
+  # method can be called for any type of ContentItem, but is only
+  # really relevant to BlogPost items.
+  def summary_preview
+    content_item_id = params[:content_item_id]
+    if content_item_id.blank?
+      @content_item = ContentItem.new(params[:content_item])
+    else
+      @content_item = ContentItem.find(content_item_id)
+    end
+
+    respond_to do | format |
+      format.js { render :layout => false }
+    end
+  end
+
+
   private
 
   def get_embed_code_from_embedly(external_link, embed_code = nil)

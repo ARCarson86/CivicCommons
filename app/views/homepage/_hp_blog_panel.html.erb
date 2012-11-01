@@ -5,8 +5,7 @@
       <div class="bd">
         <h4><%= link_to blog_post.title, blog_path(blog_post) %></h4>
         <p>by: <%= link_to blog_post.author.name, user_path(blog_post.author) %></p>
-        <p><%= blog_post.summary.html_safe %>
-        </p>
+        <p><%= truncate_blog_summary blog_post %></p>
         <p><%= link_to "continue reading", blog_url(blog_post) %> or <%= link_to "read past posts", blog_index_url %></p>
       </div>
     </div>

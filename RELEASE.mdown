@@ -1,6 +1,7 @@
 ## 4.1
 
 ### External Changes
+  * [Limit Blog Summary to 235 Characters](https://agilezen.com/project/18091/story/733)
   * [Change out Ad](https://agilezen.com/project/18091/story/739)
   * [Limit Content of Contribution Notification Displayed](https://agilezen.com/project/18091/story/746)
   * [Clicking Anywhere Outside Notifications Window Should Close Notification Window.](https://agilezen.com/project/18091/story/748)

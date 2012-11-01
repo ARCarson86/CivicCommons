@@ -49,6 +49,8 @@ gem 'aws-s3'
 gem 'nokogiri'
 gem 'sanitize'
 gem 'highline'
+gem 'htmlentities'
+gem 'truncate_html'
 
 gem "gchart", "~> 1.0.0"
 

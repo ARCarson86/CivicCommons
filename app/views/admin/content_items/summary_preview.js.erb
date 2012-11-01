@@ -1,0 +1,5 @@
+<% if @content_item.summary.blank? %>
+  $('#summary_preview').html('BLANK SUMMARY');
+<% else %>
+  $('#summary_preview').html('<%= raw(truncate_blog_summary(@content_item)) %>');
+<% end %>
