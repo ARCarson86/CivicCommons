@@ -1,14 +1,14 @@
 <p>Choose a title for your conversation (Make it descriptive, maybe provocative, but most of all, it should make sense)</p>
-<fieldset class="form-group">
+<fieldset class="form-group top-align">
   <div class="form-block">
     <%= form.label :title %>
-    <%= form.text_field :title, :class => "textbox" %>
+    <%= form.text_field :title, :class => "charcount mrm textbox" %>
   </div>
 </fieldset>
 
 <p>Choose an image to go with your conversation (it will look best if you choose one with a 3:2 ratio—wide, not tall)</p>
 
-<fieldset class="form-group">
+<fieldset class="form-group top-align">
   <div class="form-block">
     <%= form.label :image %>
     <%= form.file_field :image %>
@@ -17,7 +17,7 @@
 
 <p>Enter the city name central to your conversation. We will link it to the nearest Metro area.</p>
 
-<fieldset class="form-group">
+<fieldset class="form-group top-align">
   <div class="form-block">
     <%= form.label :metro_region_city, 'Location' %>
     <%= form.text_field :metro_region_city_display_name, :class => "textbox metro_region_city_display_name", :placeholder => "Enter the city name here" %>
@@ -26,7 +26,7 @@
 </fieldset>
 
 <p>Give us a short description of what you want to accomplish in this conversation. (By "short," we mean about 250 characters, or two sentences.)</p>
-<fieldset class="form-group">
+<fieldset class="form-group top-align">
   <div class="form-block">
     <%= form.label :summary %>
     <%= form.text_area :summary, :rows => 5, :class => "textbox" %>
@@ -37,3 +37,11 @@
 
 <%= render :partial => "/conversations/region_autocomplete" %>
 
+<script type="text/javascript">
+	$(document).ready(function(){	
+		$(".charcount").charCount({
+			allowed: 30,		
+			warning: 10,
+		});
+	});
+</script>

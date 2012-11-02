@@ -28,6 +28,7 @@
 //= require 'elements/togglable_field.js'
 //= require 'dropdown.js'
 //= require 'alert.js'
+//= require 'charCount.js'
 //= require "upgrade-browser.js"
 //= require "jquery/jquery.ui.touch-punch.js"
 //= require 'ckeditor/init'
