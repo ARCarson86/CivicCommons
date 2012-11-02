@@ -1,6 +1,7 @@
-<fieldset class="form-group top-align <%= issue_type.downcase %>s">
+<div class="form-block top-align <%= issue_type.downcase %>s">
   <%= form.label :issues, "#{issue_type}(s)" %>
-  <table class="pts">
+  <p class="tip mln">Which issues is this conversation related to?</p>
+  <table class="pts" style="width: 400px">
     <% issues.alphabetical.each_slice(2) do |slice| %>
       <tr>
         <% slice.each do |issue| %>
@@ -15,4 +16,4 @@
       </tr>
     <% end %>
   </table>
-</fieldset>
+</div>
