@@ -1,3 +1,4 @@
 $(document).ready(function(){
-  $('table.tablesorter').tablesorter();
+  $('table.featured.tablesorter').tablesorter({
+  });
 });
