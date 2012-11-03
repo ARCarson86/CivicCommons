@@ -411,13 +411,16 @@ label.plain {
 
 label.plain.plain-ext {
   display: block;
-  padding-left: 5px;
+  padding-left: 20px;
+  line-height: 1.2em;
   overflow: hidden;
 }
 
 .fl-check {
   float: left;
-  margin-right: 12px;
+  margin-right: 5px;
+  margin-left: -20px;
+  margin-top: 0;
 }
 
 .form-label-offset {margin: 5px 0 5px 160px;}
@@ -624,10 +627,12 @@ div#poll_button input.submit {
 
 .tip {
   color: #999;
-  font-size: .9em;
   font-style: italic;
 }
-.form-block .tip {margin-left: 165px;}
+
+.form-block .tip {
+  margin-left: 165px;
+}
 
 /*- Registration Page ----------*/
 
@@ -650,15 +655,6 @@ form .show {display: block;}
   text-align: left;
 }
 .top-align input.checkbox, .top-align button.cancel, .top-align input.submit, .top-align input#contribution_submit {margin-left: 0;}
-
-/*- Style for form tips ----------*/
-
-.tip {
-  color: #999;
-  font-size: .9em;
-  font-style: italic;
-}
-.form-block .tip {margin-left: 165px;}
 
 /*- Registration Page ----------*/
 

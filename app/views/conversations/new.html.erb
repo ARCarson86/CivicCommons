@@ -1,26 +1,28 @@
 <div class="wrapper">
   <div class="content-container">
-    <div class="main-content">
-      <h1>Start a Conversation<%= " from #{@start_from}: #{@content_item.title}" if @start_from %></h1>
+    <div class="row">
+      <div class="col-8">
+        <h1>Start a Conversation<%= " from #{@start_from}: #{@content_item.title}" if @start_from %></h1>
 
-      <%= form_for setup_conversation(@conversation),:url => polymorphic_url([get_path_sym(@content_item), :conversations]), :html =>{:multipart => true} do |conversation| %>
-        <%= render :partial => 'conversations/creation_errors', :locals => { :conversation => @conversation, :contributions => @conversation.contributions } %>
+        <%= form_for setup_conversation(@conversation),:url => polymorphic_url([get_path_sym(@content_item), :conversations]), :html =>{:multipart => true} do |conversation| %>
+          <%= render :partial => 'conversations/creation_errors', :locals => { :conversation => @conversation, :contributions => @conversation.contributions } %>
 
-        <%= render :partial => 'conversations/conversation_fields', :locals => { :form => conversation } %>
+          <%= render :partial => 'conversations/conversation_fields', :locals => { :form => conversation } %>
 
-        <%= render :partial => 'contributions/issue_selection_fields', :locals => { :form => conversation, :conversation => @conversation, :issues => Issue.standard_issue, :issue_type => "Issue" } %>
+          <%= render :partial => 'contributions/issue_selection_fields', :locals => { :form => conversation, :conversation => @conversation, :issues => Issue.standard_issue, :issue_type => "Issue" } %>
 
-        <p>Get the ball rolling with a comment, question, or maybe a thought-provoking video you’ve already uploaded to YouTube.</p>
-        <%= render :partial => 'contributions/contribution_fields', :locals => { :form => conversation, :contributions => @conversation.contributions } %>
+          <p>Get the ball rolling with a comment, question, or maybe a thought-provoking video you’ve already uploaded to YouTube.</p>
+          <%= render :partial => 'contributions/contribution_fields', :locals => { :form => conversation, :contributions => @conversation.contributions } %>
 
-        <fieldset class="footer">
-          <div class="field-block mtl">
-            <%= conversation.submit 'Start My Conversation', :class => 'submit mln' %>
-            <%= link_to "Cancel", root_url %>
-          </div>
-        </fieldset>
+          <fieldset class="footer">
+            <div class="field-block mtl">
+              <%= conversation.submit 'Start My Conversation', :class => 'submit mln' %>
+              <%= link_to "Cancel", root_url %>
+            </div>
+          </fieldset>
 
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

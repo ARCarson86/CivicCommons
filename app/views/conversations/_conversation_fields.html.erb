@@ -8,8 +8,15 @@
 
   <div class="form-block">
     <%= form.label :image %>
-    <p class="tip mln">Enter the city name central to your conversation. We will link it to the nearest Metro area.</p>
-    <%= form.file_field :image %>
+    <p class="tip mln">Choose an image to go with your conversation. (It will look best if you choose a 3:2 ratio.)</p>
+    <div class="row">
+      <img src="http://placehold.it/150x100" alt="" class="fl-left mrm" />
+      <%= form.file_field :image, :class => 'mbm' %>
+      <label for="permission" class="plain plain-ext">
+        <input type="checkbox" class="fl-check" name="permission" />
+        I have permission to use the attached image.
+      </label>
+    </div>
   </div>
 
   <div class="form-block">

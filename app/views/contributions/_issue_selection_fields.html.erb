@@ -1,19 +1,21 @@
 <div class="form-block top-align <%= issue_type.downcase %>s">
-  <%= form.label :issues, "#{issue_type}(s)" %>
+  <%= form.label :issues, "#{issue_type}s" %>
   <p class="tip mln">Which issues is this conversation related to?</p>
-  <table class="pts" style="width: 400px">
-    <% issues.alphabetical.each_slice(2) do |slice| %>
-      <tr>
-        <% slice.each do |issue| %>
-          <td class="pts pbs">
-            <label class="plain plain-ext" for="conversation_issue_ids_<%= issue.id %>">
-              <%= check_box_tag "conversation[issue_ids][]", issue.id,
-              conversation.issues.include?(issue), { id: "conversation_issue_ids_#{issue.id}", :class => "fl-check" } %>
-              <%= issue.name %>
-            </label>
-          </td>
-        <% end %>
-      </tr>
-    <% end %>
-  </table>
+  <div class="row">
+    <div class="col-12">
+      <% issues.alphabetical.each_slice(3) do |slice| %>
+        <div class="row mbm">
+          <% slice.each do |issue| %>
+            <div class="col-4">
+              <label class="plain plain-ext" for="conversation_issue_ids_<%= issue.id %>">
+                <%= check_box_tag "conversation[issue_ids][]", issue.id,
+                conversation.issues.include?(issue), { id: "conversation_issue_ids_#{issue.id}", :class => "fl-check" } %>
+                <%= issue.name %>
+              </label>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
