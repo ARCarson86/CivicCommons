@@ -2,9 +2,10 @@
 
 ### External Changes
   * [Change out Ad](https://agilezen.com/project/18091/story/739)
+  * [Limit Content of Contribution Notification Displayed](https://agilezen.com/project/18091/story/746)
 
 ### Bug Fix
-  * [Limit Content of Contribution Notification Displayed](https://agilezen.com/project/18091/story/746)
+  * [Notification Count Should Display Only New Notifications Count](https://agilezen.com/project/18091/story/747)
 
 ### Chores
 

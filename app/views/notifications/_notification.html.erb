@@ -1,7 +1,7 @@
 <% @notifications = [] if !@notifications.present? %>
 <div class="notification-container">
   <div class="notification-main notification-<%= @notifications.select(&:not_viewed?).count > 0 ? "active" : "inactive"%> dropdown dropdown-toggle">
-    <span class="notification notification-info"><%= @notifications.present? ? @notifications.count : "0" %></span>
+    <span class="notification notification-info"><%= @notifications.present? ? @notifications.select(&:not_viewed?).count : "0" %></span>
   </div>
   <ul class="divided-list-vertical dropdown-menu dropdown-menu-large dropdown-menu-right">
     <% @notifications.each do |notification| %>
