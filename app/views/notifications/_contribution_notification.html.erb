@@ -3,7 +3,7 @@
     <%= profile_image(notification.person, 20, 'img') %>
     <div class="bd">
       <a href="<%= url_to_contribution(item) %>">
-        <p><strong><%= notification.person_name %></strong> contributed to <%= notification.item_title %> and said: "<%= notification.item_content %>"</p>
+        <p><strong><%= notification.person_name %></strong> commented on '<%= notification.item_title %>': "<%= truncate(notification.item_content, length:100) %>"</p>
       </a>
     </div>
   </div>

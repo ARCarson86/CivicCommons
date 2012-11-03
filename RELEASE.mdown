@@ -4,6 +4,7 @@
   * [Change out Ad](https://agilezen.com/project/18091/story/739)
 
 ### Bug Fix
+  * [Limit Content of Contribution Notification Displayed](https://agilezen.com/project/18091/story/746)
 
 ### Chores
 
