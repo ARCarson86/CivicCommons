@@ -4,46 +4,46 @@ describe Notification do
   def given_a_contribution_with_conversation
     @contribution = FactoryGirl.create(:contribution)
   end
-  
+
   def given_a_contribution_with_parent_contribution
     @parent_contribution = FactoryGirl.create(:contribution)
     @contribution = FactoryGirl.create(:contribution,:conversation_id => @parent_contribution.conversation.id, :parent_id => @parent_contribution.id)
   end
-  
+
   def given_contribution_with_conversation_and_subscriptions
     @conversation = FactoryGirl.create(:conversation)
     @subscription = FactoryGirl.create(:conversation_subscription, :subscribable => @conversation)
     @contribution = FactoryGirl.create(:contribution, :conversation => @conversation)
   end
-  
+
   def given_rating_group_with_contribution_with_conversation_and_subscriptions
     @conversation = FactoryGirl.create(:conversation)
     @subscription = FactoryGirl.create(:conversation_subscription, :subscribable => @conversation)
     @contribution = FactoryGirl.create(:contribution, :conversation => @conversation)
     @rating_group = FactoryGirl.create(:rating_group, :contribution => @contribution)
   end
-  
+
   def given_survey_response_with_conversation_and_subscriptions
     @conversation = FactoryGirl.create(:conversation)
     @subscription = FactoryGirl.create(:conversation_subscription, :subscribable => @conversation)
     @vote = FactoryGirl.create(:vote, :surveyable => @conversation)
     @survey_response = FactoryGirl.create(:survey_response, :survey => @vote)
   end
-  
+
   def given_3_survey_responses_with_vote
     @vote = FactoryGirl.create(:vote, :surveyable => @conversation)
     @survey_response = FactoryGirl.create(:survey_response, :survey => @vote)
     @survey_response2 = FactoryGirl.create(:survey_response, :survey => @vote)
     @survey_response3 = FactoryGirl.create(:survey_response, :survey => @vote)
   end
-  
+
   def given_petition_signature_with_conversation_and_subscriptions
     @conversation = FactoryGirl.create(:conversation)
     @subscription = FactoryGirl.create(:conversation_subscription, :subscribable => @conversation)
     @petition = FactoryGirl.create(:unsigned_petition, :conversation => @conversation)
     @petition_signature = FactoryGirl.create(:petition_signature, :petition => @petition)
   end
-  
+
   def given_3_petition_signatures
     @petition = FactoryGirl.create(:petition, :conversation => @conversation)
     @petition_signature = FactoryGirl.create(:petition_signature, :petition => @petition)
@@ -51,29 +51,29 @@ describe Notification do
     @petition_signature3 = FactoryGirl.create(:petition_signature, :petition => @petition)
     @petition.reload
   end
-  
+
   def given_reflection_with_conversation_and_subscriptions
     @conversation = FactoryGirl.create(:conversation)
     @subscription = FactoryGirl.create(:conversation_subscription, :subscribable => @conversation)
     @reflection = FactoryGirl.create(:reflection, :conversation => @conversation)
   end
-  
+
   def given_reflection_comment_with_reflection
     @reflection = FactoryGirl.create(:reflection)
     @reflection_comment = FactoryGirl.create(:reflection_comment, :reflection => @reflection)
   end
-  
+
   def given_3_reflection_comments
     @reflection = FactoryGirl.create(:reflection)
     @reflection_comment = FactoryGirl.create(:reflection_comment, :reflection => @reflection)
     @reflection_comment2 = FactoryGirl.create(:reflection_comment, :reflection => @reflection)
     @reflection_comment3 = FactoryGirl.create(:reflection_comment, :reflection => @reflection)
   end
-  
+
   def given_a_rating_group
     @rating_group = FactoryGirl.create(:rating_group)
   end
-  
+
   describe "update_or_create_notification" do
     it "should save a notification if it exists" do
       given_a_contribution_with_conversation
@@ -101,7 +101,7 @@ describe Notification do
       Notification.count.should == 3
     end
   end
-  
+
   describe "destroy_notification" do
     it "should destroy the notification" do
       given_a_contribution_with_conversation
@@ -122,7 +122,7 @@ describe Notification do
       Notification.destroy_notification(@contribution, @contribution.owner,[100,200,300])
     end
   end
-  
+
   describe "with Contribution" do
     describe "contributed_on_created_conversation_notification" do
       it "should create notification to the contribution's conversation's owner" do
@@ -138,7 +138,7 @@ describe Notification do
         Notification.count.should == 0
       end
     end
-    
+
     describe "contributed_on_contribution_notification" do
       it "should create notification to the contribution's parent's owner" do
         given_a_contribution_with_parent_contribution
@@ -153,7 +153,7 @@ describe Notification do
         Notification.count.should == 0
       end
     end
-    
+
     describe "contributed_on_followed_conversation_notification" do
       it "should create multiple records on followers of conversation" do
         given_contribution_with_conversation_and_subscriptions
@@ -166,7 +166,7 @@ describe Notification do
         (Notification.all.collect(&:receiver_id) - @conversation.subscriptions.collect(&:person_id)).should == []
       end
     end
-    
+
     describe "destroy_contributed_on_created_conversation_notification" do
       it "should destroy the Notification record" do
         given_a_contribution_with_conversation
@@ -185,7 +185,7 @@ describe Notification do
         Notification.count.should == 0
       end
     end
-    
+
     describe "destroy_contributed_on_followed_conversation_notification" do
       it "should destroy the Notification records" do
         given_contribution_with_conversation_and_subscriptions
@@ -195,10 +195,10 @@ describe Notification do
         Notification.count.should == 0
       end
     end
-    
-    
+
+
   end
-  
+
   context "with RatingGroup" do
     describe "rated_on_contribution_notification" do
       it "should create the notification record" do
@@ -218,7 +218,7 @@ describe Notification do
         Notification.last.receiver_id.should == @rating_group.contribution.owner
       end
     end
-    
+
     describe "rated_on_followed_conversation_notification" do
       it "should create multiple records on followers of conversation" do
         given_rating_group_with_contribution_with_conversation_and_subscriptions
@@ -230,8 +230,8 @@ describe Notification do
         Notification.rated_on_followed_conversation_notification(@rating_group)
         (Notification.all.collect(&:receiver_id) - @conversation.subscriptions.collect(&:person_id)).should == []
       end
-    end    
-    
+    end
+
     describe "destroy_rated_on_contribution_notification" do
       it "should destroy the notification record" do
         given_a_rating_group
@@ -241,7 +241,7 @@ describe Notification do
         Notification.count.should == 0
       end
     end
-    
+
     describe "destroy_rated_on_followed_conversation_notification" do
       it "should destroy the notification record" do
         given_rating_group_with_contribution_with_conversation_and_subscriptions
@@ -270,7 +270,7 @@ describe Notification do
         given_survey_response_with_conversation_and_subscriptions
         Notification.voted_on_created_vote_notification(@survey_response)
         Notification.last.receiver_id.should == @survey_response.survey.person_id
-      end      
+      end
     end
     describe "voted_on_followed_conversation_notification" do
       it "should create multiple records on followers of conversation" do
@@ -304,7 +304,7 @@ describe Notification do
         Notification.destroy_voted_on_created_vote_notification(@survey_response)
         Notification.count.should == 0
       end
-    end    
+    end
     describe "destroy_voted_on_followed_conversation_notification" do
       it "should destroy the notification record" do
         given_survey_response_with_conversation_and_subscriptions
@@ -324,7 +324,7 @@ describe Notification do
       end
     end
   end
-  
+
   describe "with PetitionSignature" do
     describe "signed_petition_on_followed_conversation_notification" do
       it "should create multiple records on followers of conversation" do
@@ -338,7 +338,7 @@ describe Notification do
         (Notification.all.collect(&:receiver_id) - @conversation.subscriptions.collect(&:person_id)).should == []
       end
     end
-    
+
     describe "signed_on_created_petition_notification" do
       it "should create multiple records on followers of conversation" do
         given_3_petition_signatures
@@ -371,7 +371,7 @@ describe Notification do
         Notification.destroy_signed_petition_on_followed_conversation_notification(@petition_signature)
         Notification.count.should == 0
       end
-    end 
+    end
     describe "destroy_signed_on_created_petition_notification" do
       it "should destroy the notification record" do
         given_petition_signature_with_conversation_and_subscriptions
@@ -389,9 +389,9 @@ describe Notification do
         Notification.destroy_signed_on_signed_petition_notification(@petition_signature)
         Notification.count.should == 0
       end
-    end 
+    end
   end
-  
+
   describe "with Reflection" do
     describe "reflected_on_followed_conversation_notification" do
       it "should create multiple records on followers of conversation" do
@@ -405,7 +405,7 @@ describe Notification do
         (Notification.all.collect(&:receiver_id) - @conversation.subscriptions.collect(&:person_id)).should == []
       end
     end
-    
+
     describe "destroy_reflected_on_followed_conversation_notification" do
       it "should destroy the notification record" do
         given_reflection_with_conversation_and_subscriptions
@@ -414,7 +414,7 @@ describe Notification do
         Notification.destroy_reflected_on_followed_conversation_notification(@reflection)
         Notification.count.should == 0
       end
-    end    
+    end
   end
 
   describe "with ReflectionComment" do
@@ -436,7 +436,7 @@ describe Notification do
         Notification.last.receiver_id.should == @reflection_comment.reflection.owner
       end
     end
-    
+
     describe "commented_on_commented_reflection_notification" do
       it "should create multiple records on followers of conversation" do
         given_3_reflection_comments
@@ -449,7 +449,7 @@ describe Notification do
         (Notification.all.collect(&:receiver_id) - @reflection_comment.reflection.commenter_ids).should == []
       end
     end
-    
+
     describe "destroy_commented_on_created_reflection_notification" do
       it "should destroy the notification record" do
         given_reflection_comment_with_reflection
@@ -459,7 +459,7 @@ describe Notification do
         Notification.count.should == 0
       end
     end
-    
+
     describe "destroy_commented_on_created_reflection_notification" do
       it "should destroy the notification record" do
         given_3_reflection_comments
@@ -469,9 +469,9 @@ describe Notification do
         Notification.count.should == 0
       end
     end
-    
-  end  
-  
+
+  end
+
   describe "create_for" do
     context "on Contribution" do
       it "should call the contributed_on_created_conversation_notification method" do
@@ -496,7 +496,7 @@ describe Notification do
         Notification.should_receive(:rated_on_contribution_notification)
         Notification.create_for(@rating_group)
       end
-      
+
       it "should call the rated_on_followed_conversation_notification method" do
         given_rating_group_with_contribution_with_conversation_and_subscriptions
         Notification.should_receive(:rated_on_followed_conversation_notification)
@@ -557,7 +557,7 @@ describe Notification do
       end
     end
   end
-  
+
   describe "destroy_for" do
     context "on Contribution" do
       it "should call the contributed_on_created_conversation_notification method" do
@@ -574,7 +574,7 @@ describe Notification do
         given_a_contribution_with_conversation
         Notification.should_receive(:destroy_contributed_on_followed_conversation_notification)
         Notification.destroy_for(@contribution)
-      end      
+      end
     end
     context "on RatingGroup" do
       it "should call the destroy_rated_on_contribution_notification method" do
@@ -586,7 +586,7 @@ describe Notification do
         given_rating_group_with_contribution_with_conversation_and_subscriptions
         Notification.should_receive(:destroy_rated_on_followed_conversation_notification)
         Notification.destroy_for(@rating_group)
-      end      
+      end
     end
     context "on SurveyResponse" do
       it "should call the destroy_rated_on_followed_conversation_notification method" do
@@ -621,7 +621,7 @@ describe Notification do
         Notification.should_receive(:destroy_signed_on_signed_petition_notification)
         Notification.destroy_for(@petition_signature)
       end
-      
+
     end
     context "on Reflection" do
       it "should call the destroy_reflected_on_followed_conversation_notification method" do
@@ -640,6 +640,31 @@ describe Notification do
         given_reflection_comment_with_reflection
         Notification.should_receive(:destroy_commented_on_commented_reflection_notification)
         Notification.destroy_for(@reflection_comment)
+      end
+    end
+
+    describe "users_with_notifications" do
+      it "returns the number of users notified" do
+        p = FactoryGirl.create(:registered_user)
+        @notification1 = FactoryGirl.create(:notification, :person => p, :created_at => Time.now)
+        @notification2 = FactoryGirl.create(:notification, :person => p, :created_at => 1.day.ago)
+        @notification3 = FactoryGirl.create(:notification, :created_at => 2.days.ago)
+
+        Notification.count.should == 3
+        Notification.users_with_notifications.count.should == 2
+      end
+    end
+
+    describe "limit_notifications_per_user" do
+      it "will reduce notifications in the system" do
+        p = FactoryGirl.create(:registered_user)
+        @notification1 = FactoryGirl.create(:notification, :person => p, :created_at => Time.now)
+        @notification2 = FactoryGirl.create(:notification, :person => p, :created_at => 1.day.ago)
+        @notification3 = FactoryGirl.create(:notification, :person => p, :created_at => 2.days.ago)
+
+        Notification.count.should == 3
+        Notification.users_with_notifications.count.should == 1
+        Notification.limit_notifications_per_user(:limit => 2).should == [@notifications1, @notifications2]
       end
     end
   end

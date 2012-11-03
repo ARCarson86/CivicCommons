@@ -1,10 +1,15 @@
 ## 5.1.1
 
 ### Bug Fix
+  * [Limit Notifications Per User](https://agilezen.com/projects/18091/story/737)
   * [Your Commons - See More Activity Link](https://agilezen.com/projects/18091/story/809)
   * [Missing First Contribution On New Conversation](https://agilezen.com/projects/18091/story/817)
   * [Remove duplicate Start Convo on Conversation SubIndex](https://agilezen.com/projects/18091/story/823)
 
+### Post Deployment
+  * Set Up Rake Task.
+    * rake notifications:limit_user_notifications (defaults to 50 notifications)
+    * rake notifications:limit_user_notifications[25] (limit set to 25)
 
 ## 5.1
 

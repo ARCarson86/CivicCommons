@@ -341,4 +341,43 @@ class Notification < ActiveRecord::Base
     notifications.update_all(:viewed_at => Time.now)
   end
 
+  # Retrieve list of Old Notifications
+  #
+  # Purpose:
+  # * We'll want to clean up Old Notifications.
+  # * This will probably be a two step process.
+  # ** Old viewed Notifications
+  # ** Older unviewed Notifications.
+  #
+  # Options:
+  # * before: Find Notifications older than before date
+  # * viewed: Find Notifications that have been viewed (default:false)
+  def self.old_notifications(options = {})
+    options.reverse_merge!({before:14.days.ago, viewed:false})
+    notifications = Notification.where("created_at < ?", options[:before])
+    notifications = notifications.where("viewed_at is null") unless options[:viewed]
+    notifications
+  end
+
+  # List of Users That Have Notifications
+  def self.users_with_notifications
+    Notification.group("person_id").collect{|n| n.person_id}
+  end
+
+  def self.limit_notifications_per_user(options = {})
+    options.reverse_merge!({limit:50, log:false})
+
+    users = Notification.users_with_notifications
+
+    users.each do |user|
+      user_notifications = Notification.where('receiver_id = ?', user).order("created_at desc")
+
+      if user_notifications.count > options[:limit]
+        puts "* limit_notifications: #{Person.find(user).display_name} has #{user_notifications.count} notifications" if options[:log]
+        newest_notifications = user_notifications.limit(options[:limit]).all
+        Notification.where('receiver_id = ?', user).destroy_all(['id NOT IN (?)', newest_notifications.collect(&:id)])
+      end
+    end
+  end
+
 end
