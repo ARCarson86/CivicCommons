@@ -602,3 +602,39 @@
   background: image-url("cc_embed_icon.png") no-repeat 0 0;
   padding: 5px 0 5px 30px;
 }
+
+// Convo Reconcept Icons
+
+.convo-icons {
+  display: inline-block;
+  margin-right: 5px;
+  width: 59px;
+  height: 59px;
+  vertical-align: middle;
+}
+
+
+.convo-icons-sm {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  *margin-right: .3em;
+  line-height: 14px;
+  vertical-align: text-top;
+  background-image: image-url("glyphicons-halflings.png");
+  background-position: 14px 14px;
+  background-repeat: no-repeat;
+}
+
+.convo-icons-text {
+  position: relative;
+  top: 5px;
+  font-weight: normal;
+  color: #666;
+}
+
+@import "convo-icons-lrg/*.png";
+@include all-convo-icons-lrg-sprites;
+
+@import "convo-icons-sm/*.png";
+@include all-convo-icons-sm-sprites;

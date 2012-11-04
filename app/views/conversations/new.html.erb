@@ -2,7 +2,15 @@
   <div class="content-container">
     <div class="row">
       <div class="col-8">
-        <h1>Start a Conversation<%= " from #{@start_from}: #{@content_item.title}" if @start_from %></h1>
+        <div class="media">
+          <div class="img">
+            <i class="convo-icons convo-icons-lrg-plus"></i> 
+          </div>
+          <div class="bd">
+            <h1>Start a Conversation<%= " from #{@start_from}: #{@content_item.title}" if @start_from %></h1>
+            <p class="subtitle">Add your two cents</p>
+          </div>
+        </div>
 
         <%= form_for setup_conversation(@conversation),:url => polymorphic_url([get_path_sym(@content_item), :conversations]), :html =>{:multipart => true} do |conversation| %>
           <%= render :partial => 'conversations/creation_errors', :locals => { :conversation => @conversation, :contributions => @conversation.contributions } %>
@@ -36,7 +44,7 @@
 <%# TODO: This needs to be pulled into it's own file %>
 <script type="text/javascript">
 	$(document).ready(function(){	
-    $('.js-modal-launch-1').colorbox({href:'/test.html', width:'500px', transition: 'fade'});
+    $('.js-modal-launch-1').colorbox({href:'/test.html', width:'350px', transition: 'fade'});
     return false;
 	});
 </script>
