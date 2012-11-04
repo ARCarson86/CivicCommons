@@ -1,7 +1,7 @@
 <fieldset class="form-group top-align">
   <div class="form-block">
     <%= form.label :title %>
-    <p class="tip mln">Choose an image to go with your conversation (it will look best if you choose one with a 3:2 ratio—wide, not tall)</p>
+    <p class="tip mln">Choose a title for your conversation. Be clear and concise.</p>
     <%= form.text_field :title, :class => "charcount mrm textbox" %>
   </div>
 
@@ -10,12 +10,16 @@
     <%= form.label :image %>
     <p class="tip mln">Choose an image to go with your conversation. (It will look best if you choose a 3:2 ratio.)</p>
     <div class="row">
-      <img src="http://placehold.it/150x100" alt="" class="fl-left mrm" />
-      <%= form.file_field :image, :class => 'mbm' %>
-      <label for="permission" class="plain plain-ext">
-        <input type="checkbox" class="fl-check" name="permission" />
-        I have permission to use the attached image.
-      </label>
+      <div class="col-3">
+        <img src="http://placehold.it/150x100" alt="" class="img-flex" />
+      </div>
+      <div class="col-9">
+        <%= form.file_field :image, :class => 'mbm' %>
+        <label for="permission" class="plain plain-ext require-container">
+          <input type="checkbox" class="fl-check required" name="permission" />
+          I have permission to use the attached image.
+        </label>
+      </div>
     </div>
   </div>
 
@@ -34,15 +38,11 @@
 
   <%= render :partial => "/conversations/region_autocomplete" %>
 
-  <%# <div class="form-block"> %>
-  <%#   <%= form.label :summary %1> %>
-  <%#   <p class="tip mln">Give us a short description of what you want to accomplish in this conversation. (By "short," we mean about 250 characters, or two sentences.)</p> %>
-  <%#   <%= form.text_area :summary, :rows => 5, :class => "textbox" %1> %>
-  <%# </div> %>
 </fieldset>
 
 <%= form.hidden_field :zip_code, value: 'ALL' %>
 
+<%# TODO: This needs to be pulled into it's own file %>
 <script type="text/javascript">
 	$(document).ready(function(){	
 		$(".charcount").charCount({

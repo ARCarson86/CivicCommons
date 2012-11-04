@@ -28,7 +28,7 @@ $gutter-width: percentage($gutter / $context);
 
 .row {
   margin-bottom: 20px;
-  @include clearfix;
+  @include pie-clearfix;
 }
 
 @for $i from 1 to $cols + 1 {
