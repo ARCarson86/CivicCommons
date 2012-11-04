@@ -413,7 +413,7 @@ label.plain.plain-ext {
   display: block;
   padding-left: 20px;
   line-height: 1.2em;
-  overflow: hidden;
+  @include pie-clearfix;
 }
 
 .fl-check {

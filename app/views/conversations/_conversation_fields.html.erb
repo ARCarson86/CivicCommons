@@ -11,12 +11,12 @@
     <p class="tip mln">Choose an image to go with your conversation. (It will look best if you choose a 3:2 ratio.)</p>
     <div class="row">
       <div class="col-3">
-        <img src="http://placehold.it/150x100" alt="" class="img-flex" />
+        <img src="/assets/placeholder.jpg" alt="" class="img-flex" />
       </div>
       <div class="col-9">
         <%= form.file_field :image, :class => 'mbm' %>
-        <label for="permission" class="plain plain-ext require-container">
-          <input type="checkbox" class="fl-check required" name="permission" />
+        <label for="permission" class="plain plain-ext">
+          <input type="checkbox" class="fl-check" name="permission" />
           I have permission to use the attached image.
         </label>
       </div>

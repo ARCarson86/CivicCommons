@@ -14,9 +14,15 @@
           <p>Get the ball rolling with a comment, question, or maybe a thought-provoking video you’ve already uploaded to YouTube.</p>
           <%= render :partial => 'contributions/contribution_fields', :locals => { :form => conversation, :contributions => @conversation.contributions } %>
 
-          <fieldset class="footer">
+          <fieldset class="footer mtl">
+            <div class="field-block">
+              <label for="permission" class="plain plain-ext">
+                <input type="checkbox" class="fl-check" name="permission" />
+                I agree that our conversations should be civil, and I commit to support the effort to use The Civic Commons as a place to do so.
+              </label>
+            </div>
             <div class="field-block mtl">
-              <%= conversation.submit 'Start My Conversation', :class => 'submit mln' %>
+              <%= conversation.submit 'Start My Conversation', :class => 'submit mln js-modal-launch-1' %>
               <%= link_to "Cancel", root_url %>
             </div>
           </fieldset>
@@ -26,3 +32,11 @@
     </div>
   </div>
 </div>
+
+<%# TODO: This needs to be pulled into it's own file %>
+<script type="text/javascript">
+	$(document).ready(function(){	
+    $('.js-modal-launch-1').colorbox({href:'/test.html', width:'500px', transition: 'fade'});
+    return false;
+	});
+</script>
