@@ -603,4 +603,52 @@ describe Conversation do
       @conversation_with_metro.region_metrocodes.should == ['510']
     end
   end
+  describe "move_to_position" do
+    def given_multiple_positions
+      @conversation0 = FactoryGirl.create(:conversation, :position => 0)
+      @conversation1 = FactoryGirl.create(:conversation, :position => 1)
+      @conversation2 = FactoryGirl.create(:conversation, :position => 2)
+      @conversation3 = FactoryGirl.create(:conversation, :position => 3)
+      @conversation4 = FactoryGirl.create(:conversation, :position => 4)
+    end
+    describe "moving a record upward" do
+      it "should set the current record to the correct position" do
+        given_multiple_positions
+        @conversation3.move_to_position(0)
+        @conversation3.reload.position.should == 0
+        Conversation.where(:position => 0).all.count.should == 1
+      end
+      it "should shift the other records downwards" do
+        given_multiple_positions
+        @conversation3.move_to_position(0)
+        Conversation.sort_position_asc.all.collect(&:id).should == [
+          @conversation3.id,
+          @conversation0.id,
+          @conversation1.id,
+          @conversation2.id,
+          @conversation4.id
+        ]
+      end
+    end
+    describe "moving a record downward" do
+      it "should set the current record to the correct position" do
+        given_multiple_positions
+        @conversation0.move_to_position(3)
+        @conversation0.reload.position.should == 3
+        @conversation1.reload.position.should == 0
+        Conversation.where(:position => 3).all.count.should == 1
+      end
+      it "should shift the other records downwards" do
+        given_multiple_positions
+        @conversation0.move_to_position(3)
+        Conversation.sort_position_asc.all.collect(&:id).should == [
+          @conversation1.id,
+          @conversation2.id,
+          @conversation3.id,
+          @conversation0.id,
+          @conversation4.id
+        ]
+      end
+    end
+  end
 end

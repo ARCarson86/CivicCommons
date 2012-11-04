@@ -12,6 +12,24 @@ class Admin::ConversationsController < Admin::DashboardController
     @conversation = Conversation.new(params[:conversation])
     @presenter = IngestPresenter.new(@conversation)
   end
+  
+  #GET admin/conversations/staff_picked
+  def staff_picked
+    @conversations = Conversation.staff_picked.sort_position_asc.all
+  end
+  
+  #PUT admin/conversations/1/move_to_position/2
+  def move_to_position
+    if params[:conversation] && params[:conversation][:position].present?
+      new_position = params[:conversation][:position].to_i
+      @conversation = Conversation.find(params[:id])
+      if new_position.to_i != @conversation.position.to_i
+        @conversation.move_to_position(new_position) 
+        flash[:notice] = "Successfully moved the conversation \"#{@conversation.title}\""
+      end
+    end
+    redirect_to staff_picked_admin_conversations_path
+  end
 
   #POST admin/conversations/
   def create

@@ -10,4 +10,5 @@
 //=require admin/conversation_sorting
 //=require admin/featured_homepage.js
 //=require admin/issue_sorting
+//=require admin/staff_picked_conversations
 //=require_self

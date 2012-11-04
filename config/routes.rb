@@ -226,6 +226,8 @@ Civiccommons::Application.routes.draw do
     resources :conversations do
       put 'toggle_staff_pick', on: :member
       post 'update_order', on: :collection
+      get 'staff_picked', on: :collection
+      put 'move_to_position', on: :member, as: 'move_to_position'
     end
     resources :curated_feeds do
       resources :items, controller: :curated_feed_items, only: [ :show, :edit, :create, :update, :destroy ]

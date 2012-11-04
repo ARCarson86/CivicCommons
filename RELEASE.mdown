@@ -6,6 +6,7 @@
 
 ### Bug Fix
   * [Notification Count Should Display Only New Notifications Count](https://agilezen.com/project/18091/story/747)
+  * [Staff Pick Sorting - unable to sort](https://agilezen.com/project/18091/story/732)
 
 ### Chores
 
