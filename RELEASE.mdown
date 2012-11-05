@@ -3,6 +3,7 @@
 ### External Changes
   * [Change out Ad](https://agilezen.com/project/18091/story/739)
   * [Limit Content of Contribution Notification Displayed](https://agilezen.com/project/18091/story/746)
+  * [Blog Admins can blog as themselves.](https://agilezen.com/project/18091/story/693)
 
 ### Bug Fix
   * [Notification Count Should Display Only New Notifications Count](https://agilezen.com/project/18091/story/747)

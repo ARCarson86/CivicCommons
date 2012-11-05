@@ -47,6 +47,11 @@ module Admin
         get :new
         assigns[:content_item].should_not be_nil
       end
+      
+      it "should fetch admins and blog admins as authors" do
+        Person.should_receive(:where).with('admin = ? OR blog_admin = ?', true, true).and_return(Person)
+        get :new
+      end
 
     end
 
@@ -60,6 +65,11 @@ module Admin
         get :edit, :id => content_item.id.to_s
         assigns[:content_item].should eq content_item
       end
+      
+      it "should fetch admins and blog admins as authors" do
+        Person.should_receive(:where).with('admin = ? OR blog_admin = ?', true, true).and_return(Person)
+        get :edit, :id => content_item.id.to_s
+      end
 
     end
 
@@ -71,6 +81,11 @@ module Admin
         attributes.delete(:topics)
         attributes[:topic_ids]=[topic.id]
         attributes.with_indifferent_access
+      end
+      
+      it "should fetch admins and blog admins as authors" do
+        Person.should_receive(:where).with('admin = ? OR blog_admin = ?', true, true).and_return(Person)
+        post :create, :content_item => params
       end
 
       describe "with valid params" do
@@ -95,7 +110,6 @@ module Admin
           post :create, :content_item => params
           response.should redirect_to admin_content_item_path(assigns[:content_item].slug)
         end
-
       end
 
       describe "with invalid params" do
@@ -172,6 +186,12 @@ module Admin
       let(:params) do
         content_item.attributes
       end
+      
+      it "should fetch admins and blog admins as authors" do
+        Person.should_receive(:where).with('admin = ? OR blog_admin = ?', true, true).and_return(Person)
+         put :update, :id => params['id'], :content_item => params
+      end
+      
 
       describe "with valid params" do
 
