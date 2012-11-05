@@ -1,6 +1,10 @@
 <div class="feature-mast feature-mast-hero">
   <div class="wrapper wrapper-hero">
-    <%= render partial: 'hp_slideshow', locals: {featured_opportunities: @featured_opportunities} if @featured_opportunities.present? %>
+    <% if Rails.env == 'development' || Rails.env == 'staging' %>
+      <img width="970" height="330" src="http://com.theciviccommons.stg.s3.amazonaws.com/images/homepage/cc_ig_staging_only.png" />
+    <% else %>
+      <%= render partial: 'hp_slideshow', locals: {featured_opportunities: @featured_opportunities} if @featured_opportunities.present? %>
+    <% end %>
   </div>
 </div>
 

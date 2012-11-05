@@ -4,6 +4,7 @@
   * [Change out Ad](https://agilezen.com/project/18091/story/739)
   * [Limit Content of Contribution Notification Displayed](https://agilezen.com/project/18091/story/746)
   * [Clicking Anywhere Outside Notifications Window Should Close Notification Window.](https://agilezen.com/project/18091/story/748)
+  * [On Staging, Display Homepage Infographic](https://agilezen.com/project/18091/story/752)
   * [Blog Admins can blog as themselves.](https://agilezen.com/project/18091/story/693)
 
 ### Bug Fix
