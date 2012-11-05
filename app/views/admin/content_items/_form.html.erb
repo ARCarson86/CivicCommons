@@ -66,9 +66,7 @@
   </p>
 
   <p>
-  <%= f.label :summary %>
-  <em>(Will be truncated to 235 characters for blog posts [<%= link_to 'preview', admin_content_item_summary_preview_url(@content_item), :remote => true %>])</em><br>
-  <div id="summary_preview"></div>
+  <%= f.label :summary %> <em>(truncated to 235 characters for blog posts)</em>
   <%= f.text_area :summary, :class => 'tinymce' %>
   </p>
 
