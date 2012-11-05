@@ -7,6 +7,7 @@
   * [Clicking Anywhere Outside Notifications Window Should Close Notification Window.](https://agilezen.com/project/18091/story/748)
   * [On Staging, Display Homepage Infographic](https://agilezen.com/project/18091/story/752)
   * [Blog Admins can blog as themselves.](https://agilezen.com/project/18091/story/693)
+  * [Staff Pick - Default all new Stars to Sort=0](https://agilezen.com/project/18091/story/754)
 
 ### Bug Fix
   * [Notification Count Should Display Only New Notifications Count](https://agilezen.com/project/18091/story/747)

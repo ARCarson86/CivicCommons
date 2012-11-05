@@ -119,6 +119,7 @@ class Admin::ConversationsController < Admin::DashboardController
       status = @conversation.staff_pick? ? 'on' : 'off'
       flash[:notice] = "Staff Pick is turned #{status} for \"#{@conversation.title}\""
       @conversation.sort
+      @conversation.move_to_position(0) if status == 'on' 
     else
       flash[:error] = "Error saving conversation: \"#{@conversation.title}\""
     end
