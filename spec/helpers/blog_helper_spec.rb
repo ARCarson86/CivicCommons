@@ -81,4 +81,43 @@ describe BlogHelper do
       end
     end
   end
+
+  describe "#truncate_blog_title" do
+    let(:blog_post) { FactoryGirl.build(:blog_post, :title => title_text) }
+    subject { helper.truncate_blog_title(blog_post) }
+
+    context "with a nil title" do
+      let(:title_text) { nil }
+
+      it { should be_nil }
+    end
+
+    context "with a title less than the maximum characters" do
+      let(:title_text) { "Suspendisse egestas euismod ante, sit." }
+
+      it "returns the title unchanged" do
+        subject.should == title_text
+      end
+    end
+
+    context "with a title equal to the maximum characters" do
+      let(:title_text) { "Lorem ipsum dolor sit amet, consectetur adipiscing elit turpis duis." }
+
+      it "returns the title unchanged" do
+        subject.should == title_text
+      end
+    end
+
+    context "with a title longer than the maximum characters" do
+      let(:title_text) { "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris adipiscing suscipit enim quis metus." }
+
+      it "truncates the title to 68 characters" do
+        subject.length.should be <= 68
+      end
+
+      it "adds an ellipsis to the end of the title" do
+        subject.should end_with('...')
+      end
+    end
+  end
 end

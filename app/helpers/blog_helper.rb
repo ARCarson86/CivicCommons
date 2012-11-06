@@ -23,6 +23,25 @@ module BlogHelper
     return truncate_html(blog_post.summary.html_safe, :length => 235)
   end
 
+  ##
+  # Returns the truncated title for a blog post.  It is a 
+  # simple truncation to 68 characters, with an ellipsis
+  # appended.
+  #
+  # If the title is less than or equal to 68 characters, then
+  # it is returned unchanged.
+  #
+  # @param [ContentItem] blog_post The blog post to get the
+  #   title from
+  #
+  # @return [String] The title from +blog_post+ truncated
+  #   to 68 characters; returns nil if the title is nil
+  def truncate_blog_title(blog_post)
+    return nil if blog_post.title.nil?
+
+    return blog_post.title.truncate(68)
+  end
+
   def format_publish_date(date)
     date = date.published if date.is_a? ContentItem
     return date.strftime('%A, %B %d, %Y')

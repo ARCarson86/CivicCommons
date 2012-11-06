@@ -23,7 +23,11 @@
   <tbody>
     <% @content_items.each do |item| %>
     <tr data-<%= item.content_type.underscore.sub(/_/,"-") %>-id=<%=item.id%>>
-      <td><%= link_to item.title, admin_content_item_path(item) %></td>
+      <% if @filter == 'BlogPost' %>
+        <td><%= link_to truncate_blog_title(item), admin_content_item_path(item) %></td>
+      <% else %>
+        <td><%= link_to item.title, admin_content_item_path(item) %></td>
+      <% end %>
       <td><%= item.author.name %></td>
       <% if @filter == 'RadioShow' %>
         <td>
