@@ -26,21 +26,6 @@ describe HomepageController do
       get :show
     end
 
-    context "slideshow" do
-
-      it "retrieves Featured Opportunities for display" do
-        mock_featured_opportunity = mock_model(FeaturedOpportunity)
-
-        mock_featured_opportunities = [mock_featured_opportunity, mock_featured_opportunity, mock_featured_opportunity]
-
-        FeaturedOpportunity.stub(:all).and_return(mock_featured_opportunities)
-        FeaturedOpportunity.should_receive(:all).once
-
-        get :show
-      end
-
-    end
-
     it "will respond to :html format" do
       get :show, format: :html
       response.should be_success
