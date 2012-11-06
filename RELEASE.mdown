@@ -1,18 +1,19 @@
 ## 4.1
 
 ### External Changes
+  * [Blog Admins can blog as themselves.](https://agilezen.com/project/18091/story/693)
   * [Limit Blog Summary to 235 Characters](https://agilezen.com/project/18091/story/733)
   * [Change out Ad](https://agilezen.com/project/18091/story/739)
   * [Limit Blog Title to 68 Characters](https://agilezen.com/project/18091/story/745)
   * [Limit Content of Contribution Notification Displayed](https://agilezen.com/project/18091/story/746)
   * [Clicking Anywhere Outside Notifications Window Should Close Notification Window.](https://agilezen.com/project/18091/story/748)
   * [On Staging, Display Homepage Infographic](https://agilezen.com/project/18091/story/752)
-  * [Blog Admins can blog as themselves.](https://agilezen.com/project/18091/story/693)
+  * [Display Homepage Infographic (On All Environments)](https://agilezen.com/project/18091/story/753)
   * [Staff Pick - Default all new Stars to Sort=0](https://agilezen.com/project/18091/story/754)
 
 ### Bug Fix
-  * [Notification Count Should Display Only New Notifications Count](https://agilezen.com/project/18091/story/747)
   * [Staff Pick Sorting - unable to sort](https://agilezen.com/project/18091/story/732)
+  * [Notification Count Should Display Only New Notifications Count](https://agilezen.com/project/18091/story/747)
 
 ### Chores
 

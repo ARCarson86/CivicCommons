@@ -1,10 +1,6 @@
 <div class="feature-mast feature-mast-hero">
   <div class="wrapper wrapper-hero">
-    <% if Rails.env == 'development' || Rails.env == 'staging' %>
-      <img width="959" height="218" src="http://<%= S3Config.bucket.to_s %>.s3.amazonaws.com/images/homepage/cc_infographic.png" />
-    <% else %>
-      <%= render partial: 'hp_slideshow', locals: {featured_opportunities: @featured_opportunities} if @featured_opportunities.present? %>
-    <% end %>
+    <img class="img-plain" width="959" height="218" src="http://<%= S3Config.bucket.to_s %>.s3.amazonaws.com/images/homepage/cc_infographic.png" />
   </div>
 </div>
 
