@@ -603,6 +603,23 @@
   padding: 5px 0 5px 30px;
 }
 
+.ico-lrg {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  vertical-align: middle;
+  background-repeat: no-repeat;
+}
+
+.ico-lrg-doc {
+  background-image: image-url("icons/doc-lrg.png");
+}
+
+.ico-lrg-check {
+  background-image: image-url("icons/check-lrg.png");
+}
+
 // Convo Reconcept Icons
 
 .convo-icons {
