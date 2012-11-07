@@ -43,7 +43,7 @@
     %p Enter the city name central to your conversation. We will link it to the nearest Metro area.
     %div.form-block
       =conversation.label :metro_region_city, 'Location'
-      =conversation.text_field :metro_region_city_display_name, :class => "textbox metro_region_city_display_name", :placeholder => "Enter the city name here"
+      =conversation.text_field :metro_region_city_display_name, :class => "textbox metro_region_city_display_name", :placeholder => "City, State"
       =conversation.hidden_field :metro_region_id, :class => 'metro_region_id'
 
   %p
