@@ -15,6 +15,7 @@
 ### Bug Fix
   * [Staff Pick Sorting - unable to sort](https://agilezen.com/project/18091/story/732)
   * [Notification Count Should Display Only New Notifications Count](https://agilezen.com/project/18091/story/747)
+  * [Image Issue with Vote and reflection](https://agilezen.com/project/18091/story/725)
 
 ### Chores
 
