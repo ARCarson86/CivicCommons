@@ -27,7 +27,6 @@ class Contribution < ActiveRecord::Base
   has_and_belongs_to_many :featured_opportunities, :join_table => :featured_opportunities_contributions, :uniq => true
 
   delegate :title, :to => :item, :prefix => true
-  delegate :title, :to => :item, :prefix => false
   delegate :name, :to => :person, :prefix => true
 
   #############################################################################
