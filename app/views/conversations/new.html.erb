@@ -22,8 +22,6 @@
 
           <%= render :partial => 'conversations/conversation_fields', :locals => { :form => conversation } %>
 
-          <%= render :partial => 'contributions/issue_selection_fields', :locals => { :form => conversation, :conversation => @conversation, :issues => Issue.standard_issue, :issue_type => "Issue" } %>
-
           <p>Get the ball rolling with a comment, question, or maybe a thought-provoking video you’ve already uploaded to YouTube.</p>
           <%= render :partial => 'contributions/contribution_fields', :locals => { :form => conversation, :contributions => @conversation.contributions } %>
 

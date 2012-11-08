@@ -52,10 +52,6 @@ describe Conversation do
       @conversation.summary = nil
       @conversation.should have_validation_error(:summary)
     end
-    it "is invalid with no issues" do
-      @conversation.issues = []
-      @conversation.should have_validation_error(:issues)
-    end
     it "is invalid with no owner" do
       @conversation.owner = nil
       @conversation.should have_validation_error(:owner)
@@ -73,15 +69,6 @@ describe Conversation do
       conversation.issues.reload.count.should == 2
       conversation.issues.should include issue
     end
-  end
-
-  describe "when creating a post for the conversation" do
-    before(:each) do
-      @comment = FactoryGirl.create(:comment)
-      @person = FactoryGirl.create(:normal_person)
-      @conversation = FactoryGirl.create(:conversation)
-    end
-
   end
 
   context "about an issue" do
@@ -290,11 +277,6 @@ describe Conversation do
       @conversation.contributions = []
       @conversation.save
       @conversation.should have_validation_error(:contributions)
-    end
-
-    it "raises error if conversation created with no associated issues" do
-      @conversation.issues = []
-      @conversation.should have_validation_error(:issues)
     end
 
     it "automatically subscribes owner to conversation" do

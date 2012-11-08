@@ -64,8 +64,6 @@ class Conversation < ActiveRecord::Base
   validates :owner, :must_be_logged_in => true
   validates_length_of :contributions, :is => 1, :on => :create, :if => :from_community?,
     :message => "Please get the ball rolling with the first comment, question, or contribution of some sort."
-  validates_length_of :issues, :minimum => 1, :on => :create,
-    :message => "Please choose at least one issue that best relates to your conversation."
 
   validates_presence_of :owner
   validates_presence_of :title, :message => "Please choose a title for your conversation."
@@ -88,8 +86,8 @@ class Conversation < ActiveRecord::Base
 
   # Filters by metro region, if metrocode parameter is supplied, otherwise, ignores it.
   scope :filter_metro_region, lambda{|metrocode| joins(:metro_region).where(:metro_regions=>{metrocode: metrocode}) if metrocode.present?}
-  
-  
+
+
   # position starts from 0, and so forth
   def move_to_position(new_position)
     if new_position.is_a?(Integer)
@@ -323,7 +321,7 @@ class Conversation < ActiveRecord::Base
       self.update_attribute(:position, 0)
     end
   end
-  
+
   def subscriber_ids
     subscriptions ? subscriptions.collect(&:person_id) : []
   end

@@ -43,7 +43,6 @@ class Conversation
       fill_in_metro_region_city_display_name_with "City name"
       sleep 1
       find('.ui-menu-item a:first').click
-      select_issue "They are important"
       add_link options[:link_to_related_website] if options.key? :link_to_related_website
     end
 
@@ -55,18 +54,6 @@ class Conversation
     def add_contribution_attachment
       follow_show_add_file_field_link
       attach_contribution_attachment_with_file File.join(attachments_path, 'imageAttachment.png')
-    end
-
-    def select_issue issue
-      within "fieldset.issues" do
-        check issue
-      end
-    end
-
-    def select_project project
-      within "fieldset.projects" do
-        check project
-      end
     end
 
     def submit_conversation(options = {})
