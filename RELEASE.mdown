@@ -4,9 +4,9 @@
   * [Daily Digest - Only show Petition Text once - show all signatures as the intro.](https://agilezen.com/project/18091/story/773)
 
 ### Bug Fix
+  * [Airbrake error - NoMethodError: undefined method `managed_issue_path'](https://agilezen.com/project/18091/story/755)
 
 ### Chores
-
 
 
 ## 4.1
