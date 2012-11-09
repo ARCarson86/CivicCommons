@@ -11,7 +11,7 @@ describe 'layouts/_create_conversation.html.erb' do
   end
 
   it "should include a link to start a conversation" do
-    assert_select "a", :href => conversation_responsibilities_path, :text => /conversation/i
+    assert_select "a", :href => new_conversation_path, :text => /conversation/i
   end
 
 end

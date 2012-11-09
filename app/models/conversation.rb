@@ -7,6 +7,8 @@ class Conversation < ActiveRecord::Base
   include HomepageFeaturable
   include Thumbnail
 
+  attr_accessor :agree_to_be_civil
+
   has_many :actions, :dependent => :destroy
 
   searchable :ignore_attribute_changes_of => [ :total_visits, :recent_visits, :last_visit_date, :updated_at, :recent_rating ] do
@@ -70,13 +72,19 @@ class Conversation < ActiveRecord::Base
   validates_presence_of :summary, :message => "Please give us a short summary."
   validates_presence_of :zip_code, :message => "Please give us a zip code for a little geographic context."
   validates_presence_of :metro_region_id, :message => 'Please give us a Location name.'
-
+  validate :must_agree_to_be_civil, :on => :create
+  
   after_create :set_initial_position, :subscribe_creator
 
   friendly_id :title, :use => :slugged
   def should_generate_new_friendly_id?
     new_record? || slug.nil?
   end
+  
+  def must_agree_to_be_civil
+     errors.add(:base, 'You must agree to have a civil conversation by checking on the checkbox.') unless agree_to_be_civil.present? && [1,'1',true].include?(agree_to_be_civil)
+  end
+  
 
   scope :latest_updated, :order => 'updated_at DESC'
   scope :latest_created, where(:exclude_from_most_recent => false).order('created_at DESC')

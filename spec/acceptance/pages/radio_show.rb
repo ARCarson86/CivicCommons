@@ -16,7 +16,7 @@ module CivicCommonsDriver
         SHORT_NAME = :radio_show_post
         include Page
 
-        has_link(:start_conversation, "Start a Conversation", :accept_responsibilities)
+        has_link(:start_conversation, "Start a Conversation", :start_conversation)
         has_link :show_add_file_field, "contribution-add-file"
         has_file_field :contribution_attachment, "conversation[contributions_attributes][0][attachment]"
         has_button :start_invalid_conversation, "Start My Conversation"

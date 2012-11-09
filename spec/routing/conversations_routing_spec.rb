@@ -69,10 +69,6 @@ describe ConversationsController do
   end
   
   describe "on blog post" do
-    it "recognizes and generates #responsibilities" do
-      { :get => "/blog/1/conversations/responsibilities" }.should route_to(:controller => "conversations", :action => "responsibilities", :blog_id => '1')
-      
-    end
     it "recognizes and generates #new" do
       { :get => "/blog/1/conversations/new" }.should route_to(:controller => "conversations", :action => "new", :blog_id => '1')
     end
@@ -82,10 +78,6 @@ describe ConversationsController do
   end
 
   describe "on radio shows" do
-    it "recognizes and generates #responsibilities" do
-      { :get => "/radioshow/1/conversations/responsibilities" }.should route_to(:controller => "conversations", :action => "responsibilities", :radioshow_id => '1')
-      
-    end
     it "recognizes and generates #new" do
       { :get => "/radioshow/1/conversations/new" }.should route_to(:controller => "conversations", :action => "new", :radioshow_id => '1')
     end

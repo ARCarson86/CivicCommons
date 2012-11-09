@@ -39,7 +39,7 @@
         
         <div class="convo-create">
           <p>It's your <strong>Civic Commons</strong>, so you get to start a conversation about <em><%= @radioshow.title %></em></p>
-          <%= link_to "Start a Conversation from this Radio Show", responsibilities_radioshow_conversations_path(@radioshow), :class => 'convo-create-btn' %>
+          <%= link_to "Start a Conversation from this Radio Show", new_radioshow_conversation_path(@radioshow), :class => 'convo-create-btn' %>
         </div>
         
         <%= render :partial => 'conversations/conversation_band', locals: { conversations: @radioshow.conversations } %>

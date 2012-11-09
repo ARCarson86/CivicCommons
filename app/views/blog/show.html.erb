@@ -35,7 +35,7 @@
         <% end %>
         <div class="convo-create">
           <p>It's your <strong>Civic Commons</strong>, so you get to start a conversation about <em><%= @blog_post.title %></em></p>
-          <%= link_to "Start a Conversation from this Blog Post", responsibilities_blog_conversations_path(@blog_post), :class => 'convo-create-btn' %>
+          <%= link_to "Start a Conversation from this Blog Post", new_blog_conversation_path(@blog_post), :class => 'convo-create-btn' %>
         </div>
 
         <%= render :partial => 'conversations/conversation_band', locals: { conversations: @blog_post.conversations } %>

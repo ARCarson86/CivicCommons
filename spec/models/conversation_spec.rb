@@ -56,6 +56,25 @@ describe Conversation do
       @conversation.owner = nil
       @conversation.should have_validation_error(:owner)
     end
+    describe "on agreement to be civil" do
+      describe "on create" do
+        it "requires the agree_to_be_civil to be checked" do
+          @conversation.agree_to_be_civil = nil
+          @conversation.should have_validation_error(:agree_to_be_civil)
+        end
+      end
+      describe "on update" do
+        it "does not require the agree_to_be_civil to be checked" do
+          @conversation.agree_to_be_civil = true
+          @conversation.should be_valid
+          @conversation.save
+          
+          @conversation.agree_to_be_civil = nil
+          @conversation.save
+          @conversation.errors.should be_blank
+        end
+      end
+    end
   end
 
   describe "when retrieving all of the issues associated with a conversation" do

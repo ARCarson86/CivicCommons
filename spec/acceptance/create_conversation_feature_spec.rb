@@ -16,7 +16,6 @@ feature "User Creates a User-Conversation", %q{
     stub_metro_region_search
     login_as :person
     follow_start_conversation_link
-    agree_to_responsibilities
     submit_conversation
     conversation.should exist_in_the_database
     the_current_page.should be_the_invite_a_friend_page_for_the conversation
@@ -26,8 +25,6 @@ feature "User Creates a User-Conversation", %q{
     stub_metro_region_search
     login_as :person
     follow_start_conversation_link
-
-    agree_to_responsibilities
     submit_conversation
     invite friend
     friend.should have_been_sent_an_invitation_to_join conversation
@@ -36,8 +33,6 @@ feature "User Creates a User-Conversation", %q{
     stub_metro_region_search
     login_as :person
     follow_start_conversation_link
-    agree_to_responsibilities
-
     submit_invalid_conversation :link_to_related_website => "this_isnt_a_good_link"
 
     current_page.should have_an_error_for :invalid_link
@@ -46,7 +41,6 @@ feature "User Creates a User-Conversation", %q{
   scenario "starting an invalid conversation with an attachment that needs a comment", :js => true do
     login_as :person
     follow_start_conversation_link
-    agree_to_responsibilities
     add_contribution_attachment
     click_start_invalid_conversation_button
     current_page.should have_an_error_for :attachment_needs_comment
@@ -62,7 +56,6 @@ feature "User Creates a User-Conversation", %q{
       follow_blog_link
       follow_the_blog_post_link_for database.latest_blog_post
       follow_start_conversation_link
-      agree_to_responsibilities
       submit_conversation
       conversation.should exist_in_the_database
       conversation.content_items.should == [database.latest_blog_post]
@@ -80,7 +73,6 @@ feature "User Creates a User-Conversation", %q{
       follow_radio_show_link
       follow_the_radio_show_link_for database.latest_radio_show
       follow_start_conversation_link
-      agree_to_responsibilities
       submit_conversation
       conversation.should exist_in_the_database
       conversation.content_items.should == [database.latest_radio_show]

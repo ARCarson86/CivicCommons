@@ -45,7 +45,6 @@ Civiccommons::Application.routes.draw do
   get '/conversations/new_node_contribution',          to: 'conversations#new_node_contribution'
   get '/conversations/node_permalink/:id',             to: 'conversations#node_permalink'
   put '/conversations/confirm_node_contribution',      to: 'conversations#confirm_node_contribution'
-  get '/conversations/responsibilities',               to: 'conversations#responsibilities',                 as: 'conversation_responsibilities'
   get '/conversations/rss',                            to: 'conversations#rss',                              as: 'conversation_rss'
   post '/conversations/toggle_rating',                 to: 'conversations#toggle_rating',                    as: 'conversation_contribution_toggle_rating'
   post '/conversations/blog/:id',                      to: 'conversations#create_from_blog_post',            as: 'start_conversation_from_blog_post'
@@ -196,14 +195,10 @@ Civiccommons::Application.routes.draw do
   resources :invites, only: [:new, :create]
   resources :pages, only: [:show]
   resources :blog, only: [:index, :show] do
-    resources :conversations do
-      get '/responsibilities',  to: 'conversations#responsibilities', on: :collection
-    end
+    resources :conversations
   end
   resources :radioshow, only: [:index, :show] do
-    resources :conversations do
-      get '/responsibilities', to: 'conversations#responsibilities', on: :collection
-    end
+    resources :conversations
   end
   resources :content, only: [:index, :show]
   resources :news, only: [:index]

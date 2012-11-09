@@ -184,11 +184,6 @@ describe ConversationsController do
       get :new, :accept => true
     end
 
-    it "redirects to responsibilities if :accept is not true" do
-      get :new, :accept => nil
-      response.should redirect_to(conversation_responsibilities_path)
-    end
-
     it "assigns new conversation as @conversation" do
       assigns(:conversation).should be mock_conversation
     end
@@ -296,13 +291,6 @@ describe ConversationsController do
       end
     end
 
-  end
-
-  describe "GET responsibilities" do
-    it "should receive get_content_item" do
-      controller.should_receive(:get_content_item)
-      get :responsibilities
-    end
   end
 
   describe "GET embed" do

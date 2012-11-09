@@ -37,11 +37,6 @@ class ConversationsController < ApplicationController
     end
   end
 
-  def responsibilities
-    get_content_item(params)
-    render :layout => 'category_index'
-  end
-
   def filter
     @filter = params[:filter]
     @conversations = Conversation.filter_metro_region(default_region).filtered(@filter).paginate(:page => params[:page], :per_page => 12)
@@ -206,7 +201,6 @@ class ConversationsController < ApplicationController
 
   # GET /conversations/new
   def new
-    return redirect_to :conversation_responsibilities unless params[:accept]
     get_content_item(params)
     @conversation = Conversation.new
     render :new, :layout => 'category_index'
