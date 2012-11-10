@@ -11,6 +11,19 @@ describe Topic do
     end
   end
   describe "Associations" do
+    it { should have_many :conversations_topics }
+    it { should have_many(:conversations).through(:conversations_topics) }
+
+    context "has_many conversations" do
+      it "requires conversations to be unique" do
+        conversation = FactoryGirl.create(:conversation)
+        topic = FactoryGirl.create(:topic, :conversations => [ conversation ])
+
+        lambda{ topic.conversations.push(conversation) }.should raise_error
+      end
+    end
+
+
     context "has_many issues" do
       def given_a_topic_with_issues
         @topic = FactoryGirl.create(:topic)

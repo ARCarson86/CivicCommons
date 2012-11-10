@@ -10,6 +10,9 @@ describe Conversation do
     it { should have_attached_file :image }
     it { should have_many :featured_opportunities}
     it { should belong_to :metro_region}
+    it { should have_many :conversations_topics }
+    it { should have_many(:topics).through(:conversations_topics) }
+
     context "has_many surveys" do
       it "should be correct" do
         Conversation.reflect_on_association(:surveys).macro.should == :has_many
@@ -18,6 +21,7 @@ describe Conversation do
         Conversation.reflect_on_association(:surveys).options[:as].should == :surveyable
       end
     end
+
     context "has_many content_items" do
       def given_a_radio_show_with_conversations
         @radioshow = FactoryGirl.create(:radio_show)
@@ -32,6 +36,15 @@ describe Conversation do
       it "should have the correct conversations" do
         given_a_radio_show_with_conversations
         @conversation1.content_items.should == [@radioshow]
+      end
+    end
+
+    context "has_many topics" do
+      it "requires topics to be unique" do
+        topic = FactoryGirl.create(:topic)
+        conversation = FactoryGirl.create(:conversation, :topics => [ topic ])
+
+        lambda{ conversation.topics.push(topic) }.should raise_error
       end
     end
   end
@@ -264,7 +277,8 @@ describe Conversation do
         "6" => FactoryGirl.build(:embedly_contribution, :owner => @person.id, :conversation => nil, :parent => nil).attributes,
       }
 
-      @conversation = FactoryGirl.build(:user_generated_conversation, :person => @person)
+      topic = FactoryGirl.build(:topic)
+      @conversation = FactoryGirl.build(:user_generated_conversation, :person => @person, :topics => [ topic ])
     end
 
     it "default user_generated_conversation factory should be valid" do
@@ -474,7 +488,8 @@ describe Conversation do
     it "automatically subscribes owner to conversation" do
       Subscription.delete_all
       person = FactoryGirl.create(:normal_person)
-      conversation = FactoryGirl.build(:conversation, person: person)
+      topic = FactoryGirl.create(:topic)
+      conversation = FactoryGirl.build(:conversation, person: person, :topics => [ topic ])
       person.subscriptions.length.should == 0
       conversation.save
       person.reload.subscriptions.length.should == 1

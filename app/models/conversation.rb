@@ -39,6 +39,9 @@ class Conversation < ActiveRecord::Base
   has_many :reflections, :dependent => :destroy
 
   has_and_belongs_to_many :issues
+  has_many :conversations_topics
+  has_many :topics, :through => :conversations_topics, :uniq => true
+  validates_length_of :topics, :minimum => 1
 
   has_many :content_items_conversations, :uniq => true
   has_many :content_items, :through => :content_items_conversations, uniq: true

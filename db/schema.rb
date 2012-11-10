@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121023194314) do
+ActiveRecord::Schema.define(:version => 20121109152020) do
 
   create_table "actions", :force => true do |t|
     t.integer  "conversation_id"
@@ -257,6 +257,17 @@ ActiveRecord::Schema.define(:version => 20121023194314) do
   end
 
   add_index "conversations_issues", ["conversation_id", "issue_id"], :name => "index_conversations_issues_on_conversation_id_and_issue_id", :unique => true
+
+  create_table "conversations_topics", :force => true do |t|
+    t.integer  "conversation_id"
+    t.integer  "topic_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "conversations_topics", ["conversation_id", "topic_id"], :name => "index_conversations_topics_on_conversation_id_and_topic_id", :unique => true
+  add_index "conversations_topics", ["conversation_id"], :name => "index_conversations_topics_on_conversation_id"
+  add_index "conversations_topics", ["topic_id"], :name => "index_conversations_topics_on_topic_id"
 
   create_table "counties", :force => true do |t|
     t.string   "name"

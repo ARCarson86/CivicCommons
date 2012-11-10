@@ -3,6 +3,8 @@ class Topic < ActiveRecord::Base
   has_many :issues_topics, uniq: true
 
   has_many :content_items_topics, :uniq => true
+  has_many :conversations_topics
+  has_many :conversations, :through => :conversations_topics, :uniq => true
 
   has_many :radioshows,
     through: :content_items_topics,
