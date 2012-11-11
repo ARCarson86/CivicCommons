@@ -21,7 +21,6 @@ feature "Exclude conversation from 'most recent' filter", %q{
     fill_in('Summary', with: 'short summary')
     fill_in('Title', with: 'Title of Conversation')
     fill_in('Zip Code', with: '12345')
-    check("issue_#{ issue.id }")
     # And I click the "Submit" button
     click_button('Create Conversation')
     # When I visit the homepage
