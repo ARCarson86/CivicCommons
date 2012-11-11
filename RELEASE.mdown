@@ -1,3 +1,14 @@
+## 4.2
+
+### External Changes
+  * [Daily Digest - Only show Petition Text once - show all signatures as the intro.](https://agilezen.com/project/18091/story/773)
+
+### Bug Fix
+
+### Chores
+
+
+
 ## 4.1
 
 ### External Changes
