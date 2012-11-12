@@ -101,9 +101,7 @@ module Utilities
       end
 
       it "will associate conversations to the person being merged into" do
-        conversation = FactoryGirl.build(:user_generated_conversation, person: @person_to_merge)
-        conversation.should be_valid
-        conversation.save
+        conversation = FactoryGirl.create(:user_generated_conversation, person: @person_to_merge)
 
         conversation.person.should == @person_to_merge
         Conversation.find(conversation.id).person.should == @person_to_merge

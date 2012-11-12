@@ -78,10 +78,7 @@ describe Conversation do
       end
       describe "on update" do
         it "does not require the agree_to_be_civil to be checked" do
-          @conversation.agree_to_be_civil = true
-          @conversation.should be_valid
-          @conversation.save
-          
+          @conversation = FactoryGirl.create(:conversation)
           @conversation.agree_to_be_civil = nil
           @conversation.save
           @conversation.errors.should be_blank
