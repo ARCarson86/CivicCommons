@@ -33,6 +33,8 @@ class Conversation
     has_file_field :contribution_attachment, "conversation[contributions_attributes][0][attachment]"
 
     has_wysiwyg_editor_field :content, "conversation_contributions_attributes_0_content"
+    has_checkbox :civility_checkbox, "conversation_agree_to_be_civil"
+
     has_button :start_my_conversation, "Start My Conversation", :invite_a_friend
     has_button :start_invalid_conversation, "Start My Conversation"
 
@@ -41,6 +43,7 @@ class Conversation
       #fill_in_summary_with "stufffff!"  # TODO: Uncomment once new summary is in place.
       fill_in_content_with "COOL! THIS IS AWESOME"
       fill_in_metro_region_city_display_name_with "City name"
+      check_civility_checkbox
       sleep 1
       find('.ui-menu-item a:first').click
       add_link options[:link_to_related_website] if options.key? :link_to_related_website
