@@ -61,10 +61,10 @@ describe Conversation do
       @conversation.zip_code = nil
       @conversation.should have_validation_error(:zip_code)
     end
-    #it "is invalid with no summary" do    # TODO: UNCOMMENT once new Start Conversation UI has a summary again.
-      #@conversation.summary = nil
-      #@conversation.should have_validation_error(:summary)
-    #end
+    it "is invalid with no summary" do
+      @conversation.summary = nil
+      @conversation.should have_validation_error(:summary)
+    end
     it "is invalid with no owner" do
       @conversation.owner = nil
       @conversation.should have_validation_error(:owner)

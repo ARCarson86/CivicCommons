@@ -40,7 +40,7 @@ class Conversation
 
     def fill_in_conversation options = {}
       fill_in_title_with "Frank"
-      #fill_in_summary_with "stufffff!"  # TODO: Uncomment once new summary is in place.
+      fill_in_summary_with "stufffff!"
       fill_in_content_with "COOL! THIS IS AWESOME"
       fill_in_metro_region_city_display_name_with "City name"
       sleep 1
