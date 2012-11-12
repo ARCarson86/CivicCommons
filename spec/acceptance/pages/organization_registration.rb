@@ -12,11 +12,11 @@ module CivicCommonsDriver
     has_file_field :avatar, 'organization_avatar'
     has_button :continue, 'Continue', :home
     has_button :continue_with_invalid_information, 'Continue', :organization_registration_page
-    
+
     has_checkbox :i_am_authorized, 'organization_authorized_to_setup_an_account'
     has_checkbox :weekly_newsletter, 'organization_weekly_newsletter'
     has_checkbox :daily_digest, 'organization_daily_digest'
-    
+
     def has_an_error_for? field
       case field
       when :invalid_name
@@ -28,7 +28,7 @@ module CivicCommonsDriver
       end
       has_content? error_msg
     end
-    
+
     def fill_in_organization_details_with details
      fill_in_name_with details[:name]
      fill_in_email_with details[:email]
