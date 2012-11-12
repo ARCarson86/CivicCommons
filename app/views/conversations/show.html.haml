@@ -45,3 +45,9 @@
       = render :partial => '/shared/opportunity/side_participants', :locals => {participants: @conversation_participants}
       = render_recent_items_sidebar
 
+:javascript
+  $(document).ready(function(){
+    $('.js-modal-launch-1').colorbox({href:'/test.html', width:'350px', transition: 'fade'});
+    return false;
+  });
+
