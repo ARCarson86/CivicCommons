@@ -41,7 +41,7 @@ class Conversation < ActiveRecord::Base
   has_and_belongs_to_many :issues
   has_many :conversations_topics
   has_many :topics, :through => :conversations_topics, :uniq => true
-  validates_length_of :topics, :minimum => 1
+  #validates_length_of :topics, :minimum => 1  # TODO: UNCOMMENT.  Commented out until UI for new Start Conversation is in place.
 
   has_many :content_items_conversations, :uniq => true
   has_many :content_items, :through => :content_items_conversations, uniq: true
