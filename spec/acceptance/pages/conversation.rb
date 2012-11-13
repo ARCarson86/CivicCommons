@@ -43,9 +43,9 @@ class Conversation
       #fill_in_summary_with "stufffff!"  # TODO: Uncomment once new summary is in place.
       fill_in_content_with "COOL! THIS IS AWESOME"
       fill_in_metro_region_city_display_name_with "City name"
-      check_civility_checkbox
       sleep 1
       find('.ui-menu-item a:first').click
+      check_civility_checkbox
       add_link options[:link_to_related_website] if options.key? :link_to_related_website
     end
 

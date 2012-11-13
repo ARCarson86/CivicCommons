@@ -2,7 +2,7 @@ require 'acceptance/acceptance_helper'
 
 feature "User Creates a User-Conversation", %q{
   As a normal user,
-  I want to start a converastion and invite others to join
+  I want to start a conversation and invite others to join
 } do
   background do
     database.create_issue name: "They are important"
