@@ -104,6 +104,13 @@ describe ConversationsController do
     end
 
   end
+  
+  describe "GET agree_to_be_civil_modal" do
+    it "should render the correct partial" do
+      get :agree_to_be_civil_modal
+      response.should render_template 'agree_to_be_civil_modal'
+    end
+  end
 
   describe "GET rss" do
 

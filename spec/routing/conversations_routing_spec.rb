@@ -2,6 +2,10 @@ require "spec_helper"
 
 describe ConversationsController do
   describe "routing" do
+    
+    it "recognizes and generates #agree_to_be_civil_modal" do
+      { get: "/conversations/agree_to_be_civil_modal" }.should route_to(controller: "conversations", action: "agree_to_be_civil_modal")
+    end
 
     it "recognizes and generates #index" do
       { get: "/conversations" }.should route_to(controller: "conversations", action: "index")

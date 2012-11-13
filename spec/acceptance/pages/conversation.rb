@@ -31,6 +31,9 @@ class Conversation
     has_file_field :contribution_attachment, "conversation[contributions_attributes][0][attachment]"
 
     has_checkbox :civility_checkbox, "conversation_agree_to_be_civil"
+    
+    has_checkbox :accept_civility_modal, 'agree-on-agree-to-be-civil-modal'
+    has_link :continue_on_accept_civility_modal, 'Continue', :invite_a_friend
 
     has_button :start_my_conversation, "Start My Conversation", :invite_a_friend
     has_button :start_invalid_conversation, "Start My Conversation"
@@ -41,7 +44,14 @@ class Conversation
       fill_in_metro_region_city_display_name_with "City name"
       sleep 1
       find('.ui-menu-item a:first').click
-      check_civility_checkbox
+      check_civility_checkbox if !(options.has_key?(:check_civility_checkbox) && options[:check_civility_checkbox] == false)
+    end
+    
+    def accept_the_agree_to_be_civil_modal
+      sleep 1
+      check_accept_civility_modal
+      follow_continue_on_accept_civility_modal_link
+      sleep 1
     end
 
     def add_link link

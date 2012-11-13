@@ -12,6 +12,10 @@ class ConversationsController < ApplicationController
     :create_from_radioshow,
   ]
 
+  def agree_to_be_civil_modal
+    render :partial => 'agree_to_be_civil_modal', :layout => nil
+  end
+
   # GET /conversations
   def index
     if default_region == cc_metro_region || default_region.blank?

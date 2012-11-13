@@ -20,6 +20,18 @@ feature "User Creates a User-Conversation", %q{
     conversation.should exist_in_the_database
     the_current_page.should be_the_invite_a_friend_page_for_the conversation
   end
+  
+  scenario "starting a conversation without checking the civility checkbox", :js => true do
+    stub_metro_region_search
+    login_as :person
+    follow_start_conversation_link
+    fill_in_conversation(:check_civility_checkbox => false)
+    click_start_invalid_conversation_button
+    sleep 2
+    accept_the_agree_to_be_civil_modal
+    conversation.should exist_in_the_database
+    the_current_page.should be_the_invite_a_friend_page_for_the conversation
+  end
 
   scenario "inviting a friend when starting a conversation", :js => true do
     stub_metro_region_search

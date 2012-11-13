@@ -1,0 +1,14 @@
+
+<div class="fb-modal" id="agree-to-be-civil-modal">
+  <h2>Civility Agreement</h2>
+  <p>
+    <strong>Please verify by checking the box if you agree to follow our <%= link_to "Principles", principles_path, :target => '_blank' %></strong>
+  </p>
+  <p>
+    <%= check_box_tag "agree-on-agree-to-be-civil-modal" %> I agree that our conversations should be civil, and I commit to support the effort to use The Civic Commons as a place to do so.
+  </p>
+  <p class="">
+    <%= link_to "Continue", '', :class => 'continue button' %>
+    <%= link_to "Cancel", '', :class => 'cancel' %>
+  </p>
+</div>

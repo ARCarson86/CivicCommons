@@ -38,6 +38,7 @@
 //= require 'contributions/contribution_tool.js'
 
 //= require 'conversations/show'
+//= require 'conversations/new'
 
 //= require issues/show
 //= require subscriptions/show

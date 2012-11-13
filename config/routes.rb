@@ -50,6 +50,7 @@ Civiccommons::Application.routes.draw do
   post '/conversations/blog/:id',                      to: 'conversations#create_from_blog_post',            as: 'start_conversation_from_blog_post'
   post '/conversations/radio/:id',                     to: 'conversations#create_from_radioshow',            as: 'start_conversation_from_radioshow'
   get '/conversations/:id#node-:contribution_id',      to: 'conversations#show',                             as: 'conversations_node_show'
+  get '/conversations/agree_to_be_civil_modal',        to: 'conversations#agree_to_be_civil_modal',          as: 'agree_to_be_civil_modal'
 
   #Notifications
   post '/notifications/viewed', to: 'notifications#viewed'
@@ -98,7 +99,7 @@ Civiccommons::Application.routes.draw do
   match '/poster'            => redirect('/pages/poster')
   match '/posters'           => redirect('/pages/poster')
   match '/press'             => redirect('/news')
-  match '/principles'        => redirect('/pages/principles')
+  match '/principles'        => redirect('/pages/principles'), :as  => 'principles'
   match '/privacy'           => redirect('/pages/privacy')
   match '/radio'             => redirect('/radioshow')
   match '/sponsorships'      => redirect('/pages/sponsorships')
