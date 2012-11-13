@@ -15,6 +15,10 @@ class ConversationsController < ApplicationController
   def agree_to_be_civil_modal
     render :partial => 'agree_to_be_civil_modal', :layout => nil
   end
+  
+  def permission_to_use_image_modal
+    render :partial => 'permission_to_use_image_modal', :layout => nil
+  end
 
   # GET /conversations
   def index

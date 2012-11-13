@@ -29,11 +29,16 @@ class Conversation
     has_field :link, "conversation_link"
     has_field :metro_region_city_display_name, "conversation_metro_region_city_display_name"
     has_file_field :contribution_attachment, "conversation[contributions_attributes][0][attachment]"
+    has_file_field :image, "conversation[image]"
 
     has_checkbox :civility_checkbox, "conversation_agree_to_be_civil"
+    has_checkbox :permission_to_use_image_checkbox, "conversation_permission_to_use_image"
 
     has_checkbox :accept_civility_modal, 'agree-on-agree-to-be-civil-modal'
+    has_checkbox :accept_permission_to_use_image_modal, 'agree-on-permission-to-use-image-modal'
+    
     has_link :continue_on_accept_civility_modal, 'Continue', :invite_a_friend
+    has_link :continue_on_permission_to_use_image_modal, 'Continue', :invite_a_friend
 
     has_button :start_my_conversation, "Start My Conversation", :invite_a_friend
     has_button :start_invalid_conversation, "Start My Conversation"
@@ -41,11 +46,18 @@ class Conversation
     def fill_in_conversation options = {}
       fill_in_title_with "Frank"
       fill_in_summary_with "stufffff!"
+      attach_image_with_file File.join(attachments_path, 'imageAttachment.png') if options.has_key?(:attach_image) && options[:attach_image] == true
+      check_permission_to_use_image_checkbox if options.has_key?(:check_permission_to_use_image) && options[:check_permission_to_use_image] == true
+      check_the_first_topic_checkbox
       fill_in_link_with "http://theciviccommons.com"
       fill_in_metro_region_city_display_name_with "City name"
       sleep 1
       find('.ui-menu-item a:first').click
       check_civility_checkbox if !(options.has_key?(:check_civility_checkbox) && options[:check_civility_checkbox] == false)
+    end
+    
+    def check_the_first_topic_checkbox
+      find(".conversation-topics input[type=checkbox]:first").click
     end
 
     def accept_the_agree_to_be_civil_modal
@@ -54,6 +66,14 @@ class Conversation
       follow_continue_on_accept_civility_modal_link
       sleep 1
     end
+
+    def accept_the_permission_to_use_image_modal
+      sleep 1
+      check_accept_permission_to_use_image_modal
+      follow_continue_on_permission_to_use_image_modal_link
+      sleep 1
+    end
+
 
     def add_contribution_attachment
       follow_show_add_file_field_link

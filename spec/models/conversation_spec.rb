@@ -85,6 +85,25 @@ describe Conversation do
         end
       end
     end
+    
+    describe "having permission to use image" do
+      describe "on create" do
+        it "requires it to be checked when there is an image" do
+          @conversation.image_file_name = 'test-image-png'
+          @conversation.should_not be_valid
+          @conversation.should have_validation_error(:permission_to_use_image)
+        end
+      end
+      describe "on update" do
+        it "does not require it to be checked" do
+          @conversation = FactoryGirl.create(:conversation)
+          @conversation.image_file_name = 'test-image-png'
+          @conversation.save
+          @conversation.errors.should be_blank
+        end
+      end
+    end
+    
   end
 
   context "link" do

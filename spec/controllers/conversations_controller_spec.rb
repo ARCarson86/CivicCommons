@@ -112,6 +112,13 @@ describe ConversationsController do
     end
   end
 
+  describe "GET permission_to_use_image_modal" do
+    it "should render the correct partial" do
+      get :permission_to_use_image_modal
+      response.should render_template 'permission_to_use_image_modal'
+    end
+  end
+
   describe "GET rss" do
 
     before(:each) do

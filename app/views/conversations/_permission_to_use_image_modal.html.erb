@@ -1,0 +1,13 @@
+<div class="fb-modal" id="permission-to-use-image-modal">
+  <h2>Permission to Use Image</h2>
+  <p>
+    <strong>Please verify by checking the box that you have permission to use the image you have chosen to accompany your conversation.</strong>
+  </p>
+  <p>
+    <%= check_box_tag "agree-on-permission-to-use-image-modal" %> I have permission to use, or own the image attached to this conversation.
+  </p>
+  <p class="">
+    <%= link_to "Continue", '', :class => 'continue button' %>
+    <%= link_to "Cancel", '', :class => 'cancel' %>
+  </p>
+</div>

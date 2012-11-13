@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121113135756) do
+ActiveRecord::Schema.define(:version => 20121113211550) do
 
   create_table "actions", :force => true do |t|
     t.integer  "conversation_id"
@@ -244,6 +244,7 @@ ActiveRecord::Schema.define(:version => 20121113135756) do
     t.text     "meta_tags"
     t.string   "slug"
     t.integer  "metro_region_id"
+    t.boolean  "permission_to_use_image"
     t.string   "link"
   end
 

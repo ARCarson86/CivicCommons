@@ -51,6 +51,7 @@ Civiccommons::Application.routes.draw do
   post '/conversations/radio/:id',                     to: 'conversations#create_from_radioshow',            as: 'start_conversation_from_radioshow'
   get '/conversations/:id#node-:contribution_id',      to: 'conversations#show',                             as: 'conversations_node_show'
   get '/conversations/agree_to_be_civil_modal',        to: 'conversations#agree_to_be_civil_modal',          as: 'agree_to_be_civil_modal'
+  get '/conversations/permission_to_use_image_modal',  to: 'conversations#permission_to_use_image_modal',    as: 'permission_to_use_image_modal'
 
   #Notifications
   post '/notifications/viewed', to: 'notifications#viewed'

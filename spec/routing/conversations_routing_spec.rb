@@ -6,6 +6,10 @@ describe ConversationsController do
     it "recognizes and generates #agree_to_be_civil_modal" do
       { get: "/conversations/agree_to_be_civil_modal" }.should route_to(controller: "conversations", action: "agree_to_be_civil_modal")
     end
+    
+    it "recognizes and generates #permission_to_use_image_modal" do
+      { get: "/conversations/permission_to_use_image_modal" }.should route_to(controller: "conversations", action: "permission_to_use_image_modal")
+    end
 
     it "recognizes and generates #index" do
       { get: "/conversations" }.should route_to(controller: "conversations", action: "index")

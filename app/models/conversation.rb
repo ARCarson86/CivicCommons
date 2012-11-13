@@ -77,7 +77,8 @@ class Conversation < ActiveRecord::Base
   validates_presence_of :zip_code, :message => "Please give us a zip code for a little geographic context."
   validates_presence_of :metro_region_id, :message => 'Please give us a Location name.'
   validate :must_agree_to_be_civil, :on => :create
-
+  validate :must_have_permission_to_use_image, :on => :create
+  
   after_create :set_initial_position, :subscribe_creator
 
   friendly_id :title, :use => :slugged
@@ -88,8 +89,11 @@ class Conversation < ActiveRecord::Base
   def must_agree_to_be_civil
      errors.add(:base, 'You must agree to have a civil conversation by checking on the checkbox.') unless agree_to_be_civil.present? && [1,'1',true].include?(agree_to_be_civil)
   end
-
-
+  
+  def must_have_permission_to_use_image
+    errors.add(:permission_to_use_image, 'You must have permission to use image by checking on the checkbox.') if image_file_name.present? && !permission_to_use_image.present? && ![1,'1',true].include?(permission_to_use_image)
+  end
+  
   scope :latest_updated, :order => 'updated_at DESC'
   scope :latest_created, where(:exclude_from_most_recent => false).order('created_at DESC')
   scope :alphabet_ascending_by_title, :order => 'title ASC'

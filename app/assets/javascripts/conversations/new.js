@@ -4,10 +4,38 @@
     var $newConvoForm = $('form#new_conversation')
     $newConvoForm.bind('submit',function(e){
       
-      // get checked value for 'agree to be civil'
       var $agreeToBeCivilCheckbox =  $(this).find('input#conversation_agree_to_be_civil');
       var aggreeToBiCivilChecked = $agreeToBeCivilCheckbox.attr('checked');
-      if(aggreeToBiCivilChecked == false){
+      var $permissionToUseImageCheckbox =  $(this).find('input#conversation_permission_to_use_image');
+      var permissionToUseImageChecked = $permissionToUseImageCheckbox.attr('checked');
+      var $imageInput = $(this).find('input#conversation_image');
+      var imageInputExists = $imageInput.val() != "";
+      
+      if(imageInputExists == true && permissionToUseImageChecked == false){
+        
+        //open the colorbox
+        $.colorbox({
+          href:'/conversations/permission_to_use_image_modal', 
+          opacity: 0.4,
+          onComplete: function(){
+            var $modal = $('#permission-to-use-image-modal');
+            var $checkbox = $('#agree-on-permission-to-use-image-modal', $modal)
+            var $continueButton = $('.continue',$modal);
+            $continueButton.click(function(){
+              if($checkbox.attr('checked') == true){
+                $permissionToUseImageCheckbox.attr('checked',true);
+                $.colorbox.close();
+                setTimeout(function(){
+                  $newConvoForm.submit();
+                },500)
+              }
+              return false;
+            })
+          }
+        })
+        
+        return false
+      }else if(aggreeToBiCivilChecked == false){
 
         //open the colorbox
         $.colorbox({
@@ -21,7 +49,9 @@
               if($checkbox.attr('checked') == true){
                 $agreeToBeCivilCheckbox.attr('checked',true);
                 $.colorbox.close();
-                $newConvoForm.submit();
+                setTimeout(function(){
+                  $newConvoForm.submit();
+                },500)
               }
               return false;
             })
