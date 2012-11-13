@@ -303,12 +303,6 @@ describe Conversation do
       @conversation.should have_validation_error(:contributions)
     end
 
-    it "raises error if conversation created with no contributions" do
-      @conversation.contributions = []
-      @conversation.save
-      @conversation.should have_validation_error(:contributions)
-    end
-
     it "automatically subscribes owner to conversation" do
       Subscription.delete_all
       @person.reload.subscriptions.length.should == 0

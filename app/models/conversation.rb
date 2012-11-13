@@ -67,8 +67,6 @@ class Conversation < ActiveRecord::Base
                                     :content_type => /image\/*/,
                                     :message => "Not a valid image file."
   validates :owner, :must_be_logged_in => true
-  validates_length_of :contributions, :is => 1, :on => :create, :if => :from_community?,
-    :message => "Please get the ball rolling with the first comment, question, or contribution of some sort."
 
   validates_presence_of :owner
   validates_presence_of :title, :message => "Please choose a title for your conversation."

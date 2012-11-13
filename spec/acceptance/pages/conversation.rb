@@ -26,13 +26,10 @@ class Conversation
     has_field :title, "Title"
     has_field :summary, "Summary"
 
-    has_link :show_add_link_field, "contribution-add-link"
-    has_link :show_add_file_field, "contribution-add-file"
     has_field :link_to_related, "conversation[contributions_attributes][0][url]"
     has_field :metro_region_city_display_name, "conversation_metro_region_city_display_name"
     has_file_field :contribution_attachment, "conversation[contributions_attributes][0][attachment]"
 
-    has_wysiwyg_editor_field :content, "conversation_contributions_attributes_0_content"
     has_checkbox :civility_checkbox, "conversation_agree_to_be_civil"
 
     has_button :start_my_conversation, "Start My Conversation", :invite_a_friend
@@ -41,12 +38,10 @@ class Conversation
     def fill_in_conversation options = {}
       fill_in_title_with "Frank"
       fill_in_summary_with "stufffff!"
-      fill_in_content_with "COOL! THIS IS AWESOME"
       fill_in_metro_region_city_display_name_with "City name"
       sleep 1
       find('.ui-menu-item a:first').click
       check_civility_checkbox
-      add_link options[:link_to_related_website] if options.key? :link_to_related_website
     end
 
     def add_link link

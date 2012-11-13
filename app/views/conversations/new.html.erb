@@ -22,9 +22,6 @@
 
           <%= render :partial => 'conversations/conversation_fields', :locals => { :form => conversation } %>
 
-          <p>Get the ball rolling with a comment, question, or maybe a thought-provoking video you’ve already uploaded to YouTube.</p>
-          <%= render :partial => 'contributions/contribution_fields', :locals => { :form => conversation, :contributions => @conversation.contributions } %>
-
           <fieldset class="footer mtl">
             <div class="field-block">
               <label for="permission" class="plain plain-ext">

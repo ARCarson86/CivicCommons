@@ -38,6 +38,15 @@
 
   <%= render :partial => "/conversations/region_autocomplete" %>
 
+  <div class="form-block">
+    <%= form.label :summary %>
+    <p class="tip mln">Get the ball rolling with a comment, question, or maybe a thought-provoking video you’ve already uploaded to YouTube.</p>
+    <fieldset class="contrib_tool_container">
+      <%= form.text_area :summary, :cols => 90 %>
+    </fieldset>
+  </div>
+
+
 </fieldset>
 
 <%= form.hidden_field :zip_code, value: 'ALL' %>

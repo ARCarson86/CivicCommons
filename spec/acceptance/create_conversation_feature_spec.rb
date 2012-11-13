@@ -29,22 +29,6 @@ feature "User Creates a User-Conversation", %q{
     invite friend
     friend.should have_been_sent_an_invitation_to_join conversation
   end
-  scenario "starting an invalid conversation", :js => true do
-    stub_metro_region_search
-    login_as :person
-    follow_start_conversation_link
-    submit_invalid_conversation :link_to_related_website => "this_isnt_a_good_link"
-
-    current_page.should have_an_error_for :invalid_link
-  end
-
-  scenario "starting an invalid conversation with an attachment that needs a comment", :js => true do
-    login_as :person
-    follow_start_conversation_link
-    add_contribution_attachment
-    click_start_invalid_conversation_button
-    current_page.should have_an_error_for :attachment_needs_comment
-  end
 
   context "on Blog posts" do
     background do
@@ -79,7 +63,7 @@ feature "User Creates a User-Conversation", %q{
       the_current_page.should be_the_invite_a_friend_page_for_the conversation
     end
   end
-  
+
   def stub_metro_region_search
     #stub the search MetroRegion.search on the search controller
     metro_regions = MetroRegion.all
