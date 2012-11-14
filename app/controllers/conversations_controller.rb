@@ -126,7 +126,7 @@ class ConversationsController < ApplicationController
     end
   end
 
- def node_conversation
+  def node_conversation
     @contribution = Contribution.find(params[:id])
     @contributions = @contribution.descendants.confirmed.includes(:person)
     @contribution.visit!((current_person.nil? ? nil : current_person.id))
@@ -306,6 +306,7 @@ class ConversationsController < ApplicationController
   end
 
   def prep_convo(params)
+    get_other_topic(params)
     @conversation = Conversation.new(params[:conversation])
 
     get_content_item(params)
@@ -327,4 +328,15 @@ class ConversationsController < ApplicationController
     end
   end
 
+  ##
+  # Pull out the "Other" topic if it was selected in the UI.
+  # 
+  # @param [Hash] params The parameters hash passed in from the request
+  def get_other_topic(params)
+    return if params[:conversation][:topic_ids].nil?
+    if params[:conversation][:topic_ids].delete('999')
+      Rails.logger.info("DEBUG: Other topic was selected")
+      ## notify admin here
+    end
+  end
 end

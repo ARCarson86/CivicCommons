@@ -23,6 +23,11 @@
   %footer
     %p= "This conversation was started at: #{@conversation.created_at}"
     %p
+      Related Topics:
+      %ul
+        - @conversation.topics.each do |topic|
+          %li= topic.name
+    %p
       Related Issues:
       %ul
         - @conversation.issues.each do |issue|

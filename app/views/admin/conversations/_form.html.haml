@@ -56,6 +56,17 @@
     =conversation.label :exclude_from_most_recent, "Exclude from Most Recent"
 
   %p
+    =conversation.label :topics, "Select Topics"
+    %br
+    %table
+      -Topic.order(:name).each_slice(2) do |slice|
+        %tr
+          -slice.each do |topic|
+            %td 
+              =check_box_tag "topic_ids[#{topic.id}]", topic.id, @conversation.topics.include?(topic), :name => 'conversation[topic_ids][]'
+              =label_tag "topic_ids[#{topic.id}]", topic.name
+
+  %p
     =conversation.label :issues, "Select Managed Issues"
     %br
     %table

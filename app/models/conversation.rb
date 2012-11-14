@@ -39,9 +39,11 @@ class Conversation < ActiveRecord::Base
   has_many :reflections, :dependent => :destroy
 
   has_and_belongs_to_many :issues
-  has_many :conversations_topics
+
+  has_many :conversations_topics, :dependent => :destroy
   has_many :topics, :through => :conversations_topics, :uniq => true
-  #validates_length_of :topics, :minimum => 1  # TODO: UNCOMMENT.  Commented out until UI for new Start Conversation is in place.
+  validates_length_of :topics, :minimum => 1, :message => 'Please select at least one topic for your conversation'
+  accepts_nested_attributes_for :topics
 
   has_many :content_items_conversations, :uniq => true
   has_many :content_items, :through => :content_items_conversations, uniq: true
