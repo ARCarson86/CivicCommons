@@ -2,7 +2,7 @@ require 'spec_helper'
 
 
 describe Conversation do
-  let(:conversation) {FactoryGirl.create(:conversation, conversation_attributes)}
+  let(:conversation) {FactoryGirl.build(:conversation, conversation_attributes)}
   let(:conversation_attributes) {{}}
 
   context "Associations" do
@@ -84,6 +84,41 @@ describe Conversation do
           @conversation.errors.should be_blank
         end
       end
+    end
+  end
+
+  context "link" do
+    it "should be valid" do
+      conversation.link = "http://www.theciviccommons.com"
+      conversation.valid?.should be_true
+    end
+    it "should be valid if it's a secure url" do
+      conversation.link = "https://www.theciviccommons.com"
+      conversation.valid?.should be_true
+    end
+    it "is valid with a path" do
+      conversation.link = "http://www.theciviccommons.com/aboutus"
+      conversation.valid?.should be_true
+    end
+    it "is invalid without http(s)" do
+      conversation.link = "www.theciviccommons.com"
+      conversation.valid?.should be_false
+    end
+    it "is invalid without TLD (Top Level Domain) or ccTLD" do
+      conversation.link = "http://www.theciviccommons"
+      conversation.valid?.should be_false
+    end
+    it "is valid without subdomain" do
+      conversation.link = "http://theciviccommons.com"
+      conversation.valid?.should be_true
+    end
+    it "is invalid with spaces" do
+      conversation.link = "http://www.thecivic commons.com"
+      conversation.valid?.should be_false
+    end
+    it "is invalid with just a word" do
+      conversation.link = "theciviccommons"
+      conversation.valid?.should be_false
     end
   end
 

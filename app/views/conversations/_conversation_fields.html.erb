@@ -24,9 +24,9 @@
   </div>
 
   <div class="form-block">
-    <label for="link">Link</label>
+    <%= form.label :link %>
     <p class="tip mln">Add a link that supports your conversation, or is relevant to what you want to talk about.</p>
-    <input class="textbox" id="link" name="link" size="30" type="text" />
+    <%= form.text_field :link, :class => "textbox", :size => "30" %>
   </div>
 
   <div class="form-block">

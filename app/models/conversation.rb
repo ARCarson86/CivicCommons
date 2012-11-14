@@ -68,24 +68,25 @@ class Conversation < ActiveRecord::Base
                                     :message => "Not a valid image file."
   validates :owner, :must_be_logged_in => true
 
-  validates_presence_of :owner
+  validates_presence_of :owner, :message => "You must be logged in."
   validates_presence_of :title, :message => "Please choose a title for your conversation."
   validates_presence_of :summary, :message => "Please give us a short summary."
+  validates_format_of :link, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix, :on => :create, :allow_blank => true, :message => "Link must look like a url (example http://google.com)."
   validates_presence_of :zip_code, :message => "Please give us a zip code for a little geographic context."
   validates_presence_of :metro_region_id, :message => 'Please give us a Location name.'
   validate :must_agree_to_be_civil, :on => :create
-  
+
   after_create :set_initial_position, :subscribe_creator
 
   friendly_id :title, :use => :slugged
   def should_generate_new_friendly_id?
     new_record? || slug.nil?
   end
-  
+
   def must_agree_to_be_civil
      errors.add(:base, 'You must agree to have a civil conversation by checking on the checkbox.') unless agree_to_be_civil.present? && [1,'1',true].include?(agree_to_be_civil)
   end
-  
+
 
   scope :latest_updated, :order => 'updated_at DESC'
   scope :latest_created, where(:exclude_from_most_recent => false).order('created_at DESC')
