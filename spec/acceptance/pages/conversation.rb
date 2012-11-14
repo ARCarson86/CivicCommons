@@ -31,7 +31,7 @@ class Conversation
     has_file_field :contribution_attachment, "conversation[contributions_attributes][0][attachment]"
 
     has_checkbox :civility_checkbox, "conversation_agree_to_be_civil"
-    
+
     has_checkbox :accept_civility_modal, 'agree-on-agree-to-be-civil-modal'
     has_link :continue_on_accept_civility_modal, 'Continue', :invite_a_friend
 
@@ -47,7 +47,7 @@ class Conversation
       find('.ui-menu-item a:first').click
       check_civility_checkbox if !(options.has_key?(:check_civility_checkbox) && options[:check_civility_checkbox] == false)
     end
-    
+
     def accept_the_agree_to_be_civil_modal
       sleep 1
       check_accept_civility_modal

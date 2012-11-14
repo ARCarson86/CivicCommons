@@ -28,6 +28,11 @@
     %br
     =conversation.text_area :summary
 
+  %p
+    =conversation.label :link
+    %br
+    =conversation.text_field :link, :size => 70
+
   -if controller.action_name == 'new'
     %p
       =label_tag 'Transcript'
