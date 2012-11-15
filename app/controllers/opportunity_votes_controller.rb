@@ -5,32 +5,32 @@ class OpportunityVotesController < ApplicationController
   before_filter :find_vote, :only => [:create_select_options, :create_rank_options]
   before_filter :restrict_voter_access, :only => [:select_options,:create_select_options,:rank_options, :create_rank_options]
   DEFAULT_NUM_OF_OPTIONS = 1
-  
+
   def new
     @vote = Vote.new(:max_selected_options => 1)
     DEFAULT_NUM_OF_OPTIONS.times do |i|
       @vote.options.build(:position => i+1)
     end
   end
-  
+
   def create
     @vote = Vote.new(params[:vote])
     @vote.surveyable = @conversation
     @vote.person = current_person
     @vote.show_progress = true
-    
+
     if @vote.save
       redirect_to(conversation_vote_path(@conversation, @vote, :anchor => 'opportunity-nav'), :notice => 'Vote was successfully created.')
     else
       render :action => "new"
     end
   end
-  
+
   def show
     @vote = @conversation.surveys.find(params[:id])
-    @vote_response_presenter = VoteResponsePresenter.new(:person_id => try(:current_person).try(:id), :survey_id => @vote.id)    
+    @vote_response_presenter = VoteResponsePresenter.new(:person_id => try(:current_person).try(:id), :survey_id => @vote.id)
   end
-  
+
   def select_options
     @vote = @conversation.surveys.find(params[:id])
     selected_option_ids = params[:selected_option_ids].to_s.split(',') || []
@@ -42,7 +42,7 @@ class OpportunityVotesController < ApplicationController
     attributes = {:person_id => current_person.id, :survey_id => @vote.id}
     @vote_response_presenter = VoteResponsePresenter.new(attributes.merge(@vote_response_params))
     if @vote_response_presenter.valid_selected_options?
-      
+
       # If only one is selected then create the vote and don't go to the rank options page
       if @vote_response_presenter.only_one_selected_option?
         @vote_response_presenter = VoteResponsePresenter.new(attributes.merge(selected_option_1_id: @vote_response_params[:selected_option_ids].first))
@@ -52,41 +52,41 @@ class OpportunityVotesController < ApplicationController
       end
 
     else
-      render :action => :show 
+      render :action => :show
     end
   end
-  
+
   def rank_options
     selected_option_ids = params[:selected_option_ids].to_s.split(',') || []
     @vote = @conversation.surveys.find(params[:id])
     @vote_response_presenter = VoteResponsePresenter.new({:person_id => current_person.id, :survey_id => @vote.id}.merge!(:selected_option_ids => selected_option_ids))
   end
-  
+
   def create_rank_options
     @vote_response_presenter = VoteResponsePresenter.new({:person_id => current_person.id, :survey_id => @vote.id}.merge!(@vote_response_params))
     save_the_vote_and_redirect
   end
-  
+
   protected
-  
+
   def save_the_vote_and_redirect
     if @vote_response_presenter.save
       flash[:notice] = "Thank you for voting!"
       redirect_to rank_options_conversation_vote_path(@conversation,@vote, :anchor => 'opportunity-nav')
     else
-      render :action => :rank_options 
+      render :action => :rank_options
     end
   end
-  
+
   def find_vote
     @vote_response_params = params[:vote_response_presenter] || {}
-    @vote = @conversation.surveys.find(params[:id])    
+    @vote = @conversation.surveys.find(params[:id])
   end
-  
+
   def find_conversation
     @conversation = Conversation.find(params[:conversation_id])
   end
-  
+
   def restrict_voter_access
     vote = VoteResponsePresenter.new({:person_id => current_person.id, :survey_id => params[:id]})
     redirect_to conversation_vote_path(@conversation,params[:id], :anchor => 'opportunity-nav') unless vote.allowed?

@@ -1,0 +1,10 @@
+<li>
+  <div class="media">
+    <%= profile_image(notification.person, 20, 'img') %>
+    <div class="bd">
+      <a href="<%= url_to_contribution(item) %>">
+        <p><strong><%= notification.person_name %></strong> commented on '<%= item.item_title %>': "<%= truncate(notification.item_content, length:60) %>"</p>
+      </a>
+    </div>
+  </div>
+</li>

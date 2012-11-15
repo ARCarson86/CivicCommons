@@ -59,6 +59,14 @@ module Admin
         put :toggle_staff_pick, id: conversation.id
         Conversation.find_by_id(conversation.id).staff_pick.should be_false
       end
+      it "moves the conversation to position 0 if the toggling is turned on" do
+        conversation = FactoryGirl.create(:conversation, staff_pick: false)
+
+        put :toggle_staff_pick, id: conversation.id
+        conversation.reload
+        conversation.staff_pick.should be_true
+        conversation.position.should == 0
+      end
 
       it "redirects to the original controller action if provided" do
         conversation = FactoryGirl.create(:conversation, staff_pick: true)

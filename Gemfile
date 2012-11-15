@@ -14,8 +14,6 @@ gem 'fb_graph'
 gem 'rails', "~> 3.1.0"
 gem 'jquery-rails', '>= 1.0.3'
 
-gem 'rails-dev-tweaks', '~> 0.6.1'
-
 gem 'haml', '~> 3.1.4'
 
 gem 'uglifier'
@@ -51,6 +49,8 @@ gem 'aws-s3'
 gem 'nokogiri'
 gem 'sanitize'
 gem 'highline'
+gem 'htmlentities'
+gem 'truncate_html'
 
 gem "gchart", "~> 1.0.0"
 
@@ -82,6 +82,7 @@ group :development do
   gem "ruby_parser"
   gem "engineyard"
   gem "ruby-debug19"
+  gem 'rails-dev-tweaks'
 end
 
 group :test do

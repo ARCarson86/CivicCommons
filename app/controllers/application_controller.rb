@@ -10,12 +10,17 @@ class ApplicationController < ActionController::Base
 
   layout 'application'
 
+  before_filter :fetch_notifications
   before_filter :require_no_ssl
   helper_method :with_format, :default_region, :region_recent_conversations
 
   rescue_from CanCan::AccessDenied do |exception|
     flash[:notice] = exception.message
     redirect_to root_url
+  end
+
+  def fetch_notifications
+    @notifications = Notification.where(receiver_id:current_person).order("created_at desc") if current_person
   end
 
 protected

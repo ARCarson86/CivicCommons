@@ -53,6 +53,7 @@
         = link_to 'The Civic Commons', root_url, :id => 'logo', :title => 'The Civic Commons'
         #header-utility
           - if current_person
+            = render :partial => 'notifications/notification'
             #login-status
               = render :partial => 'layouts/logged_in'
           - else

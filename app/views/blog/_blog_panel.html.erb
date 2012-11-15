@@ -2,7 +2,7 @@
   <div class="entry-details full rounded">
     <div class="media">
       <div class="bd">
-        <h4><%= link_to blog_post.title, blog_path(blog_post) %></h4>
+        <h4><%= link_to truncate_blog_title(blog_post), blog_path(blog_post) %></h4>
         <p class="entry-tags">
           <%= format_publish_date(blog_post) %>
           <% if blog_post.topics.size > 0 %>
@@ -12,7 +12,7 @@
         </p>
         <p><strong>By: <%= link_to blog_post.author.name, user_path(blog_post.author) %></strong></p>
         <%=link_to image_tag(blog_post.image.url(:panel), :alt => 'The Civic Commons Blog Post', :height => 130, :width => 198, :class => 'float'), blog_path(blog_post)  %>
-        <%= raw blog_post.summary %>
+        <%= truncate_blog_summary(blog_post) %>
         <p><%= link_to "Continue reading...", blog_path(blog_post), :title => blog_post.title %></p>
       </div>
     </div>

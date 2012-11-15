@@ -16,13 +16,17 @@ class Admin::ContentItemsController < Admin::DashboardController
 
   def new
     @content_item = ContentItem.new(params[:content_item])
-    @authors = Person.find_all_by_admin(true, :order => 'first_name, last_name ASC')
+    @authors = Person.where('admin = ? OR blog_admin = ?', true, true).order('first_name, last_name ASC')
     @content_item.author = current_person
     @content_item.published = Date.today
     @topics = Topic.all
   end
 
   def create
+    unless params[:summary_preview].blank?
+      redirect_to summary_preview
+    end
+
     @content_item = ContentItem.new(params[:content_item])
 
     begin
@@ -35,7 +39,7 @@ class Admin::ContentItemsController < Admin::DashboardController
 
     @content_item.embed_code = get_embed_code_from_embedly(@content_item.external_link, @content_item.embed_code) unless error
 
-    @authors = Person.find_all_by_admin(true, :order => 'first_name, last_name ASC')
+    @authors = Person.where('admin = ? OR blog_admin = ?', true, true).order('first_name, last_name ASC')
 
     if !error && @content_item.save
       flash[:notice] = "Your #{@content_item.content_type} has been created!"
@@ -65,7 +69,7 @@ class Admin::ContentItemsController < Admin::DashboardController
 
   def edit
     @content_item = ContentItem.find(params[:id])
-    @authors = Person.find_all_by_admin(true, :order => 'first_name, last_name ASC')
+    @authors = Person.where('admin = ? OR blog_admin = ?', true, true).order('first_name, last_name ASC')
     @content_item.url_slug = @content_item.slug
     @topics = Topic.all
   end
@@ -79,7 +83,7 @@ class Admin::ContentItemsController < Admin::DashboardController
 
   def update
     @content_item = ContentItem.find(params[:id])
-    @authors = Person.find_all_by_admin(true, :order => 'first_name, last_name ASC')
+    @authors = Person.where('admin = ? OR blog_admin = ?', true, true).order('first_name, last_name ASC')
 
     begin
       params[:content_item][:published] = params[:content_item][:published] ? Date.strptime(params[:content_item][:published], "%m/%d/%Y") : Date.today 
@@ -111,6 +115,7 @@ class Admin::ContentItemsController < Admin::DashboardController
       render :index
     end
   end
+
 
   private
 

@@ -58,6 +58,14 @@ img.advert {
   max-width: 100%;
 }
 
+.img-plain {
+  border: none !important;
+  -webkit-box-shadow: none !important;
+     -moz-box-shadow: none !important;
+       -o-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
 * html .img-flex {
   width: 100%;
 }
@@ -1702,6 +1710,12 @@ a#logo {
   float: right;
   margin: 17px 0 0 0;
 }
+
+#login-status {
+  float: right;
+  margin-right: 10px;
+}
+
 #login-status a.user-link {
   font-size: 12px;
   text-transform: none;

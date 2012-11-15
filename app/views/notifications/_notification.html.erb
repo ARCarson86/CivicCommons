@@ -1,0 +1,12 @@
+<% @notifications = [] if !@notifications.present? %>
+<div class="notification-container">
+  <div class="notification-main notification-<%= @notifications.select(&:not_viewed?).count > 0 ? "active" : "inactive"%> dropdown dropdown-toggle">
+    <span class="notification notification-info"><%= @notifications.present? ? @notifications.select(&:not_viewed?).count : "0" %></span>
+  </div>
+  <ul class="divided-list-vertical dropdown-menu dropdown-menu-large dropdown-menu-right">
+    <% @notifications.each do |notification| %>
+      <%= render :partial => "notifications/#{notification.item.class.to_s.underscore}_notification", :locals => {:notification => notification, :item => notification.item} %>
+    <% end %>
+  </ul>
+</div>
+<%# end %>

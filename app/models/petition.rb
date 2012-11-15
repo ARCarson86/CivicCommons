@@ -18,6 +18,10 @@ class Petition < ActiveRecord::Base
 
   after_save :create_or_update_action
 
+  define_method(:content) do
+    description
+  end
+
   # Owner of the petition.
   def creator_name
     self.person.name

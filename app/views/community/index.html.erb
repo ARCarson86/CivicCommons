@@ -3,7 +3,7 @@
     <% unless @issue.present? %>
       <h1>Community</h1>
     <% else %>
-      <h1>People Active in <%= link_to @issue.title, @issue %></h1>
+      <h1>People Active in <%= link_to @issue.title, @issue.becomes(Issue) %></h1>
     <% end %>
     
     <% if @subtitle %>

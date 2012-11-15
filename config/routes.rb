@@ -52,6 +52,9 @@ Civiccommons::Application.routes.draw do
   post '/conversations/radio/:id',                     to: 'conversations#create_from_radioshow',            as: 'start_conversation_from_radioshow'
   get '/conversations/:id#node-:contribution_id',      to: 'conversations#show',                             as: 'conversations_node_show'
 
+  #Notifications
+  post '/notifications/viewed', to: 'notifications#viewed'
+
   #Curated Feed Item
   get '/curated_feed_items/:curated_feed_id',          to: 'curated_feed_item#curated_feed'
 
@@ -147,6 +150,8 @@ Civiccommons::Application.routes.draw do
     get '/community', to: 'community#index',   as: 'community'
   end
 
+  resources :notifications
+
   resources :projects, only: [:index]
 
   resources :products_services, only: [:index] do
@@ -221,6 +226,8 @@ Civiccommons::Application.routes.draw do
     resources :conversations do
       put 'toggle_staff_pick', on: :member
       post 'update_order', on: :collection
+      get 'staff_picked', on: :collection
+      put 'move_to_position', on: :member, as: 'move_to_position'
     end
     resources :curated_feeds do
       resources :items, controller: :curated_feed_items, only: [ :show, :edit, :create, :update, :destroy ]

@@ -83,9 +83,30 @@ class Conversation < ActiveRecord::Base
   scope :latest_updated, :order => 'updated_at DESC'
   scope :latest_created, where(:exclude_from_most_recent => false).order('created_at DESC')
   scope :alphabet_ascending_by_title, :order => 'title ASC'
+  scope :staff_picked, where(:staff_pick => true)
+  scope :sort_position_asc, order('position ASC')
 
   # Filters by metro region, if metrocode parameter is supplied, otherwise, ignores it.
   scope :filter_metro_region, lambda{|metrocode| joins(:metro_region).where(:metro_regions=>{metrocode: metrocode}) if metrocode.present?}
+  
+  
+  # position starts from 0, and so forth
+  def move_to_position(new_position)
+    if new_position.is_a?(Integer)
+      conversations = Conversation.sort_position_asc.select([:id,:position]).where(['id != ?', self.id]).all
+      self.transaction do
+        conversations.each_with_index do |conversation, index|
+          if index >= new_position
+            new_index = index + 1
+          else
+            new_index = index
+          end
+          Conversation.where(:id=>conversation.id).update_all(:position => (new_index))
+        end
+        Conversation.where(:id=>self.id).update_all(:position => new_position)
+      end
+    end
+  end
 
   # Return conversations that have actions and reflections.
   def self.conversations_with_actions_and_reflections
@@ -301,6 +322,10 @@ class Conversation < ActiveRecord::Base
     else
       self.update_attribute(:position, 0)
     end
+  end
+  
+  def subscriber_ids
+    subscriptions ? subscriptions.collect(&:person_id) : []
   end
 
   def subscribe_creator

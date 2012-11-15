@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121020233121) do
+ActiveRecord::Schema.define(:version => 20121023194314) do
 
   create_table "actions", :force => true do |t|
     t.integer  "conversation_id"
@@ -455,7 +455,6 @@ ActiveRecord::Schema.define(:version => 20121020233121) do
     t.integer  "conversation_id"
     t.integer  "issue_id"
     t.integer  "receiver_id"
-    t.string   "notification_type"
   end
 
   add_index "notifications", ["conversation_id"], :name => "index_notifications_on_conversation_id"

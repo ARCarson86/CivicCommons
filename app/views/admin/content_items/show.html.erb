@@ -25,9 +25,16 @@
 
   <p>Link Text: <%= @content_item.link_text %></p>
 
+  <% if @content_item.content_type == 'BlogPost' %>
+    <fieldset>
+      <legend>Summary (truncated to 235 characters):</legend>
+      <%= truncate_blog_summary(@content_item) %>
+    </fieldset>
+  <% end %>
+
   <fieldset>
-    <legend>Summary:</legend>
-    <%= raw (@content_item.summary) %>
+    <legend>Summary</legend>
+    <%= raw(@content_item.summary) %>
   </fieldset>
 
   <fieldset>

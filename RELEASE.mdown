@@ -1,8 +1,50 @@
-## 3.3
+## 4.2
 
 ### External Changes
+  * [Daily Digest - Only show Petition Text once - show all signatures as the intro.](https://agilezen.com/project/18091/story/773)
+
+### Bug Fix
+  * [Airbrake error - NoMethodError: undefined method `managed_issue_path'](https://agilezen.com/project/18091/story/755)
+
+### Chores
+
+
+## 4.1
+
+### External Changes
+  * [Blog Admins can blog as themselves.](https://agilezen.com/project/18091/story/693)
+  * [Modify Content on Responsibilities Page](https://agilezen.com/project/18091/story/698)
+  * [Limit Blog Summary to 235 Characters](https://agilezen.com/project/18091/story/733)
+  * [Change out Ad](https://agilezen.com/project/18091/story/739)
+  * [Limit Blog Title to 68 Characters](https://agilezen.com/project/18091/story/745)
+  * [Limit Content of Contribution Notification Displayed](https://agilezen.com/project/18091/story/746)
+  * [Clicking Anywhere Outside Notifications Window Should Close Notification Window.](https://agilezen.com/project/18091/story/748)
+  * [On Staging, Display Homepage Infographic](https://agilezen.com/project/18091/story/752)
+  * [Display Homepage Infographic (On All Environments)](https://agilezen.com/project/18091/story/753)
+  * [Staff Pick - Default all new Stars to Sort=0](https://agilezen.com/project/18091/story/754)
+
+### Bug Fix
+  * [Staff Pick Sorting - unable to sort](https://agilezen.com/project/18091/story/732)
+  * [Notification Count Should Display Only New Notifications Count](https://agilezen.com/project/18091/story/747)
+  * [Image Issue with Vote and reflection](https://agilezen.com/project/18091/story/725)
+  * [Notification Typo: Signed Petition action](https://agilezen.com/project/18091/story/770)
+
+### Chores
+
+
+
+## 4.0
+
+### External Changes
+  * [Notifications Backend Process](https://agilezen.com/project/18091/story/658)
+  * [Populate Notification Table with User Activity.](https://agilezen.com/project/18091/story/685)
   * [Edit Content on Services Page.](https://agilezen.com/project/18091/story/726)
   * [Use updated profanitfy filter to allow keyword he'll](https://agilezen.com/project/18091/story/729)
+  * [Notification Icon Should Reflect Status of Notifications Available.](https://agilezen.com/project/18091/story/738)
+  * [Notifications Display From Newest on Oldest](https://agilezen.com/project/18091/story/740)
+  * [Notifications should Word Wrap](https://agilezen.com/project/18091/story/741)
+  * [Notifications Links to Opportunity Navigation Anchor for Petitions, Votes and Reflections](https://agilezen.com/project/18091/story/742)
+  * [Display Basic Notifications](https://agilezen.com/project/18091/story/743)
 
 ### Bug Fix
   * [Ability to Click Retrieve Password Link](https://agilezen.com/project/18091/story/727)

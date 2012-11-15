@@ -1,0 +1,11 @@
+<li>
+  <div class="media">
+    <%= profile_image(notification.person, 20, 'img') %>
+    <div class="bd">
+      <a href="<%= conversation_petition_path(item.petition_conversation, item.petition, :anchor => 'opportunity-nav') %>">
+        <p><strong><%= notification.person_name %></strong> signed the petition '<%= item.petition_title %>'</p>
+      </a>
+    </div>
+  </div>
+</li>
+

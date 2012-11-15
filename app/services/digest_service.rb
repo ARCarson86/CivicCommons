@@ -9,7 +9,8 @@ class DigestService
               :votes_ended_activities,
               :vote_response_activities,
               :new_petitions,
-              :petition_signatures_activity
+              :petition_signatures_activity,
+              :grouped_petition_signatures_activity
 
   def initialize
     @digest_set = { }
@@ -104,7 +105,6 @@ class DigestService
       end
 
       @digest_set[person] = digest
-
     end
 
   end
@@ -152,6 +152,7 @@ class DigestService
   # Get Activity from Users Signing Petitions
   def get_petition_signatures_activity
     @petition_signatures_activity = PetitionSignature.where(created_at: time_range).order('created_at ASC')
+    @grouped_petition_signatures_activity = @petition_signatures_activity.group_by(&:petition_id).map{|k,v| [k,v]}
   end
 
   # Gather All Activity by Conversation
@@ -184,11 +185,11 @@ class DigestService
           petition.conversation == conversation.first
         end
 
-        petition_signatures = @petition_signatures_activity.select do |petition_signature|
-          petition_signature.petition_conversation == conversation.first
+        grouped_petition_signatures = @grouped_petition_signatures_activity.select do |petition_signature|
+          petition_signature[1][0].petition_conversation == conversation.first
         end
-
-        items = (contributions + reflections + votes_created + votes_ended + vote_responses + petitions_created + petition_signatures)
+        
+        items = (contributions + reflections + votes_created + votes_ended + vote_responses + petitions_created + grouped_petition_signatures)
 
         conversation << items
       end

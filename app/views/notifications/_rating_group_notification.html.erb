@@ -1,0 +1,17 @@
+<%# TODO:  Refactor model call %>
+<%
+  contribution = Contribution.find(item.contribution_id)
+  conversation = Conversation.find(item.conversation_id)
+  rating = Rating.find_by_rating_group_id(item.id)
+%>
+<li>
+  <div class="media">
+    <%= profile_image(notification.person, 20, 'img') %>
+    <div class="bd">
+      <a href="<%= conversation_node_url(contribution)  %>">
+        <p><strong><%= item.person.name %></strong> rated a response from <%= contribution.person.name %> as <span class="label label-rating"><%= rating && rating.rating_descriptor.title %></span></p>
+      </a>
+    </div>
+  </div>
+</li>
+

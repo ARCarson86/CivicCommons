@@ -39,6 +39,8 @@
             %li
               =link_to "Conversations", admin_conversations_path
               %ul
+                %l1
+                =link_to "Staff Picked Conversations", staff_picked_admin_conversations_path
                 %li
                   =link_to "Add Conversation", new_admin_conversation_path
           -if can? :manage, :admin_metro_regions

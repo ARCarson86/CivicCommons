@@ -3,30 +3,30 @@ require 'gchart'
 class VoteProgressService
   include ActionView::Helpers::TagHelper
   include ActionView::Helpers::TextHelper
-  
+
   attr_accessor :survey, :progress_result, :total_weighted_votes, :highest_weighted_votes_percentage, :voter
-  delegate  :max_selected_options, 
+  delegate  :max_selected_options,
             :to => :survey
-  
+
   DEFAULT_CHART_COLORS = %w(EFD279 95CBE9 024769 AFD775 2C5700 DE9D7F 097054 FFDE00 6599FF FF9900 FFC6A5 FFFF42 DEF3BD 00A5C6 DEBDDE)
-  
+
   def initialize(survey, voter = nil)
     @survey = survey
     calculate_progress
     calculate_weighted_votes_percentage
     get_voted_options_by_voter(voter) if voter
   end
-  
+
   def get_voted_options_by_voter(voter)
     response = @survey.survey_responses.find_by_person_id(voter.id)
     if response
       selected_option_id = response.selected_survey_options.collect(&:survey_option_id)
-      progress_result.each_with_index do |record, index| 
+      progress_result.each_with_index do |record, index|
         record.voted = true if selected_option_id.include?(record.survey_option_id)
       end
     end
   end
-    
+
   def render_chart
     chart = GChart.bar do |g|
         g.title = 'Vote Results'
@@ -44,28 +44,28 @@ class VoteProgressService
                     'chma' => '20,20,20,20',  # Margin
                     'chf'=>'bg,s,FFFFFF00',   # Transparant background
                     'chts' => '000000,18,l'   # Align Title to the left
-                    } 
+                    }
       end
     chart.to_url
   end
-    
+
   def total_weighted_votes
     @total_weighted_votes ||= calculate_total_weighted_votes
   end
-  
+
   def calculate_total_weighted_votes
     progress_result.inject(0){|sum,record| sum + record.weighted_votes.to_i}
   end
-  
+
   def calculate_weighted_votes_percentage
-    progress_result.each_with_index do |record, index| 
+    progress_result.each_with_index do |record, index|
       weighted_vote_num = record.weighted_votes.to_f / total_weighted_votes.to_f
-      record.weighted_votes_percentage = (weighted_vote_num.nan? ? 0 : weighted_vote_num * 100).to_i 
+      record.weighted_votes_percentage = (weighted_vote_num.nan? ? 0 : weighted_vote_num * 100).to_i
       record.winner = true if index < max_selected_options
     end
     @highest_weighted_votes_percentage = progress_result.collect(&:weighted_votes_percentage).max
   end
-  
+
   def calculate_progress
     # Calculation of survey results based on weigthed points on the order of selected options.
     # If Max Selected Options is 3, then the first selected option is assigned a 3 point.
@@ -75,8 +75,8 @@ class VoteProgressService
       SELECT s.id AS survey_id, so.id AS survey_option_id, so.title, so.description,
       COALESCE(SUM(s.max_selected_options - (sso.position) + 1),0) AS weighted_votes,
       COUNT(sso.id) AS total_votes
-      FROM surveys s RIGHT JOIN survey_options so 
-      ON s.id = so.survey_id 
+      FROM surveys s RIGHT JOIN survey_options so
+      ON s.id = so.survey_id
       LEFT JOIN selected_survey_options sso
       ON sso.survey_option_id = so.id
       WHERE so.survey_id = #{survey.id}
@@ -85,18 +85,18 @@ class VoteProgressService
     SQL
     @progress_result =  SurveyOption.find_by_sql(progress_sql)
   end
-  
+
   def formatted_weigthed_votes
     VoteProgressService.format_data(progress_result.collect{|record| record.weighted_votes})
   end
-  
+
   def self.format_data(data=[])
     #turns one dimensional array into multi dimensional array needed for the google chart
     # from :
     #  [1,2,3]
     # into :
     #  [
-    #   [1,0,0], 
+    #   [1,0,0],
     #   [0,2,0],
     #   [0,0,3]
     #  ]
@@ -110,5 +110,5 @@ class VoteProgressService
     end
     return formatted_data
   end
-  
+
 end

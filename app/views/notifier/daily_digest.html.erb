@@ -5,7 +5,11 @@
       <h2><%= conversation.first.title %></h2>
 
       <% conversation.last.each do |item| %>
-        <%= render :partial => "daily_digest_#{item.class.name.underscore}", :locals => {:item => item, :conversation => conversation} %>
+        <% if item.is_a?(Array) && item[1][0].is_a?(PetitionSignature) %>
+          <%= render :partial => "daily_digest_grouped_petition_signature", :locals => {:item => item, :conversation => conversation} %>
+        <% else %>
+          <%= render :partial => "daily_digest_#{item.class.name.underscore}", :locals => {:item => item, :conversation => conversation} %>
+        <% end %>
       <% end %>
 
     <% end %>

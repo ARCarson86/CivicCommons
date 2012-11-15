@@ -17,6 +17,11 @@ describe Admin::ConversationsController do
   it 'recognizes and generates #show' do
     { get: 'admin/conversations/1' }.should route_to(controller: 'admin/conversations', action: 'show', id: '1')
   end
+  
+  it 'recognizes and generates #staff_picked' do
+    { get: 'admin/conversations/staff_picked' }.should route_to(controller: 'admin/conversations', action: 'staff_picked')
+  end
+  
 
   it 'recognizes and generates #update' do
     { put: 'admin/conversations/1' }.should route_to(controller: 'admin/conversations', action: 'update', id: '1')
@@ -28,6 +33,10 @@ describe Admin::ConversationsController do
 
   it 'recognizes and generates #destroy' do
     { delete: 'admin/conversations/1' }.should route_to(controller: 'admin/conversations', action: 'destroy', id: '1')
+  end
+
+  it 'recognizes and generates #move_to_position' do
+    { put: 'admin/conversations/1/move_to_position' }.should route_to(controller: 'admin/conversations', action: 'move_to_position', id: '1')
   end
 
   describe '#toggle_staff_pick' do

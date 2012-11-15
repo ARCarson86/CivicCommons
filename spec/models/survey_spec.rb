@@ -285,6 +285,19 @@ describe Survey do
       end
     end
   end
+  
+  describe "conversation" do
+    it "should return conversation if surveyable_type is a Conversation" do
+      @conversation = FactoryGirl.create(:conversation)
+      @vote = FactoryGirl.create(:vote, :surveyable => @conversation)
+      @vote.conversation.should == @conversation
+    end
+    it "should return nil if surveyable_type is not a Conversation" do
+      @issue = FactoryGirl.create(:issue)
+      @vote = FactoryGirl.create(:vote, :surveyable => @issue)
+      @vote.conversation.should be_nil
+    end
+  end
 
   describe "#participants" do
     it "returns the array of uniq respondents to the survey and the survey owner" do

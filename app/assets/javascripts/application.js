@@ -50,6 +50,8 @@
 //= require registrations
 //= require registration_page
 
+//= require "notifications/notification_info"
+
 //= require jquery.equalheights
 //= require surveys
 
