@@ -52,6 +52,7 @@ Civiccommons::Application.routes.draw do
   get '/conversations/:id#node-:contribution_id',      to: 'conversations#show',                             as: 'conversations_node_show'
   get '/conversations/agree_to_be_civil_modal',        to: 'conversations#agree_to_be_civil_modal',          as: 'agree_to_be_civil_modal'
   get '/conversations/permission_to_use_image_modal',  to: 'conversations#permission_to_use_image_modal',    as: 'permission_to_use_image_modal'
+  get '/conversations/take_action/:id',                to: 'conversations#take_action',                      as: 'take_conversation_action'
 
   #Notifications
   post '/notifications/viewed', to: 'notifications#viewed'

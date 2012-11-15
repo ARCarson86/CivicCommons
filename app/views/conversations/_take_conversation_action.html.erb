@@ -1,0 +1,22 @@
+<div class="modal modal-wrap">
+  <h1>Congratulations!</h1>
+  <p class="subtitle">Your conversation has been posted.</p>
+  <div class="media mbl">
+    <div class="img">
+      <i class="convo-icons convo-icons-lrg-action"></i> 
+    </div>
+    <div class="bd">
+      <p><strong>TAKE ACTION!</strong> Get others involved. Take some time to create avote or write a petition.</p>
+    </div>
+  </div>
+  <div class="divided-list-vertical">
+    <div>
+      <%= link_to 'Get Started', new_conversation_vote_path(@conversation, :anchor => 'opportunity-nav'), :class => 'button button-primary fl-right' %>
+      <span><i class="ico-lrg ico-lrg-check"></i> Create a vote</span> 
+    </div>
+    <div>
+      <%= link_to 'Get Started', new_conversation_petition_path(@conversation, :anchor => 'opportunity-nav'), :class => 'button button-primary fl-right' %>
+      <span><i class="ico-lrg ico-lrg-doc"></i> Write a petition</span> 
+    </div>
+  </div>
+</div>

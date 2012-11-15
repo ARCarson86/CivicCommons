@@ -1,0 +1,8 @@
+<script>
+//<![CDATA[
+$(document).ready(function(){
+  $.colorbox({href:'<%= url_for(:controller => 'conversations', :action => 'take_action', :id => conversation.id) %>', width:'350px', transition: 'fade'});
+  return false;
+});
+//]]>
+</script>

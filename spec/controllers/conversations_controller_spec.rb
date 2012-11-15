@@ -104,11 +104,21 @@ describe ConversationsController do
     end
 
   end
-  
+
   describe "GET agree_to_be_civil_modal" do
     it "should render the correct partial" do
       get :agree_to_be_civil_modal
       response.should render_template 'agree_to_be_civil_modal'
+    end
+  end
+
+  describe "GET take_action" do
+    it "should render the correct partial" do
+      mock_conversation(:id => '35', :save => true)
+      Conversation.stub!(:find).and_return(@mock_conversation)
+
+      get :take_action, :id => @mock_conversation
+      response.should render_template 'take_conversation_action'
     end
   end
 
@@ -120,7 +130,6 @@ describe ConversationsController do
   end
 
   describe "GET rss" do
-
     before(:each) do
       (1..5).each do |i|
         FactoryGirl.create(:conversation)
@@ -146,7 +155,6 @@ describe ConversationsController do
         last_date = convo.created_at
       end
     end
-
  end
 
   describe "GET show" do
@@ -260,10 +268,10 @@ describe ConversationsController do
         end
       end
 
-      it "redirects to invite page to Send Invitations" do
+      it "redirects to conversation show page" do
         mock_conversation(:id => '35', :save => true)
         do_create
-        response.should redirect_to new_invite_path(:source_type => :conversations, :source_id => '35', :conversation_created => true)
+        response.should redirect_to conversation_path(:id => @mock_conversation, :conversation_created=>true)
       end
 
       describe "on radioshows" do

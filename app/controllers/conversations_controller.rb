@@ -12,13 +12,24 @@ class ConversationsController < ApplicationController
     :create_from_radioshow,
   ]
 
+  ################################################################################
+  # Conversation Modal Methods - BEGIN
+  ################################################################################
   def agree_to_be_civil_modal
     render :partial => 'agree_to_be_civil_modal', :layout => nil
   end
-  
+
   def permission_to_use_image_modal
     render :partial => 'permission_to_use_image_modal', :layout => nil
   end
+
+  def take_action
+    @conversation = Conversation.find(params[:id])
+    render :partial => 'take_conversation_action', :layout => nil
+  end
+  ################################################################################
+  # Conversation Modal Methods - END
+  ################################################################################
 
   # GET /conversations
   def index
@@ -56,6 +67,7 @@ class ConversationsController < ApplicationController
 
   # GET /conversations/1
   def show
+    @new_conversation = params[:conversation_created] ? true : false
     @conversation = Conversation.includes(:issues).find(params[:id])
     @conversation.visit!((current_person.nil? ? nil : current_person.id))
     @contributions = Contribution.includes(:rating_groups, :person).for_conversation(@conversation)
@@ -226,7 +238,7 @@ class ConversationsController < ApplicationController
 
     respond_to do |format|
       if @conversation.save
-        format.html { redirect_to(new_invite_path(:source_type => :conversations, :source_id => @conversation.id, :conversation_created => true), :notice => "Thank you! You're helping to make your community stronger!") }
+        format.html { redirect_to(conversation_path(@conversation.id, :conversation_created => true), :notice => "Thank you! You're helping to make your community stronger!") }
       else
         format.html { render :new, :layout => 'category_index' }
       end
@@ -334,7 +346,7 @@ class ConversationsController < ApplicationController
 
   ##
   # Pull out the "Other" topic if it was selected in the UI.
-  # 
+  #
   # @param [Hash] params The parameters hash passed in from the request
   def get_other_topic(params)
     return if params[:conversation][:topic_ids].nil?

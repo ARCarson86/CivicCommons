@@ -18,9 +18,9 @@ feature "User Creates a User-Conversation", %q{
     follow_start_conversation_link
     submit_conversation
     conversation.should exist_in_the_database
-    the_current_page.should be_the_invite_a_friend_page_for_the conversation
+    the_current_page.should be_the_view_new_conversation_page_for_the conversation
   end
-  
+
   scenario "starting a conversation without checking the civility checkbox", :js => true do
     stub_metro_region_search
     login_as :person
@@ -30,9 +30,9 @@ feature "User Creates a User-Conversation", %q{
     sleep 2
     accept_the_agree_to_be_civil_modal
     conversation.should exist_in_the_database
-    the_current_page.should be_the_invite_a_friend_page_for_the conversation
+    the_current_page.should be_the_view_new_conversation_page_for_the conversation
   end
-  
+
   scenario "starting a conversation without checking the permission to use image checkbox", :js => true do
     stub_metro_region_search
     login_as :person
@@ -42,17 +42,7 @@ feature "User Creates a User-Conversation", %q{
     sleep 2
     accept_the_permission_to_use_image_modal
     conversation.should exist_in_the_database
-    the_current_page.should be_the_invite_a_friend_page_for_the conversation
-  end
-  
-
-  scenario "inviting a friend when starting a conversation", :js => true do
-    stub_metro_region_search
-    login_as :person
-    follow_start_conversation_link
-    submit_conversation
-    invite friend
-    friend.should have_been_sent_an_invitation_to_join conversation
+    the_current_page.should be_the_view_new_conversation_page_for_the conversation
   end
 
   context "on Blog posts" do
@@ -68,7 +58,7 @@ feature "User Creates a User-Conversation", %q{
       submit_conversation
       conversation.should exist_in_the_database
       conversation.content_items.should == [database.latest_blog_post]
-      the_current_page.should be_the_invite_a_friend_page_for_the conversation
+      the_current_page.should be_the_view_new_conversation_page_for_the conversation
     end
   end
 
@@ -85,7 +75,7 @@ feature "User Creates a User-Conversation", %q{
       submit_conversation
       conversation.should exist_in_the_database
       conversation.content_items.should == [database.latest_radio_show]
-      the_current_page.should be_the_invite_a_friend_page_for_the conversation
+      the_current_page.should be_the_view_new_conversation_page_for_the conversation
     end
   end
 

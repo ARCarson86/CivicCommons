@@ -20,6 +20,20 @@ class Conversation
     end
   end
 
+  class ViewNew
+    SHORT_NAME = :view_new_conversation
+    include Page
+    def initialize options
+      @conversation = options[:for]
+    end
+    def url
+      "/conversations/#{@conversation.slug}?conversation_created=true"
+    end
+    def the_view_new_conversation_page_for_the? conversation
+      has_content?("Your conversation has been posted.")
+    end
+  end
+
   class Start
     SHORT_NAME = :start_conversation
     include Page
@@ -36,11 +50,11 @@ class Conversation
 
     has_checkbox :accept_civility_modal, 'agree-on-agree-to-be-civil-modal'
     has_checkbox :accept_permission_to_use_image_modal, 'agree-on-permission-to-use-image-modal'
-    
-    has_link :continue_on_accept_civility_modal, 'Continue', :invite_a_friend
-    has_link :continue_on_permission_to_use_image_modal, 'Continue', :invite_a_friend
 
-    has_button :start_my_conversation, "Start My Conversation", :invite_a_friend
+    has_link :continue_on_accept_civility_modal, 'Continue', :view_new_conversation
+    has_link :continue_on_permission_to_use_image_modal, 'Continue', :view_new_conversation
+
+    has_button :start_my_conversation, "Start My Conversation", :view_new_conversation
     has_button :start_invalid_conversation, "Start My Conversation"
 
     def fill_in_conversation options = {}
@@ -55,7 +69,7 @@ class Conversation
       find('.ui-menu-item a:first').click
       check_civility_checkbox if !(options.has_key?(:check_civility_checkbox) && options[:check_civility_checkbox] == false)
     end
-    
+
     def check_the_first_topic_checkbox
       find(".conversation-topics input[type=checkbox]:first").click
     end

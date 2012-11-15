@@ -85,7 +85,7 @@ describe Conversation do
         end
       end
     end
-    
+
     describe "having permission to use image" do
       describe "on create" do
         it "requires it to be checked when there is an image" do
@@ -103,41 +103,49 @@ describe Conversation do
         end
       end
     end
-    
+
   end
 
   context "link" do
     it "should be valid" do
-      conversation.link = "http://www.theciviccommons.com"
-      conversation.valid?.should be_true
+      conversation.link = "http://www.theciviccommons.com/"
+      conversation.valid?
+      conversation.errors[:link].should be_blank
     end
     it "should be valid if it's a secure url" do
       conversation.link = "https://www.theciviccommons.com"
-      conversation.valid?.should be_true
+      conversation.valid?
+      conversation.errors[:link].should be_blank
     end
     it "is valid with a path" do
       conversation.link = "http://www.theciviccommons.com/aboutus"
-      conversation.valid?.should be_true
+      conversation.valid?
+      conversation.errors[:link].should be_blank
     end
     it "is invalid without http(s)" do
       conversation.link = "www.theciviccommons.com"
-      conversation.valid?.should be_false
+      conversation.valid?
+      conversation.errors[:link].should_not be_blank
     end
     it "is invalid without TLD (Top Level Domain) or ccTLD" do
       conversation.link = "http://www.theciviccommons"
-      conversation.valid?.should be_false
+      conversation.valid?
+      conversation.errors[:link].should_not be_blank
     end
     it "is valid without subdomain" do
       conversation.link = "http://theciviccommons.com"
-      conversation.valid?.should be_true
+      conversation.valid?
+      conversation.errors[:link].should be_blank
     end
     it "is invalid with spaces" do
       conversation.link = "http://www.thecivic commons.com"
-      conversation.valid?.should be_false
+      conversation.valid?
+      conversation.errors[:link].should_not be_blank
     end
     it "is invalid with just a word" do
       conversation.link = "theciviccommons"
-      conversation.valid?.should be_false
+      conversation.valid?
+      conversation.errors[:link].should_not be_blank
     end
   end
 
