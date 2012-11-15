@@ -7,7 +7,7 @@ class Conversation < ActiveRecord::Base
   include HomepageFeaturable
   include Thumbnail
 
-  attr_accessor :agree_to_be_civil
+  attr_accessor :agree_to_be_civil, :other_topic
 
   has_many :actions, :dependent => :destroy
 
@@ -80,10 +80,17 @@ class Conversation < ActiveRecord::Base
   validate :must_have_permission_to_use_image, :on => :create
 
   after_create :set_initial_position, :subscribe_creator
+  around_create :send_notification_on_other_topic
 
   friendly_id :title, :use => :slugged
   def should_generate_new_friendly_id?
     new_record? || slug.nil?
+  end
+  
+  def send_notification_on_other_topic
+    other_topic = self.other_topic
+    yield
+    Notifier.other_conversation_topic_selected(self).deliver if other_topic
   end
 
   def must_agree_to_be_civil

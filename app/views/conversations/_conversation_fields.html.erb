@@ -48,7 +48,11 @@
         <tr>
           <% slice.each do |topic| %>
             <td class="pts pbs">
-              <%= check_box_tag "topic_ids[#{topic.id}]", topic.id, @conversation.topics.include?(topic), :name => 'conversation[topic_ids][]', :class => 'fl-check' %><%= label_tag "topic_ids[#{topic.id}]", topic.name, :class => 'plain plain-ext' %>
+              <% if topic.is_a?(OpenStruct) %>
+                <%= check_box_tag "conversation[other_topic]", 'other_topic', @conversation.other_topic, :name => 'conversation[other_topic]', :class => 'fl-check' %><%= label_tag "conversation[other_topic]", 'Other', :class => 'plain plain-ext' %>
+              <% else %>
+                <%= check_box_tag "topic_ids[#{topic.id}]", topic.id, @conversation.topics.include?(topic), :name => 'conversation[topic_ids][]', :class => 'fl-check' %><%= label_tag "topic_ids[#{topic.id}]", topic.name, :class => 'plain plain-ext' %>
+              <% end %>
             </td>
           <% end %>
         </tr>

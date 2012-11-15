@@ -321,10 +321,8 @@ class ConversationsController < ApplicationController
     end
   end
 
-  def prep_convo(params)
-    get_other_topic(params)
+  def prep_convo(params)    
     @conversation = Conversation.new(params[:conversation])
-
     get_content_item(params)
     @conversation.content_items = [@content_item] if @content_item.present?
 
@@ -344,15 +342,4 @@ class ConversationsController < ApplicationController
     end
   end
 
-  ##
-  # Pull out the "Other" topic if it was selected in the UI.
-  #
-  # @param [Hash] params The parameters hash passed in from the request
-  def get_other_topic(params)
-    return if params[:conversation][:topic_ids].nil?
-    if params[:conversation][:topic_ids].delete('999')
-      Rails.logger.info("DEBUG: Other topic was selected")
-      ## notify admin here
-    end
-  end
 end

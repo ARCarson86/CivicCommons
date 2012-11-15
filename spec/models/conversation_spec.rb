@@ -720,4 +720,27 @@ describe Conversation do
       end
     end
   end
+
+  describe "send_notification_on_other_topic" do
+    context "on conversation create" do
+      it "should send the notification if 'other' topic is selected" do
+        notifier_double = double(Notifier).as_null_object
+        notifier_double.should_receive(:deliver).and_return(true)
+        Notifier.should_receive(:other_conversation_topic_selected).and_return(notifier_double)
+        FactoryGirl.create(:conversation, :other_topic => true)
+      end
+      it "should not send notification if other topic is NOT selected" do
+        Notifier.should_not_receive(:other_conversation_topic_selected)
+        FactoryGirl.create(:conversation, :other_topic => false)
+      end
+    end
+    context "on conversation update" do
+      it "should not send notification if other topic is NOT selected" do
+        @conversation = FactoryGirl.create(:conversation, :other_topic => false)
+        @conversation.other_topic = true
+        Notifier.should_not_receive(:other_conversation_topic_selected)
+        @conversation.save
+      end      
+    end
+  end
 end

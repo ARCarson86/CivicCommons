@@ -1,0 +1,6 @@
+<h1>A conversation has been created with Other Topic selected</h1>
+<p>Please go to the admin section and read through the conversation and decide if a new Topic needs to be created for this conversation.</p>
+<p>
+  Conversation name: <%= link_to @resource.title, admin_conversation_url(@resource) %><br/>
+  Conversation creator: <%= link_to @resource.person.name, user_url(@resource.person)%>
+</p>

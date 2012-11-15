@@ -106,4 +106,12 @@ class Notifier < Devise::Mailer
          :from => email,
          :to => Civiccommons::Config.email["products_services_email"])
   end
+  
+  def other_conversation_topic_selected(conversation)
+    @resource = conversation
+    headers['X-SMTPAPI'] = '{"category": "other_conversation_topic_selected"}'
+    mail(:subject => "A conversation has been created with Other Topic selected",
+         :from => Devise.mailer_sender,
+         :to => 'suggestions@theciviccommons.com')
+  end
 end
