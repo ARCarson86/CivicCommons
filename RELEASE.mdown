@@ -12,6 +12,7 @@
   * [User Has Option to Create an Action After Creating A New Conversation](https://agilezen.com/project/18091/story/776)
   * [When Starting A Conversation and Other Topic is Selected, Email an Admin for Attention](https://agilezen.com/project/18091/story/763)
   * [Change wording on topic field label](https://agilezen.com/project/18091/story/772)
+  * [Make Checkbox Text Clickable For Images And Agreement To Be Civil](https://agilezen.com/project/18091/story/777)
 
 ### Bug Fix
   * [Page Not Found Errors](https://agilezen.com/project/18091/story/775)
