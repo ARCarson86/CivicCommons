@@ -10,9 +10,23 @@
   * [User Has Option to Create an Action After Creating A New Conversation](https://agilezen.com/project/18091/story/776)
   * [When Starting A Conversation and Other Topic is Selected, Email an Admin for Attention](https://agilezen.com/project/18091/story/763)
   * [Change wording on topic field label](https://agilezen.com/project/18091/story/772)
-  
+
 ### Bug Fix
   * [Page Not Found Errors](https://agilezen.com/project/18091/story/775)
+
+### Chores
+
+
+
+## 4.2
+
+### External Changes
+  * [Daily Digest - Only show Petition Text once - show all signatures as the intro.](https://agilezen.com/project/18091/story/773)
+
+### Bug Fix
+  * [Airbrake error - NoMethodError: undefined method `managed_issue_path'](https://agilezen.com/project/18091/story/755)
+
+
 
 ## 4.1
 

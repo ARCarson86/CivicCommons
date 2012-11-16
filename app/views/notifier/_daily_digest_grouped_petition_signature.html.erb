@@ -1,0 +1,13 @@
+<%
+petition_signatures = item[1]
+petition_signature = petition_signatures[0]
+contributors = petition_signatures.map{|signature| @person == signature.person ? 'You' : signature.signer_name}
+%>
+<p>
+  <%= "#{contributors.to_sentence}" %> signed a petition:
+  <blockquote>
+    <%= petition_signature.petition_title.html_safe %><br/>
+    <%= petition_signature.petition_description.html_safe %>
+  </blockquote>
+  <%= link_to 'Check it out', conversation_petition_url(conversation.first, petition_signature.petition) %>
+</p>
