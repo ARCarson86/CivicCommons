@@ -19,6 +19,8 @@
 
 ### Chores
 
+### Post Deployment Instructions
+  * run `bundle exec rspec conversations_topics:update_from_issues` to do a dry run, add `COMMIT=TRUE` to save changes
 
 
 ## 4.2
