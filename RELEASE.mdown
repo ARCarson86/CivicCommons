@@ -1,4 +1,6 @@
 ## 5.0
+
+### External Changes
   * [When Starting A Conversation, Change Prompt Text for Location Field](https://agilezen.com/project/18091/story/760)
   * [Ability to Add Website Link When Starting A Conversation](https://agilezen.com/project/18091/story/759)
   * [Remove Issues From Start A Conversation](https://agilezen.com/project/18091/story/762)
@@ -7,6 +9,9 @@
   * [Confirm User Has Permission To Use Image When Starting A Conversation](https://agilezen.com/project/18091/story/758)
   * [User Has Option to Create an Action After Creating A New Conversation](https://agilezen.com/project/18091/story/776)
   * [When Starting A Conversation and Other Topic is Selected, Email an Admin for Attention](https://agilezen.com/project/18091/story/763)
+
+### Bug Fix
+  * [Page Not Found Errors](https://agilezen.com/project/18091/story/775)
 
 ## 4.1
 
