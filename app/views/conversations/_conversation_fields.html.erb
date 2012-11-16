@@ -40,7 +40,7 @@
 
   <div class="form-block">
     <%= form.label :topics %>
-    <p class="tip mln">What topic is this conversation associated with?</p>
+    <p class="tip mln">Select the topics associated with this conversation.</p>
     <table class="pts conversation-topics" style="margin-left: 20px;" width="50%">
       <% topics = Topic.order(:name) %>
       <% topics << OpenStruct.new(:name => 'Other', :id => '999') %>
