@@ -27,10 +27,7 @@ feature "User Creates a User-Conversation", %q{
     follow_start_conversation_link
     fill_in_conversation(:check_civility_checkbox => false)
     click_start_invalid_conversation_button
-    sleep 2
-    accept_the_agree_to_be_civil_modal
-    conversation.should exist_in_the_database
-    the_current_page.should be_the_view_new_conversation_page_for_the conversation
+    the_current_page.should have_content 'You must agree to have a civil conversation by checking on the checkbox.'
   end
 
   scenario "starting a conversation without checking the permission to use image checkbox", :js => true do
@@ -39,10 +36,7 @@ feature "User Creates a User-Conversation", %q{
     follow_start_conversation_link
     fill_in_conversation(:attach_image => true, :check_permission_to_use_image => false)
     click_start_invalid_conversation_button
-    sleep 2
-    accept_the_permission_to_use_image_modal
-    conversation.should exist_in_the_database
-    the_current_page.should be_the_view_new_conversation_page_for_the conversation
+    the_current_page.should have_content 'You must have permission to use image by checking on the checkbox.'
   end
 
   context "on Blog posts" do
