@@ -2,17 +2,18 @@
 
 .contribution-primary {
   position: relative;
-  padding: 0 320px 20px 0;
+  padding: 0 320px 0 0;
 
-  .actions {
-    padding-left: 50px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #ccc;
+  > .row {
+    margin-top: 10px;
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
   }
 
-  &:last-child .actions {
-    padding-bottom: 0;
-    border-bottom: none;
+  &:first-child > .row {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
   }
 }
 
