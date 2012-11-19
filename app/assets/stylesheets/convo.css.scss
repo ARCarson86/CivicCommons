@@ -21,3 +21,7 @@
   width: 280px;
   z-index: 1000;
 }
+
+.action-bar {
+  @include pie-clearfix;
+}
