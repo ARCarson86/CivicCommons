@@ -42,7 +42,7 @@ class Conversation < ActiveRecord::Base
 
   has_many :conversations_topics, :dependent => :destroy
   has_many :topics, :through => :conversations_topics, :uniq => true
-  validates_length_of :topics, :minimum => 1, :message => 'Please select at least one topic for your conversation'
+  validates_length_of :topics, :minimum => 1, :message => 'Please select at least one topic for your conversation', :if => 'self.other_topic.nil?'
   accepts_nested_attributes_for :topics
 
   has_many :content_items_conversations, :uniq => true
