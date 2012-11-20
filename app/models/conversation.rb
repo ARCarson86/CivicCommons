@@ -76,9 +76,7 @@ class Conversation < ActiveRecord::Base
   validates_format_of :link, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix, :on => :create, :allow_blank => true, :message => "Link must look like a url (example http://google.com)."
   validates_presence_of :zip_code, :message => "Please give us a zip code for a little geographic context."
   validates_presence_of :metro_region_id, :message => 'Please give us a Location name.'
-  validate :must_agree_to_be_civil, :on => :create
-  validate :must_have_permission_to_use_image, :on => :create
-
+  
   after_create :set_initial_position, :subscribe_creator
   around_create :send_notification_on_other_topic
 
@@ -91,14 +89,6 @@ class Conversation < ActiveRecord::Base
     other_topic = self.other_topic
     yield
     Notifier.other_conversation_topic_selected(self).deliver if other_topic
-  end
-
-  def must_agree_to_be_civil
-     errors.add(:base, 'You must agree to have a civil conversation by checking on the checkbox.') unless agree_to_be_civil.present? && [1,'1',true].include?(agree_to_be_civil)
-  end
-
-  def must_have_permission_to_use_image
-    errors.add(:permission_to_use_image, 'You must have permission to use image by checking on the checkbox.') if image_file_name.present? && !permission_to_use_image.present? && ![1,'1',true].include?(permission_to_use_image)
   end
 
   scope :latest_updated, :order => 'updated_at DESC'

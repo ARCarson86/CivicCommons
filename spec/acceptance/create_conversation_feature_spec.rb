@@ -21,24 +21,6 @@ feature "User Creates a User-Conversation", %q{
     the_current_page.should be_the_view_new_conversation_page_for_the conversation
   end
 
-  scenario "starting a conversation without checking the civility checkbox", :js => true do
-    stub_metro_region_search
-    login_as :person
-    follow_start_conversation_link
-    fill_in_conversation(:check_civility_checkbox => false)
-    click_start_invalid_conversation_button
-    the_current_page.should have_content 'You must agree to have a civil conversation by checking on the checkbox.'
-  end
-
-  scenario "starting a conversation without checking the permission to use image checkbox", :js => true do
-    stub_metro_region_search
-    login_as :person
-    follow_start_conversation_link
-    fill_in_conversation(:attach_image => true, :check_permission_to_use_image => false)
-    click_start_invalid_conversation_button
-    the_current_page.should have_content 'You must have permission to use image by checking on the checkbox.'
-  end
-
   context "on Blog posts" do
     background do
       database.create_blog_post title: "Blog post title here"

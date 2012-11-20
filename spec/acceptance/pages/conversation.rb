@@ -61,33 +61,16 @@ class Conversation
       fill_in_title_with "Frank"
       fill_in_summary_with "stufffff!"
       attach_image_with_file File.join(attachments_path, 'imageAttachment.png') if options.has_key?(:attach_image) && options[:attach_image] == true
-      check_permission_to_use_image_checkbox if options.has_key?(:check_permission_to_use_image) && options[:check_permission_to_use_image] == true
       check_the_first_topic_checkbox
       fill_in_link_with "http://theciviccommons.com"
       fill_in_metro_region_city_display_name_with "City name"
       sleep 1
       find('.ui-menu-item a:first').click
-      check_civility_checkbox if !(options.has_key?(:check_civility_checkbox) && options[:check_civility_checkbox] == false)
     end
 
     def check_the_first_topic_checkbox
       find(".conversation-topics input[type=checkbox]:first").click
     end
-
-    def accept_the_agree_to_be_civil_modal
-      sleep 1
-      check_accept_civility_modal
-      follow_continue_on_accept_civility_modal_link
-      sleep 1
-    end
-
-    def accept_the_permission_to_use_image_modal
-      sleep 1
-      check_accept_permission_to_use_image_modal
-      follow_continue_on_permission_to_use_image_modal_link
-      sleep 1
-    end
-
 
     def add_contribution_attachment
       follow_show_add_file_field_link

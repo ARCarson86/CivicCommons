@@ -69,41 +69,6 @@ describe Conversation do
       @conversation.owner = nil
       @conversation.should have_validation_error(:owner)
     end
-    describe "on agreement to be civil" do
-      describe "on create" do
-        it "requires the agree_to_be_civil to be checked" do
-          @conversation.agree_to_be_civil = nil
-          @conversation.should have_validation_error(:agree_to_be_civil)
-        end
-      end
-      describe "on update" do
-        it "does not require the agree_to_be_civil to be checked" do
-          @conversation = FactoryGirl.create(:conversation)
-          @conversation.agree_to_be_civil = nil
-          @conversation.save
-          @conversation.errors.should be_blank
-        end
-      end
-    end
-
-    describe "having permission to use image" do
-      describe "on create" do
-        it "requires it to be checked when there is an image" do
-          @conversation.image_file_name = 'test-image-png'
-          @conversation.should_not be_valid
-          @conversation.should have_validation_error(:permission_to_use_image)
-        end
-      end
-      describe "on update" do
-        it "does not require it to be checked" do
-          @conversation = FactoryGirl.create(:conversation)
-          @conversation.image_file_name = 'test-image-png'
-          @conversation.save
-          @conversation.errors.should be_blank
-        end
-      end
-    end
-
   end
 
   context "link" do

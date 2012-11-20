@@ -10,15 +10,8 @@
     <%= form.label :image %>
     <p class="tip mln">Choose an image to go with your conversation. (It will look best if you choose a 3:2 ratio.)</p>
     <div class="row">
-      <div class="col-3">
-        <img src="/assets/placeholder.jpg" alt="" class="img-flex" />
-      </div>
       <div class="col-9">
         <%= form.file_field :image, :class => 'mbm' %>
-        <label for="conversation_permission_to_use_image" class="plain plain-ext">
-          <%= form.check_box :permission_to_use_image, :class => 'fl-check' %>
-          I have permission to use the attached image.
-        </label>
       </div>
     </div>
   </div>

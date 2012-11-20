@@ -11,7 +11,6 @@ FactoryGirl.define do
     f.association :person, :factory => :admin_person
     # f.metro_region_id '123'
     f.association :metro_region, :factory => :default_metro_region
-    f.agree_to_be_civil true
 
     before(:create) do |conversation|
       conversation.topics << FactoryGirl.create(:topic)

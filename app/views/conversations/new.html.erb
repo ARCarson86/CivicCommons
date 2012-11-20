@@ -24,10 +24,7 @@
 
           <fieldset class="footer mtl">
             <div class="field-block">
-              <label for="conversation_agree_to_be_civil" class="plain plain-ext">
-                <%= conversation.check_box :agree_to_be_civil, :class=>"fl-check" %>
-                I agree that our conversations should be civil, and I commit to support the effort to use The Civic Commons as a place to do so.
-              </label>
+              By starting this conversation I am agreeing to do my best to continue to uphold the <%= link_to 'guiding principles of the Civic Commons',principles_path, :target => "_blank" %>, and I'm also promising that I have the rights to use the photo I am uploading.
             </div>
             <div class="field-block mtl">
               <%= conversation.submit 'Start My Conversation', :class => 'submit mln' %>
