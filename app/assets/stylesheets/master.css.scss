@@ -215,12 +215,12 @@ dl dd {
   margin-bottom: 1em;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
   font-weight: bold;
 }
 
@@ -229,6 +229,11 @@ h1 {
   font-size: 2em;
   line-height: 1em;
   margin-bottom: 18px;
+  text-shadow: 0 1px 1px rgba(255,255,255,.85);
+}
+
+.h1 {
+  font-size: 2em;
   text-shadow: 0 1px 1px rgba(255,255,255,.85);
 }
 
@@ -248,6 +253,11 @@ h2 {
   margin: 1em 0;
   padding-bottom: 0;
   text-transform: none;
+}
+
+.h2 {
+  font-size: 1.6em;
+  text-shadow: 0 1px 1px rgba(255,255,255,.85);
 }
 
 .wf-active h2 {font-size: 2em;}
