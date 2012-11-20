@@ -35,7 +35,7 @@ module Utilities
           conversation1 = @issue1.conversations.first
           conversation2 = @issue2.conversations.first
 
-          subject.set_topics_from_issues(true, Logger::DEBUG, [conversation1])
+          subject.set_topics_from_issues(true, Rails.logger, [conversation1])
 
           @issue1.topics(true).each do |topic|
             conversation1.topics(true).should include(topic)
