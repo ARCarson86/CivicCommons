@@ -201,6 +201,10 @@ describe Survey do
   end
 
   describe "sending emails to survey respondents that the survey has ended" do
+    it "should not happen if the survey is set to manual results" do
+      @survey = FactoryGirl.create(:survey, :end_date => Date.today, :show_progress => false, :manual_results => true)
+      Delayed::Job.count.should_not == 1
+    end
     context "sending to background job" do
       it "should send to background job on save" do
         @survey = FactoryGirl.create(:survey, :end_date => Date.today, :show_progress => false)

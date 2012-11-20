@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121113211550) do
+ActiveRecord::Schema.define(:version => 20121115204728) do
 
   create_table "actions", :force => true do |t|
     t.integer  "conversation_id"
@@ -700,6 +700,7 @@ ActiveRecord::Schema.define(:version => 20121113211550) do
     t.date     "end_date"
     t.boolean  "end_notification_email_sent"
     t.integer  "person_id"
+    t.boolean  "manual_results"
   end
 
   add_index "surveys", ["person_id"], :name => "index_surveys_on_person_id"

@@ -56,10 +56,10 @@ protected
       render :template => "surveys/show_#{@survey.class.name.underscore}_inactive"
     end
   end
-  
+
   def redirect_to_proper_url
     if @survey.surveyable && @survey.surveyable_type == 'Conversation'
-      redirect_to conversation_vote_url(@survey.surveyable, @survey) 
+      redirect_to conversation_vote_url(@survey.surveyable, @survey)
     end
   end
 

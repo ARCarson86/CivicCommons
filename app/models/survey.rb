@@ -17,15 +17,15 @@ class Survey < ActiveRecord::Base
   end
 
   # Participants in a survey are the survey owner and the respondents to the survey
-  
+
   def respondent_ids
     survey_responses.collect(&:person_id)
   end
-  
+
   def conversation
     surveyable if attached_to_conversation?
   end
-  
+
   def participants
     ([person] + respondents).flatten.uniq
   end
@@ -73,7 +73,7 @@ class Survey < ActiveRecord::Base
   end
 
   def send_end_notification_email_later
-    self.delay(:run_at => real_end_date_time).send_end_notification_email if end_date_changed?
+    self.delay(:run_at => real_end_date_time).send_end_notification_email if end_date_changed? && !manual_results?
   end
 
   def active?

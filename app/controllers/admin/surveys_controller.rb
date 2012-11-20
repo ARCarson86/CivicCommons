@@ -1,7 +1,7 @@
 class Admin::SurveysController < Admin::DashboardController
-  
+
   authorize_resource :class => :admin_surveys
-  
+
   # GET /admin/surveys
   # GET /admin/surveys.xml
   def index
@@ -46,7 +46,7 @@ class Admin::SurveysController < Admin::DashboardController
     5.times do
       @survey.options.build
     end
-    
+
     @survey_options = @survey.options
   end
 
@@ -58,6 +58,12 @@ class Admin::SurveysController < Admin::DashboardController
     @survey = @survey.becomes(Survey) # needed for STI so that the form can use the parent, not the child
     @survey.attributes = params[:survey]
     @survey.person_id = current_person.id
+
+    # External Parties will handle sending email.  We will mark it as sent and assume it's been done.
+    if params[:survey][:manual_results]
+      @survey.end_notification_email_sent = true
+    end
+
     respond_to do |format|
       if @survey.save
         format.html { redirect_to(admin_survey_url(@survey), :notice => 'Survey was successfully created.') }
@@ -98,7 +104,7 @@ class Admin::SurveysController < Admin::DashboardController
       format.xml  { head :ok }
     end
   end
-  
+
   #GET /admin/surveys/1/progress
   def progress
     @survey = Survey.find(params[:id])

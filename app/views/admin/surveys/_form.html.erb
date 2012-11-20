@@ -16,7 +16,12 @@
     <%= f.label :type, "Survey Type(Vote)" %><br />
     <%= f.select :type, Survey::SURVEY_TYPES, :prompt => 'select one...'%>
   </div>
-  
+
+  <div class="field">
+    <%= f.label :manual_results, "Use Manual Results?" %><br />
+    <%= f.check_box :manual_results %>
+  </div>
+
   <div class="field">
     <%= f.label :title, 'title *' %><br />
     <%= f.text_field :title %>
@@ -24,28 +29,28 @@
   <div class="field">
     <%= f.label :description %><br />
     <%= f.text_area :description %>
-  </div>  
+  </div>
 
   <div class="field">
     <%= f.label :start_date %><br />
     <%= f.date_select :start_date, :prompt => true, :order => [:month,:day,:year], :start_year => (Time.now.year), :end_year => (Time.now.year + 1) %>
-  </div>  
-  
+  </div>
+
   <div class="field">
     <%= f.label :end_date, 'End Date*' %><br />
     <%= f.date_select :end_date, :prompt => true, :order => [:month,:day,:year], :start_year => (Time.now.year), :end_year => (Time.now.year + 1) %>
-  </div>    
-  
+  </div>
+
   <div class="field">
     <%= f.label :max_selected_options %><br />
     <%= f.text_field :max_selected_options %>
   </div>
-  
+
   <div class="field">
     <%= f.label :show_progress %><br />
     <%= f.check_box :show_progress %>
   </div>
-  
+
   <h2>Survey Options:</h2>
   <%= f.fields_for :options do |option| %>
     <div class = 'survey-option'>
@@ -70,7 +75,7 @@
       <%= option.hidden_field :nested %>
     </div>
   <% end %>
-  
+
   <div class="actions">
     <%= f.submit %>
   </div>
