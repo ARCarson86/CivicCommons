@@ -7,7 +7,7 @@ class SearchController < ApplicationController
     if params[:filter] and not determine_model_class(params[:filter]).nil?
       @models_to_search = determine_model_class(params[:filter])
     else
-      @models_to_search = [Conversation, Issue, Person, Contribution, ContentItem, ManagedIssuePage]
+      @models_to_search = [Conversation, ManagedIssue, Person, Contribution, ContentItem, ManagedIssuePage]
     end
 
     if params[:q] == ''
@@ -41,14 +41,12 @@ class SearchController < ApplicationController
       return Conversation
     when "community"
       return Person
-    when "issues"
-      return Issue
     when "blogs"
       return ContentItem
     when "radioshows"
       return ContentItem
     when "projects"
-      return [Issue, ManagedIssuePage]
+      return [ManagedIssue, ManagedIssuePage]
     end
   end
 end

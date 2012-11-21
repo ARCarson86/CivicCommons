@@ -40,9 +40,6 @@ describe SearchController do
       get :results, q: '', filter: 'community'
       assigns[:models_to_search].should == Person
 
-      get :results, q: '', filter: 'issues'
-      assigns[:models_to_search].should == Issue
-
       get :results, q: '', filter: 'blogs'
       assigns[:models_to_search].should == ContentItem
 
@@ -50,12 +47,12 @@ describe SearchController do
       assigns[:models_to_search].should == ContentItem
 
       get :results, q: '', filter: 'projects'
-      assigns[:models_to_search].should == [Issue, ManagedIssuePage]
+      assigns[:models_to_search].should == [ManagedIssue, ManagedIssuePage]
     end
 
     it "will search all models if invalid filter requested" do
       get :results, q: '', filter: 'unknown'
-      assigns[:models_to_search].should == [Conversation, Issue, Person, Contribution, ContentItem, ManagedIssuePage]
+      assigns[:models_to_search].should == [Conversation, ManagedIssue, Person, Contribution, ContentItem, ManagedIssuePage]
     end
   end
 end

@@ -22,11 +22,3 @@
               -@regions.each do |r|
                 %li
                   =link_to r.name, r
-        - if @region.issues.count > 0
-          .mod
-            %h3 ISSUES
-            %ul.link-list
-              .mod-content
-                -@region.issues.each do |i|
-                  %li
-                    =link_to i.name, i.becomes(Issue)

@@ -14,7 +14,6 @@ module CivicCommonsDriver
 
     def has_pluralized_itself?
       has_content? "Conversations We Are Following" and
-      has_content? "Issues We Are Following" and
       has_content? "Our Recent Activity"
     end
 

@@ -63,11 +63,6 @@
           <%= render :partial => "/profile/conversation_subscriptions", locals: { profile: @user } %>
         </div>
 
-        <div class="mod" id="UserFollowingIssuesModule">
-          <h3>Issues <%=@user.action_phrase%> Following</h3>
-          <%= render :partial => "following", :locals => {:user_name => @user.name, :subscriptions => @user.issue_subscriptions } %>
-        </div>
-
         <div class="mod" id="UserFollowingOrganizationsModule">
           <h3>Organizations <%=@user.action_phrase%> Following</h3>
           <%= render :partial => "following", :locals => {:user_name => @user.name, :subscriptions => @user.organization_subscriptions } %>

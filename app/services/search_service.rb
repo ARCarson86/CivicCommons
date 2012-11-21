@@ -23,7 +23,7 @@ class SearchService
       
       # If region_metrocodes present, then filter conversation and issues, Contribution, and ignore filter an other objects
       if region_metrocodes.present?
-        classes_with_regional_metrocodes = [Conversation, Issue, ManagedIssue, Contribution]
+        classes_with_regional_metrocodes = [Conversation, ManagedIssue, Contribution]
         any_of do
           all_of do
              with(:class, classes_with_regional_metrocodes)
