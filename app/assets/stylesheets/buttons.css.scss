@@ -228,8 +228,9 @@ a.button:active span.stitcher {
 .btn-group.btn-group-x-large .button {
   @include border-radius(6px);
 	padding: 12px 18px;
-  font-size: 22px;
+  font-size: 26px;
   text-align: left;
+  text-transform: uppercase;
 
   > a {
     position: relative;
@@ -248,7 +249,7 @@ a.button:active span.stitcher {
   }
 }
 
- // TODO: Need to refactor and make large buttons indepenedent of button group (BD)
+// TODO: Need to refactor and make large buttons indepenedent of button group
 .btn-group-large .text-left {
 	text-align: left;
 }
