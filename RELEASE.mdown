@@ -21,6 +21,7 @@
   * [Make Checkbox Text Clickable For Images And Agreement To Be Civil](https://agilezen.com/project/18091/story/777)
   * [Start a Convo - Change Image & Civil link to inline](https://agilezen.com/project/18091/story/779)
   * [Start Convo Picture / Civility Change](https://agilezen.com/project/18091/story/780)
+  * [Limit Conversation Title to 45 Characters](https://agilezen.com/project/18091/story/756)
 
 ### Bug Fix
   * [Page Not Found Errors](https://agilezen.com/project/18091/story/775)

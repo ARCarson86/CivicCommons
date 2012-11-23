@@ -12,7 +12,7 @@
     - @featured_opportunities.each do |featured_opportunity|
       %tr{"data-featured-opportunity-id" => featured_opportunity.id}
         %td= link_to featured_opportunity.id, admin_featured_opportunity_path(featured_opportunity)
-        %td= link_to featured_opportunity.conversation.title.truncate(100), conversation_url(featured_opportunity.conversation)
+        %td= link_to short_title(featured_opportunity.conversation.title), conversation_url(featured_opportunity.conversation)
         %td
           -featured_opportunity.contributions.each do |contribution|
             = link_to strip_and_truncate(contribution.one_line_summary), url_to_contribution(contribution)

@@ -13,7 +13,7 @@
       %tr{ "data-conversation-id" => conversation.id, :class => conversation.staff_pick ? '' : 'ui-state-disabled' }
         %td.handle &#11021;
         %td= conversation.id
-        %td= link_to conversation.title, admin_conversation_path(conversation)
+        %td= link_to short_title(conversation.title), admin_conversation_path(conversation)
         %td= conversation.created_at.strftime("%m-%d-%Y")
         %td.staff_pick_column= toggle_staff_pick_link(conversation)
         %td= link_to "Edit", edit_admin_conversation_path(conversation)

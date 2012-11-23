@@ -9,7 +9,7 @@
         <div class="results">
           <% @search.each_hit_with_result do |hit, conversation| %>
             <div class="result">
-              <h2><%=conversation.title %></h2>
+              <h2><%=short_title(conversation.title) %></h2>
             </div>
           <% end %>
         </div>

@@ -5,7 +5,7 @@
     <% else %>
       <% @user.conversation_subscriptions.each do |conversation| %>
         <li>
-        <%= link_to conversation.title, conversation_path(conversation.subscribable_id) %>
+        <%= link_to short_title(conversation.title), conversation_path(conversation.subscribable_id) %>
         </li>
       <% end %>
     <% end %>

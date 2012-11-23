@@ -24,6 +24,15 @@ describe ConversationsHelper do
     end
   end
   
+  describe "short_title" do
+    it "should return a text shorter than 45 character if it's more" do
+      helper.short_title('12345678901234567890123456789012345678901234567890').should == "123456789012345678901234567890123456789012..."
+    end
+    it "should return the same text if it's less than 45 characacter" do
+      helper.short_title('12345').should == '12345'
+    end
+  end
+  
   describe "get_path_sym" do
     it "should return :radioshow on radioshow" do
       helper.get_path_sym(mock_content_item(:content_type => 'RadioShow',:id => 123)).should == :radioshow

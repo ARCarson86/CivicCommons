@@ -14,12 +14,12 @@
       <div class="main-content">
 
         <div class='main-content-left'>
-          <%= image_tag @conversation.image.url(:panel), :width => 120, :height => 80, :alt => @conversation.title, :class => 'featured main-img' %>
+          <%= image_tag @conversation.image.url(:panel), :width => 120, :height => 80, :alt => short_title(@conversation.title), :class => 'featured main-img' %>
         </div>
         <div class='main-content-right'>
           <h1><%= @conversation.title %></h1>
           <p class="subtitle">Started on <%= @conversation.created_at.strftime('%b %d, %Y') %> by <%= text_profile(@conversation.owner) %></p>
-          <%# render :partial => '/layouts/social_links', :locals => {conversation_title: @conversation.title} %>
+          <%# render :partial => '/layouts/social_links', :locals => {conversation_title: short_title(@conversation.title)} %>
         </div>
 
         <div class='convo-summary'>
@@ -47,7 +47,7 @@
           <%= render :partial => '/subscriptions/subscription', :locals => {:subscribable => @conversation} %>
         </span>
         <div class="mtm">
-          <%= render :partial => '/layouts/social_links', :locals => {conversation_title: @conversation.title} %>
+          <%= render :partial => '/layouts/social_links', :locals => {conversation_title: short_title(@conversation.title)} %>
         </div>
         <div class="mtm">
           <%= link_to raw('<i class="icon icon-embed"></i> <span class="ico-nudge">Embed Conversation</span>'),embed_conversation_path(@conversation), :class => 'button button-mini tertiary' %>

@@ -1,6 +1,6 @@
 <div class="slideshow-container <%= "hide" if index > 0 %>">
   <div class="slideshow-inner">
-    <h1><%= link_to featured_opportunity.conversation.title, featured_opportunity.conversation %></h1>
+    <h1><%= link_to short_title(featured_opportunity.conversation.title), featured_opportunity.conversation %></h1>
     <%= render partial: 'hp_slideshow_contribution', locals: {contribution: featured_opportunity.contribution} %>
     <%= render partial: 'hp_slideshow_action',       locals: {action:featured_opportunity.action, conversation:featured_opportunity.conversation} %>
     <%= render partial: 'hp_slideshow_reflection',   locals: {reflection:featured_opportunity.reflection} %>

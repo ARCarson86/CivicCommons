@@ -2,7 +2,7 @@
   <h1>Here’s a quick update on what’s going on at the Commons.</h1>
   <% @conversations.each do |conversation| %>
     <% unless conversation.first == nil%>
-      <h2><%= conversation.first.title %></h2>
+      <h2><%= short_title(conversation.first.title) %></h2>
 
       <% conversation.last.each do |item| %>
         <% if item.is_a?(Array) && item[1][0].is_a?(PetitionSignature) %>

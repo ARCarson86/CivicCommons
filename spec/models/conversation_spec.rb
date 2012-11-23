@@ -57,6 +57,10 @@ describe Conversation do
       @conversation.title = nil
       @conversation.should have_validation_error(:title)
     end
+    it "is invalid with title more than 45 characters" do
+      @conversation.title = '12345678901234567890123456789012345678901234567890'
+      @conversation.should have_validation_error(:title)
+    end
     it "is invalid with no zip code" do
       @conversation.zip_code = nil
       @conversation.should have_validation_error(:zip_code)
@@ -68,6 +72,27 @@ describe Conversation do
     it "is invalid with no owner" do
       @conversation.owner = nil
       @conversation.should have_validation_error(:owner)
+    end
+    describe "validates_length_of title" do
+      context "on create" do
+        it "should validate it" do
+          @conversation.title = '12345678901234567890123456789012345678901234567890'
+          @conversation.should have_validation_error(:title)
+        end
+        it "should have the validation error message as 'Please enter a title with less than 45 characters'" do
+          @conversation.title = '12345678901234567890123456789012345678901234567890'
+          @conversation.valid?
+          @conversation.errors[:title].should == ['Please enter a title with less than 45 characters']
+        end
+      end
+      context "on update" do
+        it "should not validate it" do
+          @conversation = FactoryGirl.create(:conversation)
+          @conversation.title = '12345678901234567890123456789012345678901234567890'
+          @conversation.save
+          @conversation.errors[:title].should be_blank
+        end
+      end
     end
   end
 

@@ -183,6 +183,10 @@ module ConversationsHelper
   def respond_button_text(contribution)
     current_person && contribution.person == current_person ? "Add More" : "Respond#{' to ' + contribution.person.short_name if contribution.person}"
   end
+  
+  def short_title(title, length = 45, separator = ' ')
+    truncate(title, {:length => length, :separator => separator})
+  end
 
   def setup_conversation(conversation)
     conversation.tap do |conversation|

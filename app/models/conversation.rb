@@ -43,6 +43,7 @@ class Conversation < ActiveRecord::Base
   has_many :conversations_topics, :dependent => :destroy
   has_many :topics, :through => :conversations_topics, :uniq => true
   validates_length_of :topics, :minimum => 1, :message => 'Please select at least one topic for your conversation', :if => 'self.other_topic.nil?'
+  
   accepts_nested_attributes_for :topics
 
   has_many :content_items_conversations, :uniq => true
@@ -72,6 +73,7 @@ class Conversation < ActiveRecord::Base
 
   validates_presence_of :owner, :message => "You must be logged in."
   validates_presence_of :title, :message => "Please choose a title for your conversation."
+  validates_length_of :title, :maximum => 45, :message => 'Please enter a title with less than 45 characters', :on => :create
   validates_presence_of :summary, :message => "Please give us a short summary."
   validates_format_of :link, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix, :on => :create, :allow_blank => true, :message => "Link must look like a url (example http://google.com)."
   validates_presence_of :zip_code, :message => "Please give us a zip code for a little geographic context."

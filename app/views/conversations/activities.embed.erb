@@ -1,6 +1,6 @@
 <% unless @hide_container %>
   <%= link_to image_tag(  "#{request.protocol + request.host_with_port}/assets/cc_widget_logo.png"), root_url %>
-  <h2><%= link_to @conversation.title, conversation_url(@conversation) %></h2>
+  <h2><%= link_to short_title(@conversation.title), conversation_url(@conversation) %></h2>
   <div class="mod-content">
 <% end %>
 

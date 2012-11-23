@@ -4,7 +4,7 @@
   link_text << '"'
 %>
 <div class="recent-item conversation">
-  <h4><%= link_to( conversation.title, conversation_url(conversation)) unless controller.controller_name == "conversations" %></h4>
+  <h4><%= link_to( short_title(conversation.title), conversation_url(conversation)) unless controller.controller_name == "conversations" %></h4>
   <div class="offset-2">
     <%= avatar_profile(conversation.person, 40) %>
     <p>

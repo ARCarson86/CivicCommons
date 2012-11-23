@@ -8,7 +8,7 @@
         <%= link_to( @contribution.issue.name, issue_node_url( @contribution ) ) -%>
       <% elsif @contribution.conversation -%>
         Posted on:
-        <%= link_to( @contribution.conversation.title, conversation_node_url( @contribution ) ) -%>
+        <%= link_to( short_title(@contribution.conversation.title), conversation_node_url( @contribution ) ) -%>
       <% end -%>
     </p>
     <p style="line-height:1.4em;"></p>

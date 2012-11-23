@@ -6,7 +6,7 @@
         <div class="content-container">
           <div class="main-content">
             <%= image_tag @conversation.image.url(:panel), :class => 'featured main-img', :width => '120', :height => '80' %>
-            <h1><%= @conversation.title %></h1>
+            <h1><%= short_title(@conversation.title) %></h1>
           </div>
         </div>
       </div>

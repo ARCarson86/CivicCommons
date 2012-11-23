@@ -12,7 +12,7 @@ class Admin::FeaturedHomepageController < Admin::DashboardController
         featured: conversation.featured?,
         id: conversation.id,
         custom_image: conversation.custom_image?,
-        title: conversation.title,
+        title: short_title(conversation.title),
         type: conversation.class.to_s,
         url: admin_conversation_path(conversation)
       }
