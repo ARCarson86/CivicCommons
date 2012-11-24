@@ -1,9 +1,5 @@
 %h2= @issue.name
 
-%p
-  %b Type:
-  =@issue.type
-
 = render :partial => "/admin/shared/show_meta_info", :locals => {:meta_object => @issue }
 
 %p
@@ -17,10 +13,9 @@
       %li
         = topic.name
 
--if @issue.is_a?(ManagedIssue)
-  %p
-    %b Index Page:
-    =@issue.index.try(:name)
+%p
+  %b Index Page:
+  =@issue.index.try(:name)
 
 -if @issue.image.exists?
   = image_tag @issue.image.url(:normal)

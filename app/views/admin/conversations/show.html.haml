@@ -28,9 +28,9 @@
         - @conversation.topics.each do |topic|
           %li= topic.name
     %p
-      Related Issues:
+      Related Projects:
       %ul
-        - @conversation.issues.each do |issue|
+        - @conversation.managed_issue.each do |issue|
           %li= issue.name
 
 

@@ -30,15 +30,6 @@
     </table>
   </fieldset>
 
-  <p>
-    <%= f.label :type %>
-    <% if @issue.id.present? %>
-      <i><%= @issue.managed? ? "Managed Issue" : "Issue" %></i>
-    <% else %>
-      <%= f.select :type, Issue::ALL_TYPES %>
-    <% end %>
-  </p>
-
   <% if @issue.managed? %>
     <p>
       <%= f.label :index %>

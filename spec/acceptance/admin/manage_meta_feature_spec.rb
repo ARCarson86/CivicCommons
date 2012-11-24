@@ -23,12 +23,12 @@ feature "Meta Content", %q{
     current_page.should have_meta_tags "face,is,awesome"
   end
 
-  scenario "Configure Issue Metadata", :js=>true do
-    database.has_an_issue
-    update_issue :page_title=>"Issues, I have them",
-                 :meta_description=>"But I canna talk about it",
-                 :meta_tags=>"because,it,would,scare,you"
-    goto :issue_detail, :for=> issue
+  scenario "Configure Project Metadata", :js=>true do
+    database.has_a_project
+    update_project :page_title=>"Issues, I have them",
+                   :meta_description=>"But I canna talk about it",
+                   :meta_tags=>"because,it,would,scare,you"
+    goto :issue_detail, :for=> project
     current_page.should have_page_title "Issues, I have them"
     current_page.should have_meta_description "But I canna talk about it"
     current_page.should have_meta_tags "because,it,would,scare,you"
@@ -79,23 +79,23 @@ feature "Meta Content", %q{
     conversation
   end
 
-  ##### Issue Setup #####
+  ##### Project Setup #####
 
-  def update_issue options
+  def update_project options
     follow_issues_link
-    follow_edit_link_for issue
+    follow_edit_link_for project
     fill_in_meta_data_fields options
     click_update_issue_button
   end
 
-  def issue
-    issue = Database.latest_issue
-    issue.instance_eval do
+  def project
+    project = Database.latest_issue
+    project.instance_eval do
       def container
         "tr[data-issue-id='#{id}']"
       end
     end
-    issue
+    project
   end
 
   ##### Radio Show Setup #####

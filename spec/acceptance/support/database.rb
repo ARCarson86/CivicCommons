@@ -146,6 +146,7 @@ module CivicCommonsDriver
       alias :has_a_radio_show :create_radio_show
       alias :has_a_conversation :create_conversation
       alias :has_an_issue :create_issue
+      alias :has_a_project :create_project
       alias :has_a_topic :create_topic
     end
 

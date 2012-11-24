@@ -3,6 +3,8 @@
 ### External Changes
   * [Admin: Vote - Turn off Results](https://agilezen.com/project/18091/story/774)
   * [Limit Conversation Title to 45 Characters](https://agilezen.com/project/18091/story/756)
+  * [Remove Issues from User Interface](https://agilezen.com/project/18091/story/782)
+  * [Remove Issues from Admin Interface](https://agilezen.com/projects/18091/story/783)
   
 
 ## 5.0

@@ -13,7 +13,7 @@ module Admin
       before(:each) do
         @issues = {}
         (1..5).each do 
-          issue = FactoryGirl.create(:issue)
+          issue = FactoryGirl.create(:managed_issue)
           @issues[issue.id] = issue
         end
       end
@@ -28,7 +28,7 @@ module Admin
     describe "GET show" do
 
       let(:issue) do
-        FactoryGirl.create(:issue)
+        FactoryGirl.create(:managed_issue)
       end
 
       it "assigns the requested issue as @issue" do
@@ -60,7 +60,7 @@ module Admin
     describe "GET edit" do
       let(:unselected_topic) { FactoryGirl.create(:topic)}
       before(:each) do
-        @issue = FactoryGirl.create(:issue, topics: [topic])
+        @issue = FactoryGirl.create(:managed_issue, topics: [topic])
         get :edit, :id => issue.id.to_s
       end
 
@@ -88,7 +88,7 @@ module Admin
       describe "with valid params" do
 
         before(:each) do
-          @params = FactoryGirl.build(:issue).attributes.symbolize_keys
+          @params = FactoryGirl.build(:managed_issue).attributes.symbolize_keys
           @params[:topic_ids] = [topic.id]
           post :create, :issue => @params
         end
@@ -108,7 +108,7 @@ module Admin
       describe "with invalid params" do
 
         let(:params) do
-          FactoryGirl.build(:issue).attributes.symbolize_keys
+          FactoryGirl.build(:managed_issue).attributes.symbolize_keys
         end
 
         before(:each) do
@@ -132,12 +132,12 @@ module Admin
       describe "with subclasses" do
 
         it "creates issues" do
-          params = FactoryGirl.build(:issue).attributes.symbolize_keys
-          params[:type] = 'Issue'
+          params = FactoryGirl.build(:managed_issue).attributes.symbolize_keys
+          params[:type] = 'ManagedIssue'
           params[:topic_ids] = [topic.id]
           post :create, :issue => params
-          assigns[:issue].should be_a Issue
-          assigns[:issue].type.should == "Issue"
+          assigns[:issue].should be_a ManagedIssue
+          assigns[:issue].type.should == "ManagedIssue"
         end
 
         it "creates managed issues" do
@@ -155,7 +155,7 @@ module Admin
     describe "PUT update" do
 
       let(:issue) do
-        FactoryGirl.create(:issue)
+        FactoryGirl.create(:managed_issue)
       end
 
       let(:new_name) do
@@ -175,7 +175,7 @@ module Admin
         end
 
         it "updates the requested issue" do
-          Issue.find_by_id(params['id']).name.should eq new_name
+          ManagedIssue.find_by_id(params['id']).name.should eq new_name
         end
 
         it "assigns the requested issue as @issue" do
@@ -215,31 +215,6 @@ module Admin
         end
 
       end
-
-      describe "with subclasses" do
-
-        it "converts an issue to a managed issue" do
-          issue = FactoryGirl.create(:issue)
-          params = issue.attributes
-          params[:type] = 'ManagedIssue'
-          params[:topic_ids] = issue.topics.collect(&:id)
-          put :update, :id => params['id'], :issue => params
-          assigns[:issue].should be_kind_of Issue
-          assigns[:issue].type.should == 'ManagedIssue'
-        end
-
-        it "converts a managed issue to an issue" do
-          issue = FactoryGirl.create(:managed_issue)
-          params = issue.attributes
-          params[:topic_ids] = issue.topics.collect(&:id)
-          params[:type] = 'Issue'
-          put :update, :id => params['id'], :issue => params
-          assigns[:issue].should be_kind_of Issue
-          assigns[:issue].type.should == 'Issue'
-        end
-
-      end
-
     end
 
     describe "PUT update_order" do
@@ -249,15 +224,15 @@ module Admin
       end
 
       it "returns an error response if current_position is not blank, but next and previous are" do
-        FactoryGirl.create(:issue, :position => 0)
+        FactoryGirl.create(:managed_issue, :position => 0)
         put :update_order, :current => '0', :next => '', :prev => ''
         response.should_not be_success
       end
 
       it "returns a success response if current_position is not blank, and next_position or prev_position or both" do
-        FactoryGirl.create(:issue, :position => 0)
-        FactoryGirl.create(:issue, :position => 1)
-        FactoryGirl.create(:issue, :position => 2)
+        FactoryGirl.create(:managed_issue, :position => 0)
+        FactoryGirl.create(:managed_issue, :position => 1)
+        FactoryGirl.create(:managed_issue, :position => 2)
         put :update_order, :current => '0', :next => '1'
         response.should be_success
         put :update_order, :current => '0', :prev => '1'
@@ -272,13 +247,13 @@ module Admin
       end
 
       it "returns an error response if next_position does not exist for an issue and previous is not set" do
-        FactoryGirl.create(:issue, :position => 0)
+        FactoryGirl.create(:managed_issue, :position => 0)
         put :update_order, :current => '0', :next => '1'
         response.should_not be_success
       end
 
       it "returns an error response if previous_position does not exist for an issue and next is not set" do
-        FactoryGirl.create(:issue, :position => 0)
+        FactoryGirl.create(:managed_issue, :position => 0)
         put :update_order, :current => '0', :prev => '1'
         response.should_not be_success
       end
@@ -287,7 +262,7 @@ module Admin
     describe "DELETE destroy" do
 
       let(:issue) do
-        FactoryGirl.create(:issue)
+        FactoryGirl.create(:managed_issue)
       end
 
       before(:each) do
@@ -295,7 +270,7 @@ module Admin
       end
 
       it "destroys the requested issue" do
-        Issue.find_by_id(issue.id).should be_nil
+        ManagedIssue.find_by_id(issue.id).should be_nil
       end
 
       it "redirects to the issues list" do
