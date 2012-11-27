@@ -5,6 +5,7 @@
   * [Limit Conversation Title to 45 Characters](https://agilezen.com/project/18091/story/756)
   * [Remove Issues from User Interface](https://agilezen.com/project/18091/story/782)
   * [Remove Issues from Admin Interface](https://agilezen.com/projects/18091/story/783)
+  * [Vote Result Export to CSV](https://agilezen.com/projects/18091/story/764)
   
 
 ## 5.0

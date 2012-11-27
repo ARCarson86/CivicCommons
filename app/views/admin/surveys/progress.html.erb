@@ -9,6 +9,7 @@
   <%= @survey.survey_responses.count %>
 </p>
 <h2>Progress Bar</h2>
+<p><%= link_to "Export to CSV", export_progress_admin_survey_path(@survey) %></p>
 <%= render :partial => '/surveys/result_bars' %>
 
 <h1>Respondents</h1>

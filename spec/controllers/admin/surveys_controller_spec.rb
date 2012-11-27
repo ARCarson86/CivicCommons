@@ -18,6 +18,11 @@ describe Admin::SurveysController do
   def mock_response(stubs={})
     @mock_response ||= mock_model(SurveyResponse, stubs).as_null_object
   end
+  
+  def vote_progress_service_double(stubs={})
+    @vote_progress_service_double ||= double(VoteProgressService, stubs).as_null_object
+  end
+  
 
   describe "GET index" do
     it "assigns all surveys as @surveys" do
@@ -163,5 +168,32 @@ describe Admin::SurveysController do
       get :progress, :id => "37"
     end
   end
+  
+  describe "GET export_progress" do
+    it "assigns the requested survey as @survey" do
+      Survey.stub(:find).with("37") { mock_survey }
+      VoteProgressService.stub(:new).and_return(vote_progress_service_double)
+      get :export_progress, :id => "37"
+      assigns(:survey).should be(mock_survey)
+    end
+    it "initalizes the Vote Progress service" do
+      Survey.stub(:find).with("37") { mock_survey }
+      VoteProgressService.should_receive(:new).with(mock_survey).and_return(vote_progress_service_double)
+      get :export_progress, :id => "37"
+    end
+    it "it calls the export_to_csv method" do
+      Survey.stub(:find).with("37") { mock_survey }
+      VoteProgressService.stub(:new).with(mock_survey).and_return(vote_progress_service_double)
+      vote_progress_service_double.should_receive(:export_to_csv).and_return([])
+      get :export_progress, :id => "37"
+    end
+    it "should respond with CSV mime type" do
+      Survey.stub(:find).with("37") { mock_survey }
+      VoteProgressService.stub(:new).with(mock_survey).and_return(vote_progress_service_double)
+      get :export_progress, :id => "37"
+      response.content_type.should == 'text/csv'
+    end
+  end
+  
 
 end

@@ -1,4 +1,5 @@
 require 'gchart'
+require 'csv'
 
 class VoteProgressService
   include ActionView::Helpers::TagHelper
@@ -88,6 +89,23 @@ class VoteProgressService
 
   def formatted_weigthed_votes
     VoteProgressService.format_data(progress_result.collect{|record| record.weighted_votes})
+  end
+  
+  
+  def export_to_csv
+    csv_string = CSV.generate do |csv|
+      # header row
+      csv << ['Vote Title','Vote Option','Weighted Vote (percentage)']
+
+      # body row
+      progress_result.each_with_index do |option, index|
+        csv << [
+          @survey.title,
+          option.title,
+          option.weighted_votes_percentage
+        ]
+      end
+    end
   end
 
   def self.format_data(data=[])

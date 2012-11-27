@@ -160,4 +160,32 @@ describe VoteProgressService do
     end
   end
   
+  describe "export_to_csv" do
+    # Vote Option,Weighted Vote (percentage)/i
+    it "should have Vote Title header" do
+      given_valid_vote_responses
+      VoteProgressService.new(@survey).export_to_csv.should =~ /Vote Title/i
+    end
+    it "should have Vote Option header" do
+      given_valid_vote_responses
+      VoteProgressService.new(@survey).export_to_csv.should =~ /Vote Option/i
+    end
+    it "should have Weighted Voteheader" do
+      given_valid_vote_responses
+      VoteProgressService.new(@survey).export_to_csv.should =~ /Weighted Vote \(percentage\)/i
+    end
+    it "should contain Vote Title column" do
+      given_valid_vote_responses
+      VoteProgressService.new(@survey).export_to_csv.should =~ /This is a title/i
+    end
+    it "should contain Vote Option column" do
+      given_valid_vote_responses
+      VoteProgressService.new(@survey).export_to_csv.should =~ /my Title/i
+    end
+    
+    it "should contain Weighted Vote column" do
+      given_valid_vote_responses
+      VoteProgressService.new(@survey).export_to_csv.should =~ /75/i
+    end
+  end
 end

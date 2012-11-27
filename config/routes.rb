@@ -240,6 +240,7 @@ Civiccommons::Application.routes.draw do
     resources :email_restrictions
     resources :surveys do
       get 'progress', on: :member
+      get 'export_progress', on: :member
     end
     resources :topics
     resources :people do

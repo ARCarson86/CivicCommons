@@ -111,4 +111,11 @@ class Admin::SurveysController < Admin::DashboardController
     @vote_progress_service = VoteProgressService.new(@survey)
     @responses = @survey.survey_responses.sort_last_created_first
   end
+  
+  def export_progress
+    @survey = Survey.find(params[:id])
+    @vote_progress_service = VoteProgressService.new(@survey)
+    csv_string = @vote_progress_service.export_to_csv
+    render :text => csv_string, :content_type => Mime::CSV
+  end
 end
