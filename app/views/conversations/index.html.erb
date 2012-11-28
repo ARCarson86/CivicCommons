@@ -8,8 +8,8 @@
 
       <% if @all_conversations.present? && @all_conversations.size > 0 %>
         <div class="conversation-tile-group group">
-          <h3>All Conversations</h3>
-          <%= render :partial => '/conversations/conversation_band', :locals => {:conversations => @all_conversations} %>
+          <h3><%= @current_topic ? @subtitle : "All Conversations" %></h3>
+          <%= render :partial => '/conversations/conversation_pager', :locals => {:conversations => @all_conversations} %>
         </div>
       <% end %>
 
@@ -48,6 +48,7 @@
         </div>
       </div>
       <%= render :partial => '/metro_regions/top_metro_side' %>
+      <%= render 'topics/conversation_topic_sidebar', :topics => @topics %>
       <%= render_recent_items_sidebar %>
     </div><!-- /.aside -->
   </div>

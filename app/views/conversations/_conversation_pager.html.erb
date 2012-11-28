@@ -1,21 +1,10 @@
-<% if @conversations %>
-  <% @conversations.each_slice(3) do |conversation_mini_array|%>
+<% if conversations %>
+  <% conversations.each_slice(3) do |conversation_mini_array|%>
     <div class="three-col-sm">
       <% conversation_mini_array.each do |conversation| %>
-        <div class="cols call-out">
-          <a href="<%= conversation_path(conversation)%>">
-            <%= image_tag conversation.image.url(:panel), :class => "main-img", :alt => short_title(conversation.title), :width => 180, :height => 120  %>
-            <h4><%= short_title(conversation.title) %></h4>
-            <%= simple_format(truncate(Sanitize.clean(conversation.summary, :remove_contents => ['script']).strip, {:length => 125, :separator => ' '})) %>
-          </a>
-          <div class="photobank">
-            <% conversation.participants[0...4].each do |participant| %>
-              <%= conversation_profile(participant).html_safe %>
-            <% end %>
-          </div>
-        </div>
+        <%= render :partial => "homepage/hp_conversation_panel", :locals => {:conversation => conversation} %>
       <% end %>
     </div>
   <% end %>
-  <%= will_paginate @conversations, :inner_window => 3, :previous_label => "Previous", :next_label => "Next" %>
+  <%= will_paginate conversations, :inner_window => 3, :previous_label => "Previous", :next_label => "Next" %>
 <% end %>

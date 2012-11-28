@@ -12,7 +12,7 @@
         %p= raw(@region.description)
         -if @conversations.length >0
           %h2 Conversations in this Region
-          =render :partial => "conversations/conversation_pager"
+          =render :partial => "conversations/conversation_pager", :locals => {:conversations => @conversations}
 
       .aside.supplementary
         .mod

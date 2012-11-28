@@ -5,7 +5,7 @@
 
     <div class="main-content">
       <%= render :partial => 'layouts/create_conversation' %>
-      <%= render :partial => '/conversations/conversation_pager' %>
+      <%= render :partial => '/conversations/conversation_pager', :locals => {:conversations => @conversations} %>
     </div><!-- /.main-content -->
 
     <div class='aside supplementary'>

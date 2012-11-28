@@ -33,12 +33,19 @@ class ConversationsController < ApplicationController
 
   # GET /conversations
   def index
-    if default_region == cc_metro_region || default_region.blank?
-      @recent = Conversation.filter_metro_region(default_region).latest_created.limit(3)
-      @recommended = Conversation.filter_metro_region(default_region).recommended.limit(3)
-      @active = Conversation.filter_metro_region(default_region).most_active.limit(3)
+    @topics = Topic.where("topics.id != 9").filter_metro_region(default_region)
+    @topics = @topics.including_conversations if @topics.present?
+    @current_topic = Topic.find_by_id(params[:topic])
+    @subtitle = @current_topic.name if @current_topic
+
+    @search = @current_topic ? @current_topic.conversations : Conversation
+
+    if default_region == cc_metro_region || default_region.blank? && !@current_topic.present?
+      @recent = @search.filter_metro_region(default_region).latest_created.limit(3)
+      @recommended = @search.filter_metro_region(default_region).recommended.limit(3)
+      @active = @search.filter_metro_region(default_region).most_active.limit(3)
     else
-      @all_conversations = Conversation.filter_metro_region(default_region).paginate(:page => params[:page], :per_page => 12)
+      @all_conversations = @search.filter_metro_region(default_region).paginate(:page => params[:page], :per_page => 12)
     end
 
     @top_metro_regions = MetroRegion.top_metro_regions(5)
@@ -321,7 +328,7 @@ class ConversationsController < ApplicationController
     end
   end
 
-  def prep_convo(params)    
+  def prep_convo(params)
     @conversation = Conversation.new(params[:conversation])
     get_content_item(params)
     @conversation.content_items = [@content_item] if @content_item.present?

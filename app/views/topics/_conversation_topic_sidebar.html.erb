@@ -1,0 +1,8 @@
+<div class="mod">
+  <h3>Filter Conversations by Topic:</h3>
+  <ul class="simple-list block-link-list topics">
+    <% topics.each do |topic| %>
+      <li><%= conversation_topic_filter(topic) %></li>
+    <% end %>
+  </ul>
+</div>

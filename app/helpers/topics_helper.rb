@@ -10,6 +10,13 @@ module TopicsHelper
     link_to raw("<span>#{topic.name}</span> <em>#{topic.issue_count}</em>"), issues_path(:topic => topic_id), :class=> css_class
   end
 
+  def conversation_topic_filter(topic)
+    active = @current_topic == topic
+    css_class = active ? 'active' : ''
+    topic_id = active ? nil : topic.id
+    link_to raw("<span>#{topic.name}</span> <em>#{topic.conversation_count}</em>"), conversations_path(:topic => topic_id), :class=> css_class
+  end
+
   def render_radioshow_topics_sidebar
     render 'topics/radioshow_topic_sidebar', :topics => @topics
   end
@@ -22,7 +29,7 @@ module TopicsHelper
     active = @current_topic == topic
     css_class = active ? 'active' : ''
     topic_id = active ? nil : topic.id
-    
+
     case content_type
     when :blogpost
       path = blog_index_path(request.parameters.merge({:topic => topic_id, :page => nil}))
@@ -31,10 +38,10 @@ module TopicsHelper
     else
       path = ''
     end
-    
+
     link_to raw("<span>#{topic.name}</span> <em>#{topic.content_item_count}</em>"), path , :class=> css_class
   end
-  
+
   def topics_one_line(obj)
     topics = obj.topics.collect{|topic|topic.name}
     if topics.present?
@@ -42,7 +49,7 @@ module TopicsHelper
     else
       return nil
     end
-    
+
   end
 
   def topics_list_for(obj)

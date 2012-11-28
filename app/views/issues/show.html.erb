@@ -38,7 +38,7 @@
       </div>
 
       <h3>Conversations about this issue:</h3>
-      <%= render :partial => '/conversations/conversation_pager' %>
+      <%= render :partial => '/conversations/conversation_pager', :locals => {:conversations => @conversations} %>
       <div style='margin-top: 60px'>
         <%= render :partial => 'layouts/create_conversation' %>
       </div>

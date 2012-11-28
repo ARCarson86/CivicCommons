@@ -84,6 +84,7 @@ describe TopicsHelper do
       helper.render_issue_topics_sidebar#.with().render_issue_topics_sidebar.should_render_template 'render_issue_topics_sidebar'
     end
   end
+
   describe "issue_topic_filter" do
     before(:each) do
       @topic = mock(Topic,:issue_count => 1, :name => 'Topic One', :id => 1001)
@@ -98,6 +99,23 @@ describe TopicsHelper do
     end
     it "should not have 'active' css class if the current topic has not match" do
       issue_topic_filter(@topic).should_not include "active"
+    end
+  end
+
+  describe "conversation_topic_filter" do
+    before(:each) do
+      @topic = mock(Topic,:conversation_count => 1, :name => 'Topic One', :id => 1001)
+      @current_topic = mock(Topic,:conversation_count => 1, :name => 'Topic Two', :id => 1002)
+    end
+    it "should link to the topic" do
+      conversation_topic_filter(@topic).should include 'href="/conversations?topic=1001"'
+      conversation_topic_filter(@topic).should include 'Topic One'
+    end
+    it "should have an 'active' class if the current topic has matched" do
+      conversation_topic_filter(@current_topic).should include 'class="active"'
+    end
+    it "should not have 'active' css class if the current topic has not match" do
+      conversation_topic_filter(@topic).should_not include "active"
     end
   end
 
@@ -116,7 +134,7 @@ describe TopicsHelper do
       helper.render_blogpost_topics_sidebar
     end
   end
-  
+
   describe "content_item_topic_filter" do
     before(:each) do
       @topic = mock(Topic,:content_item_count => 1, :name => 'Topic One', :id => 1001)

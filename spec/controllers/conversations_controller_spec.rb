@@ -100,7 +100,28 @@ describe ConversationsController do
         assigns(:recent).should_not be_nil
         assigns(:recommended).should_not be_nil
       end
+    end
 
+    it "includes topics" do
+      Topic.should_receive(:filter_metro_region)
+      get :index
+    end
+
+    it "assigns topics" do
+      @controller.stub!(:default_region).and_return(1234)
+      @controller.stub!(:cc_metro_region).and_return(510)
+      get :index
+      assigns(:topics).should == Topic.where("topics.id != 9").filter_metro_region(@controller.default_region).all
+    end
+
+    it "assigns current_topic if there is a param[:topic]" do
+      get :index, :topic => Topic.first.id
+      assigns(:current_topic).should == Topic.first
+    end
+
+    it "assigns subtitle if there is a topic" do
+      get :index, :topic => Topic.first.id
+      assigns(:subtitle).should == Topic.first.name
     end
 
   end
