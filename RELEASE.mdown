@@ -7,6 +7,7 @@
   * [Admin: Vote - Turn off Results](https://agilezen.com/project/18091/story/774)
   * [Remove Issues from User Interface](https://agilezen.com/project/18091/story/782)
   * [Remove Issues from Admin Interface](https://agilezen.com/projects/18091/story/783)
+  * [Recent Activity is Renamed as "Soap Box" on all Pages.](https://agilezen.com/projects/18091/story/785)
 
 
 ## 5.0

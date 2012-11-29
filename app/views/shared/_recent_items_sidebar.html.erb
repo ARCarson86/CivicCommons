@@ -1,6 +1,6 @@
 <% if recent_items.size > 0 %>
   <div class="mod">
-    <h3>Recent Activity <%= "By #{person.short_name}" if defined? person %></h3>
+    <h3>Soap Box <%= "By #{person.short_name}" if defined? person %></h3>
     <div class='mod-content'>
       <%= render :partial => 'shared/recent_item', collection: recent_items %>
     </div>
