@@ -1,10 +1,8 @@
 <div class="wrapper">
   <div class="content-container">
     <h1>Conversations</h1>
-
+    
     <div class="main-content">
-
-      <%= render :partial => 'layouts/create_conversation' %>
 
       <% if @all_conversations.present? && @all_conversations.size > 0 %>
         <div class="conversation-tile-group group">
@@ -41,6 +39,7 @@
     </div><!-- /.main-content -->
 
     <div class='aside supplementary'>
+      <%= render :partial => '/conversations/create_conversation_side' %>
       <div class="f-conv mod">
         <!-- <h3>Featured Conversations</h3> -->
         <div class="mod-content">
