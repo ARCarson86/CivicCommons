@@ -105,22 +105,22 @@ a.button.active {
   border-color: #bbb;
   color: #555;
   text-shadow: 0 1px 0px rgba(255,255,255,.3);
-  background-color: #e6e6e6;
-  @include background-image(linear-gradient(top, rgb(237, 237, 237), rgb(224, 224, 224)));
-  @include filter-gradient(rgb(237, 237, 237), rgb(224, 224, 224), vertical);
+  background-color: #eeeeee;
+  @include background-image(linear-gradient(top, rgb(255, 255, 255), rgb(221, 221, 221)));
+  @include filter-gradient(rgb(255, 255, 255), rgb(221, 221, 221), vertical);
 }
 
 .button.tertiary:hover {
-  background-color: #d4d7d7;
-  @include background-image(linear-gradient(top, rgb(224, 226, 226), rgb(201, 204, 204)));
-  @include filter-gradient(rgb(224, 226, 226), rgb(201, 204, 204), vertical);
+  background-color: #ebebeb;
+  @include background-image(linear-gradient(top, rgb(244, 244, 244), rgb(215, 215, 215)));
+  @include filter-gradient(rgb(255, 255, 255), rgb(215, 215, 215), vertical);
 }
 
 .button.tertiary:active,
 .button.tertiary.active {
-  background-color: #cbcfcf;
-  @include background-image(linear-gradient(top, rgb(206, 210, 210), rgb(201, 204, 204)));
-  @include filter-gradient(rgb(206, 210, 210), rgb(201, 204, 204), vertical);
+  background-color: #d8d8d8;
+  @include background-image(linear-gradient(top, rgb(203, 203, 203), rgb(215, 215, 215)));
+  @include filter-gradient(rgb(203, 203, 203), rgb(230, 230, 230), vertical);
 }
 
 // Radio show buttons
@@ -206,6 +206,15 @@ a.button:active span.stitcher {
   padding: 0 10px 0 5px;
 }
 
+.btn-group.btn-group-full .button {
+  margin-left: 10px;
+  width: 268px;
+
+  &:first-child {
+    margin-left: 0;
+  }
+}
+
 // Large button group
 
 .btn-group.btn-group-large .button {
@@ -214,7 +223,37 @@ a.button:active span.stitcher {
 	width: 150px;
 }
 
- // TODO: Need to refactor and make large buttons indepenedent of button group (BD)
+// Xtra Large Buttons
+
+.btn-group.btn-group-x-large .button {
+  @include border-radius(6px);
+	padding: 12px 18px;
+  font-size: 26px;
+  text-align: left;
+  text-transform: uppercase;
+
+  > a {
+    position: relative;
+  }
+
+  .participant-count {
+    @include border-radius(4px);
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 1px 2px;
+    font-size: 14px;
+    background-color: #fff;
+    border: 1px solid #bbb;
+
+    .icon-user {
+      position: relative;
+      top: 2px;
+    }
+  }
+}
+
+// TODO: Need to refactor and make large buttons indepenedent of button group
 .btn-group-large .text-left {
 	text-align: left;
 }

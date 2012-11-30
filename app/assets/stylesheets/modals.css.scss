@@ -1,0 +1,21 @@
+// Modal styles
+// -- Modal styles will slowly be migrated 
+// -- over to this style sheet
+
+.modal-wrap {
+  font-size: .75em;
+}
+
+// Miscellaneous modal styles
+
+.modal {padding: 25px 20px;}
+.modal h2 {
+  border-bottom: 1px solid #d6d6d6;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+}
+
+.modal-overflow {
+  height: 400px;
+  overflow: scroll;
+}

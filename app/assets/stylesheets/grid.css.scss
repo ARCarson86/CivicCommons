@@ -34,3 +34,12 @@ $gutter-width: percentage($gutter / $context);
 @for $i from 1 to $cols + 1 {
   @include column($i);
 }
+
+.col-center {
+  @for $i from 1 to $cols + 1 {
+    .#{col-}#{$i} {
+      margin: 0 auto;
+      float: none;
+    }
+  }
+}

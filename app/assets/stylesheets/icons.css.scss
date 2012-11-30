@@ -643,6 +643,22 @@
   background-repeat: no-repeat;
 }
 
+.convo-icons-bare {
+  @include opacity(.9);
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  margin-right: 10px;
+  vertical-align: text-top;
+  background-position: 34px 34px;
+  background-repeat: no-repeat;
+
+  &:hover,
+  &:focus {
+    @include opacity(1);
+  }
+}
+
 .convo-icons-text {
   position: relative;
   top: 5px;
@@ -652,6 +668,9 @@
 
 @import "convo-icons-lrg/*.png";
 @include all-convo-icons-lrg-sprites;
+
+@import "convo-icons-xsm/*.png";
+@include all-convo-icons-xsm-sprites;
 
 @import "convo-icons-sm/*.png";
 @include all-convo-icons-sm-sprites;

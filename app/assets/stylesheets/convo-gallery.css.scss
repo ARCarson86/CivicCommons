@@ -1,3 +1,38 @@
 // Conversation gallery styles
 
+.t-grid {
+  position: relative;
+  overflow: hidden;
+  
+  .t-grid-title {
+    margin-bottom: 0;
+    padding: 8px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    font-weight: bold;
+    text-shadow: 0 1px 1px rgba(0,0,0,.3);
+    line-height: 1;
+    color: #fff;
+    background: rgba(0,0,0,.3);
+    @include box-sizing(border-box);
+  }
 
+  .t-grid-count {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-weight: bold;
+  }
+
+  a:hover {
+
+    .t-grid-title {
+      background: rgba(0,0,0,.5);
+    } 
+
+    .t-grid-count {
+      color: #333;
+    }
+  }
+}

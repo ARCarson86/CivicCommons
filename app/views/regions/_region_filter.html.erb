@@ -1,5 +1,5 @@
 <%= form_tag metro_region_filter_form_path, :class=>'ui-widget inline-form group region-filter-container' do %>
-  <input class="textbox small side-region-filter" name="region-filter-input" />
+  <input placeholder="City, State" class="textbox small side-region-filter" name="region-filter-input" />
   <%= hidden_field_tag :metrocode,nil, :class => 'side-metrocode', :id => nil %>
   <input class="submit mls" id="filter" type="submit" value="Filter" />
 <% end %>

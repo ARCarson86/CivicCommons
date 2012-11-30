@@ -1,0 +1,27 @@
+// Coversation reconcept styles
+
+.contribution-primary {
+  position: relative;
+  padding: 0 320px 0 0;
+
+  > .row {
+    margin-top: 10px;
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+  }
+
+  &:first-child > .row {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+  }
+}
+
+.contribution-secondary {
+  width: 280px;
+  z-index: 1000;
+}
+
+.action-bar {
+  @include pie-clearfix;
+}
