@@ -318,7 +318,11 @@ class ConversationsController < ApplicationController
   private
 
   def force_friendly_id
-    @conversation = Conversation.find params[:id]
+    begin
+      @conversation = Conversation.find params[:id]
+    rescue ActiveRecord::RecordNotFound
+      render 'public/404.html', :layout => nil, :status => 404 and return
+    end
 
     # If an old id or a numeric id was used to find the record, then
     # the request path will not match the post_path, and we should do
