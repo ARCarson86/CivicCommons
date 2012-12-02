@@ -9,6 +9,9 @@
   * [Remove Issues from Admin Interface](https://agilezen.com/projects/18091/story/783)
   * [Recent Activity is Renamed as "Soap Box" on all Pages.](https://agilezen.com/projects/18091/story/785)
   * [Add Start A Conversation Section to Right Aside](https://agilezen.com/projects/18091/story/767)
+  
+### Chores
+  * [Upgrade Airbrake gem](https://agilezen.com/projects/18091/story/796)
 
 ### Bug Fix
   * [[AB:52909262] ActiveRecord::RecordNotFound: Couldn't find Conversation with id=responsibilities](https://agilezen.com/project/18091/story/792)
