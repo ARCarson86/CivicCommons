@@ -1,0 +1,12 @@
+<div class='aside supplementary'>
+  <%= render :partial => '/conversations/create_conversation_side' %>
+  <div class="f-conv mod">
+    <!-- <h3>Featured Conversations</h3> -->
+    <div class="mod-content">
+      <%= render :partial => '/conversations/filters' %>
+    </div>
+  </div>
+  <%= render :partial => '/metro_regions/top_metro_side' %>
+  <%= render 'topics/conversation_topic_sidebar', :topics => @topics %>
+  <%= render_recent_items_sidebar %>
+</div><!-- /.aside -->

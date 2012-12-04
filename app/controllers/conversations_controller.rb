@@ -31,19 +31,28 @@ class ConversationsController < ApplicationController
   # Conversation Modal Methods - END
   ################################################################################
 
-  # GET /conversations
-  def index
+  # Topic Set Up
+  def topic_setup
+    # List of Valid Topics and Number of Conversations Each Topic Has
     @topics = Topic.where("topics.id != 9").filter_metro_region(default_region)
     @topics = @topics.including_conversations if @topics.present?
+
+    # The Current Topic and It's Subtitle
     @current_topic = Topic.find_by_id(params[:topic])
     @subtitle = @current_topic.name if @current_topic
 
     @search = @current_topic ? @current_topic.conversations : Conversation
+  end
 
-    if default_region == cc_metro_region || default_region.blank? && !@current_topic.present?
-      @recent = @search.filter_metro_region(default_region).latest_created.limit(3)
-      @recommended = @search.filter_metro_region(default_region).recommended.limit(3)
-      @active = @search.filter_metro_region(default_region).most_active.limit(3)
+  # GET /conversations
+  def index
+    topic_setup
+
+    if default_region == cc_metro_region || default_region.blank? #&& !@current_topic.present?
+      @recommended = @search.filter_metro_region(default_region).recommended.limit(12)
+
+      @active = @search.filter_metro_region(default_region).all_most_active.limit(12)
+      @recent = @search.filter_metro_region(default_region).latest_created.limit(12)
     else
       @all_conversations = @search.filter_metro_region(default_region).paginate(:page => params[:page], :per_page => 12)
     end
@@ -54,6 +63,20 @@ class ConversationsController < ApplicationController
     render :index, :layout => 'category_index'
   end
 
+  # GET /conversations/recommended
+  # GET /conversations/active
+  # GET /conversations/recent
+  def filter
+    topic_setup
+
+    @filter = params[:filter]
+    @conversations = @search.filter_metro_region(default_region).filtered(@filter).paginate(:page => params[:page], :per_page => 12)
+    @top_metro_regions = MetroRegion.top_metro_regions(5)
+
+    @recent_items = Activity.most_recent_activity_items(limit: 3)
+    render :filter, :layout => 'category_index'
+  end
+
   # GET /conversations/rss
   def rss
     @conversations = Conversation.where("created_at >= '#{1.month.ago}'").order(:created_at => :desc)
@@ -61,15 +84,6 @@ class ConversationsController < ApplicationController
       format.html { redirect_to(conversations_url) }
       format.xml
     end
-  end
-
-  def filter
-    @filter = params[:filter]
-    @conversations = Conversation.filter_metro_region(default_region).filtered(@filter).paginate(:page => params[:page], :per_page => 12)
-    @top_metro_regions = MetroRegion.top_metro_regions(5)
-
-    @recent_items = Activity.most_recent_activity_items(limit: 3)
-    render :filter, :layout => 'category_index'
   end
 
   # GET /conversations/1

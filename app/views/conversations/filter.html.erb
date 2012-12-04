@@ -5,21 +5,11 @@
 
     <div class="main-content">
       <%= render :partial => 'layouts/create_conversation' %>
-      <%= render :partial => '/conversations/conversation_pager', :locals => {:conversations => @conversations} %>
+      <h3><%= @current_topic ? @subtitle : "All Conversations" %></h3>
+      <%= render :partial => '/conversations/conversation_large_panel_results', :locals => {:conversations => @conversations} %>
+      <%= will_paginate @conversations, :inner_window => 3, :previous_label => "Previous", :next_label => "Next" %>
     </div><!-- /.main-content -->
 
-    <div class='aside supplementary'>
-      <%= render :partial => '/search/search' %>
-      <div class="f-conv">
-        <!-- <h3>Featured Conversations</h3> -->
-        <div class="mod-content">
-          <%= render :partial => '/conversations/filters' %>
-        </div>
-      </div>
-
-      <div>&nbsp;</div>
-      <%= render :partial => '/metro_regions/top_metro_side' %>
-      <%= render_recent_items_sidebar %>
-    </div><!-- /.aside -->
+    <%= render :partial => '/conversations/conversation_aside' %>
   </div>
 </div>

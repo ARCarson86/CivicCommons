@@ -43,7 +43,7 @@ class Conversation < ActiveRecord::Base
   has_many :conversations_topics, :dependent => :destroy
   has_many :topics, :through => :conversations_topics, :uniq => true
   validates_length_of :topics, :minimum => 1, :message => 'Please select at least one topic for your conversation', :if => 'self.other_topic.nil?'
-  
+
   accepts_nested_attributes_for :topics
 
   has_many :content_items_conversations, :uniq => true
@@ -78,7 +78,7 @@ class Conversation < ActiveRecord::Base
   validates_format_of :link, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix, :on => :create, :allow_blank => true, :message => "Link must look like a url (example http://google.com)."
   validates_presence_of :zip_code, :message => "Please give us a zip code for a little geographic context."
   validates_presence_of :metro_region_id, :message => 'Please give us a Location name.'
-  
+
   after_create :set_initial_position, :subscribe_creator
   around_create :send_notification_on_other_topic
 
@@ -86,7 +86,7 @@ class Conversation < ActiveRecord::Base
   def should_generate_new_friendly_id?
     new_record? || slug.nil?
   end
-  
+
   def send_notification_on_other_topic
     other_topic = self.other_topic
     yield
@@ -205,6 +205,7 @@ class Conversation < ActiveRecord::Base
     available_filters.keys.collect(&:to_s)
   end
 
+  # Display Conversations by Most Active with default filter for the last 60 days.
   def self.most_active(options = {})
     options.reverse_merge!(filter:0, daysago:60)
     filter = options[:filter]
@@ -220,6 +221,15 @@ class Conversation < ActiveRecord::Base
                      order('count_all DESC, max_contributions_created_at DESC')
   end
 
+  # Display all the Conversations by Most Active
+  def self.all_most_active
+    Conversation.select('conversations.*, COUNT(*) AS count_all, MAX(contributions.created_at) AS max_contributions_created_at').
+                     joins(:contributions).
+                     where("contributions.top_level_contribution = 0").
+                     where(:exclude_from_most_recent => false).
+                     group('conversations.id').
+                     order('count_all DESC, max_contributions_created_at DESC')
+  end
   # From the top active conversations, select a random sample.
   #
   # limit = number of most active conversations to select from (default 4)

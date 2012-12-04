@@ -1,8 +1,9 @@
-<% if conversations %>
+<% if conversations.present? %>
+  <h3><%= @current_topic ? @subtitle : "All Conversations" %></h3>
   <% conversations.each_slice(3) do |conversation_mini_array|%>
     <div class="three-col-sm">
       <% conversation_mini_array.each do |conversation| %>
-        <%= render :partial => "homepage/hp_conversation_panel", :locals => {:conversation => conversation} %>
+        <%= render :partial => '/conversations/conversation_large_square_panel', :locals => {:conversation => conversation} %>
       <% end %>
     </div>
   <% end %>

@@ -1,0 +1,7 @@
+<div class="col-4 t-grid">
+  <a href="<%= conversation_path(conversation)%>">
+    <%= image_tag conversation.image.url(:panel), :class => 'img-flex', :alt => conversation.title, :width => 200 %>
+    <span class="t-grid-count"><i class="icon-user icon"></i> <%= conversation.participants.count %></span>
+    <p class="t-grid-title"><%= short_title(conversation.title) %></p>
+  </a>
+</div>

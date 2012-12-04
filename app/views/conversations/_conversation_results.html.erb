@@ -1,0 +1,6 @@
+<% conversations.each_slice(4) do |conversation_mini_array| %>
+  <div class="row">
+    ARCHIVE
+    <%= render :partial => '/conversations/conversation_small_band', :locals => {:conversations => conversation_mini_array} %>
+  </div>
+<% end %>

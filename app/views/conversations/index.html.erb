@@ -1,54 +1,19 @@
 <div class="wrapper">
   <div class="content-container">
-    <h1>Conversations</h1>
-    
     <div class="main-content">
+      <h1>Conversations</h1>
+      <hr/>
+      <%= render :partial => '/conversations/conversation_headliner', :locals => {:conversations => @recommended} unless @all_conversations.present? %>
+      <%= render :partial => '/conversations/conversation_tabs', :locals => {:recent => @recent, :active => @active} unless @all_conversations.present? %>
+      <%= render :partial => '/conversations/conversation_pager', :locals => {:conversations => @all_conversations} if @all_conversations.present? %>
 
-      <% if @all_conversations.present? && @all_conversations.size > 0 %>
-        <div class="conversation-tile-group group">
-          <h3><%= @current_topic ? @subtitle : "All Conversations" %></h3>
-          <%= render :partial => '/conversations/conversation_pager', :locals => {:conversations => @all_conversations} %>
-        </div>
-      <% end %>
-
-      <% if @recommended && @recommended.size > 0 %>
-        <div class="conversation-tile-group group">
-          <h3>Recommended Conversations</h3>
-          <%= render :partial => '/conversations/conversation_band', :locals => {:conversations => @recommended} %>
-          <%= link_to "See more recommended conversations", conversations_filter_url(:recommended), :class => 'see-more' %>
-        </div>
-      <% end %>
-
-      <% if @active && @active.length > 0 %>
-        <div class="conversation-tile-group group">
-            <h3>
-              Most Active Conversations
-            </h3>
-          <%= render :partial => '/conversations/conversation_band', :locals => {:conversations => @active} %>
-          <%= link_to "See more active conversations", conversations_filter_url(:active), :class => 'see-more' %>
-        </div>
-      <% end %>
-
-      <% if @recent && @recent.length > 0 %>
-        <div class="conversation-tile-group group">
-          <h3>Newest Conversations</h3>
-          <%= render :partial => '/conversations/conversation_band', :locals => {:conversations => @recent} %>
-          <%= link_to "See more of the newest conversations", conversations_filter_url(:recent), :class => 'see-more' %>
-        </div>
-      <% end %>
+      <script>
+        $(document).ready(function(){
+          $('#tab-container').easytabs();
+        });
+      </script>
     </div><!-- /.main-content -->
 
-    <div class='aside supplementary'>
-      <%= render :partial => '/conversations/create_conversation_side' %>
-      <div class="f-conv mod">
-        <!-- <h3>Featured Conversations</h3> -->
-        <div class="mod-content">
-          <%= render :partial => '/conversations/filters' %>
-        </div>
-      </div>
-      <%= render :partial => '/metro_regions/top_metro_side' %>
-      <%= render 'topics/conversation_topic_sidebar', :topics => @topics %>
-      <%= render_recent_items_sidebar %>
-    </div><!-- /.aside -->
+    <%= render :partial => '/conversations/conversation_aside' %>
   </div>
 </div>
