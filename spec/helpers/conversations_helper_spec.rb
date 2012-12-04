@@ -25,11 +25,31 @@ describe ConversationsHelper do
   end
   
   describe "short_title" do
-    it "should return a text shorter than 45 character if it's more" do
-      helper.short_title('12345678901234567890123456789012345678901234567890').should == "123456789012345678901234567890123456789012..."
+    let(:long_title) { 'This is a very long title that is more than fifty characters long and should be truncated' }
+    let(:shorter_title) { 'This is short' }
+
+    context 'when text is too long' do
+      subject { helper.short_title(long_title) }
+
+      it "should return a text shorter than 50 character if it's more" do
+        subject.length.should <= 50
+      end
+
+      it 'should return a string ending with ellipsis' do
+        subject.end_with?('...').should be_true
+      end
+
+      context 'when a different length is passed in' do
+        it 'should truncate to the number passed in' do
+          helper.short_title(long_title, 30).length.should <= 30
+        end
+      end
     end
-    it "should return the same text if it's less than 45 characacter" do
-      helper.short_title('12345').should == '12345'
+
+    context 'when text is short' do
+      it "should return the same text if it's less than 50 characacter" do
+        helper.short_title(shorter_title).should == shorter_title
+      end
     end
   end
   

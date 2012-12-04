@@ -57,7 +57,7 @@ describe Conversation do
       @conversation.title = nil
       @conversation.should have_validation_error(:title)
     end
-    it "is invalid with title more than 45 characters" do
+    it "is invalid with title more than 50 characters" do
       @conversation.title = '12345678901234567890123456789012345678901234567890'
       @conversation.should have_validation_error(:title)
     end
@@ -79,10 +79,10 @@ describe Conversation do
           @conversation.title = '12345678901234567890123456789012345678901234567890'
           @conversation.should have_validation_error(:title)
         end
-        it "should have the validation error message as 'Please enter a title with less than 45 characters'" do
-          @conversation.title = '12345678901234567890123456789012345678901234567890'
+        it "should have the validation error message as 'Please enter a title with less than 50 characters'" do
+          @conversation.title = '12345678901234567890123456789012345678901234567890 and another word'
           @conversation.valid?
-          @conversation.errors[:title].should == ['Please enter a title with less than 45 characters']
+          @conversation.errors[:title].should == ['Please enter a title with less than 50 characters']
         end
       end
       context "on update" do

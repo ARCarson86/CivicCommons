@@ -73,7 +73,7 @@ class Conversation < ActiveRecord::Base
 
   validates_presence_of :owner, :message => "You must be logged in."
   validates_presence_of :title, :message => "Please choose a title for your conversation."
-  validates_length_of :title, :maximum => 45, :message => 'Please enter a title with less than 45 characters', :on => :create
+  validates_length_of :title, :maximum => 50, :message => 'Please enter a title with less than 50 characters', :on => :create
   validates_presence_of :summary, :message => "Please give us a short summary."
   validates_format_of :link, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix, :on => :create, :allow_blank => true, :message => "Link must look like a url (example http://google.com)."
   validates_presence_of :zip_code, :message => "Please give us a zip code for a little geographic context."
