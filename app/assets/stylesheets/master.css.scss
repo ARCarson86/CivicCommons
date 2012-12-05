@@ -1973,9 +1973,14 @@ form.contribution_edit .add-link, form.contribution_edit .add-file {
 }
 #contribution-add-link, #contribution-add-file,
 form.contribution_edit .add-link, form.contribution_edit .add-file {
-  background: image-url("icons/sm_add.png") no-repeat 0 2px;
-  padding-left: 20px;
+  // background: image-url("icons/sm_add.png") no-repeat 0 2px;
+  // padding-left: 20px;
 }
+
+.edit-contrib-actions {
+  clear: both;
+}
+
 div.contribution-container {zoom: 1;}
 .comment {padding-bottom: 0;}
 div.contribution-container.collapsed > .comment > .content {
