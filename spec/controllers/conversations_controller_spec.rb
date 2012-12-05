@@ -65,7 +65,7 @@ describe ConversationsController do
 
     it "assigns all conversations as @active, and @recent" do
       get :index
-      assigns(:active).length.should == 0 # since no contributions were made
+      assigns(:active).length.should == 2
       assigns(:recent).first.should == @new_conversation
       assigns(:recent).last.should == @old_conversation
     end

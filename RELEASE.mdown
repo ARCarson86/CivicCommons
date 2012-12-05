@@ -18,6 +18,7 @@
 ### Bug Fix
   * [[AB:52909262] ActiveRecord::RecordNotFound: Couldn't find Conversation with id=responsibilities](https://agilezen.com/project/18091/story/792)
   * [[AB:52909017] ActionView::MissingTemplate: Missing partial](https://agilezen.com/project/18091/story/793)
+  * [Most Active Conversation Without Contributions Are Not Showing Up On Results.](https://agilezen.com/project/18091/story/798)
 
 
 ## 5.0

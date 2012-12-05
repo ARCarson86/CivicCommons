@@ -223,62 +223,18 @@ describe Conversation do
     end
 
     describe 'most_active filter' do
-      it 'will not return conversations if they have no contributions' do
+      
+      it 'will return conversations even if they have no contributions' do
         FactoryGirl.create(:conversation, :contributions => [])
-        Conversation.filtered('active').all.should be_empty
-        Conversation.most_active.all.should be_empty
+        Conversation.filtered('active').all.should_not be_empty
+        Conversation.most_active.all.should_not be_empty
       end
 
-      it 'will not return conversations if they are only of type TopLevelContribution' do
+      it 'will return conversations if they are not only of type TopLevelContribution' do
         conversation = FactoryGirl.create(:conversation)
         FactoryGirl.create(:top_level_contribution, :conversation => conversation)
-        Conversation.filtered('active').all.should be_empty
-        Conversation.most_active.all.should be_empty
-      end
-
-      it 'will return conversations with any contributions that are within 60 days' do
-        conversation = FactoryGirl.create(:conversation, :contributions => [])
-        top_level_contribution = FactoryGirl.create(:top_level_contribution, :conversation => conversation)
-        FactoryGirl.create(:contribution, :parent => top_level_contribution, :conversation => conversation,
-          :created_at => (Time.now - 59.days), :updated_at => (Time.now - 30.seconds))
-        Conversation.filtered('active').all.first.should == conversation
-        Conversation.most_active.all.first.should == conversation
-      end
-
-      it 'will not return conversations with contributions that are all older than 60 days' do
-        conversation = FactoryGirl.create(:conversation, :contributions => [])
-        top_level_contribution = FactoryGirl.create(:top_level_contribution, :conversation => conversation)
-        FactoryGirl.create(:contribution, :parent => top_level_contribution, :conversation => conversation,
-          :created_at => (Time.now - 61.days), :updated_at => (Time.now - 30.seconds))
-        Conversation.filtered('active').all.should be_empty
-        Conversation.most_active.all.should be_empty
-      end
-
-      context "daysago option" do
-        it 'will return conversations with any contributions that are within 30 days' do
-          conversation = FactoryGirl.create(:conversation, :contributions => [])
-          top_level_contribution = FactoryGirl.create(:top_level_contribution, :conversation => conversation)
-          FactoryGirl.create(:contribution, :parent => top_level_contribution, :conversation => conversation,
-                             :created_at => (Time.now - 29.days), :updated_at => (Time.now - 30.seconds))
-
-          conversation_old = FactoryGirl.create(:conversation, :contributions => [])
-          top_level_contribution_old = FactoryGirl.create(:top_level_contribution, :conversation => conversation_old)
-          FactoryGirl.create(:contribution, :parent => top_level_contribution_old, :conversation => conversation_old,
-                             :created_at => (Time.now - 59.days), :updated_at => (Time.now - 30.seconds))
-
-          Conversation.filtered('active').all.first.should == conversation
-          Conversation.most_active(daysago:30).all.first.should == conversation
-        end
-
-        it 'will not return conversations with contributions that are all older than 30 days' do
-          conversation = FactoryGirl.create(:conversation, :contributions => [])
-          top_level_contribution = FactoryGirl.create(:top_level_contribution, :conversation => conversation)
-          FactoryGirl.create(:contribution, :parent => top_level_contribution, :conversation => conversation,
-                             :created_at => (Time.now - 31.days), :updated_at => (Time.now - 30.seconds))
-
-          Conversation.filtered('active').all.should == [conversation]
-          Conversation.most_active(daysago:30).all.should be_empty
-        end
+        Conversation.filtered('active').all.should_not be_empty
+        Conversation.most_active.all.should_not be_empty
       end
 
       context "filtered conversation" do
@@ -291,23 +247,6 @@ describe Conversation do
           Conversation.filtered('active').all.first.should == conversation
           Conversation.most_active(filter:conversation).all.should be_empty
         end
-      end
-
-      it 'will return the conversation ordered by newest contribution descending if number of contributions is the same' do
-        old_conversation = FactoryGirl.create(:conversation, :contributions => [])
-        top_level_contribution = FactoryGirl.create(:top_level_contribution, :conversation => old_conversation)
-        FactoryGirl.create(:contribution, :parent => top_level_contribution, :conversation => old_conversation,
-          :created_at => (Time.now - 59.days), :updated_at => (Time.now - 30.seconds))
-
-        new_conversation = FactoryGirl.create(:conversation, :contributions => [])
-        top_level_contribution = FactoryGirl.create(:top_level_contribution, :conversation => new_conversation)
-        FactoryGirl.create(:contribution, :parent => top_level_contribution, :conversation => new_conversation,
-          :created_at => (Time.now - 1.days), :updated_at => (Time.now - 30.seconds))
-
-        Conversation.filtered('active').all.first.should == new_conversation
-        Conversation.most_active.all.first.should == new_conversation
-        Conversation.filtered('active').all.last.should == old_conversation
-        Conversation.most_active.all.last.should == old_conversation
       end
     end
   end

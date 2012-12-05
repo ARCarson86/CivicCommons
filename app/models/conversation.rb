@@ -207,16 +207,14 @@ class Conversation < ActiveRecord::Base
 
   # Display Conversations by Most Active with default filter for the last 60 days.
   def self.most_active(options = {})
-    options.reverse_merge!(filter:0, daysago:60)
+    options.reverse_merge!(filter:0)
     filter = options[:filter]
     filter = [filter] unless options[:filter].respond_to?(:flatten) || filter.nil?
     filter.flatten!
 
     Conversation.select('conversations.*, COUNT(*) AS count_all, MAX(contributions.created_at) AS max_contributions_created_at').
-                     joins(:contributions).
+                     joins('LEFT OUTER JOIN contributions ON conversations.id = contributions.conversation_id').
                      where("conversations.id not in (?)", filter).
-                     where("contributions.top_level_contribution = 0").
-                     where("contributions.created_at > ?", Time.now - options[:daysago].days).
                      group('conversations.id').
                      order('count_all DESC, max_contributions_created_at DESC')
   end
