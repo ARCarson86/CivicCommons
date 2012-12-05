@@ -244,8 +244,8 @@ ActiveRecord::Schema.define(:version => 20121115204728) do
     t.text     "meta_tags"
     t.string   "slug"
     t.integer  "metro_region_id"
-    t.boolean  "permission_to_use_image"
     t.string   "link"
+    t.boolean  "permission_to_use_image"
   end
 
   add_index "conversations", ["cached_slug"], :name => "index_conversations_on_cached_slug", :unique => true
