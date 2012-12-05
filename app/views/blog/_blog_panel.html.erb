@@ -1,6 +1,9 @@
 <div class="entry-container">
   <div class="entry-details full rounded">
     <div class="media">
+      <div class="img">
+        <%=link_to image_tag(blog_post.image.url(:panel), :alt => 'The Civic Commons Blog Post', :height => 130, :width => 198, :class => 'float'), blog_path(blog_post)  %>
+      </div>
       <div class="bd">
         <h4><%= link_to truncate_blog_title(blog_post), blog_path(blog_post) %></h4>
         <p class="entry-tags">
@@ -11,7 +14,6 @@
           <% end %>
         </p>
         <p><strong>By: <%= link_to blog_post.author.name, user_path(blog_post.author) %></strong></p>
-        <%=link_to image_tag(blog_post.image.url(:panel), :alt => 'The Civic Commons Blog Post', :height => 130, :width => 198, :class => 'float'), blog_path(blog_post)  %>
         <%= truncate_blog_summary(blog_post) %>
         <p><%= link_to "Continue reading...", blog_path(blog_post), :title => blog_post.title %></p>
       </div>

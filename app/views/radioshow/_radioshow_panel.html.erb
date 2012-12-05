@@ -1,20 +1,23 @@
 <div class="entry-container">
   <div class="entry-details full rounded">
-
-    <h4><%= link_to radioshow.title, radioshow_path(radioshow) %></h4>
-    <p class="entry-tags">
-      <%= radioshow.published.strftime('%B %d, %Y') %>
-      <% if radioshow.topics.size > 0 %>
-        <span class="topic-label"><%= pluralize_without_count radioshow.topics.size, "Topic" %>:</span>
-        <%= raw(topics_list_for radioshow) %>
-      <% end %>
-    </p>
-    <div>
-      <%= image_tag radioshow.image.url(:panel), :alt => 'The Civic Commons Radio Show and Podcast', :height => 130, :width => 198, :class => 'float' %>
-      <%= raw radioshow.summary %>
-      <p>
-        <%= link_to radioshow.link_title, radioshow_path(radioshow), html: { title: radioshow.title } %>
-      </p>
+    <div class="media">
+      <div class="img">
+        <%= image_tag radioshow.image.url(:panel), :alt => 'The Civic Commons Radio Show and Podcast', :height => 130, :width => 198, :class => 'float' %>
+      </div>
+      <div class="bd">
+        <h4><%= link_to radioshow.title, radioshow_path(radioshow) %></h4>
+        <p class="entry-tags">
+          <%= radioshow.published.strftime('%B %d, %Y') %>
+          <% if radioshow.topics.size > 0 %>
+            <span class="topic-label"><%= pluralize_without_count radioshow.topics.size, "Topic" %>:</span>
+            <%= raw(topics_list_for radioshow) %>
+          <% end %>
+        </p>
+        <%= raw radioshow.summary %>
+        <p>
+          <%= link_to radioshow.link_title, radioshow_path(radioshow), html: { title: radioshow.title } %>
+        </p>
+      </div>
     </div>
   </div>
 </div>
