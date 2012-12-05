@@ -2,7 +2,7 @@
 <h3><%= @subtitle.blank? ? "Take Note" : @subtitle %></h3>
 <div class="row">
   <% conversations.each_slice(3).first.each do |conversation| %>
-    <%= render :partial => '/conversations/conversation_large_square_panel', :locals => {:conversation => conversation} %>
+    <%= render :partial => '/conversations/conversation_panel', :locals => {:conversation => conversation} %>
   <% end %>
 </div>
 <div class="row">

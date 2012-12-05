@@ -10,7 +10,7 @@
   </div>
 </div>
 <div class="three-col-sm">
-  <%= render partial: 'hp_conversation_panel', locals: {conversation: @most_recommended_conversation.first} if @most_recommended_conversation.first.present? %>
-  <%= render partial: 'hp_conversation_panel', locals: {conversation: @most_recent_conversation.first} if @most_recent_conversation.first.present? %>
-  <%= render partial: 'hp_conversation_panel', locals: {conversation: @most_active_conversation.first} if @most_active_conversation.first.present? %>
+  <%= render 'conversations/conversation_panel', conversation: @most_recommended_conversation.first if @most_recommended_conversation.first.present? %>
+  <%= render 'conversations/conversation_panel', conversation: @most_recent_conversation.first if @most_recent_conversation.first.present? %>
+  <%= render 'conversations/conversation_panel', conversation: @most_active_conversation.first if @most_active_conversation.first.present? %>
 </div>

@@ -1,6 +1,6 @@
 <% conversations.each_slice(4) do |conversation_mini_array| %>
   <div class="row">
-    <%= render :partial => '/conversations/conversation_small_band', :locals => {:conversations => conversation_mini_array} %>
+    <%= render :partial => '/conversations/conversation_large_band', :locals => {:conversations => conversation_mini_array} %>
   </div>
 <% end %>
 <%= will_paginate conversations, :inner_window => 3, :previous_label => "Previous", :next_label => "Next" %>

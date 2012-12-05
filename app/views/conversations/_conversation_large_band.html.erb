@@ -1,5 +1,5 @@
 <div class="row">
   <% conversations.each do | conversation| %>
-    <%= render :partial => '/conversations/conversation_large_square_panel', :locals => {:conversation => conversation} %>
+    <%= render :partial => '/conversations/conversation_panel', :locals => {:conversation => conversation} %>
   <% end %>
 </div>

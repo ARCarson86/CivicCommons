@@ -1,16 +1,15 @@
 <% if recent.present? %>
-  <% panel_size = recent.size < 9 ? "large" : "small" %>
   <div id="tab-container" class="tab-container">
     <ul class="tab tab-section">
       <li><a href="#most-active">Most Active</a></li>
       <li><a href="#most-popular">Most Recent</a></li>
     </ul>
     <div id="most-popular">
-      <%= render :partial => "/conversations/conversation_#{panel_size}_panel_results", :locals => {:conversations => recent} unless @all_conversations.present? %>
+      <%= render :partial => "/conversations/conversation_large_panel_results", :locals => {:conversations => recent} unless @all_conversations.present? %>
       <%= link_to "See All", conversations_filter_url(:recent, :topic => params[:topic]), :class => 'button button-primary fl-right' %>
     </div>
     <div id="most-active">
-      <%= render :partial => "/conversations/conversation_#{panel_size}_panel_results", :locals => {:conversations => active} unless @all_conversations.present? %>
+      <%= render :partial => "/conversations/conversation_large_panel_results", :locals => {:conversations => active} unless @all_conversations.present? %>
       <%= link_to "See All", conversations_filter_url(:active, :topic => params[:topic]), :class => 'button button-primary fl-right' %>
     </div>
   </div>

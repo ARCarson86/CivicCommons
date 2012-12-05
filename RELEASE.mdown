@@ -11,6 +11,7 @@
   * [Recent Activity is Renamed as "Soap Box" on all Pages.](https://agilezen.com/projects/18091/story/785)
   * [Truncate Legacy Conversation Titles to 50 Characters](https://agilezen.com/projects/18091/story/787)
   * [Conversation Index Page Redesign](https://agilezen.com/projects/18091/story/799)
+  * [For Conversation Pages, Change Square Panels back to Rectangular Panels](https://agilezen.com/projects/18091/story/800)
 
 ### Chores
   * [Upgrade Airbrake gem](https://agilezen.com/projects/18091/story/796)
