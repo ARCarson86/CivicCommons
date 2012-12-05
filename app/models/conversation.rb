@@ -205,29 +205,25 @@ class Conversation < ActiveRecord::Base
     available_filters.keys.collect(&:to_s)
   end
 
-  # Display Conversations by Most Active with default filter for the last 60 days.
+  # Display Conversations by Most Active 
   def self.most_active(options = {})
     options.reverse_merge!(filter:0)
+    daysago = options.delete(:daysago)
+    
     filter = options[:filter]
     filter = [filter] unless options[:filter].respond_to?(:flatten) || filter.nil?
     filter.flatten!
 
-    Conversation.select('conversations.*, COUNT(*) AS count_all, MAX(contributions.created_at) AS max_contributions_created_at').
+    results = Conversation.select('conversations.*, COUNT(*) AS count_all, MAX(contributions.created_at) AS max_contributions_created_at').
                      joins('LEFT OUTER JOIN contributions ON conversations.id = contributions.conversation_id').
                      where("conversations.id not in (?)", filter).
                      group('conversations.id').
                      order('count_all DESC, max_contributions_created_at DESC')
+                     
+    results = results.where("contributions.created_at > ?", Time.now - daysago.days) if daysago
+    return results
   end
 
-  # Display all the Conversations by Most Active
-  def self.all_most_active
-    Conversation.select('conversations.*, COUNT(*) AS count_all, MAX(contributions.created_at) AS max_contributions_created_at').
-                     joins(:contributions).
-                     where("contributions.top_level_contribution = 0").
-                     where(:exclude_from_most_recent => false).
-                     group('conversations.id').
-                     order('count_all DESC, max_contributions_created_at DESC')
-  end
   # From the top active conversations, select a random sample.
   #
   # limit = number of most active conversations to select from (default 4)
