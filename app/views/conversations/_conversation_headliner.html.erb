@@ -1,6 +1,6 @@
 <% if conversations.present? %>
 <h3><%= @subtitle.blank? ? "Take Note" : @subtitle %></h3>
-<div class="row">
+<div class="three-col-sm">
   <% conversations.each_slice(3).first.each do |conversation| %>
     <%= render :partial => '/conversations/conversation_panel', :locals => {:conversation => conversation} %>
   <% end %>

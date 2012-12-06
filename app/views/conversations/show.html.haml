@@ -1,5 +1,8 @@
 - content_for :header do
 
+  -# NOTE: I thought we were doing away with these JS snippets? If we're no longer
+  -# supporting IE7 we should ditch them.
+
   /[if lt IE 9]
     = javascript_include_tag 'ie7_js/IE9'
   /[if IE 7]
