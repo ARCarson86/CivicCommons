@@ -3,7 +3,7 @@
     <div class="main-content">
       <h1>Conversations</h1>
       <hr/>
-      <%= render :partial => '/conversations/conversation_headliner', :locals => {:conversations => @recommended} unless @all_conversations.present? %>
+      <%= render :partial => '/conversations/conversation_headliner', :locals => {:conversations => @recommended} %>
       <%= render :partial => '/conversations/conversation_tabs', :locals => {:recent => @recent, :active => @active} unless @all_conversations.present? %>
       <%= render :partial => '/conversations/conversation_pager', :locals => {:conversations => @all_conversations} if @all_conversations.present? %>
 

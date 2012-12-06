@@ -13,6 +13,7 @@
   * [Conversation Index Page Redesign](https://agilezen.com/projects/18091/story/799)
   * [For Conversation Pages, Change Square Panels back to Rectangular Panels](https://agilezen.com/projects/18091/story/800)
   * [Remove Conversation Filter Aside](https://agilezen.com/projects/18091/story/801)
+  * [Handling Recommended Convos on All Pages](https://agilezen.com/projects/18091/story/797)
 
 ### Chores
   * [Upgrade Airbrake gem](https://agilezen.com/projects/18091/story/796)

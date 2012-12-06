@@ -90,7 +90,7 @@ describe ConversationsController do
         assigns(:all_conversations).should_not be_nil
         assigns(:active).should be_nil
         assigns(:recent).should be_nil
-        assigns(:recommended).should be_nil
+        assigns(:recommended).should be_blank
       end
       it "should return @active, @recent, @recomended conversations if metro region is the same as CivicCommon's region" do
         @controller.stub!(:default_region).and_return(510)
