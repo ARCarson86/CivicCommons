@@ -1,10 +1,123 @@
 <div class="modal modal-wrap">
-  <h2>How would you to share this conversation?</h2>
-  <p>Click the appropriate icon to continue.</p>
-  <div class="inset">
-    <a href="#" class="mrm"><img src="/assets/facebook_32.png" alt="" /></a>
-    <a href="#" class="mrm"><img src="/assets/twitter_32.png" alt="" /></a>
-    <a href="#" class="mrm"><img src="/assets/tumblr_32.png" alt="" /></a>
-    <a href="#"><img src="/assets/email_32.png" alt="" /></a>
+  <div class="share-container">
+    <h2>How would you to share this conversation?</h2>
+    <p>Click the appropriate icon to continue.</p>
+    <div class="mbm txt-center">
+      <a href="#" class="mrm js-fb-share-switch"><img src="/assets/facebook_32.png" alt="" /></a>
+      <a href="#" class="mrm js-tw-share-switch"><img src="/assets/twitter_32.png" alt="" /></a>
+      <a href="#" class="js-em-share-switch"><img src="/assets/email_32.png" alt="" /></a>
+    </div>
+    <div class="mbm">
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="civiccommons">Tweet</a>
+
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </div>
+    <div class="mbm">
+      <span id="facebook-like">
+        <a href="http://facebook.com/sharer.php?u=<%= request.url %>">Like on Facebook</a>
+      </span>
+
+      <script type="text/javascript">
+      (function($){
+        $(window).load(function(){
+          var fb = document.createElement('script'); fb.type = 'text/javascript'; fb.async = true;
+          fb.src = (document.location.protocol + '//connect.facebook.net/en_US/all.js#xfbml=1');
+          document.getElementsByTagName('head')[0].appendChild(fb);
+
+          $('#facebook-like').replaceWith('<fb:like send="false" layout="button_count" width="200" show_faces="false" font="arial"></fb:like>');
+        });
+      })(jQuery);
+      </script>
+    </div>
+  </div>
+  <div class="sub-share-container fb-share-container s-hidden">
+    <div class="mbm">
+      <span id="facebook-like">
+        <a href="http://facebook.com/sharer.php?u=<%= request.url %>">Like on Facebook</a>
+      </span>
+
+      <script type="text/javascript">
+      (function($){
+        $(window).load(function(){
+          var fb = document.createElement('script'); fb.type = 'text/javascript'; fb.async = true;
+          fb.src = (document.location.protocol + '//connect.facebook.net/en_US/all.js#xfbml=1');
+          document.getElementsByTagName('head')[0].appendChild(fb);
+
+          $('#facebook-like').replaceWith('<fb:like send="false" layout="button_count" width="200" show_faces="false" font="arial"></fb:like>');
+        });
+      })(jQuery);
+      </script>
+    </div>
+    <div class="media">
+      <div class="img">
+        <img src=" http://placehold.it/20x20" alt="" />
+      </div>
+      <div class="bd">
+        <form action="post">
+          <textarea id="fb-sharing" name="fb-sharing" rows="10" cols="30">
+          </textarea>
+          <a href="#" class="button button-primary">Share</a>
+          <a href="#" class="js-cancel">Cancel</a>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="sub-share-container tw-share-container s-hidden">
+    <div class="mbm">
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="civiccommons">Tweet</a>
+
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </div>
+    <div class="media">
+      <div class="img">
+        <img src=" http://placehold.it/20x20" alt="" />
+      </div>
+      <div class="bd">
+        <form action="post">
+          <textarea id="tw-sharing" name="tw-sharing" rows="10" cols="30">
+          </textarea>
+          <a href="#" class="button button-primary">Tweet</a>
+          <a href="#" class="js-cancel">Cancel</a>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="sub-share-container em-share-container s-hidden">
+    Some em test content
+    <a href="#" class="js-cancel">Cancel</a>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    // Trigger the fb share container
+    $('.js-fb-share-switch').click(function() {
+      $(this).parents('.share-container').hide();
+      $(this).parents('.share-container').siblings('.fb-share-container').toggleClass('s-hidden');
+      return false;
+    });
+ 
+    // Trigger the tw share container
+    $('.js-tw-share-switch').click(function() {
+      $(this).parents('.share-container').hide();
+      $(this).parents('.share-container').siblings('.tw-share-container').toggleClass('s-hidden');
+      return false;
+    });
+ 
+    // Trigger the em share container
+    $('.js-em-share-switch').click(function() {
+      $(this).parents('.share-container').hide();
+      $(this).parents('.share-container').siblings('.em-share-container').toggleClass('s-hidden');
+      return false;
+    });
+
+    // Cancel link
+    $('.js-cancel').click(function() {
+      $(this).parents('.sub-share-container').toggleClass('s-hidden');
+      $(this).parents('.sub-share-container').siblings('.share-container').show();
+      return false;
+    });
+
+  });
+</script>
