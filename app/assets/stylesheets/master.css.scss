@@ -447,7 +447,7 @@ label.plain.plain-ext {
 }
 .form-label-offset a img {float: left}
 .form-label-offset .remove_picture {margin-left: 5px;}
-input.textbox, input.textbox.small, textarea.textbox {
+input.textbox, input.textbox.small, textarea.textbox.x-small, textarea.textbox {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 1em;
   border: 1px solid #ccc;
@@ -457,6 +457,11 @@ input.textbox, input.textbox.small, textarea.textbox {
 
 input.textbox.small {
   width: 200px;
+}
+
+textarea.textbox.x-small {
+  height: 4em !important;
+  width: 235px !important;
 }
 
 .inline-form {

@@ -1,18 +1,18 @@
 <div class="modal modal-wrap">
   <div class="share-container">
-    <h2>How would you to share this conversation?</h2>
+    <h2 class="mtn">How would you to share this conversation?</h2>
     <p>Click the appropriate icon to continue.</p>
     <div class="mbm txt-center">
       <a href="#" class="mrm js-fb-share-switch"><img src="/assets/facebook_32.png" alt="" /></a>
       <a href="#" class="mrm js-tw-share-switch"><img src="/assets/twitter_32.png" alt="" /></a>
       <a href="#" class="js-em-share-switch"><img src="/assets/email_32.png" alt="" /></a>
     </div>
-    <div class="mbm">
+    <div class="pbm">
       <a href="https://twitter.com/share" class="twitter-share-button" data-via="civiccommons">Tweet</a>
 
       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
     </div>
-    <div class="mbm">
+    <div class="mbm pbm">
       <span id="facebook-like">
         <a href="http://facebook.com/sharer.php?u=<%= request.url %>">Like on Facebook</a>
       </span>
@@ -54,7 +54,7 @@
       </div>
       <div class="bd">
         <form action="post">
-          <textarea id="fb-sharing" name="fb-sharing" rows="10" cols="30">
+          <textarea class="textbox x-small" id="fb-sharing" name="fb-sharing" rows="1" cols="10">
           </textarea>
           <a href="#" class="button button-primary">Share</a>
           <a href="#" class="js-cancel">Cancel</a>
@@ -74,7 +74,7 @@
       </div>
       <div class="bd">
         <form action="post">
-          <textarea id="tw-sharing" name="tw-sharing" rows="10" cols="30">
+          <textarea class="textbox x-small" id="tw-sharing" name="tw-sharing" rows="10" cols="30">
           </textarea>
           <a href="#" class="button button-primary">Tweet</a>
           <a href="#" class="js-cancel">Cancel</a>
