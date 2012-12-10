@@ -238,7 +238,7 @@ GEM
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-ssh (2.1.4)
-    newrelic_rpm (3.4.0)
+    newrelic_rpm (3.5.3.25)
     no_peeping_toms (2.1.2)
       activerecord (>= 3.0.0)
       activesupport (>= 3.0.0)
