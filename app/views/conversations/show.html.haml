@@ -18,8 +18,8 @@
           %ol.conversations.divided.thread-list
             - @top_level_contributions.each do |contribution|
               =render :partial => "show_contribution", :locals => { :contribution => contribution }
-        - unless @conversation_contributions.empty?
-          %ol.conversations.divided.thread-list
+        %ol.conversations.divided.thread-list
+          - unless @conversation_contributions.empty?
             =render :partial => "threaded_contribution_template", :locals => { :ratings => @ratings }, :collection => @conversation_contributions, :as => :contribution
         -if current_person
           %div{:id => 'contribution_tool_container'}

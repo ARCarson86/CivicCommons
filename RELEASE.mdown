@@ -2,6 +2,7 @@
 
 ### Bug Fix
   * [Your Commons - See More Activity Link](https://agilezen.com/projects/18091/story/809)
+  * [Missing First Contribution On New Conversation](https://agilezen.com/projects/18091/story/817)
 
 
 ## 5.1
