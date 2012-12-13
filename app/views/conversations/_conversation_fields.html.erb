@@ -1,6 +1,7 @@
 <fieldset class="form-group top-align">
   <div class="form-block">
-    <%= form.label :title %>
+    <%= form.label :title, :class => "required-field" %>
+    <span class="required">*</span>
     <p class="tip mln">Choose a title for your conversation. Be clear and concise.</p>
     <%= form.text_field :title, :class => "charcount mrm textbox" %>
   </div>
@@ -23,7 +24,8 @@
   </div>
 
   <div class="form-block">
-    <%= form.label :metro_region_city, 'Location' %>
+    <%= form.label :metro_region_city, 'Location', :class => "required-field" %>
+    <span class="required">*</span>
     <p class="tip mln">Enter the city name central to your conversation. We will link it to the nearest Metro area.</p>
     <%= form.text_field :metro_region_city_display_name, :class => "textbox metro_region_city_display_name", :placeholder => "City, State" %>
     <%= form.hidden_field :metro_region_id, :class => 'metro_region_id' %>
@@ -32,7 +34,8 @@
   <%= render :partial => "/conversations/region_autocomplete" %>
 
   <div class="form-block">
-    <%= form.label :topics %>
+    <%= form.label :topics, :class => "required-field" %>
+    <span class="required">*</span>
     <p class="tip mln">Select the topics associated with this conversation.</p>
     <table class="pts conversation-topics" style="margin-left: 20px;" width="50%">
       <% topics = Topic.order(:name) %>
@@ -54,7 +57,8 @@
   </div>
 
   <div class="form-block">
-    <%= form.label :summary %>
+    <%= form.label :summary, :class => "required-field" %>
+    <span class="required">*</span>
     <p class="tip mln">
       Start here.  The first paragraph should be a summary, go into detail from there.  Ask some questions. Engage the reader!
     </p>

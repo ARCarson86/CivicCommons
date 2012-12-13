@@ -1,9 +1,10 @@
 ## 5.2
 
 ### External Changes
+  * [Add Required Field Indicator when Starting A Conversation](https://agilezen.com/project/18091/story/808)
+  * [Vote Results Details Extract](https://agilezen.com/project/18091/story/815)
   * [Remove Filter Option on Conversations](https://agilezen.com/project/18091/story/847)
   * [Remove Filter New Styles Blog / Convo Topic / Metro](https://agilezen.com/project/18091/story/853)
-  * [Vote Results Details Extract](https://agilezen.com/project/18091/story/815)
 
 ### Bug Fix
   * [Avatar - "What do you Think" Non-Logged in Missing](https://agilezen.com/project/18091/story/856)
