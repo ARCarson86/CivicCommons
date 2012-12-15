@@ -3,6 +3,7 @@
 ### Bug Fix
   * [Your Commons - See More Activity Link](https://agilezen.com/projects/18091/story/809)
   * [Missing First Contribution On New Conversation](https://agilezen.com/projects/18091/story/817)
+  * [Remove duplicate Start Convo on Conversation SubIndex](https://agilezen.com/projects/18091/story/823)
 
 
 ## 5.1

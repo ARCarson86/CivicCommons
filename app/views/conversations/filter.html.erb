@@ -4,7 +4,6 @@
     <h3><%= filter_description params[:filter] %></h3>
 
     <div class="main-content">
-      <%= render :partial => 'layouts/create_conversation' %>
       <h3><%= @current_topic ? @subtitle : "All Conversations" %></h3>
       <%= render :partial => '/conversations/conversation_large_panel_results', :locals => {:conversations => @conversations} %>
       <%= will_paginate @conversations, :inner_window => 3, :previous_label => "Previous", :next_label => "Next" %>
