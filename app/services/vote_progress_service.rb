@@ -5,7 +5,7 @@ class VoteProgressService
   include ActionView::Helpers::TagHelper
   include ActionView::Helpers::TextHelper
 
-  attr_accessor :survey, :progress_result, :total_weighted_votes, :highest_weighted_votes_percentage, :voter
+  attr_accessor :survey, :progress_result, :total_weighted_votes, :highest_weighted_votes_percentage, :voter, :selected_survey_options
   delegate  :max_selected_options,
             :to => :survey
 
@@ -86,6 +86,19 @@ class VoteProgressService
     SQL
     @progress_result =  SurveyOption.find_by_sql(progress_sql)
   end
+  
+  def calculate_selected_survey_options    
+    progress_sql = <<-SQL
+      SELECT s.id AS survey_id, p.id AS person_id, p.first_name, p.last_name, p.email, sr.created_at AS date_voted, so.id AS survey_option_id, so.title, 
+      COALESCE((s.max_selected_options - sso.position + 1),0) AS weight
+      FROM surveys s JOIN survey_responses sr ON s.id = sr.survey_id
+      JOIN selected_survey_options sso ON sso.survey_response_id = sr.id
+      JOIN survey_options so ON sso.survey_option_id = so.id
+      JOIN people p ON sr.person_id = p.id
+      WHERE s.id = #{survey.id}
+    SQL
+     @selected_survey_options = SelectedSurveyOption.find_by_sql(progress_sql)
+  end
 
   def formatted_weigthed_votes
     VoteProgressService.format_data(progress_result.collect{|record| record.weighted_votes})
@@ -107,6 +120,29 @@ class VoteProgressService
       end
     end
   end
+  
+  def export_selected_survey_options_to_csv
+    calculate_selected_survey_options
+    csv_string = CSV.generate do |csv|
+      # header row
+      csv << ['Vote Title','Voter', 'Email', 'Date Voted', 'Selection ID', 'Selection', 'Weight']
+      
+      # body row
+      selected_survey_options.each_with_index do |selection, index|
+        csv << [
+          @survey.title,
+          selection.first_name.to_s + ' ' + selection.last_name.to_s,
+          selection.email.to_s,
+          selection.date_voted,
+          selection.survey_option_id,
+          selection.title,
+          selection.weight
+        ]
+      end
+    end
+  end
+  
+  
 
   def self.format_data(data=[])
     #turns one dimensional array into multi dimensional array needed for the google chart

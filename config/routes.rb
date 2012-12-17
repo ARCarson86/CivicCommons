@@ -241,6 +241,7 @@ Civiccommons::Application.routes.draw do
     resources :surveys do
       get 'progress', on: :member
       get 'export_progress', on: :member
+      get 'export_voting_records', on: :member
     end
     resources :topics
     resources :people do

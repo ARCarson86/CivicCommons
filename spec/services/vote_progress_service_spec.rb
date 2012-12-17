@@ -37,6 +37,52 @@ describe VoteProgressService do
     @vote_progress_service = VoteProgressService.new(@survey)
   end
   
+  describe "calculate_selected_survey_options" do
+    before(:each) do
+      given_valid_vote_responses
+      @selected_survey_option = VoteProgressService.new(@survey).calculate_selected_survey_options.first
+    end
+    it "should return the correct number of results" do
+      given_valid_vote_responses
+      VoteProgressService.new(@survey).calculate_selected_survey_options.length.should == 3
+    end
+    it "should return survey_id" do
+      given_valid_vote_responses
+      @selected_survey_option.attributes['survey_id'].should_not be_nil
+    end
+    it "should return person_id" do
+      given_valid_vote_responses
+      @selected_survey_option.attributes['person_id'].should_not be_nil
+    end
+    it "should return first_name" do
+      given_valid_vote_responses
+      @selected_survey_option.attributes['first_name'].should_not be_nil
+    end
+    it "should return last_name" do
+      given_valid_vote_responses
+      @selected_survey_option.attributes['last_name'].should_not be_nil
+    end
+    it "should return email" do
+      given_valid_vote_responses
+      @selected_survey_option.attributes['email'].should_not be_nil
+    end
+    it "should return date_voted" do
+      given_valid_vote_responses
+      @selected_survey_option.attributes['date_voted'].should_not be_nil
+    end
+    it "should return survey_option_id" do
+      given_valid_vote_responses
+      @selected_survey_option.attributes['survey_option_id'].should_not be_nil
+    end
+    it "should return title" do
+      given_valid_vote_responses
+      @selected_survey_option.attributes['title'].should_not be_nil
+    end
+    it "should return weight" do
+      given_valid_vote_responses
+      @selected_survey_option.attributes['weight'].should_not be_nil
+    end
+  end
   
   describe "calculate_progress" do
     it "should return the correct number of results" do
@@ -188,4 +234,36 @@ describe VoteProgressService do
       VoteProgressService.new(@survey).export_to_csv.should =~ /75/i
     end
   end
+  
+  describe "export_selected_survey_options_to_csv" do
+    it "should have Vote Title header" do
+      given_valid_vote_responses
+      VoteProgressService.new(@survey).export_selected_survey_options_to_csv.should =~ /Vote Title/i
+    end
+    it "should have Voter" do
+      given_valid_vote_responses
+      VoteProgressService.new(@survey).export_selected_survey_options_to_csv.should =~ /Voter/i
+    end
+    it "should have Email" do
+      given_valid_vote_responses
+      VoteProgressService.new(@survey).export_selected_survey_options_to_csv.should =~ /Email/i
+    end
+    it "should have Date Voted" do
+      given_valid_vote_responses
+      VoteProgressService.new(@survey).export_selected_survey_options_to_csv.should =~ /Date Voted/i
+    end
+    it "should have Selection ID" do
+      given_valid_vote_responses
+      VoteProgressService.new(@survey).export_selected_survey_options_to_csv.should =~ /Selection ID/i
+    end
+    it "should have Selection" do
+      given_valid_vote_responses
+      VoteProgressService.new(@survey).export_selected_survey_options_to_csv.should =~ /Selection/i
+    end
+    it "should have Weight" do
+      given_valid_vote_responses
+      VoteProgressService.new(@survey).export_selected_survey_options_to_csv.should =~ /Weight/i
+    end
+  end
+  
 end

@@ -195,5 +195,32 @@ describe Admin::SurveysController do
     end
   end
   
+  describe "GET export_voting_records" do
+    it "assigns the requested survey as @survey" do
+      Survey.stub(:find).with("37") { mock_survey }
+      VoteProgressService.stub(:new).and_return(vote_progress_service_double)
+      get :export_voting_records, :id => "37"
+      assigns(:survey).should be(mock_survey)
+    end
+    it "initalizes the Vote Progress service" do
+      Survey.stub(:find).with("37") { mock_survey }
+      VoteProgressService.should_receive(:new).with(mock_survey).and_return(vote_progress_service_double)
+      get :export_voting_records, :id => "37"
+    end
+    it "it calls the export_selected_survey_options_to_csv method" do
+      Survey.stub(:find).with("37") { mock_survey }
+      VoteProgressService.stub(:new).with(mock_survey).and_return(vote_progress_service_double)
+      vote_progress_service_double.should_receive(:export_selected_survey_options_to_csv).and_return([])
+      get :export_voting_records, :id => "37"
+    end
+    it "should respond with CSV mime type" do
+      Survey.stub(:find).with("37") { mock_survey }
+      VoteProgressService.stub(:new).with(mock_survey).and_return(vote_progress_service_double)
+      get :export_voting_records, :id => "37"
+      response.content_type.should == 'text/csv'
+    end
+  end
+  
+  
 
 end

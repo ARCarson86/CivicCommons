@@ -118,4 +118,12 @@ class Admin::SurveysController < Admin::DashboardController
     csv_string = @vote_progress_service.export_to_csv
     render :text => csv_string, :content_type => Mime::CSV
   end
+  
+  def export_voting_records
+    @survey = Survey.find(params[:id])
+    @vote_progress_service = VoteProgressService.new(@survey)
+    csv_string = @vote_progress_service.export_selected_survey_options_to_csv
+    render :text => csv_string, :content_type => Mime::CSV
+  end
+  
 end

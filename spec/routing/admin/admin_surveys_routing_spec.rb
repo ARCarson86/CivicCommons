@@ -39,5 +39,8 @@ describe Admin::SurveysController do
       { :get => "/admin/surveys/1/export_progress" }.should route_to(:controller => "admin/surveys", :action => "export_progress", :id => "1")
     end
 
+    it "recognizes and generates #export_voting_records" do
+      { :get => "/admin/surveys/1/export_voting_records" }.should route_to(:controller => "admin/surveys", :action => "export_voting_records", :id => "1")
+    end
   end
 end
