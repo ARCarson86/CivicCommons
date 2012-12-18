@@ -658,13 +658,14 @@ describe Notification do
     describe "limit_notifications_per_user" do
       it "will reduce notifications in the system" do
         p = FactoryGirl.create(:registered_user)
-        @notification1 = FactoryGirl.create(:notification, :person => p, :created_at => Time.now)
-        @notification2 = FactoryGirl.create(:notification, :person => p, :created_at => 1.day.ago)
-        @notification3 = FactoryGirl.create(:notification, :person => p, :created_at => 2.days.ago)
+        n1 = FactoryGirl.create(:notification, :person => p, :receiver => p, :created_at => Time.now)
+        n2 = FactoryGirl.create(:notification, :person => p, :receiver => p, :created_at => 1.day.ago)
+        n3 = FactoryGirl.create(:notification, :person => p, :receiver => p, :created_at => 2.days.ago)
 
         Notification.count.should == 3
         Notification.users_with_notifications.count.should == 1
-        Notification.limit_notifications_per_user(:limit => 2).should == [@notifications1, @notifications2]
+        Notification.limit_notifications_per_user(:limit => 2)
+        Notification.all.should == [n1, n2]
       end
     end
   end

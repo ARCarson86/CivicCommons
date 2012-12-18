@@ -364,16 +364,17 @@ class Notification < ActiveRecord::Base
     Notification.group("person_id").collect{|n| n.person_id}
   end
 
+  # Purge notifications over limit for each user
   def self.limit_notifications_per_user(options = {})
     options.reverse_merge!({limit:50, log:false})
+    puts "* limit_notifications set to #{options[:limit]} notifications" if options[:log]
 
     users = Notification.users_with_notifications
-
     users.each do |user|
       user_notifications = Notification.where('receiver_id = ?', user).order("created_at desc")
 
       if user_notifications.count > options[:limit]
-        puts "* limit_notifications: #{Person.find(user).display_name} has #{user_notifications.count} notifications" if options[:log]
+        puts "* limit_notifications: #{Person.find(user).name} has #{user_notifications.count} notifications" if options[:log]
         newest_notifications = user_notifications.limit(options[:limit]).all
         Notification.where('receiver_id = ?', user).destroy_all(['id NOT IN (?)', newest_notifications.collect(&:id)])
       end
