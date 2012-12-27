@@ -41,8 +41,8 @@ fi
 # to perform a backup nightly and keep 10 of them.  The latest 
 # one should be #9.
 echo "Getting latest backup file . . . "
-BACKUP_FILE=`ssh ${USERNAME}@${DB_HOST} 'sudo -i eybackup -e mysql --l TheCivicCommons' | awk '/9/ { print $2 }'`
-if [ -e ${TMPDIR}${BACKUP_FILE} ]
+BACKUP_FILE=`ssh ${USERNAME}@${DB_HOST} 'sudo -i eybackup -e mysql --l TheCivicCommons' | awk '/9:TheCivicCommons/ { print $2 }'`
+if [ -e "${TMPDIR}${BACKUP_FILE}" ]
 then
   echo "${BACKUP_FILE} has already been downloaded."
 else
