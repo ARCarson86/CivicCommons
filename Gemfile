@@ -94,7 +94,7 @@ group :test do
   gem 'email_spec', '~>1.2.1'
   gem "factory_girl_rails", '~>3.1'
   gem 'fuubar', '~>1.0.0'
-  gem "jasmine", '~>1.1.2'
+  gem "jasmine", "~> 1.3.1"
   gem "jasmine-headless-webkit", '~>0.8.4'
   gem 'linguistics', '~>1.0.9'
   gem 'no_peeping_toms', "~>2.1.2"
