@@ -6,7 +6,7 @@
 # patch, and the test for this may fail if said version of Rails hasn't
 # fixed this yet. At that time, this patch may need re-investigation since
 # it take advantage of internals of this class.
-if Rails.version.eql?('3.1.4')
+if Rails.version.eql?('3.1.10')
   module Mime
     class Type
       def self.lookup(string)
