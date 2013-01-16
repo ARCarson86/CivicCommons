@@ -5,4 +5,5 @@
       <li><%= conversation_topic_filter(topic) %></li>
     <% end %>
   </ul>
+  <%= link_to 'Remove Filter', conversations_path, :class => 'remove-filter', :title => 'Remove this filter'%>
 </div>
