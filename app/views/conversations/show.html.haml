@@ -1,0 +1,26 @@
+- content_for :header do
+
+  -# NOTE: I thought we were doing away with these JS snippets? If we're no longer
+  -# supporting IE7 we should ditch them.
+
+  /[if lt IE 9]
+    = javascript_include_tag 'ie7_js/IE9'
+  /[if IE 7]
+    = javascript_include_tag 'ie7_js/ie7-recalc'
+
+.wrapper
+  .content-container{:style => 'position: relative;'}
+    .convo-box
+      .contribution-primary.new-top-level-contribution
+        .row
+          .col-2
+            -if current_person
+              = avatar_profile(current_person, 80, 'callout', :large)
+            -else
+              = image_tag 'avatar_180.gif', :width => '80', :height => '80'
+          .col-9
+            .contribution_tool_container.main_contribution_tool{:style => 'margin-left: -25px;'}
+              = text_area_tag :new_contribution, nil, :placeholder => 'What do you think? Add your 2¢' , :class => 'textbox new_contribution', :id => nil, 'data-signed-in' => signed_in?
+              -if current_person
+                = render :partial => 'conversations/contribution_tool', :locals => { :conversation => @conversation, :contribution => @contribution }
+      =render :partial => 'top_level_contribution', :collection => @top_level_contributions, :as => :contribution

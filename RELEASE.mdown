@@ -3,6 +3,7 @@
 ### External Changes
 
 ### Bug Fix
+  * [Avatar - "What do you Think" Non-Logged in Missing](https://agilezen.com/project/18091/story/856)
   * [Follow button not working on conversation page and organization profile page](https://agilezen.com/project/18091/story/860)
 
 
