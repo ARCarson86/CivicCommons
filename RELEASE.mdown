@@ -1,3 +1,11 @@
+## 5.2
+
+### External Changes
+
+### Bug Fix
+  * [Follow button not working on conversation page and organization profile page](https://agilezen.com/project/18091/story/860)
+
+
 ## 5.1.2
 
 ### Chores
