@@ -34,27 +34,27 @@
       <script src="/assets/alert.js?body=1" type="text/javascript"></script>
       <script src="/assets/upgrade-browser.js?body=1" type="text/javascript"></script>
       <script src="/assets/jquery/jquery.ui.touch-punch.min.js?body=1" type="text/javascript"></script>
-      
+
       <!--[if gte IE 7]><!-->
       <link href="/assets/application.css?body=1" media="screen, projection" rel="stylesheet" type="text/css" />
       <!--<![endif]-->
     <script type='text/javascript'>
       //<![CDATA[
         $(document).ready(function(){
-        
+
           $("input.datetime").datetimepicker({
             ampm: true,
             stepMinute: 15
           });
 
         });
-        
+
         /* Google Analytics */
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-19685339-1']);
         _gaq.push(['_setDomainName', '.theciviccommons.com']);
         _gaq.push(['_trackPageview']);
-        
+
         (function() {
           var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
           ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
@@ -62,7 +62,7 @@
         })();
       //]]>
     </script>
-    
+
     <link href="http://feeds.theciviccommons.com/civiccommons_new_conversations" rel="alternate" title="The Civic Commons: Conversations" type="application/rss+xml" />
     <link href="http://feeds.theciviccommons.com/civiccommonsblog" rel="alternate" title="The Civic Commons: Common Blog" type="application/rss+xml" />
     <link href="http://feeds.theciviccommons.com/civiccommonsradio" rel="alternate" title="The Civic Commons Radio Show" type="application/rss+xml" />
@@ -101,7 +101,7 @@
         <div id="search" class="">
           <form accept-charset="UTF-8" action="/search/results" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>
             <input class="textbox" id="q" name="q" placeholder="What are you looking for?" type="text">
-            
+
             <input class="submit" id="Search" type="submit" value="Search">
         </form></div>
       </div>
@@ -270,7 +270,7 @@
             <h3>Filter Issues by Topic:</h3>
             <ul class="simple-list block-link-list topics">
               <li><a href="/issues?topic=1" class=""><span>Education</span> <em>6</em></a></li>
-              <li><a href="/issues?topic=2" class="active"><span>Environment</span> <em>5</em></a><div class="remove-filter">&times;</div></li>
+              <li><a href="/issues?topic=2" class="active"><span>Environment</span> <em>5</em></a><div class="remove-filter"><img src="/assets/removex.png"></div></li>
               <li><a href="/issues?topic=3" class=""><span>Arts</span> <em>2</em></a></li>
               <li><a href="/issues?topic=4" class=""><span>Economy</span> <em>12</em></a></li>
               <li><a href="/issues?topic=5" class=""><span>Crime &amp; Safety</span> <em>6</em></a></li>
@@ -299,7 +299,7 @@
                   <a href="http://localhost:3000/user/nancy-reeves" title="Nancy Reeves"><img alt="Nancy Reeves" class="callout" height="40" src="http://s3.amazonaws.com/com.theciviccommons.production/avatars/893/standard/MS150.jpg?1304999301" title="Nancy Reeves" width="40"></a>
                   <p>
                   <strong><a href="http://localhost:3000/user/nancy-reeves">Nancy Reeves</a></strong> -
-                  "Josh, 
+                  "Josh,
                   The tweet was a description of Clint Eastwood's performance, and every source I can find..."
                   </p>
                   <p><a href="http://localhost:3000/conversations/what-do-you-wish-the-candidates-were-actually-talking-about#node-9088" class="read-more">Continue Reading</a></p>
@@ -426,7 +426,7 @@
 <script type="text/javascript" charset="utf-8">
   var feedback_widget_options = {};
 
-  feedback_widget_options.display = "overlay";  
+  feedback_widget_options.display = "overlay";
   feedback_widget_options.company = "theciviccommons";
   feedback_widget_options.placement = "left";
   feedback_widget_options.color = "#51778E";
