@@ -2,8 +2,14 @@
   <h3>Filter Conversations by Topic</h3>
   <ul class="simple-list block-link-list topics">
     <% topics.each do |topic| %>
-      <li><%= conversation_topic_filter(topic) %></li>
+      <li>
+        <%= conversation_topic_filter(topic) %>
+        <% if topic.id.to_s == params[:topic] %>
+          <div class="remove-filter">
+            <%= link_to image_tag('removex.png'), conversations_path, :title => 'Remove filter'%>
+          </div>
+        <% end %>
+      </li>
     <% end %>
   </ul>
-  <%= link_to 'Remove Filter', conversations_path, :class => 'remove-filter', :title => 'Remove this filter'%>
 </div>

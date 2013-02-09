@@ -2,7 +2,14 @@
   <h3>Only show blog posts about:</h3>
   <ul class="simple-list block-link-list topic-filter">
     <% topics.each do |topic| %>
-      <li><%= content_item_topic_filter(topic, :blogpost) %></li>
+      <li>
+        <%= content_item_topic_filter(topic, :blogpost) %>
+        <% if topic.id.to_s == params[:topic] %>
+          <div class="remove-filter">
+            <%= link_to image_tag('removex.png'), blog_index_url, :title => 'Remove filter'%>
+          </div>
+        <% end %>
+      </li>
     <% end %>
   </ul>
 </div>

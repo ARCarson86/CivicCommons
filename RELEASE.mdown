@@ -2,6 +2,7 @@
 
 ### External Changes
   * [Remove Filter Option on Conversations](https://agilezen.com/project/18091/story/847)
+  * [Remove Filter New Styles Blog / Convo Topic / Metro](https://agilezen.com/project/18091/story/853)
 
 ### Bug Fix
   * [Avatar - "What do you Think" Non-Logged in Missing](https://agilezen.com/project/18091/story/856)
