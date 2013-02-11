@@ -5,7 +5,7 @@
       <li>
         <%= content_item_topic_filter(topic, :blogpost) %>
         <% if topic.id.to_s == params[:topic] %>
-          <%= link_to image_tag('removex.png'), blog_index_url(:author_id => params[:author_id]), :class => 'remove-filter', :title => 'Remove filter'%>
+          <%= link_to image_tag('close.png'), blog_index_url(:author_id => params[:author_id]), :class => 'remove-filter', :title => 'Remove filter'%>
         <% end %>
       </li>
     <% end %>

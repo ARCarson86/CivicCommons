@@ -6,9 +6,34 @@
       <li>
         <%= link_to raw("<span>#{metro_region.display_name}</span>" ), metro_region_filter_url(metro_region.metrocode), :method => :post, :class => (default_region.to_s == metro_region.metrocode ? 'active' : '') %>
         <% if current_region.present? && current_region.metrocode == metro_region.metrocode %>
-          <%= link_to image_tag('removex.png'), cancel_metro_region_filter_path, :method => :post, :title => 'Remove filter', :class=> 'remove-filter' %>
+          <%= link_to image_tag('blank.png'), cancel_metro_region_filter_path, :method => :post, :title => 'Remove filter', :class=> 'remove-filter' %>
         <% end %>
       </li>
     <%- end -%>
   </ul>
 </div>
+
+
+
+<style>
+
+.simple-list li {
+  position:relative;
+}
+.remove-filter {
+  position:absolute;
+  top: 7px;
+  right: 3px;
+  z-index: 1;
+  border-bottom: none;
+
+}
+
+.simple-list ul {
+  border-bottom: none;
+}
+ul.remove-filter {
+  border-bottom: none;
+}
+
+</style>

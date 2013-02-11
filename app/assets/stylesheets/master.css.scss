@@ -519,6 +519,9 @@ button.cancel, input.submit, input#contribution_submit {
   @include filter-gradient(rgb(185, 201, 116), rgb(157, 174, 85), vertical);
   @include box-shadow(rgba(255,255,255,1) 0 1px 1px, rgba(255,255,255,.2) 0 1px 1px inset);
 }
+img {
+  display: normal;
+}
 button.cancel {
   margin-left: 2px;
   cursor: pointer;
@@ -2544,23 +2547,38 @@ a.remove-search-filter:link, a.remove-search-filter:visited {
   background: image-url("close.png") no-repeat 0 0;
   padding: 0 0 2px 20px;
   text-decoration: none;
+  float: right;
+  position:absolute;
+  top: 3px;
+  right: 3px;
+  border-bottom: 0px;
 }
 a.remove-search-filter:hover {
-  background-position: 0 -64px;
-  color: #51778e;
+  background-position: 0 -64px !important;
+  color: #51778e !important;
+}
+
+.simple-list li {
+  position:relative;
 }
 
 /* This version is more generic and can be used to clear any type of filter */
 
 a.remove-filter:link, a.remove-filter:visited {
 color: #777;
+width: 10px;
 background: image-url("close.png") no-repeat 0 0;
 padding: 0 0 2px 20px;
 text-decoration: none;
+padding: 0 10px 0px 9px;
+text-decoration: none;
+float: right;
+border-bottom: 0px;
 }
 a.remove-filter:hover {
-background-position: 0 -64px;
-color: #51778e;
+background: image-url("close.png") no-repeat 0 0 !important;
+background-position: 0 -64px !important;
+
 }
 
 

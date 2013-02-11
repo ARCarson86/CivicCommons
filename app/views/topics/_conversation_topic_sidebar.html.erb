@@ -5,9 +5,32 @@
       <li>
         <%= conversation_topic_filter(topic) %>
         <% if topic.id.to_s == params[:topic] %>
-          <%= link_to image_tag('removex.png'), conversations_path, :class=>"remove-filter", :title => 'Remove filter' %>
+        <%= link_to image_tag('blank.png'), conversations_path, :class=>"remove-filter", :border=>"5", :title => 'Remove filter' %>
         <% end %>
       </li>
     <% end %>
   </ul>
 </div>
+
+<style>
+
+.simple-list li {
+  position:relative;
+}
+.remove-filter {
+  position:absolute;
+  top: 7px;
+  right: 3px;
+  z-index: 1;
+  border-bottom: none;
+
+}
+
+.simple-list ul {
+  border-bottom: none;
+}
+ul.remove-filter {
+  border-bottom: none;
+}
+
+</style>
