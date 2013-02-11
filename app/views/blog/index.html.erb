@@ -35,10 +35,14 @@
           <h3>Filter posts by author:</h3>
           <ul class="site-filter full">
             <%- @blog_authors.each do |author| -%>
-              <li><%= blog_filter_by_author_link(author,@current_author) %> </li>
+              <li>
+                <%= blog_filter_by_author_link(author,@current_author) %>
+                <% if author.id.to_s == params[:author_id] %>
+                  <%= link_to image_tag('removex.png'), blog_index_path(:topic => params[:topic]), :class => 'remove-filter', :title => 'Remove this filter'%>
+                <% end %>
+              </li>
             <%- end -%>
           </ul>
-          <%= link_to 'Remove Filter',blog_index_path, :class => 'remove-filter', :title => 'Remove this filter'%>
         </div>
       </div>
 
