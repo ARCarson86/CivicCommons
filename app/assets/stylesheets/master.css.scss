@@ -355,6 +355,7 @@ ul.simple-list {
 ul.block-link-list li {
   position: relative;
   margin-bottom: 0;
+
 }
 
 ul.block-link-list a {
@@ -2581,6 +2582,34 @@ background-position: 0 -64px !important;
 
 }
 
+a.remove-filterau:link, a.remove-filterau:visited {
+color: #777;
+width: 10px;
+background: image-url("close.png") no-repeat 0 0;
+padding: 0 10px 0px 9px;
+text-decoration: none;
+float: right;
+border: 0px !important;
+border-bottom: 0px !important;
+margin-top: -33px;
+img-border: 0px;
+border-color: transparent;
+-moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  -o-border-radius: 0px;
+  border-radius: 0px;
+  -webkit-box-shadow: 0 0px 0px rgba(0, 0, 0, 0.12);
+  -moz-box-shadow: 0 0px 0px rgba(0, 0, 0, 0.12);
+  -o-box-shadow: 0 0px 0px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.12);
+
+}
+a.remove-filterau:hover {
+background: image-url("close.png") no-repeat 0 0 !important;
+background-position: 0 -64px !important;
+
+}
+
 
 /*- MAINTENANCE PAGE
 ----------------------------------------------------------------------*/
@@ -2934,6 +2963,8 @@ p.create-title {
   -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
   -o-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+  position: relative;
+  
 }
 .site-filter.full li a {padding-left: 10px;}
 .aside .f-conv ul.feat-list li a, .aside .search-filter a.remove-search-filter {margin-left:5px}
