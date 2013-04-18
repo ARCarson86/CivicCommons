@@ -16,7 +16,7 @@
 # With the one small addition that this patch also correctly handles
 # image/* types.
 #
-if Rails.version == '3.1.10'
+if Rails.version == '3.1.12'
   module Mime
     class Type
 

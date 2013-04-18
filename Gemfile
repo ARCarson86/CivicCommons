@@ -11,8 +11,10 @@ gem 'omniauth-facebook'
 
 gem 'fb_graph'
 
-gem 'rails', "~> 3.1.0"
+gem 'rails', "~> 3.1.12"
 gem 'jquery-rails', '>= 1.0.3'
+
+gem 'json', '~>1.7.7'
 
 gem 'haml', '~> 3.1.4'
 
