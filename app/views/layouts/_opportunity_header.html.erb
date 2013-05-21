@@ -11,8 +11,9 @@
           </div>
         </div>
       <% end %>
-      <div class="main-content">
 
+  <% cache [@conversation.id, @conversation.participants.count, @conversation.action_participants_count, @conversation.reflection_participants_count, opportunity_header] do %>
+      <div class="main-content">
         <div class='main-content-left'>
           <%= image_tag @conversation.image.url(:panel), :width => 120, :height => 80, :alt => short_title(@conversation.title), :class => 'featured main-img' %>
         </div>
@@ -38,8 +39,9 @@
           actions_count:      @conversation.action_participants_count,
           reflections_count:  @conversation.reflection_participants_count
         } %>
-
       </div><!-- /.main-content -->
+  <% end %>
+
 
       <div class='aside supplementary'>
 
