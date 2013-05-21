@@ -33,4 +33,11 @@ Civiccommons::Application.configure do
     # Reload on XHR requests
     keep :xhr
   end
+
+  # parse the memcached.yml
+  memcached_config = YAML.load_file(Rails.root.join('config/memcached.yml'))
+  memcached_hosts = memcached_config['defaults']['servers']
+  # # pass the servers to dalli setup
+  config.cache_store = :dalli_store, *memcached_hosts
+
 end

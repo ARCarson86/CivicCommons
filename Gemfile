@@ -2,6 +2,8 @@ source 'http://rubygems.org'
 
 gem 'newrelic_rpm'
 
+gem 'dalli'
+
 gem 'mysql2', '~> 0.3'
 
 gem 'devise', '1.5.2'
