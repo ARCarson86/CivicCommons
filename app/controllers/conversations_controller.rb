@@ -47,7 +47,7 @@ class ConversationsController < ApplicationController
   # GET /conversations
   def index
     topic_setup
-    
+
     @recommended = @search.filter_metro_region(default_region).recommended.limit(3)
     if default_region == cc_metro_region || default_region.blank? #&& !@current_topic.present?
       @active = @search.filter_metro_region(default_region).most_active.limit(6)
