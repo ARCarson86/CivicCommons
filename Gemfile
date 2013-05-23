@@ -3,6 +3,7 @@ source 'http://rubygems.org'
 gem 'newrelic_rpm'
 
 gem 'dalli'
+gem 'cache_digests', :git => 'git://github.com/CivicCommons/cache_digests.git', :branch  => "master"
 
 gem 'mysql2', '~> 0.3'
 
