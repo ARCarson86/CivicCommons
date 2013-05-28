@@ -1,0 +1,38 @@
+<% content_for :header do %>
+  <%# NOTE: I thought we were doing away with these JS snippets? If we're no longer
+  -# supporting IE7 we should ditch them. %>
+
+  <!--[if lt IE 9]>
+    <script src="/assets/ie7_js/IE9.js?body=1" type="text/javascript"></script>
+  <![endif]-->
+  <!--[if IE 7]>
+    <script src="/assets/ie7_js/ie7-recalc.js?body=1" type="text/javascript"></script>
+  <![endif]-->
+<% end %>
+
+<div class="wrapper">
+  <div class="content-container">
+    <% conversation_main_thread_cache_key = ["conversation_main_thread",
+                                              current_person.admin? ? "admin" : "user",
+                                              @conversation.id,
+                                              @latest_contribution.nil? ? 0 : @latest_contribution.id,
+                                              @ratings.count] %>
+    <% cache conversation_main_thread_cache_key do %>
+      <%= render :partial => "conversation_main_thread" %>
+    <% end %>
+    <% conversation_show_aside_cache_key = ["conversation_show_aside",
+                                            @conversation.id,
+                                            @conversation.issues.managed_issue.count,
+                                            @conversation_participants.count,
+                                            @latest_contribution.nil? ? 0 : @latest_contribution.id] %>
+    <% cache conversation_show_aside_cache_key do %>
+      <%= render :partial => "conversation_show_aside" %>
+    <% end %>
+
+    <% if @new_conversation %>
+      <%= render :partial => 'conversation_action_modal.js', :locals => {:conversation => @conversation} %>
+    <% end %>
+
+  </div>
+</div>
+
