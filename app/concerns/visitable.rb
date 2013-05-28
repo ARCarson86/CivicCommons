@@ -28,8 +28,13 @@ module Visitable
   end
 
   def visit!(user_id)
+    # We don't want to change the update_at time during a visit tracking only during real changes.
+    self.class.record_timestamps = false
+
     self.visit(user_id)
     self.save
+
+    self.class.record_timestamps = true
   end
 
   def calculate_recent_visits
