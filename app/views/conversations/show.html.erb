@@ -12,8 +12,14 @@
 
 <div class="wrapper">
   <div class="content-container">
+    <%
+      user_type = "annonymous"
+      if current_person.present?
+        user_type = current_person.admin? ? "admin" : "user"
+      end
+    %>
     <% conversation_main_thread_cache_key = ["conversation_main_thread",
-                                              current_person.admin? ? "admin" : "user",
+                                              user_type,
                                               @conversation.id,
                                               @latest_contribution.nil? ? 0 : @latest_contribution.id,
                                               @ratings.count] %>
