@@ -1,0 +1,10 @@
+<li>
+  <div class="media">
+    <%= profile_image(notification.person, 20, 'img') %>
+    <div class="bd">
+      <a href="<%= conversation_reflection_path(conversation_id: item.reflection.conversation.id, id: item.reflection, :anchor => 'opportunity-nav') %>">
+        <p><strong><%= notification.person_name %></strong> made a comment on the reflection '<%= notification.item_title %>'.</p>
+      </a>
+    </div>
+  </div>
+</li>
