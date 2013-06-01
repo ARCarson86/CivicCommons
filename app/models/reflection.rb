@@ -15,7 +15,7 @@ class Reflection < ActiveRecord::Base
   def owner_name
     self.person.name
   end
-  
+
   def commenter_ids
     comments.collect(&:person_id)
   end

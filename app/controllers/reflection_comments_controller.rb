@@ -9,7 +9,7 @@ class ReflectionCommentsController < ApplicationController
 
   def edit
   end
-  
+
   def update
     if @comment.update_attributes(params[:reflection_comment])
       flash[:notice] = 'This comment has been successfully updated'
@@ -18,7 +18,7 @@ class ReflectionCommentsController < ApplicationController
       render :action => :edit
     end
   end
-  
+
   def destroy
     @comment.destroy
     flash[:notice] = 'This comment has been successfully deleted'
@@ -39,18 +39,18 @@ class ReflectionCommentsController < ApplicationController
   end
 
   protected
-  
+
   def find_comment
     @comment = @reflection.comments.find(params[:id])
   end
-  
+
   def verify_moderating_ability
     if !current_person.admin? && (@comment.person != current_person)
       flash[:notice] = "You're not allowed to view this page"
       redirect_to conversation_reflection_path @conversation, @reflection
     end
   end
-  
+
   def find_conversation_and_reflection
     @conversation = Conversation.find(params[:conversation_id])
     @reflection = @conversation.reflections.find(params[:reflection_id])
