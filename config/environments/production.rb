@@ -87,4 +87,11 @@ Civiccommons::Application.configure do
   config.assets.precompile += %w( admin.js ie7_jsIE9.js ie7_js/ie7-recalc.js show_colorbox.js conversations/activities.embed.js conversations/show_embed.js tiny_mce/**/*.js tiny_mce/*.js )
   config.assets.precompile += %w( admin.css widget.css tiny_mce/**/*.css)
   config.assets.precompile += Ckeditor.assets
+
+  # parse the memcached.yml
+  memcached_config = YAML.load_file(Rails.root.join('config/memcached.yml'))
+  memcached_hosts = memcached_config['defaults']['servers']
+  # # pass the servers to dalli setup
+  config.cache_store = :dalli_store, *memcached_hosts
+
 end
