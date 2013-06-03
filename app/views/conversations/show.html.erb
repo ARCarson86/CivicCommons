@@ -12,20 +12,8 @@
 
 <div class="wrapper">
   <div class="content-container">
-    <%
-      user_type = "annonymous"
-      if current_person.present?
-        user_type = current_person.admin? ? "admin" : "user"
-      end
-    %>
-    <% conversation_main_thread_cache_key = ["conversation_main_thread",
-                                              user_type,
-                                              @conversation.id,
-                                              @latest_contribution.nil? ? 0 : @latest_contribution.id,
-                                              @ratings.count] %>
-    <% cache conversation_main_thread_cache_key do %>
-      <%= render :partial => "conversation_main_thread" %>
-    <% end %>
+    <%= render :partial => "conversation_main_thread" %>
+
     <% conversation_show_aside_cache_key = ["conversation_show_aside",
                                             @conversation.id,
                                             @conversation.issues.managed_issue.count,
