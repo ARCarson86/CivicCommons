@@ -354,4 +354,15 @@ class Conversation < ActiveRecord::Base
     return true
   end
 
+  # Due to caching, we need to update the issue updated_at timestamp
+  #   so we can automatically expire the old cache.
+  # Conversations do not have issues when they are created so we don't
+  #   need to do this after_save, only when an admin adds a convo to
+  #   an issue or project.
+  def touch_issues
+    self.issues.each do |issue|
+      issue.touch
+    end
+  end
+
 end

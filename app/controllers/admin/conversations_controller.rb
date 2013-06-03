@@ -66,7 +66,12 @@ class Admin::ConversationsController < Admin::DashboardController
   def update
 
     @conversation = Conversation.find(params[:id])
+
+    conversation_starting_issues = @conversation.issues.collect(&:id).sort
+    conversation_final_issues = params[:conversation][:issue_ids].reject(&:empty?).collect(&:to_i).sort
+
     if @conversation.update_attributes(params[:conversation])
+      @conversation.touch_issues unless conversation_starting_issues == conversation_final_issues
       flash[:notice] = "Successfully updated conversation"
       redirect_to admin_conversations_path
     else
