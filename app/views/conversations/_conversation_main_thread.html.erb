@@ -14,7 +14,7 @@
                                              @conversation.id,
                                              @latest_contribution.nil? ? 0 : @latest_contribution.id,
                                              @ratings.count] %>
-    <% cache conversation_main_thread_cache_key do %>
+    <%# cache conversation_main_thread_cache_key do %>
       <% if !@top_level_contributions.empty? %>
       <ol class='conversations divided thread-list'>
         <% @top_level_contributions.each do |contribution| %>
@@ -28,7 +28,7 @@
           <%=render :partial => "threaded_contribution_template", :locals => { :ratings => @ratings }, :collection => @conversation_contributions, :as => :contribution %>
         <% end %>
       </ol>
-    <% end %>
+    <%# end %>
 
     <% if current_person %>
     <div id='contribution_tool_container'>

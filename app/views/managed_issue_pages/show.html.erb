@@ -2,7 +2,7 @@
   <%= stylesheet_link_tag @page.stylesheet_path unless @page.stylesheet_path.blank? %>
 <% end %>
 <% content_for :main_body do %>
-  <% cache ["ManagedIssue", @issue, @page] do %>
+  <%# cache ["ManagedIssue", @issue, @page] do %>
   <div class="wrapper">
     <div class="content-container">
       <div class="main-content">
@@ -10,5 +10,5 @@
       </div>
     </div>
   </div>
-  <% end %>
+  <%# end %>
 <% end %>
