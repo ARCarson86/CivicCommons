@@ -1,0 +1,9 @@
+environments:
+  staging:
+    migrate: true
+    bundle_without: development test cool_toys
+    precompile_assets: true
+  production:
+    migrate: true
+    bundle_without: development test cool_toys
+    precompile_assets: true
