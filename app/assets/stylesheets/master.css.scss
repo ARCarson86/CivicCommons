@@ -3602,6 +3602,61 @@ input.textbox.input-short {
 }
 
 
+/* * *
+ * Social Buttons
+ * * */
+.share-buttons {
+  @include pie-clearfix;
+  width: 65px * 4;
+  margin: 0 0 0 auto;
+  .share-button {
+    text-align: center;
+    width: 65px;
+    float: left;
+    height: 75px;
+
+    &.twitter {
+      padding-top: 13px;
+      height: 75px - 13px;
+    }
+    &.facebook {
+      padding-top: 14px;
+      height: 75px - 14px;
+    }
+
+    .button {
+      @include box-sizing(border-box);
+      @include inline-block;
+      min-width: 50px;
+      margin: 0 auto;
+    }
+
+    & > a {
+      display: block;
+      text-decoration: none;
+    }
+    img {
+      @include box-shadow(0 0 0 transparent);
+    }
+
+    .follows {
+      @include border-radius(25px);
+      border: 3px solid #d1e07f;
+      background-color: #6a727f;
+      width: 44px;
+      height: 44px;
+      font-size: 24px;
+      line-height: 44px;
+      color: white;
+      padding: 0;
+      margin: 0 auto 4px;
+    }
+    .twitter-share-button {
+      height: 100px;
+    }
+  }
+}
+
 /*- SELF CLEARING FLOATS
 ----------------------------------------------------------------------*/
 

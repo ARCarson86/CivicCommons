@@ -1,0 +1,20 @@
+<div class="share-buttons">
+  <div class="share-button">
+    <%= link_to embed_conversation_path(@conversation) do %>
+      <%= image_tag 'embed_logo.png', width: 50 %>
+      <div class="button button-mini tertiary ">Embed</div>
+    <% end %>
+  </div>
+  <div class="share-button">
+    <div class="follows">
+      15
+    </div>
+    <a href="#" class="button button-mini tertiary ">Follow</a>
+  </div>
+  <div class="share-button twitter">
+    <%= render :partial => 'shared/twitter_share', locals: { title: @conversation.title} %>
+  </div>
+  <div class="share-button facebook">
+    <%= render :partial => 'shared/facebook_like' %>
+  </div>
+</div>

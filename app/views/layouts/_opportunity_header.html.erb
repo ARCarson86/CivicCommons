@@ -44,16 +44,8 @@
 
 
       <div class='aside supplementary'>
+        <%= render partial: "share_buttons" %>
 
-        <span id='subscription'>
-          <%= render :partial => '/subscriptions/subscription', :locals => {:subscribable => @conversation} %>
-        </span>
-        <div class="mtm">
-          <%= render :partial => '/layouts/social_links', :locals => {conversation_title: short_title(@conversation.title)} %>
-        </div>
-        <div class="mtm">
-          <%= link_to raw('<i class="icon icon-embed"></i> <span class="ico-nudge">Embed Conversation</span>'),embed_conversation_path(@conversation), :class => 'button button-mini tertiary' %>
-        </div>
         <!-- <div class="mtl">
           <a class="ico-cc-embed" href="/embed.html">Embed Conversation</a>
         </div> -->
