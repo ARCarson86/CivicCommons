@@ -3607,21 +3607,29 @@ input.textbox.input-short {
  * * */
 .share-buttons {
   @include pie-clearfix;
-  width: 65px * 4;
+  width: 60px * 5;
   margin: 0 0 0 auto;
   .share-button {
     text-align: center;
-    width: 65px;
+    width: 60px;
     float: left;
-    height: 75px;
+    height: 65px;
 
+    &.email {
+      padding-top: 5px;
+      height: 65px - 8px;
+
+      .envelope {
+        @include border-radius(5px);
+        margin-bottom: 8px;
+      }
+      
+    }
     &.twitter {
-      padding-top: 13px;
-      height: 75px - 13px;
+      padding-top: 1px;
+      height: 65px - 1px;
     }
     &.facebook {
-      padding-top: 14px;
-      height: 75px - 14px;
     }
 
     .button {
@@ -3643,13 +3651,13 @@ input.textbox.input-short {
       @include border-radius(25px);
       border: 3px solid #d1e07f;
       background-color: #6a727f;
-      width: 44px;
-      height: 44px;
+      width: 34px;
+      height: 34px;
       font-size: 24px;
-      line-height: 44px;
+      line-height: 34px;
       color: white;
       padding: 0;
-      margin: 0 auto 4px;
+      margin: 0 auto 3px;
     }
     .twitter-share-button {
       height: 100px;

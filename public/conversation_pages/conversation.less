@@ -1,0 +1,152 @@
+// Clearfix
+// --------
+// For clearing floats like a boss h5bp.com/q
+.clearfix {
+  *zoom: 1;
+  &:before,
+  &:after {
+    display: table;
+    content: "";
+    // Fixes Opera/contenteditable bug:
+    // http://nicolasgallagher.com/micro-clearfix-hack/#comment-36952
+    line-height: 0;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+.main-content {
+  width: 600px;
+}
+
+.main-content-left {
+  width: 140px;
+}
+.main-content-right {
+  width: 440px;
+}
+
+.content-container {
+  h1 {
+    margin-bottom: 10px;
+  }
+  .author-card {
+    .image {
+      width: 40px;
+      float:left;
+      margin-right: 10px;
+    }
+    .name {
+      display: block;
+      font-size: 14px;
+      font-weight: bold;
+      padding-top: 7px;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .aside {
+    width: 300px;
+    margin-bottom: 20px;
+    h3 {
+      position: relative;
+      padding-bottom: 0;
+      .see-all {
+        display: inline-block;
+        font-size: 11px;
+        font-weight: normal;
+        position: absolute;
+        right: 0;
+      }
+    }
+  }
+
+  .participants-container,.moderators-container {
+    .clearfix;
+    .pager-arrow {
+      height: 40px;
+      width: 25px;
+      line-height: 40px;
+      font-size: 25px;
+
+      &.left {
+        float: left;
+        text-align: left;
+      }
+      &.right {
+        float: right;
+        text-align: right;
+      }
+    }
+  }
+  .participants-container {
+    .pager-arrow {
+      margin-top: 60px;
+    }
+  }
+  .participants, .moderators {
+    .page {
+      .clearfix;
+      width: 250px;
+    }
+    .participant, .moderator {
+      height: 40px;
+      width: 120px;
+      line-height: 40px;
+      float: left;
+      margin-bottom: 15px;
+      margin-right: 5px;
+
+      img {
+        float: left;
+        margin-right: 5px;
+      }
+    }
+
+  }
+}
+
+.conversation-starter {
+  padding: 10px;
+  border-left: 10px solid rgb(136,184,204);
+  background-color: rgba(136,184,204,.3);
+  h3 {
+    border-bottom-color: rgb(136,184,204);
+  }
+  .body {
+    padding: 0 10px;
+  }
+}
+
+.what-do-you-think {
+  .clearfix;
+  border-bottom: 1px solid #c3c6cd;
+  padding: 0 0 30px;
+  margin-bottom: 30px;
+  h2 {
+    font-weight: bold;
+    font-style: italic;
+  }
+  .comment {
+    img {
+      float: left;
+      display: block;
+      margin-right: 10px;
+    }
+    .name {
+      font-weight: bold;
+      font-size: 1.2em;
+      padding-top: 5px;
+    }
+    .body {
+      textarea {
+        margin: 5px 0 0;
+        width: 600px - 90px;
+      }
+    }
+  }
+}
