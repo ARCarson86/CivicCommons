@@ -122,11 +122,13 @@
   }
 }
 
-.what-do-you-think {
+.contribute {
   .clearfix;
   border-bottom: 1px solid #c3c6cd;
+}
+.what-do-you-think {
+  .clearfix;
   padding: 0 0 30px;
-  margin-bottom: 30px;
   h2 {
     font-weight: bold;
     font-style: italic;
@@ -145,8 +147,32 @@
     .body {
       textarea {
         margin: 5px 0 0;
-        width: 600px - 90px;
+        width: 500px;
       }
+    }
+  }
+}
+.take-action {
+  margin-top: 10px;
+  .take-action-section {
+    display: block;
+    .clearfix;
+    margin: 10px 0;
+    .take-action-icon {
+      width: 45px;
+      height: 50px;
+      margin-right: 10px;
+      background: url("/assets/clipboard-icons.png") top left no-repeat;
+      float: left;
+      &.votes {
+        background-position: 0px -50px;
+      }
+
+    }
+    .title {
+      font-size: 1.2em;
+      font-weight: bold;
+      padding: 5px 0 3px;
     }
   }
 }
