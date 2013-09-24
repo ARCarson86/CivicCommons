@@ -31,23 +31,6 @@
   h1 {
     margin-bottom: 10px;
   }
-  .author-card {
-    .image {
-      width: 40px;
-      float:left;
-      margin-right: 10px;
-    }
-    .name {
-      display: block;
-      font-size: 14px;
-      font-weight: bold;
-      padding-top: 7px;
-      text-decoration: none;
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
 
   .aside {
     width: 300px;
@@ -72,6 +55,7 @@
       width: 25px;
       line-height: 40px;
       font-size: 25px;
+      color: #AAA;
 
       &.left {
         float: left;
@@ -107,6 +91,42 @@
       }
     }
 
+  }
+}
+
+.author-card {
+  margin-bottom: 10px;
+  .image {
+    float:left;
+    margin-right: 10px;
+  }
+  .name {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 7px 0 3px 0;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &.mini {
+    .name, .date {
+      display: inline;
+    }
+    .date:before {
+      content: "-"
+    }
+  }
+  &.small {
+    .image {
+      width: 40px;
+    }
+  }
+  &.large {
+    .image {
+      width: 80px;
+    }
   }
 }
 
@@ -174,5 +194,50 @@
       font-weight: bold;
       padding: 5px 0 3px;
     }
+  }
+}
+
+.threads {
+
+  .controls {
+    border-bottom: 1px solid #c3c6cd;
+    padding: 5px 0;
+  }
+
+  .thread {
+    .clearfix;
+    margin: 20px 0;
+    border-bottom: 1px solid #c3c6cd;
+    &:last-child {
+      border-bottom: 0 none;
+    }
+    > .content {
+      margin-left: 90px;
+    }
+    .primary {
+      width: 600px;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+    }
+    .responses {
+      border-top: 1px solid #c3c6cd;
+      margin-left: 90px;
+      width: 510px;
+      .response {
+        border-bottom: 1px solid #c3c6cd;
+        &:last-child {
+          border-bottom: 0 none;
+        }
+        margin: 20px 0;
+        > .content {
+          margin-left: 50px;
+        }
+
+      }
+    }
+  }
+  &.expanded {
+  }
+  &.collapsed {
   }
 }
