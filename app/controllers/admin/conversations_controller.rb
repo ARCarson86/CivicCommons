@@ -1,5 +1,5 @@
 class Admin::ConversationsController < Admin::DashboardController
-  
+
   authorize_resource :class => :admin_conversations
 
   #GET admin/conversations
@@ -12,19 +12,19 @@ class Admin::ConversationsController < Admin::DashboardController
     @conversation = Conversation.new(params[:conversation])
     @presenter = IngestPresenter.new(@conversation)
   end
-  
+
   #GET admin/conversations/staff_picked
   def staff_picked
     @conversations = Conversation.staff_picked.sort_position_asc.all
   end
-  
+
   #PUT admin/conversations/1/move_to_position/2
   def move_to_position
     if params[:conversation] && params[:conversation][:position].present?
       new_position = params[:conversation][:position].to_i
       @conversation = Conversation.find(params[:id])
       if new_position.to_i != @conversation.position.to_i
-        @conversation.move_to_position(new_position) 
+        @conversation.move_to_position(new_position)
         flash[:notice] = "Successfully moved the conversation \"#{@conversation.title.truncate(50)}\""
       end
     end
@@ -66,7 +66,12 @@ class Admin::ConversationsController < Admin::DashboardController
   def update
 
     @conversation = Conversation.find(params[:id])
+
+    conversation_starting_issues = @conversation.issues.collect(&:id).sort
+    conversation_final_issues = params[:conversation][:issue_ids].reject(&:empty?).collect(&:to_i).sort
+
     if @conversation.update_attributes(params[:conversation])
+      @conversation.touch_issues unless conversation_starting_issues == conversation_final_issues
       flash[:notice] = "Successfully updated conversation"
       redirect_to admin_conversations_path
     else
@@ -119,7 +124,7 @@ class Admin::ConversationsController < Admin::DashboardController
       status = @conversation.staff_pick? ? 'on' : 'off'
       flash[:notice] = "Staff Pick is turned #{status} for \"#{@conversation.title.truncate(50)}\""
       @conversation.sort
-      @conversation.move_to_position(0) if status == 'on' 
+      @conversation.move_to_position(0) if status == 'on'
     else
       flash[:error] = "Error saving conversation: \"#{@conversation.title.truncate(50)}\""
     end

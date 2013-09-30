@@ -21,7 +21,7 @@ class Contribution < ActiveRecord::Base
   attr_accessor :moderation_reason
 
   belongs_to :person, :foreign_key => "owner"
-  belongs_to :conversation
+  belongs_to :conversation, :touch => true
   belongs_to :issue
   has_many   :rating_groups, :dependent => :destroy
   has_and_belongs_to_many :featured_opportunities, :join_table => :featured_opportunities_contributions, :uniq => true

@@ -45,7 +45,6 @@ gem 'airbrake'
 
 gem 'remotipart'
 
-gem 'shoulda'
 # gem 'paperclip', "~>2.5.0"
 gem 'paperclip', "2.3.8"
 gem 'delayed_paperclip', '<0.7'
@@ -93,6 +92,7 @@ end
 group :test do
   # Addressable Required by WebMock but breaks everything at 2.2.5
   # Can use latest addressable when pull request is accepted: https://github.com/sporkmonger/addressable/pull/33
+  gem 'shoulda'
   gem 'addressable'
   gem "capybara", '~> 1.1.2'
   gem "database_cleaner", "~>0.7.2"
