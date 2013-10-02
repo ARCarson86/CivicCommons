@@ -111,6 +111,7 @@
     }
   }
   &.mini {
+    margin-bottom: 7px;
     .name, .date {
       display: inline;
     }
@@ -142,14 +143,22 @@
   }
 }
 
+.sticky-wrapper {
+  .contribute {
+    background: #efefef url(/assets/body_bg.gif) repeat;
+  }
+}
 .contribute {
-  .clearfix;
+  z-index: 5;
+  display: block;
   border-bottom: 1px solid #c3c6cd;
+  width: 940px;
 }
 .what-do-you-think {
   .clearfix;
-  padding: 0 0 30px;
+  padding: 0 0 10px;
   h2 {
+    margin: 10px 0;
     font-weight: bold;
     font-style: italic;
   }
@@ -173,7 +182,6 @@
   }
 }
 .take-action {
-  margin-top: 10px;
   .take-action-section {
     display: block;
     .clearfix;
@@ -197,16 +205,17 @@
   }
 }
 
+
+.threads-controls {
+  border-top: 1px solid #c3c6cd;
+  padding: 5px 0;
+}
 .threads {
 
-  .controls {
-    border-bottom: 1px solid #c3c6cd;
-    padding: 5px 0;
-  }
 
   .thread {
     .clearfix;
-    margin: 20px 0;
+    margin: 20px 0 0;
     border-bottom: 1px solid #c3c6cd;
     &:last-child {
       border-bottom: 0 none;
@@ -216,28 +225,53 @@
     }
     .primary {
       width: 600px;
-      margin-bottom: 20px;
-      padding-bottom: 10px;
     }
     .responses {
       border-top: 1px solid #c3c6cd;
-      margin-left: 90px;
+      margin: 10px 0 0 90px;
       width: 510px;
       .response {
         border-bottom: 1px solid #c3c6cd;
+        margin: 15px 0;
         &:last-child {
           border-bottom: 0 none;
         }
-        margin: 20px 0;
         > .content {
           margin-left: 50px;
         }
 
+        .thread-reply {
+          width: 510px - 50px - 6px;
+          margin: 0;
+        }
       }
     }
   }
   &.expanded {
+    width: 600px;
   }
   &.collapsed {
   }
+}
+.recent-activity {
+  h3 {
+    margin: 10px 0 0;
+  }
+  .activities {
+    .activity {
+      min-height: 400px;
+      overflow-y: scroll;
+      padding-top: 10px;
+      img {
+        float: left;
+        width: 40px;
+        margin: 0 10px 0 0;
+      }
+      border-bottom: 1px dotted #cdcdcd;
+    }
+  }
+}
+
+.wrapper.nospace {
+  padding-top: 0;
 }
