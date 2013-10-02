@@ -14,14 +14,7 @@
   <div class="content-container">
     <%= render :partial => "conversation_main_thread" %>
 
-    <% conversation_show_aside_cache_key = ["conversation_show_aside",
-                                            @conversation.id,
-                                            @conversation.issues.managed_issue.count,
-                                            @conversation_participants.count,
-                                            @latest_contribution.nil? ? 0 : @latest_contribution.id] %>
-    <%# cache conversation_show_aside_cache_key do %>
-      <%= render :partial => "conversation_show_aside" %>
-    <%# end %>
+    <%= render :partial => "conversation_show_aside" %>
 
     <% if @new_conversation %>
       <%= render :partial => 'conversation_action_modal.js', :locals => {:conversation => @conversation} %>

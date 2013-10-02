@@ -1,3 +1,16 @@
+## 5.4
+
+### External Changes
+  * [Add Caching to Site](https://agilezen.com/project/18091/story/865)
+  * [Update Copy for Welcome Email](https://agilezen.com/project/18091/story/870)
+  * [Change Services Feedback From Jill to Mike](https://agilezen.com/project/18091/story/883)
+
+### Chores
+  * [EY Deployment Configuration Update](https://agilezen.com/projects/18091/story/891)
+  * [Update Automated Testing](https://agilezen.com/projects/18091/story/892)
+  * [Update Ruby from 1.9.2 to Ruby 1.9.3](https://agilezen.com/projects/18091/story/894)
+
+
 ## 5.2
 
 ### External Changes

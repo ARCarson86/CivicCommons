@@ -4,14 +4,14 @@ module CivicCommonsDriver
       SHORT_NAME = :blog
       LOCATION = '/blog'
       include Page
-      
+
       has_link :remove_author_filter, 'Remove Filter', :blog
 
       def follow_the_blog_post_link_for blog_post
         click_link blog_post.title
         set_current_page_to :blog_post
       end
-      
+
       def follow_filter_on_author(author)
         within '.site-filter' do
           follow_link author.name, :blog
@@ -23,7 +23,7 @@ module CivicCommonsDriver
           follow_link topic.name, :blog
         end
       end
-      
+
 
       class Show
         SHORT_NAME = :blog_post

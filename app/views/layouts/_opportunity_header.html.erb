@@ -12,7 +12,7 @@
         </div>
       <% end %>
 
-  <%# cache [@conversation.id, @conversation.participants.count, @conversation.action_participants_count, @conversation.reflection_participants_count, "opportunity_header"] do %>
+  <% cache [@conversation.id, @conversation.participants.count, @conversation.action_participants_count, @conversation.reflection_participants_count, "opportunity_header"] do %>
       <div class="main-content">
         <div class='main-content-left'>
           <%= image_tag @conversation.image.url(:panel), :width => 120, :height => 80, :alt => short_title(@conversation.title), :class => 'featured main-img' %>
@@ -40,7 +40,7 @@
           reflections_count:  @conversation.reflection_participants_count
         } %>
       </div><!-- /.main-content -->
-  <%# end %>
+  <% end %>
 
 
       <div class='aside supplementary'>

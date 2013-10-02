@@ -38,7 +38,7 @@
               <li>
                 <%= blog_filter_by_author_link(author,@current_author) %>
                 <% if author.id.to_s == params[:author_id] %>
-                <%= link_to image_tag('blank.png'), blog_index_path(:topic => params[:topic]), :class => 'remove-filterau', :title => 'Remove this filter'%>
+                <%= link_to image_tag('blank.png'), blog_index_path(:topic => params[:topic]), :class => 'remove-filterau', :title => 'Remove Filter'%>
                 <% end %>
               </li>
             <%- end -%>

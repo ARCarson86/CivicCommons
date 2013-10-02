@@ -16,6 +16,8 @@
           -@conversation.content_items.each do |content_item|
             %li.issue-list
               =link_to(content_item.title, path_to_content_item(content_item))
-  = render :partial => '/layouts/conversation_managed_issues', :locals => {:managed_issues => @conversation.issues.managed_issue}
-  = render :partial => '/shared/opportunity/side_participants', :locals => {participants: @conversation_participants}
-  = render_recent_items_sidebar
+  -conversation_show_aside_cache_key = ["conversation_show_aside", @conversation.id, @conversation.issues.managed_issue.count, @conversation_participants.count, @latest_contribution.nil? ? 0 : @latest_contribution.id]
+  -cache conversation_show_aside_cache_key do
+    = render :partial => '/layouts/conversation_managed_issues', :locals => {:managed_issues => @conversation.issues.managed_issue}
+    = render :partial => '/shared/opportunity/side_participants', :locals => {participants: @conversation_participants}
+    = render_recent_items_sidebar
