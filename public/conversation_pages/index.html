@@ -63,14 +63,10 @@
     <script>
       //<![CDATA[
     $(document).ready(function(){
-
       $("input.datetime").datetimepicker({
         ampm: true,
         stepMinute: 15
       });
-
-
-
     });
 
     /* Google Analytics */
@@ -206,7 +202,6 @@
               $('.convo-summary').readmore(); // do this here so it renders minified as soon as possible, rather than waiting for the page to load
             </script>
 
-
             <div class="conversation-starter">
               <h3>Conversation Starter</h3>
               <div class="body">
@@ -324,74 +319,167 @@
 
 
           </div>
-          <div class="aside supplementary">
-            <h3>
-              Participants (7)
-              <a class="all-participants see-all" href="#">See All</a>
-            </h3>
-            <div class="participants-container">
-              <a href="#" class="pager-arrow left icon-chevron-left"></a>
-              <a href="#" class="pager-arrow right icon-chevron-right"></a>
-              <div class="participants" id="participants">
-                <div class="page">
-                  <div class="participant">
-                    <a href="">
-                      <img src="http://placehold.it/40x40" />
-                      Jacqueline R.
-                    </a>
+          <div class="aside supplementary" id="participants">
+            <div class="participants-inner">
+              <h3>
+                Participants (7)
+                <a class="all-participants see-all" href="#">See All</a>
+              </h3>
+              <div class="participants-container">
+                <a href="#" class="pager-arrow left icon-chevron-left"></a>
+                <a href="#" class="pager-arrow right icon-chevron-right"></a>
+                <div class="participants">
+                  <div class="page">
+                    <div class="participant">
+                      <a href="">
+                        <img src="http://placehold.it/40x40" />
+                        Jacqueline R.
+                      </a>
+                    </div>
+                    <div class="participant">
+                      <a href="">
+                        <img src="http://placehold.it/40x40" />
+                        Michael B.
+                      </a>
+                    </div>
+                    <div class="participant">
+                      <a href="">
+                        <img src="http://placehold.it/40x40" />
+                        Kyle B.
+                      </a>
+                    </div>
+                    <div class="participant">
+                      <a href="">
+                        <img src="http://placehold.it/40x40" />
+                        Elliott M.
+                      </a>
+                    </div>
+                    <div class="participant">
+                      <a href="">
+                        <img src="http://placehold.it/40x40" />
+                        Elliott M.
+                      </a>
+                    </div>
+                    <div class="participant">
+                      <a href="">
+                        <img src="http://placehold.it/40x40" />
+                        Elliott M.
+                      </a>
+                    </div>
                   </div>
-                  <div class="participant">
-                    <a href="">
-                      <img src="http://placehold.it/40x40" />
-                      Michael B.
-                    </a>
+                  <div class="page">
+                    <div class="participant">
+                      <a href="">
+                        <img src="http://placehold.it/40x40" />
+                        Jacqueline R.
+                      </a>
+                    </div>
+                    <div class="participant">
+                      <a href="">
+                        <img src="http://placehold.it/40x40" />
+                        Michael B.
+                      </a>
+                    </div>
+                    <div class="participant">
+                      <a href="">
+                        <img src="http://placehold.it/40x40" />
+                        Kyle B.
+                      </a>
+                    </div>
+                    <div class="participant">
+                      <a href="">
+                        <img src="http://placehold.it/40x40" />
+                        Elliott M.
+                      </a>
+                    </div>
+                    <div class="participant">
+                      <a href="">
+                        <img src="http://placehold.it/40x40" />
+                        Elliott M.
+                      </a>
+                    </div>
+                    <div class="participant">
+                      <a href="">
+                        <img src="http://placehold.it/40x40" />
+                        Elliott M.
+                      </a>
+                    </div>
                   </div>
-                  <div class="participant">
-                    <a href="">
-                      <img src="http://placehold.it/40x40" />
-                      Kyle B.
-                    </a>
+                  <div class="page">
+                    <div class="participant">
+                      <a href="">
+                        <img src="http://placehold.it/40x40" />
+                        Jacqueline R.
+                      </a>
+                    </div>
+                    <div class="participant">
+                      <a href="">
+                        <img src="http://placehold.it/40x40" />
+                        Michael B.
+                      </a>
+                    </div>
+                    <div class="participant">
+                      <a href="">
+                        <img src="http://placehold.it/40x40" />
+                        Kyle B.
+                      </a>
+                    </div>
+                    <div class="participant">
+                      <a href="">
+                        <img src="http://placehold.it/40x40" />
+                        Elliott M.
+                      </a>
+                    </div>
+                    <div class="participant">
+                      <a href="">
+                        <img src="http://placehold.it/40x40" />
+                        Elliott M.
+                      </a>
+                    </div>
+                    <div class="participant">
+                      <a href="">
+                        <img src="http://placehold.it/40x40" />
+                        Elliott M.
+                      </a>
+                    </div>
                   </div>
-                  <div class="participant">
-                    <a href="">
-                      <img src="http://placehold.it/40x40" />
-                      Elliott M.
-                    </a>
-                  </div>
-                  <div class="participant">
-                    <a href="">
-                      <img src="http://placehold.it/40x40" />
-                      Elliott M.
-                    </a>
-                  </div>
-                  <div class="participant">
-                    <a href="">
-                      <img src="http://placehold.it/40x40" />
-                      Elliott M.
-                    </a>
-                  </div>
-                </div>
-                <div class="page">
-                  <div class="participant">
-                    <a href="">
-                      <img src="http://placehold.it/40x40" />
-                      Joshua S.
-                    </a>
+                  <div class="page">
+                    <div class="participant">
+                      <a href="">
+                        <img src="http://placehold.it/40x40" />
+                        Elliott M.
+                      </a>
+                    </div>
+                    <div class="participant">
+                      <a href="">
+                        <img src="http://placehold.it/40x40" />
+                        Elliott M.
+                      </a>
+                    </div>
+                    <div class="participant">
+                      <a href="">
+                        <img src="http://placehold.it/40x40" />
+                        Elliott M.
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
+              <script type="text/javascript">
+                $(".participants-container a.pager-arrow").click(function(e) {
+                  e.preventDefault();
+                });
+                $(".participants").cycle({
+                  fx: 'scrollHorz',
+                  timeout: 'auto',
+                  prev: $(".participants-container a.pager-arrow.left"),
+                  next: $(".participants-container a.pager-arrow.right"),
+                  speed: 300
+                });
+              </script>
+
+
             </div>
-            <script type="text/javascript">
-              $("#participants").cycle({
-                fx: 'scrollHorz',
-                timeout: 'auto',
-                prev: $(".participants-container a.pager-arrow.left"),
-                next: $(".participants-container a.pager-arrow.right"),
-                speed: 300
-              });
-            </script>
-
-
           </div>
 
         </div>
