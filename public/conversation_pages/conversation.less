@@ -1,3 +1,13 @@
+.horizontal-three-colors(@startColor: #00b3ee, @midColor: #7a43b6, @colorStop: 50%, @endColor: #c3325f) {
+  background-color: mix(@midColor, @endColor, 80%);
+  background-image: -webkit-gradient(left, linear, 0 0, 0 100%, from(@startColor), color-stop(@colorStop, @midColor), to(@endColor));
+  background-image: -webkit-linear-gradient(left, @startColor, @midColor @colorStop, @endColor);
+  background-image: -moz-linear-gradient(left, @startColor, @midColor @colorStop, @endColor);
+  background-image: -o-linear-gradient(left, @startColor, @midColor @colorStop, @endColor);
+  background-image: linear-gradient(to right, @startColor, @midColor @colorStop, @endColor);
+  background-repeat: no-repeat;
+  filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",argb(@startColor),argb(@endColor))); // IE9 and down, gets no color-stop at all for proper fallback
+}
 // Clearfix
 // --------
 // For clearing floats like a boss h5bp.com/q
@@ -148,12 +158,6 @@
     background: #efefef url(/assets/body_bg.gif) repeat;
   }
 }
-.contribute {
-  z-index: 5;
-  display: block;
-  border-bottom: 1px solid #c3c6cd;
-  width: 940px;
-}
 .what-do-you-think {
   .clearfix;
   padding: 0 0 10px;
@@ -212,7 +216,6 @@
 }
 .threads {
 
-
   .thread {
     .clearfix;
     margin: 20px 0 0;
@@ -253,19 +256,54 @@
   &.collapsed {
   }
 }
+
+#contribute-sticky-wrapper {
+  z-index: 5;
+  display: block;
+}
+#contribute {
+  z-index: 5;
+  width: 940px;
+  border-bottom: 1px solid #c3c6cd;
+  background: #efefef url(/assets/body_bg.gif) repeat;
+  > .inner {
+    width: 940px;
+    background: url(/assets/header_bg.png) no-repeat bottom center;
+  }
+}
+#recent-activity-sticky-wrapper {
+  z-index: 6;
+}
+.is-sticky {
+  .recent-activity {
+    border-top: 1px solid #cdcdcd;
+  }
+}
 .recent-activity {
+  margin-top: -37px;
+  z-index: 6;
+  //border: 1px solid #cdcdcd;
+  //border-top: 0 none;
+  background: #efefef url(/assets/body_bg.gif) repeat;
   h3 {
-    margin: 10px 0 0;
+    margin: 0;
+    padding: 0;
+    line-height: 36px;
   }
   .activities {
+    height: 400px;
+    overflow-y: scroll;
     .activity {
-      min-height: 400px;
-      overflow-y: scroll;
-      padding-top: 10px;
+      .clearfix;
+      padding: 10px 0;
       img {
         float: left;
         width: 40px;
         margin: 0 10px 0 0;
+      }
+      .content {
+        float: left;
+        width: 220px;
       }
       border-bottom: 1px dotted #cdcdcd;
     }
@@ -274,4 +312,19 @@
 
 .wrapper.nospace {
   padding-top: 0;
+}
+
+.readmore a.readmore {
+  text-decoration: none;
+  background-image: url(images/readmore-fade.png);
+  background-repeat: repeat-x;
+  background-position: top left;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+
+  &:hover {
+    text-decoration: underline;
+    color: #444;
+  }
 }

@@ -1,6 +1,9 @@
 (function($) {
   $(function() {
-    $(".contribute").sticky();
-    $(".threads .controls").sticky();
+    $("#contribute").sticky();
+    $("#recent-activity").sticky({
+      topSpacing:167
+    });
+    
   });
 })(jQuery)

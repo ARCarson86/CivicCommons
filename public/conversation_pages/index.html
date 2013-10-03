@@ -105,6 +105,7 @@
     <link rel="stylesheet/less" type="text/css" href="conversation.less" />
     <script src="vendor/less.js" type="text/javascript"></script>
     <script src="vendor/jquery.sticky.js" type="text/javascript"></script>
+    <script src="js/readmore.js" type="text/javascript"></script>
     <script src="conversation.js" type="text/javascript"></script>
 
   </head>
@@ -161,7 +162,6 @@
       <div class="wrapper">
         <div class="content-container">
 
-
           <div class="main-content">
             <div class='main-content-left'>
               <img alt="Charting the future of fracking" class="featured main-img" height="80" src="http://placehold.it/140x90" width="140" />
@@ -202,6 +202,9 @@
                 </br></br>
                 <em>On March 19th, several invited panelists were unable to participate because of technical problems with The Civic Commons website. We regret the problem. </em></p>
             </div>
+            <script type="text/javascript">
+              $('.convo-summary').readmore(); // do this here so it renders minified as soon as possible, rather than waiting for the page to load
+            </script>
 
 
             <div class="conversation-starter">
@@ -323,7 +326,7 @@
           </div>
           <div class="aside supplementary">
             <h3>
-              Recent Participants (7)
+              Participants (7)
               <a class="all-participants see-all" href="#">See All</a>
             </h3>
             <div class="participants-container">
@@ -397,8 +400,8 @@
     </div>
 
     <div class="wrapper nospace">
-      <div class="contribute">
-        <div class="clearfix">
+      <div id="contribute" class="contribute">
+        <div class="clearfix inner">
           <div class="what-do-you-think main-content">
             <h2>What do you think?</h2>
             <div class="comment">
@@ -446,9 +449,51 @@
           </div>
         </div>
       </div>
-      <div class="aside supplementary recent-activity">
+      <div id="recent-activity" class="aside supplementary recent-activity">
         <h3>Recent Activity</h3>
         <div class="activities">
+          <div class="activity">
+            <img src="//placehold.it/40" />
+            <div class="content">
+              <p>Lorem ipsum dolor sit amet. Suspendisse porttitor sed nunc sed consequat. Cras vehicula nec arcu et tincidunt.</p>
+            </div>
+          </div>
+          <div class="activity">
+            <img src="//placehold.it/40" />
+            <div class="content">
+              <p>Lorem ipsum dolor sit amet. Suspendisse porttitor sed nunc sed consequat. Cras vehicula nec arcu et tincidunt.</p>
+            </div>
+          </div>
+          <div class="activity">
+            <img src="//placehold.it/40" />
+            <div class="content">
+              <p>Lorem ipsum dolor sit amet. Suspendisse porttitor sed nunc sed consequat. Cras vehicula nec arcu et tincidunt.</p>
+            </div>
+          </div>
+          <div class="activity">
+            <img src="//placehold.it/40" />
+            <div class="content">
+              <p>Lorem ipsum dolor sit amet. Suspendisse porttitor sed nunc sed consequat. Cras vehicula nec arcu et tincidunt.</p>
+            </div>
+          </div>
+          <div class="activity">
+            <img src="//placehold.it/40" />
+            <div class="content">
+              <p>Lorem ipsum dolor sit amet. Suspendisse porttitor sed nunc sed consequat. Cras vehicula nec arcu et tincidunt.</p>
+            </div>
+          </div>
+          <div class="activity">
+            <img src="//placehold.it/40" />
+            <div class="content">
+              <p>Lorem ipsum dolor sit amet. Suspendisse porttitor sed nunc sed consequat. Cras vehicula nec arcu et tincidunt.</p>
+            </div>
+          </div>
+          <div class="activity">
+            <img src="//placehold.it/40" />
+            <div class="content">
+              <p>Lorem ipsum dolor sit amet. Suspendisse porttitor sed nunc sed consequat. Cras vehicula nec arcu et tincidunt.</p>
+            </div>
+          </div>
           <div class="activity">
             <img src="//placehold.it/40" />
             <div class="content">
