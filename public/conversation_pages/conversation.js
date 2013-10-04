@@ -19,5 +19,10 @@
         });
       }
     });
+    $('.threads .thread .actions .action.expandable').hover(function() {
+      $(this).addClass("expanded");
+    }, function() {
+      $(this).removeClass("expanded");
+    });
   });
 })(jQuery)

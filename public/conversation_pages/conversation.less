@@ -48,6 +48,7 @@
     h3 {
       position: relative;
       padding-bottom: 0;
+      padding-top: 5px;
       .see-all {
         display: inline-block;
         font-size: 11px;
@@ -159,9 +160,11 @@
     font-size: 14px;
     font-weight: bold;
     padding: 7px 0 3px 0;
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
+    a {
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
   &.mini {
@@ -370,5 +373,95 @@
   &:hover {
     text-decoration: underline;
     color: #444;
+  }
+}
+
+.actions {
+  .action {
+    background-image: url('/assets/convo-icons-sm-sf51f638656.png');
+    background-repeat: none;
+    float: right;
+    margin-left: 10px;
+    width: 33px;
+    height: 33px;
+    display: block;
+    &.mark {
+      background-position: 0 -270px;
+    }
+    &.expand {
+      background-position: 0 -236px;
+      position: relative;
+      .response-count {
+        width: 14px;
+        height: 14px;
+        line-height: 12px;
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background-color: #6a727f;
+        border: 2px solid white;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 10px;
+        color: white;
+
+      }
+    }
+    &.flag {
+      background-position: 0 0;
+    }
+    ul {
+      display: none;
+    }
+    &.expanded {
+      position: relative;
+      &:after {
+        position: absolute;
+        top: 33px;
+        left: 12px;
+        display: block;
+        width: 10px;
+        height: 5px;
+        background-image: url(/assets/mark-reply-as-arrow.png);
+        content: "";
+      }
+      ul {
+        display: block;
+        position: absolute;
+        top: 38px;
+        right: 0;
+        background-color: white;
+        list-style: none outside;
+        width: 150px;
+        border-radius: 5px;
+        box-shadow: 1px 1px 4px rgba(0,0,0,.5);
+        border: 2px solid #88b8cc;
+
+        padding: 0;
+        &:before {
+          content: "Mark Reply As:";
+          font-weight: bold;
+          width: 100%;
+          border-bottom: 2px solid #88b8cc;
+          text-indent: 5px;
+          display: block;
+        }
+        li {
+          padding: 0 5px;
+          margin: 0;
+          height: 20px;
+          line-height: 20px;
+          border-bottom: 1px solid #88b8cc;
+          a {
+            display: block;
+            text-decoration: none;
+            .count {
+              float: right;
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
   }
 }
