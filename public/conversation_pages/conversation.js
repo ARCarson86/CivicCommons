@@ -19,10 +19,11 @@
         });
       }
     });
-    $('.threads .thread .actions .action.expandable').hover(function() {
+    $('.threads .thread .actions .action.expandabl').hover(function() {
       $(this).addClass("expanded");
     }, function() {
       $(this).removeClass("expanded");
     });
+    $(".thread .content").readmore();
   });
 })(jQuery)
