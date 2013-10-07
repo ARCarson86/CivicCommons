@@ -34,6 +34,10 @@
 //= require 'ckeditor/init'
 //= require jquery/jquery.fancybox-1.3.4.js
 
+//= require readmore
+//= require jquery.sticky
+//= require conversation
+
 //= require 'tiny_mce/jquery.tinymce.js'
 //= require 'contributions/contribution_tool.js'
 
