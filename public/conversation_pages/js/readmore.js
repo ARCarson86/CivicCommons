@@ -27,10 +27,11 @@
       })
       .addClass("readmore");
 
-      element.height = $(this).children('.readmore-inner').height() + 45;
+      element.height = $(this).children('.readmore-inner').height();
       $(element).children('.readmore-inner').css({
         height: settings.height,
         overflow: 'hidden',
+        paddingBottom: 10
       });
       var link = $('<a>')
       .text(settings.moreText)
@@ -48,15 +49,28 @@
   function toggle(element, link, settings) {
     if (element.collapsed) {
       $(link).text(settings.lessText);
-      console.log(element.height);
       $(element).children(".readmore-inner").animate({
         height: element.height
-      }, settings.speed);
+      }, {
+        duration: settings.speed, 
+        complete: function(first, second) {
+          $(this).css({
+            height: ''
+          });
+          $(link).css({
+            backgroundImage: 'none'
+          });
+        }
+      });
     }
     else {
       $(link).text(settings.moreText);
+      $(link).css({
+        backgroundImage: ''
+      });
       $(element).children(".readmore-inner").animate({
-        height: settings.height
+        height: settings.height,
+        backgroundImage: ''
       }, settings.speed);
     }
     element.collapsed = !element.collapsed;
