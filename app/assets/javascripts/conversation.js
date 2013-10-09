@@ -40,7 +40,6 @@
       }
     });
 
-
   });
 
   function expandConversations() {
@@ -51,4 +50,5 @@
     $('.thread').removeClass("expanded");
     $('#recent-activity').hide();
   }
+
 })(jQuery)
