@@ -51,7 +51,7 @@ form.delete-button {
 }
 
 .fl-none {
-	float: none;
+  float: none;
 }
 
 img.advert {
@@ -76,7 +76,7 @@ img.advert {
 
 *:first-child+html .img-flex {
   width: 100%;
-} 
+}
 
 // Typography
 
@@ -940,8 +940,8 @@ a.see-more {
 }
 
 *:first-child+html .ico-sm {
-	top: -1px;
-	margin-right: 2px;
+  top: -1px;
+  margin-right: 2px;
 }
 
 .ico-person-white {
@@ -1246,7 +1246,7 @@ div.three-col-sm div.photobank img {margin: 0 0 6px 6px;}
 
 /* Opportunities Vote Results */
 .vote-heading {
-	overflow: hidden;
+  overflow: hidden;
 }
 
 .vote-heading span{
@@ -1256,7 +1256,7 @@ div.three-col-sm div.photobank img {margin: 0 0 6px 6px;}
 }
 
 .vote-container {
-	overflow: hidden;
+  overflow: hidden;
 }
 
 .vote-bar {
@@ -1293,7 +1293,7 @@ div.three-col-sm div.photobank img {margin: 0 0 6px 6px;}
 }
 
 .vote-bar:hover .vote-row {
-	background-color: #c2cd94;
+  background-color: #c2cd94;
 }
 
 .vote-bar .vote-row.voted {
@@ -1301,7 +1301,7 @@ div.three-col-sm div.photobank img {margin: 0 0 6px 6px;}
 }
 
 .vote-bar:hover .vote-row.voted {
-	background-color: #9bc1d5;
+  background-color: #9bc1d5;
 }
 
 .vote-summary {
@@ -1434,7 +1434,7 @@ div.three-col-sm div.photobank img {margin: 0 0 6px 6px;}
 
 .entry-details.full img,
 .entry-details.full object {
-	float: none;
+  float: none;
 }
 
 .entry-meta {
@@ -2964,7 +2964,7 @@ p.create-title {
   -o-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
   position: relative;
-  
+
 }
 .site-filter.full li a {padding-left: 10px;}
 .aside .f-conv ul.feat-list li a, .aside .search-filter a.remove-search-filter {margin-left:5px}
@@ -3328,16 +3328,16 @@ a#fdbk_tab {
 }
 
 ol.opportunities-ol {
-	font-size: 16px;
-	font-weight: bold;
-	margin-left: 1.4em;
-	list-style-type: none;
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 1.4em;
+  list-style-type: none;
 }
 
 .opportunities-ballot div.number{
   font-size: 16px;
-	font-weight: bold;
-	margin-left: 1.4em;
+  font-weight: bold;
+  margin-left: 1.4em;
 }
 
 .opportunities-ol p,
@@ -3349,7 +3349,7 @@ ol.opportunities-ol {
 }
 
 .opportunities-ol h4 {
-	font-weight: bold;
+  font-weight: bold;
 }
 
 /* Form overrides for Opportunities */
@@ -3362,19 +3362,19 @@ input.textbox.input-short {
   background: image-url("calendar-f.png") no-repeat 0 0;
   border: none;
   cursor: pointer;
-	height: 18px;
-	margin-left: 8px;
-	text-indent: -9999px;
-	top: -2px;
-	width: 17px;
+  height: 18px;
+  margin-left: 8px;
+  text-indent: -9999px;
+  top: -2px;
+  width: 17px;
 }
 
 #ui-datepicker-div {
   border: 1px solid #aaa;
   font-family: Helvetica, Arial, sans-serif;
-	font-size: 80%;
-	margin-top: 6px;
-	text-shadow: 0 1px 1px rgba(255,255,255,0.4);
+  font-size: 80%;
+  margin-top: 6px;
+  text-shadow: 0 1px 1px rgba(255,255,255,0.4);
   -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.1);
      -moz-box-shadow: 0 1px 2px rgba(0,0,0,.1);
        -o-box-shadow: 0 1px 2px rgba(0,0,0,.1);
@@ -3382,7 +3382,7 @@ input.textbox.input-short {
 }
 
 #ui-datepicker-div .ui-datepicker-title {
-	text-shadow: 0 -1px 1px rgba(0,0,0,0.2)
+  text-shadow: 0 -1px 1px rgba(0,0,0,0.2)
 }
 
 #ui-datepicker-div .ui-corner-all {
@@ -3406,7 +3406,7 @@ input.textbox.input-short {
 #ui-datepicker-div .ui-state-default,
 #ui-datepicker-div .ui-widget-content .ui-state-default,
 #ui-datepicker-div .ui-widget-header .ui-state-default {
-	background-color: #e3e5e5;
+  background-color: #e3e5e5;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#e3e5e5), to(#eef1f1));
   background-image: -webkit-linear-gradient(top, #e3e5e5, #eef1f1);
   background-image: -moz-linear-gradient(top, #e3e5e5, #eef1f1);
@@ -3427,7 +3427,7 @@ input.textbox.input-short {
 }
 
 #ui-datepicker-div .ui-widget-header .ui-icon {
-	background-image: image-url("ui-lightness/images/ui-icons_ffffff_256x240.png");
+  background-image: image-url("ui-lightness/images/ui-icons_ffffff_256x240.png");
 }
 
 #ui-datepicker-div .ui-state-default:hover,
@@ -3442,8 +3442,8 @@ input.textbox.input-short {
   background-image: -moz-linear-gradient(top, #f5f5f5, #dadada);
   background-image: -ms-linear-gradient(top, #f5f5f5, #dadada);
   background-image: linear-gradient(top, #f5f5f5, #dadada);
-	border-color: #999;
-	color: #555;
+  border-color: #999;
+  color: #555;
 }
 
 #ui-datepicker-div .ui-state-highlight,
@@ -3455,8 +3455,8 @@ input.textbox.input-short {
   background-image: -moz-linear-gradient(top, #8daec2, #aecee4);
   background-image: -ms-linear-gradient(top, #8daec2, #aecee4);
   background-image: linear-gradient(top, #8daec2, #aecee4);
-	border-color: #999;
-	color: #555;
+  border-color: #999;
+  color: #555;
 }
 
 #ui-datepicker-div .ui-datepicker .ui-datepicker-prev-hover,
@@ -3466,23 +3466,23 @@ input.textbox.input-short {
 
 #ui-datepicker-div .ui-datepicker .ui-datepicker-prev span,
 #ui-datepicker-div .ui-datepicker .ui-datepicker-next span {
-	display: inline;
+  display: inline;
 }
 
 .date-picker {
-	background: image-url("calendar-f.png") no-repeat 0 0;
-	display: inline-block;
-	height: 18px;
+  background: image-url("calendar-f.png") no-repeat 0 0;
+  display: inline-block;
+  height: 18px;
   overflow: hidden;
   position: relative;
-	text-indent: 100%;
-	top: -2px;
+  text-indent: 100%;
+  top: -2px;
   white-space: nowrap;
-	width: 17px;
+  width: 17px;
 }
 
 .ui-datepicker-trigger:hover {
-	background-position: 0 -61px;
+  background-position: 0 -61px;
 }
 
 .wysiwyg-formatted img {
@@ -3623,7 +3623,7 @@ input.textbox.input-short {
         @include border-radius(5px);
         margin-bottom: 8px;
       }
-      
+
     }
     &.twitter {
       padding-top: 1px;
