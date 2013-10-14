@@ -2,4 +2,8 @@ $('#follow').replaceWith("<%= escape_javascript(
   render :partial => 'notsubscribed', :locals => {:subscribable_type => params[:type], :subscribable_id => params[:id]}
 ) %>");
 
+var follower_count = parseInt($(".follows").html(), 10);
+$('.follows').html(follower_count - 1);
+
 <%= render :partial=> '/subscriptions/unsubscribe_organization' if params[:type] == 'Organization' %>
+
