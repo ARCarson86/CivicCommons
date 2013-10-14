@@ -12,26 +12,38 @@
         </div>
       <% end %>
 
-  <% cache [@conversation.id, @conversation.participants.count, @conversation.action_participants_count, @conversation.reflection_participants_count, "opportunity_header"] do %>
+  <%# cache [@conversation.id, @conversation.participants.count, @conversation.action_participants_count, @conversation.reflection_participants_count, "opportunity_header"] do %>
       <div class="main-content">
         <div class='main-content-left'>
-          <%= image_tag @conversation.image.url(:panel), :width => 120, :height => 80, :alt => short_title(@conversation.title), :class => 'featured main-img' %>
+          <%= image_tag @conversation.image.url(:panel), :width => 140, :height => 80, :alt => short_title(@conversation.title), :class => 'featured main-img' %>
         </div>
         <div class='main-content-right'>
           <h1><%= @conversation.title %></h1>
-          <p class="subtitle">Started on <%= @conversation.created_at.strftime('%b %d, %Y') %> by <%= text_profile(@conversation.owner) %></p>
-          <%# render :partial => '/layouts/social_links', :locals => {conversation_title: short_title(@conversation.title)} %>
+
+          <div class="image">
+            <%= render :partial => '/user/author_card', :locals => {author: @conversation.owner, conversation_created_at: @conversation.created_at} %>
+          </div>
+
         </div>
+
+
 
         <div class='convo-summary'>
           <p><%= raw(@conversation.summary) %></p>
         </div>
+        <script type="text/javascript">
+          $('.convo-summary').readmore(); // do this here so it renders minified as soon as possible, rather than waiting for the page to load
+        </script>
+
+
 
         <% if @conversation.link.present? %>
         <div class='convo-link'>
           <p><a href="<%= @conversation.link %>"><%= @conversation.link %></a>
         </div>
         <% end %>
+
+
 
         <%= render :partial => '/layouts/opportunity_navigation', :locals => {
           conversation:       @conversation,
@@ -40,16 +52,22 @@
           reflections_count:  @conversation.reflection_participants_count
         } %>
       </div><!-- /.main-content -->
-  <% end %>
+  <%# end %>
 
 
       <div class='aside supplementary'>
-        <%= render partial: "share_buttons" %>
+        <%= render partial: "/conversations/share_buttons" %>
 
         <!-- <div class="mtl">
           <a class="ico-cc-embed" href="/embed.html">Embed Conversation</a>
         </div> -->
 
+      </div><!-- /.aside -->
+      <div class='aside supplementary'>
+        <%= render partial: "/conversations/participants_aside", locals: {
+          participants_count: @conversation.participants.count,
+          participants: @conversation.participants
+        } %>
       </div><!-- /.aside -->
 
     </div>
