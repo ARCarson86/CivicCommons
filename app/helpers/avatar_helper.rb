@@ -37,6 +37,10 @@ module AvatarHelper
     avatar_profile(person, 50, css_class)
   end
 
+  def author_card(person, size=40, css_class='image')
+    avatar_profile(person, size, css_class)
+  end
+
   # Profile's Avatar Image with name as alt text
   def profile_image(person, size=20, css_class='callout')
     if person.avatar_image_url.nil?
