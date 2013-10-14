@@ -5,6 +5,13 @@ class ActionsController < ApplicationController
 
   def index
     @actions = @conversation.actions.order('id DESC')
+
+    if (params[:type] == 'petition')
+      @actions = @actions.where(actionable_type:"Petition")
+    end
+    if (params[:type] == 'ballot')
+      @actions = @actions.where(actionable_type:"Survey")
+    end
     @participants = @conversation.action_participants
   end
 

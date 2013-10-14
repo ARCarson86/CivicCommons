@@ -15,4 +15,12 @@ class Action < ActiveRecord::Base
   def one_line_summary
     [actionable.person.name, actionable.title, actionable.description].delete_if(&:blank?).join(' - ')
   end
+
+  def is_petition?
+    self.actionable_type == "Petition"
+  end
+
+  def is_ballot?
+    self.actionable_type == "Survey"
+  end
 end

@@ -1,0 +1,58 @@
+<div id="contribute" class="contribute">
+  <div class="clearfix inner">
+    <div class="what-do-you-think main-content">
+      <h2>What do you think?</h2>
+      <div class="comment">
+        <%= avatar_profile(person, 80, nil) %>
+        <div class="name">
+          <%= person.name %>
+        </div>
+        <div class="date">
+          on <%= DateTime.now.strftime('%B %d, %Y') %>
+        </div>
+        <div class="body">
+          <div class="editable">
+            <textarea name="top-level-contribution"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="take-action aside supplementary">
+      <div class="take-action-section petitions">
+        <div class="take-action-icon petitions"></div>
+        <div class="content">
+          <div class="title">
+            <%= @conversation.petition_actions_count %> Petitions
+          </div>
+          <div class="links">
+            <%= link_to 'View All', conversation_actions_path(@conversation, :anchor => 'opportunity-nav', type:'petition') %>
+            |
+            <%= link_to 'Create a Petitions', new_conversation_petition_path(@conversation, :anchor => 'opportunity-nav') %>
+          </div>
+        </div>
+      </div>
+
+      <div class="take-action-section votes">
+        <div class="take-action-icon votes"></div>
+        <div class="content">
+          <div class="title">
+            <%= @conversation.ballot_actions_count %> Ballots
+          </div>
+          <div class="links">
+            <%= link_to 'View All', conversation_actions_path(@conversation, :anchor => 'opportunity-nav', type:'ballot') %>
+            |
+            <%= link_to 'Create a Ballot',new_conversation_vote_path(@conversation, :anchor => 'opportunity-nav') %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="threads-controls">
+    <div class="btn-group">
+      <a class="button tertiary" rel="expand">Expand All</a>
+      <a class="button tertiary active" rel="collapse">Collapse All</a>
+    </div>
+  </div>
+</div>

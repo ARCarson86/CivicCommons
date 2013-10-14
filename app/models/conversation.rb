@@ -173,6 +173,14 @@ class Conversation < ActiveRecord::Base
     action_participants.count
   end
 
+  def petition_actions_count
+    self.actions.select{|a| a.is_petition?}.count
+  end
+
+  def ballot_actions_count
+    self.actions.select{|a| a.is_ballot?}.count
+  end
+
   # Reflection Participants Related to this Conversation
   #
   # * Number of people posting Reflection or Comments
