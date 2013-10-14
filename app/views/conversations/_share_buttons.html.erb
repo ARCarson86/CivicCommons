@@ -1,20 +1,44 @@
 <div class="share-buttons">
   <div class="share-button">
     <%= link_to embed_conversation_path(@conversation) do %>
-      <%= image_tag 'embed_logo.png', width: 50 %>
+      <%= image_tag 'embed_logo.png', width: 40 %>
       <div class="button button-mini tertiary ">Embed</div>
     <% end %>
   </div>
+
+
   <div class="share-button">
     <div class="follows">
       15
     </div>
-    <a href="#" class="button button-mini tertiary ">Follow</a>
+    <%= render :partial => '/subscriptions/subscription', :locals => {:subscribable => @conversation} %>
+  </div>
+
+
+
+  <div class="share-button email">
+    <img alt="Embed_logo" src="/assets/envelope.png" class="envelope" width="40" />
+    <%= link_to("Email", {:controller => "invites", :action => "new", :source_type => "conversations", :source_id => @conversation.id}, :class => "button button-mini tertiary", 'data-colorbox' => true, 'data-remote' => true, :title => "") %>
   </div>
   <div class="share-button twitter">
     <%= render :partial => 'shared/twitter_share', locals: { title: @conversation.title} %>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
   </div>
   <div class="share-button facebook">
-    <%= render :partial => 'shared/facebook_like' %>
+    <span id="facebook-like">
+      <a href="http://facebook.com/sharer.php?u=http://localhost:3000/conversations/charting-the-future-of-fracking">Like on Facebook</a>
+    </span>
+
+    <script type="text/javascript">
+      (function($){
+        $(window).load(function(){
+          var fb = document.createElement('script'); fb.type = 'text/javascript'; fb.async = true;
+          fb.src = (document.location.protocol + '//connect.facebook.net/en_US/all.js#xfbml=1');
+          document.getElementsByTagName('head')[0].appendChild(fb);
+
+          $('#facebook-like').replaceWith('<fb:like send="false" layout="box_count" width="50" show_faces="false" font="arial"></fb:like>');
+        });
+      })(jQuery);
+    </script>
   </div>
 </div>
