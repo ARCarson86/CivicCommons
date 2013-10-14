@@ -34,6 +34,7 @@
 //= require 'ckeditor/init'
 //= require jquery/jquery.fancybox-1.3.4.js
 
+//= require editable
 //= require readmore
 //= require jquery.sticky
 //= require conversation

@@ -1,9 +1,6 @@
 (function($) {
   $(function() {
     $("#contribute").sticky();
-    $("#recent-activity").sticky({
-      topSpacing:167
-    });
     $("#participants .see-all").click(function(event) {
       this.participantCount = $("#participants").find(".participant").length;
       event.preventDefault();
@@ -40,6 +37,7 @@
       }
     });
 
+    $(".editable").editable();
   });
 
   function expandConversations() {

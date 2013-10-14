@@ -199,9 +199,10 @@
       padding-top: 5px;
     }
     .body {
+      width: 500px;
+      margin: 5px 0 0 90px;
       textarea {
-        margin: 5px 0 0;
-        width: 500px;
+        width: 100%;
       }
     }
   }
@@ -230,6 +231,14 @@
   }
 }
 
+.contribute-actions {
+  text-align: right;
+  .button {
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
 
 .threads-controls {
   border-top: 1px solid #c3c6cd;
@@ -336,6 +345,7 @@
               }
               &:before {
                 content: "";
+                display: none;
               }
             }
           }
@@ -343,15 +353,23 @@
             border-bottom: 0 none;
           }
           > .content {
-            margin-left: 50px;
             p {
               display: block;
+            }
+            &:before {
+              display: none;
             }
           }
 
           .thread-reply {
             width: 510px - 50px - 6px;
             margin: 0;
+          }
+          &.new-response {
+            .content {
+              width: 510px - 50px - 6px;
+              display: block;
+            }
           }
         }
       }
@@ -365,24 +383,25 @@
   display: block;
 }
 #contribute {
+  position: relative;
   z-index: 5;
   width: 940px;
   border-bottom: 1px solid #c3c6cd;
   background: #efefef url(/assets/body_bg.gif) repeat;
   > .inner {
+    @include pie-clearfix;
     width: 940px;
     background: url(/assets/header_bg.png) no-repeat bottom center;
   }
 }
-#recent-activity-sticky-wrapper {
-  z-index: 6;
-}
 .is-sticky {
   .recent-activity {
-    border-top: 1px solid #cdcdcd;
+    //border-top: 1px solid #cdcdcd;
   }
 }
 .recent-activity {
+  position: absolute;
+  right: 0;
   display: none;
   margin-top: -37px;
   z-index: 6;
@@ -390,6 +409,8 @@
   //border-top: 0 none;
   background: #efefef url(/assets/body_bg.gif) repeat;
   h3 {
+    border-top: 1px solid #cdcdcd;
+    border-bottom: 1px solid #cdcdcd;
     margin: 0;
     padding: 0;
     line-height: 36px;
@@ -521,5 +542,33 @@
         }
       }
     }
+  }
+}
+
+textarea {
+  &[disabled] {
+    background-color: #EEE;
+  }
+}
+
+.editable {
+  .contribute-actions {
+    display: none;
+  }
+  &.editor-active {
+    .contribute-actions {
+      display: block;
+    }
+  }
+}
+
+.contribution-blocked {
+  background-color: #EEE;
+  border: 1px solid #000;
+  height: 30px;
+  line-height: 15px;
+  padding: 0 5px;
+  a {
+    font-weight: bold;
   }
 }
