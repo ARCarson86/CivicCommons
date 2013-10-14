@@ -66,6 +66,16 @@
       <%= form.text_area :summary, :cols => 90 %>
     </fieldset>
   </div>
+  <div class="form-block">
+    <%= form.label :starter, "Conversation Starter", :class => "required-field" %>
+    <span class="required">*</span>
+    <p class="tip mln">
+      Help guide the conversation with statements and/or questions to which you would like the community to directly respond. At a glance, this will give your readers the important information you would like to talk about.
+    </p>
+    <fieldset class="contrib_tool_container">
+      <%= form.text_area :starter, :cols => 90 %>
+    </fieldset>
+  </div>
 </fieldset>
 
 <%= form.hidden_field :zip_code, value: 'ALL' %>
