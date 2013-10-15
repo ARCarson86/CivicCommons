@@ -38,6 +38,23 @@
     });
 
     $(".editable").editable();
+
+    $('.contribution-attachments').each(function(index,element) {
+      $(element).delegate('.close', 'click', function(event) {
+        event.preventDefault();
+      });
+      $(element).delegate('a.button', 'click', function(event) {
+        event.preventDefault();
+        if ($(event.originalEvent.srcElement).hasClass('close')) {
+          $(element).removeClass($(this).attr('rel'));
+        }
+        else if (!$(element).hasClass($(this).attr('rel'))) {
+          $(element).addClass($(this).attr('rel'));
+          $(element).find('input').focus();
+        }
+      });
+    });
+
   });
 
   function expandConversations() {

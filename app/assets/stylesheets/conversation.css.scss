@@ -235,6 +235,7 @@
 
 .contribute-actions {
   text-align: right;
+  padding: 10px;
   .button {
     &:last-child {
       margin-right: 0;
@@ -269,49 +270,45 @@
       float: right;
       height: 200px;
       overflow-y: scroll;
-      .response {
-        border-bottom: 1px solid #c3c6cd;
+    }
+    .response {
+      border-bottom: 1px solid #c3c6cd;
+      overflow: hidden;
+      padding: 10px 0;
+      position: relative;
+      &:after {
+        display: block;
+        content: "...";
+        position: absolute;
+        bottom: 8px;
+        right: 5px;
+        width: 40px;
+        background: #efefef url(/assets/body_bg.gif) repeat;
+
+      }
+
+      .response-inner {
+        height: 50px;
         overflow: hidden;
-        padding: 10px 0;
-        position: relative;
-          &:after {
-            display: block;
-            content: "...";
-            position: absolute;
-            bottom: 8px;
-            right: 5px;
-            width: 40px;
-            background: #efefef url(/assets/body_bg.gif) repeat;
+      }
 
-          }
-
-        .response-inner {
-          height: 50px;
-          overflow: hidden;
+      .author-card {
+        display: inline;
+        .name {
+          text-decoration: none;
         }
-
-        .author-card {
-          display: inline;
-          .name {
-            text-decoration: none;
-          }
-          .date {
-            display: none;
-          }
-        }
-        .content {
-          overflow-y: hidden;
-          &:before {
-            content: " - ";
-            display: inline;
-          }
-          &, & p {
-            display: inline;
-          }
-        }
-
-        &.new-response {
+        .date {
           display: none;
+        }
+      }
+      .content {
+        overflow-y: hidden;
+        &:before {
+          content: " - ";
+          display: inline;
+        }
+        &, & p {
+          display: inline;
         }
       }
     }
@@ -323,56 +320,68 @@
         margin: 10px 0 0 90px;
         width: 510px;
         height: auto;
-        .response {
-          border-bottom: 1px solid #c3c6cd;
+      }
+      .readmore-inner {
+        height: auto !important;
+      }
+      a.readmore {
+        display: none !important;
+      }
+    }
+    .response.new-response {
+      clear: both;
+    }
+    .expanded .response, .response.new-response {
+      &.new-response {
+        margin-left: 90px;
+      }
+      border-bottom: 1px solid #c3c6cd;
+      display: block;
+      &:after {
+        content: "";
+        display: none;
+      }
+      .author-card {
+        display: block;
+        .date {
+          display: inline;
+        }
+      }
+      .response-inner {
+        height: auto;
+
+        .content {
           display: block;
-            &:after {
-              content: "";
-              display: none;
-            }
-          .author-card {
+          height: auto;
+          p {
             display: block;
-            .date {
-              display: inline;
-            }
           }
-          .response-inner {
-            height: auto;
+          &:before {
+            content: "";
+            display: none;
+          }
+        }
+      }
+      &:last-child {
+        border-bottom: 0 none;
+      }
+      > .content {
+        p {
+          display: block;
+        }
+        &:before {
+          display: none;
+        }
+      }
 
-            .content {
-              display: block;
-              height: auto;
-              p {
-                display: block;
-              }
-              &:before {
-                content: "";
-                display: none;
-              }
-            }
-          }
-          &:last-child {
-            border-bottom: 0 none;
-          }
-          > .content {
-            p {
-              display: block;
-            }
-            &:before {
-              display: none;
-            }
-          }
-
-          .thread-reply {
-            width: 510px - 50px - 6px;
-            margin: 0;
-          }
-          &.new-response {
-            .content {
-              width: 510px - 50px - 6px;
-              display: block;
-            }
-          }
+      .thread-reply {
+        width: 510px - 50px - 12px;
+        margin: 0;
+      }
+      &.new-response {
+        .content {
+          width: 510px - 50px - 6px;
+          display: block;
         }
       }
     }
@@ -554,11 +563,11 @@ textarea {
 }
 
 .editable {
-  .contribute-actions {
+  .contribution-attachments, .contribute-actions {
     display: none;
   }
   &.editor-active {
-    .contribute-actions {
+    .contribution-attachments, .contribute-actions {
       display: block;
     }
   }
@@ -572,5 +581,70 @@ textarea {
   padding: 0 5px;
   a {
     font-weight: bold;
+  }
+}
+.contribution-attachments {
+  @include pie-clearfix;
+  padding: 10px;
+  > a {
+    @include transition(width 0s);
+    @include box-sizing(border-box);
+    float: left;
+    display: block;
+    width: 45%;
+    text-align: left;
+    .icon {
+      height: 32px;
+      line-height: 32px;
+      float: left;
+      display: block;
+      margin-right: 10px;
+    }
+    .text {
+      display: block;
+    }
+    .input {
+      display: none;
+      input {
+        @include box-sizing(border-box);
+        width: 80%;
+        border: 1px solid #cccccc;
+        padding: 5px;
+      }
+    }
+    &.add-file {
+      float: right;
+      margin-right: 0;
+    }
+  }
+  &.link {
+    .add-link {
+      @include transition( width 0.3s );
+      width: 100%;
+      .text {
+        display: none;
+      }
+      .input {
+        display: block;
+      }
+    }
+    .add-file {
+      display: none;
+    }
+  }
+  &.file {
+    .add-file {
+      @include transition( width 0.3s );
+      width: 100%;
+      .text {
+        display: none;
+      }
+      .input {
+        display: block;
+      }
+    }
+    .add-link {
+      display: none;
+    }
   }
 }
