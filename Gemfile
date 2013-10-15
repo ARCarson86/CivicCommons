@@ -130,4 +130,5 @@ group :assets do
   gem 'compass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
+  gem "font-awesome-rails"
 end
