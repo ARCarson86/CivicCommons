@@ -104,6 +104,16 @@ module ConversationsHelper
     raw(out)
   end
 
+  def display_direct_descendant_subset_154(contribution_descendants, this_contribution_id, ratings=nil)
+    out = ""
+    ratings = ratings || RatingGroup.ratings_for_conversation_by_contribution_with_count(Contribution.find(this_contribution_id).conversation, current_person)
+    return out unless contribution_descendants
+    contribution_descendants.select{ |c| c.parent_id == this_contribution_id }.sort_by{ |c| c.created_at }.each do |contribution|
+      out += render(:partial => "conversations/threaded_contribution_template", :locals => { :contribution => contribution, :ratings => ratings })
+    end
+    raw(out)
+  end
+
   def conversation_node_path(contribution)
     conversation_path(contribution.conversation, anchor: "node-#{contribution.id}")
   end
@@ -166,6 +176,19 @@ module ConversationsHelper
         out << "<span class='rating-button'>#{title} <span class='number'>#{ratings_hash[contribution.id][title][:total]}</span></span>"
       else
         out << link_to( "#{title} <span class='loading'>#{image_tag 'loading.gif'}</span><span class='number'>#{ratings_hash[contribution.id][title][:total]}</span>".html_safe, conversation_contribution_toggle_rating_path(:contribution_id => contribution, :rating_descriptor_title => title), :remote => true, :method => :post, :id => "contribution-#{contribution.id}-rating-#{title}", :class => "rating-button #{'active' if ratings_hash[contribution.id][title][:person]}" )
+      end
+    end
+    raw(out.join(' '))
+  end
+
+  def rating_buttons_154(contribution, ratings_hash)
+    out = []
+    RatingGroup.cached_rating_descriptors.each do |id, title|
+      if current_person && current_person.id == contribution.owner
+        #out << "<li><a href='#'>#{title} <span class='count number'>#{ratings_hash[contribution.id][title][:total]}</span></a></li>"
+        out << "<li>#{title} <span class='count number'>#{ratings_hash[contribution.id][title][:total]}</span></li>"
+      else
+        out << "<li>" + link_to( "#{title} <span class='loading'>#{image_tag 'loading.gif'}</span><span class='number'>#{ratings_hash[contribution.id][title][:total]}</span>".html_safe, conversation_contribution_toggle_rating_path(:contribution_id => contribution, :rating_descriptor_title => title), :remote => true, :method => :post, :id => "contribution-#{contribution.id}-rating-#{title}", :class => "rating-button #{'active' if ratings_hash[contribution.id][title][:person]}" ) + "</li>"
       end
     end
     raw(out.join(' '))

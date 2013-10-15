@@ -1,0 +1,20 @@
+<div class="actions">
+  <%= link_to('',
+              new_tos_path(contribution),
+              :class => "action flag conversation-action top-level-contribution-action-button",
+              :id => "action-link-#{contribution.id}",
+              'data-colorbox' => true,
+              :title => "Alert Us of Terms of Service Violations") %>
+  <a href="" class="action expand">
+    <span class="response-count"><%= sub_contribution_count %></span>
+  </a>
+  <span href="" class="action mark expandable" >
+    <ul class="mark-post-as">
+      <% rating = Rating.find_by_rating_group_id(contribution.id) %>
+      <%= rating_buttons_154(contribution, @ratings || rating) %>
+      <li><a href="#">Persuasive <span class="count">13</span></a></li>
+      <li><a href="#">Informative <span class="count">6</span></a></li>
+      <li><a href="#">Inspiring <span class="count">2</span></a></li>
+    </ul>
+  </span>
+</div>

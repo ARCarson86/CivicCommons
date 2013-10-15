@@ -10,16 +10,34 @@
   <![endif]-->
 <% end %>
 
-<div class="wrapper">
-  <div class="content-container">
-    <%= render :partial => "conversation_main_thread" %>
+<div class="wrapper nospace">
+  <div id="contribute" class="contribute">
+    <%= render :partial => "conversation_top_comment_box", locals: {person: current_person} %>
 
-    <%= render :partial => "conversation_show_aside" %>
-
-    <% if @new_conversation %>
-      <%= render :partial => 'conversation_action_modal.js', :locals => {:conversation => @conversation} %>
-    <% end %>
-
+    <%#= render partial: 'conversation_recent_activity' %>
+    <%= render_conversation_recent_items_sidebar %>
   </div>
+
+  <div class="threads">
+    <% @contributions.each do |contribution| %>
+
+      <% if contribution.root? %>
+        <div class="thread">
+
+          <% descendants = contribution.descendants %>
+          <%= render partial: "conversation_top_level_contribution", locals: {contribution: contribution, sub_contribution_count: descendants.count} %>
+
+          <div class='responses'>
+            <% descendants.each do |descendant_contribution| %>
+              <%= render partial: "conversation_sub_level_contribution", locals: {contribution: descendant_contribution} %>
+            <% end %>
+          </div>
+
+        </div>
+      <% end %>
+
+    <% end %>
+  </div> <!-- threads -->
+
 </div>
 

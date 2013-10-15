@@ -1,0 +1,10 @@
+<div class="author-card large">
+  <%= author_card(author, 80) %>
+  <div class="name">
+    <%= text_profile(author) %>
+  </div>
+  <div class="date">
+    on <%= conversation_created_at.strftime('%B %d, %Y') %>
+  </div>
+</div>
+
