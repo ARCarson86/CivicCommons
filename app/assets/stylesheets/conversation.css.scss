@@ -111,10 +111,12 @@
       display: none;
     }
     .page {
-      display: inline !important;
+      display: block !important;
       position: relative !important;
       top: 0 !important;
       left: 0 !important;
+      width: auto;
+      height: auto;
     }
     .participants {
       width: 770px !important;
