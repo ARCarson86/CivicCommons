@@ -1,0 +1,22 @@
+  <p class="title">
+  <%# TODO:  Refactor model call %>
+  <%
+    contribution = Contribution.find(rating_group.contribution_id)
+    conversation = Conversation.find(rating_group.conversation_id)
+    rating = Rating.find_by_rating_group_id(rating_group.id)
+  %>
+  <strong><%= rating_group.person.name %> rated a response from <%= contribution.person.name %> as <span class="label label-rating"><%= rating && rating.rating_descriptor.title %></span></strong>:
+  </p>
+
+  <div class="bd">
+    <p>
+    <%= link_to( "\"#{truncate( Sanitize.clean( contribution.content, :remove_contents => ['script'] ).strip, :length => embed_activity_length, :separator => ' ' )}\"", conversation_node_url(contribution) ) %>
+    </p>
+
+    <% unless controller.controller_name == 'conversations' && controller.action_name == 'show' %>
+      <p class="posted">
+        Posted on: <%= link_to( short_title(conversation.title), conversation_url(contribution.conversation) ) %>
+      </p>
+    <% end %>
+  </div>
+

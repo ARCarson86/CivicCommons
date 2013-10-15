@@ -1,0 +1,15 @@
+<%
+  link_text = '"'
+  link_text << truncate( Sanitize.clean( reflection.details, :remove_contents => ['script'] ).strip, :length => embed_activity_length, :separator => ' ' )
+  link_text << '"'
+%>
+  <h4><%= link_to( reflection.title, conversation_reflection_url(reflection.conversation, reflection, :anchor => 'opportunity-nav')) %></h4>
+  <div class="offset-2">
+    <%= avatar_profile(reflection.person, 40) %>
+    <p>
+      <strong><%= link_to(reflection.person.name, user_url(reflection.person)) %></strong> -
+      <%= link_text %>
+    </p>
+    <p><%= link_to("Continue Reading", conversation_reflection_url(reflection.conversation, reflection, :anchor => 'opportunity-nav'), :class => "read-more") %></p>
+  </div>
+

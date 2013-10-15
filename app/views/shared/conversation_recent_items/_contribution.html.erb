@@ -1,0 +1,32 @@
+<%
+
+link_text = ''
+
+if contribution.content.blank?
+  if contribution.title.blank?
+    link_text << '.'
+  else
+    link_text << contribution_action_past_tense( contribution )
+    link_text << ': "'
+    link_text << contribution.title
+    link_text << '"'
+  end
+else
+  link_text << '"'
+  link_text << truncate( Sanitize.clean( contribution.content, :remove_contents => ['script'] ).strip, :length => embed_activity_length, :separator => ' ' )
+  link_text << '"'
+end
+
+%>
+
+  <h4><%= link_to( contribution.item_title, contribution_item_url(contribution)) unless controller.controller_name == "conversations" %></h4>
+
+  <div class="offset-2">
+    <%= avatar_profile(contribution.person, 40) %>
+    <p>
+      <strong><%= link_to(contribution.person_name, user_url(contribution.person)) %></strong> -
+      <%= link_text %>
+    </p>
+    <p><%= link_to("Continue Reading", url_to_contribution(contribution), :class => "read-more") %></p>
+  </div>
+
