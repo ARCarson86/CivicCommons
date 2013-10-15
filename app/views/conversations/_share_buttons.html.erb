@@ -9,7 +9,7 @@
 
   <div class="share-button">
     <div class="follows">
-      15
+      <%= @conversation.subscriptions.count %>
     </div>
     <%= render :partial => '/subscriptions/subscription', :locals => {:subscribable => @conversation} %>
   </div>
