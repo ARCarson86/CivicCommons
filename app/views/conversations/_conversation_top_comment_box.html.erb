@@ -2,24 +2,11 @@
 
   <div class="what-do-you-think main-content">
     <h2>What do you think?</h2>
-    <div class="comment">
-      <%= avatar_profile(person, 80, nil) %>
-      <div class="name">
-        <%= person.name %>
-      </div>
-      <div class="date">
-        on <%= DateTime.now.strftime('%B %d, %Y') %>
-      </div>
-      <div class="body">
-        <div class="editable">
-          <textarea name="top-level-contribution"></textarea>
-          <div class="contribute-actions">
-            <a href="#" class="button tertiary cancel">Cancel</a>
-            <a href="#" class="button ">Save</a>
-          </div>
-        </div>
-      </div>
-    </div>
+    <% if current_person %>
+      <%= render partial: 'conversation_top_comment_box_registered_user', locals: {person: person} %>
+    <% else %>
+      <%= render partial: 'conversation_top_comment_box_anonymous_user' %>
+    <% end %>
   </div>
 
   <div class="take-action aside supplementary">

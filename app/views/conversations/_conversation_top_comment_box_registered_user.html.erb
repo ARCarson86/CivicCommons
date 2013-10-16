@@ -1,0 +1,19 @@
+<div class="comment">
+  <%= avatar_profile(person, 80, nil) %>
+  <div class="name">
+    <%= person.name %>
+  </div>
+  <div class="date">
+    on <%= DateTime.now.strftime('%B %d, %Y') %>
+  </div>
+  <div class="body">
+    <div class="editable">
+      <textarea name="top-level-contribution"></textarea>
+      <div class="contribute-actions">
+        <a href="#" class="button tertiary cancel">Cancel</a>
+        <a href="#" class="button ">Save</a>
+      </div>
+    </div>
+  </div>
+</div>
+
