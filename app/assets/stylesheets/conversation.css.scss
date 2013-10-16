@@ -276,6 +276,9 @@
       overflow: hidden;
       padding: 10px 0;
       position: relative;
+      .actions {
+        display: none;
+      }
       &:after {
         display: block;
         content: "...";
@@ -295,6 +298,7 @@
       .author-card {
         display: inline;
         .name {
+          display: inline;
           text-decoration: none;
         }
         .date {
@@ -332,6 +336,9 @@
       clear: both;
     }
     &.expanded .response, .response.new-response {
+      .actions {
+        display: block;
+      }
       &.new-response {
         margin-left: 90px;
       }
