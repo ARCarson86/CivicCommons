@@ -2,6 +2,7 @@ $("#contrib #error_explanation").remove();
 <% unless @contribution.errors.any? %>
 
   <% if @contribution.parent %>
+    $("#show-contribution-<%= @contribution.parent.id %> .responses").append("<%= j render(partial: "/conversations/conversation_sub_level_contribution", locals: {contribution: @contribution}) %>");
   <% else %>
     $(".threads").append("<%= j render(partial: "/conversations/conversation_top_level_contribution", locals: {contribution: @contribution}) %>");
   <% end %>

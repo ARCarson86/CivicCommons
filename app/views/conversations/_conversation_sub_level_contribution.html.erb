@@ -1,7 +1,7 @@
 <div class="response">
   <div class="response-inner">
     <%#= render :partial => '/contributions/contribution_aux_actions', locals: {contribution:contribution} %>
-    <%= render :partial => '/user/author_card_mini', locals: {author:contribution.owner, conversation_created_at: @conversation.created_at} %>
+    <%= render :partial => '/user/author_card', locals: {author:contribution.owner, conversation_created_at: @conversation.created_at} %>
 
     <div class="content">
       <%= format_comment(contribution) %>

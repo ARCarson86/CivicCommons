@@ -268,7 +268,7 @@
     .responses {
       width: 290px;
       float: right;
-      height: 200px;
+      max-height: 200px;
       overflow-y: scroll;
     }
     .response {
@@ -341,6 +341,7 @@
       }
       &.new-response {
         margin-left: 90px;
+        border-bottom: 0 none;
       }
       border-bottom: 1px solid #c3c6cd;
       display: block;
@@ -360,26 +361,16 @@
       .response-inner {
         height: auto;
 
-        .content {
-          display: block;
-          height: auto;
-          p {
-            display: block;
-          }
-          &:before {
-            content: "";
-            display: none;
-          }
-        }
       }
-      &:last-child {
-        border-bottom: 0 none;
-      }
-      > .content {
+      .content {
+        display: block;
+        height: auto;
+        margin-left: 50px;
         p {
           display: block;
         }
         &:before {
+          content: "";
           display: none;
         }
       }

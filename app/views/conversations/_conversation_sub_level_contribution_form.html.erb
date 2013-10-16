@@ -10,7 +10,7 @@
       on October 10th, 2012
     </div>
   </div>
-  <%= form_for [new_contribution.conversation, new_contribution], id: "contribution-response-#{parent.id}" do |f| %>
+  <%= form_for [new_contribution.conversation, new_contribution], id: "contribution-response-#{parent.id}", remote: true do |f| %>
     <%= f.hidden_field :parent_id, value: parent.id %>
     <div class="content editable">
       <%= f.text_area :content, rows: 2, class: "thread-reply", id: "contribution-content-#{parent.id}" %>
@@ -38,7 +38,7 @@
       </div>
       <div class="contribute-actions">
         <a href="#" class="button tertiary cancel">Cancel</a>
-        <a href="#" class="button ">Save</a>
+        <%= f.submit "Save", class: "button" %>
       </div>
     </div>
   <% end %>
