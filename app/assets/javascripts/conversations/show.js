@@ -295,7 +295,7 @@
 
   this.ShowsConversations.prototype = {
     onReady: function() {
-      $('.rating-button').ratingButton();
+      $('.rating-link').ratingButton();
       this.scrollToContributionDenotedByWindowsLocationHash();
     },
     scrollToContributionDenotedByWindowsLocationHash: function() {
