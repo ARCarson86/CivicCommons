@@ -19,7 +19,7 @@
   </div>
 
   <div class="threads">
-    <%= render partial: "conversation_top_level_contribution", collection: @contributions, as: :contribution %>
+    <%= render partial: "conversation_top_level_contribution", collection: @contributions, as: :contribution, locals: {new_contribution: @top_level_contribution} %>
   </div> <!-- threads -->
 
 </div>

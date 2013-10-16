@@ -89,9 +89,8 @@ class ConversationsController < ApplicationController
   def show
     @new_conversation = params[:conversation_created] ? true : false
     @conversation = Conversation.includes(:issues).find(params[:id])
-    @conversation.visit!((current_person.nil? ? nil : current_person.id))
-    @contributions = Contribution.includes(:rating_groups, :person).for_conversation(@conversation)
-    @contributions = @conversation.contributions.where(parent_id: nil).order("created_at ASC").confirmed.includes(:rating_groups, :person)
+    @conversation.visit!(current_person.id) if current_person
+    @contributions = @conversation.contributions.includes(:rating_groups, :person).confirmed.where(parent_id: nil).order("created_at ASC")
     @ratings = RatingGroup.ratings_for_conversation_by_contribution_with_count(@conversation, current_person)
 
     # Build rating totals into contribution
@@ -102,7 +101,7 @@ class ConversationsController < ApplicationController
     # grab all direct contributions to conversation that aren't TLC
     @conversation_contributions = @contributions.select{ |c| !c.top_level_contribution? && c.parent_id.nil? }
 
-    @top_level_contribution = Contribution.new # for conversation comment form
+    @top_level_contribution = @conversation.contributions.new # for conversation comment form
     @tlc_participants = @top_level_contributions.collect{ |tlc| tlc.owner }
 
     @latest_contribution = @conversation.confirmed_contributions.most_recent.first
