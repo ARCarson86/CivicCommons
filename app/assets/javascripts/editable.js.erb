@@ -15,13 +15,11 @@
   };
   var methods = {
     initialize: function(options) {
-      console.log($this);
       $($this.children('textarea')[0]).focusin( function() {
         methods['show'](options);
       });
     },
     show: function(options) {
-      console.log($this.children('textarea'));
       $($this.children('textarea')[0]).tinymce(options);
     },
     hide: function() {
@@ -41,7 +39,7 @@
 
     return this.each(function(index, element) {
       var thefield = $(element).children('textarea')[0];
-      $(thefield).focusin(function() {
+      $(thefield).focus(function() {
         if (typeof window.tinyMCE == 'undefined' || (typeof window.tinyMCE != 'undefined' && 'undefined' == typeof $(thefield).tinymce())) {
           $(element).addClass("editor-active");
           $(this).tinymce(settings);

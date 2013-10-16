@@ -54,6 +54,14 @@
         }
       });
     });
+    $('.thread').each(function(index, element) {
+      $(element).delegate('a.expand', 'click', function(event) {
+        event.preventDefault();
+        $(element).addClass('expanded');
+        $(element).find('textarea').focus();
+        $(element).find('textarea').trigger('focus');
+      });
+    });
 
   });
 

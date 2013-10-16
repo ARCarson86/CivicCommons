@@ -331,7 +331,7 @@
     .response.new-response {
       clear: both;
     }
-    .expanded .response, .response.new-response {
+    &.expanded .response, .response.new-response {
       &.new-response {
         margin-left: 90px;
       }
@@ -647,4 +647,8 @@ textarea {
       display: none;
     }
   }
+}
+.post-admin {
+  float: right;
+  line-height: 30px;
 }
