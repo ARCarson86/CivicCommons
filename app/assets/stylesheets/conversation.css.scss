@@ -350,6 +350,9 @@
       }
       .author-card {
         display: block;
+        .name {
+          display: block;
+        }
         .date {
           display: inline;
         }
@@ -389,6 +392,13 @@
         .content {
           width: 510px - 50px - 6px;
           display: block;
+        }
+      }
+    }
+    .response.new-response {
+      .author-card {
+        .name {
+          display: inline;
         }
       }
     }
