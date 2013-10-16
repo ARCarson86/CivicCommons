@@ -91,6 +91,7 @@ class ConversationsController < ApplicationController
     @conversation = Conversation.includes(:issues).find(params[:id])
     @conversation.visit!((current_person.nil? ? nil : current_person.id))
     @contributions = Contribution.includes(:rating_groups, :person).for_conversation(@conversation)
+    @contributions = @conversation.contributions.where(parent_id: nil).order("created_at ASC").confirmed.includes(:rating_groups, :person)
     @ratings = RatingGroup.ratings_for_conversation_by_contribution_with_count(@conversation, current_person)
 
     # Build rating totals into contribution

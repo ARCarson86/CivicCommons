@@ -19,24 +19,7 @@
   </div>
 
   <div class="threads">
-    <% @contributions.each do |contribution| %>
-
-      <% if contribution.root? %>
-        <div class="thread">
-
-          <% descendants = contribution.descendants %>
-          <%= render partial: "conversation_top_level_contribution", locals: {contribution: contribution, sub_contribution_count: descendants.count} %>
-
-          <div class='responses'>
-            <% descendants.each do |descendant_contribution| %>
-              <%= render partial: "conversation_sub_level_contribution", locals: {contribution: descendant_contribution} %>
-            <% end %>
-          </div>
-
-        </div>
-      <% end %>
-
-    <% end %>
+    <%= render partial: "conversation_top_level_contribution", collection: @contributions, as: :contribution %>
   </div> <!-- threads -->
 
 </div>

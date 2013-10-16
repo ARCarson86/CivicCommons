@@ -1,15 +1,12 @@
 $("#contrib #error_explanation").remove();
 <% unless @contribution.errors.any? %>
 
-  hide_contribution_tool();
-
   <% if @contribution.parent %>
-    $('#show-contribution-<%= @contribution.parent.id %>').find('ol.thread-list:first').append("<%= escape_javascript( render :partial => "conversations/threaded_contribution_template", :locals => { :contribution => @contribution } ) %>");
   <% else %>
-    $('#show_conversation > ol.thread-list').last().append("<%= escape_javascript( render :partial => "conversations/threaded_contribution_template", :locals => { :contribution => @contribution } ) %>");
+    $(".threads").append("<%= j render(partial: "/conversations/conversation_top_level_contribution", locals: {contribution: @contribution}) %>");
   <% end %>
 <% else %>
 
-  $("#contrib fieldset").first().before("<%= escape_javascript( render :partial => 'contributions/creation_errors' ) %>");
+  //$("#contrib fieldset").first().before("<%= escape_javascript( render :partial => 'contributions/creation_errors' ) %>");
 
 <% end %>
