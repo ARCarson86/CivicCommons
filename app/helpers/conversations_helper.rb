@@ -173,22 +173,9 @@ module ConversationsHelper
     out = []
     RatingGroup.cached_rating_descriptors.each do |id, title|
       if current_person && current_person.id == contribution.owner
-        out << "<span class='rating-button'>#{title} <span class='number'>#{ratings_hash[contribution.id][title][:total]}</span></span>"
-      else
-        out << link_to( "#{title} <span class='loading'>#{image_tag 'loading.gif'}</span><span class='number'>#{ratings_hash[contribution.id][title][:total]}</span>".html_safe, conversation_contribution_toggle_rating_path(:contribution_id => contribution, :rating_descriptor_title => title), :remote => true, :method => :post, :id => "contribution-#{contribution.id}-rating-#{title}", :class => "rating-button #{'active' if ratings_hash[contribution.id][title][:person]}" )
-      end
-    end
-    raw(out.join(' '))
-  end
-
-  def rating_buttons_154(contribution, ratings_hash)
-    out = []
-    RatingGroup.cached_rating_descriptors.each do |id, title|
-      if current_person && current_person.id == contribution.owner
-        #out << "<li><a href='#'>#{title} <span class='count number'>#{ratings_hash[contribution.id][title][:total]}</span></a></li>"
         out << "<li>#{title} <span class='count number'>#{ratings_hash[contribution.id][title][:total]}</span></li>"
       else
-        out << "<li>" + link_to( "#{title} <span class='loading'>#{image_tag 'loading.gif'}</span><span class='number'>#{ratings_hash[contribution.id][title][:total]}</span>".html_safe, conversation_contribution_toggle_rating_path(:contribution_id => contribution, :rating_descriptor_title => title), :remote => true, :method => :post, :id => "contribution-#{contribution.id}-rating-#{title}", :class => "rating-button #{'active' if ratings_hash[contribution.id][title][:person]}" ) + "</li>"
+        out << "<li>" + link_to( "#{title} <span class='loading' style='display: none;'>#{image_tag 'loading.gif'}</span><span class='number'>#{ratings_hash[contribution.id][title][:total]}</span>".html_safe, conversation_contribution_toggle_rating_path(:contribution_id => contribution, :rating_descriptor_title => title), :remote => true, :method => :post, :id => "contribution-#{contribution.id}-rating-#{title}", :class => "rating-link #{'active' if ratings_hash[contribution.id][title][:person]}" ) + "</li>"
       end
     end
     raw(out.join(' '))
@@ -206,7 +193,7 @@ module ConversationsHelper
   def respond_button_text(contribution)
     current_person && contribution.person == current_person ? "Add More" : "Respond#{' to ' + contribution.person.short_name if contribution.person}"
   end
-  
+
   def short_title(title, length = 50, separator = ' ')
     truncate(title, {:length => length, :separator => separator})
   end
