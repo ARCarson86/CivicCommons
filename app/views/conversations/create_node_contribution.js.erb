@@ -1,13 +1,19 @@
-$("#contrib #error_explanation").remove();
+$("#error_explanation").remove();
 <% unless @contribution.errors.any? %>
 
   <% if @contribution.parent %>
     $("#show-contribution-<%= @contribution.parent.id %> .responses").append("<%= j render(partial: "/conversations/conversation_sub_level_contribution", locals: {contribution: @contribution}) %>");
+    $("#show-contribution-<%= @contribution.parent.id %> .cancel").click();
   <% else %>
-    $(".threads").append("<%= j render(partial: "/conversations/conversation_top_level_contribution", locals: {contribution: @contribution}) %>");
+    $(".threads").append("<%= j render(partial: "/conversations/conversation_top_level_contribution", locals: {contribution: @contribution, new_contribution: @new_contribution}) %>");
+    $("#new_contribution .cancel").click();
   <% end %>
 <% else %>
 
-  //$("#contrib fieldset").first().before("<%= escape_javascript( render :partial => 'contributions/creation_errors' ) %>");
+  <% if @contribution.parent %>
+    $("#show-contribution-<%= @contribution.parent.id %> form").before("<%= escape_javascript( render :partial => 'contributions/creation_errors' ) %>");
+  <% else %>
+    $("#new_contribution").before("<%= escape_javascript( render :partial => 'contributions/creation_errors' ) %>");
+  <% end %>
 
 <% end %>

@@ -8,6 +8,8 @@ class ContributionsController < ApplicationController
 
   def create
     @conversation = Conversation.find(params[:conversation_id])
+    Rails.logger.info @conversation
+    
     unless params[:contribution][:url].blank?
       embedly = EmbedlyService.new
       embedly.fetch_and_merge_params!(params)
@@ -20,6 +22,7 @@ class ContributionsController < ApplicationController
     if @contribution.save
       Subscription.create_unless_exists(current_person, @contribution.item)
       @ratings = RatingGroup.default_contribution_hash
+      @new_contribution = @conversation.contributions.new
     end
 
     respond_to do |format|

@@ -39,6 +39,7 @@
 
     return this.each(function(index, element) {
       var thefield = $(element).children('textarea')[0];
+      var theform = $(element).parents('form')[0];
       $(thefield).focus(function() {
         if (typeof window.tinyMCE == 'undefined' || (typeof window.tinyMCE != 'undefined' && 'undefined' == typeof $(thefield).tinymce())) {
           $(element).addClass("editor-active");
@@ -47,6 +48,7 @@
       });
       $(element).find('.cancel').live('click', function(event) {
         event.preventDefault();
+        $(theform).find("input[type=text], textarea").val("");
         $(element).removeClass("editor-active");
         if (typeof window.tinyMCE != 'undefined' && 'undefined' != typeof $(thefield).tinymce()) {
           $(thefield).tinymce().remove();
