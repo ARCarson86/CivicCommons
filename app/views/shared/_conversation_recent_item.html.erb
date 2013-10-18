@@ -1,4 +1,4 @@
 <% type = recent_item.class.to_s %>
-<div class="activity">
+<div class="activity <%= css_classes ||= "" %>">
   <%= render :partial => "shared/conversation_recent_items/#{type.underscore}", :object => recent_item %>
 </div>

@@ -1,11 +1,14 @@
 <% if (@items) %>
-  $("#recent-activity .activities").prepend("<%= j render( partial: "shared/conversation_recent_item", collection: @items, as: "recent_item" ) %>");
+    $("#recent-activity .activities").prepend("<%= j render( partial: "shared/conversation_recent_item", collection: @items, as: "recent_item", locals: {css_classes: "new"} ) %>");
 
   <% @contributions.each do |contribution| %>
     <% if contribution.parent_id %>
-        $("#show-contribution-<%= contribution.parent_id %> .responses").append("<%= j render(partial: "conversations/conversation_sub_level_contribution", locals: {contribution: contribution, new_contribution: @new_contribution} ) %>");
+        $("#show-contribution-<%= contribution.parent_id %> .responses").append("<%= j render(partial: "conversations/conversation_sub_level_contribution", locals: {contribution: contribution, new_contribution: @new_contribution, css_classes: "new"} ) %>");
     <% else %>
-        $(".threads").prepend("<%= j render(partial: "conversations/conversation_top_level_contribution", locals: {contribution: contribution, new_contribution: @new_contribution} ) %>");
+        $(".threads").prepend("<%= j render(partial: "conversations/conversation_top_level_contribution", locals: {contribution: contribution, new_contribution: @new_contribution, css_classes: "new"} ) %>");
     <% end %>
   <% end %>
+  setTimeout(function() {
+    $(".activity.new, .response.new, .thread.new").removeClass("new");
+  }, 3000);
 <% end %>

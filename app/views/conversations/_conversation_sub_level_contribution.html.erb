@@ -1,4 +1,4 @@
-<div class="response">
+<div class="response <%= css_classes ||= "" %>">
   <div class="response-inner">
     <%= render :partial => '/user/author_card', locals: {author:contribution.owner, conversation_created_at: @conversation.created_at} %>
 

@@ -660,3 +660,13 @@ textarea {
   float: right;
   line-height: 30px;
 }
+
+.activity, .thread, .response {
+  background-color: transparent;
+  @include transition( background-color 0.3s );
+  &.new {
+    background-color: rgba(248, 252, 172, 0.5);
+    @include transition( background-color 0s );
+  }
+}
+
