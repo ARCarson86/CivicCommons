@@ -1,3 +1,4 @@
+<a name="contribution-#{contribution.id}"></a>
 <div class="thread <%= css_classes ||= "" %>" id="<%= "show-contribution-#{contribution.id}" %>">
   <div class="primary">
     <%= render :partial => '/contributions/contribution_aux_actions', locals: {contribution:contribution, sub_contribution_count: contribution.descendants.count} %>
