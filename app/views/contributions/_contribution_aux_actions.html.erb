@@ -1,19 +1,42 @@
 <div class="actions">
+  <%# Terms of Service Violations! %>
   <%= link_to('',
               new_tos_path(contribution),
               :class => "action flag conversation-action top-level-contribution-action-button",
               :id => "action-link-#{contribution.id}",
               'data-colorbox' => true,
               :title => "Alert Us of Terms of Service Violations") %>
+
+  <%# Top Level Contributions have the ability to 'expand' and show sublevel contributions %>
   <% if !is_sub_contribution %>
   <a href="" class="action expand">
     <span class="response-count"><%= sub_contribution_count %></span>
   </a>
   <% end %>
+
+  <%# Ratings %>
   <span href="" class="action mark expandable" >
     <ul class="mark-post-as">
       <% rating = Rating.find_by_rating_group_id(contribution.id) %>
       <%= rating_buttons(contribution, @ratings || rating) %>
     </ul>
   </span>
+
+  <%# Admin Users have some pretty special abilities! %>
+  <% if current_person.try(:admin?) %>
+    <%= link_to "Moderate", moderate_conversation_contribution_path(contribution.conversation, contribution),  :class => 'moderate' %>
+    <%= link_to("Delete", conversation_contribution_path(contribution.conversation, contribution), :remote => true, :method => :delete, :confirm => "Are you sure you want to delete this response? This cannot be undone.", :class => "delete-contribution-action", 'data-target' => "#show-contribution-#{contribution.id}") %>
+    <% if contribution.children.count == 0 && contribution.rating_groups.empty? %>
+      <%= link_to_edit_contribution(contribution) %>
+    <% else %>
+      <%= link_to_edit_contribution(contribution, :confirm => 'This contribution has been rated or someone has responded to it, please ensure you do not alter meaning or intent with your edits' ) %>
+    <% end %>
+  <% end %>
+
+  <%# Contribution Creators have some special abilities too! %>
+  <% if current_person && contribution.owner_editable?(current_person) && !current_person.admin? %>
+    <%= link_to_edit_contribution(contribution) %>
+    <%= link_to("Delete", conversation_contribution_path(contribution.conversation, contribution), :remote => true, :method => :delete, :confirm => "Are you sure you want to delete this response? This cannot be undone.", :class => "delete-contribution-action", 'data-target' => "#show-contribution-#{contribution.id}") %>
+  <% end %>
+
 </div>
