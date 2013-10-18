@@ -1,0 +1,3 @@
+<% if (@activities) %>
+  $("#recent-activity .activities").prepend("<%= j render( partial: "shared/conversation_recent_item", collection: @activities, as: "recent_item" ) %>");
+<% end %>

@@ -24,3 +24,10 @@
 
 </div>
 
+<script type="text/javascript">
+  var refresh_time = "<%= Time.zone.now %>";
+  setInterval(function() {
+    $.getScript("<%= updates_conversation_path(@conversation) %>?time="+refresh_time);
+    refresh_time = moment().utc().format();
+  }, 30000);
+</script>

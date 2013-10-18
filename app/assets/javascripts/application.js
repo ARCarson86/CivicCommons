@@ -33,6 +33,7 @@
 //= require "jquery/jquery.ui.touch-punch.js"
 //= require 'ckeditor/init'
 //= require jquery/jquery.fancybox-1.3.4.js
+//= require moment
 
 //= require editable
 //= require readmore

@@ -328,6 +328,17 @@ class ConversationsController < ApplicationController
     end
   end
 
+  def updates
+    @conversation = Conversation.find(params[:id])
+    @time = params[:time].to_datetime
+    @activities = @conversation.activities.where("item_created_at > ?", @time).includes(:item).collect do |activity|
+      activity.item
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
   def force_friendly_id

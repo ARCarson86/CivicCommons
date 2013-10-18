@@ -10,6 +10,7 @@ class Conversation < ActiveRecord::Base
   attr_accessor :agree_to_be_civil, :other_topic
 
   has_many :actions, :dependent => :destroy
+  has_many :activities
 
   searchable :ignore_attribute_changes_of => [ :total_visits, :recent_visits, :last_visit_date, :updated_at, :recent_rating ] do
     text :title, :boost => 3, :default_boost => 3
