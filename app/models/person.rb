@@ -64,6 +64,10 @@ class Person < ActiveRecord::Base
 
   has_many :content_items_people
   has_many :content_items, :through => :content_items_people, :foreign_key => 'person_id', :dependent => :restrict
+
+  has_many :conversations_people
+  has_many :conversations, :through => :conversations_people, :foreign_key => 'person_id', :dependent => :restrict
+
   has_many :authored_content_items, :class_name => 'ContentItem', :foreign_key => 'person_id', :dependent => :restrict
   has_many :content_templates, :foreign_key => 'person_id', :dependent => :restrict
   has_many :contributions, :foreign_key => 'owner', :uniq => true, :dependent => :restrict

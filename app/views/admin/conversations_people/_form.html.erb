@@ -1,0 +1,31 @@
+<%#= form_for(admin_conversations_people_path(@moderator, method: :post)) do |f| %>
+<%= form_for([:admin, @moderator]) do |f| %>
+  <% if @moderator.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@moderator.errors.count, "error") %> prohibited this topic from being saved:</h2>
+
+      <ul>
+      <% @moderator.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :conversation, '1. Select an conversation to moderate:' %><br />
+    <%= f.select :conversation_id, options_from_collection_for_select(@conversations, 'id','title', f.object.try(:conversation_id)), :prompt => 'Select a Conversation'%>
+  </div>
+  <br/>
+
+  <div class="field">
+    <%= f.label :contributions, '2. Select a moderator:' %><br />
+    <%= f.select :person_id, options_from_collection_for_select(@users, 'id','name', f.object.try(:person_id)), :prompt => 'Select a Moderator'%>
+  </div>
+  <br/>
+
+  <div class="actions">
+    <%= submit_tag("Submit") %>
+  </div>
+<% end %>
+

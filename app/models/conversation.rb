@@ -47,6 +47,13 @@ class Conversation < ActiveRecord::Base
 
   accepts_nested_attributes_for :topics
 
+  has_many :conversations_people, :uniq => true
+  has_many :people, :through => :conversations_people, :foreign_key => 'conversation_id', uniq: true
+
+  def moderators
+    self.people
+  end
+
   has_many :content_items_conversations, :uniq => true
   has_many :content_items, :through => :content_items_conversations, uniq: true
   has_many :surveys, :as => :surveyable

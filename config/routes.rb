@@ -188,6 +188,7 @@ Civiccommons::Application.routes.draw do
     end
   end
 
+  resources :conversations_people
   resources :contributions, only: [:destroy]
 
   resources :votes, controller: :surveys, :only => :show do
@@ -256,6 +257,7 @@ Civiccommons::Application.routes.draw do
     resources :featured_opportunities do
       get 'change_conversation_selection', on: :collection
     end
+    resources :conversations_people
     resources :metro_regions do
       get  'display_names',        on: :collection
       get  'edit_display_names',   on: :member

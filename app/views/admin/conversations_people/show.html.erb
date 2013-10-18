@@ -1,0 +1,14 @@
+<h1>Moderator</h1>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Conversation:</b><br/>
+  <%= link_to @moderator.conversation.title, conversation_url(@moderator.conversation) %>
+</p>
+<p>
+  <b>Moderator:</b><br/>
+  <%= link_to @moderator.person.name, admin_person_path(@moderator.person) %>
+</p>
+
+<%= link_to 'Edit', edit_admin_conversations_person_path(@moderator.id) %> |
+<%= link_to 'Back', admin_conversations_people_path %>
