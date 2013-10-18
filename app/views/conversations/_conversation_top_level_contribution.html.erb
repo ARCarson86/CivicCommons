@@ -1,7 +1,7 @@
 <a name="contribution-#{contribution.id}"></a>
 <div class="thread <%= css_classes ||= "" %>" id="<%= "show-contribution-#{contribution.id}" %>">
   <div class="primary">
-    <%= render :partial => '/contributions/contribution_aux_actions', locals: {contribution:contribution, sub_contribution_count: contribution.descendants.count} %>
+    <%= render :partial => '/contributions/contribution_aux_actions', locals: {contribution:contribution, sub_contribution_count: contribution.descendants.count, is_sub_contribution: false} %>
     <%= render :partial => '/user/author_card_large', locals: {author:contribution.owner, conversation_created_at: @conversation.created_at} %>
     <div class="content">
       <%= format_comment(contribution) %>

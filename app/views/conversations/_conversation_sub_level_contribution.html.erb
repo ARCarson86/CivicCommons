@@ -1,6 +1,7 @@
 <a name="contribution-#{contribution.id}"></a>
 <div class="response <%= css_classes ||= "" %>">
   <div class="response-inner">
+    <%= render :partial => '/contributions/contribution_aux_actions', locals: {contribution:contribution, is_sub_contribution: true} %>
     <%= render :partial => '/user/author_card', locals: {author:contribution.owner, conversation_created_at: @conversation.created_at} %>
 
     <div class="content">

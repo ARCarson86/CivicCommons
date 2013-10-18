@@ -5,9 +5,11 @@
               :id => "action-link-#{contribution.id}",
               'data-colorbox' => true,
               :title => "Alert Us of Terms of Service Violations") %>
+  <% if !is_sub_contribution %>
   <a href="" class="action expand">
     <span class="response-count"><%= sub_contribution_count %></span>
   </a>
+  <% end %>
   <span href="" class="action mark expandable" >
     <ul class="mark-post-as">
       <% rating = Rating.find_by_rating_group_id(contribution.id) %>
