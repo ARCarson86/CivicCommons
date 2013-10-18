@@ -1,32 +1,24 @@
 <h3>
-  Moderators (3)
+  Moderators (<%= moderators_count %>)
 </h3>
 <div class="moderators-container">
   <a href="#" class="pager-arrow left icon-chevron-left"></a>
   <a href="#" class="pager-arrow right icon-chevron-right"></a>
   <div class="moderators" id="moderators">
-    <div class="page">
-      <div class="moderator">
-        <a href="">
-          <img src="http://placehold.it/40x40" />
-          Kyle B.
-        </a>
+
+    <% moderators.each_slice(6) do |moderators_cluster| %>
+      <div class="page">
+        <% moderators_cluster.each do |moderator| %>
+        <div class="moderator">
+          <%= link_to user_url(moderator), title: moderator.name do %>
+            <%= image_tag moderator.avatar_image_url, alt: moderator.name, height: 40, size: 40, title: moderator.name %>
+            <%= moderator.name %>
+          <% end %>
+        </div>
+        <% end %>
       </div>
-      <div class="moderator">
-        <a href="">
-          <img src="http://placehold.it/40x40" />
-          Elliott M.
-        </a>
-      </div>
-    </div>
-    <div class="page">
-      <div class="moderator">
-        <a href="">
-          <img src="http://placehold.it/40x40" />
-          Joshua S.
-        </a>
-      </div>
-    </div>
+    <% end %>
+
   </div>
 </div>
 <script type="text/javascript">
