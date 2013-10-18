@@ -90,7 +90,7 @@ class ConversationsController < ApplicationController
     @new_conversation = params[:conversation_created] ? true : false
     @conversation = Conversation.includes(:issues).find(params[:id])
     @conversation.visit!(current_person.id) if current_person
-    @contributions = @conversation.contributions.includes(:rating_groups, :person).confirmed.where(parent_id: nil).order("created_at ASC")
+    @contributions = @conversation.contributions.includes(:rating_groups, :person).confirmed.where(parent_id: nil).order("created_at DESC")
     @ratings = RatingGroup.ratings_for_conversation_by_contribution_with_count(@conversation, current_person)
 
     # Build rating totals into contribution
@@ -330,10 +330,11 @@ class ConversationsController < ApplicationController
 
   def updates
     @conversation = Conversation.find(params[:id])
+    @ratings = RatingGroup.ratings_for_conversation_by_contribution_with_count(@conversation, current_person)
+    @new_contribution = @conversation.contributions.new
     @time = params[:time].to_datetime
-    @activities = @conversation.activities.where("item_created_at > ?", @time).includes(:item).collect do |activity|
-      activity.item
-    end
+    @items = @conversation.activities.where("item_created_at > ?", @time).includes(:item).collect{|activity| activity.item}
+    @contributions = @conversation.activities.where("item_created_at > ?", @time).where(item_type: "Contribution").where("person_id <> ?", current_person.id).includes(item: [:rating_groups]).collect{|activity| activity.item}
     respond_to do |format|
       format.js
     end

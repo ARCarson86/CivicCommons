@@ -1,3 +1,11 @@
-<% if (@activities) %>
-  $("#recent-activity .activities").prepend("<%= j render( partial: "shared/conversation_recent_item", collection: @activities, as: "recent_item" ) %>");
+<% if (@items) %>
+  $("#recent-activity .activities").prepend("<%= j render( partial: "shared/conversation_recent_item", collection: @items, as: "recent_item" ) %>");
+
+  <% @contributions.each do |contribution| %>
+    <% if contribution.parent_id %>
+        $("#show-contribution-<%= contribution.parent_id %> .responses").append("<%= j render(partial: "conversations/conversation_sub_level_contribution", locals: {contribution: contribution, new_contribution: @new_contribution} ) %>");
+    <% else %>
+        $(".threads").prepend("<%= j render(partial: "conversations/conversation_top_level_contribution", locals: {contribution: contribution, new_contribution: @new_contribution} ) %>");
+    <% end %>
+  <% end %>
 <% end %>

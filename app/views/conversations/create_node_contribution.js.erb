@@ -5,7 +5,7 @@ $("#error_explanation").remove();
     $("#show-contribution-<%= @contribution.parent.id %> .responses").append("<%= j render(partial: "/conversations/conversation_sub_level_contribution", locals: {contribution: @contribution}) %>");
     $("#show-contribution-<%= @contribution.parent.id %> .cancel").click();
   <% else %>
-    $(".threads").append("<%= j render(partial: "/conversations/conversation_top_level_contribution", locals: {contribution: @contribution, new_contribution: @new_contribution}) %>");
+    $(".threads").prepend("<%= j render(partial: "/conversations/conversation_top_level_contribution", locals: {contribution: @contribution, new_contribution: @new_contribution}) %>");
     $("#new_contribution .cancel").click();
   <% end %>
 <% else %>
