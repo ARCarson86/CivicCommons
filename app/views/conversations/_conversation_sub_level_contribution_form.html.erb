@@ -1,15 +1,5 @@
 <div class="response new-response">
-  <div class="author-card mini">
-    <a href="#" class="image">
-      <img src="http://placehold.it/40x40">
-    </a>
-    <a href="#" class="name">
-      Kyle Balderson
-    </a>
-    <div class="date">
-      on October 10th, 2012
-    </div>
-  </div>
+  <%= render :partial => '/user/author_card', locals: {author:current_person, conversation_created_at: @conversation.created_at} %>
   <%= form_for [new_contribution.conversation, new_contribution], remote: true, html: {id: "contribution-response-#{parent.id}"} do |f| %>
     <%= f.hidden_field :parent_id, value: parent.id %>
     <div class="content editable">
