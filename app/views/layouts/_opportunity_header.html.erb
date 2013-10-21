@@ -39,6 +39,15 @@
           $('.convo-summary').readmore(); // do this here so it renders minified as soon as possible, rather than waiting for the page to load
         </script>
 
+        <% if @conversation.starter %>
+        <div class="conversation-starter">
+          <h3>Conversation Starter</h3>
+          <div class="body">
+            <p><%= raw(@conversation.starter) %></p>
+          </div>
+        </div>
+        <% end %>
+
 
 
         <% if @conversation.link.present? %>
