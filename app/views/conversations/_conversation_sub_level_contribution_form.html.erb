@@ -3,7 +3,7 @@
   <%= form_for [new_contribution.conversation, new_contribution], remote: true, html: {id: "contribution-response-#{parent.id}"} do |f| %>
     <%= f.hidden_field :parent_id, value: parent.id %>
     <div class="content editable">
-      <%= f.text_area :content, rows: 2, class: "thread-reply", id: "contribution-content-#{parent.id}" %>
+      <%= f.text_area :content, rows: 2, class: "thread-reply", id: "contribution-content-#{parent.id}", placeholder: "Click here to respond to #{parent.person.first_name}" %>
       <div class="contribution-attachments">
         <a href="#" class="add-link button tertiary" rel="link">
           <i class="icon-link icon icon-large"></i>

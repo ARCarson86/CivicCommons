@@ -1,60 +1,28 @@
 (function($) {
-  var settings, $this;
   var defaults = {
     script_url : '<%=asset_path "tiny_mce/tiny_mce.js" %>',
-    //theme : "simple",
     theme : "advanced",
-    // turned off autoresize because it doesn't seem to work very well
-    //plugins : 'autoresize',
     width : '100%',
     theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,link,unlink,|,bullist,numlist,|,undo,redo,|,cut,copy,paste",
     theme_advanced_buttons2 : "",
     theme_advanced_buttons3 : "",
     theme_advanced_toolbar_location : "top",
     theme_advanced_toolbar_align : "left",
+    init_instance_callback: editableInstanceCallback,
     plugins : "autolink,inlinepopups",
   };
-  var methods = {
-    initialize: function(options) {
-      $($this.children('textarea')[0]).focusin( function() {
-        methods['show'](options);
-      });
-    },
-    show: function(options) {
-      $($this.children('textarea')[0]).tinymce(options);
-    },
-    hide: function() {
-    },
-    destroy: function() {
-    }
-  };
 
+  $(document).delegate(".editable textarea", "focus", function(event) {
+    $(this).parent(".editable").addClass("editor-active");
+    defaults.auto_focus = $(this).attr("id");
+    $(this).tinymce(defaults);
+  });
+  $(document).delegate(".editable .cancel", "click", function(event) {
+    $(this).closest(".editable").removeClass("editor-active").children("textarea").tinymce().remove();
+    event.preventDefault();
+  });
+  function editableInstanceCallback(inst) {
+    console.log(inst);
+  }
 
-  $.fn.editable = function(command, options) {
-    if (typeof command != "string") {
-      options = command;
-      command = 'initialize';
-    }
-
-    settings = $.extend(defaults, options);
-
-    return this.each(function(index, element) {
-      var thefield = $(element).children('textarea')[0];
-      var theform = $(element).parents('form')[0];
-      $(thefield).focus(function() {
-        if (typeof window.tinyMCE == 'undefined' || (typeof window.tinyMCE != 'undefined' && 'undefined' == typeof $(thefield).tinymce())) {
-          $(element).addClass("editor-active");
-          $(this).tinymce(settings);
-        }
-      });
-      $(element).find('.cancel').live('click', function(event) {
-        event.preventDefault();
-        $(theform).find("input[type=text], textarea").val("");
-        $(element).removeClass("editor-active");
-        if (typeof window.tinyMCE != 'undefined' && 'undefined' != typeof $(thefield).tinymce()) {
-          $(thefield).tinymce().remove();
-        }
-      });
-    });
-  };
 })(jQuery);
