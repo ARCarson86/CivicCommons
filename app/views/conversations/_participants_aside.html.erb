@@ -65,12 +65,17 @@
         $(".participants-container a.pager-arrow").click(function(e) {
           e.preventDefault();
         });
+        $.fn.cycle.debug = 1;
         $(".participants").cycle({
           fx: 'scrollHorz',
           timeout: 'auto',
           prev: $(".participants-container a.pager-arrow.left"),
           next: $(".participants-container a.pager-arrow.right"),
           speed: 300
+        }).each(function(index,element) {
+          if (element.children.length == 1) {
+            $(".participants-container a.pager-arrow").css("visibility", "hidden");
+          }
         });
       </script>
 
