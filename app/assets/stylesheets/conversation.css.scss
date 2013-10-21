@@ -339,6 +339,7 @@
       margin-top: 10px;
     }
     &.expanded .response, .response.new-response {
+      overflow: initial;
       .actions {
         display: block;
       }
@@ -363,7 +364,7 @@
       }
       .response-inner {
         height: auto;
-
+        overflow: initial;
       }
       .content {
         display: block;

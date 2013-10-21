@@ -9,7 +9,6 @@
       }
       $("#participants").toggleClass("expanded");
       if ($("#participants").hasClass("expanded")) {
-        console.log(this.participantCount / 6);
 
         $(".participants").css({
           height: (55 * Math.ceil(this.participantCount / 6)),
@@ -17,11 +16,16 @@
       }
     });
 
-    $('.threads .thread .actions .action.expandable').hover(function() {
+    $(".threads").delegate(".thread .action.expandable", "mouseenter", function(event) {
+      this.timeout != undefined && clearTimeout(this.timeout)
       $(this).addClass("expanded");
-    }, function() {
-      $(this).removeClass("expanded");
     });
+    $(".threads").delegate(".thread .action.expandable", "mouseleave", function(event) {
+      this.timeout = setTimeout(function(element) {
+        $(element).removeClass("expanded");
+      }, 1000, this);
+    });
+
 
     $(".thread .primary .content").readmore();
 
