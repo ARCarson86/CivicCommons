@@ -37,7 +37,9 @@
     <div class="participants-inner">
       <h3>
         Participants (<%= participants_count %>)
-        <a class="all-participants see-all" href="#">See All</a>
+        <% if participants_count > 6 %>
+          <a class="all-participants see-all" href="#">See All</a>
+        <% end %>
       </h3>
       <div class="participants-container">
         <a href="#" class="pager-arrow left icon-chevron-left"></a>
