@@ -268,7 +268,7 @@
     .responses {
       width: 290px;
       float: right;
-      max-height: 200px;
+      max-height: 280px;
       overflow-y: scroll;
     }
     .response {
@@ -320,7 +320,6 @@
     &.expanded {
       width: 600px;
       .responses {
-        border-top: 1px solid #c3c6cd;
         margin: 10px 0 0 90px;
         width: 510px;
         height: auto;
@@ -331,9 +330,13 @@
       a.readmore {
         display: none !important;
       }
+      .responses {
+        max-height: none;
+      }
     }
     .response.new-response {
-      clear: both;
+      float: left;
+      margin-top: 10px;
     }
     &.expanded .response, .response.new-response {
       .actions {
@@ -341,9 +344,9 @@
       }
       &.new-response {
         margin-left: 90px;
-        border-bottom: 0 none;
       }
-      border-bottom: 1px solid #c3c6cd;
+      border-bottom: 0 none;
+      border-top: 1px solid #c3c6cd;
       display: block;
       &:after {
         content: "";
