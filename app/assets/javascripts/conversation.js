@@ -67,6 +67,13 @@
       });
     });
 
+    $(window).resize(function(event) {
+      recent_activity_resize();
+    });
+    $(window).scroll(function() {
+      recent_activity_resize();
+    });
+    recent_activity_resize();
   });
 
   function expandConversations() {
@@ -76,6 +83,14 @@
   function collapseConversations() {
     $('.thread').removeClass("expanded");
     $('#recent-activity').hide();
+  }
+
+  function recent_activity_resize() {
+    if ($("#recent-activity").length > 0) {
+      var to_bottom = $(window).scrollTop() + $(window).height() - $("#recent-activity .activities").offset().top;
+      var to_footer = $("#footer").offset().top - $("#recent-activity .activities").offset().top;
+      $("#recent-activity .activities").height(Math.min(to_bottom, to_footer));
+    }
   }
 
 })(jQuery)
