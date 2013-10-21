@@ -41,8 +41,6 @@
       }
     });
 
-    $(".editable").editable();
-
     $('.contribution-attachments').each(function(index,element) {
       $(element).delegate('.close', 'click', function(event) {
         event.preventDefault();
