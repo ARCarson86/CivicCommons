@@ -58,9 +58,9 @@ class ContributionsController < ApplicationController
   end
 
   def edit
-    @contribution = Contribution.find(params[:id])
+    @contribution = @conversation.contributions.find(params[:id])
     respond_to do |format|
-      format.js { render 'conversations/edit_contribution_tool' }
+      format.js
     end
   end
 

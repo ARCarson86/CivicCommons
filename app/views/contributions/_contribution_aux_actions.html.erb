@@ -31,14 +31,12 @@
       <% end %>
 
       <% if contribution.children.count == 0 && contribution.rating_groups.empty? %>
-        <%= link_to_edit_contribution(contribution) do %>
-          <i class="icon-edit"></i>
-          Edit
+        <%= link_to ['edit', @conversation, contribution], remote: true do %>
+          <i class="icon-edit"></i> Edit
         <% end %>
       <% else %>
-        <%= link_to_edit_contribution(contribution, :confirm => 'This contribution has been rated or someone has responded to it, please ensure you do not alter meaning or intent with your edits' ) do %>
-          <i class="icon-edit"></i>
-          Edit
+        <%= link_to ['edit', @conversation, contribution], remote: true, confirm: "This contribution has been rated or someone has responded to it, please ensure you do not alter meaning or intent with your edits" do %>
+          <i class="icon-edit"></i> Edit
         <% end %>
       <% end %>
 
