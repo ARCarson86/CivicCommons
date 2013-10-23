@@ -7,31 +7,12 @@
     on <%= DateTime.now.strftime('%B %d, %Y') %>
   </div>
   <div class="body">
-    <%= form_for [@conversation, @top_level_contribution], remote: true do |f| %>
+    <%= form_for [@conversation, @top_level_contribution], remote: true, html: { multipart: true} do |f| %>
       <div class="editable">
         <%= f.text_area :content, rows: 2, placeholder: "Click here to respond to #{@conversation.person.first_name}" %>
-        <div class="contribution-attachments">
-          <a href="#" class="add-link button tertiary" rel="link">
-            <i class="icon-link icon icon-large"></i>
-            <div class="text">
-              Add a link to a related website
-            </div>
-            <div class="input">
-              <%= f.text_field :url %>
-              <i class="icon-remove-sign icon-large close"></i>
-            </div>
-          </a>
 
-          <a href="#" class="add-file button tertiary" rel="file">
-            <div class="text">
-              <i class="icon-picture icon icon-large"></i> Upload a photograph, document, or other file
-            </div>
-            <div class="input">
-              <input id="contribution_attachment" name="contribution[attachment]" type="file">
-              <i class="icon-remove-sign icon-large close"></i>
-            </div>
-          </a>
-        </div>
+        <%= render partial: '/contributions/contribution_attachments_form', locals: {form: f} %>
+
         <div class="contribute-actions">
           <a href="#" class="button tertiary cancel">Cancel</a>
           <%= f.submit "Save", class: "button" %>
