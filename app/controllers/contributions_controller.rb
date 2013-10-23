@@ -9,7 +9,7 @@ class ContributionsController < ApplicationController
   def create
     @conversation = Conversation.find(params[:conversation_id])
     Rails.logger.info @conversation
-    
+
     unless params[:contribution][:url].blank?
       embedly = EmbedlyService.new
       embedly.fetch_and_merge_params!(params)
@@ -72,7 +72,7 @@ class ContributionsController < ApplicationController
     end
     setup_meta_info_for_conversation_contribution(@contribution)
   end
-  
+
   def show
     @contribution = Contribution.find(params[:id])
     @contributions = @contribution.self_and_descendants
