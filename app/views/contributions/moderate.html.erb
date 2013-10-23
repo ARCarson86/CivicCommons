@@ -2,7 +2,7 @@
   <div class='wrapper'>
     <div class='content-container'>
       <div class='main-content'>
-        <%= form_for @contribution, url: moderate_conversation_contribution_path(@contribution.conversation, @contribution), do |contribution| %>
+        <%= form_for @contribution, url: moderate_conversation_contribution_path(@contribution.conversation, @contribution) do |contribution| %>
           <p>
             Please explain why this content needs to be removed from The Commons
           </p>
