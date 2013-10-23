@@ -7,12 +7,12 @@
               'data-colorbox' => true,
               :title => "Alert Us of Terms of Service Violations") %>
 
-  <%# Top Level Contributions have the ability to 'expand' and show sublevel contributions %>
-  <% if !is_sub_contribution %>
+  <%# Expand and Add a New Contribution %>
   <a href="" class="action expand">
-    <span class="response-count"><%= sub_contribution_count %></span>
+    <% if !is_sub_contribution %>
+      <span class="response-count"><%= sub_contribution_count %></span>
+    <% end %>
   </a>
-  <% end %>
 
   <%# Ratings %>
   <span href="" class="action mark expandable" >
