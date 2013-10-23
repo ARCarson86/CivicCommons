@@ -261,9 +261,31 @@
     > .content {
       margin-left: 90px;
     }
+    .content .content-inner {
+      margin-bottom: 20px;
+    }
     .primary {
       width: 600px;
       float: left;
+    }
+
+    .link-meta {
+      @include pie-clearfix;
+      .image {
+        float: left;
+        margin-right: 10px;
+      }
+
+      .embed-content {
+        h3 {
+          font-size: 12px;
+          .source {
+            font-weight: normal;
+            font-size: 11px;
+            white-space: nowrap;
+          }
+        }
+      }
     }
     .responses {
       width: 290px;

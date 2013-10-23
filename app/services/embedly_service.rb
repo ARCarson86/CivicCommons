@@ -305,7 +305,7 @@ class EmbedlyService
           html << '</a>'
         else
           html << js
-          html << "<a id=\"inline-#{r}\" href=\"#{CGI::escapeHTML(CGI::unescapeHTML(code[:url]))}\">"
+          html << "<a id=\"inline-#{r}\" href=\"#{CGI::escapeHTML(CGI::unescapeHTML(code[:url]))}\" target=\"_blank\">"
           html << thumbnail
           html << '</a>'
           html << "<div style=\"display:none\"><div id=\"data-#{r}\">"
@@ -355,6 +355,7 @@ class EmbedlyService
       html << '<a'
       html << " href=\"#{CGI::escapeHTML(CGI::unescapeHTML(url))}\""
       html << " title=\"#{CGI::escapeHTML(CGI::unescapeHTML(title))}\""
+      html << " target=\"_blank\""
       html << '>'
       html << link_body
       html << '</a>'

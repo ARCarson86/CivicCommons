@@ -1,0 +1,5 @@
+<div class="content-inner">
+  <%= format_comment(contribution) %>
+</div>
+<%= render :partial => '/contributions/contribution_embedly', locals: {contribution:contribution} %>
+<%= render :partial => '/contributions/contribution_attachment_file', locals: {contribution:contribution} %>

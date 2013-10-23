@@ -27,7 +27,7 @@
     });
 
 
-    $(".thread .primary .content").readmore();
+    $(".thread .primary .content .content-inner").readmore();
 
     $('.threads-controls .button').click(function() {
       $('.threads-controls .button').removeClass('active');
