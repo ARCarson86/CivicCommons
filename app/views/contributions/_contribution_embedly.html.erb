@@ -1,0 +1,19 @@
+<% if contribution.embedly_type %>
+  <div id='link-meta'>
+    <p id='content-embedded'>
+      <%= raw EmbedlyService.to_embed_or_fancybox(contribution, 200) %>
+    </p>
+    <p id='embed-content'>
+      <p id='link-title'>
+        <%= link_to(contribution.title, contribution.url) %>
+      </p>
+      <p>
+        <%= link_to(contribution.base_url.sub(/https?:\/\//i, ''), contribution.base_url) %>
+      </p>
+      <p id='content link-quot'>
+        <%= raw contribution.description %>
+      </p>
+    </p>
+  </div>
+<% end %>
+

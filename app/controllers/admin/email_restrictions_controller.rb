@@ -1,7 +1,7 @@
 class Admin::EmailRestrictionsController < Admin::DashboardController
-  
+
   authorize_resource :class => :admin_restrictions
-  
+
   # GET /admin/email_restrictions
   # GET /admin/email_restrictions.xml
   def index

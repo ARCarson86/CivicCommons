@@ -100,13 +100,13 @@ class Notifier < Devise::Mailer
     @email = email
     @question = question
     @product = product
-    
+
     headers['X-SMTPAPI'] = '{"category": "products_services_promo"}'
-    mail(:subject => "Engagement Services Form Request from #{name} #{product.present? ? ('about '+ product) : ''}", 
+    mail(:subject => "Engagement Services Form Request from #{name} #{product.present? ? ('about '+ product) : ''}",
          :from => email,
          :to => Civiccommons::Config.email["products_services_email"])
   end
-  
+
   def other_conversation_topic_selected(conversation)
     @resource = conversation
     headers['X-SMTPAPI'] = '{"category": "other_conversation_topic_selected"}'
