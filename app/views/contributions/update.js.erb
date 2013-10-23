@@ -1,0 +1,2 @@
+$("#show-contribution-<%= @contribution.id %> .primary .content").html("<%= j format_comment(@contribution) %>").show();
+$("#show-contribution-<%= @contribution.id %> #edit_contribution_<%= @contribution.id %>").remove();

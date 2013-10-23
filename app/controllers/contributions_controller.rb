@@ -83,26 +83,12 @@ class ContributionsController < ApplicationController
   end
 
   def update
-    @contribution = Contribution.find(params[:id])
-    @contributions = @contribution.self_and_descendants
-    attributes = { contribution: params[:contribution][params[:id]] }
-    attributes = fetch_embedly_information(attributes, params[:contribution][:url]) unless params[:contribution][:url].blank?
-
-    success = @contribution.update_attributes_by_user(attributes, current_person)
+    @contribution = @conversation.contributions.find(params[:id])
+    attributes = { contribution: params[:contribution] }
+    attributes = fetch_embedly_information(attributes, params[:contribution][:url]) unless params[:contribution][:url].blank? # TODO Move this to the model
+    @success = @contribution.update_attributes_by_user(attributes, current_person)
     respond_to do |format|
-      if success
-        ratings = RatingGroup.ratings_for_conversation_by_contribution_with_count(@contribution.conversation, current_person)
-        format.html do
-          if request.xhr?
-            render(:partial => "conversations/threaded_contribution_template", :locals => { :ratings => ratings }, :collection => @contributions, :as => :contribution)
-          else
-            redirect_to conversation_node_path(@contribution)
-          end
-        end
-        format.js { render(:partial => "conversations/threaded_contribution_template", :locals => { :ratings => ratings }, :collection => @contributions, :as => :contribution) }
-      else
-        format.js { render :json => @contribution.errors, :status => :unprocessable_entity }
-      end
+      format.js
     end
   end
 
