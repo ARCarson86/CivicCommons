@@ -1,11 +1,11 @@
 <div class="response <%= css_classes ||= "" %>" id="<%= "show-contribution-#{contribution.id}" %>">
   <div class="response-inner">
     <%= render :partial => '/contributions/contribution_aux_actions', locals: {contribution:contribution, is_sub_contribution: true} %>
-    <%= render :partial => '/user/author_card', locals: {author:contribution.owner, conversation_created_at: @conversation.created_at} %>
-
+    <%= render :partial => '/user/author_card', locals: {author:contribution.owner, conversation_created_at: contribution.created_at} %>
     <div class="content">
       <%= format_comment(contribution) %>
     </div>
-
+    <%= render :partial => '/contributions/contribution_embedly', locals: {contribution:contribution} %>
+    <%= render :partial => '/contributions/contribution_attachment_file', locals: {contribution:contribution} %>
   </div>
 </div>
