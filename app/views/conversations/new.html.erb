@@ -41,10 +41,8 @@
 <script type="text/javascript">
   $("#conversation_summary, #conversation_starter").tinymce({
     script_url : '<%=asset_path "tiny_mce/tiny_mce.js" %>',
-    //theme : "simple",
     theme : "advanced",
-    // turned off autoresize because it doesn't seem to work very well
-    //plugins : 'autoresize',
+    plugins : 'autolink',
     width : '100%',
     theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,link,unlink,|,bullist,numlist,|,undo,redo,|,cut,copy,paste",
     theme_advanced_buttons2 : "",
