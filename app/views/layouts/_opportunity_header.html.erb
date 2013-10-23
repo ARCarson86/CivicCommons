@@ -34,6 +34,9 @@
 
         <div class='convo-summary'>
           <p><%= raw(@conversation.summary) %></p>
+          <% if @conversation.link.present? %>
+            <p><%= link_to @conversation.link, @conversation.link %></p><br />
+          <% end %>
         </div>
         <script type="text/javascript">
           $('.convo-summary').readmore(); // do this here so it renders minified as soon as possible, rather than waiting for the page to load
@@ -50,11 +53,6 @@
 
 
 
-        <% if @conversation.link.present? %>
-        <div class='convo-link'>
-          <p><a href="<%= @conversation.link %>"><%= @conversation.link %></a>
-        </div>
-        <% end %>
 
 
 
