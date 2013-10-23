@@ -1,6 +1,6 @@
 <div class="response new-response">
   <%= render :partial => '/user/author_card', locals: {author:current_person, conversation_created_at: @conversation.created_at} %>
-  <%= form_for [new_contribution.conversation, new_contribution], remote: true, html: {id: "contribution-response-#{parent.id}"} do |f| %>
+  <%= form_for [new_contribution.conversation, new_contribution], remote: true, html: {id: "contribution-response-#{parent.id}", :multipart => true} do |f| %>
     <%= f.hidden_field :parent_id, value: parent.id %>
     <div class="content editable">
       <%= f.text_area :content, rows: 2, class: "thread-reply", id: "contribution-content-#{parent.id}", placeholder: "Click here to respond to #{parent.person.first_name}" %>
@@ -16,6 +16,7 @@
           </div>
         </a>
 
+      <input class="" id="contribution_attachment" name="contribution[attachment]" type="file">
         <a href="#" class="add-file button tertiary" rel="file">
           <div class="text">
             <i class="icon-picture icon icon-large"></i> Upload a photograph, document, or other file
@@ -26,6 +27,7 @@
           </div>
         </a>
       </div>
+
       <div class="contribute-actions">
         <a href="#" class="button tertiary cancel">Cancel</a>
         <%= f.submit "Save", class: "button" %>
