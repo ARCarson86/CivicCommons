@@ -10,6 +10,9 @@
   <div class='responses'>
     <%= render partial: "/conversations/conversation_sub_level_contribution", collection: contribution.descendants, as: :contribution %>
   </div>
+  <script type="text/javascript">
+    $("#<%= "show-contribution-#{contribution.id}" %> .responses").scrollTop(1000);
+  </script>
 
   <% if current_person %>
     <%= render partial: "/conversations/conversation_sub_level_contribution_form", locals: {parent: contribution, new_contribution: new_contribution} %>

@@ -80,6 +80,7 @@
   }
   function collapseConversations() {
     $('.thread').removeClass("expanded");
+    $('.thread .responses').scrollTop(9999);
     $('#recent-activity').hide();
   }
 
