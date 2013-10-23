@@ -2,12 +2,17 @@ $("#error_explanation").remove();
 <% unless @contribution.errors.any? %>
 
   <% if @contribution.parent %>
-    $("#show-contribution-<%= @contribution.parent.id %> .responses").append("<%= j render(partial: "/conversations/conversation_sub_level_contribution", locals: {contribution: @contribution}) %>");
+    $("#show-contribution-<%= @contribution.parent.id %> .responses").append("<%= j render(partial: "/conversations/conversation_sub_level_contribution", locals: {contribution: @contribution, css_classes: "new"}) %>").scrollTop(9999);
+    setTimeout(function() {
+      $("#show-contribution-<%= @contribution.parent.id %> .responses .response.new").removeClass("new");
+    }, 3000);
     $("#show-contribution-<%= @contribution.parent.id %> .cancel").click();
+
   <% else %>
-    $(".threads").prepend("<%= j render(partial: "/conversations/conversation_top_level_contribution", locals: {contribution: @contribution, new_contribution: @new_contribution}) %>");
+    $(".threads").prepend("<%= j render(partial: "/conversations/conversation_top_level_contribution", locals: {contribution: @contribution, new_contribution: @new_contribution, css_classes: "new"}) %>");
     $("#new_contribution .cancel").click();
   <% end %>
+
 <% else %>
 
   <% if @contribution.parent %>

@@ -17,7 +17,7 @@
     $(this).tinymce(defaults);
   });
   $(document).delegate(".editable .cancel", "click", function(event) {
-    $(this).closest(".editable").removeClass("editor-active").children("textarea").tinymce().remove();
+    $(this).closest(".editable").removeClass("editor-active").children("textarea").text("").tinymce().remove();
     event.preventDefault();
   });
 

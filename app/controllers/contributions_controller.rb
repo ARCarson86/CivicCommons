@@ -26,7 +26,7 @@ class ContributionsController < ApplicationController
     end
 
     respond_to do |format|
-      format.js { render "conversations/create_node_contribution" }
+      format.js { render "conversations/create_node_contribution", locals: {css_classes: "new"} }
       format.html do
         # NOTE: this path does poor error handling - Jerry
         if @contribution.save
