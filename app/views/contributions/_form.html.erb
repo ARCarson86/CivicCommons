@@ -2,7 +2,7 @@
     <%= f.hidden_field :parent_id, value: contribution.parent.id if contribution.parent %>
     <div class="content editable">
       <%= f.text_area :content, rows: 2, class: "thread-reply", id: "#{"edit-" if contribution.persisted?}contribution-content-#{contribution.id || contribution.parent.id}", placeholder: ("Click here to respond to #{contribution.parent.person.first_name}" if contribution.parent) %>
-      <div class="contribution-attachments">
+      <div class="contribution-attachments <%= "link" if @contribution.url.present? %>">
         <a href="#" class="add-link button tertiary" rel="link">
           <i class="icon-link icon icon-large"></i>
           <div class="text">

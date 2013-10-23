@@ -26,7 +26,6 @@
       }, 1000, this);
     });
 
-
     $(".thread .primary .content .content-inner").readmore();
 
     $('.threads-controls .button').click(function() {
@@ -41,21 +40,20 @@
       }
     });
 
-    $('.contribution-attachments').each(function(index,element) {
-      $(element).delegate('.close', 'click', function(event) {
-        event.preventDefault();
-      });
-      $(element).delegate('a.button', 'click', function(event) {
-        event.preventDefault();
-        if ($(event.originalEvent.srcElement).hasClass('close')) {
-          $(element).removeClass($(this).attr('rel'));
-        }
-        else if (!$(element).hasClass($(this).attr('rel'))) {
-          $(element).addClass($(this).attr('rel'));
-          $(element).find('input').focus();
-        }
-      });
+
+    $(document).delegate('.contribution-attachments a.button', 'click', function(event) {
+      event.preventDefault();
+      var element = $(this).parent('.contribution-attachments');
+      if ($(event.originalEvent.srcElement).hasClass('close')) {
+        $(this).parent('.contribution-attachments').removeClass($(this).attr('rel'));
+        $(this).find('input').val("");
+      }
+      else if (!$(element).hasClass($(this).attr('rel'))) {
+        $(this).parent('.contribution-attachments').addClass($(this).attr('rel'));
+        $(this).parent('.contribution-attachments').find('input').focus();
+      }
     });
+
     $('.thread').each(function(index, element) {
       $(element).delegate('a.expand', 'click', function(event) {
         event.preventDefault();

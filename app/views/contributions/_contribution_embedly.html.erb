@@ -1,4 +1,4 @@
-<% if contribution.embedly_type %>
+<% if contribution.url.present? and contribution.embedly_type %>
   <div class='link-meta'>
     <div class="image">
       <%= raw EmbedlyService.to_embed_or_fancybox(contribution, 200) %>
