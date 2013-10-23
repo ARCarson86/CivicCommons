@@ -1,0 +1,12 @@
+<% if contribution.attachment_file_name %>
+  <% if contribution.attachment_content_type =~ /^image/ %>
+    <p id='attached-file'>
+      <%= link_to(image_tag(contribution.attachment.url(:medium)).html_safe, contribution.attachment.url(:large), {'data-colorbox' => true}) %>
+    </p>
+  <% else %>
+    <p id='attached-file'>
+      <%= link_to("Download attached file", contribution.attachment.url, {:target => :blank}) %>
+    </p>
+  <% end %>
+<% end %>
+
