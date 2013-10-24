@@ -552,7 +552,7 @@
         z-index: 2;
 
         padding: 0;
-        &:before {
+        &.mark-post-as:before {
           content: "Mark Reply As:";
           font-weight: bold;
           width: 100%;

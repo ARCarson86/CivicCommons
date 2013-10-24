@@ -62,7 +62,6 @@
         event.preventDefault();
         $(element).addClass('expanded');
         $(element).find('textarea').focus();
-        $(element).find('textarea').trigger('focus');
       });
     });
 
