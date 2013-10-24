@@ -57,12 +57,12 @@
       }
     });
 
-    $('.thread').each(function(index, element) {
-      $(element).delegate('a.expand', 'click', function(event) {
-        event.preventDefault();
-        $(element).addClass('expanded');
-        $(element).find('textarea').focus();
-      });
+    $(document).delegate(".thread a.expand, .thread a.expand-button", "click", function(event) {
+      var parent = $(this).closest(".thread").addClass("expanded");
+      if ($(this).hasClass("expand")) {
+        $(parent).find('textarea').focus();
+
+      }
     });
 
     $(window).resize(function(event) {

@@ -344,6 +344,9 @@
       .responses {
         max-height: none;
       }
+      .expand-button {
+        display: none;
+      }
     }
     .response.new-response {
       float: left;
@@ -686,3 +689,8 @@ textarea {
   }
 }
 
+.thread .responses .expand-button {
+  margin: 10px auto;
+  width: 90%;
+  display: block;
+}
