@@ -9,10 +9,13 @@
       }
       $("#participants").toggleClass("expanded");
       if ($("#participants").hasClass("expanded")) {
-
         $(".participants").css({
           height: (55 * Math.ceil(this.participantCount / 6)),
         });
+        $(this).text("Close");
+      }
+      else {
+        $(this).text("See All");
       }
     });
 
