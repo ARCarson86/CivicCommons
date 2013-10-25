@@ -1,21 +1,37 @@
 <div class="thread <%= css_classes ||= "" %>" id="<%= "show-contribution-#{contribution.id}" %>">
-  <div class="primary">
-    <%= render :partial => '/contributions/contribution_aux_actions', locals: {contribution:contribution, sub_contribution_count: contribution.descendants.count, is_sub_contribution: false} %>
-    <%= render :partial => '/user/author_card_large', locals: {author:contribution.owner, conversation_created_at: contribution.created_at} %>
-    <div class="content">
-      <%= render partial: '/contributions/content', locals: {contribution:contribution} %>
-    </div>
-  </div>
 
-  <div class='responses'>
-    <%= render partial: "/conversations/conversation_sub_level_contribution", collection: contribution.descendants, as: :contribution %>
-    <% if contribution.descendants.count > 0 %>
-      <a class="button tertiary button-mini expand-button" href="">Expand This Thread</a>
-    <% end %>
-  </div>
-  <script type="text/javascript">
-    $("#<%= "show-contribution-#{contribution.id}" %> .responses").scrollTop(1000);
-  </script>
+  <%
+    user_type = "annonymous"
+    if current_person.present?
+      user_type = current_person.admin? ? "admin" : "user"
+    end
+  %>
+  <% conversation_main_thread_cache_key = ["conversation_sub_thread",
+                                           user_type,
+                                           @conversation.id,
+                                           contribution.self_and_descendants.max_by(&:updated_at),
+                                           contribution.newest_rating_for_contribution_branch] %>
+  <% cache conversation_main_thread_cache_key do %>
+
+    <div class="primary">
+      <%= render :partial => '/contributions/contribution_aux_actions', locals: {contribution:contribution, sub_contribution_count: contribution.descendants.count, is_sub_contribution: false} %>
+      <%= render :partial => '/user/author_card_large', locals: {author:contribution.owner, conversation_created_at: contribution.created_at} %>
+      <div class="content">
+        <%= render partial: '/contributions/content', locals: {contribution:contribution} %>
+      </div>
+    </div>
+
+    <div class='responses'>
+      <%= render partial: "/conversations/conversation_sub_level_contribution", collection: contribution.descendants, as: :contribution %>
+      <% if contribution.descendants.count > 0 %>
+        <a class="button tertiary button-mini expand-button" href="">Expand This Thread</a>
+      <% end %>
+    </div>
+    <script type="text/javascript">
+      $("#<%= "show-contribution-#{contribution.id}" %> .responses").scrollTop(1000);
+    </script>
+
+  <% end %>
 
   <% if current_person %>
     <%= render partial: "/conversations/conversation_sub_level_contribution_form", locals: {parent: contribution, new_contribution: new_contribution} %>

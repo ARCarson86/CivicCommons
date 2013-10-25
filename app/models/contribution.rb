@@ -305,6 +305,24 @@ class Contribution < ActiveRecord::Base
 
 
   #############################################################################
+  # Ratings
+
+  def newest_rating_for_contribution_branch
+    # First get the Rating Group that is associated with each Contribution
+    #   Contribution_id => [Rating Group(s)]
+    rgs       = RatingGroup.scoped
+    rgs       = rgs.where(:conversation_id => conversation).includes(:ratings)
+    contribution_ids = self.self_and_descendants.collect(&:id).uniq
+    rgs       = rgs.where("contribution_id in (?)", contribution_ids )
+
+    newest = rgs.max_by(&:updated_at)
+
+    newest.respond_to?(:updated_at) ? newest.updated_at : nil
+  end
+
+
+
+  #############################################################################
 
   protected
 

@@ -1,7 +1,7 @@
 class Rating < ActiveRecord::Base
 
   belongs_to :rating_descriptor
-  belongs_to :rating_group
+  belongs_to :rating_group, :touch => true
 
   delegate :person,
            :contribution, :to => :rating_group
