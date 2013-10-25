@@ -302,6 +302,9 @@
       padding: 10px 0;
       position: relative;
       word-wrap: break-word;
+      .link-meta {
+        display: none;
+      }
       .actions {
         display: none;
       }
@@ -358,6 +361,9 @@
     &.expanded .response, .response.new-response {
       overflow: initial;
       .actions {
+        display: block;
+      }
+      .link-meta {
         display: block;
       }
       &.new-response {

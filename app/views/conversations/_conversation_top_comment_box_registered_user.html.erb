@@ -9,7 +9,7 @@
   <div class="body">
     <%= form_for [@conversation, @top_level_contribution], remote: true, html: { multipart: true} do |f| %>
       <div class="editable">
-        <%= f.text_area :content, rows: 2, placeholder: "Click here to respond to #{@conversation.person.first_name}" %>
+        <%= f.text_area :content, rows: 2, placeholder: "Click here to respond to #{@conversation.person.first_name || @conversation.person.name}" %>
 
         <%= render partial: '/contributions/contribution_attachments_form', locals: {form: f} %>
 
