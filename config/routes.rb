@@ -188,7 +188,6 @@ Civiccommons::Application.routes.draw do
     end
   end
 
-  resources :conversations_people
   resources :contributions, only: [:destroy]
 
   resources :votes, controller: :surveys, :only => :show do
@@ -228,6 +227,7 @@ Civiccommons::Application.routes.draw do
       post 'update_order', on: :collection
       get 'staff_picked', on: :collection
       put 'move_to_position', on: :member, as: 'move_to_position'
+      resources :conversations_people, :only => [:index, :new, :create, :destroy], :path => 'moderators'
     end
     resources :curated_feeds do
       resources :items, controller: :curated_feed_items, only: [ :show, :edit, :create, :update, :destroy ]
@@ -257,7 +257,6 @@ Civiccommons::Application.routes.draw do
     resources :featured_opportunities do
       get 'change_conversation_selection', on: :collection
     end
-    resources :conversations_people
     resources :metro_regions do
       get  'display_names',        on: :collection
       get  'edit_display_names',   on: :member

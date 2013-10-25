@@ -1,5 +1,14 @@
-<h1>New Moderator</h1>
+<h1><%= link_to @conversation.title, admin_conversation_conversations_people_path %></h1>
+<h1>Add <%= @role %></h1>
 
-<%= render 'form' %>
-
-<%= link_to 'Index', admin_conversations_people_path %>
+<%= form_for :conversations_person, :url => admin_conversation_conversations_people_path, :method => :post do |f| %>
+  <%= label_tag :person,'Person: ' %>
+  <% ('A'..'Z').to_a.each do |alpha| %>
+    <%= link_to_unless (@letter == alpha),  alpha,  request.parameters.merge({:letter => alpha}) %>
+  <% end %>
+  <%= link_to_unless (@letter == 'all'), 'All', request.parameters.merge({:letter => 'all'})  %>
+  <br/><br/>
+  <%= select_tag 'person_id', options_from_collection_for_select(@people, 'id', 'name'), :prompt => 'Select someone' %>
+  <br/><br/>
+  <%= submit_tag "Add Moderator" %>
+<% end %>
