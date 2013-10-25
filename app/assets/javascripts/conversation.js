@@ -44,8 +44,7 @@
     });
 
 
-    $(document).delegate('.contribution-attachments a.button', 'click', function(event) {
-      event.preventDefault();
+    $(document).delegate('.contribution-attachments .button', 'click', function(event) {
       var element = $(this).parent('.contribution-attachments');
       if ($(event.originalEvent.srcElement).hasClass('close')) {
         $(this).parent('.contribution-attachments').removeClass($(this).attr('rel'));

@@ -1,5 +1,5 @@
 <div class="contribution-attachments">
-  <a href="#" class="add-link button tertiary" rel="link">
+  <div class="add-link button tertiary" rel="link">
     <i class="icon-link icon icon-large"></i>
     <div class="text">
       Add a link to a related website
@@ -8,17 +8,16 @@
       <%= form.text_field :url %>
       <i class="icon-remove-sign icon-large close"></i>
     </div>
-  </a>
+  </div>
 
-  <input id="contribution_attachment" name="contribution[attachment]" type="file"/>
-  <a href="#" class="add-file button tertiary" rel="file">
+  <div class="add-file button tertiary" rel="file">
     <div class="text">
       <i class="icon-picture icon icon-large"></i> Upload a photograph, document, or other file
     </div>
     <div class="input">
-      <input id="contribution_attachment" name="contribution[attachment]" type="file">
+      <%= form.file_field :attachment %>
       <i class="icon-remove-sign icon-large close"></i>
     </div>
-  </a>
+  </div>
 </div>
 
