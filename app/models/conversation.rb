@@ -54,6 +54,12 @@ class Conversation < ActiveRecord::Base
     self.people
   end
 
+  def moderated_by?(person)
+    if person
+      moderators.include?(person)
+    end
+  end
+
   has_many :content_items_conversations, :uniq => true
   has_many :content_items, :through => :content_items_conversations, uniq: true
   has_many :surveys, :as => :surveyable
