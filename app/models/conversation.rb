@@ -47,7 +47,7 @@ class Conversation < ActiveRecord::Base
 
   accepts_nested_attributes_for :topics
 
-  has_many :conversations_people, :uniq => true
+  has_many :conversations_people, :uniq => true, :dependent => :destroy
   has_many :people, :through => :conversations_people, :foreign_key => 'conversation_id', uniq: true
 
   def moderators
@@ -227,11 +227,11 @@ class Conversation < ActiveRecord::Base
     available_filters.keys.collect(&:to_s)
   end
 
-  # Display Conversations by Most Active 
+  # Display Conversations by Most Active
   def self.most_active(options = {})
     options.reverse_merge!(filter:0)
     daysago = options.delete(:daysago)
-    
+
     filter = options[:filter]
     filter = [filter] unless options[:filter].respond_to?(:flatten) || filter.nil?
     filter.flatten!
@@ -241,7 +241,7 @@ class Conversation < ActiveRecord::Base
                      where("conversations.id not in (?)", filter).
                      group('conversations.id').
                      order('count_all DESC, max_contributions_created_at DESC')
-                     
+
     results = results.where("contributions.created_at > ?", Time.now - daysago.days) if daysago
     return results
   end
