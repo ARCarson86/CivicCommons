@@ -1,3 +1,4 @@
   <p class="create-title"><strong>Issue created:</strong></p>
   <h4><%= link_to( issue.name, issue_url( issue.id ) ) %></h4>
+  <%= DateTime.now.to_s %> -
   <%= simple_format( truncate( Sanitize.clean( issue.summary, :remove_contents => ['script'] ).strip, :length => embed_activity_length, :separator => ' ' ) ) %>

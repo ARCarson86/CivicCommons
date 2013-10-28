@@ -1,6 +1,7 @@
   <h4><%= survey_response.survey.title %></h4>
   <div class="bd">
     <p><%= survey_response.person.name %> has participated in this <%= survey_response.survey.type %></p>
+    <%= DateTime.now.to_s %> -
     <p><%= link_to( "View the vote", polymorphic_survey_response_url(survey_response), :class => "read-more") %></p>
   </div>
 

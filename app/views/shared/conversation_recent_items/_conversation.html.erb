@@ -8,6 +8,7 @@
     <%= avatar_profile(conversation.person, 40) %>
     <p>
       <strong><%= link_to(conversation.person_name, user_url(conversation.person)) %></strong> -
+      <%= DateTime.now.to_s %> -
       <%= link_text %>
     </p>
     <p><%= link_to("Continue Reading", conversation_url(conversation), :class => "read-more") %></p>
