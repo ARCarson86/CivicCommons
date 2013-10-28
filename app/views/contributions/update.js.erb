@@ -1,2 +1,3 @@
-$("#show-contribution-<%= @contribution.id %> .primary .content").html("<%= j render(partial: '/contributions/content', locals: {contribution:@contribution} ) %> ").show();
+var selector = "#show-contribution-<%= @contribution.id %> <%= ".primary" unless @contribution.parent.present? %>";
+$(selector+" .content").html("<%= j render(partial: '/contributions/content', locals: {contribution:@contribution} ) %> ").show();
 $("#show-contribution-<%= @contribution.id %> #edit_contribution_<%= @contribution.id %>").remove();

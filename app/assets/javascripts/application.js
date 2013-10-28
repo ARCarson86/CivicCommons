@@ -12,7 +12,6 @@
 //= require 'backbone-0.5.3.js'
 //= require 'jquery_ujs'
 //= require 'jquery/jquery.colorbox-1.3.15'
-//= require 'jquery/jquery.form'
 //= require 'jquery/jquery.remotipart'
 //= require 'jquery/jquery.loadmask'
 //= require 'jquery/jquery.hashchange'
@@ -41,9 +40,6 @@
 //= require conversation
 
 //= require 'tiny_mce/jquery.tinymce.js'
-//= require 'contributions/contribution_tool.js'
-
-//= require 'conversations/show'
 
 //= require issues/show
 //= require subscriptions/show

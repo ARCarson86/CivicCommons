@@ -1,7 +1,11 @@
-$("#show-contribution-<%= @contribution.id %> .primary .content").hide().before("<%= j render(partial: "contributions/form", locals: { contribution: @contribution }) %>");
-$("#show-contribution-<%= @contribution.id %> .primary .cancel").click(function(event) {
+var selector = "#show-contribution-<%= @contribution.id %> <%= ".primary" unless @contribution.parent.present? %>";
+$(selector+" .content").hide().before("<%= j render(partial: "contributions/form", locals: { contribution: @contribution }) %>");
+$(selector+" .cancel").one("click", function(event) {
   event.preventDefault();
-  $("#show-contribution-<%= @contribution.id %> .primary .content").show();
+  $(selector+" .content").show();
+  $("#show-contribution-<%= @contribution.id %> #edit_contribution_<%= @contribution.id %> .editable textarea").tinymce().remove();
   $("#show-contribution-<%= @contribution.id %> #edit_contribution_<%= @contribution.id %>").remove();
 });
-$("#edit-contribution-content-<%= @contribution.id %>").focus();
+setTimeout(function() {
+  $("#edit-contribution-content-<%= @contribution.id %>").trigger("focus");
+}, 100);
