@@ -13,6 +13,16 @@
 
         <%= render partial: '/contributions/contribution_attachments_form', locals: {form: f} %>
 
+        <% if @conversation.moderated_by?(current_person) %>
+        <div>
+          As the moderator, you can help guide the conversation by posting important responses as "moderator posts". Would you like to make this a moderator post?
+          <%= label_tag(:non_moderator_post, "No") %>
+          <%= f.radio_button :moderator_post, false  %>
+          <%= label_tag(:moderator_post, "Yes") %>
+          <%= f.radio_button :moderator_post, true  %>
+        </div>
+        <% end %>
+
         <div class="contribute-actions">
           <a href="#" class="button tertiary cancel">Cancel</a>
           <%= f.submit "Post", class: "button" %>
