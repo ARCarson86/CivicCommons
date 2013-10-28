@@ -2,11 +2,11 @@ require "spec_helper"
 
 describe ConversationsController do
   describe "routing" do
-    
+
     it "recognizes and generates #agree_to_be_civil_modal" do
       { get: "/conversations/agree_to_be_civil_modal" }.should route_to(controller: "conversations", action: "agree_to_be_civil_modal")
     end
-    
+
     it "recognizes and generates #permission_to_use_image_modal" do
       { get: "/conversations/permission_to_use_image_modal" }.should route_to(controller: "conversations", action: "permission_to_use_image_modal")
     end
@@ -33,18 +33,6 @@ describe ConversationsController do
 
     it "recognizes and generates #node_permalink" do
       { get: "/conversations/node_permalink/1" }.should route_to(controller: "conversations", action: "node_permalink", id: "1")
-    end
-
-    it "recognizes and generates #new_node_contribution" do
-      { get: "/conversations/new_node_contribution" }.should route_to(controller: "conversations", action: "new_node_contribution")
-    end
-
-    it "recognizes and generates #preview_node_contribution" do
-      { get: "/conversations/preview_node_contribution" }.should route_to(controller: "conversations", action: "preview_node_contribution")
-    end
-
-    it "recognizes and generates #confirm_node_contribution" do
-      { put: "/conversations/confirm_node_contribution" }.should route_to(controller: "conversations", action: "confirm_node_contribution")
     end
 
     it "recognizes and generates #new" do
@@ -75,7 +63,7 @@ describe ConversationsController do
       end
     end
   end
-  
+
   describe "on blog post" do
     it "recognizes and generates #new" do
       { :get => "/blog/1/conversations/new" }.should route_to(:controller => "conversations", :action => "new", :blog_id => '1')
@@ -93,7 +81,7 @@ describe ConversationsController do
       { :post => "/radioshow/1/conversations" }.should route_to(:controller => "conversations", :action => "create", :radioshow_id => '1')
     end
   end
-  
+
   describe "JS Widget" do
     it "recognizes and generates #activities" do
       { get: "/conversations/1/activities.embed" }.should route_to(controller: "conversations", action: "activities", :id => '1', :format => 'embed')

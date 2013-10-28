@@ -1,9 +1,0 @@
-<%= form_for @contribution, url: (@contribution.new_record? || @contribution.unconfirmed? ? "preview_node_contribution" : conversation_contribution_path(@contribution.conversation, @contribution, format: :js)), remote: true, html: {multipart: true, 'data-preview' => true, 'data-type' => 'html'} do |f| %>
-  <%= f.hidden_field :conversation_id %>
-  <%= f.hidden_field :parent_id %>
-  <%= render partial: 'contributions/contribution_fields', locals: { form: f, contributions: @contribution } %>
-  <div class='validation-error'>
-  </div>
-  <%= hidden_field_tag :div_id, div_id %>
-  <%= f.submit((@contribution.new_record? || @contribution.unconfirmed? ? "Preview" : "Update"), class: 'button') %>
-<% end %>

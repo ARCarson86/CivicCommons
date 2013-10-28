@@ -4,9 +4,6 @@ class ConversationsController < ApplicationController
   before_filter :require_user, :only => [
     :new,
     :create,
-    :new_node_contribution,
-    :preview_node_contribution,
-    :confirm_node_contribution,
     :toggle_rating,
     :create_from_blog_post,
     :create_from_radioshow,
@@ -181,61 +178,6 @@ class ConversationsController < ApplicationController
 
     respond_to do |format|
       format.js
-    end
-  end
-
-  def new_node_contribution
-    @contribution = Contribution.find_or_new_unconfirmed(params, current_person)
-    respond_to do |format|
-      format.js { render(:partial => "conversations/tabbed_post_box", :locals => {:div_id => params[:div_id], :layout => false}) }
-      format.html { render(:partial => "conversations/tabbed_post_box", :locals => {:div_id => params[:div_id], :layout => false}) }
-    end
-  end
-
-  #TODO Test, baby. Test!
-  def preview_node_contribution
-    errors = []
-    unless params[:contribution][:url].blank?
-      embedly = EmbedlyService.new
-      embedly.fetch_and_merge_params!(params)
-    end
-    @contribution = Contribution.update_or_create_node(params[:contribution], current_person)
-
-    if @contribution.invalid?
-      errors = @contribution.errors.full_messages
-    elsif embedly and (embedly.bad_request? or embedly.not_found?)
-      errors = ["There was a problem retrieving information for '#{params[:contribution][:url]}'"]
-    elsif embedly and not embedly.ok?
-      errors = ['There was a problem with our system. Please try again.']
-    end
-
-    ratings = RatingGroup.ratings_for_conversation_by_contribution_with_count(@contribution.conversation, current_person)
-
-    respond_to do |format|
-      if errors.size == 0
-        format.js   { render(:partial => "conversations/new_contribution_preview", :locals => { :div_id => params[:div_id], :layout => false, :ratings => ratings }) }
-        format.html { render(:partial => "conversations/new_contribution_preview", :locals => { :div_id => params[:div_id], :layout => 'application', :ratings => ratings }) }
-      else
-        format.js   { render :json => errors, :status => :unprocessable_entity }
-        format.html { render :text => errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  #TODO: consider moving this to its own controller?
-  def confirm_node_contribution
-    @contribution = Contribution.unconfirmed.find_by_id_and_owner(params[:contribution][:id], current_person.id)
-    @ratings = RatingGroup.default_contribution_hash
-
-    respond_to do |format|
-      if @contribution.confirm!
-        Subscription.create_unless_exists(current_person, @contribution.item)
-        format.js   { render :partial => "threaded_contribution_template", :locals => { :contribution => @contribution, :ratings => @ratings }, :status => (params[:preview] ? :accepted : :created) }
-        format.html   { render :partial => "threaded_contribution_template", :locals => { :contribution => @contribution, :ratings => @ratings }, :status => (params[:preview] ? :accepted : :created) }
-      else
-        format.js   { render :json => @contribution.errors, :status => :unprocessable_entity }
-        format.html { render :text => @contribution.errors, :status => :unprocessable_entity }
-      end
     end
   end
 
