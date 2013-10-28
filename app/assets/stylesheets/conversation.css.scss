@@ -262,15 +262,27 @@
       margin-left: 90px;
     }
     .content .content-inner {
-      margin-bottom: 20px;
+      margin-bottom: 5px;
     }
     .primary {
       width: 600px;
       float: left;
     }
+    .attached-file {
+      a {
+        &:before {
+          content: attr(href);
+          display: inline;
+        }
+        img {
+          display: none;
+        }
+      }
+    }
 
     .link-meta {
       @include pie-clearfix;
+      padding-bottom: 10px;
       .image {
         float: left;
         margin-right: 10px;
@@ -286,10 +298,14 @@
           }
         }
       }
+
+    }
+    .responses-container {
+      width: 290px;
+      float: right;
     }
     .responses {
       width: 290px;
-      float: right;
       max-height: 280px;
       overflow-y: auto;
     }
@@ -325,7 +341,7 @@
         }
       }
       .content {
-        width: 240px;
+        width: 230px;
         display: block;
         overflow-y: hidden;
         p {
@@ -336,6 +352,13 @@
 
     &.expanded {
       width: 600px;
+      .responses-container {
+        width: auto;
+        float: none;
+        h3 {
+          display: none;
+        }
+      }
       .responses {
         margin: 10px 0 0 90px;
         width: 510px;
@@ -352,6 +375,16 @@
       }
       .expand-button {
         display: none;
+      }
+      .attached-file {
+        a {
+          &:before {
+            display: none;
+          }
+          img {
+            display: initial;
+          }
+        }
       }
     }
     .response.new-response {
@@ -698,8 +731,19 @@ textarea {
   }
 }
 
-.thread .responses .expand-button {
+.thread .responses-container .expand-button {
   margin: 10px auto;
   width: 90%;
   display: block;
+}
+.responses {
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+  }
 }

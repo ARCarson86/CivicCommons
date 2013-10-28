@@ -21,8 +21,13 @@
       </div>
     </div>
 
-    <div class='responses'>
-      <%= render partial: "/conversations/conversation_sub_level_contribution", collection: contribution.descendants, as: :contribution %>
+    <div class="responses-container">
+      <% if contribution.descendants.count > 0 %>
+        <h3>Responses(<%= contribution.descendants.count %>)</h3>
+      <% end %>
+      <div class='responses'>
+        <%= render partial: "/conversations/conversation_sub_level_contribution", collection: contribution.descendants, as: :contribution %>
+      </div>
       <% if contribution.descendants.count > 0 %>
         <a class="button tertiary button-mini expand-button" href="">Expand This Thread</a>
       <% end %>
