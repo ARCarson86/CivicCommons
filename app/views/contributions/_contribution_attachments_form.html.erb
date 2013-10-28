@@ -1,5 +1,5 @@
-<div class="contribution-attachments">
-  <div class="add-link button tertiary" rel="link">
+<div class="contribution-attachments <%= "link" if contribution && contribution.url.present? %> <%= "file" if contribution && contribution.attachment_file_name.present? %>">
+  <div href="#" class="add-link button tertiary" rel="link">
     <i class="icon-link icon icon-large"></i>
     <div class="text">
       Add a link to a related website
@@ -10,7 +10,7 @@
     </div>
   </div>
 
-  <div class="add-file button tertiary" rel="file">
+  <div href="#" class="add-file button tertiary" rel="file">
     <div class="text">
       <i class="icon-picture icon icon-large"></i> Upload a photograph, document, or other file
     </div>

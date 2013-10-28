@@ -2,28 +2,10 @@
     <%= f.hidden_field :parent_id, value: contribution.parent.id if contribution.parent %>
     <div class="content editable">
       <%= f.text_area :content, rows: 2, class: "thread-reply", id: "#{"edit-" if contribution.persisted?}contribution-content-#{contribution.id || contribution.parent.id}", placeholder: ("Click here to respond to #{contribution.parent.person.first_name}" if contribution.parent) %>
-      <div class="contribution-attachments <%= "link" if @contribution.url.present? %> <%= "file" if @contribution.attachment_file_name.present? %>">
-        <div href="#" class="add-link button tertiary" rel="link">
-          <i class="icon-link icon icon-large"></i>
-          <div class="text">
-            Add a link to a related website
-          </div>
-          <div class="input">
-            <%= f.text_field :url %>
-            <i class="icon-remove-sign icon-large close"></i>
-          </div>
-        </div>
 
-        <div href="#" class="add-file button tertiary" rel="file">
-          <div class="text">
-            <i class="icon-picture icon icon-large"></i> Upload a photograph, document, or other file
-          </div>
-          <div class="input">
-            <input id="contribution_attachment" name="contribution[attachment]" type="file">
-            <i class="icon-remove-sign icon-large close"></i>
-          </div>
-        </div>
-      </div>
+      <%= render partial: '/contributions/contribution_attachments_form', locals: {form: f, contribution: @contribution} %>
+      <%= render partial: '/contributions/contribution_moderator_form', locals: {form: f, conversation: @conversation} %>
+
       <div class="contribute-actions">
         <a href="#" class="button tertiary cancel">Cancel</a>
         <%= f.submit "Save", class: "button" %>

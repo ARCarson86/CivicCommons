@@ -1,0 +1,9 @@
+<% if conversation.moderated_by?(current_person) %>
+  <div>
+    As the moderator, you can help guide the conversation by posting important responses as "moderator posts". Would you like to make this a moderator post?
+    <%= label_tag(:non_moderator_post, "No") %>
+    <%= form.radio_button :moderator_post, false  %>
+    <%= label_tag(:moderator_post, "Yes") %>
+    <%= form.radio_button :moderator_post, true  %>
+  </div>
+<% end %>

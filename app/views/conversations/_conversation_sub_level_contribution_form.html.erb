@@ -5,7 +5,7 @@
     <div class="content editable">
       <%= f.text_area :content, rows: 2, class: "thread-reply", id: "contribution-content-#{parent.id}", placeholder: "Click here to respond to #{parent.person.first_name || parent.person.name}" %>
 
-      <%= render partial: '/contributions/contribution_attachments_form', locals: {form: f} %>
+      <%= render partial: '/contributions/contribution_attachments_form', locals: {form: f, contribution: @contribution} %>
 
       <div class="contribute-actions">
         <a href="#" class="button tertiary cancel">Cancel</a>
