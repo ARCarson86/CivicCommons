@@ -106,7 +106,7 @@ class ConversationsController < ApplicationController
 
     @latest_contribution = @conversation.confirmed_contributions.most_recent.first
 
-    @recent_items = Activity.most_recent_activity_items(conversation:@conversation, limit:5)
+    @recent_items = Activity.most_recent_activity_items(conversation:@conversation, limit:30)
 
     # The Participants in a Conversation               | Moved from View to Controller. TODO: Move to model
     @conversation_participants = @conversation.participants.select{ |p| !@tlc_participants.include?(p.id) }

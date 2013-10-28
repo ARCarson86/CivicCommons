@@ -8,6 +8,7 @@
     <%= avatar_profile(reflection_comment.person, 40) %>
     <p>
       <strong><%= link_to(reflection_comment.person.name, user_url(reflection_comment.person)) %></strong> -
+      <%= DateTime.now.to_s %> -
       <%= link_text %>
     </p>
     <p><%= link_to("Continue Reading", conversation_reflection_url(reflection_comment.reflection.conversation, reflection_comment.reflection, :anchor => "reflection-comment-#{reflection_comment.id}"), :class => "read-more") %></p>

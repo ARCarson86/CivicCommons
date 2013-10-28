@@ -25,6 +25,7 @@ end
     <%= avatar_profile(contribution.person, 40) %>
     <p>
       <strong><%= link_to(contribution.person_name, user_url(contribution.person)) %></strong> -
+      <%= DateTime.now.to_s %> -
       <%= link_text %>
     </p>
     <p><%= link_to("Continue Reading", url_to_contribution(contribution), :class => "read-more") %></p>

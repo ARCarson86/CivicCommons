@@ -11,6 +11,7 @@
   <div class="bd">
     <p>
     <%= link_to( "\"#{truncate( Sanitize.clean( contribution.content, :remove_contents => ['script'] ).strip, :length => embed_activity_length, :separator => ' ' )}\"", conversation_node_url(contribution) ) %>
+    <%= DateTime.now.to_s %> -
     </p>
 
     <% unless controller.controller_name == 'conversations' && controller.action_name == 'show' %>
