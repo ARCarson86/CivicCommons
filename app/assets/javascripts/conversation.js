@@ -15,6 +15,9 @@
         $(this).text("Close");
       }
       else {
+        $(".participants").css({
+          height: 165
+        });
         $(this).text("See All");
       }
     });
