@@ -73,6 +73,9 @@
       recent_activity_resize();
     });
     recent_activity_resize();
+    $(document).delegate(".thread .response", "click", function(event) {
+      $(this).toggleClass("show-all");
+    });
   });
 
   function expandConversations() {

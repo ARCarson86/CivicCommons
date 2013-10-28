@@ -313,6 +313,7 @@
       background-color:red;
     }
     .response {
+
       border-bottom: 1px solid #c3c6cd;
       overflow: hidden;
       padding: 10px 0;
@@ -323,6 +324,11 @@
       }
       .actions {
         display: none;
+      }
+      &.show-all {
+        .response-inner {
+          max-height: initial;
+        }
       }
 
       .response-inner {
