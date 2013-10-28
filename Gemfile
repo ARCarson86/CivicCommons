@@ -19,7 +19,7 @@ gem 'jquery-rails', '>= 1.0.3'
 
 gem 'json', '~>1.7.7'
 
-gem 'haml', '~> 3.1.4'
+gem 'haml', '~> 4.0.3'
 
 gem 'uglifier'
 
