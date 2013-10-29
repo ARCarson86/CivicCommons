@@ -15,9 +15,9 @@ GIT
 
 GIT
   remote: git://github.com/nesquena/query_reviewer.git
-  revision: 7422e5cbcf601d8844b97135d4919c5f06c823bf
+  revision: 77755b4c1d45516a8bc429a8ed36be55153be195
   specs:
-    query_reviewer (0.1.5)
+    query_reviewer (0.2.2)
 
 GIT
   remote: git://github.com/paramaw/ckeditor.git
