@@ -144,3 +144,11 @@ var civic = function() {
   return self;
 }();
 
+function flashMessage(message) {
+  var flash = $("<div class=\"flash-notice\">"+message+"<img class=\"flash-close\" alt=\"Flash-close\" src=\"/assets/flash-close.png\"></div>").appendTo("body");
+  setTimeout(function() { flash.fadeOut();}, 4000);
+}
+
+$(document).delegate(".flash-close", "click", function(event) {
+  $(this).parent(".flash-notice").remove();
+});
