@@ -2,6 +2,9 @@ $("#error_explanation").remove();
 <% unless @contribution.errors.any? %>
 
   <% if @contribution.parent %>
+    <% if @contribution.level == 1 && @contribution.siblings.count == 0 %>
+        $("#show-contribution-<%= @contribution.parent_id %> .responses").append("<h3>Responses(1)</h3>");
+    <% end %>
     $("#show-contribution-<%= @contribution.parent.id %> .responses").append("<%= j render(partial: "/conversations/conversation_sub_level_contribution", locals: {contribution: @contribution, css_classes: "new"}) %>").scrollTop(9999);
     setTimeout(function() {
       $("#show-contribution-<%= @contribution.parent.id %> .responses .response.new").removeClass("new");
