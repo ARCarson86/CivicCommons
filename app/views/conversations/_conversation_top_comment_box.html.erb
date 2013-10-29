@@ -2,8 +2,8 @@
 
   <div class="what-do-you-think main-content">
     <h2>What do you think?</h2>
-    <% if current_person %>
-      <%= render partial: 'conversation_top_comment_box_registered_user', locals: {person: person, contribution: @contribution} %>
+    <% if person %>
+      <%= render partial: 'conversation_top_comment_box_registered_user', locals: {person: person, new_contribution: new_contribution} %>
     <% else %>
       <%= render partial: 'conversation_top_comment_box_anonymous_user' %>
     <% end %>

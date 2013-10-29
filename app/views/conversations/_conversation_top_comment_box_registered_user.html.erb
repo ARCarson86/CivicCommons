@@ -7,11 +7,11 @@
     on <%= DateTime.now.to_s %>
   </div>
   <div class="body">
-    <%= form_for [@conversation, @top_level_contribution], remote: true, html: { multipart: true} do |f| %>
+    <%= form_for [new_contribution.conversation, new_contribution], remote: true, html: { multipart: true} do |f| %>
       <div class="editable">
         <%= f.text_area :content, rows: 2, placeholder: "Click here to respond to #{@conversation.person.first_name || @conversation.person.name}" %>
 
-        <%= render partial: '/contributions/contribution_attachments_form', locals: {form: f, contribution: @contribution} %>
+        <%= render partial: '/contributions/contribution_attachments_form', locals: {form: f, contribution: new_contribution} %>
         <%= render partial: '/contributions/contribution_moderator_form', locals: {form: f, conversation: @conversation} %>
 
         <div class="contribute-actions">

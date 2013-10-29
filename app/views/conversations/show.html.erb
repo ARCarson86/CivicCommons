@@ -12,7 +12,7 @@
 
 <div class="wrapper nospace">
   <div id="contribute" class="contribute">
-    <%= render :partial => "conversation_top_comment_box", locals: {person: current_person} %>
+    <%= render :partial => "conversation_top_comment_box", locals: {person: current_person, new_contribution: @top_level_contribution} %>
 
     <%#= render partial: 'conversation_recent_activity' %>
     <%= render_conversation_recent_items_sidebar %>
