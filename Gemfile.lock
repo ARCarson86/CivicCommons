@@ -115,7 +115,7 @@ GEM
       compass (>= 0.12.2, < 0.14)
     crack (0.3.1)
     daemons (1.1.8)
-    dalli (2.6.3)
+    dalli (2.6.4)
     database_cleaner (0.7.2)
     date_validator (0.6.3)
       activemodel (~> 3.0)
