@@ -1,6 +1,7 @@
 <div class="author-card large">
   <%= author_card(author, 80) %>
   <div class="name">
+    <%= "From the Moderator:" if moderator_post %>
     <%= text_profile(author) %>
   </div>
   <div class="date">

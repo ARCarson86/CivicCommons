@@ -1,4 +1,4 @@
-<div class="thread <%= css_classes ||= "" %>" id="<%= "show-contribution-#{contribution.id}" %>">
+<div class="thread <%= css_classes ||= "" %> <%= "moderator-post" if contribution.moderator_post? %>" id="<%= "show-contribution-#{contribution.id}" %>">
 
   <%
     user_type = "annonymous"
@@ -11,11 +11,11 @@
                                            @conversation.id,
                                            contribution.self_and_descendants.max_by(&:updated_at),
                                            contribution.newest_rating_for_contribution_branch] %>
-  <% cache conversation_thread_cache_key do %>
+  <%# cache conversation_thread_cache_key do %>
 
-    <div class="primary <%= contribution.moderator_post ? 'moderator_post' : ''%>">
+    <div class="primary">
       <%= render :partial => '/contributions/contribution_aux_actions', locals: {contribution:contribution, sub_contribution_count: contribution.descendants.count, is_sub_contribution: false} %>
-      <%= render :partial => '/user/author_card_large', locals: {author:contribution.owner, conversation_created_at: contribution.created_at} %>
+      <%= render :partial => '/user/author_card_large', locals: {author:contribution.owner, conversation_created_at: contribution.created_at, moderator_post: contribution.moderator_post?} %>
       <div class="content">
         <%= render partial: '/contributions/content', locals: {contribution:contribution} %>
       </div>
@@ -36,7 +36,7 @@
       $("#<%= "show-contribution-#{contribution.id}" %> .responses").scrollTop(1000);
     </script>
 
-  <% end %>
+  <%# end %>
 
   <% if current_person %>
     <%= render partial: "/conversations/conversation_sub_level_contribution_form", locals: {parent: contribution, new_contribution: new_contribution} %>

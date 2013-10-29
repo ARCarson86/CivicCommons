@@ -255,6 +255,14 @@
     margin: 20px 0 0;
     padding: 10px 0;
     border-bottom: 1px solid #c3c6cd;
+    &.moderator-post {
+      padding: 0;
+      .primary {
+        @include box-sizing(border-box);
+        padding: 10px;
+        background-color: rgba(136, 204, 136, 0.3);
+      }
+    }
     &:last-child {
       border-bottom: 0 none;
     }
@@ -308,9 +316,6 @@
       width: 290px;
       max-height: 280px;
       overflow-y: auto;
-    }
-    .moderator_post {
-      background-color:red;
     }
     .response {
 
