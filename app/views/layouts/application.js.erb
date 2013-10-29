@@ -1,0 +1,5 @@
+<%= yield %>
+
+<% if flash[:notice] %>
+    flashMessage("<%=  j flash[:notice] %>");
+<% end %>
