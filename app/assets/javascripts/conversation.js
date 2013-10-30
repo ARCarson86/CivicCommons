@@ -89,6 +89,13 @@
       $(this).toggleClass("show-all");
     });
     init_date_changer();
+
+    if (window.location.hash != "") {
+      goToNode(parseInt(_.last(window.location.hash.split('-'))));
+    }
+    $(window).hashchange(function(event, arg2) {
+      goToNode(parseInt(_.last(window.location.hash.split('-'))));
+    });
   });
 
   function deselectExpandCollapseThreadButtons() {
@@ -123,6 +130,16 @@
         $(this).text(moment($(this).data("date")).fromNow());
       });
     }, 60000);
+  }
+
+  function goToNode(node_id) {
+    var contribution = $('#show-contribution-' + node_id);
+    if ($(contribution).hasClass("response")) {
+      console.log("yup");
+      $(contribution).closest(".thread").addClass("expanded");
+    }
+    contribution.scrollTo();
+    //$contribution.find('.collapsed a.contribution-toggle').first().trigger('click'); // trigger click event to uncollapse contribution
   }
 
 })(jQuery)
