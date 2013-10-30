@@ -348,7 +348,11 @@
           text-decoration: none;
         }
         .date {
-          display: none;
+          display: inline;
+          &:before {
+            content: "- ";
+            display: inline;
+          }
         }
       }
       .content {
@@ -427,6 +431,9 @@
         }
         .date {
           display: inline;
+          &:before {
+            display: none;
+          }
         }
       }
       .response-inner {
