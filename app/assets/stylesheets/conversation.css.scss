@@ -318,6 +318,11 @@
       overflow-y: auto;
     }
     .response {
+      .show-contribution {
+        text-decoration: none;
+        display: block;
+        float: right;
+      }
 
       border-bottom: 1px solid #c3c6cd;
       overflow: hidden;
@@ -407,6 +412,9 @@
       margin-top: 10px;
     }
     &.expanded .response, .response.new-response {
+      .show-contribution {
+        display: none;
+      }
       overflow: initial;
       .actions {
         display: block;
@@ -763,5 +771,19 @@ textarea {
     border-radius: 4px;
     background-color: rgba(0,0,0,.5);
     -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+  }
+}
+.activity {
+  .author-card {
+    .name {
+      display: inline;
+    }
+    .date {
+      display: inline;
+    }
+  }
+  .show-contribution {
+    float: right;
+    text-decoration: none;
   }
 }

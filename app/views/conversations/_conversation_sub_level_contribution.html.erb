@@ -2,6 +2,9 @@
   <div class="response-inner">
     <%= render :partial => '/contributions/contribution_aux_actions', locals: {contribution:contribution, is_sub_contribution: true} %>
     <%= render :partial => '/user/author_card', locals: {author:contribution.owner, conversation_created_at: contribution.created_at} %>
+    <a class="show-contribution" href="#show-contribution-<%= contribution.id %>" title="Show this response">
+      <i class="icon-reply"></i>
+    </a>
     <div class="content">
       <%= render partial: '/contributions/content', locals: {contribution:contribution} %>
     </div>

@@ -21,13 +21,11 @@ end
 
   <h4><%= link_to( contribution.item_title, contribution_item_url(contribution)) unless controller.controller_name == "conversations" %></h4>
 
-  <div class="offset-2">
-    <%= avatar_profile(contribution.person, 40) %>
-    <p>
-      <strong><%= link_to(contribution.person_name, user_url(contribution.person)) %></strong> -
-      <%= DateTime.now.to_s %> -
-      <%= link_text %>
-    </p>
-    <p><%= link_to("Continue Reading", url_to_contribution(contribution), :class => "read-more") %></p>
+  <div class="">
+    <%= link_to "#node-#{contribution.id}", class: "show-contribution" do %>
+      <i class="icon-reply"></i>
+    <% end %>
+    <%= render partial: "user/author_card", locals: {author: contribution.person, conversation_created_at: contribution.created_at} %>
+    <%= link_text %>
   </div>
 
