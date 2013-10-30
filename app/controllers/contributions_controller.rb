@@ -45,7 +45,7 @@ class ContributionsController < ApplicationController
     @contribution = Contribution.find(params[:id])
     respond_to do |format|
       if @contribution.destroy_by_user(current_person)
-        format.js   { render :nothing => true, :status => :ok }
+        format.js
       else
         format.js   { render :json => @contribution.errors, :status => :unprocessable_entity }
       end
