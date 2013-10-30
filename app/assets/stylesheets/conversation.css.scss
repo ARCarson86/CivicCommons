@@ -276,17 +276,6 @@
       width: 600px;
       float: left;
     }
-    .attached-file {
-      a {
-        &:before {
-          content: attr(href);
-          display: inline;
-        }
-        img {
-          display: none;
-        }
-      }
-    }
 
     .link-meta {
       @include pie-clearfix;
