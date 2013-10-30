@@ -122,8 +122,14 @@
   }
 
   function init_date_changer() {
+    var now = moment();
     $(".date[data-date]").each(function(index, element) {
-      $(this).text(moment($(this).data("date")).fromNow());
+      var mmnt = moment($(this).data("date"));
+      mmnt.format();
+      if (now.diff(mmnt, "days") <= 7) {
+        console.log("less");
+        $(this).text(mmnt.fromNow());
+      }
     });
     window.dateListenerMinutes = setInterval(function() {
       $(".date[data-minutes-ago]").each(function(index, element) {
@@ -135,11 +141,9 @@
   function goToNode(node_id) {
     var contribution = $('#show-contribution-' + node_id);
     if ($(contribution).hasClass("response")) {
-      console.log("yup");
       $(contribution).closest(".thread").addClass("expanded");
     }
     contribution.scrollTo();
-    //$contribution.find('.collapsed a.contribution-toggle').first().trigger('click'); // trigger click event to uncollapse contribution
   }
 
 })(jQuery)
