@@ -43,12 +43,14 @@ class ContributionsController < ApplicationController
 
   def destroy
     @contribution = Contribution.find(params[:id])
+    if @contribution.destroy_by_user(current_person)
+      flash[:notice] = "Contribution has been deleted"
+    else
+      flash[:notice] = "Could not delete contribution"
+    end
+
     respond_to do |format|
-      if @contribution.destroy_by_user(current_person)
-        format.js   { render :nothing => true, :status => :ok }
-      else
-        format.js   { render :json => @contribution.errors, :status => :unprocessable_entity }
-      end
+      format.js
     end
   end
 
