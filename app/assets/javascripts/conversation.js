@@ -34,9 +34,10 @@
 
     $(".thread .primary .content .content-inner").readmore();
 
+    // 'Expand All' and 'Collapse All' Contribution Threads
     $('.threads-controls .button').click(function(event) {
       event.preventDefault();
-      $('.threads-controls .button').removeClass('active');
+      deselectExpandCollapseThreadButtons();
       $(this).addClass('active');
 
       if ($(this).attr("rel") == "expand") {
@@ -46,7 +47,6 @@
         collapseConversations();
       }
     });
-
 
     $(document).delegate('.contribution-attachments .button', 'click', function(event) {
       var element = $(this).parent('.contribution-attachments');
@@ -60,12 +60,21 @@
       }
     });
 
+    /*
+     * 'Add Comment' and 'Expand This Thread' Button
+     *   - Expands Single Thread
+     *   - Opens WYSIWYG Editor If 'Add Comment' Button is Selected
+     *   - Deselects 'Expand All' and 'Collapse All' Button If Threads Are Not In A Expand All State
+     */
     $(document).delegate(".thread a.expand, .thread a.expand-button", "click", function(event) {
       event.preventDefault();
       var parent = $(this).closest(".thread").addClass("expanded");
       if ($(this).hasClass("expand")) {
         $(parent).find('textarea').focus();
+      }
 
+      if ( $('.threads-controls .button[rel="collapse"]').hasClass("active") ) {
+        deselectExpandCollapseThreadButtons();
       }
     });
 
@@ -82,10 +91,15 @@
     init_date_changer();
   });
 
+  function deselectExpandCollapseThreadButtons() {
+    $('.threads-controls .button').removeClass('active');
+  }
+
   function expandConversations() {
     $('.thread').addClass("expanded");
     $('#recent-activity').show();
   }
+
   function collapseConversations() {
     $('.thread').removeClass("expanded");
     $('.thread .responses').scrollTop(9999);
