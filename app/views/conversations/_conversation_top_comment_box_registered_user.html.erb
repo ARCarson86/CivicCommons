@@ -4,7 +4,7 @@
     <%= person.name %>
   </div>
   <div class="date">
-    on <%= DateTime.now.to_s %>
+    on <%= DateTime.now.strftime "%b %d, %Y" %>
   </div>
   <div class="body">
     <%= form_for [new_contribution.conversation, new_contribution], remote: true, html: { multipart: true} do |f| %>

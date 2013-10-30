@@ -79,6 +79,7 @@
     $(document).delegate(".thread .response", "click", function(event) {
       $(this).toggleClass("show-all");
     });
+    init_date_changer();
   });
 
   function expandConversations() {
@@ -97,6 +98,17 @@
       var to_footer = $("#footer").offset().top - $("#recent-activity .activities").offset().top;
       $("#recent-activity .activities").height(Math.min(to_bottom, to_footer));
     }
+  }
+
+  function init_date_changer() {
+    $(".date[data-date]").each(function(index, element) {
+      $(this).text(moment($(this).data("date")).fromNow());
+    });
+    window.dateListenerMinutes = setInterval(function() {
+      $(".date[data-minutes-ago]").each(function(index, element) {
+        $(this).text(moment($(this).data("date")).fromNow());
+      });
+    }, 60000);
   }
 
 })(jQuery)

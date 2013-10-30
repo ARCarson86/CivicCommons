@@ -1,5 +1,5 @@
 <div class="response new-response">
-  <%= render :partial => '/user/author_card', locals: {author:current_person, conversation_created_at: @conversation.created_at} %>
+  <%= render :partial => '/user/author_card', locals: {author:current_person, conversation_created_at: DateTime.now, norefresh: true} %>
   <%= form_for [new_contribution.conversation, new_contribution], remote: true, html: {id: "contribution-response-#{parent.id}", multipart: true} do |f| %>
     <%= f.hidden_field :parent_id, value: parent.id %>
     <div class="content editable">

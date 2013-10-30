@@ -3,7 +3,7 @@
   <div class="name">
     <%= text_profile(author) %>
   </div>
-  <div class="date">
-    <%= conversation_created_at.strftime('%B %d, %Y') %>
+  <div class="date" title="<%= conversation_created_at.strftime("%b %d, %Y - %l:%M %P") %>" <% unless norefresh ||= false %>data-date="<%= conversation_created_at.to_s %>"<%end%> <% if conversation_created_at >= 45.minutes.ago && !norefresh %>data-minutes-ago="true"<%end%>>
+    on <%= conversation_created_at.strftime("%b %d, %Y") %>
   </div>
 </div>

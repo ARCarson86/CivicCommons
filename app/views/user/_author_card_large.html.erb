@@ -4,8 +4,8 @@
     <%= "From the Moderator:" if moderator_post %>
     <%= text_profile(author) %>
   </div>
-  <div class="date">
-    on <%= conversation_created_at.to_s %>
+  <div class="date" title="<%= conversation_created_at.strftime("%b %d, %Y - %l:%M %P") %>" data-date="<%= conversation_created_at.to_s %>" <% if conversation_created_at >= 45.minutes.ago %>data-minutes-ago="true"<%end%>>
+    on <%= conversation_created_at.strftime("%b %d, %Y - %l:%M %P") %>
   </div>
 </div>
 
