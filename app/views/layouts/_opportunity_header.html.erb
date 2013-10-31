@@ -18,7 +18,7 @@
           <%= image_tag @conversation.image.url(:panel), :width => 140, :height => 80, :alt => short_title(@conversation.title), :class => 'featured main-img' %>
         </div>
         <div class='main-content-right'>
-          <% if params[:controller] == "actions" %>
+          <% if params[:controller] != "conversations" %>
             <h1><%= link_to @conversation.title, @conversation %></h1>
           <% else %>
             <h1><%= @conversation.title %></h1>
