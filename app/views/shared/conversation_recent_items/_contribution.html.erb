@@ -22,7 +22,7 @@ end
   <h4><%= link_to( contribution.item_title, contribution_item_url(contribution)) unless controller.controller_name == "conversations" %></h4>
 
   <div class="">
-    <%= link_to "#node-#{contribution.id}", class: "show-contribution" do %>
+    <%= link_to "#node-#{contribution.id}", class: "show-contribution", title: "Show Contribution" do %>
       <i class="icon-reply"></i>
     <% end %>
     <%= render partial: "user/author_card", locals: {author: contribution.person, conversation_created_at: contribution.created_at} %>

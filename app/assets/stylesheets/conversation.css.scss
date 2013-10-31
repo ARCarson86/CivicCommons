@@ -302,16 +302,12 @@
       float: right;
     }
     .responses {
+      @include transition(height .5s);
       width: 290px;
       max-height: 280px;
       overflow-y: auto;
     }
     .response {
-      .show-contribution {
-        text-decoration: none;
-        display: block;
-        float: right;
-      }
 
       border-bottom: 1px solid #c3c6cd;
       overflow: hidden;
@@ -751,7 +747,8 @@ textarea {
   width: 90%;
   display: block;
 }
-.responses {
+
+.responses, #recent-activity .activities {
   &::-webkit-scrollbar {
     -webkit-appearance: none;
     width: 7px;
@@ -771,8 +768,17 @@ textarea {
       display: inline;
     }
   }
+}
+
+.activity, .response {
   .show-contribution {
-    float: right;
+    color: #AAA;
     text-decoration: none;
+    display: block;
+    float: right;
+    margin-right: 5px;
+    &:hover {
+      color: #444;
+    }
   }
 }

@@ -93,7 +93,8 @@
     if (window.location.hash != "") {
       goToNode(parseInt(_.last(window.location.hash.split('-'))));
     }
-    $(window).hashchange(function(event, arg2) {
+    $(window).hashchange(function(event) {
+      event.preventDefault();
       goToNode(parseInt(_.last(window.location.hash.split('-'))));
     });
   });
