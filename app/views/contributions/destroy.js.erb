@@ -1,3 +1,6 @@
 <% unless @contribution.persisted? %>
-  $("#show-contribution-<%= @contribution.id %>").remove();
+  var selector = "#show-contribution-<%= @contribution.id %>";
+  $(selector).hide('scale', 'fast', function() {
+    $(this).remove()
+  });
 <% end %>
