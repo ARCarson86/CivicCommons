@@ -70,7 +70,7 @@
       event.preventDefault();
       var parent = $(this).closest(".thread").addClass("expanded");
       if ($(this).hasClass("expand")) {
-        $(parent).find('textarea').focus();
+        $(parent).find('textarea').focus().scrollTo();
       }
 
       if ( $('.threads-controls .button[rel="collapse"]').hasClass("active") ) {
