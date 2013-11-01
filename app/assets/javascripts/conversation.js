@@ -128,7 +128,6 @@
       var mmnt = moment($(this).data("date"));
       mmnt.format();
       if (now.diff(mmnt, "days") <= 7) {
-        console.log("less");
         $(this).text(mmnt.fromNow());
       }
     });
