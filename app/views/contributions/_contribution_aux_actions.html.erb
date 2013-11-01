@@ -31,7 +31,7 @@
       <% end %>
 
       <% if contribution.children.count == 0 && contribution.rating_groups.empty? %>
-        <%= link_to ['edit', @conversation, contribution], remote: true do %>
+        <%= link_to ['edit', @conversation, contribution], remote: true, disable_with: "<i class=\"icon-edit\"></i> Edit" do %>
           <i class="icon-edit"></i> Edit
         <% end %>
       <% else %>
