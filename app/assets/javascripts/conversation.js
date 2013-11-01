@@ -96,6 +96,7 @@
       event.preventDefault();
       goToNode(parseInt(_.last(window.location.hash.split('-'))));
     });
+
   });
 
   function deselectExpandCollapseThreadButtons() {
