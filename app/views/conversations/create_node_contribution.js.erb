@@ -5,6 +5,7 @@ $("#error_explanation").remove();
     <% if @contribution.level == 1 && @contribution.siblings.count == 0 %>
         $("#show-contribution-<%= @contribution.parent_id %> .responses").append("<h3>Responses(1)</h3>");
     <% end %>
+
     $("#show-contribution-<%= @contribution.parent.id %> .responses").append("<%= j render(partial: "/conversations/conversation_sub_level_contribution", locals: {contribution: @contribution, css_classes: "new"}) %>").scrollTop(9999);
     setTimeout(function() {
       $("#show-contribution-<%= @contribution.parent.id %> .responses .response.new").removeClass("new");
@@ -15,6 +16,8 @@ $("#error_explanation").remove();
     $(".threads").prepend("<%= j render(partial: "/conversations/conversation_top_level_contribution", locals: {contribution: @contribution, new_contribution: @new_contribution, css_classes: "new"}) %>");
     $("#new_contribution .cancel").click();
   <% end %>
+
+  $('#show-contribution-<%= @contribution.id %>').scrollTo();
 
 <% else %>
 
