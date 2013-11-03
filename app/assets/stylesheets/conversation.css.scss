@@ -364,6 +364,9 @@
           display: none;
         }
       }
+      .primary {
+        float: none;
+      }
       .responses {
         margin: 10px 0 0 90px;
         width: 510px;
@@ -431,7 +434,7 @@
       }
       .response-inner {
         height: auto;
-        max-height: initial;
+        max-height: none;
         overflow: initial;
       }
       .content {
