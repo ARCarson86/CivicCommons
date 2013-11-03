@@ -70,7 +70,7 @@
       event.preventDefault();
       var parent = $(this).closest(".thread").addClass("expanded");
       if ($(this).hasClass("expand")) {
-        $(parent).find('.editable').scrollTo().find('textarea').focus();
+        $(parent).find('.editable').jump().find('textarea').focus();
       }
       if ( $('.threads-controls .button[rel="collapse"]').hasClass("active") ) {
         deselectExpandCollapseThreadButtons();
@@ -143,7 +143,7 @@
     if ($(contribution).hasClass("response")) {
       $(contribution).closest(".thread").addClass("expanded");
     }
-    contribution.scrollTo();
+    contribution.jump();
   }
 
 })(jQuery)

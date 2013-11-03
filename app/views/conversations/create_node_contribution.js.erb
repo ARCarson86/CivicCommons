@@ -17,7 +17,8 @@ $("#error_explanation").remove();
     $("#new_contribution .cancel").click();
   <% end %>
 
-  $('#show-contribution-<%= @contribution.id %>').scrollTo();
+  $("#show-contribution-<%= @contribution.parent_id %>").addClass("expanded");
+  $('#show-contribution-<%= @contribution.id %>').jump();
 
 <% else %>
 

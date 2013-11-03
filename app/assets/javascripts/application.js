@@ -36,6 +36,7 @@
 //= require moment
 
 //= require editable
+//= require jump
 //= require readmore
 //= require jquery.sticky
 //= require conversation
