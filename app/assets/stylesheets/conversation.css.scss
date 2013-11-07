@@ -372,12 +372,6 @@
         width: 510px;
         height: auto;
       }
-      .readmore-inner {
-        height: auto !important;
-      }
-      a.readmore {
-        display: none !important;
-      }
       .responses {
         max-height: none;
       }
@@ -531,21 +525,6 @@
 
 .wrapper.nospace {
   padding-top: 0;
-}
-
-.readmore a.readmore {
-  text-decoration: none;
-  background-image: url(/assets/readmore-fade.png);
-  background-repeat: repeat-x;
-  background-position: top left;
-  font-weight: bold;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-
-  &:hover {
-    text-decoration: underline;
-    color: #444;
-  }
 }
 
 .actions {

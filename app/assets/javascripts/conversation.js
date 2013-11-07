@@ -1,6 +1,8 @@
 (function($) {
   $(function() {
     $("#contribute").sticky();
+    $('.thread .responses').scrollTop(9999);
+
     $("#participants .see-all").click(function(event) {
       this.participantCount = $("#participants").find(".participant").length;
       event.preventDefault();

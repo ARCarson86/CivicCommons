@@ -1,0 +1,51 @@
+div.readmore {
+  position: relative;
+
+  .readmore-inner {
+    @include transition( max-height 0.5s );
+    overflow: hidden;
+    padding-bottom: 10px;
+    max-height: 150px;
+  }
+
+  a.readmore-link {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    display: block;
+    padding: 25px 0 20px;
+
+    background-image: url(/assets/readmore-fade.png);
+    background-repeat: repeat-x;
+    background-position: top left;
+
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+
+    .more { display: inline; }
+    .less { display: none; }
+
+    &:hover {
+      text-decoration: underline;
+      color: #444;
+    }
+  }
+  &.expanded {
+    padding-bottom: 30px;
+    .readmore-inner {
+      max-height: 9999px;
+      overflow: visible;
+    }
+
+    a.readmore-link {
+      background-image: none;
+      content: "Read Less";
+      margin: 10px 0 0;
+
+      .more { display: none; }
+      .less { display: inline; }
+    }
+  }
+}
