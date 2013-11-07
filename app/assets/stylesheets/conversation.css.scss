@@ -371,9 +371,8 @@
         margin: 10px 0 0 90px;
         width: 510px;
         height: auto;
-      }
-      .responses {
         max-height: none;
+        overflow: visible;
       }
       .expand-button {
         display: none;

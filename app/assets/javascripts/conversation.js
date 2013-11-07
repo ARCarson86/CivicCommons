@@ -89,7 +89,7 @@
     $(document).delegate(".thread .response", "click", function(event) {
       $(this).toggleClass("show-all");
     });
-    init_date_changer();
+    //init_date_changer();
 
     if (window.location.hash != "") {
       goToNode(parseInt(_.last(window.location.hash.split('-'))));
