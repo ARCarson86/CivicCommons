@@ -508,6 +508,9 @@
     .activity {
       @include pie-clearfix;
       padding: 10px 0;
+      .date {
+        display: inline;
+      }
       img {
         float: left;
         width: 40px;
@@ -518,6 +521,37 @@
         width: 220px;
       }
       border-bottom: 1px dotted #cdcdcd;
+
+      .inner {
+        @include pie-clearfix;
+      }
+
+      .survey-layout, .petition-layout {
+        position: relative;
+        padding-left: 50px;
+        &:before {
+          display: block;
+          content: "";
+          background: url("/assets/clipboard-icons.png");
+          background-position: 0 0 ;
+          height: 50px;
+          width: 44px;
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+      }
+      .survey-layout {
+        &:before {
+          background-position: 0 -50px;
+        }
+      }
+
+      .body {
+        width: 233px;
+        float: left;
+        word-wrap: break-word;
+      }
     }
   }
 }

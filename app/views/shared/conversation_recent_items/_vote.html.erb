@@ -1,8 +1,12 @@
+<div class="survey-create survey-layout inner">
+  <%= link_to polymorphic_survey_url(vote), class: "show-contribution" do %>
+    <i class="icon-share-alt"></i>
+  <% end %>
   <h4><%= link_to vote.title, polymorphic_survey_url(vote) %></h4>
-  <div class="offset-2">
-    <%= avatar_profile(vote.person, 40) %>
-    <p><%= vote.person.name %> wrote this Vote</p>
-    <%= DateTime.now.to_s %> -
-    <p><%= link_to( "View the vote", polymorphic_survey_url(vote), :class => "read-more") %>
-    </p>
+  <div>
+    <%= vote.person.name %> wrote this Vote
+    <div class="date" title="<%= vote.created_at.strftime("%b %d, %Y - %l:%M %P") %>" data-date="<%= vote.created_at.to_s %>" <% if vote.created_at >= 45.minutes.ago %>data-minutes-ago="true"<%end%>>
+      on <%= vote.created_at.strftime("%b %d, %Y") %>
+    </div>
   </div>
+</div>

@@ -1,7 +1,13 @@
+<div class="survey-response survey-layout inner">
+  <%= link_to(polymorphic_survey_response_url(survey_response), :class => "show-contribution") do %>
+    <i class="icon-share-alt"></i>
+  <% end %>
   <h4><%= survey_response.survey.title %></h4>
   <div class="bd">
-    <p><%= survey_response.person.name %> has participated in this <%= survey_response.survey.type %></p>
-    <%= DateTime.now.to_s %> -
-    <p><%= link_to( "View the vote", polymorphic_survey_response_url(survey_response), :class => "read-more") %></p>
+    <p><%= survey_response.person.name %> has participated in this <%= survey_response.survey.type %>
+      <div class="date" title="<%= survey_response.created_at.strftime("%b %d, %Y - %l:%M %P") %>" data-date="<%= survey_response.created_at.to_s %>" <% if survey_response.created_at >= 45.minutes.ago %>data-minutes-ago="true"<%end%>>
+        on <%= survey_response.created_at.strftime("%b %d, %Y") %>
+      </div>
+    </p>
   </div>
-
+</div>

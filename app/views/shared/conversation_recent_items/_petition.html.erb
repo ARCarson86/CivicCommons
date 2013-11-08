@@ -1,8 +1,12 @@
+<div class="petition-create petition-layout inner">
+  <%= link_to(conversation_petition_url(petition.conversation, petition, anchor: 'opportunity-nav'), class: "show-contribution", title: "View the Petition" ) do %>
+    <i class="icon-share-alt"></i>
+  <% end %>
   <h4><%= link_to petition.title, conversation_petition_url(petition.conversation, petition, :anchor => 'opportunity-nav') %></h4>
-  <div class="offset-2">
-    <%= avatar_profile(petition.person, 40) %>
-    <p><%= petition.person.name %> wrote this Petition</p>
-    <p><%= DateTime.now.to_s %> -</p>
-    <p><%= link_to( "View the petition", conversation_petition_url(petition.conversation, petition, :anchor => 'opportunity-nav'), :class => "read-more") %></p>
+  <div>
+    <%= petition.person.name %> wrote this Petition
+    <div class="date" title="<%= petition.created_at.strftime("%b %d, %Y - %l:%M %P") %>" data-date="<%= petition.created_at.to_s %>" <% if petition.created_at >= 45.minutes.ago %>data-minutes-ago="true"<%end%>>
+      on <%= petition.created_at.strftime("%b %d, %Y") %>
+    </div>
   </div>
-
+</div>

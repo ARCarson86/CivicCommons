@@ -1,8 +1,13 @@
+<div class="petition-sign petition-layout inner">
+  <%= link_to(conversation_petition_url(petition_signature.petition.conversation, petition_signature.petition, anchor: 'opportunity-nav'), class: "show-contribution", title: "View the Petition" ) do %>
+    <i class="icon-share-alt"></i>
+  <% end %>
   <h4><%= petition_signature.petition.title %></h4>
-  <div class="offset-2">
-    <%= avatar_profile(petition_signature.person, 40) %>
-    <p><%= petition_signature.person.name %> signed this Petition</p>
-    <p><%= DateTime.now.to_s %></p>
-    <p><%= link_to( "View the petition", conversation_petition_url(petition_signature.petition.conversation, petition_signature.petition, :anchor => 'opportunity-nav'), :class => "read-more") %></p>
+  <div>
+    <%= petition_signature.person.name %> signed this Petition
+    <div class="date" title="<%= petition_signature.created_at.strftime("%b %d, %Y - %l:%M %P") %>" data-date="<%= petition_signature.created_at.to_s %>" <% if petition_signature.created_at >= 45.minutes.ago %>data-minutes-ago="true"<%end%>>
+      on <%= petition_signature.created_at.strftime("%b %d, %Y") %>
+    </div>
   </div>
+</div>
 

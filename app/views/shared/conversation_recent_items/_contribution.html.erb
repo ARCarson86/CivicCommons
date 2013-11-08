@@ -16,16 +16,15 @@ else
   link_text << truncate( Sanitize.clean( contribution.content, :remove_contents => ['script'] ).strip, :length => embed_activity_length, :separator => ' ' )
   link_text << '"'
 end
-
 %>
 
-  <h4><%= link_to( contribution.item_title, contribution_item_url(contribution)) unless controller.controller_name == "conversations" %></h4>
-
-  <div class="">
+  <div class="contribution inner">
     <%= link_to "#node-#{contribution.id}", class: "show-contribution", title: "Show Contribution" do %>
       <i class="icon-reply"></i>
     <% end %>
     <%= render partial: "user/author_card", locals: {author: contribution.person, conversation_created_at: contribution.created_at} %>
-    <%= link_text %>
+    <div class="body">
+      <%= link_text %>
+    </div>
   </div>
 

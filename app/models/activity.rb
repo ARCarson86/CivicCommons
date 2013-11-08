@@ -186,6 +186,12 @@ class Activity < ActiveRecord::Base
     activities.collect{|a| a.item}.compact
   end
 
+  def self.items
+    this.collect do |a|
+      a.item
+    end.compact
+  end
+
   private
 
   ############################################################
