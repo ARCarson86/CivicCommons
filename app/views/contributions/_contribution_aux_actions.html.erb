@@ -8,7 +8,7 @@
               :title => "Alert Us of Terms of Service Violations") %>
 
   <%# Expand and Add a New Contribution %>
-  <a href="" class="action expand" title="Add your comment">
+  <a href="<%= current_person ? "#" : new_person_session_path %>" class="action expand <%= "login" unless current_person %>" title="Add your comment">
     <% if !is_sub_contribution %>
       <span class="response-count"><%= sub_contribution_count %></span>
     <% end %>

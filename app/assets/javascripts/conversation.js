@@ -69,6 +69,9 @@
      *   - Deselects 'Expand All' and 'Collapse All' Button If Threads Are Not In A Expand All State
      */
     $(document).delegate(".thread a.expand, .thread a.expand-button", "click", function(event) {
+      if ($(this).hasClass("login")) {
+        return;
+      }
       event.preventDefault();
       var parent = $(this).closest(".thread").addClass("expanded");
       if ($(this).hasClass("expand")) {
