@@ -103,7 +103,6 @@ class ConversationsController < ApplicationController
 
     @latest_contribution = @conversation.confirmed_contributions.most_recent.first
 
-    @recent_items = Activity.most_recent_activity_items(conversation:@conversation, limit:30)
     @recent_items = @conversation.activities.where("item_type NOT IN (?)", ["RatingGroup", "Reflection", "ReflectionComment"]).order("created_at DESC").limit(30)
 
     # The Participants in a Conversation               | Moved from View to Controller. TODO: Move to model
@@ -276,7 +275,8 @@ class ConversationsController < ApplicationController
     @ratings = RatingGroup.ratings_for_conversation_by_contribution_with_count(@conversation, current_person)
     @new_contribution = @conversation.contributions.new
     @time = params[:time].to_datetime
-    @items = @conversation.activities.where("item_created_at > ?", @time).includes(:item).collect{|activity| activity.item}
+    @items = @conversation.activities.where("item_created_at > ?", @time)
+
     @contributions = @conversation.activities.where("item_created_at > ?", @time).where(item_type: "Contribution").where("person_id <> ?", current_person.id).includes(item: [:rating_groups]).collect{|activity| activity.item}
     respond_to do |format|
       format.js
