@@ -77,6 +77,9 @@
       if ($(this).hasClass("expand")) {
         $(parent).find('.editable').jump().find('textarea').focus();
       }
+      else {
+        $(parent).find('.responses').jump();
+      }
       if ( $('.threads-controls .button[rel="collapse"]').hasClass("active") ) {
         deselectExpandCollapseThreadButtons();
       }

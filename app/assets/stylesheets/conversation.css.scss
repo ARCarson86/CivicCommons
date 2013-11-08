@@ -748,7 +748,7 @@ textarea {
   line-height: 30px;
 }
 
-.activity, .thread, .response {
+.activity, .thread, .response, .responses {
   background-color: transparent;
   @include transition( background-color 0.3s );
   &.new {
