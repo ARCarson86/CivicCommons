@@ -2,7 +2,7 @@ jQuery(function ($){
   var i_am_old_ie = false;
   var rejected_browser_upgrade = $.cookie('rejected_browser_upgrade');
 
-  if($.browser.msie && parseInt($.browser.version, 10) < 8){
+  if($.browser.msie && parseInt($.browser.version, 10) < 9){
     i_am_old_ie = true;
   }
   
