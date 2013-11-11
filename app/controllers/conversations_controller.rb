@@ -277,7 +277,8 @@ class ConversationsController < ApplicationController
     @time = params[:time].to_datetime
     @items = @conversation.activities.where("item_created_at > ?", @time)
 
-    @contributions = @conversation.activities.where("item_created_at > ?", @time).where(item_type: "Contribution").where("person_id <> ?", current_person.id).includes(item: [:rating_groups]).collect{|activity| activity.item}
+    @contributions = @conversation.contributions.where("created_at > ?", @time)
+    @contributions = @contributions.where("owner <> ?", current_person.id) if current_person
     respond_to do |format|
       format.js
     end
