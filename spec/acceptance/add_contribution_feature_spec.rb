@@ -39,8 +39,8 @@ feature "Add contribution", %q{
   def contribution_tool
     contrib
   end
-  background do
 
+  background do
     login_as :person
     create_contribution
     self.conversation = contribution.conversation
