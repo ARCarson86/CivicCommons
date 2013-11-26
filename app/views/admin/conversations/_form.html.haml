@@ -27,7 +27,12 @@
     =conversation.label :summary
     %br
     =conversation.text_area :summary
-
+  
+  %p
+    = conversation.label :starter, "Conversation Starter"
+    %br
+    = conversation.text_area :starter
+  
   %p
     =conversation.label :link
     %br
