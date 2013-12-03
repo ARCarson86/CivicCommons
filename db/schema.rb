@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131025054458) do
+ActiveRecord::Schema.define(:version => 20131203190553) do
 
   create_table "actions", :force => true do |t|
     t.integer  "conversation_id"
@@ -248,6 +248,7 @@ ActiveRecord::Schema.define(:version => 20131025054458) do
     t.string   "link"
     t.boolean  "permission_to_use_image"
     t.text     "starter"
+    t.boolean  "expanded"
   end
 
   add_index "conversations", ["cached_slug"], :name => "index_conversations_on_cached_slug", :unique => true
