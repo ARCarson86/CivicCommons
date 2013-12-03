@@ -1,0 +1,10 @@
+I want to invite you to add your voice to an important conversation at The Civic Commons about "<%=h short_title(@conversation.title) %>."
+%0D%0A
+%0D%0AHere's a little more information:
+%0D%0A
+%0D%0A<%= raw @conversation.summary%>
+%0D%0A
+%0D%0AVisit the url below to go to The Civic Commons, sign up for an account (takes only a minute), and join the conversation.  Check back in to see what others are saying.
+%0D%0A<%= conversation_url(@conversation) %>
+%0D%0A
+%0D%0ASee you there!
