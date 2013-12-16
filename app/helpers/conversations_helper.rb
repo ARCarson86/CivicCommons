@@ -211,4 +211,12 @@ module ConversationsHelper
     end
   end
 
+  def email_share_subject(conversation)
+    "I want to invite you to a conversation at The Civic Commons"
+  end
+
+  def email_share_body(conversation)
+    render(partial: "conversations/email_share_body", locals: {conversation: conversation})
+  end
+
 end

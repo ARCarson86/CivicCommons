@@ -16,7 +16,7 @@
 
   <div class="share-button email">
     <img alt="Embed_logo" src="/assets/envelope.png" class="envelope" width="40" />
-    <%= link_to("Email", {:controller => "invites", :action => "new", :source_type => "conversations", :source_id => @conversation.id}, :class => "button button-mini tertiary", 'data-colorbox' => true, 'data-remote' => true, :title => "") %>
+    <%= link_to "Email", "mailto:?to=&subject=#{u email_share_subject(@conversation)}&body=#{email_share_body(@conversation).html_safe}", class: "button button-mini tertiary", target: "_blank" %>
   </div>
 
   <div class="share-button twitter">
