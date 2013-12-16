@@ -16,6 +16,7 @@
 
   <%# Ratings %>
   <span href="" class="action mark expandable" >
+    <span class="response-count"><%= contribution.ratings_count %></span>
     <ul class="mark-post-as">
       <% rating = Rating.find_by_rating_group_id(contribution.id) %>
       <%= rating_buttons(contribution, @ratings || rating) %>
