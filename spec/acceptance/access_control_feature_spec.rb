@@ -9,18 +9,18 @@ feature "Access Control Feature", %q{
   background do
     database.has_a_topic
   end
-  
+
   def home_link
     ['The Civic Commons Home']
   end
-  
+
   def blog_admin_dashboard_links
     [
       'Blog Posts',
       'Add Content Item'
     ] + home_link
   end
-  
+
   def blog_admin_restricted_controller_links
     [
       admin_articles_path,
@@ -38,7 +38,7 @@ feature "Access Control Feature", %q{
       admin_metro_regions_path
     ]
   end
-  
+
   def admin_dashboard_links
     [
       'Featured Homepage Items',
@@ -74,7 +74,7 @@ feature "Access Control Feature", %q{
       'Your Commons Stats'
     ] + home_link
   end
-  
+
   def should_have_links(links)
     links.each do |link|
       current_page.should have_link link
@@ -86,22 +86,22 @@ feature "Access Control Feature", %q{
       current_page.should_not have_link link
     end
   end
-  
+
   def should_not_restrict_access_on_links(links)
     links.each do |link|
       visit admin_root_path
       current_page.click_link link
       current_page.current_path.inspect.should_not == root_path
     end
-  end  
-  
+  end
+
   def should_restrict_controller_access(links)
     links.each do |link|
       visit link
       current_page.current_path.should == root_path
     end
   end
-  
+
   scenario "As an admin, I can go to all controllers within the admin interface" do
     login_as :admin_person
     visit admin_root_path
@@ -109,7 +109,7 @@ feature "Access Control Feature", %q{
     should_have_links(admin_dashboard_links)
     should_not_restrict_access_on_links(admin_dashboard_links - home_link)
   end
-  
+
   scenario "As a blog admin, I can go to dashboard and content_item's controller only" do
     login_as :blog_admin_person
     visit admin_root_path
@@ -117,6 +117,6 @@ feature "Access Control Feature", %q{
     should_not_have_links(admin_dashboard_links - blog_admin_dashboard_links)
     should_not_restrict_access_on_links(blog_admin_dashboard_links - home_link)
     should_restrict_controller_access(blog_admin_restricted_controller_links)
-  end  
+  end
 
 end

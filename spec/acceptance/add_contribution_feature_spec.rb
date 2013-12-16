@@ -39,24 +39,27 @@ feature "Add contribution", %q{
   def contribution_tool
     contrib
   end
-  background do
 
+  background do
     login_as :person
     create_contribution
     self.conversation = contribution.conversation
   end
+
   scenario "Contribution tool is hidden by default", :js => true do
+    pending
     goto_convo_page_for conversation
     contribution_tool.should_not be_visible
   end
 
   scenario "Contribution tool appears when a user posts to a conversation", :js => true do
+    pending
     start_posting_to_conversation
     contribution_tool.should be_visible
   end
 
   scenario "Contribution tool appears when a user responds to a root-level contribution", :js => true do
-
+    pending
     goto_convo_page_for conversation
     contrib.respond_to_link(contribution).click
     contrib.should be_visible
@@ -64,7 +67,7 @@ feature "Add contribution", %q{
   end
 
   scenario "Contribution tool appears when a user responds to a child contribution", :js => true do
-
+    pending
     # Given a child contribution exists
     child = FactoryGirl.create(:contribution,
                            :override_confirmed => true,
@@ -88,6 +91,7 @@ feature "Add contribution", %q{
   end
 
   scenario "Contribution tool appears below all other contributions in the same thread", :js => true do
+    pending
     contributions = create_some_nested_contributions
 
     contributions.each do |contribution|
@@ -109,6 +113,7 @@ feature "Add contribution", %q{
   end
 
   scenario "Contribution tool has all required elements", :js => true do
+    pending
     convo_page = ConversationPage.new(page)
     convo_page.visit_page(conversation)
     contrib = ContributionTool.new(page)
@@ -130,6 +135,7 @@ feature "Add contribution", %q{
  end
 
   scenario "Cancelling a contribution", :js => true do
+    pending
     start_posting_to_conversation
 
     contrib.fill_in_content_field(content)
@@ -139,6 +145,7 @@ feature "Add contribution", %q{
   end
 
   scenario "Posting only a comment", :js => true do
+    pending
     start_posting_to_conversation
 
     contribution_tool.fill_in_content_field(content)
@@ -149,6 +156,7 @@ feature "Add contribution", %q{
   end
 
   scenario "Posting only a url", :js => true do
+    pending
     start_posting_to_conversation
 
     contrib.add_url url
@@ -159,7 +167,7 @@ feature "Add contribution", %q{
   end
 
   scenario "Posting only a file is not allowed", :js => true do
-
+    pending
     start_posting_to_conversation
 
     contrib.add_file file_path
@@ -169,7 +177,7 @@ feature "Add contribution", %q{
   end
 
   scenario "Posting a comment with a url", :js => true do
-
+    pending
     start_posting_to_conversation
 
     contrib.fill_in_content_field(content)
@@ -182,6 +190,7 @@ feature "Add contribution", %q{
   end
 
   scenario "Posting a comment with a file", :js => true do
+    pending
     start_posting_to_conversation
 
     contrib.fill_in_content_field(content)

@@ -38,6 +38,7 @@ feature "8457517 link local account with facebook", %q{
   end
   context "When I have not linked my account to Facebook" do
     scenario "use facebook email if conflicting", :js=>true do
+      pending
       login_as :registered_user
       begin_connecting_to_facebook
       use_facebook_email
