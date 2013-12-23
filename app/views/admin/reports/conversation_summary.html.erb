@@ -1,0 +1,78 @@
+<h2> Conversation Summary </h2>
+
+<table class="people tablesorter">
+	<thead>
+		<tr>
+			<th>Posted On</th>
+			<th>Title</th>
+			<th>Visits</th>
+			<th>Last Visit</th>
+			<th>Staff Pcik?</th>
+			<th># of Participants</th>
+			<th>Contributions</th>
+			<th>Votes</th>
+			<th>Unique Members Voting</th>
+			<th>Petitions</th>
+			<th>Petition Signatures</th>
+			<th>Persuasive Ratings</th>
+			<th>Informative Ratings</th>
+			<th>Inspiring Ratings</th>
+			<th>Subscriptions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @records.each do |record| %>
+			<tr>
+				<td>
+					<%= record[1] %>
+				</td>
+				<td>
+					<%= record[2] %>
+				</td>
+				<td>
+					<%= record[3] %>
+				</td>
+				<td>
+					<%= record[4] %>
+				</td>
+				<td>
+					<% unless record[5] == "Y" %>
+						N
+					<% else %>
+						<%= record[5] %>
+					<% end %>
+				</td>
+				<td>
+					<%= record[6] %>
+				</td>
+				<td>
+					<%= record[7] %>
+				</td>
+				<td>
+					<%= record[8] %>
+				</td>
+				<td>
+					<%= record[9] %>
+				</td>
+				<td>
+					<%= record[10] %>
+				</td>
+				<td>
+					<%= record[11] %>
+				</td>
+				<td>
+					<%= record[12] %>
+				</td>
+				<td>
+					<%= record[13] %>
+				</td>
+				<td>
+					<%= record[14] %>
+				</td>
+				<td>
+					<%= record[15] %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

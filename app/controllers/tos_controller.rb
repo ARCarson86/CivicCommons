@@ -23,11 +23,10 @@ class TosController < ApplicationController
 
     respond_to do |format|
       unless reason.blank?
-        @notice = "Thank you! You're helping to make your community stronger!"
-        format.js
+        format.html { redirect_to conversation_path(id: @contribution.conversation_id), notice: "Thank you! You're helping to make your community stronger!" }
       else
-        flash[:notice] = @error = "Please include a reason."
-        format.js
+        format.html { render :partial => 'tos_contribution_form'}
+        flash[:notice] = "Please include a reason."
       end
     end
   end

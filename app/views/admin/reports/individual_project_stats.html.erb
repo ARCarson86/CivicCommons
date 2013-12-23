@@ -1,0 +1,7 @@
+<h2> Projects Stats</h2>
+
+<% @issues.each do |issue| %>
+	<div class="row">
+		<%= issue.name %> -	<%= issue.created_at %>
+	</div>
+<% end %>

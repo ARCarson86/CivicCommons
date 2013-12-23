@@ -22,6 +22,13 @@ Civiccommons::Application.routes.draw do
 
 #Custom Matchers
 
+  #reports
+  get '/admin/member-report',                          to: 'admin/reports#member_report',                    as: 'member_report'                  
+  get '/admin/conversation-summary',                   to: 'admin/reports#conversation_summary',             as: 'conversation_summary'
+  get '/admin/individual-project-stats',               to: 'admin/reports#individual_project_stats',         as: 'individual_project_stats'
+  get '/admin/project-conversations',                  to: 'admin/reports#project_conversations',            as: 'project_conversations'
+  get '/admin/project-overview',                       to: 'admin/reports#project_overview',                 as: 'project_overview'
+
   #authentication
   post '/authentication/decline_fb_auth',              to: 'authentication#decline_fb_auth',                 as: 'decline_fb_auth'
   get  '/authentication/conflicting_email',            to: 'authentication#conflicting_email',               as: 'conflicting_email'
@@ -260,5 +267,4 @@ Civiccommons::Application.routes.draw do
       put  'update_display_names', on: :member
     end
   end
-
 end

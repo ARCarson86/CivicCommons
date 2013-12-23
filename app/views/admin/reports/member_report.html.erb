@@ -1,0 +1,91 @@
+<h2> Member Report </h2>
+
+<table class="people tablesorter">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Organization</th>
+			<th>Confirmed?</th>
+			<th>Confirmed On</th>
+			<th>Sign In Count</th>
+			<th>Last Signed In</th>
+			<th>Locked At</th>
+			<th>Conversations Started</th>
+			<th>Contributions Made</th>
+			<th>Persuasive Ratings</th>
+			<th>Informative Ratings</th>
+			<th>Inspiring Ratings</th>
+			<th>Votes Created</th>
+			<th>Votes Cast</th>
+			<th>Petitions Written</th>
+			<th>Petitions Signed</th>
+			<th>Subscriptions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @records.each do |person| %>
+			<tr>
+				<td>
+					<% if person[2] != "" %>
+						<%= person[2] %>,
+						<%= person[1] %>
+					<% else %>
+						<%= person[1] %>
+					<% end %>
+				</td>
+				<td>
+					<%= person[3] %>
+				</td>
+				<td>
+					<%= person[4] %>
+				</td>
+				<td>
+					<%= person[5] %>
+				</td>
+				<td>
+					<%= person[6] %>
+				</td>
+				<td>
+					<%= person[7] %>
+				</td>
+				<td>
+					<%= person[8] %>
+				</td>
+				<td>
+					<%= person[9] %>
+				</td>
+				<td>
+					<%= person[10] %>
+				</td>
+				<td>
+					<%= person[11] %>
+				</td>
+				<td>
+					<%= person[12] %>
+				</td>
+				<td>
+					<%= person[13] %>
+				</td>
+				<td>
+					<%= person[14] %>
+				</td>
+				<td>
+					<%= person[15] %>
+				</td>
+				<td>
+					<%= person[16] %>
+				</td>
+				<td>
+					<%= person[17] %>
+				</td>
+				<td>
+					<%= person[18] %>
+				</td>
+				<td>
+					<%= person[19] %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

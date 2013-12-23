@@ -1,0 +1,57 @@
+<h2> Project Overview </h2>
+
+<table class="people tablesorter">
+	<thead>
+		<tr>
+			<th>Project</th>
+			<th>Conversation</th>
+			<th>Conversation Posted</th>
+			<th>Votes</th>
+			<th>Total Vote Responses</th>
+			<th>Petitions</th>
+			<th>Petition Signatures</th>
+			<th>Contributions</th>
+			<th>Subscriptions</th>
+			<th>Visits</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @records.each do |record| %>
+			<tr>
+				<td>
+					<%= record[0] %>
+				</td>
+				<td>
+					<%= record[1] %>
+				</td>
+				<td>
+					<%= record[2] %>
+				</td>
+				<td>
+					<%= record[3] %>
+				</td>
+				<td>
+					<%= record[4] %>
+				</td>
+				<td>
+					<%= record[5] %>
+				</td>
+				<td>
+					<%= record[9] %>
+				</td>
+				<td>
+					<%= record[10] %>
+				</td>
+				<td>
+					<%= record[11] %>
+				</td>
+				<td>
+					<%= record[12] %>
+				</td>
+				<td>
+					<%= record[13] %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
