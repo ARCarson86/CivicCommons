@@ -10,6 +10,7 @@ var $button = $('#contribution-<%= @contribution.id %>-rating-<%= @rating_descri
   }
   // toggle 'active' class
   $button.toggleClass('active');
+  $('#show-contribution-<%= @contribution.id %> .mark .response-count').text(<%= @contribution.ratings_count %>);
 <% else %>
   // popup error message
   alert('There was an problem.\n\n<%= @rating_group.errors.values.join('\n') %>');
