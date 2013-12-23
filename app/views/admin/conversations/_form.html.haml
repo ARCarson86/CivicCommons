@@ -27,7 +27,12 @@
     =conversation.label :summary
     %br
     =conversation.text_area :summary
-
+  
+  %p
+    = conversation.label :starter, "Conversation Starter"
+    %br
+    = conversation.text_area :starter
+  
   %p
     =conversation.label :link
     %br
@@ -54,6 +59,10 @@
   %p
     =conversation.check_box :exclude_from_most_recent
     =conversation.label :exclude_from_most_recent, "Exclude from Most Recent"
+
+  %p
+    =conversation.check_box :expanded
+    =conversation.label :expanded, "Expand All Contributions by Default"
 
   %p
     =conversation.label :topics, "Select Topics"

@@ -571,6 +571,22 @@
     display: block;
     &.mark {
       background-position: 0 -134px;
+            position: relative;
+      .response-count {
+        width: 14px;
+        height: 14px;
+        line-height: 12px;
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background-color: #6a727f;
+        border: 2px solid white;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 10px;
+        color: white;
+
+      }
     }
     &.expand {
       background-position: 0 -236px;

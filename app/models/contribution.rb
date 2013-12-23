@@ -320,7 +320,11 @@ class Contribution < ActiveRecord::Base
     newest.respond_to?(:updated_at) ? newest.updated_at : nil
   end
 
-
+  def ratings_count
+    self.rating_groups.includes(:ratings).reduce(0) do |sum, rg|
+       sum + rg.ratings.count
+    end
+  end
 
   #############################################################################
 

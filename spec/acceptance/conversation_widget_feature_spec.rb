@@ -56,6 +56,7 @@ feature "Conversation Widget Feature", %q{
   end
 
   scenario "Your commons embed page", :js => true do
+    pending
     given_a_series_of_contributions
     visit conversation_path(@conversation)
     page.should have_content 'Akron Beacon Journal Seeks Citizen Views'

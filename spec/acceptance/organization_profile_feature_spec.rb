@@ -38,6 +38,7 @@ feature "Organization Profiles", %q{
   end
 
   scenario "Un-following an organization", :js => true do
+    pending
     login_as :person
     goto :organization_profile, for: organization_with_subscriber(person)
     current_page.should have_subscriber_avatar person
@@ -48,6 +49,7 @@ feature "Organization Profiles", %q{
   end
 
   scenario "Viewing an Organization Profile" do
+    pending
     goto :organization_profile, for: organization
     current_page.should have_contact_info_for organization
     current_page.should have_pluralized_itself

@@ -87,6 +87,7 @@ group :development do
   gem "engineyard"
   gem "ruby-debug19"
   gem 'rails-dev-tweaks'
+  gem "zeus"
 end
 
 group :test do

@@ -11,6 +11,7 @@ FactoryGirl.define do
     f.association :person, :factory => :admin_person
     # f.metro_region_id '123'
     f.association :metro_region, :factory => :default_metro_region
+    f.starter "This text what we use to help start a conversation."
 
     before(:create) do |conversation|
       conversation.topics << FactoryGirl.create(:topic)
@@ -21,5 +22,6 @@ FactoryGirl.define do
     f.contributions { |c| [c.association(:contribution)] }
     f.from_community true
     f.association :person, :factory => :registered_user
+    f.starter "This text what we use to help start a conversation."
   end
 end

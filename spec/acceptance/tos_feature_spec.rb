@@ -8,6 +8,7 @@ feature "Report Terms of Service Violation", %q{
 
 
   scenario "Display the Report Abuse text" do
+    pending
     given_i_am_on_a_conversation_page_with_a_contribution
     then_the_page_has_a_report_abuse_link
   end
