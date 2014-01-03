@@ -100,22 +100,6 @@
                 %li
                   =link_to "Add Static Page", new_admin_content_template_path
             %li
--#            Reports
--#              %ul
--#                %li
--#                  =link_to "Member Report", member_report_path
--#              %ul
--#                %li
--#                  =link_to "Conversation Summary", conversation_summary_path
--#              %ul  
--#                %li
--#                  =link_to "Individual Project Stats", individual_project_stats_path
--#              %ul  
--#                %li
--#                  =link_to "Project Conversations",  project_conversations_path
--#              %ul  
--#                %li
--#                  =link_to "Project Overview", project_overview_path
           -if can? :manage, :admin_curated_feeds
             %li
               =link_to "Curated Feeds", admin_curated_feeds_path
