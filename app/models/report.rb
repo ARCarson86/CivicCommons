@@ -1,6 +1,14 @@
 class Report < ActiveRecord::Base
 
-	def member_report
+	def self.member_report(options = {})
+    CSV.generate(options) do |csv|
+      csv << ["Person ID", "First Name", "Last Name", "Email Address", "Organization", "Confirmed?", "Confirmed at", "Sign in Count", "Last Signed In", "Locked at?", "Conversations Sorry", "Contributions Made", "Persuasive Ratings", "Informative Ratings", "Inspiring Ratings", "Votes Created", "Votes Cast", "Petitions Written", "Petitions Signed", "Subcriptions"]
+      @records = ActiveRecord::Base.connection.execute(sql)
+      @records.each do |record|
+        csv << record
+      end
+    end
+
 	 sql = "select p.id as 'Person ID',
      ifnull(p.first_name,'') as 'First Name',
      p.last_name as 'Last Name',
@@ -22,7 +30,6 @@ class Report < ActiveRecord::Base
      (select count(ps.id) from petition_signatures as ps join petitions as pt on pt.id = ps.petition_id where ps.person_id = p.id and pt.person_id <> p.id) as 'Petitions Signed',
      (select count(*) from subscriptions where person_id = p.id) as 'Subscriptions'
   	 from people as p"
-		@records = ActiveRecord::Base.connection.execute(sql)
 	end
 
 	def conversation_summary

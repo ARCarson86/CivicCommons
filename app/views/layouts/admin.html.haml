@@ -112,6 +112,8 @@
               %ul
                 %li
                   =link_to "Add Survey", new_admin_survey_path
+                %li
+                  =link_to "Member Report", member_report_path
           -if can? :manage, :admin_email_restrictions
             %li
               =link_to "Email Restrictions", admin_email_restrictions_path
