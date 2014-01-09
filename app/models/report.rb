@@ -1,35 +1,31 @@
 class Report < ActiveRecord::Base
 
-	def self.member_report(options = {})
+	def member_report(options = {})
     CSV.generate(options) do |csv|
-      csv << ["Person ID", "First Name", "Last Name", "Email Address", "Organization", "Confirmed?", "Confirmed at", "Sign in Count", "Last Signed In", "Locked at?", "Conversations Sorry", "Contributions Made", "Persuasive Ratings", "Informative Ratings", "Inspiring Ratings", "Votes Created", "Votes Cast", "Petitions Written", "Petitions Signed", "Subcriptions"]
-      @records = ActiveRecord::Base.connection.execute(sql)
-      @records.each do |record|
-        csv << record
-      end
-    end
-
-	 sql = "select p.id as 'Person ID',
-     ifnull(p.first_name,'') as 'First Name',
-     p.last_name as 'Last Name',
-     p.email as 'Email Address',
-     if(p.type = 'Organization', 'Y', '') as 'Organization?',
-     if(p.confirmed_at is null, 'N', 'Y') as 'Confirmed?',
-     ifnull(date(p.confirmed_at), '') as 'Confirmed at',
-     p.sign_in_count as 'Sign in Count',
-     ifnull(date(p.last_sign_in_at),'') as 'Last Signed in',
-     ifnull(date(p.locked_at), '') as 'Locked at',
-     (select count(*) from conversations where owner = p.id) as 'Conversations Started',
-     (select count(*) from contributions where owner = p.id) as 'Contributions Made',
-     (select count(*) from rating_groups join ratings on ratings.rating_group_id = rating_groups.id where rating_groups.person_id = p.id and ratings.rating_descriptor_id = 1) as 'Persuasive Ratings',
-     (select count(*) from rating_groups join ratings on ratings.rating_group_id = rating_groups.id where rating_groups.person_id = p.id and ratings.rating_descriptor_id = 2) as 'Informative Ratings',
-     (select count(*) from rating_groups join ratings on ratings.rating_group_id = rating_groups.id where rating_groups.person_id = p.id and ratings.rating_descriptor_id = 3) as 'Inspiring Ratings',
-     (select count(*) from surveys where type = 'Vote' and person_id = p.id) as 'Votes Created',
-     (select count(*) from survey_responses where person_id = p.id) as 'Votes Cast',
-     (select count(*) from petitions where person_id = p.id) as 'Petitions Written',
-     (select count(ps.id) from petition_signatures as ps join petitions as pt on pt.id = ps.petition_id where ps.person_id = p.id and pt.person_id <> p.id) as 'Petitions Signed',
-     (select count(*) from subscriptions where person_id = p.id) as 'Subscriptions'
-  	 from people as p"
+      csv << ["Person ID", "First Name", "Last Name", "Email Address", "Organization", "Confirmed?", "Confirmed at", "Sign in Count", "Last Signed In", "Locked at?", "Conversations Sorry", "Contributions Made", "Persuasive Ratings", "Informative Ratings", "Inspiring Ratings", "Votes Created", "Votes Cast", "Petitions Written", "Petitions Signed", "Subcriptions"] 
+    	 sql = "select p.id as 'Person ID',
+       ifnull(p.first_name,'') as 'First Name',
+       p.last_name as 'Last Name',
+       p.email as 'Email Address',
+       if(p.type = 'Organization', 'Y', '') as 'Organization?',
+       if(p.confirmed_at is null, 'N', 'Y') as 'Confirmed?',
+       ifnull(date(p.confirmed_at), '') as 'Confirmed at',
+       p.sign_in_count as 'Sign in Count',
+       ifnull(date(p.last_sign_in_at),'') as 'Last Signed in',
+       ifnull(date(p.locked_at), '') as 'Locked at',
+       (select count(*) from conversations where owner = p.id) as 'Conversations Started',
+       (select count(*) from contributions where owner = p.id) as 'Contributions Made',
+       (select count(*) from rating_groups join ratings on ratings.rating_group_id = rating_groups.id where rating_groups.person_id = p.id and ratings.rating_descriptor_id = 1) as 'Persuasive Ratings',
+       (select count(*) from rating_groups join ratings on ratings.rating_group_id = rating_groups.id where rating_groups.person_id = p.id and ratings.rating_descriptor_id = 2) as 'Informative Ratings',
+       (select count(*) from rating_groups join ratings on ratings.rating_group_id = rating_groups.id where rating_groups.person_id = p.id and ratings.rating_descriptor_id = 3) as 'Inspiring Ratings',
+       (select count(*) from surveys where type = 'Vote' and person_id = p.id) as 'Votes Created',
+       (select count(*) from survey_responses where person_id = p.id) as 'Votes Cast',
+       (select count(*) from petitions where person_id = p.id) as 'Petitions Written',
+       (select count(ps.id) from petition_signatures as ps join petitions as pt on pt.id = ps.petition_id where ps.person_id = p.id and pt.person_id <> p.id) as 'Petitions Signed',
+       (select count(*) from subscriptions where person_id = p.id) as 'Subscriptions'
+    	 from people as p"
+       @records = ActiveRecord::Base.connection.execute(sql)
+        csv << @records
 	end
 
 	def conversation_summary
