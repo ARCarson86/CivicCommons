@@ -5,9 +5,6 @@ class Admin::RedirectsController < Admin::DashboardController
     @redirects = Redirect.all
   end
 
-  def new
-  end
-
   def create
     @redirect = Redirect.new params[:redirect]
     if @redirect.save
@@ -20,12 +17,19 @@ class Admin::RedirectsController < Admin::DashboardController
   end
 
   def edit
+    @redirect = Redirect.find params[:id]
   end
   
   def update
+    @redirect = Redirect.find params[:id]
+    @redirect.update_attributes params[:redirect]
+    redirect_to admin_redirects_path
   end
 
   def destroy
+    @redirect = Redirect.find params[:id]
+    @redirect.destroy
+    redirect_to admin_redirects_path
   end
 
 end
