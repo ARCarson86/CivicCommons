@@ -358,3 +358,19 @@ fieldset.meta {
   padding-top: 8px;
 }
 
+.admin-errors {
+  background-color: rgb(238, 194, 190);
+  padding: 10px;
+  margin: 20px 20px 20px 0;
+}
+
+.redirect-form {
+  .field-with-error {
+    input {
+      border: 2px solid red;
+    }
+  }
+  .validation-error {
+    display: none;
+  }
+}

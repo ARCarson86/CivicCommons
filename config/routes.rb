@@ -266,5 +266,9 @@ Civiccommons::Application.routes.draw do
       get  'edit_display_names',   on: :member
       put  'update_display_names', on: :member
     end
+    resources :redirects
   end
+
+  get '*path', to: 'redirects#show'
+
 end

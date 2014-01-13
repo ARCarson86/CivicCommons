@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131203190553) do
+ActiveRecord::Schema.define(:version => 20140103171546) do
 
   create_table "actions", :force => true do |t|
     t.integer  "conversation_id"
@@ -611,6 +611,13 @@ ActiveRecord::Schema.define(:version => 20131203190553) do
 
   add_index "ratings", ["rating_descriptor_id"], :name => "index_ratings_on_rating_descriptor_id"
   add_index "ratings", ["rating_group_id"], :name => "index_ratings_on_rating_group_id"
+
+  create_table "redirects", :force => true do |t|
+    t.string   "path"
+    t.string   "destination"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "reflection_comments", :force => true do |t|
     t.text     "body"

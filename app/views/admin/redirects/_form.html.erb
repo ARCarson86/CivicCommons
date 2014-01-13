@@ -1,0 +1,9 @@
+<%= form_for [:admin, redirect], html: { class: "redirect-form" } do |f| %>
+  <% if redirect.errors.present? %>
+    <div class="admin-errors">
+      <%= redirect.errors.full_messages.join(",") %>
+    </div>
+  <% end %>
+  Redirect from <%= "#{request.protocol}#{request.host}" %>/<%= f.text_field :path, placeholder: "path" %> to <%= "#{request.protocol}#{request.host}" %>/<%= f.text_field :destination, placeholder: "destination path" %>
+  <%= f.submit 'Create' %>
+<% end %>
