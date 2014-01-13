@@ -1,7 +1,7 @@
 class Admin::RedirectsController < Admin::DashboardController
 
   def index
-    @new_redirect = Redirect.new
+    @redirect = Redirect.new
     @redirects = Redirect.all
   end
 
@@ -9,6 +9,14 @@ class Admin::RedirectsController < Admin::DashboardController
   end
 
   def create
+    @redirect = Redirect.new params[:redirect]
+    if @redirect.save
+      redirect_to admin_redirects_path
+    else
+      Rails.logger.info @redirect.errors.full_messages
+      @redirects = Redirect.all
+      render :index
+    end
   end
 
   def edit

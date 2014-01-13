@@ -1,6 +1,19 @@
 <h2>Redirects</h2>
 
-<%= render partial: 'form', locals: { redirect: @new_redirect } %>
+<%= render partial: 'form', locals: { redirect: @redirect } %>
 
-<% @redirects.each do |r| %>
-<% end %>
+<table class="tablesorter">
+  <thead>
+    <tr>
+      <th>Redirect From</th>
+      <th>Redirect To</th>
+    </tr>
+  </thead>
+  <tr>
+  <% @redirects.each do |r| %>
+    <tr>
+      <td><%= r.path %></td>
+      <td><%= r.destination %></td>
+    </tr>
+  <% end %>
+</table>
