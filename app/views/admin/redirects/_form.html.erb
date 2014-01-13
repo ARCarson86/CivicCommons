@@ -4,7 +4,6 @@
       <%= redirect.errors.full_messages.join(",") %>
     </div>
   <% end %>
-  <span class="label">Redirect from</span> <%= "#{request.protocol}#{request.host}" %>/<%= f.text_field :path, placeholder: "path" %><br />
-  <span class="label">to</span> <%= "#{request.protocol}#{request.host}" %>/<%= f.text_field :destination, placeholder: "destination path" %>
-  <%= f.submit 'Save' %>
+  Redirect from <%= "#{request.protocol}#{request.host}" %>/<%= f.text_field :path, placeholder: "path" %> to <%= "#{request.protocol}#{request.host}" %>/<%= f.text_field :destination, placeholder: "destination path" %>
+  <%= f.submit 'Create' %>
 <% end %>
