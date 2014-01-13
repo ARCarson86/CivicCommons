@@ -365,6 +365,14 @@ fieldset.meta {
 }
 
 .redirect-form {
+  span.label {
+    display: inline-block;
+    width: 120px;
+    font-weight: bold;
+  }
+  input[type=text] {
+    width: 300px;
+  }
   .field-with-error {
     input {
       border: 2px solid red;
