@@ -268,4 +268,7 @@ Civiccommons::Application.routes.draw do
     end
     resources :redirects
   end
+
+  get '*path', to: 'redirects#show'
+
 end
