@@ -1,0 +1,56 @@
+<% if current_person && current_person.admin? %>
+<div class="wrapper">
+  <div class="content-container">
+    <div class="row">
+      <div class="col-12">
+        <h2>We are the Civic Commons - and we strive to keep our ideas, our tone, civil.</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8">
+        <div class="media">
+          <div class="img">
+            <i class="convo-icons convo-icons-lrg-plus"></i> 
+          </div>
+          <div class="bd">
+            <h1>Edit This Conversation<%= " from #{@start_from}: #{@content_item.title}" if @start_from %></h1>
+            <p class="subtitle">Add your 2&#162;</p>
+          </div>
+        </div>
+
+        <%= form_for(@conversation) do |conversation| %>
+          <%= render :partial => 'conversations/conversation_fields', :locals => { :form => conversation } %>
+          <fieldset class="footer mtl">
+            <div class="field-block">
+              By editing this conversation I am agreeing to do my best to continue to uphold the <%= link_to 'guiding principles of the Civic Commons',principles_path, :target => "_blank" %>, and I'm also promising that I have the rights to use the photo I am uploading.
+            </div>
+            <div class="field-block mtl">
+              <%= conversation.submit 'Save This Conversation', :class => 'submit mln' %>
+              <%= link_to "Cancel", conversation_path(@conversation) %>
+            </div>
+          </fieldset>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $("#conversation_summary, #conversation_starter").tinymce({
+    script_url : '<%=asset_path "tiny_mce/tiny_mce.js" %>',
+    theme : "advanced",
+    plugins : "autolink,inlinepopups",
+    width : '100%',
+    theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,link,unlink,|,bullist,numlist,|,undo,redo,|,cut,copy,paste",
+    theme_advanced_buttons2 : "",
+    theme_advanced_buttons3 : "",
+    theme_advanced_toolbar_location : "top",
+    theme_advanced_toolbar_align : "left",
+    theme_advanced_statusbar_location : "none",
+    extended_valid_elements: "a[title|href|target=_blank|title]"
+  });
+
+</script>
+<% else %>
+  <% redirect_to conversation_path(@conversation) %>
+<% end %>

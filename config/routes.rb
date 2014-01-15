@@ -166,7 +166,7 @@ Civiccommons::Application.routes.draw do
     post '/promotion', to: 'products_services#submit_promotion', on: :collection
   end
 
-  resources :conversations, only: [:index, :show, :new, :create] do
+  resources :conversations, only: [:index, :show, :new, :create, :edit, :update] do
     get :embed, on: :member
     get :updates, on: :member
     resources :reflections do
