@@ -45,28 +45,36 @@ require 'csv'
 	end
 
 	def individual_project_stats
-		@records = Report.individual_project_stats(params[:individual_project_stats][:id])
-			@icsv = CSV.generate do |csv|
-			csv << ["Conversation ID", "Posted On", "Title", "Visits", "Last Visit", "Staff Pick?", "'#' of Participants", "Contributions", "Votes", "Unique Members Voteing", "Petitions", "Petition Signatures", "Persausive Ratings", "Informative Ratings", "Inspiring Ratings", "Subscriptions"]
-			@records.each do |record|
-				csv << record
+		unless params[:individual_project_stats][:id].empty?
+			@records = Report.individual_project_stats(params[:individual_project_stats][:id])
+				@icsv = CSV.generate do |csv|
+				csv << ["Conversation ID", "Posted On", "Title", "Visits", "Last Visit", "Staff Pick?", "'#' of Participants", "Contributions", "Votes", "Unique Members Voteing", "Petitions", "Petition Signatures", "Persausive Ratings", "Informative Ratings", "Inspiring Ratings", "Subscriptions"]
+				@records.each do |record|
+					csv << record
+				end
 			end
-		end
-		respond_to do |format|
-			format.csv { send_data @icsv, type: 'text/csv', filename: "#{Issue.find(params[:individual_project_stats][:id]).name} Stats #{DateTime.now.strftime("%F %H:%M")}.csv" }
+			respond_to do |format|
+				format.csv { send_data @icsv, type: 'text/csv', filename: "#{Issue.find(params[:individual_project_stats][:id]).name} Stats #{DateTime.now.strftime("%F %H:%M")}.csv" }
+			end
+		else
+			redirect_to reports_path, :flash => { :error => "Project cannot be left blank!" }
 		end
 	end
 
 	def project_conversations
-		@records = Report.project_conversations(params[:project_conversations][:id])
-			@pccsv = CSV.generate do |csv|
-			csv << ["Conversation ID", "Conersation", "Contribution ID", "Posted", "Contributor", "Contribution Title", "Contribution Content", "Contribution Attachment", "Persuasive Ratings", "Informative Ratings", "Inspiring Ratings", "Sort ID", "Sort Level"]
-			@records.each do |record|
-				csv << record
+		unless params[:project_conversations][:id].empty?
+			@records = Report.project_conversations(params[:project_conversations][:id])
+				@pccsv = CSV.generate do |csv|
+				csv << ["Conversation ID", "Conersation", "Contribution ID", "Posted", "Contributor", "Contribution Title", "Contribution Content", "Contribution Attachment", "Persuasive Ratings", "Informative Ratings", "Inspiring Ratings", "Sort ID", "Sort Level"]
+				@records.each do |record|
+					csv << record
+				end
 			end
-		end
-		respond_to do |format|
-			format.csv { send_data @pccsv, type: 'text/csv', filename: "#{Issue.find(params[:project_conversations][:id]).name} Conversations #{DateTime.now.strftime("%F %H:%M")}.csv" }
+			respond_to do |format|
+				format.csv { send_data @pccsv, type: 'text/csv', filename: "#{Issue.find(params[:project_conversations][:id]).name} Conversations #{DateTime.now.strftime("%F %H:%M")}.csv" }
+			end
+		else
+			redirect_to reports_path, :flash => { :error => "Project cannot be left blank!" }
 		end
 	end
 end
