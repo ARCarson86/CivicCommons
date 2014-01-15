@@ -23,6 +23,7 @@ Civiccommons::Application.routes.draw do
 #Custom Matchers
 
   #reports
+  get '/admin/reports',                                 to: 'admin/reports#index',                           as: 'reports'     
   get '/admin/member-report',                          to: 'admin/reports#member_report',                    as: 'member_report'                  
   get '/admin/conversation-summary',                   to: 'admin/reports#conversation_summary',             as: 'conversation_summary'
   get '/admin/individual-project-stats',               to: 'admin/reports#individual_project_stats',         as: 'individual_project_stats'
