@@ -123,6 +123,9 @@
           -if can? :manage, :admin_widget_stats
             %li
               =link_to "Your Commons Stats", admin_widget_stats_path
+          -if can? :manage, :admin_redirects
+            %li
+              =link_to "Redirects", admin_redirects_path
       %div#main
         =yield
 

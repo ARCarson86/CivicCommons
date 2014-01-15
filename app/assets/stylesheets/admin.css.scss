@@ -358,3 +358,27 @@ fieldset.meta {
   padding-top: 8px;
 }
 
+.admin-errors {
+  background-color: rgb(238, 194, 190);
+  padding: 10px;
+  margin: 20px 20px 20px 0;
+}
+
+.redirect-form {
+  span.label {
+    display: inline-block;
+    width: 120px;
+    font-weight: bold;
+  }
+  input[type=text] {
+    width: 300px;
+  }
+  .field-with-error {
+    input {
+      border: 2px solid red;
+    }
+  }
+  .validation-error {
+    display: none;
+  }
+}

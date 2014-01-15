@@ -1,0 +1,26 @@
+<h2>Redirects</h2>
+
+<h4>Create new redirect</h4>
+<%= render partial: 'form', locals: { redirect: @redirect } %>
+
+<h4>All Redirects</h4>
+<table class="tablesorter">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>Redirect From</th>
+      <th>Redirect To</th>
+      <th>Operations</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @redirects.each do |r| %>
+      <tr>
+        <td><%= r.id %></td>
+        <td><%= r.path %></td>
+        <td><%= r.destination %></td>
+        <td><%= link_to "Edit", [:edit, :admin, r] %> | <%= link_to "Delete", [:admin, r], method: "delete", confirm: "Are you sure?" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
