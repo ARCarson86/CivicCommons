@@ -29,10 +29,6 @@ Civiccommons::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  config.dev_tweaks.autoload_rules do
-    # Reload on XHR requests
-    keep :xhr
-  end
 
   # parse the memcached.yml
   memcached_config = YAML.load_file(Rails.root.join('config/memcached.yml'))

@@ -290,7 +290,7 @@ class ConversationsController < ApplicationController
     begin
       @conversation = Conversation.find params[:id]
     rescue ActiveRecord::RecordNotFound
-      render 'public/404.html', :layout => nil, :status => 404 and return
+      render 'public/404', :layout => nil, :status => 404 and return
     end
 
     # If an old id or a numeric id was used to find the record, then
