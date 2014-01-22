@@ -2,8 +2,8 @@ source 'http://rubygems.org'
 
 gem 'newrelic_rpm'
 
-gem 'dalli'
-gem 'cache_digests', :git => 'git://github.com/CivicCommons/cache_digests.git', :branch  => "master"
+#gem 'dalli'
+#gem 'cache_digests', :git => 'git://github.com/CivicCommons/cache_digests.git', :branch  => "master"
 
 gem 'mysql2', '~> 0.3'
 
@@ -85,7 +85,6 @@ group :development do
   gem "hpricot"
   gem "ruby_parser"
   gem "engineyard"
-  gem "ruby-debug19"
   gem 'rails-dev-tweaks'
   gem "zeus"
 end
@@ -116,15 +115,6 @@ group :test do
 end
 
 
-group :cool_toys do
-  gem 'autotest'
-  gem 'autotest-rails'
-  gem 'autotest-growl'
-  gem 'autotest-fsevent'
-  gem 'query_reviewer', :git => 'git://github.com/nesquena/query_reviewer.git'
-  gem 'launchy'
-  gem "ruby-debug19"
-end
 
 group :assets do
   gem 'sass-rails', '3.1.4'
