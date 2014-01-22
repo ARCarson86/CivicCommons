@@ -80,6 +80,8 @@ gem 'mini_magick'
 gem 'rails_autolink' # auto_link was removed on rails 3.1, this is for migration purposes. A suggestion is to use Rinku
 gem 'sass'
 
+gem 'therubyracer'
+
 group :development do
   gem "rails3-generators"
   gem "hpricot"
