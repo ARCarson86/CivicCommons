@@ -1,25 +1,34 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
-gem 'rails', "~> 3.2.0"
+gem 'rails', '~> 3.2.16'
+
+gem 'mysql2'
+
+group :assets do
+  gem 'sass-rails', '~> 3.2.3'
+  gem 'compass-rails'
+  gem 'coffee-rails', '~> 3.2.1'
+  gem 'uglifier', '>= 1.0.3'
+  gem "font-awesome-rails"
+end
+
+gem 'jquery-rails'
 
 gem 'newrelic_rpm'
 
-gem 'cache_digests'
-
 gem 'dalli'
+gem 'cache_digests', :git => 'git://github.com/CivicCommons/cache_digests.git', :branch  => "master"
 
-gem 'mysql2', '~> 0.3'
-
-gem 'devise', '~> 1.5.2'
+gem 'devise', '1.5.2'
 gem "cancan", '1.6.8'
-gem 'omniauth', '~> 1.0'
+gem 'omniauth', '1.0.1'
 gem 'omniauth-facebook'
 
 gem 'fb_graph'
 
-gem 'jquery-rails', '>= 1.0.3'
-
 gem 'json', '~>1.7.7'
+
+gem 'haml', '~> 4.0.3'
 
 gem 'date_validator'
 gem "will_paginate", "~> 3.0.3"
@@ -28,7 +37,7 @@ gem 'httparty'
 
 gem 'geokit'
 
-gem "friendly_id", "~> 4.0.10"
+gem "friendly_id", "~> 4.0.1"
 gem 'acts_as_revisionable'
 gem 'awesome_nested_set'
 gem 'embedly', '1.5.2'
@@ -44,7 +53,7 @@ gem 'airbrake'
 gem 'remotipart'
 
 # gem 'paperclip', "~>2.5.0"
-gem 'paperclip', "~> 3.1"
+gem 'paperclip', '~> 3.1'
 gem 'delayed_paperclip'
 gem 'aws-s3'
 gem 'aws-sdk'
@@ -82,6 +91,8 @@ group :development do
   gem "rails3-generators"
   gem "hpricot"
   gem "ruby_parser"
+  gem "engineyard"
+  gem 'rails-dev-tweaks'
   gem "zeus"
 end
 
@@ -120,10 +131,3 @@ group :cool_toys do
   gem 'launchy'
 end
 
-group :assets do
-  gem 'sass-rails', '3.2.3'
-  gem 'compass-rails'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '~> 1.0.3'
-  gem "font-awesome-rails"
-end
