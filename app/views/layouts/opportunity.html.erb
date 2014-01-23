@@ -1,0 +1,8 @@
+<% content_for :main_body do %>
+  <%= render :partial => 'layouts/opportunity_header' %>
+  <%= yield %>
+  <div class="aside supplementary">
+    <%= yield :sidebar %>
+  </div>
+<% end %>
+<%= render :file => 'layouts/application' %>

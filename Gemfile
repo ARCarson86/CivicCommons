@@ -1,11 +1,23 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
+
+gem 'rails', '~> 3.2.16'
+
+gem 'mysql2'
+
+group :assets do
+  gem 'sass-rails', '~> 3.2.3'
+  gem 'compass-rails'
+  gem 'coffee-rails', '~> 3.2.1'
+  gem 'uglifier', '>= 1.0.3'
+  gem "font-awesome-rails"
+end
+
+gem 'jquery-rails'
 
 gem 'newrelic_rpm'
 
 #gem 'dalli'
 #gem 'cache_digests', :git => 'git://github.com/CivicCommons/cache_digests.git', :branch  => "master"
-
-gem 'mysql2', '~> 0.3'
 
 gem 'devise', '1.5.2'
 gem "cancan", '1.6.8'
@@ -14,14 +26,9 @@ gem 'omniauth-facebook'
 
 gem 'fb_graph'
 
-gem 'rails', "~> 3.1.12"
-gem 'jquery-rails', '>= 1.0.3'
-
 gem 'json', '~>1.7.7'
 
 gem 'haml', '~> 4.0.3'
-
-gem 'uglifier'
 
 gem 'date_validator'
 gem "will_paginate", "~> 3.0.3"
@@ -46,10 +53,10 @@ gem 'airbrake'
 gem 'remotipart'
 
 # gem 'paperclip', "~>2.5.0"
-gem 'paperclip', "2.3.8"
-gem 'delayed_paperclip', '<0.7'
+gem 'paperclip', '~> 3.1'
+gem 'delayed_paperclip'
 gem 'aws-s3'
-# gem 'aws-sdk'
+gem 'aws-sdk'
 gem 'nokogiri'
 gem 'sanitize'
 gem 'highline'
@@ -114,14 +121,4 @@ group :test do
   gem 'timecop', '~>0.3.5'
   gem 'webmock', '~>1.6.2' #, :git => 'git://github.com/CivicCommons/webmock.git', :branch => '1.6.2'
   gem 'webrat', "~> 0.7.3"
-end
-
-
-
-group :assets do
-  gem 'sass-rails', '3.1.4'
-  gem 'compass-rails'
-  gem 'coffee-rails'
-  gem 'uglifier'
-  gem "font-awesome-rails"
 end
