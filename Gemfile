@@ -120,14 +120,3 @@ group :test do
   gem 'webmock', '~>1.6.2' #, :git => 'git://github.com/CivicCommons/webmock.git', :branch => '1.6.2'
   gem 'webrat', "~> 0.7.3"
 end
-
-
-group :cool_toys do
-  gem 'autotest'
-  gem 'autotest-rails'
-  gem 'autotest-growl'
-  gem 'autotest-fsevent'
-  gem 'query_reviewer', :git => 'git://github.com/nesquena/query_reviewer.git'
-  gem 'launchy'
-end
-
