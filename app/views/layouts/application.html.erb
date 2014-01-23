@@ -7,17 +7,7 @@
     <%= render :partial => 'layouts/meta_tags' %>
     <%= javascript_include_tag 'application.js' %>
     <%= javascript_tag '$.fx.off = true;' if Rails.env.test? %>
-    <plain>
-      
-      <!--[if gte IE 7]><!-->
-
-    </plain>
     <%= stylesheet_link_tag 'application', :media => "screen, projection" %>
-    <plain>
-      
-      <!--<![endif]-->
-
-    </plain>
     <script>
       
       $(document).ready(function(){
@@ -27,7 +17,7 @@
           stepMinute: 15
         });
 
-        #{yield :document_ready}
+        <%= "#{yield :document_ready}" %>
 
       });
 
@@ -190,9 +180,12 @@
     </div>
   </body>
 </html>
+
 <%= render :partial => '/shared/suggest_facebook_auth.js' if signed_in? && !current_person.declined_fb_auth? && !current_person.facebook_authenticated? && current_person.allow_facebook_connect? %>
 <%= render :partial => 'layouts/get_satisfaction' %>
+
 <div id="fb-root"></div>
+
 <% if flash[:notice] %>
   <div class="flash-notice" style="display:none;">
     <%= flash[:notice] %>

@@ -2,25 +2,8 @@ Civiccommons::Application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
 
-  # ----------------------------------------
-  #   ROUTES README
-  # ----------------------------------------
-  # * In general routes go from most-to-least specific, top-to-bottom
-  # * We use resource routes for all standard routes, including:
-  #     :get => [:index, :show, :new, :edit], :post => :create, :put => :update, and :delete => :destroy
-  # * We use the :only or :except clauses to exclude all standard routes not in use
-  #     e.g. resources :some_controller, only: [:index, :show]
-  # * We do not use custom routes to explicitly declare standard routes
-  # * We group all custom routes based on the controller
-  # * We put resource routes and generic pattern-matching routes after custom routes
-  #     e.g. '/some_controller/:id' goes below '/some_controller/some_name'
-  # * We use consistent syntax for route mapping
-  #     e.g. get '/blah', to: 'bleep#bloop' instead of map '/blah', :to => 'bleep#bloop', :via => :get if possible
-
   #Application Root
   root to: "homepage#show"
-
-#Custom Matchers
 
   #reports
   get '/admin/member-report',                          to: 'admin/reports#member_report',                    as: 'member_report'                  
