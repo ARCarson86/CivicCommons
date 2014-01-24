@@ -1,8 +1,0 @@
-= form_for(@comment) do |f|
-  %fieldset.form-group
-    .form-block			
-      = f.text_area :content, :placeholder=>"Enter your comment"
-    %input{:type=>"hidden", :name=>"post[conversable_id]", :value=>"", :id=>"post_conversable_id"}
-    %input{:type=>"hidden", :name=>"post[conversable_type]", :value=>"", :id=>"post_conversable_type"}	
-  %fieldset.footer
-    = f.submit 'Save Event', :class => "submit"		

@@ -1,6 +1,0 @@
-%h1 Regions
-- @regions.each do |r|
-  -unless r.default?
-    .region
-      =link_to r.name, r
-      =link_to "(edit)", "/admin/regions/#{r.id}/edit"

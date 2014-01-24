@@ -1,0 +1,48 @@
+<h2>Conversations</h2>
+<table class="conversations tablesorter">(summary="List of Conversations")
+  <thead>
+    <tr>
+      <th class="handle_header"></th>
+      <th>ID</th>
+      <th>Conversation Title</th>
+      <th>Created Date</th>
+      <th class="staff_pick_header">Staff Pick</th>
+      <th>Moderator</th>
+      <th class="actions_header">(colspan="2") Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @conversations.each do |conversation| %>
+      <tr data-conversation-id="<%= conversation.id %>" class="<%= conversation.staff_pick ? "" : "ui-state-disabled" %>">
+        <td class="handle">&#11021</td>
+        <td>
+          <%= conversation.id %>
+        </td>
+        <td>
+          <%= link_to short_title(conversation.title), admin_conversation_path(conversation) %>
+        </td>
+        <td>
+          <%= conversation.created_at.strftime("%m-%d-%Y") %>
+        </td>
+        <td class="staff_pick_column">
+          <%= toggle_staff_pick_link(conversation) %>
+        </td>
+        <td>
+          <% if conversation.moderators.count > 0 %>
+            <%= conversation.moderators.collect(&:name).join(', ') %>
+            <%= link_to "Manage Moderators", admin_conversation_conversations_people_path(conversation) %>
+          <% else %>
+            <%= link_to "Add Moderators", admin_conversation_conversations_people_path(conversation) %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to "Edit", edit_admin_conversation_path(conversation) %>
+        </td>
+        <td>
+          <%= link_to "Delete", admin_conversation_url(conversation), :method => :delete, :confirm => "Are you sure?" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br/>

@@ -28,8 +28,6 @@ gem 'fb_graph'
 
 gem 'json', '~>1.7.7'
 
-gem 'haml', '~> 4.0.3'
-
 gem 'date_validator'
 gem "will_paginate", "~> 3.0.3"
 
@@ -68,8 +66,6 @@ gem "gchart", "~> 1.0.0"
 gem 'sunspot_rails'
 gem 'sunspot_solr'
 gem 'progress_bar'
-
-gem 'fitter-happier', '= 0.0.1'
 
 gem 'sixarm_ruby_email_address_validation'
 

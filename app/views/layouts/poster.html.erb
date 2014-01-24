@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>The Civic Commons</title>
+    <%= javascript_include_tag 'jquery/jquery-1.4.4.min' %>
+    <%= javascript_include_tag 'modernizr-1.5.min' %>
+    <%= javascript_include_tag 'jquery_ujs' %>
+    <%= javascript_include_tag 'master' %>
+    <%= javascript_include_tag 'chosen_issues' %>
+    <plain>
+      
+      <!--[if gte IE 7]><!-->
+
+    </plain>
+    <%= stylesheet_link_tag('poster', :media => 'screen, projection') %>
+    <plain>
+      
+      <!--<![endif]-->
+
+    </plain>
+    <script>
+      
+      /* Google Analytics */
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-19685339-1']);
+      _gaq.push(['_setDomainName', '.theciviccommons.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    <%= yield :header %>
+    <%= csrf_meta_tag %>
+  </head>
+  <body>
+    <div id="container">
+      <%= yield %>
+    </div>
+  </body>
+</html>

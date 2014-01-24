@@ -1,0 +1,44 @@
+<h2>Edit Person Information</h2>
+<%= form_for [:admin, @person.becomes(Person)], :html => {:multipart => true} do |person| %>
+  <%= show_errors @person %>
+  <p>
+    <%= person.label :name %>
+    <br/>
+    <%= person.text_field :name %>
+  </p>
+  <p>
+    <%= person.label :email %>
+    <br/>
+    <%= person.text_field :email %>
+  </p>
+  <p>
+    <%= person.label :zip_code %>
+    <br/>
+    <%= person.text_field :zip_code %>
+  </p>
+  <% if @person.avatar.exists? %>
+    <%= image_tag @person.avatar.url(:standard) %>
+  <% end %>
+  <p>
+    <%= person.label :avatar, "Image" %>
+    <%= person.file_field :avatar %>
+  </p>
+  <p>
+    <%= person.label :admin %>
+    <%= person.check_box :admin %>
+  </p>
+  <p>
+    <%= person.label :blog_admin, 'Blog Admin' %>
+    <%= person.check_box :blog_admin %>
+    <br/>
+    (Blog admins can manage blogs only, but for this resriction to work, the "Admin" checkbox must be unchecked.)
+  </p>
+  <p></p>
+  <%= person.label :proxy %>
+  <%= person.check_box :proxy %>
+  <p>
+    <%= person.submit %>
+  </p>
+<% end %>
+<br/>
+<%= link_to "Back", admin_root_path %>

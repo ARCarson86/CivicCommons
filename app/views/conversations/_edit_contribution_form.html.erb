@@ -1,0 +1,29 @@
+<div class="tab-strip" id="<%= div_id %>">
+  <% if current_person.nil? %>
+    <%= link_to("You must login to edit", secure_session_url) %>
+    <br/>
+    <br/>
+  <% else %>
+    <div class="tab-area input-with-options">
+      <div class="tab-strip-options" id="<%= div_id %>-options">
+        <ul>
+          <li>
+            <a href="#<%= div_id %>-options" style="display: none;"></a>
+          </li>
+          <li class="default-tab">
+            <a href="#<%= div_id %>-edit-contribution" style="display: none;">Edit</a>
+          </li>
+          <li class="preview-tab">
+            <a href="#<%= div_id %>-preview" style="display: none;"></a>
+          </li>
+        </ul>
+      </div>
+      <div class="contribution-preview" id="<%= div_id %>-preview">
+        <a class="button" href="#<%= div_id %>-options">Edit</a>
+      </div>
+      <div id="<%= div_id %>-edit-contribution">
+        <%= render  %>
+      </div>
+    </div>
+  <% end %>
+</div>

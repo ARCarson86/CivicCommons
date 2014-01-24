@@ -1,0 +1,16 @@
+<% content_for :main_body do  %>
+  <div class="wrapper">
+    <div class="content-container">
+      <div class="main-content">
+        <h2>Regions</h2>
+        <% @regions.each do |region| %>
+          <p>
+            <div class="link">
+              <%= link_to region.name, region %>
+            </div>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

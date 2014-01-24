@@ -1,0 +1,14 @@
+<% if managed_issues.size > 0 %>
+  <div class="mod">
+    <h3>Projects</h3>
+    <div class="mod-content">
+      <ul class="simple-list block-link-list">
+        <% managed_issues.each do |issue| %>
+          <li class="issue-list">
+            <%= link_to(issue.name, issue_path(issue)) %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>

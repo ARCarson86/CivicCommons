@@ -1,9 +1,0 @@
-%li
-  .article.issue.conversation-ticker
-    .date
-      %p 
-        %span.month= postable.created_at.strftime("%b")    
-        %span.day= postable.created_at.strftime("%d")    
-    %p Started discussing a new issue:
-    %p
-      %a{:href=>issue_path(postable), :title=>"Starting talking about #{postable.description}"}= postable.description

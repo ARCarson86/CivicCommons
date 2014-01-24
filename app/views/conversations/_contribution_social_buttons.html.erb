@@ -1,0 +1,6 @@
+<div class="social_buttons">
+  <% if contribution.conversation.present? %>
+    <%= = <fb:like href="#{fb_link_conversation_contribution_url(contribution.conversation, contribution)}" send="false" layout="box_count" show_faces="false" width="53"></fb:like> %>
+    <%= javascript_tag "try{ FB.XFBML.parse(); }catch(ex){}" %>
+  <% end %>
+</div>

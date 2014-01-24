@@ -1,0 +1,39 @@
+<h2>Staff Picked Conversations</h2>
+<table class="staff-picked">(summary="List of Conversations")
+  <thead>
+    <tr>
+      <th>Position</th>
+      <th>Conversation Title</th>
+      <th>Created Date</th>
+      <th class="staff_pick_header">Staff Pick</th>
+      <th class="actions_header">(colspan="2") Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @conversations.each do |conversation| %>
+      <tr data-conversation-id="<%= conversation.id %>" class="<%= conversation.staff_pick ? '' : 'ui-state-disabled' %>">
+        <td>
+          <%= form_for conversation, :url => move_to_position_admin_conversation_path(conversation), :method => :put do |c| %>
+            <%= c.text_field :position, :size => 3, :id=>"conversation_position_#{c.object.id}", :class=>'conversation-position' %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to short_title(conversation.title), admin_conversation_path(conversation) %>
+        </td>
+        <td>
+          <%= conversation.created_at.strftime("%m-%d-%Y") %>
+        </td>
+        <td class="staff_pick_column">
+          <%= toggle_staff_pick_link(conversation) %>
+        </td>
+        <td>
+          <%= link_to "Edit", edit_admin_conversation_path(conversation) %>
+        </td>
+        <td>
+          <%= link_to "Delete", admin_conversation_url(conversation), :method => :delete, :confirm => "Are you sure?" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br/>

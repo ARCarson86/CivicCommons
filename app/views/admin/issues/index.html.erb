@@ -1,0 +1,46 @@
+<h2>Issues</h2>
+<table class="issues tablesorter" summary="Listing of Issues in the Area">
+  <thead>
+    <tr>
+      <th></th>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Summary</th>
+      <th>Order</th>
+      <th>Managed?</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @issues.each do |issue| %>
+      <tr data-issue-id="<%= issue.id %>">
+        <td class="handle">&#11021;</td>
+        <td>
+          <%= issue.id %>
+        </td>
+        <td>
+          <%= link_to issue.name, admin_issue_path(issue) %>
+        </td>
+        <td>
+          <%= truncate(Sanitize.clean(issue.summary, :remove_contents => ['script']).strip, :length => 200, :separator => ' ') %>
+        </td>
+        <td>
+          <span class="text">
+            <%= issue.position %>
+          </span>
+        </td>
+        <td>
+          <%= issue.is_a?(ManagedIssue) ? link_to('Pages', admin_issue_pages_path(issue)) : nil %>
+        </td>
+        <td>
+          <%= link_to 'Edit', edit_admin_issue_path(issue) %>
+        </td>
+        <td>
+          <%= link_to 'Delete', admin_issue_path(issue), :confirm => "Are you sure?", :method => :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to "Add Issue", new_admin_issue_path %>

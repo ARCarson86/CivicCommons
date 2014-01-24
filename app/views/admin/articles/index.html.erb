@@ -1,0 +1,50 @@
+<h2>Listing articles</h2>
+<table class="tablesorter">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Current</th>
+      <th>Main</th>
+      <th>Homepage Article</th>
+      <th>Conversation Article</th>
+      <th>Issue Article</th>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @articles.each do |article| %>
+      <tr>
+        <td>
+          <%= link_to article.title, admin_article_path(article) %>
+        </td>
+        <td>
+          <%= article.author %>
+        </td>
+        <td>
+          <%= article.current %>
+        </td>
+        <td>
+          <%= article.main %>
+        </td>
+        <td>
+          <%= article.homepage_article %>
+        </td>
+        <td>
+          <%= article.conversation_article %>
+        </td>
+        <td>
+          <%= article.issue_article %>
+        </td>
+        <td>
+          <%= link_to 'Edit', edit_admin_article_path(article) %>
+        </td>
+        <td>
+          <%= link_to 'Delete', admin_article_path(article), :confirm => 'Are you sure?', :method => :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'New Article', new_admin_article_path  %>

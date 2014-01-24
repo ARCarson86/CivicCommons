@@ -1,0 +1,33 @@
+<h2>Showing Your Commons Stat for: </h2>
+<h5>
+  <%= @widget_url %>
+</h5>
+<%= render :partial => 'week_of_select_field' %>
+<table class="widget_stats tablesorter">(summary="List of WidgetStats") 
+  <thead>
+    <tr>
+      <th>Viewed From (Remote URL)</th>
+      <th>Page Views</th>
+      <th>last viewed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @widget_stats.each do |widget_stat| %>
+      <tr data-widget_stat-id="<%= widget_stat.id %>">
+        <td>
+          <%= link_to widget_stat.remote_url, widget_stat.remote_url %>
+        </td>
+        <td>
+          <%= widget_stat.page_views %>
+        </td>
+        <td>
+          <%= widget_stat.created_at.to_s(:long) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<p>
+  <%= link_to 'Back', admin_widget_stats_url(:week_of => @week_of) %>
+</p>
+<br/>

@@ -1,0 +1,116 @@
+<h2>People</h2>
+<h3>Statistics</h3>
+<table class="people-stats">
+  <tbody>
+    <tr class="odd">
+      <td>
+        Total: 
+      </td>
+      <td></td>
+      <td>
+        <%= @people.size %>
+      </td>
+    </tr>
+    <tr class="even">
+      <td>
+        Confirmed:
+      </td>
+      <td></td>
+      <td>
+        <%= @stats[:confirmed] %>
+      </td>
+    </tr>
+    <tr class="odd">
+      <td>
+        Unconfirmed:
+      </td>
+      <td></td>
+      <td>
+        <%= @stats[:unconfirmed] %>
+      </td>
+    </tr>
+    <tr class="even">
+      <td></td>
+      <td>
+        Real:
+      </td>
+      <td>
+        <%= @stats[:unconfirmed_real] %>
+      </td>
+    </tr>
+    <tr class="odd">
+      <td></td>
+      <td>
+        Proxy: 
+      </td>
+      <td>
+        <%= @stats[:unconfirmed_proxy] %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3>List</h3>
+<table class="people tablesorter">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Admin</th>
+      <th>Blog Admin</th>
+      <th>Proxy</th>
+      <th>Confirmed</th>
+      <th>Status</th>
+      <th colspan="2">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @people.each_with_index do |person, index| %>
+      <% locked = person.locked_at? %>
+      <tr>
+        <td>
+          <%= link_to person.name, admin_person_path(person) %>
+        </td>
+        <td>
+          <%= mail_to person.email, truncate(person.email, :length=>25), :title => person.email %>
+        </td>
+        <td>
+          <%= person.admin? %>
+        </td>
+        <td>
+          <%= person.blog_admin? %>
+        </td>
+        <td>
+          <%= person.proxy? %>
+        </td>
+        <% if person.confirmed_at? %>
+          <td>
+            <%= person.confirmed_at.to_s(:yyyymmdd) %>
+          </td>
+        <% else %>
+          <td>
+            <%= link_to "Confirm", confirm_admin_person_path(person), method: :put %>
+          </td>
+        <% end %>
+        <% if locked %>
+          <td class="locked">Locked</td>
+        <% else %>
+          <td class="unlocked">Unlocked</td>
+        <% end %>
+        <td>
+          <%= link_to "Edit", edit_admin_person_path(person) %>
+        </td>
+        <% if locked %>
+          <td>
+            <%= link_to "Unlock", unlock_access_admin_person_path(person, :redirect_to => action_name), :confirm => "This will re-enable access for '#{h person.name}'. Are you sure?", :method => :put %>
+          </td>
+        <% else %>
+          <td>
+            <%= link_to "Lock", lock_access_admin_person_path(person, :redirect_to => action_name), :confirm => "This will disable access for '#{h person.name}'. Are you sure?", :method => :put %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br/>
+<%= link_to "Add Proxy", new_admin_person_path %>

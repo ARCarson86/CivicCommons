@@ -1,0 +1,22 @@
+<h1>Metro Regions Grouped By Display Name</h1>
+<table class="topics tablesorter">(summary="List of Metro Regions")
+  <thead>
+    <tr>
+      <th>Display Name</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @regions.each do |r| %>
+      <tr data-region-id="<%= r.id %>">
+        <td>
+          <%= r.display_name %>
+        </td>
+        <% #=link_to r.metro_name, r %>
+        <td>
+          <%= link_to "(edit)", "/admin/metro_regions/#{r.id}/edit_display_names" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

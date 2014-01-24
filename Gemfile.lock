@@ -136,7 +136,6 @@ GEM
       rack-oauth2 (>= 0.14.4)
       tzinfo
     ffi (1.9.0)
-    fitter-happier (0.0.1)
     fog (1.16.0)
       builder
       excon (~> 0.27.0)
@@ -167,8 +166,6 @@ GEM
       json (> 1.4.0)
       json (> 1.4.0)
       rdoc
-    haml (4.0.5)
-      tilt
     hashie (1.2.0)
     highline (1.6.20)
     hike (1.2.3)
@@ -425,7 +422,6 @@ DEPENDENCIES
   embedly (= 1.5.2)
   factory_girl_rails (~> 3.1)
   fb_graph
-  fitter-happier (= 0.0.1)
   fog
   font-awesome-rails
   friendly_id (~> 4.0.1)
@@ -433,7 +429,6 @@ DEPENDENCIES
   gchart (~> 1.0.0)
   geokit
   gibbon
-  haml (~> 4.0.3)
   highline
   hominid (~> 3.0.2)
   hpricot

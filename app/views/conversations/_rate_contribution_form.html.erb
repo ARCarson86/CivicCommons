@@ -1,0 +1,16 @@
+<div class="rate-form">
+  <%= form_for contribution, :as => :contribution, :url => "/conversations/rate_contribution", :method => :post, :remote => true do |f| %>
+    <%= f.hidden_field(:id, :value => contribution.id) %>
+    <%= f.hidden_field(:rating, :value => 1) %>
+    <%= f.submit("Yes", :class => 'button') %>
+    or
+  <% end %>
+  <%= form_for contribution, :as => :contribution, :url => "/conversations/rate_contribution", :method => :post, :remote => true do |f| %>
+    <%= f.hidden_field(:id, :value => contribution.id) %>
+    <%= f.hidden_field(:rating, :value => -1) %>
+    <%= f.submit("No", :class => 'button') %>
+  <% end %>
+</div>
+Did you find this comment productive?
+<br class="clear"/>
+<div class="validation-error"></div>
