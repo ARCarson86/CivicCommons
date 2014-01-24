@@ -113,6 +113,6 @@ group :test do
   gem 'spork', '~>0.9.0'
   gem 'steak', '~>2.0.0'
   gem 'timecop', '~>0.3.5'
-  gem 'webmock', '~>1.6.2' #, :git => 'git://github.com/CivicCommons/webmock.git', :branch => '1.6.2'
+  gem 'webmock', '~>1.6.2'
   gem 'webrat', "~> 0.7.3"
 end
