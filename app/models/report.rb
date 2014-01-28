@@ -56,7 +56,7 @@ class Report < ActiveRecord::Base
       (select count(*) from petitions where conversation_id = c.id) as 'Petitions',
       (select count(*) from petition_signatures as ps join petitions as p on p.id = ps.petition_id where p.conversation_id = c.id) as 'Petition Signatures',
       (select count(*) from contributions where conversation_id = c.id) as 'Contributions',
-      (select count(*) from subscriptions where subscribable_type = 'Conversation' and subscribable_id = c.id) as 'Subscriptions',    
+      (select count(*) from subscriptions where subscribable_type = 'Conversation' and subscribable_id = c.id) as 'Subscriptions',
       (select count(*) from visits where visitable_type = 'Conversation' and visitable_id = c.id) as 'Visits'
       from conversations as c
       join conversations_issues as ci on ci.conversation_id = c.id and ci.issue_id = #{id}"

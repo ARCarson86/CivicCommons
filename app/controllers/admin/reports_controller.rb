@@ -1,7 +1,7 @@
 class Admin::ReportsController < Admin::DashboardController
 require 'csv'
-	
-	def index	
+
+	def index
 		@projects = Issue.order('name ASC')
 	end
 
@@ -48,7 +48,7 @@ require 'csv'
 		unless params[:individual_project_stats][:id].empty?
 			@records = Report.individual_project_stats(params[:individual_project_stats][:id])
 				@icsv = CSV.generate do |csv|
-				csv << ["Conversation ID", "Posted On", "Title", "Visits", "Last Visit", "Staff Pick?", "'#' of Participants", "Contributions", "Votes", "Unique Members Voteing", "Petitions", "Petition Signatures", "Persausive Ratings", "Informative Ratings", "Inspiring Ratings", "Subscriptions"]
+				csv << ["Conversation ID", "Posted On", "Title", "Votes", "Total Vote Responses", "Petitions", "Petition Signatures", "Contributions", "Subscriptions", "Visits"]
 				@records.each do |record|
 					csv << record
 				end
