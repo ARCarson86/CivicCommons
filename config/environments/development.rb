@@ -35,9 +35,7 @@ Civiccommons::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  # parse the memcached.yml
   redis_config = YAML.load_file(Rails.root.join('config/redis.yml'))
   config.cache_store = :redis_store, "redis://#{redis_config[Rails.env]["host"]}:#{redis_config[Rails.env]["port"]}/0/cache"
-
 
 end
