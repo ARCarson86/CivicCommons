@@ -17,8 +17,7 @@ gem 'jquery-rails'
 
 gem 'newrelic_rpm'
 
-#gem 'dalli'
-#gem 'cache_digests', :git => 'git://github.com/CivicCommons/cache_digests.git', :branch  => "master"
+gem 'redis-rails'
 
 gem 'devise', '1.5.2'
 gem "cancan", '1.6.8'
