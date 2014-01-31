@@ -1,0 +1,25 @@
+<div>
+	<%= link_to "Project Overview", project_overview_path(:format => :csv) %>
+</div>
+<br>
+<div>
+	<%= link_to "Conversation Summarys", conversation_summary_path(:format => :csv) %>
+</div>
+<br>
+<div>
+	<%= link_to "Member Report", member_report_path(:format => :csv) %>
+</div>
+<br>
+<div>
+	<%= form_tag({:controller => "admin/reports", :action => "individual_project_stats", :format => :csv}, :method => "get") do %>
+		<%= select("individual_project_stats", "id", @projects.collect {|p| [ p.name, p.id ] }, { include_blank: true }) %>
+			<%= submit_tag "Project Statistics Report" %>
+	<% end %>
+</div>
+<br>
+<div>
+	<%= form_tag({:controller => "admin/reports", :action => "project_conversations", :format => :csv}, :method => "get") do %>
+		<%= select("project_conversations", "id", @projects.collect {|p| [ p.name, p.id ] }, { include_blank: true }) %>
+			<%= submit_tag "Project Conversation Report" %>
+	<% end %>
+</div>

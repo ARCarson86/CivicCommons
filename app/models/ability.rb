@@ -24,7 +24,8 @@ class Ability
       :admin_curated_feed_items,
       :admin_managed_issue_pages,
       :admin_regions,
-      :admin_user_registrations
+      :admin_user_registrations,
+      :admin_redirects
       ]
     
   

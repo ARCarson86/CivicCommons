@@ -179,6 +179,9 @@
               </ul>
             </li>
           <% end %>
+          <li>
+            <%= link_to "Reports", reports_path %>
+          </li>
           <% if can? :manage, :admin_email_restrictions %>
             <li>
               <%= link_to "Email Restrictions", admin_email_restrictions_path %>
@@ -192,6 +195,11 @@
           <% if can? :manage, :admin_widget_stats %>
             <li>
               <%= link_to "Your Commons Stats", admin_widget_stats_path %>
+            </li>
+          <% end %>
+          <% if can? :manage, :admin_redirects %>
+            <li>
+              <%= link_to "Redirects", admin_redirects_path %>
             </li>
           <% end %>
         </ul>

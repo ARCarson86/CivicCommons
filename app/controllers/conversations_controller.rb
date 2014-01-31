@@ -7,6 +7,7 @@ class ConversationsController < ApplicationController
     :toggle_rating,
     :create_from_blog_post,
     :create_from_radioshow,
+    :edit
   ]
 
   ################################################################################
@@ -192,6 +193,7 @@ class ConversationsController < ApplicationController
   # NOT IMPLEMENTED YET, I.E. NOT ROUTEABLE
   def edit
     @conversation = Conversation.find(params[:id])
+    render :edit, :layout => 'category_index'
   end
 
   # POST /conversations

@@ -6,6 +6,7 @@ Civiccommons::Application.routes.draw do
   root to: "homepage#show"
 
   #reports
+  get '/admin/reports',                                 to: 'admin/reports#index',                           as: 'reports'     
   get '/admin/member-report',                          to: 'admin/reports#member_report',                    as: 'member_report'                  
   get '/admin/conversation-summary',                   to: 'admin/reports#conversation_summary',             as: 'conversation_summary'
   get '/admin/individual-project-stats',               to: 'admin/reports#individual_project_stats',         as: 'individual_project_stats'
@@ -148,7 +149,7 @@ Civiccommons::Application.routes.draw do
     post '/promotion', to: 'products_services#submit_promotion', on: :collection
   end
 
-  resources :conversations, only: [:index, :show, :new, :create] do
+  resources :conversations, only: [:index, :show, :new, :create, :edit, :update] do
     get :embed, on: :member
     get :updates, on: :member
     resources :reflections do
@@ -249,5 +250,9 @@ Civiccommons::Application.routes.draw do
       get  'edit_display_names',   on: :member
       put  'update_display_names', on: :member
     end
+    resources :redirects
   end
+
+  get '*path', to: 'redirects#show'
+
 end
