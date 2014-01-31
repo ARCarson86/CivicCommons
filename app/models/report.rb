@@ -82,7 +82,7 @@ class Report < ActiveRecord::Base
       join conversations_issues as ci on ci.conversation_id = convo.id and ci.issue_id = #{id}
       left outer join contributions as contrib on contrib.conversation_id = convo.id
       left outer join people as p on p.id = contrib.owner"
-    @records = ActiveRecord::Base.connection.execute(sql)
+    ActiveRecord::Base.connection.execute(sql)
 	end
 
 	def self.project_overview
