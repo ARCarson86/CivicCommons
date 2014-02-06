@@ -1,0 +1,7 @@
+<% content_for :main_body do %>
+  <%= yield %>
+  <div class="aside supplementary">
+    <%= yield :sidebar %>
+  </div>
+<% end %>
+<%= render :file => 'layouts/application' %>

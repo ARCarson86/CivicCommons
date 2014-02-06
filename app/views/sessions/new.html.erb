@@ -1,0 +1,43 @@
+<div class="wrapper">
+  <div class="content-container">
+    <div class="main-content">
+      <h1>Login</h1>
+      <p class="validation-error">
+        <% flash.each do |name, msg| %>
+          <%= msg %>
+        <% end %>
+      </p>
+      <div class="mod">
+        <p>
+          <strong>Did you register with Facebook?</strong>
+        </p>
+        <p>
+          <%= facebook_sign_in_link %>
+        </p>
+      </div>
+      <p>
+        <strong>If not, login with your username and password:</strong>
+      </p>
+      <%= form_for(resource, :as => resource_name, :url => secure_session_url(resource_name)) do |f| %>
+        <fieldset class="form-group top-align">
+          <div class="form-block">
+            <%= f.label :email, 'Email:' %>
+            <%= f.text_field :email, :placeholder => "me@johnnyappleseed.com", :class => 'textbox small' %>
+          </div>
+          <div class="form-block">
+            <%= f.label :password, 'Password:' %>
+            <%= f.password_field :password, :class => 'textbox small' %>
+          </div>
+          <div class="form-block">
+            <%= f.check_box :remember_me, :class => 'checkbox' %>
+            <%= f.label :remember_me, 'Remember me on this computer', :class => 'checkbox' %>
+          </div>
+        </fieldset>
+        <fieldset class="footer top-align">
+          <%= f.submit 'Login', :class => 'submit' %>
+          <a class="cancel" href="<%= new_password_url(resource_name) %>" title="Forgot your Password?">Forgot your password?</a>
+        </fieldset>
+      <% end %>
+    </div>
+  </div>
+</div>

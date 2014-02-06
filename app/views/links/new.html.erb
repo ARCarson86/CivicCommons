@@ -1,0 +1,37 @@
+<% content_for :main_body do %>
+  <div class="wrapper">
+    <h1>
+      <%= @contribution.title %>
+    </h1>
+    <p>This article will be added to the bottom of the conversation or issue that you select.</p>
+    <div id="link_form_wrapper">
+      <%= form_for @contribution, :url => "/contributions/create_confirmed_contribution" do |l| %>
+        <%= l.hidden_field(:type) %>
+        <%= l.hidden_field(:issue_id) %>
+        <%= l.hidden_field(:conversation_id) %>
+        <%= l.hidden_field(:title) %>
+        <%= l.hidden_field(:url) %>
+        <p>
+          <%= l.text_area :description, :as => "text", :rows => 3, :placeholder => "Leave a comment" %>
+        </p>
+        <p>
+          <%= l.submit "Continue" %>
+        </p>
+      <% end %>
+    </div>
+    <ul class="attach-to link-list">
+      <% @issues.each do |i| %>
+        <li class="attach-issue" data-issue-id="<%= i.id %>">
+          <input class="submit" type="submit" value="Attach to Issue" method="put" />
+          <%= i.name %>
+        </li>
+      <% end %>
+      <% @conversations.each do |c| %>
+        <li class="attach-conversation" data-conversation-id="<%= c.id %>">
+          <input class="submit" type="submit" value="Attach to Conversation" method="put" />
+          <%= c.title %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

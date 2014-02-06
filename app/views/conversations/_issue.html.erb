@@ -1,0 +1,20 @@
+<li>
+  <div class="article issue conversation-ticker">
+    <div class="date">
+      <p>
+        <span class="month">
+          <%= postable.created_at.strftime("%b")     %>
+        </span>
+        <span class="day">
+          <%= postable.created_at.strftime("%d")     %>
+        </span>
+      </p>
+    </div>
+    <p>Started discussing a new issue:</p>
+    <p>
+      <a href="<%= issue_path(postable) %>" title="Starting talking about <%= postable.description %>">
+        <%= postable.description %>
+      </a>
+    </p>
+  </div>
+</li>

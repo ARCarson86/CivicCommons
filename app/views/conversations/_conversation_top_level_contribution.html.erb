@@ -11,7 +11,8 @@
                                            @conversation.id,
                                            contribution.self_and_descendants.max_by(&:updated_at),
                                            contribution.newest_rating_for_contribution_branch] %>
-  <%# cache conversation_thread_cache_key do %>
+
+  <% cache conversation_thread_cache_key do %>
 
     <div class="primary">
       <%= render :partial => '/contributions/contribution_aux_actions', locals: {contribution:contribution, sub_contribution_count: contribution.descendants.count, is_sub_contribution: false} %>
@@ -33,7 +34,7 @@
       <% end %>
     </div>
 
-  <%# end %>
+  <% end %>
 
   <% if current_person %>
     <%= render partial: "/conversations/conversation_sub_level_contribution_form", locals: {parent: contribution, new_contribution: new_contribution} %>

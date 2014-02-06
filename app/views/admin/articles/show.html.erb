@@ -1,0 +1,53 @@
+<p id="notice">
+  <%= notice  %>
+</p>
+<p>
+  <b>Title:</b>
+  <%= @article.title  %>
+</p>
+<p>
+  <b>Author:</b>
+  <%= @article.author  %>
+</p>
+<p>
+  <b>Description:</b>
+  <%= @article.description  %>
+</p>
+<p>
+  <b>Link:</b>
+  <%= @article.link  %>
+  <% if @article.image.exists?  %>
+    <p>
+      <b>Image:</b>
+      <%= @article.image.url(:mainfeature)  %>
+      <%= image_tag @article.image.url(:mainfeature) %>
+    </p>
+  <% end %>
+</p>
+<p>
+  <b>Video url:</b>
+  <%= @article.video_url  %>
+</p>
+<p>
+  <b>Current:</b>
+  <%= @article.current  %>
+</p>
+<p>
+  <b>Main:</b>
+  <%= @article.main  %>
+</p>
+<p>
+  <b>Homepage Article?</b>
+  <%= @article.homepage_article %>
+</p>
+<p>
+  <b>Conversation Article?</b>
+  <%= @article.conversation_article %>
+</p>
+<p>
+  <b>Issue Article?</b>
+  <%= @article.issue_article %>
+</p>
+<%= link_to 'Edit', edit_admin_article_path(@article)   %>
+|
+<%= link_to 'Back', admin_articles_path  %>

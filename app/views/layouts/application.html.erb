@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>
+      <%= page_title %>
+    </title>
+    <%= render :partial => 'layouts/meta_tags' %>
+    <%= javascript_include_tag 'application.js' %>
+    <%= javascript_tag '$.fx.off = true;' if Rails.env.test? %>
+    <%= stylesheet_link_tag 'application', :media => "screen, projection" %>
+    <script>
+      
+      $(document).ready(function(){
+
+        $("input.datetime").datetimepicker({
+          ampm: true,
+          stepMinute: 15
+        });
+
+        <%= "#{yield :document_ready}" %>
+
+      });
+
+      /* Google Analytics */
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-19685339-1']);
+      _gaq.push(['_setDomainName', '.theciviccommons.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    <%= yield :header %>
+    <%= auto_discovery_link_tag(:rss, "http://feeds.theciviccommons.com/civiccommons_new_conversations", { :title => "The Civic Commons: Conversations" } ) %>
+    <%= auto_discovery_link_tag(:rss, "http://feeds.theciviccommons.com/civiccommonsblog", { :title => "The Civic Commons: Common Blog" } ) %>
+    <%= auto_discovery_link_tag(:rss, "http://feeds.theciviccommons.com/civiccommonsradio", { :title => "The Civic Commons Radio Show" } ) %>
+    <%= auto_discovery_link_tag(:rss, "http://feeds.theciviccommons.com/civiccommonsnews", { :title => "The Civic Commons In The News" } ) %>
+    <%= csrf_meta_tag %>
+  </head>
+  <body>
+    <plain>
+      
+      <!--[if lte IE 6]>
+        <div class="global-warning">You are using a browser which isn't supported.  Try using <a href="http://www.firefox.com">Firefox</a>, <a href="http://www.apple.com/safari">Safari</a> or <a href="http://www.google.com/chrome">Chrome</a>.</div>
+      <![endif]-->
+
+    </plain>
+    <div id="header-wrapper">
+      <div id="header">
+        <%= link_to 'The Civic Commons', root_url, :id => 'logo', :title => 'The Civic Commons' %>
+        <div id="header-utility">
+          <% if current_person %>
+            <%= render :partial => 'notifications/notification' %>
+            <div id="login-status">
+              <%= render :partial => 'layouts/logged_in' %>
+            </div>
+          <% else %>
+            <div class="signed-out" id="login-status">
+              <div class="offset-2">
+                <%= render :partial => 'layouts/single_column' %>
+              </div>
+            </div>
+          <% end %>
+          <div class="important"></div>
+        </div>
+      </div>
+    </div>
+    <div id="nav">
+      <ul class="main-nav">
+        <li>
+          <a href="/" title="Home">Home</a>
+        </li>
+        <li>
+          <a href="/conversations" title="Conversations">Conversations</a>
+        </li>
+        <li>
+          <a href="/projects" title="Projects">Projects</a>
+        </li>
+        <li>
+          <a href="/community" title="Community">Community</a>
+        </li>
+      </ul>
+      <div class="nav-search">
+        <%= render :partial => 'search/search', locals: { filter_type: params[:filter] } %>
+      </div>
+    </div>
+    <% if user_region %>
+      <% if show_regions_filter_tab? %>
+        <%= render :partial => 'regions/region_slideout' %>
+      <% end %>
+    <% end %>
+    <%= yield :main_body %>
+    <div class="footer" id="footer">
+      <div id="footer-inner">
+        <div class="four-col">
+          <div class="cols">
+            <h3>About the Commons</h3>
+            <ul class="sub-nav">
+              <li>
+                <%= link_to 'About Us', about_url %>
+              </li>
+              <li>
+                <%= link_to 'Team', team_url %>
+              </li>
+              <li>
+                <%= link_to 'Mission & Principles', principles_url %>
+              </li>
+              <li>
+                <%= link_to 'FAQ', faq_url %>
+              </li>
+              <li>
+                <%= link_to 'Careers', jobs_url %>
+              </li>
+            </ul>
+          </div>
+          <div class="cols">
+            <h3>Keep Up with the Commons</h3>
+            <ul class="sub-nav">
+              <li>
+                <%= link_to 'Blog', blog_index_url %>
+              </li>
+              <li>
+                <%= link_to 'In The News', press_url %>
+              </li>
+              <li>
+                <%= link_to 'Radio Show', radioshow_index_url %>
+              </li>
+              <li>
+                <%= link_to 'RSS Feeds', feeds_url %>
+              </li>
+              <li>
+                <%= link_to 'Server Status', 'http://status.theciviccommons.com/' %>
+              </li>
+            </ul>
+          </div>
+          <div class="cols">
+            <h3>Work with the Commons</h3>
+            <ul class="sub-nav">
+              <li>
+                <%= link_to 'Help and Support', 'http://getsatisfaction.com/theciviccommons' %>
+              </li>
+              <li>
+                <%= link_to 'Contact Us', contact_us_url %>
+              </li>
+              <li>
+                <%= link_to 'Partners', partners_url %>
+              </li>
+              <li>
+                <%= link_to 'Terms of Use', terms_url %>
+              </li>
+              <li>
+                <%= link_to 'Privacy Policy', privacy_url %>
+              </li>
+            </ul>
+          </div>
+          <div class="cols">
+            <h3>The Civic Commons Elsewhere</h3>
+            <ul class="social-media">
+              <li>
+                <a class="social-media-ico facebook_ico" href="http://www.facebook.com/pages/Civic-Commons/143930632284131">Facebook</a>
+              </li>
+              <li>
+                <a class="social-media-ico twitter_ico" href="http://twitter.com/civiccommons">Twitter</a>
+              </li>
+              <li>
+                <a class="social-media-ico youtube_ico" href="http://www.youtube.com/user/neociviccommons">YouTube</a>
+              </li>
+              <li>
+                <a class="social-media-ico rss_ico" href="<%= feeds_url %>">RSS</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <%= render :partial => 'layouts/creative_commons' %>
+      </div>
+    </div>
+  </body>
+</html>
+
+<%= render :partial => '/shared/suggest_facebook_auth.js' if signed_in? && !current_person.declined_fb_auth? && !current_person.facebook_authenticated? && current_person.allow_facebook_connect? %>
+<%= render :partial => 'layouts/get_satisfaction' %>
+
+<div id="fb-root"></div>
+
+<% if flash[:notice] %>
+  <div class="flash-notice" style="display:none;">
+    <%= flash[:notice] %>
+    <%= image_tag 'flash-close.png' %>
+  </div>
+<% end %>

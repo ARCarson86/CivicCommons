@@ -1,0 +1,41 @@
+<% content_for :main_body do %>
+  <div class="feature-mast">
+    <div class="wrapper">
+      <div class="content-containter">
+        <h1>
+          <%= @region.name %>
+        </h1>
+      </div>
+    </div>
+  </div>
+  <div class="wrapper">
+    <div class="content-container">
+      <div class="main-content group">
+        <% if @region.image? %>
+          <%= image_tag @region.image.url, :alt => @region.name, :class => 'featured main-img float' %>
+        <% end %>
+        <p>
+          <%= raw(@region.description) %>
+        </p>
+        <% if @conversations.length >0 %>
+          <h2>Conversations in this Region</h2>
+          <%= render :partial => "conversations/conversation_pager", :locals => {:conversations => @conversations} %>
+        <% end %>
+      </div>
+      <div class="aside supplementary">
+        <div class="mod">
+          <h3>SELECT A REGION</h3>
+          <div class="mod-content">
+            <ul class="link-list">
+              <% @regions.each do |r| %>
+                <li>
+                  <%= link_to r.name, r %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

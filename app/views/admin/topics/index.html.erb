@@ -1,0 +1,30 @@
+<h2>Topics</h2>
+<table class="topics tablesorter">(summary="List of Topics")
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>(colspan="2") Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @topics.each do |topic| %>
+      <tr data-topic-id="<%= topic.id %>">
+        <td>
+          <%= topic.id %>
+        </td>
+        <td>
+          <%= link_to truncate(topic.name), admin_topic_path(topic), :title=> topic.name %>
+        </td>
+        <td>
+          <%= link_to "Edit", edit_admin_topic_path(topic) %>
+        </td>
+        <td>
+          <%= link_to "Delete", admin_topic_url(topic), :method => :delete, :confirm => "Are you sure?" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br/>
+<%= link_to 'Add Topic', new_admin_topic_path %>

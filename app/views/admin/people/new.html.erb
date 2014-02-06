@@ -1,0 +1,24 @@
+<h2>Create a Proxy Account</h2>
+<%= form_for [:admin, @person], :html => {:multipart => true} do |person| %>
+  <%= show_errors @person %>
+  <p>
+    <%= person.label :name %>
+    <br/>
+    <%= person.text_field :name %>
+  </p>
+  <p>
+    <%= person.label :zip_code %>
+    <br/>
+    <%= person.text_field :zip_code   %>
+  </p>
+  <p>
+    <%= person.label :avatar, "Please upload an image for this person" %>
+    <br/>
+    <%= person.file_field :avatar %>
+  </p>
+  <p>
+    <%= person.submit %>
+  </p>
+<% end %>
+<br/>
+<%= link_to "Back", admin_root_path %>

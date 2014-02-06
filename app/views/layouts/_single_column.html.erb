@@ -1,0 +1,15 @@
+<div id="user">
+  <% if person_signed_in? %>
+    <%= surround "Logged in as ", "." do %>
+      <%= current_person.email %>
+    <% end %>
+    <%= precede "Not you? " do %>
+      <%= link_to "Logout", destroy_person_session_path %>
+    <% end %>
+  <% else %>
+    <p>
+      <a class="cc-login-btn" href="/people/login">Login</a>
+    </p>
+    or <%= link_to 'register for an account', registrations_principles_path %>
+  <% end %>
+</div>

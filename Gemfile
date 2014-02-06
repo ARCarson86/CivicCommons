@@ -1,11 +1,23 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
+
+gem 'rails', '~> 3.2.16'
+
+gem 'mysql2'
+
+gem 'sass-rails', '~> 3.2.3'
+gem 'compass-rails'
+gem 'coffee-rails', '~> 3.2.1'
+gem 'uglifier', '>= 1.0.3'
+gem "font-awesome-rails"
+
+group :assets do
+end
+
+gem 'jquery-rails'
 
 gem 'newrelic_rpm'
 
-gem 'dalli'
-gem 'cache_digests', :git => 'git://github.com/CivicCommons/cache_digests.git', :branch  => "master"
-
-gem 'mysql2', '~> 0.3'
+gem 'redis-rails'
 
 gem 'devise', '1.5.2'
 gem "cancan", '1.6.8'
@@ -14,14 +26,7 @@ gem 'omniauth-facebook'
 
 gem 'fb_graph'
 
-gem 'rails', "~> 3.1.12"
-gem 'jquery-rails', '>= 1.0.3'
-
 gem 'json', '~>1.7.7'
-
-gem 'haml', '~> 4.0.3'
-
-gem 'uglifier'
 
 gem 'date_validator'
 gem "will_paginate", "~> 3.0.3"
@@ -46,10 +51,10 @@ gem 'airbrake'
 gem 'remotipart'
 
 # gem 'paperclip', "~>2.5.0"
-gem 'paperclip', "2.3.8"
-gem 'delayed_paperclip', '<0.7'
+gem 'paperclip', '~> 3.1'
+gem 'delayed_paperclip'
 gem 'aws-s3'
-# gem 'aws-sdk'
+gem 'aws-sdk'
 gem 'nokogiri'
 gem 'sanitize'
 gem 'highline'
@@ -61,8 +66,6 @@ gem "gchart", "~> 1.0.0"
 gem 'sunspot_rails'
 gem 'sunspot_solr'
 gem 'progress_bar'
-
-gem 'fitter-happier', '= 0.0.1'
 
 gem 'sixarm_ruby_email_address_validation'
 
@@ -80,13 +83,12 @@ gem 'mini_magick'
 gem 'rails_autolink' # auto_link was removed on rails 3.1, this is for migration purposes. A suggestion is to use Rinku
 gem 'sass'
 
+gem 'therubyracer'
+
 group :development do
   gem "rails3-generators"
   gem "hpricot"
   gem "ruby_parser"
-  gem "engineyard"
-  gem "ruby-debug19"
-  gem 'rails-dev-tweaks'
   gem "zeus"
 end
 
@@ -111,25 +113,6 @@ group :test do
   gem 'spork', '~>0.9.0'
   gem 'steak', '~>2.0.0'
   gem 'timecop', '~>0.3.5'
-  gem 'webmock', '~>1.6.2' #, :git => 'git://github.com/CivicCommons/webmock.git', :branch => '1.6.2'
+  gem 'webmock', '~>1.6.2'
   gem 'webrat', "~> 0.7.3"
-end
-
-
-group :cool_toys do
-  gem 'autotest'
-  gem 'autotest-rails'
-  gem 'autotest-growl'
-  gem 'autotest-fsevent'
-  gem 'query_reviewer', :git => 'git://github.com/nesquena/query_reviewer.git'
-  gem 'launchy'
-  gem "ruby-debug19"
-end
-
-group :assets do
-  gem 'sass-rails', '3.1.4'
-  gem 'compass-rails'
-  gem 'coffee-rails'
-  gem 'uglifier'
-  gem "font-awesome-rails"
 end

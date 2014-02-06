@@ -4,7 +4,7 @@ require 'rails/all'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
-  Bundler.require *Rails.groups(:assets => %w(development test staging production))
+  Bundler.require *Rails.groups(:assets => %w(development test))
   # If you want your assets lazily compiled in production, use this line
   # Bundler.require(:default, :assets, Rails.env)
 end
@@ -14,7 +14,6 @@ module Civiccommons
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
-    require 'fitter_happier' #this is required until fitter-happier 0.0.2
 
     # Add additional load paths for your own custom dirs
     config.autoload_paths += %W(#{config.root}/app/concerns/**/*.rb)
@@ -40,13 +39,6 @@ module Civiccommons
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
-
-    # Configure generators values. Many other options are available, be sure to check the documentation.
-    config.generators do |g|
-      g.test_framework      :rspec, :fixture => true
-      g.integration_tool    :rspec
-      g.fixture_replacement :factory_girl
-    end
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"

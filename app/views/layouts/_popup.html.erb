@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>Civic Commons</title>
+    <%= stylesheet_link_tag "reset", :media => "screen, projection" %>
+    <%= stylesheet_link_tag "master", :media => "screen, projection" %>
+    <%= stylesheet_link_tag "ie", :media => "screen, projection" %>
+    <%= stylesheet_link_tag "ui-lightness/jquery-ui-1.8.16.custom", :media => "screen, projection" %>
+    <plain>
+      
+      <!--<![endif]-->
+
+    </plain>
+    <%= yield :header %>
+  </head>
+  <body>
+    <%= yield %>
+  </body>
+</html>

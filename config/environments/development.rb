@@ -11,17 +11,23 @@ Civiccommons::Application.configure do
 
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
-  config.action_controller.perform_caching = true
-
-  # Don't care if the mailer can't send
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_controller.perform_caching = false
 
   # DO care if the mailer can't send!
   config.action_mailer.delivery_method = :sendmail
   config.action_mailer.raise_delivery_errors = true
 
   config.active_support.deprecation = :log
-  ActiveSupport::Deprecation.debug = true
+
+  # Only use best-standards-support built into browsers
+  config.action_dispatch.best_standards_support = :builtin
+
+  # Raise exception on mass assignment protection for Active Record models
+  config.active_record.mass_assignment_sanitizer = :strict
+
+  # Log the query plan for queries taking more than this (works
+  # with SQLite, MySQL, and PostgreSQL)
+  config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   # Do not compress assets
   config.assets.compress = false
@@ -29,15 +35,7 @@ Civiccommons::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  config.dev_tweaks.autoload_rules do
-    # Reload on XHR requests
-    keep :xhr
-  end
-
-  # parse the memcached.yml
-  memcached_config = YAML.load_file(Rails.root.join('config/memcached.yml'))
-  memcached_hosts = memcached_config['defaults']['servers']
-  # # pass the servers to dalli setup
-  config.cache_store = :dalli_store, *memcached_hosts
+  redis_config = YAML.load_file(Rails.root.join('config/redis.yml'))
+  config.cache_store = :redis_store, "redis://#{redis_config[Rails.env]["host"]}:#{redis_config[Rails.env]["port"]}/0/cache"
 
 end

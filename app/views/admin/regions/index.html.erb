@@ -1,0 +1,9 @@
+<h1>Regions</h1>
+<% @regions.each do |r| %>
+  <% unless r.default? %>
+    <div class="region">
+      <%= link_to r.name, r %>
+      <%= link_to "(edit)", "/admin/regions/#{r.id}/edit" %>
+    </div>
+  <% end %>
+<% end %>

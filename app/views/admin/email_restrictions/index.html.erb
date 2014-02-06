@@ -1,0 +1,30 @@
+<h2>EmailRestrictions</h2>
+<table class="topics tablesorter">(summary="List of Email Restrictions") 
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Domain</th>
+      <th>(colspan="2") Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @email_restrictions.each do |restriction| %>
+      <tr data-topic-id="<%= restriction.id %>">
+        <td>
+          <%= restriction.id %>
+        </td>
+        <td>
+          <%= link_to truncate(restriction.domain), admin_email_restriction_path(restriction), :title=> restriction.domain %>
+        </td>
+        <td>
+          <%= link_to "Edit", edit_admin_email_restriction_path(restriction) %>
+        </td>
+        <td>
+          <%= link_to "Delete", admin_email_restriction_url(restriction), :method => :delete, :confirm => "Are you sure?" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br/>
+<%= link_to 'Add Email Restriction', new_admin_email_restriction_path %>

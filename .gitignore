@@ -14,6 +14,8 @@ config/database.yml
 config/memcached.yml
 config/newrelic.yml
 config/people_aggregator.yml
+config/redis.yml
+config/sunspot.yml
 .DS_Store
 **/.DS_Store
 .rvmrc

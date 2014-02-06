@@ -1,0 +1,22 @@
+<h1>Mass Update Display Names</h1>
+<%= form_for [:admin, @region], :url => { :action => 'update_display_names', :method => "put" }, :html =>{:multipart => true}  do |f| %>
+  <p>
+    <%= show_errors @region %>
+    <%= @region.display_name %>
+  </p>
+  <p>
+    <%= f.label :display_name %>
+    <br/>
+    <%= f.text_field :display_name %>
+  </p>
+  <br/>
+  <p>
+    <b>
+      This updates all regions with exactly the same name.
+    </b>
+  </p>
+  <p></p>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

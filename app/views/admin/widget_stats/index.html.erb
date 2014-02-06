@@ -1,0 +1,31 @@
+<h2>Your Commons Stats</h2>
+<%= render :partial => 'week_of_select_field' %>
+<table class="widget_stats tablesorter">(summary="List of WidgetStats") 
+  <thead>
+    <tr>
+      <th>Your Commons URL</th>
+      <th>Page Views</th>
+      <th>last viewed</th>
+      <th>(colspan="1") Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @widget_stats.each do |widget_stat| %>
+      <tr data-widget_stat-id="<%= widget_stat.id %>">
+        <td>
+          <%= widget_stat.url %>
+        </td>
+        <td>
+          <%= widget_stat.page_views %>
+        </td>
+        <td>
+          <%= widget_stat.created_at.to_s(:long) %>
+        </td>
+        <td>
+          <%= link_to "Expand", url_for_widget_stat(widget_stat,:week_of => @week_of) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br/>

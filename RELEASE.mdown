@@ -1,3 +1,5 @@
+## All new releases tracked through Github - [Civic Commons Releases](https://github.com/CivicCommons/CivicCommons/releases)
+
 ## 5.4
 
 ### External Changes

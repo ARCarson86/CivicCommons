@@ -1,0 +1,67 @@
+<% unless defined? collapsed then collapsed = true end %>
+<% if contribution.top_level_contribution %>
+  <%= render :partial => "top_level_contribution", :locals => { :contribution => contribution } %>
+<% else %>
+  <div class="content">
+    <span class="contribution-person-name">
+      <%= person_display_name(contribution.person) %>
+    </span>
+    <%= format_comment(contribution) %>
+    <a class="<%= (collapsed ? 'contribution-toggle' : 'contribution-toggle active') %>" href="#">Toggle</a>
+    <% if !contribution.embedly_type && !contribution.attachment_file_name %>
+      <p>
+        <i class="date">
+          <%= 'Posted ' + contribution.created_at.strftime('%b %d, %Y') %>
+        </i>
+      </p>
+    <% end %>
+    <% if contribution.embedly_type %>
+      <div class="link-meta">
+        <p class="content embedded">
+          <% if !contribution.confirmed? %>
+            <%= raw EmbedlyService.to_thumbnail(contribution, 100) %>
+          <% elsif contribution.parent %>
+            <%= raw EmbedlyService.to_fancybox(contribution, 200) %>
+          <% else %>
+            <%= raw EmbedlyService.to_embed_or_fancybox(contribution, 200) %>
+          <% end %>
+        </p>
+        <p class="embed-content">
+          <p class="link-title">
+            <%= link_to(contribution.title, contribution.url) %>
+          </p>
+          <p>
+            <%= link_to(contribution.base_url.sub(/https?:\/\//i, ''), contribution.base_url) %>
+          </p>
+          <p class="content link-quot">
+            <%= raw contribution.description %>
+            <br/>
+            <br/>
+            <i class="date">
+              <%= 'Posted ' + contribution.created_at.strftime('%b %d, %Y') %>
+            </i>
+          </p>
+        </p>
+      </div>
+    <% end %>
+    <% if contribution.attachment_file_name %>
+      <% if contribution.attachment_content_type =~ /^image/ %>
+        <p class="attached-file">
+          <% if contribution.new_record? || contribution.unconfirmed? %>
+            <%= image_tag(contribution.attachment.url(:medium)) %>
+          <% else %>
+            <%= link_to(image_tag(contribution.attachment.url(:medium)).html_safe, contribution.attachment.url(:large), {'data-colorbox' => true}) %>
+          <% end %>
+        </p>
+      <% else %>
+        <p class="attached-file"></p>
+        <%= link_to("Download attached file", contribution.attachment.url, {:target => :blank}) %>
+      <% end %>
+      <p>
+        <i class="date">
+          <%= 'Posted ' + contribution.created_at.strftime('%b %d, %Y') %>
+        </i>
+      </p>
+    <% end %>
+  </div>
+<% end %>

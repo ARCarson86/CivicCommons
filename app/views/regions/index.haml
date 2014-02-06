@@ -1,9 +1,0 @@
--content_for :main_body do 
-  .wrapper
-    .content-container
-      .main-content
-        %h2 Regions
-        -@regions.each do |region|
-          %p
-            .link
-              =link_to region.name, region

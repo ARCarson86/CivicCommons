@@ -1,0 +1,51 @@
+<h2>Featured Opportunities</h2>
+<table class="featured_opportunitys tablesorter">(summary="List of Topics") 
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Conversation</th>
+      <th>Contribution</th>
+      <th>Action</th>
+      <th>Reflection</th>
+      <th>(colspan="3") Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @featured_opportunities.each do |featured_opportunity| %>
+      <tr data-featured-opportunity-id="<%= featured_opportunity.id %>">
+        <td>
+          <%= link_to featured_opportunity.id, admin_featured_opportunity_path(featured_opportunity) %>
+        </td>
+        <td>
+          <%= link_to short_title(featured_opportunity.conversation.title), conversation_url(featured_opportunity.conversation) %>
+        </td>
+        <td>
+          <% featured_opportunity.contributions.each do |contribution| %>
+            <%= link_to strip_and_truncate(contribution.one_line_summary), url_to_contribution(contribution) %>
+          <% end %>
+        </td>
+        <td>
+          <% featured_opportunity.actions.each do |action| %>
+            <%= link_to strip_and_truncate(action.one_line_summary), [featured_opportunity.conversation, action.actionable] %>
+          <% end %>
+        </td>
+        <td>
+          <% featured_opportunity.reflections.each do |reflection| %>
+            <%= link_to strip_and_truncate(reflection.one_line_summary), conversation_reflection_url(featured_opportunity.conversation, reflection) %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to "Show", admin_featured_opportunity_path(featured_opportunity) %>
+        </td>
+        <td>
+          <%= link_to "Edit", edit_admin_featured_opportunity_path(featured_opportunity) %>
+        </td>
+        <td>
+          <%= link_to "Delete", admin_featured_opportunity_url(featured_opportunity), :method => :delete, :confirm => "Are you sure?" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br/>
+<%= link_to 'Add Featured Opportunity', new_admin_featured_opportunity_path %>

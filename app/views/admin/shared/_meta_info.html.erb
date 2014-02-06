@@ -1,0 +1,15 @@
+<fieldset class="meta">
+  <legend>Meta Information:</legend>
+  <div>
+    <%= meta_object.label :page_title, "Page Title:" %>
+    <%= meta_object.text_field :page_title, :size => 70 %>
+  </div>
+  <div>
+    <%= meta_object.label :meta_description, "Page Description:" %>
+    <%= meta_object.text_area :meta_description, :cols => 50, :rows => 5 %>
+  </div>
+  <div>
+    <%= meta_object.label :meta_tags, "Page Meta Tags:" %>
+    <%= meta_object.text_area :meta_tags, :cols => 50, :rows => 5 %>
+  </div>
+</fieldset>
