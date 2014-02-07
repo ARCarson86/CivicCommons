@@ -52,7 +52,6 @@ gem 'remotipart'
 
 # gem 'paperclip', "~>2.5.0"
 gem 'paperclip', '~> 3.1'
-gem 'delayed_paperclip'
 gem 'aws-s3'
 gem 'aws-sdk'
 gem 'nokogiri'

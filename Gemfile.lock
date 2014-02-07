@@ -104,8 +104,6 @@ GEM
     delayed_job_active_record (0.3.2)
       activerecord (> 2.1.0)
       delayed_job (~> 3.0.0)
-    delayed_paperclip (0.6.5)
-      paperclip (>= 2.3.0)
     devise (1.5.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
@@ -433,7 +431,6 @@ DEPENDENCIES
   date_validator
   delayed_job (>= 2.1.2)
   delayed_job_active_record
-  delayed_paperclip
   devise (= 1.5.2)
   email_spec (~> 1.2.1)
   embedly (= 1.5.2)
