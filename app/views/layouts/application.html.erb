@@ -178,17 +178,18 @@
         <%= render :partial => 'layouts/creative_commons' %>
       </div>
     </div>
+
+    <%= render :partial => '/shared/suggest_facebook_auth.js' if signed_in? && !current_person.declined_fb_auth? && !current_person.facebook_authenticated? && current_person.allow_facebook_connect? %>
+    <%= render :partial => 'layouts/get_satisfaction' %>
+
+    <div id="fb-root"></div>
+
+    <% if flash[:notice] %>
+      <div class="flash-notice" style="display:none;">
+        <%= flash[:notice] %>
+        <%= image_tag 'flash-close.png' %>
+      </div>
+    <% end %>
   </body>
+
 </html>
-
-<%= render :partial => '/shared/suggest_facebook_auth.js' if signed_in? && !current_person.declined_fb_auth? && !current_person.facebook_authenticated? && current_person.allow_facebook_connect? %>
-<%= render :partial => 'layouts/get_satisfaction' %>
-
-<div id="fb-root"></div>
-
-<% if flash[:notice] %>
-  <div class="flash-notice" style="display:none;">
-    <%= flash[:notice] %>
-    <%= image_tag 'flash-close.png' %>
-  </div>
-<% end %>
