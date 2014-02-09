@@ -272,7 +272,7 @@ class Contribution < ActiveRecord::Base
 
   def clear_attributes
     if respond_to?(:attachment)
-      destroy_attached_files
+      self.attachment.clear
     end
     [:url=, :embedly_type=, :embedly_code=, :title=, :description=].each do |attribute|
       self.send(attribute, nil)
