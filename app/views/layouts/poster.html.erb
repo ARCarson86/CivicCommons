@@ -7,17 +7,9 @@
     <%= javascript_include_tag 'jquery_ujs' %>
     <%= javascript_include_tag 'master' %>
     <%= javascript_include_tag 'chosen_issues' %>
-    <plain>
-      
-      <!--[if gte IE 7]><!-->
-
-    </plain>
-    <%= stylesheet_link_tag('poster', :media => 'screen, projection') %>
-    <plain>
-      
-      <!--<![endif]-->
-
-    </plain>
+    <!--[if gte IE 7]><!-->
+      <%= stylesheet_link_tag('poster', :media => 'screen, projection') %>
+    <!--<![endif]-->
     <script>
       
       /* Google Analytics */
