@@ -76,6 +76,16 @@ module ApplicationHelper
     base_url + asset_path(asset)
   end
 
+  def conversation_edit_link(conversation)
+    edit_link = ""
+    if current_person && current_person.admin?
+      edit_link << '<span class="edit_conversation_link_admin">'
+      edit_link << "- #{ link_to "<i class=\"icon-edit\"></i> Edit".html_safe, edit_conversation_path(@conversation) }"
+      edit_link << '</span>'
+    end
+    edit_link.html_safe
+  end
+
   # Determine if we should display the Regions Filter Tab
   #
   # since the conversations/filter doesn't exist, we wrap it all with a begin/rescue

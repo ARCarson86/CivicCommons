@@ -2,84 +2,77 @@
   <div class="wrapper">
     <div class="content-container">
 
-      <% @managed_issue = @conversation.managed_issue.first %>
-      <% if @managed_issue && @managed_issue.standard_banner_image.exists? %>
-        <div class="mod project-banner">
-          <%= image_tag @managed_issue.standard_banner_image.url(:normal), :class => 'project-banner-img' %>
-          <div class="project-banner-titlebar">
-            <p class="project-banner-title"><%= @managed_issue.standard_banner_image_title %><%= link_to raw("Explore the whole project &#10145;"),issue_url(@managed_issue), :class => 'project-banner-link'%></p>
+      <%-
+        user_type = "annonymous"
+        if current_person.present?
+          user_type = current_person.admin? ? "admin" : "user"
+        end
+      %>
+
+      <%= cache [@conversation.id, user_type, @conversation.updated_at, "opportunity_header"] do %>
+
+        <% @managed_issue = @conversation.managed_issue.first %>
+        <% if @managed_issue && @managed_issue.standard_banner_image.exists? %>
+          <div class="mod project-banner">
+            <%= image_tag @managed_issue.standard_banner_image.url(:normal), :class => 'project-banner-img' %>
+            <div class="project-banner-titlebar">
+              <p class="project-banner-title"><%= @managed_issue.standard_banner_image_title %><%= link_to raw("Explore the whole project &#10145;"),issue_url(@managed_issue), :class => 'project-banner-link'%></p>
+            </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
 
-  <%# cache [@conversation.id, @conversation.participants.count, @conversation.action_participants_count, @conversation.reflection_participants_count, "opportunity_header"] do %>
-      <div class="main-content conversation">
-        <div class='main-content-left'>
-          <%= image_tag @conversation.image.url(:panel), :width => 140, :height => 80, :alt => short_title(@conversation.title), :class => 'featured main-img' %>
-        </div>
-        <div class='main-content-right'>
-          <% if params[:controller] != "conversations" %>
-            <h1><%= link_to @conversation.title, @conversation %></h1>
-          <% else %>
-            <h1><%= @conversation.title %>
-              <span class="edit_conversation_link_admin">
-                <% if current_person && current_person.admin? %>
-                  - <%= link_to edit_conversation_path(@conversation) do %>
-                    <i class="icon-edit"></i> Edit
-                  <% end %>
-                <% end %>    
-              </span>
-            </h1>
-          <% end %>
+        <div class="main-content conversation">
+          <div class='main-content-left'>
+            <%= image_tag @conversation.image.url(:panel), :width => 140, :height => 80, :alt => short_title(@conversation.title), :class => 'featured main-img' %>
+          </div>
+          <div class='main-content-right'>
+            <% if params[:controller] != "conversations" %>
+              <h1><%= link_to @conversation.title, @conversation %></h1>
+            <% else %>
+              <h1><%= @conversation.title %><%= conversation_edit_link(@conversation) %></h1>
+            <% end %>
 
-          <div class="image">
             <%= render :partial => '/user/author_card', :locals => {author: @conversation.owner, conversation_created_at: @conversation.created_at} %>
           </div>
 
-        </div>
 
 
+          <div class='convo-summary'>
+            <p><%= raw(@conversation.summary) %></p>
+            <% if @conversation.link.present? %>
+              <p><%= link_to @conversation.link, @conversation.link %></p><br />
+            <% end %>
+          </div>
 
-        <div class='convo-summary'>
-          <p><%= raw(@conversation.summary) %></p>
-          <% if @conversation.link.present? %>
-            <p><%= link_to @conversation.link, @conversation.link %></p><br />
+          <script type="text/javascript">
+            $('.convo-summary').readmore();
+          </script>
+
+          <% if @conversation.starter.present? %>
+            <div class="conversation-starter">
+              <h3>Conversation Starter</h3>
+              <div class="body">
+                <p><%= raw(@conversation.starter) %></p>
+              </div>
+            </div>
           <% end %>
-        </div>
-        <script type="text/javascript">
-          $('.convo-summary').readmore(); // do this here so it renders minified as soon as possible, rather than waiting for the page to load
-        </script>
 
-        <% if @conversation.starter.present? %>
-        <div class="conversation-starter">
-          <h3>Conversation Starter</h3>
-          <div class="body">
-            <p><%= raw(@conversation.starter) %></p>
+        </div><!-- /.main-content -->
+
+        <div class='aside'>
+          <div class='conversation-supplement'>
+            <%= render partial: "/conversations/share_buttons" %>
+          </div>
+          <div class='conversation-supplement'>
+            <%= render partial: "/conversations/participants_aside", locals: {
+              moderators_count: @conversation.moderators.count,
+              moderators: @conversation.moderators,
+              participants_count: @conversation.participants.count,
+              participants: @conversation.participants } %>
           </div>
         </div>
-        <% end %>
 
-      </div><!-- /.main-content -->
-  <%# end %>
-
-
-      <div class='aside supplementary'>
-        <%= render partial: "/conversations/share_buttons" %>
-
-        <!-- <div class="mtl">
-          <a class="ico-cc-embed" href="/embed.html">Embed Conversation</a>
-        </div> -->
-
-      </div><!-- /.aside -->
-      <div class='aside supplementary'>
-        <%= render partial: "/conversations/participants_aside", locals: {
-          moderators_count: @conversation.moderators.count,
-          moderators: @conversation.moderators,
-          participants_count: @conversation.participants.count,
-          participants: @conversation.participants
-        } %>
-      </div><!-- /.aside -->
-
+      <% end %>
     </div>
 
   </div>

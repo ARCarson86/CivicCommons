@@ -24,20 +24,6 @@
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
   </div>
 
-  <div class="share-button facebook">
-    <span id="facebook-like">
-      <a href="http://facebook.com/sharer.php?u=<%= request.url %>">Like on Facebook</a>
-    </span>
-    <script type="text/javascript">
-      (function($){
-        $(window).load(function(){
-          var fb = document.createElement('script'); fb.type = 'text/javascript'; fb.async = true;
-          fb.src = (document.location.protocol + '//connect.facebook.net/en_US/all.js#xfbml=1');
-          document.getElementsByTagName('head')[0].appendChild(fb);
-          $('#facebook-like').replaceWith('<fb:like send="false" layout="box_count" width="60" show_faces="false" ></fb:like>');
-        });
-      })(jQuery);
-    </script>
-  </div>
+  <div class="share-button facebook fb-like" data-layout="box_count" data-action="like" data-show-faces="false" data-share="false" data-send="false"></div>
 
 </div>

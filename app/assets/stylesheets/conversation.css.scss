@@ -820,3 +820,11 @@ textarea {
 .edit_conversation_link_admin {
   font-size: 12px;
 }
+
+.conversation-supplement {
+  margin-bottom: 20px;
+}
+
+.fb_iframe_widget iframe {
+  z-index:10;
+}
