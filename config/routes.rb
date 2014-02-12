@@ -2,6 +2,13 @@ Civiccommons::Application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
 
+  constraints(:host => "www.theciviccommons.com") do
+    # Won't match root path without brackets around "*x". (using Rails 3.0.3)
+    match "(*x)" => redirect { |params, request|
+      URI.parse(request.url).tap { |x| x.host = "theciviccommons.com" }.to_s
+    }
+  end
+
   #Application Root
   root to: "homepage#show"
 
