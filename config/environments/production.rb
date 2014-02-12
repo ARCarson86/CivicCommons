@@ -88,7 +88,9 @@ Civiccommons::Application.configure do
   config.assets.precompile += %w( admin.css widget.css tiny_mce/**/*.css)
   config.assets.precompile += Ckeditor.assets
 
-  redis_config = YAML.load_file(Rails.root.join('config/redis.yml'))
-  config.cache_store = :redis_store, "redis://#{redis_config[Rails.env]["host"]}:#{redis_config[Rails.env]["port"]}/0/cache"
+  if (File.exist? Rails.root.join('config/redis.yml'))
+    redis_config = YAML.load_file(Rails.root.join('config/redis.yml'))
+    config.cache_store = :redis_store, "redis://#{redis_config[Rails.env]["host"]}:#{redis_config[Rails.env]["port"]}/0/cache"
+  end
 
 end
