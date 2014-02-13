@@ -1,6 +1,6 @@
 rails_env = new_resource.environment["RAILS_ENV"]
 
-if File.exist? "#{release_path}/config/civic_commons.yml"
+if File.exists? "#{release_path}/config/civic_commons.yml"
   Chef::Log.info("Precompiling assets for RAILS_ENV=#{rails_env}...")
 
   execute "rake assets:precompile" do
