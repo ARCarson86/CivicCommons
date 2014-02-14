@@ -69,6 +69,8 @@ class Issue < ActiveRecord::Base
 
   before_create :assign_position
 
+  before_save :touch_conversations
+
   validates :name, :presence => true, :length => { :minimum => 5 }
   validate :require_topic
   validates_uniqueness_of :name
@@ -233,6 +235,14 @@ class Issue < ActiveRecord::Base
     errors.add(:base, "Please select at least one Topic") if self.topic_ids.blank?
   end
 
+
+  protected
+  def touch_conversations
+    Rails.logger.info "Touched Conversations"
+    conversations.each do |conversation|
+      conversation.touch
+    end
+  end
 
   private
 
