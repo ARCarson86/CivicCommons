@@ -46,8 +46,6 @@ gem 'delayed_job', ">= 2.1.2"
 gem 'delayed_job_active_record'
 gem 'daemons'
 
-gem 'airbrake'
-
 gem 'remotipart'
 
 # gem 'paperclip', "~>2.5.0"

@@ -47,9 +47,6 @@ GEM
     acts_as_revisionable (1.2.2)
       activerecord (>= 2.3.9)
     addressable (2.2.8)
-    airbrake (3.1.14)
-      builder
-      json
     arel (3.0.3)
     attr_required (0.0.5)
     awesome_nested_set (2.1.6)
@@ -416,7 +413,6 @@ PLATFORMS
 DEPENDENCIES
   acts_as_revisionable
   addressable
-  airbrake
   awesome_nested_set
   aws-s3
   aws-sdk
