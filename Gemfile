@@ -82,6 +82,8 @@ gem 'sass'
 
 gem 'therubyracer'
 
+gem 'whenever', require: false
+
 group :development do
   gem "rails3-generators"
   gem "hpricot"
