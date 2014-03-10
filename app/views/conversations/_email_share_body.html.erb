@@ -2,7 +2,7 @@ I want to invite you to add your voice to an important conversation at The Civic
 %0D%0A
 %0D%0AHere's a little more information:
 %0D%0A
-%0D%0A<%= URI::escape @conversation.summary.sub!('<p>', '').sub!('</p>', "\r\n") %>
+%0D%0A<%= URI::escape strip_tags(@conversation.summary.html_safe.gsub!(/\<p(^\>)*\>/, '').gsub!('</p>', "\r\n").to_str).to_str %>
 %0D%0A
 %0D%0AVisit the url below to go to The Civic Commons, sign up for an account (takes only a minute), and join the conversation.  Check back in to see what others are saying.
 %0D%0A<%= conversation_url(@conversation) %>
