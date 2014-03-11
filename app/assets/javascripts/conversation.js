@@ -3,10 +3,10 @@
     $("#contribute").sticky();
     $('.thread .responses').scrollTop(9999);
 
-    $("#participants .see-all").delegate('click', function(event) {
-      this.participantCount = $("#participants").find(".participant").length;
+    $("#participants").delegate('.see-all', 'mouseup touchend', function(event) {
+      participantCount = $("#participants").find(".participant").length;
       event.preventDefault();
-      if (this.participantCount < 6) {
+      if (participantCount < 6) {
         return false;
       }
       $("#participants").toggleClass("expanded");
