@@ -3,7 +3,7 @@
     $("#contribute").sticky();
     $('.thread .responses').scrollTop(9999);
 
-    $("#participants .see-all").on('click', function(event) {
+    $("#participants .see-all").delegate('click', function(event) {
       this.participantCount = $("#participants").find(".participant").length;
       event.preventDefault();
       if (this.participantCount < 6) {
