@@ -52,5 +52,7 @@
     theme_advanced_statusbar_location : "none",
     extended_valid_elements: "a[title|href|target=_blank|title]"
   });
-
+  $('form').submit(function(){
+    $('input[type=submit]', this).attr('disabled', 'disabled');
+  });
 </script>
