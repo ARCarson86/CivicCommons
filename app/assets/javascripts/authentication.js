@@ -14,12 +14,12 @@ jQuery(function ($) {
       } else {
         window.location = '/people/login';
       }
-      e.stopPropagation(); return false;
+      e.preventDefault();
     });
 
     $("a.connectacct-link.facebook-auth:not(.disconnect-fb)").live('click', function(e) {
       popupCenter($(this).attr("href"), $(this).attr("data-width"), $(this).attr("data-height"), "authPopup");
-      e.stopPropagation(); return false;
+      e.preventDefault();
     });
 
     $('.fb-modal a.cancel')

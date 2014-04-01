@@ -12,10 +12,10 @@
       $('#person_first_name').val(person.first_name);
       $('#person_last_name').val(person.last_name);
       $('#person_email').val(person.email);
-      $('form#person_new').append(authentication_input('uid', person.authentication.uid));
-      $('form#person_new').append(authentication_input('token', person.authentication.token));
-      $('form#person_new').append(authentication_input('provider', person.authentication.provider));
-      $('form#person_new').trigger('submit');
+      $('form#new_person').append(authentication_input('uid', person.authentication.uid));
+      $('form#new_person').append(authentication_input('token', person.authentication.token));
+      $('form#new_person').append(authentication_input('provider', person.authentication.provider));
+      $('form#new_person').trigger('submit');
     }
   }
   this.RegistrationPage = RegistrationPage;
