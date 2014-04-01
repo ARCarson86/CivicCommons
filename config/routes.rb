@@ -12,6 +12,8 @@ Civiccommons::Application.routes.draw do
   #Application Root
   root to: "homepage#show"
 
+  get "/health_check" => "homepage#health_check"
+
   #reports
   get '/admin/reports',                                 to: 'admin/reports#index',                           as: 'reports'     
   get '/admin/member-report',                          to: 'admin/reports#member_report',                    as: 'member_report'                  

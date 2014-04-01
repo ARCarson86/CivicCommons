@@ -14,4 +14,8 @@ class HomepageController < ApplicationController
     end
   end
 
+  def health_check
+    render nothing: true
+  end
+
 end
