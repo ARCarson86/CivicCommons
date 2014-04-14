@@ -107,7 +107,7 @@ class ConversationsController < ApplicationController
     @recent_items = @conversation.activities.where("item_type NOT IN (?)", ["RatingGroup", "Reflection", "ReflectionComment"]).order("created_at DESC").limit(30)
 
     # The Participants in a Conversation               | Moved from View to Controller. TODO: Move to model
-    @conversation_participants = @conversation.participants.select{ |p| !@tlc_participants.include?(p.id) }
+    @conversation_participants = @conversation.participants
 
     setup_meta_info(@conversation)
 
