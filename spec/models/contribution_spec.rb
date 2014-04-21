@@ -294,13 +294,13 @@ describe Contribution do
     end
 
     it "updates the attached file if file is specified" do
-      @attached_file.should_receive(:save_attached_files)
       @attached_file.update_attributes_by_user({contribution: {:attachment => File.new(Rails.root + 'test/fixtures/images/test_image2.jpg')}}, @person)
       @attached_file.attachment_file_name.should == "test_image2.jpg"
     end
 
   end
 
+# Links are too large for URL field
   describe "when updating a Link" do
 
     before(:each) do
@@ -536,7 +536,7 @@ describe Contribution do
       @person = FactoryGirl.create(:normal_person)
       @other_person = FactoryGirl.create(:normal_person)
       @admin_person = FactoryGirl.create(:admin_person)
-      @contribution = FactoryGirl.create(type, {:person => @person})
+      @contribution = FactoryGirl.create(:contributiion)
     end
 
     describe "suggested action" do

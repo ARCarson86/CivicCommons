@@ -1,3 +1,4 @@
+#
 require 'spec_helper'
 
 describe SurveyResponse do
@@ -5,12 +6,13 @@ describe SurveyResponse do
     describe "before_validation reject_blank_selected_option_ids" do
       before(:each) do
         @survey_response = FactoryGirl.build(:survey_response)
-        @survey_response.selected_survey_options.build
       end
       it "should be rejected if selected_survey_options has a blank survey_option_id and new record" do
+         @survey_response.selected_survey_options.build
          @survey_response.save
          @survey_response.selected_survey_options.count.should == 0
       end
+      #Not counting correctly
       it "should be rejected if selected_survey_options has a blank survey_option_id and new record" do
          @survey_response.selected_survey_options.build(:survey_option_id => 123, :survey_response_id => 1234)
          @survey_response.save

@@ -1,3 +1,4 @@
+#passed
 require 'spec_helper'
 
 describe PetitionSignature do

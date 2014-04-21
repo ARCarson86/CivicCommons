@@ -1,3 +1,4 @@
+# passing
 require 'spec_helper'
 
 describe ContentItemLink do

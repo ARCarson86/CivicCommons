@@ -1,3 +1,4 @@
+#passed
 require 'spec_helper'
 require 'acceptance/support/facebookable'
 

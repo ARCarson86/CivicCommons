@@ -1,3 +1,4 @@
+#failure  goto_admin_page_as_admin
 require 'acceptance/acceptance_helper'
 
 feature "RadioShow Admin", %q{

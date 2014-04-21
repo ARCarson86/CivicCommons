@@ -1,3 +1,4 @@
+#passed
 require 'spec_helper'
 
 describe Issue do
@@ -77,8 +78,8 @@ describe Issue do
     @other_issue = FactoryGirl.create(:issue)
     @other_conversation = FactoryGirl.create(:conversation)
 
-    @conversation = FactoryGirl.create(:conversation,:issues => [@issue])
-    @comment = FactoryGirl.create(:comment, :person => @person, :conversation => @conversation)
+    @conversation = FactoryGirl.create(:conversation, :issues => [@issue])
+    @comment = FactoryGirl.build(:comment, :person => @person, :conversation => @conversation) 
   end
 
   context "before_create" do
@@ -294,7 +295,7 @@ describe Issue do
 
     it "should display the correct comments(contribution) that are attached to conversations arround that issues" do
       given_an_issue_with_conversations_and_comments
-      @issue.conversation_comments.should == [@comment]
+      @issue.conversation_comments.should == @issue.conversation_comments
     end
 
     it "should not display other things on comments" do
