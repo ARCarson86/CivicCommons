@@ -1,25 +1,14 @@
 <div class="thread <%= css_classes ||= "" %> <%= "moderator-post" if contribution.moderator_post? %>" id="<%= "show-contribution-#{contribution.id}" %>">
 
-  <%
-    user_type = "annonymous"
-    if current_person.present?
-      user_type = current_person.admin? ? "admin" : "user"
-    end
-  %>
-  <% conversation_thread_cache_key = ["conversation_sub_thread",
-                                           user_type,
-                                           @conversation.id,
-                                           contribution.self_and_descendants.max_by(&:updated_at),
-                                           contribution.newest_rating_for_contribution_branch] %>
-
-  <% cache conversation_thread_cache_key do %>
-
     <div class="primary">
       <%= render :partial => '/contributions/contribution_aux_actions', locals: {contribution:contribution, sub_contribution_count: contribution.descendants.count, is_sub_contribution: false} %>
-      <%= render :partial => '/user/author_card_large', locals: {author:contribution.owner, conversation_created_at: contribution.created_at, moderator_post: contribution.moderator_post?} %>
-      <div class="content">
-        <%= render partial: '/contributions/content', locals: {contribution:contribution} %>
-      </div>
+
+      <% cache("top_level_contribution-#{contribution.id}-#{contribution.updated_at}") do %>
+        <%= render :partial => '/user/author_card_large', locals: {author:contribution.owner, conversation_created_at: contribution.created_at, moderator_post: contribution.moderator_post?} %>
+        <div class="content">
+          <%= render partial: '/contributions/content', locals: {contribution:contribution} %>
+        </div>
+      <% end %>
     </div>
 
     <div class="responses-container">
@@ -33,8 +22,6 @@
         <a class="button tertiary button-mini expand-button" href="">Expand This Thread</a>
       <% end %>
     </div>
-
-  <% end %>
 
   <% if current_person %>
     <%= render partial: "/conversations/conversation_sub_level_contribution_form", locals: {parent: contribution, new_contribution: new_contribution} %>

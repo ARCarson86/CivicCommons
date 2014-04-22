@@ -61,5 +61,6 @@ module Civiccommons
 
     # Change the path that assets are served from
     # config.assets.prefix = "/assets"
+
   end
 end
