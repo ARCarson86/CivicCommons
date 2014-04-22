@@ -60,23 +60,6 @@ describe ContentItem do
 
   end
 
-  context "has_many conversations" do
-    def given_a_radio_show_with_conversations
-      @radioshow = FactoryGirl.create(:radio_show)
-      @conversation1 = FactoryGirl.create(:conversation)
-      @conversation2 = FactoryGirl.create(:conversation)
-      @radioshow.conversations = [@conversation1, @conversation2]
-    end
-    it "should be correct" do
-      ContentItem.reflect_on_association(:conversations).macro.should == :has_many
-    end
-
-    it "should have the correct conversations" do
-      given_a_radio_show_with_conversations
-      @radioshow.conversations.should == [@conversation1,@conversation2]
-    end
-  end
-
   context "has_many topics" do
     describe "on blog posts" do
       def given_a_blog_post_with_topics
@@ -91,22 +74,6 @@ describe ContentItem do
       it "should correctly count the number of topics" do
         given_a_blog_post_with_topics
         @blog.topics.count.should == 2
-      end
-    end
-
-    describe "on radio shows" do
-      def given_a_radio_show_with_topics
-        @topic1 = FactoryGirl.create(:topic)
-        @topic2 = FactoryGirl.create(:topic)
-        @radio_show = FactoryGirl.create(:radio_show)
-        @radio_show.topics = [@topic1, @topic2]
-      end
-      it "should be correct" do
-        ContentItem.reflect_on_association(:topics).macro.should == :has_many
-      end
-      it "should correctly count the number of topics" do
-        given_a_radio_show_with_topics
-        @radio_show.topics.count.should == 2
       end
     end
 
@@ -164,11 +131,6 @@ describe ContentItem do
       blog_post.url.should == blog_path(blog_post)
     end
 
-    it "will show the correct path for a RadioShow" do
-      radio_show = FactoryGirl.create(:radio_show)
-      radio_show.url.should == radioshow_path(radio_show)
-    end
-
     it "will show the external link for a NewsItem" do
       news_item = FactoryGirl.create(:news_item)
       news_item.url.should == news_item.external_link
@@ -205,122 +167,7 @@ describe ContentItem do
 
   end
 
-  context "RadioShow Host" do
-    def given_a_radio_show
-      @radio_show = FactoryGirl.create(:radio_show)
-      @user1 = FactoryGirl.create(:registered_user)
-      @user2 = FactoryGirl.create(:registered_user)
-    end
-    def given_a_radio_show_with_a_host_and_guest
-      @radio_show = FactoryGirl.create(:radio_show)
-      @user1 = FactoryGirl.create(:registered_user)
-      @radio_show.add_person('host', @user1)
-      @radio_show.add_person('guest', @user1)
-    end
-    context "has and belongs to many hosts" do
-      it "should be allow to be associated and unique" do
-        given_a_radio_show
-        @radio_show.should be_valid
-        @radio_show.add_person('host', @user1)
-        @radio_show.hosts.count.should == 1
-        @radio_show.add_person('host', @user1)
-        @radio_show.hosts.count.should == 1
-      end
-      it "can be correctly deleted" do
-        given_a_radio_show_with_a_host_and_guest
-        @radio_show.hosts.first.should == @user1
-        @radio_show.delete_person('host', @user1)
-        @radio_show.reload.hosts.count.should == 0
-        @radio_show.reload.guests.count.should == 1
-      end
-    end
-    context "has and belongs to many guests" do
-      it "should be allow to be associated and unique" do
-        given_a_radio_show
-        @radio_show.should be_valid
-        @radio_show.add_person('guest', @user1)
-        @radio_show.guests.count.should == 1
-        @radio_show.add_person('guest', @user1)
-        @radio_show.guests.count.should == 1
-      end
-      it "can be correctly deleted" do
-        given_a_radio_show_with_a_host_and_guest
-        @radio_show.guests.first.should == @user1
-        @radio_show.delete_person('guest', @user1)
-        @radio_show.reload.guests.count.should == 0
-        @radio_show.reload.hosts.count.should == 1
-      end
-    end
-
-    context "has and belongs to many people" do
-      it "should be read only" do
-        @radio_show = FactoryGirl.create(:radio_show)
-        @user1 = FactoryGirl.create(:registered_user)
-        lambda{@radio_show.people = [@user1]}.should raise_exception ":people is readonly. please use :hosts or :guests habtm association, instead!"
-        @radio_show.reload.people.count.should == 0
-      end
-      it "should return all hosts and guests" do
-        @radio_show = FactoryGirl.create(:radio_show)
-        @user1 = FactoryGirl.create(:registered_user)
-        @user2 = FactoryGirl.create(:registered_user)
-        @radio_show.add_person('host', @user1)
-        @radio_show.add_person('guest', @user2)
-        @radio_show.people.count.should == 2
-      end
-      it "should return all people uniquely" do
-        @radio_show = FactoryGirl.create(:radio_show) 
-        @user1 = FactoryGirl.create(:registered_user)
-        @radio_show.add_person('host', @user1)
-        @radio_show.add_person('guest', @user1)
-        @radio_show.people.count.should == 1
-      end
-    end
-  end
-  context "add_person" do
-    before(:each) do
-      @radio_show = FactoryGirl.create(:radio_show)
-      @user1 = FactoryGirl.create(:registered_user)
-    end
-
-    it "should add the guest if role is set as a guest" do
-      @radio_show.add_person('guest', @user1)
-      @radio_show.guests.first.should == @user1
-    end
-    it "should add the host if role is set to host" do
-      @radio_show.add_person('host', @user1)
-      @radio_show.hosts.first.should == @user1
-    end
-    it "should not set anything if it's other types of roles" do
-      @radio_show.add_person('othertype', @user1)
-      @radio_show.people.should == []
-    end
-  end
-  context "delete_person" do
-    before(:each) do
-      @radio_show = FactoryGirl.create(:radio_show)
-      @user1 = FactoryGirl.create(:registered_user)
-      @radio_show.add_person('guest', @user1)
-      @radio_show.add_person('host', @user1)
-    end
-    it "should delete a guest if role is set as guest" do
-      @radio_show.delete_person('guest',@user1)
-      @radio_show.guests.should == []
-    end
-    it "should delete a host if role is set as a host" do
-      @radio_show.delete_person('host',@user1)
-      @radio_show.hosts.should == []
-    end
-    it "should not delete anything if it's other types of roles" do
-      @radio_show.delete_person('othetype',@user1)
-      @radio_show.hosts.length.should == 1
-      @radio_show.guests.length.should == 1
-    end
-  end
   context "link text" do
-    it "displays default radioshow link text." do
-      radioshow = FactoryGirl.build(:radio_show)
-      radioshow.link_title.should == "Listen to the podcast..."
-    end
 
     it "displays default blog link text." do
       blogpost = FactoryGirl.build(:blog_post)

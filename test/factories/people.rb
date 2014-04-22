@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryGirl.define do |f|
   factory :invalid_person, :class=>Person do |u|
     u.first_name ''
     u.last_name ''

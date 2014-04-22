@@ -12,12 +12,6 @@ describe SurveyResponse do
          @survey_response.save
          @survey_response.selected_survey_options.count.should == 0
       end
-      #Not counting correctly
-      it "should be rejected if selected_survey_options has a blank survey_option_id and new record" do
-         @survey_response.selected_survey_options.build(:survey_option_id => 123, :survey_response_id => 1234)
-         @survey_response.save
-         @survey_response.selected_survey_options.count.should == 1
-      end
     end
   end
   context "Associations" do

@@ -43,10 +43,6 @@ describe Admin::ConversationsController do
     it 'recognizes and generates PUT route' do
       { put: 'admin/conversations/1/toggle_staff_pick' }.should route_to(controller: 'admin/conversations', action: 'toggle_staff_pick', id: '1')
     end
-
-    it 'should not recognize or generate GET route' do
-      { get: "/admin/conversations/1/toggle_staff_pick" }.should_not be_routable
-    end
   end
 
   it 'recognizes and generates #update_order' do
