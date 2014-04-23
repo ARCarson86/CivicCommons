@@ -51,7 +51,7 @@ gem 'remotipart'
 # gem 'paperclip', "~>2.5.0"
 gem 'paperclip', '~> 3.1'
 gem 'aws-s3'
-gem 'aws-sdk'
+gem 'aws-sdk', "~> 1.9.1"
 gem 'nokogiri'
 gem 'sanitize'
 gem 'highline'
@@ -112,6 +112,6 @@ group :test do
   gem 'spork', '~>0.9.0'
   gem 'steak', '~>2.0.0'
   gem 'timecop', '~>0.3.5'
-  gem 'webmock', '~>1.6.2'
+  gem 'webmock'
   gem 'webrat', "~> 0.7.3"
 end

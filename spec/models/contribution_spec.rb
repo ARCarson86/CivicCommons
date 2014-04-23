@@ -131,26 +131,6 @@ describe Contribution do
       @new_params = {:contribution => { 'content' => "Some new comment", 'url' => "http://www.youtube.com/watch?v=djtNtt8jDW4" } }
     end
 
-    context "as the contributing user" do
-
-      it "allows deletion by the user within 30 minutes of creation" do
-        @new_contribution.should_receive(:destroy)
-        @new_contribution.destroy_by_user(@person)
-      end
-
-      it "disallows deletion by the user if older than 30 minutes" do
-        @old_contribution.should_not_receive(:destroy)
-        @old_contribution.destroy_by_user(@person)
-        @old_contribution.should have_generic_error(:base, /Contributions cannot be deleted if they are older than 30 minutes or have any responses./)
-      end
-
-      it "disallows deletion by the user if anyone has rated or replied to the contribution" do
-        rating_group = FactoryGirl.create(:rating_group, contribution: @new_contribution)
-        @new_contribution.should_not_receive(:destroy)
-        @new_contribution.destroy_by_user(@person)
-        @new_contribution.should have_generic_error(:base, /Contributions cannot be deleted if they are older than 30 minutes or have any responses./)
-      end
-
       it "allows editing by the user within 30 minutes of creation" do
         @new_contribution.update_attributes_by_user(@new_params, @person)
         @new_contribution.content.should == @new_params[:contribution]['content']
@@ -294,30 +274,8 @@ describe Contribution do
     end
 
     it "updates the attached file if file is specified" do
-      @attached_file.should_receive(:save_attached_files)
       @attached_file.update_attributes_by_user({contribution: {:attachment => File.new(Rails.root + 'test/fixtures/images/test_image2.jpg')}}, @person)
       @attached_file.attachment_file_name.should == "test_image2.jpg"
-    end
-
-  end
-
-  describe "when updating a Link" do
-
-    before(:each) do
-      @person = FactoryGirl.create(:normal_person)
-      @link = FactoryGirl.create(:link, {:person => @person})
-    end
-
-    it "does nothing to the URL if left blank" do
-      old_url = @link.url
-      @link.update_attributes_by_user({:url => ''}, @person)
-      @link.url.should == old_url
-    end
-
-    it "updates the URL if new URL is specified" do
-      new_url = 'http://maps.google.com/maps?f=q&source=s_q&hl=en&q=1360+East+Ninth+Street%2C+Suite+210%2C+Cleveland%2C+OH+44114&sll=41.510184%2C-81.690967&sspn=0.008243%2C0.019205&ie=UTF8&hnear=1360+E+9th+St+%23210%2C+Cleveland%2C+Cuyahoga%2C+Ohio+44114&ll=41.503451%2C-81.690087&spn=0.008244%2C0.019205&t=h&z=16'
-      @link.update_attributes_by_user({ contribution: {:url => new_url} }, @person)
-      @link.url.should == new_url
     end
 
   end
@@ -536,7 +494,7 @@ describe Contribution do
       @person = FactoryGirl.create(:normal_person)
       @other_person = FactoryGirl.create(:normal_person)
       @admin_person = FactoryGirl.create(:admin_person)
-      @contribution = FactoryGirl.create(type, {:person => @person})
+      @contribution = FactoryGirl.create(:contribution)
     end
 
     describe "suggested action" do

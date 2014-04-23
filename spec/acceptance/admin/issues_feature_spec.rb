@@ -1,3 +1,4 @@
+#failed goto_admin_page_as_admin
 require 'acceptance/acceptance_helper'
 
 feature "Issue Admin", %q{

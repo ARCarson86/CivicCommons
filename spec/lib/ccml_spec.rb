@@ -319,14 +319,6 @@ describe CCML do
         it "should not silence the external source errors if silence_external_source_error is set to false" do
           expect { CCML.parse(@template,nil,{:silence_external_source_errors => false}) }.should raise_error(CCML::Error::ExternalSourceError)
         end
-        it "should log error to airbrake when external errors are silenced" do
-          Airbrake.should_receive(:notify).once
-          CCML.parse(@template)
-        end
-        it "should NOT log error to airbrake when external errors are not silenced" do
-          Airbrake.should_not_receive(:notify)
-          expect { CCML.parse(@template,nil,{:silence_external_source_errors => false}) }
-        end
       end
     end
 

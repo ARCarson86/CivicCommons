@@ -70,7 +70,6 @@ module Utilities
         FactoryGirl.create(:question_without_parent, conversation: conversation ,person: @person_to_merge)
         FactoryGirl.create(:answer, person: @person_to_merge)
         FactoryGirl.create(:attached_file, person: @person_to_merge)
-        FactoryGirl.create(:link, person: @person_to_merge)
         FactoryGirl.create(:embedded_snippet, person: @person_to_merge)
         FactoryGirl.create(:embedly_contribution, conversation: conversation, parent: contribution, person: @person_to_merge)
 

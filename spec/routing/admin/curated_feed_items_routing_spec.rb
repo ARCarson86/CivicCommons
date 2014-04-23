@@ -2,10 +2,6 @@ require 'spec_helper'
 
 describe Admin::CuratedFeedItemsController do
 
-  it "does not recognize #index" do
-    { :get => 'admin/curated_feeds/20/items' }.should_not be_routable
-  end
-
   it 'recognizes and generates #edit' do
     { get: 'admin/curated_feeds/20/items/1/edit' }.should route_to(controller: 'admin/curated_feed_items', action: 'edit', curated_feed_id: '20', id: '1')
   end

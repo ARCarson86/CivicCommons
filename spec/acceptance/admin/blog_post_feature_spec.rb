@@ -1,3 +1,4 @@
+#goto_admin_page_as_admin fails wrong number of arguments
 require 'acceptance/acceptance_helper'
 
 feature "BlogPost Admin", %q{

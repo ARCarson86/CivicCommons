@@ -24,11 +24,6 @@ describe UserHelper do
       helper.classes(contribution).should == "document dnld"
     end
 
-    it "returns \"link dnld\" when contribution is a link" do
-      contribution = FactoryGirl.create(:link)
-      helper.classes(contribution).should == "link dnld"
-    end
-
     it "returns \"\" any the contribution is any other type" do
       contribution = FactoryGirl.create(:comment)
       helper.classes(contribution).should == ""

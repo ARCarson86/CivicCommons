@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'spork'
 
+
 SPEC_HELPER=true
 
 Spork.prefork do
@@ -41,6 +42,7 @@ Spork.prefork do
   require File.dirname(__FILE__) + "/../config/environment" unless defined?(Rails)
   require 'rspec/rails'
   require 'webmock/rspec'
+  require 'aws-sdk'
   require 'capybara/rspec'
   require 'email_spec'
   require 'ostruct'
@@ -95,7 +97,6 @@ Spork.prefork do
   def fixture_content(path)
     File.open(File.dirname(__FILE__) + '/../test/fixtures/' + path, 'rb') { |f| f.read }
   end
-
 
 end
 

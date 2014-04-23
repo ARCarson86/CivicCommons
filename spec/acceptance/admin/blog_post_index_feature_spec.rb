@@ -1,3 +1,4 @@
+#goto_admin fail
 require 'acceptance/acceptance_helper'
 
 feature "Admin BlogPost Index", %q{

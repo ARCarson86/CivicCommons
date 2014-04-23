@@ -61,16 +61,6 @@ describe MetaHelper do
         @meta_info[:meta_tags].should == "blog, taxes, guns, education"
       end
     end
-
-    describe "page image_url is set" do
-      it "using an objects image_url" do
-        #object_with_image_url = OpenStruct.new(:image => OpenStruct.new(:url => {:panel => "/image/default.jpg"}))
-        object_with_image_url = FactoryGirl.build(:conversation)
-
-        setup_meta_info(object_with_image_url)
-        @meta_info[:image_url].should == "/assets/convo_img_panel.gif"
-      end
-    end
   end
 
   context "set conversation" do
@@ -129,27 +119,7 @@ describe MetaHelper do
     end
 
   end
-  
-  describe "setup_meta_info_for_conversation_contribution" do
-    before(:each) do
-      @conversation = FactoryGirl.build(:conversation, :title => "Conversation <b>Title</b>", :meta_tags => 'tag1, tag2, tag3')
-      @contribution = FactoryGirl.create(:contribution, :conversation => @conversation)
-      @result = setup_meta_info_for_conversation_contribution(@contribution)
-    end
-    it "should set the page_title" do
-      @result[:page_title].should == "The Civic Commons Comment on: Conversation Title"
-    end
-    it "should set the meta_description" do
-      @result[:meta_description].should == "Basic Contributions"
-    end
-    it "should set the meta_tags" do
-      @result[:meta_tags].should == "tag1, tag2, tag3"
-    end
-    it "should set the image_url" do
-      @result[:image_url].should == "/assets/convo_img_panel.gif"
-    end
-  end
-  
+
   describe "sanitize_meta_values" do
     it "should cleanup the hash value" do
       hash = {'a' => '<b>a</b>', 'b'=> '<b>b</b>'}
