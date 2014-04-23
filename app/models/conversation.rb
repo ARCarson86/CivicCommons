@@ -162,13 +162,9 @@ class Conversation < ActiveRecord::Base
 
   # Number of Participants in related to the Talk portion of this Conversation
   def participants
-    raters = RatingGroup.where(contribution_id: contribution_ids).collect{|rating_group| rating_group.person }.uniq
-    persons = [self.person]
-    persons += self.contributors
-    persons += raters
+    persons = Person.select("people.*, MAX(contributions.created_at) as most_recent_contribution").joins(:contributions).where("contributions.conversation_id = ?", self.id).order("most_recent_contribution DESC").group("people.id")
     persons.flatten.uniq.reject(&:blank?)
   end
-
   # Number of Action Participants Related to this Conversation
   #
   # * Originator of Action
