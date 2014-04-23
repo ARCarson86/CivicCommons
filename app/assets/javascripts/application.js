@@ -4,7 +4,8 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
 //
-//= require 'jquery/jquery-1.4.4'
+//= require jquery
+//= require jquery_ujs
 //= require 'jquery/jquery-ui-1.8.16'
 //= require 'jquery/jquery-ui-timepicker-addon-0.5'
 //= require 'modernizr-2.6.1'
