@@ -118,13 +118,13 @@ jQuery(function ($) {
     
     
     // close colorbox on cancelation of confirmation
-    $('a.cancel_vote').live('click', function(){
+    $('a.cancel_vote').on('click', function(){
       $.colorbox.close();
       return false;
     })
     
     // submits the form with without AJAX when the vote has been confirmed.
-    $('a.confirm_vote').live('click', function(){
+    $('a.confirm_vote').on('click', function(){
       var $form = $('.selected-survey-options form');
       var $confirmed_input = $("<input>").attr("type", "hidden").attr("name", "survey_response_presenter[confirmed]").val("true");
       $form.removeAttr('data-remote');

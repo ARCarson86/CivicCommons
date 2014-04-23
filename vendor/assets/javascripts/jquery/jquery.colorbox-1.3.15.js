@@ -371,7 +371,7 @@
 		// background graphics.  The class can now can be removed.
 		$content.children().removeClass('hover');
 		
-		$('.' + boxElement).live('click', function (e) {
+		$('.' + boxElement).on('click', function (e) {
 			// checks to see if it was a non-left mouse-click and for clicks modified with ctrl, shift, or alt.
 			if (!((e.button !== 0 && typeof e.button !== 'undefined') || e.ctrlKey || e.shiftKey || e.altKey)) {
 				e.preventDefault();

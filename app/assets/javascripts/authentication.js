@@ -8,7 +8,7 @@ jQuery(function ($) {
   }
 
   $(document).ready(function() {
-    $("a.createacct-link.facebook-auth").live('click', function(e) {
+    $("a.createacct-link.facebook-auth").on('click', function(e) {
       if(window.location.href.indexOf('/people/login') != -1) {
         popupCenter($(this).attr("href"), $(this).attr("data-width"), $(this).attr("data-height"), "authPopup");
       } else {
@@ -17,19 +17,19 @@ jQuery(function ($) {
       e.preventDefault();
     });
 
-    $("a.connectacct-link.facebook-auth:not(.disconnect-fb)").live('click', function(e) {
+    $("a.connectacct-link.facebook-auth:not(.disconnect-fb)").on('click', function(e) {
       popupCenter($(this).attr("href"), $(this).attr("data-width"), $(this).attr("data-height"), "authPopup");
       e.preventDefault();
     });
 
     $('.fb-modal a.cancel')
-    .live('click',function(){
+    .on('click',function(){
       $.colorbox.close();
       return false;
     });
 
     $('.fb-modal a.confirm-facebook-unlinking, a.connectacct-link.facebook-auth.disconnect-fb')
-    .live('click',function(){
+    .on('click',function(){
       $.colorbox({href:$(this).attr('href')});
       return false;
     });
@@ -37,25 +37,25 @@ jQuery(function ($) {
     /*
       conflicting_email modal dialog
     */
-    $('.fb-cnct-links a.overwrite-email').live('click',function(){
+    $('.fb-cnct-links a.overwrite-email').on('click',function(){
        $.post($(this).attr('href'),function(){
          $.colorbox({href:'/authentication/fb_linking_success'});
        });
       return false;
     });
 
-    $('.fb-cnct-links a.cancel-overwrite-email').live('click',function(){
+    $('.fb-cnct-links a.cancel-overwrite-email').on('click',function(){
       $.colorbox({href:'/authentication/fb_linking_success'});
       return false;
     });
 
     $('form#ajax-auth-update-form')
-    .live('ajax:success', function(evt, xhr, status, error){
+    .on('ajax:success', function(evt, xhr, status, error){
       $(this).html(xhr);
     });
 
     $('#auth-before-facebook-unlinking') 
-    .live('ajax:success', function(evt, xhr, status, error){
+    .on('ajax:success', function(evt, xhr, status, error){
       $(this).replaceWith(xhr);
     });
 

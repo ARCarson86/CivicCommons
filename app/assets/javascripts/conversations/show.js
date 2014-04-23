@@ -84,7 +84,7 @@
             animationSpeed: 250,
             updateHash: false
           })
-        .live("easytabs:after", function(){
+        .on("easytabs:after", function(){
             resizeColorbox();
           });
       },
@@ -139,7 +139,7 @@
       },
 
       liveAlertOnAjaxFailure: function() {
-        this.live("ajax:error", function(evt, xhr, status, error){
+        this.on("ajax:error", function(evt, xhr, status, error){
           try{
             var errors = $.parseJSON(xhr.responseText);
           }catch(err){
@@ -175,12 +175,12 @@
         }, options);
 
         this
-          .live("ajax:loading", function(){
+          .on("ajax:loading", function(){
             var $this = $(this);
             if ( $this.data('origText') == null ) { $this.data('origText', $this.text()); }
             $this.text(opts.loadText);
           })
-          .live("ajax:complete", function(evt, xhr){
+          .on("ajax:complete", function(evt, xhr){
             $(this).text(opts.completeText);
           });
         return this;
@@ -216,15 +216,15 @@
     .changeTextOnLoading({
       loadText: "Deleting..."
     })
-    .live("ajax:success", function(evt, data, status, xhr){
+    .on("ajax:success", function(evt, data, status, xhr){
       var $target = $(this.getAttribute("data-target"));
       $target.hide('puff', 1000);
     })
-    .liveAlertOnAjaxFailure();
+    .onAlertOnAjaxFailure();
 
   $('.edit-contribution-action')
     .changeTextOnLoading()
-    .live("ajax:success", function(evt, data, status, xhr){
+    .on("ajax:success", function(evt, data, status, xhr){
       var $this = $(this);
       var $target = $(this.getAttribute("data-target"));
 
@@ -240,9 +240,9 @@
         .bindValidationErrorOnAjaxFailure();
       init_tiny_mce($form.find('textarea.tinymce'));
     })
-    .liveAlertOnAjaxFailure();
+    .onAlertOnAjaxFailure();
 
-  $('.conversation-action').live('click', function(e){
+  $('.conversation-action').on('click', function(e){
     var $this = $(this);
     $.colorbox({
       transition: 'fade', // needed to fix colorbox bug with jquery 1.4.4
@@ -268,7 +268,7 @@
   });
 
   $('a.contribution-toggle')
-    .live('click', function(e){
+    .on('click', function(e){
       e.preventDefault();
       var $div = $(this).closest('.collapsed, .uncollapsed'),
           s = document.documentElement.style;

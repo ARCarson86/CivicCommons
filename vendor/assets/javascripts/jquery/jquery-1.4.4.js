@@ -2524,7 +2524,7 @@ if ( !jQuery.support.submitBubbles ) {
 						type = elem.type;
 
 					if ( (type === "submit" || type === "image") && jQuery( elem ).closest("form").length ) {
-						e.liveFired = undefined;
+						e.onFired = undefined;
 						return trigger( "submit", this, arguments );
 					}
 				});
@@ -2534,7 +2534,7 @@ if ( !jQuery.support.submitBubbles ) {
 						type = elem.type;
 
 					if ( (type === "text" || type === "password") && jQuery( elem ).closest("form").length && e.keyCode === 13 ) {
-						e.liveFired = undefined;
+						e.onFired = undefined;
 						return trigger( "submit", this, arguments );
 					}
 				});
@@ -2597,7 +2597,7 @@ if ( !jQuery.support.changeBubbles ) {
 
 		if ( data != null || val ) {
 			e.type = "change";
-			e.liveFired = undefined;
+			e.onFired = undefined;
 			return jQuery.event.trigger( e, arguments[1], elem );
 		}
 	};
@@ -2742,7 +2742,7 @@ jQuery.fn.extend({
 	},
 	
 	delegate: function( selector, types, data, fn ) {
-		return this.live( types, data, fn, selector );
+		return this.on( types, data, fn, selector );
 	},
 	
 	undelegate: function( selector, types, fn ) {
@@ -2878,7 +2878,7 @@ function liveHandler( event ) {
 	}
 
 	// Make sure we avoid non-left-click bubbling in Firefox (#3861)
-	if ( event.liveFired === this || !events || !events.live || event.button && event.type === "click" ) {
+	if ( event.onFired === this || !events || !events.on || event.button && event.type === "click" ) {
 		return;
 	}
 	
@@ -2886,9 +2886,9 @@ function liveHandler( event ) {
 		namespace = new RegExp("(^|\\.)" + event.namespace.split(".").join("\\.(?:.*\\.)?") + "(\\.|$)");
 	}
 
-	event.liveFired = this;
+	event.onFired = this;
 
-	var live = events.live.slice(0);
+	var live = events.on.slice(0);
 
 	for ( j = 0; j < live.length; j++ ) {
 		handleObj = live[j];
