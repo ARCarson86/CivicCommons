@@ -180,6 +180,9 @@
   .contribute {
     background: #efefef url(/assets/body_bg.gif) repeat;
   }
+  &.is-sticky {
+    height: 168px;
+  }
 }
 .what-do-you-think {
   @include pie-clearfix;
