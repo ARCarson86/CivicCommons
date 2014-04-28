@@ -4,15 +4,6 @@ GIT
   specs:
     profanity_filter (0.1.1)
 
-GIT
-  remote: git://github.com/paramaw/ckeditor.git
-  revision: 97855e1700ec4530f7a31dc68380cd1831ababb2
-  branch: master
-  specs:
-    ckeditor (3.7.3)
-      mime-types
-      orm_adapter
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -75,9 +66,12 @@ GEM
       ffi (~> 1.0, >= 1.0.11)
     chronic (0.10.2)
     chunky_png (1.2.9)
+    ckeditor (4.0.8)
+      mime-types
+      orm_adapter
     climate_control (0.0.3)
       activesupport (>= 3.0)
-    cocaine (0.5.3)
+    cocaine (0.5.4)
       climate_control (>= 0.0.3, < 1.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -202,7 +196,7 @@ GEM
     mime-types (1.25.1)
     mini_magick (3.4)
       subexec (~> 0.2.1)
-    multi_json (1.8.4)
+    multi_json (1.9.3)
     multi_xml (0.5.1)
     multipart-post (1.1.5)
     mysql2 (0.3.14)
@@ -232,7 +226,7 @@ GEM
     options (2.3.0)
       fattr
     orm_adapter (0.0.7)
-    paperclip (3.5.2)
+    paperclip (4.1.1)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
@@ -423,7 +417,7 @@ DEPENDENCIES
   cancan (= 1.6.8)
   capybara (~> 1.1.2)
   carrierwave
-  ckeditor!
+  ckeditor
   coffee-rails (~> 3.2.1)
   compass-rails
   daemons
@@ -438,9 +432,9 @@ DEPENDENCIES
   fb_graph
   fog
   font-awesome-rails
-  friendly_id (~> 4.0.1)
+  friendly_id
   fuubar (~> 1.0.0)
-  gchart (~> 1.0.0)
+  gchart
   geokit
   gibbon
   highline
@@ -460,7 +454,7 @@ DEPENDENCIES
   nokogiri
   omniauth (= 1.0.1)
   omniauth-facebook
-  paperclip (~> 3.1)
+  paperclip
   prawn (>= 1.0.0.rc1)
   prawn_rails
   profanity_filter!
@@ -491,5 +485,5 @@ DEPENDENCIES
   webmock (~> 1.6.2)
   webrat (~> 0.7.3)
   whenever
-  will_paginate (~> 3.0.3)
+  will_paginate
   zeus
