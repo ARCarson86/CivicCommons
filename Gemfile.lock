@@ -4,6 +4,15 @@ GIT
   specs:
     profanity_filter (0.1.1)
 
+GIT
+  remote: git://github.com/paramaw/ckeditor.git
+  revision: 97855e1700ec4530f7a31dc68380cd1831ababb2
+  branch: master
+  specs:
+    ckeditor (3.7.3)
+      mime-types
+      orm_adapter
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -51,8 +60,10 @@ GEM
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
     bcrypt (3.1.7)
+    bcrypt-ruby (3.1.5)
+      bcrypt (>= 3.1.3)
     builder (3.0.4)
-    cancan (1.6.10)
+    cancan (1.6.8)
     capybara (1.1.3)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -66,9 +77,6 @@ GEM
       ffi (~> 1.0, >= 1.0.11)
     chronic (0.10.2)
     chunky_png (1.2.9)
-    ckeditor (4.0.11)
-      mime-types
-      orm_adapter (~> 0.5.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.4)
@@ -96,12 +104,10 @@ GEM
     delayed_job_active_record (0.3.2)
       activerecord (> 2.1.0)
       delayed_job (~> 3.0.0)
-    devise (3.2.4)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 3.2.6, < 5)
-      thread_safe (~> 0.1)
-      warden (~> 1.2.3)
+    devise (1.5.2)
+      bcrypt-ruby (~> 3.0)
+      orm_adapter (~> 0.0.3)
+      warden (~> 1.1)
     diff-lcs (1.1.3)
     email_spec (1.2.1)
       mail (~> 2.2)
@@ -229,8 +235,8 @@ GEM
       omniauth (~> 1.0)
     options (2.3.0)
       fattr
-    orm_adapter (0.5.0)
-    paperclip (4.1.1)
+    orm_adapter (0.0.7)
+    paperclip (3.5.4)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
@@ -373,7 +379,6 @@ GEM
       libv8 (~> 3.16.14.0)
       ref
     thor (0.19.1)
-    thread_safe (0.3.3)
     tilt (1.4.1)
     timecop (0.3.5)
     treetop (1.4.15)
@@ -418,10 +423,10 @@ DEPENDENCIES
   awesome_nested_set
   aws-s3
   aws-sdk
-  cancan
+  cancan (= 1.6.8)
   capybara (~> 1.1.2)
   carrierwave
-  ckeditor
+  ckeditor!
   coffee-rails (~> 3.2.1)
   compass-rails
   daemons
@@ -429,7 +434,7 @@ DEPENDENCIES
   date_validator
   delayed_job (>= 2.1.2)
   delayed_job_active_record
-  devise
+  devise (= 1.5.2)
   email_spec (~> 1.2.1)
   embedly (= 1.5.2)
   factory_girl_rails (~> 3.1)
@@ -458,7 +463,7 @@ DEPENDENCIES
   nokogiri
   omniauth (= 1.0.1)
   omniauth-facebook
-  paperclip
+  paperclip (~> 3.1)
   prawn (>= 1.0.0.rc1)
   prawn_rails
   profanity_filter!
@@ -489,5 +494,5 @@ DEPENDENCIES
   webmock (~> 1.6.2)
   webrat (~> 0.7.3)
   whenever
-  will_paginate
+  will_paginate (~> 3.0.3)
   zeus
