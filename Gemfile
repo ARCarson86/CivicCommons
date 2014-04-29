@@ -6,7 +6,7 @@ gem 'mysql2'
 
 gem 'sass-rails', '~> 3.2.3'
 gem 'compass-rails'
-gem 'coffee-rails', '~> 3.2.1'
+gem 'coffee-rails'
 gem 'uglifier', '>= 1.0.3'
 gem "font-awesome-rails"
 
@@ -20,7 +20,7 @@ gem 'newrelic_rpm'
 gem 'redis-rails'
 
 gem 'devise', '1.5.2'
-gem "cancan", '1.6.8'
+gem "cancan"
 gem 'omniauth', '1.0.1'
 gem 'omniauth-facebook'
 
@@ -57,6 +57,7 @@ gem 'sanitize'
 gem 'highline'
 gem 'htmlentities'
 gem 'truncate_html'
+gem 'obscenity'
 
 gem "gchart"
 
@@ -65,8 +66,6 @@ gem 'sunspot_solr'
 gem 'progress_bar'
 
 gem 'sixarm_ruby_email_address_validation'
-
-gem 'profanity_filter', :git => 'git://github.com/CivicCommons/profanity_filter.git'
 
 gem 'ckeditor'
 

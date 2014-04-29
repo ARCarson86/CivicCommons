@@ -188,7 +188,7 @@ class DigestService
         grouped_petition_signatures = @grouped_petition_signatures_activity.select do |petition_signature|
           petition_signature[1][0].petition_conversation == conversation.first
         end
-        
+
         items = (contributions + reflections + votes_created + votes_ended + vote_responses + petitions_created + grouped_petition_signatures)
 
         conversation << items

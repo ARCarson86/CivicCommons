@@ -1,4 +1,5 @@
 require 'parent_validator'
+require 'obscenity/active_model'
 class Contribution < ActiveRecord::Base
   include Visitable
 
@@ -12,12 +13,11 @@ class Contribution < ActiveRecord::Base
   end
 
   attr_accessor :top_level
-
+  validates :content,  obscenity: { sanitize: true, replacement: :vowels }
   # nested contributions are destroyed via callbacks
   acts_as_nested_set :exclude_unless => {:confirmed => true}, :dependent => :destroy, :scope => :conversation_id
   attr_protected :lft, :rgt
   acts_as_revisionable
-  profanity_filter :content, :method => 'hollow'
   attr_accessor :moderation_reason
 
   belongs_to :person, :foreign_key => "owner"

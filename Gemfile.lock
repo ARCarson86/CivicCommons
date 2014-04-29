@@ -1,9 +1,3 @@
-GIT
-  remote: git://github.com/CivicCommons/profanity_filter.git
-  revision: bfae5dbcbd5a5dd9421c003e550282e52f209d86
-  specs:
-    profanity_filter (0.1.1)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -215,6 +209,7 @@ GEM
       jwt (~> 0.1.4)
       multi_json (~> 1.0)
       rack (~> 1.2)
+    obscenity (1.0.2)
     omniauth (1.0.1)
       hashie (~> 1.2)
       rack
@@ -414,11 +409,11 @@ DEPENDENCIES
   awesome_nested_set
   aws-s3
   aws-sdk
-  cancan (= 1.6.8)
+  cancan
   capybara (~> 1.1.2)
   carrierwave
   ckeditor
-  coffee-rails (~> 3.2.1)
+  coffee-rails
   compass-rails
   daemons
   database_cleaner (~> 0.7.2)
@@ -452,12 +447,12 @@ DEPENDENCIES
   newrelic_rpm
   no_peeping_toms (~> 2.1.2)
   nokogiri
+  obscenity
   omniauth (= 1.0.1)
   omniauth-facebook
   paperclip
   prawn (>= 1.0.0.rc1)
   prawn_rails
-  profanity_filter!
   progress_bar
   rack-test (~> 0.6.0)
   rails (~> 3.2.16)
