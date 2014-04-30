@@ -19,13 +19,13 @@ module CivicCommonsDriver
     CivicCommonsDriver.set_current_page_to page, options
   end
 
-  def create_user(type, options={})
-    FactoryGirl.create(type, options)
+  def create_user(type)
+    FactoryGirl.create(type)
   end
 
-  def login_as(type = :person, options={})
+  def login_as(type)
     goto :login
-    self.user = create_user type, options
+    self.user = create_user(type)
     login logged_in_user
   end
   def sign_out
