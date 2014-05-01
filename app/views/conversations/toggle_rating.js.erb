@@ -1,5 +1,4 @@
 var $button = $('#contribution-<%= @contribution.id %>-rating-<%= @rating_descriptor.title %>');
-$button.preventDefault();
 <% unless @rating_group.errors.any? %>
   var $buttonSpan = $button.children('span.number');
   // if 'active', decrement number in button

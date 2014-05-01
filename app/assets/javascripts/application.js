@@ -19,7 +19,6 @@
 //= require 'jquery/jquery.cookie'
 //= require 'authentication'
 //= require 'omniauth_handler'
-//= require 'conversations/rating_button'
 //= require 'master'
 //= require 'chosen_issues'
 //= require 'jquery-plugins/mask-me.js'
