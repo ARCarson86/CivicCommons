@@ -53,4 +53,13 @@
     extended_valid_elements: "a[title|href|target=_blank|title]"
   });
 
+  var sub = true
+  $('form').submit(function(){
+    if (sub == true) {
+      this.submit();
+      $('input[type=submit]', this).attr('disabled', 'disabled');
+      sub = false
+    }
+    return false
+  });
 </script>
