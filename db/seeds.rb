@@ -9,18 +9,21 @@
 
 # Create an Admin
 
-admin = Person.create!(email: "admin@test.com", first_name: "Admin", last_name: "Admin", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
+admin = Person.create(email: "admin@admin.com", first_name: "Admin", last_name: "Admin", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
 admin.admin = true
 admin.save!
 
 # Create people
 user_1 = Person.create!(email: "nconan@test.com", first_name: "Neal", last_name: "Conan", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
-
 user_2 = Person.create!(email: "chayes@test.com", first_name: "Chauncy", last_name: "Hart", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
-
-user_3 = Person.create!(email: "rrowed@test.com", first_name: "Rob", last_name: "Rowe", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
-
-user_4 = Person.create!(email: "jduked@test.com", first_name: "Jenny", last_name: "Duke", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
+user_3 = Person.create!(email: "rrowe@test.com", first_name: "Rob", last_name: "Rowe", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
+user_4 = Person.create!(email: "jduke@test.com", first_name: "Jenny", last_name: "Duke", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
+user_5 = Person.create!(email: "bbaggins@test.com", first_name: "Barry", last_name: "Baggins", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
+user_6 = Person.create!(email: "kruss@test.com", first_name: "Kurt", last_name: "Russ", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
+user_7 = Person.create!(email: "jross@test.com", first_name: "Jay", last_name: "Ross", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
+user_8 = Person.create!(email: "msmith@test.com", first_name: "Mike", last_name: "Smith", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
+user_9 = Person.create!(email: "acampman@test.com", first_name: "Adam", last_name: "Campman", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
+user_10 = Person.create!(email: "Kreed@test.com", first_name: "Kenton", last_name: "Reed", password: "password", zip_code: "44221", proxy: true)
 
 #Create Articles
 Article.create(title: "An Introduction to the Civic Commons", author: "Dan Moulthrop", current: true, description: "Here's a short introduction to what this project is all about. Please check it out! It was made possible by lots of people, including a group of superfriends who sent in pictures.")
@@ -32,12 +35,22 @@ Article.create(title: "No One has ever asked me before", author: "Dan Moulthrop"
 Article.create(title: "The Civic Commons Poster Contest", author: "CC Staff", current: false, description: "The Commons is giving away five $500 prizes in a poster contest. You can participate by using any 11 x 17 surface to creatively express what it means to Join the Conversation. Click through for details.")
 
 # Create Metro Region
-metro_region_1 = MetroRegion.create!(province: "OH", city_name: "Hudson", metrocode: 1, display_name: "Hudson OH" )
-metro_region_2 = MetroRegion.create!(province: "AL", city_name: "Mobile", metrocode: 2, display_name: "Mobile AL" )
+metro_region_1 = MetroRegion.create!(province: "Ohio", city_name: "Hudson", metro_name: "Cleveland OH", province_code: "US-OH", metrocode: 1, city_province_token:"hudson-ohio", display_name: "Cleveland OH" )
+metro_region_2 = MetroRegion.create!(province: "Ohio", city_name: "Independence", metro_name: "Cleveland OH", province_code: "US-OH", metrocode: 1, city_province_token:"independence-ohio", display_name: "Cleveland OH" )
+metro_region_3 = MetroRegion.create!(province: "Ohio", city_name: "Brooklyn", metro_name: "Cleveland OH", province_code: "US-OH", metrocode: 1, city_province_token:"brooklyn-ohio", display_name: "Cleveland OH" )
+metro_region_4 = MetroRegion.create!(province: "Ohio", city_name: "Cuyahoga Falls", metro_name: "Cleveland OH", province_code: "US-OH", metrocode: 1, city_province_token:"cuyahoga-falls-ohio", display_name: "Cleveland OH" )
+metro_region_5 = MetroRegion.create!(province: "Ohio", city_name: "Dublin", metro_name: "Columbus OH", province_code: "US-OH", metrocode: 2, city_province_token:"dublin-ohio", display_name: "Columbus OH" )
+metro_region_6 = MetroRegion.create!(province: "Ohio", city_name: "Columbus", metro_name: "Columbus OH", province_code: "US-OH", metrocode: 2, city_province_token:"columbus-ohio", display_name: "Columbus OH" )
+metro_region_7 = MetroRegion.create!(province: "Ohio", city_name: "Pickerington", metro_name: "Columbus OH", province_code: "US-OH", metrocode: 2, city_province_token:"pickerington-ohio", display_name: "Columbus OH" )
+metro_region_8 = MetroRegion.create!(province: "Ohio", city_name: "Hillard", metro_name: "Columbus OH", province_code: "US-OH", metrocode: 2, city_province_token:"hillard-ohio", display_name: "Columbus OH" )
+metro_region_9 = MetroRegion.create!(province: "Ohio", city_name: "Westlake", metro_name: "Cleveland OH", province_code: "US-OH", metrocode: 1, city_province_token:"westlake-ohio", display_name: "Cleveland OH" )
 
 # Create Topics
 topic_1 = Topic.create!(name: "Arts")
 topic_2 = Topic.create!(name: "Health")
+topic_3 = Topic.create!(name: "Politics")
+topic_4 = Topic.create!(name: "Crime")
+topic_5 = Topic.create!(name: "Education")
 
 # Create Issues
 issue = Issue.new(name: "Opportunity Corridor", summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at velit lacus, vel lobortis quam. Duis eget odio lacus. Quisque ac.", topic_ids: [topic_1.id])
@@ -78,7 +91,7 @@ conversation_3.save!(validate: false)
 
 conversation_4 = Conversation.new(title: "Thoughts?", zip_code: "44301", summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at velit lacus, vel lobortis quam. Duis eget odio lacus. Quisque ac.")
 conversation_4.topics = [topic_2]
-conversation_4.metro_region_id = metro_region_2.id
+conversation_4.metro_region_id = metro_region_6.id
 conversation_4.owner = user_2.id
 conversation_4.people = [admin]
 conversation_4.subscriptions = [subscription_4]
