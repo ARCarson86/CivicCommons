@@ -58,6 +58,11 @@ issue.type = "ManagedIssue"
 issue.image = File.open('app/assets/images/cc_radio_show.jpg')
 issue.save!
 
+issue_2 = Issue.new(name: "A Big Issue", summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at velit lacus, vel lobortis quam. Duis eget odio lacus. Quisque ac.", topic_ids: [topic_4.id])
+issue_2.type = "ManagedIssue"
+issue_2.image = File.open('app/assets/images/cc_radio_show.jpg')
+issue_2.save!
+
 # Create Subscription
 subscription_1 = Subscription.create!(subscribable_type: "Conversation", person_id: admin.id)
 subscription_2 = Subscription.create!(subscribable_type: "Conversation", person_id: admin.id)
