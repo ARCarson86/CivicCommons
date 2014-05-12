@@ -63,6 +63,16 @@ issue_2.type = "ManagedIssue"
 issue_2.image = File.open('app/assets/images/cc_radio_show.jpg')
 issue_2.save!
 
+issue_3 = Issue.new(name: "Another Issue", summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at velit lacus, vel lobortis quam. Duis eget odio lacus. Quisque ac.", topic_ids: [topic_2.id])
+issue_3.type = "ManagedIssue"
+issue_3.image = File.open('app/assets/images/cc_radio_show.jpg')
+issue_3.save!
+
+issue_4 = Issue.new(name: "Fourth Issue", summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at velit lacus, vel lobortis quam. Duis eget odio lacus. Quisque ac.", topic_ids: [topic_3.id])
+issue_4.type = "ManagedIssue"
+issue_4.image = File.open('app/assets/images/cc_radio_show.jpg')
+issue_4.save!
+
 # Create Subscription
 subscription_1 = Subscription.create!(subscribable_type: "Conversation", person_id: admin.id)
 subscription_2 = Subscription.create!(subscribable_type: "Conversation", person_id: admin.id)
