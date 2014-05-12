@@ -29,3 +29,5 @@ $("#error_explanation").remove();
   <% end %>
 
 <% end %>
+
+$("#participants-list").html("<%= j render(partial: "/conversations/participants_aside", locals: {moderators_count: @conversation.moderators.count, moderators: @conversation.moderators, participants_count: @conversation.participants.count, participants: @conversation.participants}) %>");
