@@ -97,7 +97,7 @@ class Admin::IssuesController < Admin::DashboardController
   private
 
   def format_param(param)
-    if !param.nil? && param.match(/^\d+$/)
+    if !param.nil? && param.match(/\d+$/)
       param.to_i
     else
       nil
