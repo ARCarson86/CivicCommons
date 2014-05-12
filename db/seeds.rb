@@ -7,178 +7,155 @@
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
 
-# Create an admin person 
-# Credentials - test@example.com:password
+# Create an Admin
 
-admin_person = Person.create! do |p|
-  p.name = "Test Admin"
-  p.password = "password"
-  p.email = "admin@example.com"
-  p.admin = true
-end
-admin_person.confirm!
+admin = Person.create(email: "admin@admin.com", first_name: "Admin", last_name: "Admin", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
+admin.admin = true
+admin.save!
 
-# Create people used in test transcripts
-[ "Neal Conan",
-  "Andrew Welsh-Huggins",
-  "Chris Hayes",
-  "Debbie Stabenow",
-  "Annie Lowery",
-  "John Boehner",
-  "Chris Van Hollen",
-  "Xavier Becerra",
-  "Barack Obama",
-  "Brian Bilbray",
-  "Ann Friedman",
-  "Alex Wagner",
-  "Roger Hickey",
-  "Gary Rivlin",
-  "John Kasich",
-  "Bill O'Reilly",
-  "John King",
-  "Al Quincel",
-  "Ted Strickland",
-  "Alex Kuskin",
-  "Amy Lozier",
-  "Gloria Borger",
-  "Unknown Male",
-  "Unknown Female",
-  "Dana Bash",
-  "Joe Johns",
-  "Richard Daley",
-  "Jessica Yellin",
-  "Rahm Emanuel",
-  "Goria Borger",
-  "Unknown Announcer",
-  "Mary Kilroy",
-  "Gladys Lam",
-  "Frank Habraken",
-  "Jeff Wegner",
-  "Joe Garrity",
-  "Steve Stivers",
-  "John Boccieri",
-  "Jim Renacci",
-  "Tim Kaine",
-  "Jeff Stahler",
-  "Rick Sanchez",
-  "Pete Dominick"
-].each do |name|
-  email = name.downcase.gsub(/[^a-z0-9]/, ".") + "@example.com"
+# Create people
+user_1 = Person.create!(email: "nconan@test.com", first_name: "Neal", last_name: "Conan", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
+user_2 = Person.create!(email: "chayes@test.com", first_name: "Chauncy", last_name: "Hart", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
+user_3 = Person.create!(email: "rrowe@test.com", first_name: "Rob", last_name: "Rowe", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
+user_4 = Person.create!(email: "jduke@test.com", first_name: "Jenny", last_name: "Duke", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
+user_5 = Person.create!(email: "bbaggins@test.com", first_name: "Barry", last_name: "Baggins", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
+user_6 = Person.create!(email: "kruss@test.com", first_name: "Kurt", last_name: "Russ", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
+user_7 = Person.create!(email: "jross@test.com", first_name: "Jay", last_name: "Ross", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
+user_8 = Person.create!(email: "msmith@test.com", first_name: "Mike", last_name: "Smith", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
+user_9 = Person.create!(email: "acampman@test.com", first_name: "Adam", last_name: "Campman", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
+user_10 = Person.create!(email: "Kreed@test.com", first_name: "Kenton", last_name: "Reed", password: "password", zip_code: "44221", proxy: true)
 
-  Person.create!(:name => name,
-                 :email => email,
-                 :password => "password",
-                 :proxy => true)
-end
+#Create Articles
+Article.create(title: "An Introduction to the Civic Commons", author: "Dan Moulthrop", current: true, description: "Here's a short introduction to what this project is all about. Please check it out! It was made possible by lots of people, including a group of superfriends who sent in pictures.")
+Article.create(title: "How to help build the Commons", author: "Dan Moulthrop", current: false, description: "Here's a short video explaining the many ways you're already helping to build the Commons and other ways you might try. Thanks for checking it out!")
+Article.create(title: "Our Principles", author: "Lia Lockert", current: false, description: "These are our principles, the basic foundations guiding the work we do and how we do it. They're shared here by those who joined us for the National Day of Conversation, citizen journalists at the Akron Digital Media Center, and other friends throughout the community.")
+Article.create(title: "How to use theciviccommons.com", author: "Dan Moulthrop", current: false, description: "Here's a brief tour of theciviccommons.com and a little about how to join the conversation online and how this isn't your typical social networky/civic-minded website. It's better. And it's beta.")
+Article.create(title: "Grappling with responding to your feedback", author: "Dan Moulthrop", current: false, description: "We realize it’s maybe not entirely clear what you can do here and why you would want to do it. One of the most common bits of feedback we received last week goes something like")
+Article.create(title: "No One has ever asked me before", author: "Dan Moulthrop", current: false, description: "Join the ongoing conversation about what your Civic Commons can be. It's a conversation about conversations. Yeah, that's right. It's meta")
+Article.create(title: "The Civic Commons Poster Contest", author: "CC Staff", current: false, description: "The Commons is giving away five $500 prizes in a poster contest. You can participate by using any 11 x 17 surface to creatively express what it means to Join the Conversation. Click through for details.")
 
+# Create Metro Region
+metro_region_1 = MetroRegion.create!(province: "Ohio", city_name: "Hudson", metro_name: "Cleveland OH", province_code: "US-OH", metrocode: 1, city_province_token:"hudson-ohio", display_name: "Cleveland OH" )
+metro_region_2 = MetroRegion.create!(province: "Ohio", city_name: "Independence", metro_name: "Cleveland OH", province_code: "US-OH", metrocode: 1, city_province_token:"independence-ohio", display_name: "Cleveland OH" )
+metro_region_3 = MetroRegion.create!(province: "Ohio", city_name: "Brooklyn", metro_name: "Cleveland OH", province_code: "US-OH", metrocode: 1, city_province_token:"brooklyn-ohio", display_name: "Cleveland OH" )
+metro_region_4 = MetroRegion.create!(province: "Ohio", city_name: "Cuyahoga Falls", metro_name: "Cleveland OH", province_code: "US-OH", metrocode: 1, city_province_token:"cuyahoga-falls-ohio", display_name: "Cleveland OH" )
+metro_region_5 = MetroRegion.create!(province: "Ohio", city_name: "Dublin", metro_name: "Columbus OH", province_code: "US-OH", metrocode: 2, city_province_token:"dublin-ohio", display_name: "Columbus OH" )
+metro_region_6 = MetroRegion.create!(province: "Ohio", city_name: "Columbus", metro_name: "Columbus OH", province_code: "US-OH", metrocode: 2, city_province_token:"columbus-ohio", display_name: "Columbus OH" )
+metro_region_7 = MetroRegion.create!(province: "Ohio", city_name: "Pickerington", metro_name: "Columbus OH", province_code: "US-OH", metrocode: 2, city_province_token:"pickerington-ohio", display_name: "Columbus OH" )
+metro_region_8 = MetroRegion.create!(province: "Ohio", city_name: "Hillard", metro_name: "Columbus OH", province_code: "US-OH", metrocode: 2, city_province_token:"hillard-ohio", display_name: "Columbus OH" )
+metro_region_9 = MetroRegion.create!(province: "Ohio", city_name: "Westlake", metro_name: "Cleveland OH", province_code: "US-OH", metrocode: 1, city_province_token:"westlake-ohio", display_name: "Cleveland OH" )
 
-# Create test issues
-["Opportunity Corridor",
- "Port Authority",
- "Shrinkage",
- "LeBron James",
- "Youngstown's revival",
- "Bike path on the inner belt bridge",
- "Ohio Unemployment",
- "Ohio Gubernatorial Election",
- "International Business Rules Forum",
- "Ohio Politics",
- "Immigration Reform",
- "Water"].each do |issue|
-  Issue.create!(:name => issue, :summary => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at velit lacus, vel lobortis quam. Duis eget odio lacus. Quisque ac.")
-end
-ohio_politics_issue = Issue.find_by_name("Ohio Politics")
+# Create Topics
+topic_1 = Topic.create!(name: "Arts")
+topic_2 = Topic.create!(name: "Health")
+topic_3 = Topic.create!(name: "Politics")
+topic_4 = Topic.create!(name: "Crime")
+topic_5 = Topic.create!(name: "Education")
 
+# Create Issues
+issue = Issue.new(name: "Opportunity Corridor", summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at velit lacus, vel lobortis quam. Duis eget odio lacus. Quisque ac.", topic_ids: [topic_1.id])
+issue.type = "ManagedIssue"
+issue.image = File.open('app/assets/images/cc_radio_show.jpg')
+issue.save!
 
-def ingest(conversation, ingest_text_file_name)
-  base_path = ENV['TRANSCRIPTS_PATH'] || File.expand_path("~/Dropbox/Civic Commons/data/transcripts")
-  full_path = File.join(base_path, ingest_text_file_name)
-  IngestPresenter.new(conversation, File.open(full_path)).save!
-end
+issue_2 = Issue.new(name: "A Big Issue", summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at velit lacus, vel lobortis quam. Duis eget odio lacus. Quisque ac.", topic_ids: [topic_4.id])
+issue_2.type = "ManagedIssue"
+issue_2.image = File.open('app/assets/images/cc_radio_show.jpg')
+issue_2.save!
 
-conversation = Conversation.create!(:title => "Conversation regarding Ohio Unemployment",
-                                    :summary => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at velit lacus, vel lobortis quam. Duis eget odio lacus. Quisque ac.",
-                                    :started_at => 2.hours.ago,
-                                    :finished_at => Time.now,
-                                    :zip_code => "44301")
-conversation.issues << Issue.find_by_name("Ohio Unemployment")
-conversation.issues << ohio_politics_issue
+issue_3 = Issue.new(name: "Another Issue", summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at velit lacus, vel lobortis quam. Duis eget odio lacus. Quisque ac.", topic_ids: [topic_2.id])
+issue_3.type = "ManagedIssue"
+issue_3.image = File.open('app/assets/images/cc_radio_show.jpg')
+issue_3.save!
 
-ingest(conversation, "transcript.txt")
+issue_4 = Issue.new(name: "Fourth Issue", summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at velit lacus, vel lobortis quam. Duis eget odio lacus. Quisque ac.", topic_ids: [topic_3.id])
+issue_4.type = "ManagedIssue"
+issue_4.image = File.open('app/assets/images/cc_radio_show.jpg')
+issue_4.save!
 
+# Create Subscription
+subscription_1 = Subscription.create!(subscribable_type: "Conversation", person_id: admin.id)
+subscription_2 = Subscription.create!(subscribable_type: "Conversation", person_id: admin.id)
+subscription_3 = Subscription.create!(subscribable_type: "Conversation", person_id: admin.id)
+subscription_4 = Subscription.create!(subscribable_type: "Conversation", person_id: admin.id)
 
+# Create Conversations
+conversation_1 = Conversation.new(title: "Frontline", zip_code: "44301", summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at velit lacus, vel lobortis quam. Duis eget odio lacus. Quisque ac.")
+conversation_1.topics = [topic_1, topic_2]
+conversation_1.metro_region_id = metro_region_1.id
+conversation_1.owner = user_1.id
+conversation_1.people = [admin]
+conversation_1.subscriptions = [subscription_1]
+conversation_1.save!(validate: false)
 
-lethal_convo = Conversation.create!(:title => "Conversation regarding Lethal Injection",
-                                    :summary => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at velit lacus, vel lobortis quam. Duis eget odio lacus. Quisque ac.",
-                                    :started_at => 3.days.ago,
-                                    :finished_at => 3.days.ago + 1.hours,
-                                    :zip_code => 44301)
-lethal_convo.issues << Issue.find_by_name("International Business Rules Forum")
-lethal_convo.issues << ohio_politics_issue
-ingest(lethal_convo, "internationalbusinessrulesforum.txt")
+conversation_2 = Conversation.new(title: "Ohio Tax", zip_code: "44301", summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at velit lacus, vel lobortis quam. Duis eget odio lacus. Quisque ac.")
+conversation_2.topics = [topic_2]
+conversation_2.metro_region_id = metro_region_1.id
+conversation_2.owner = user_1.id
+conversation_2.people = [admin]
+conversation_2.subscriptions = [subscription_2]
+conversation_2.save!(validate: false)
 
+conversation_3 = Conversation.new(title: "Another One", zip_code: "44301", summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at velit lacus, vel lobortis quam. Duis eget odio lacus. Quisque ac.")
+conversation_3.topics = [topic_1]
+conversation_3.metro_region_id = metro_region_2.id
+conversation_3.owner = user_2.id
+conversation_3.people = [admin]
+conversation_3.subscriptions = [subscription_3]
+conversation_3.save!(validate: false)
 
-# 
-# oreilly_convo = Conversation.create!(:moderator => admin_person,
-#                                      :title => "Oreilly Factor - Ohio Gubernatorial Race",
-#                                      :summary => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at velit lacus, vel lobortis quam. Duis eget odio lacus. Quisque ac.",
-#                                      :started_at => 3.days.ago,
-#                                      :finished_at => 3.days.ago + 1.hours,
-#                                      :zip_code => 44301)
-# oreilly_convo.issues << Issue.find_by_name("Ohio Unemployment")
-# oreilly_convo.issues << Issue.find_by_name("Ohio Gubernatorial Election")
-# oreilly_convo.issues << ohio_politics_issue
-# 
-# ingest(oreilly_convo, "oreilly_factor.txt")
-# 
-# 
-# 
-# ed_show_convo = Conversation.create!(:moderator => admin_person,
-#                                      :title => "Ed Show - Immigration Reform",
-#                                      :summary => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at velit lacus, vel lobortis quam. Duis eget odio lacus. Quisque ac.",
-#                                      :started_at => 3.days.ago,
-#                                      :finished_at => 3.days.ago + 1.hours,
-#                                      :zip_code => 44301)
-# ed_show_convo.issues << Issue.find_by_name("Immigration Reform")
-# ed_show_convo.issues << ohio_politics_issue
-# 
-# ingest(ed_show_convo, "transcript.txt")
+conversation_4 = Conversation.new(title: "Thoughts?", zip_code: "44301", summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at velit lacus, vel lobortis quam. Duis eget odio lacus. Quisque ac.")
+conversation_4.topics = [topic_2]
+conversation_4.metro_region_id = metro_region_6.id
+conversation_4.owner = user_2.id
+conversation_4.people = [admin]
+conversation_4.subscriptions = [subscription_4]
+conversation_4.save!(validate: false)
 
+# Create Contributions
+contribution_1 = Contribution.new(content: "Ipsum Lorem")
+contribution_1.owner = user_1.id
+contribution_1.conversation_id = conversation_1.id
+contribution_1.top_level_contribution = true
+contribution_1.item = conversation_1
+contribution_1.confirmed = true
+contribution_1.save!
 
+contribution_2 = Contribution.new(content: "Ipsum Lorem")
+contribution_2.owner = user_2.id
+contribution_2.conversation_id = conversation_1.id
+contribution_2.parent_id = contribution_1.id
+contribution_2.item = conversation_1
+contribution_1.confirmed = true
+contribution_2.save!
 
-lorems = ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod iaculis bibendum. Integer in diam sem, non pulvinar sapien. Nunc luctus, magna sed tempus sodales, metus erat sollicitudin velit, vel congue tortor nunc quis erat. Cras venenatis commodo felis a fringilla. Morbi porttitor tellus magna, sollicitudin auctor lorem. Cras lacus erat, rutrum eget adipiscing vel, adipiscing ac urna. Nam feugiat consectetur erat in aliquet. Vivamus eu metus nulla. Vivamus vestibulum sapien ullamcorper ligula pretium id convallis elit tristique. Aenean nec quam eu mi fringilla pulvinar a nec purus. In ullamcorper felis et elit tempus hendrerit. Morbi bibendum, ante vitae ornare tincidunt, leo metus mattis diam, a fringilla urna sem a nunc. Aenean quis erat eget neque porttitor vehicula vitae vel erat.",
-"Vestibulum nec mi viverra urna tempus congue at ut orci. Praesent suscipit massa sit amet elit blandit elementum. Maecenas adipiscing faucibus augue ac commodo. Cras condimentum ultrices euismod. Pellentesque et metus ac lectus venenatis aliquet a non erat. Proin sit amet turpis enim, ac vehicula tortor. Integer non urna sapien, sed gravida ligula. Curabitur pulvinar egestas porta. Maecenas ut velit et arcu tincidunt pharetra volutpat ut augue. Cras ligula turpis, placerat sit amet malesuada sed, accumsan faucibus nibh. Aenean at sagittis nunc. Mauris ac leo quis dui vulputate gravida sed eu massa. Aenean semper metus sed velit aliquam pellentesque. Aenean luctus consectetur tincidunt. Nullam eget elementum orci. Proin molestie pulvinar purus ut bibendum. Curabitur porta fringilla ipsum, vitae porttitor nibh placerat sit amet.",
-"Phasellus accumsan hendrerit mattis. Sed ipsum diam, euismod non posuere id, cursus consequat turpis. Aenean sed lacus sed urna molestie volutpat sit amet at lorem. Duis adipiscing euismod venenatis. Aenean pellentesque odio a massa congue et tincidunt mi aliquet. Nulla tortor orci, sagittis ac condimentum et, feugiat id justo. Nam id massa ipsum, et fermentum est. Aenean ligula dolor, ultricies vitae porttitor a, porta eget nibh. Morbi a quam leo. In scelerisque semper leo, eget ultrices lorem condimentum at.",
-"Quisque dictum quam sed eros consectetur dignissim. Donec eget quam et enim malesuada pretium et cursus augue. Nulla non leo est, eget tristique augue. Nam pulvinar, nibh id congue venenatis, sapien mi pharetra purus, at vulputate orci nibh non odio. Nam rhoncus mauris nec dui viverra sodales. Nulla rutrum, lorem auctor pharetra hendrerit, ipsum ante sagittis erat, eu facilisis nibh mauris vel turpis. Vivamus vel orci in nisl auctor volutpat. Praesent at purus sed nunc tempor egestas non eget neque. Proin pulvinar gravida fermentum. Morbi sit amet quam justo, faucibus laoreet mi. Nulla facilisi. Cras sodales tempor augue, nec interdum diam venenatis non. Cras sit amet mi est, sed feugiat ante.",
-"Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse ac urna vitae nisl dapibus malesuada. Vivamus sed augue nec nunc placerat mattis. Morbi ligula arcu, blandit quis lobortis nec, suscipit in justo. Praesent auctor consequat diam, eget commodo turpis lobortis at. Cras tincidunt, sem at pulvinar condimentum, mauris leo hendrerit enim, commodo commodo purus ligula vitae nunc. Nunc sagittis lacus vel turpis laoreet non varius orci vehicula. Sed vel enim eget ligula semper ullamcorper nec in nisl. Sed ornare, libero vitae auctor dictum, libero magna posuere enim, ut lobortis orci tellus vel nunc. Proin nisl elit, lobortis quis varius pharetra, condimentum nec est. Aenean enim quam, interdum at malesuada sed, elementum eget neque.",
-"Nulla dapibus nulla eget ante dictum in pulvinar lorem volutpat. Mauris dui purus, posuere in tristique vitae, posuere sed eros. Ut sit amet lectus odio, et euismod nulla. Sed cursus tortor ac sapien aliquet cursus. Phasellus eget magna justo. Maecenas sollicitudin, massa volutpat venenatis feugiat, felis velit fringilla sem, eget molestie nulla nisl et odio. Sed vitae ipsum sit amet lacus venenatis placerat. Aenean blandit, quam sed facilisis venenatis, orci tortor tempor dolor, et iaculis metus odio id erat. Phasellus quis condimentum risus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Ut eget dui arcu, ac suscipit neque. Aliquam cursus aliquet auctor. Ut vel lorem vitae massa laoreet malesuada placerat quis nulla. Vivamus feugiat vehicula quam a lobortis. In gravida dictum porta. Etiam tristique placerat nunc nec tempus. Phasellus pharetra metus dignissim sapien tristique non bibendum libero sollicitudin. Suspendisse potenti. Sed non orci vitae quam semper sollicitudin nec ut massa. Vivamus facilisis diam eu nisl facilisis ullamcorper sed vel nibh.",
-"Duis feugiat euismod est at eleifend. Nullam non lacinia turpis. Suspendisse potenti. In tempus, eros ac venenatis condimentum, justo quam eleifend nulla, vel tempus erat ipsum quis dui. Duis et augue ac neque fermentum elementum non ut turpis. Fusce tempus lacus gravida nulla vestibulum a fermentum ligula vulputate. Aenean nunc sem, pharetra consequat eleifend et, lobortis quis nisi. Quisque accumsan sapien sed arcu bibendum vitae viverra tellus vehicula. Vivamus dolor leo, luctus sit amet adipiscing sed, pellentesque fringilla diam. Sed tortor turpis, tincidunt ut blandit vitae, dignissim in quam. Aenean eget dui nisl. Aenean quis nisl augue, molestie condimentum libero. Cras ut massa magna, nec placerat mi. Morbi porttitor sapien massa, eget elementum lorem.",
-"Vivamus aliquam dolor in quam semper eleifend. Nam sit amet leo diam, vitae sollicitudin sapien. Duis pulvinar ornare viverra. Pellentesque facilisis imperdiet posuere. Morbi quis elementum purus. Sed facilisis eros eu justo lobortis fermentum ultrices lectus blandit. Phasellus molestie tincidunt turpis a accumsan. Cras sit amet leo vitae dui interdum pharetra sed nec massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc et magna sem, sed condimentum dui. Praesent laoreet mollis ultricies. Mauris vel enim tortor, in convallis ante. Etiam quis mauris quam, ut consequat nulla. Curabitur tristique dolor tristique libero volutpat porta.",
-"Maecenas vitae felis mauris, id scelerisque massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis at nisl magna, at laoreet mauris. Mauris vel sapien id purus condimentum placerat at ut dolor. Vestibulum eleifend molestie nisi volutpat commodo. Vestibulum a ante mattis nunc eleifend vestibulum a non enim. Vestibulum risus mauris, malesuada eget consequat suscipit, consectetur eget quam. Morbi volutpat scelerisque justo, vitae egestas est euismod at. Nulla lacinia elit vel erat tempus sed pellentesque enim egestas. Nullam ipsum mi, egestas ac semper id, interdum vel nulla. Pellentesque et erat in risus iaculis hendrerit sit amet sed ante. Integer interdum aliquam consequat. Donec enim massa, fermentum nec varius nec, euismod vel mi.",
-"Nunc vitae metus nunc, non aliquet ante. Nulla facilisi. Cras blandit, magna ut faucibus faucibus, tellus lacus mattis ipsum, id scelerisque sem nibh in nisi. Quisque mattis metus sit amet eros sagittis sollicitudin. Curabitur quis luctus eros. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec non fermentum risus. Aliquam vitae urna lacus, sit amet congue felis. Etiam ut tortor suscipit sapien facilisis lacinia. Donec ac pulvinar elit. Proin nec porttitor enim. Nam bibendum dui dolor, blandit congue justo.",
-"Nam mattis tortor diam. Integer suscipit porta aliquam. Etiam vehicula diam a dui adipiscing vitae luctus velit sollicitudin. Aenean est massa, aliquet vel tempor in, cursus vel diam. Duis augue libero, feugiat id condimentum quis, cursus elementum odio. Cras tincidunt facilisis dui, ut malesuada libero volutpat congue. Maecenas sapien elit, luctus at egestas ut, commodo non elit. Aliquam aliquam risus sed quam tempor pulvinar. Nunc leo neque, volutpat vitae molestie a, posuere sit amet erat. Donec a sem a ante ornare consequat. Donec diam quam, aliquam iaculis aliquam ac, scelerisque non velit. Morbi nulla dui, condimentum id consectetur eu, rutrum non velit. Nam ut tempus orci. Sed massa lorem, placerat at aliquam ac, laoreet vel neque. Vivamus dictum, lacus at vehicula rutrum, ante felis gravida massa, vel porta sem metus in diam. Aliquam erat volutpat. Phasellus feugiat, ante quis convallis posuere, quam enim sodales metus, eu facilisis eros enim et erat.",
-"Duis rhoncus velit non diam tempor lacinia. Morbi ultricies, sem et ornare faucibus, velit nisi tempor eros, eu vestibulum tortor purus sit amet ligula. Morbi eleifend fermentum fermentum. Aenean fringilla sem a tellus bibendum vulputate. Aliquam urna purus, lacinia eget vestibulum vel, adipiscing a metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean odio arcu, egestas quis vehicula non, varius ut neque. Sed eu sem enim, vel laoreet libero. Praesent feugiat pulvinar risus, sed consectetur mi facilisis quis. Vivamus ultrices laoreet rutrum.",
-"Cras rhoncus neque at elit varius sed ultrices metus faucibus. Proin consectetur sapien in est commodo facilisis. Aenean dignissim viverra accumsan. Sed pretium, velit eu pulvinar scelerisque, metus purus ultrices velit, vitae vestibulum lectus sem ut elit. Cras porttitor gravida risus, non semper magna facilisis fringilla. Integer leo lectus, euismod sed sodales nec, tincidunt a dui. Fusce pulvinar urna quis augue lobortis nec faucibus lectus auctor. In hac habitasse platea dictumst. Donec varius tellus vel elit commodo vulputate. Donec elementum bibendum sapien, vel cursus erat tincidunt et. Proin sed fermentum arcu. Cras suscipit tempus nunc eget rutrum. Donec feugiat leo scelerisque enim eleifend vitae ultricies dui commodo. Duis placerat, nibh vel gravida dictum, diam est vulputate nisi, eget suscipit elit erat non enim. Vestibulum vitae fringilla erat. Nulla commodo mauris commodo urna ornare fringilla. In hac habitasse platea dictumst. Suspendisse potenti. Maecenas tristique diam vitae tellus varius luctus. Praesent pharetra ante at neque sodales porta vel a ante.",
-"In enim est, imperdiet et dapibus sed, vehicula sed odio. Suspendisse luctus erat sed quam gravida tempus. In dignissim posuere ante eget pretium. Praesent ut magna at risus vehicula fringilla. Sed varius lacus eu neque ullamcorper eget tristique neque sodales. Nulla auctor, nulla id faucibus condimentum, odio tellus dictum leo, ut tincidunt mauris orci eu arcu. Nunc ac felis augue. Pellentesque at mi sed tellus luctus cursus. Proin eget blandit ante. Integer bibendum tristique placerat. Mauris adipiscing purus quis libero congue iaculis. Fusce in mauris dui. Aenean tortor felis, dictum ut aliquet posuere, viverra ac sem. Praesent a magna euismod mauris euismod tempor id sit amet dui. Suspendisse lacinia vestibulum dui, in feugiat purus laoreet vitae. Nullam porta rhoncus sodales. Fusce pulvinar felis et augue commodo iaculis. Phasellus rutrum justo ut lacus euismod suscipit. Mauris mattis libero et massa rhoncus vel pulvinar mauris gravida.",
-"Fusce ut sem quis mauris posuere bibendum. Integer volutpat pellentesque ipsum in commodo. Nulla facilisi. Suspendisse potenti. Sed posuere dictum velit, et aliquet augue aliquam quis. Phasellus ut dignissim leo. Etiam cursus feugiat cursus. Mauris scelerisque massa eget tellus aliquam tincidunt. Phasellus velit neque, pretium ut condimentum sit amet, sodales ac dui. Sed consectetur sodales lobortis. Etiam nunc lorem, fringilla ut adipiscing a, interdum nec quam.",
-"Suspendisse potenti. Suspendisse lobortis, erat at rutrum consequat, augue turpis fringilla erat, a posuere felis erat eu turpis. Vestibulum gravida, justo at tristique venenatis, erat eros blandit nibh, ut vehicula leo nunc vel dui. In dictum aliquet euismod. Vestibulum eget fringilla tellus. In sed eros id leo facilisis dignissim id sit amet magna. Sed eu lacus sodales ligula volutpat semper a eu risus. Quisque et nunc sed dui congue tristique. Phasellus lobortis, sapien eu iaculis blandit, ligula justo posuere nulla, sed tempor erat risus sed lacus. Cras in dolor elit, vitae iaculis ante.",
-"Pellentesque eu neque a nisi scelerisque ornare. Curabitur ornare, orci non facilisis malesuada, nisi quam pharetra lorem, sed tincidunt nunc enim sed quam. Donec nec nibh orci. Sed consequat leo a justo egestas et semper arcu interdum. Proin mauris nulla, semper vitae adipiscing quis, ornare sit amet eros. Duis eget odio massa, a sagittis justo. Donec congue mauris ac ante laoreet elementum. Ut nec tortor est. Pellentesque convallis ligula ac dolor cursus interdum. Vivamus accumsan magna a orci tincidunt viverra. Nullam dapibus sagittis ante, non vulputate mauris luctus ac. Ut tempus gravida elit, non bibendum sem varius in. Cras et risus ipsum. Cras suscipit dolor quis sapien accumsan et egestas augue vehicula. Fusce tempus adipiscing nisi at scelerisque.",
-"Mauris gravida neque a dui vestibulum pharetra. Mauris eros urna, euismod eu vulputate in, lacinia a ipsum. Praesent ut ligula mauris. Integer vel porttitor urna. Maecenas vitae ligula nec purus ullamcorper vulputate. Vestibulum venenatis venenatis ipsum, et ultrices eros ultricies ut. Integer urna eros, interdum id volutpat vel, consequat in enim. Nunc rhoncus justo non erat tristique id interdum sem dapibus. Quisque varius aliquet pretium. Sed convallis varius hendrerit. Donec mattis ultrices risus, egestas feugiat dolor mollis in. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;",
-"Curabitur vehicula purus sed dolor commodo scelerisque. Donec ut rutrum mauris. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin adipiscing ornare fringilla. Pellentesque ullamcorper tellus et neque luctus facilisis. Suspendisse potenti. Sed in urna et nisi feugiat dictum eget non velit. Duis eleifend urna eget mi placerat mollis. Praesent condimentum purus sit amet justo tincidunt dignissim. Donec a tristique purus. Aenean odio lectus, luctus eu vulputate sit amet, tincidunt quis enim. Proin tincidunt feugiat diam, et elementum odio mollis a. Pellentesque volutpat commodo pulvinar. Sed posuere gravida faucibus. Nam lorem quam, iaculis ac pharetra et, tristique semper dui. Curabitur sit amet molestie elit.",
-"Nunc feugiat neque in ipsum fringilla eget ultricies arcu tempor. Pellentesque et dignissim felis. Quisque pharetra, augue id ullamcorper interdum, velit orci porttitor orci, quis placerat risus dolor sed dui. Donec bibendum, nulla a iaculis ullamcorper, ante lacus porta nisi, ut pretium dolor diam eu neque. Praesent mollis ultrices tellus, eu convallis nisl rutrum quis. Donec sit amet dui urna, vel rutrum turpis. Ut ut urna id elit varius accumsan bibendum vitae neque. Sed vel mauris nec dui hendrerit dapibus. Maecenas mollis libero vitae lectus venenatis nec volutpat libero consequat. Pellentesque in justo nisl, ut pharetra odio. In luctus nibh nec arcu mollis eget venenatis dolor faucibus. Nullam accumsan adipiscing nunc id adipiscing. Fusce accumsan vehicula nibh, nec mollis nibh vehicula quis. Aliquam varius sollicitudin erat vitae cursus. Nullam eleifend tristique facilisis. Vestibulum magna risus, pharetra vitae tristique sed, euismod at velit."]
+# Create Petition
+petition_1 = Petition.create!(title: "Say No", description: "Ipsum Lorem", resulting_actions: "Ipsum Lorem", signature_needed: 20, person_id: user_1.id, conversation_id: conversation_1.id)
 
+# Create Petition Signature
+petition_signature = PetitionSignature.create!(petition_id: petition_1.id, person_id: user_1.id)
 
-Issue.all.each_with_index do |issue, index|
-  Person.all.sort_by{ rand }.first(index).each_with_index do |person, p_index|
-  contributions = (p_index % 5) + 1
-    contributions.times do
-      Contribution.create!(:person => person,
-                           :issue => issue,
-                           :content => lorems[rand(lorems.size)],
-                           :conversation => Conversation.all.sort_by{ rand }.first,
-                           :top_level_contribution => true)
-    end
-  end
-end
+# Create Rating Descriptors
+informative = RatingDescriptor.create!(title: "Informative")
+persuasive = RatingDescriptor.create!(title: "Persuasive")
+inspiring = RatingDescriptor.create!(title: "Inspiring")
 
+# Create Rating Groups
+rating_group_1 = RatingGroup.create!(person_id: user_1.id, contribution_id: contribution_2.id)
+rating_group_2 = RatingGroup.create!(person_id: user_2.id, contribution_id: contribution_1.id)
+rating_group_3 = RatingGroup.create!(person_id: user_3.id, contribution_id: contribution_2.id)
 
+# Create Ratings
+rating_1 = Rating.create!(rating_group_id: rating_group_1.id, rating_descriptor_id: informative.id)
+rating_2 = Rating.create!(rating_group_id: rating_group_2.id, rating_descriptor_id: informative.id)
+rating_3 = Rating.create!(rating_group_id: rating_group_3.id, rating_descriptor_id: persuasive.id)
+
+# Create Survey
+survey_1 = Survey.new(title: "Are You Here?", surveyable_type: "Conversation", description: "Ipsum", max_selected_options: 1, person_id: user_1.id)
+survey_1.type = "Vote"
+survey_1.surveyable_id = conversation_1.id
+survey_1.end_date = "2001-02-03"
+survey_1.save!
+
+# Create Survey Response
+survey_response_1 = SurveyResponse.create!(survey_id: survey_1.id, person_id: user_1.id)

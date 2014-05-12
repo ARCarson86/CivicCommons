@@ -7,5 +7,4 @@ class ProjectsController < ApplicationController
     @recent_items = Activity.most_recent_activity_items(limit: 3)
     @top_metro_regions = MetroRegion.top_metro_regions(5)
   end
-
 end
