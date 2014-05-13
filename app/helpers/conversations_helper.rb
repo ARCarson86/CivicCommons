@@ -161,9 +161,7 @@ module ConversationsHelper
   end
 
   def path_to_content_item(content_item)
-    if content_item.content_type == 'RadioShow'
-      path = radioshow_path(content_item)
-    elsif content_item.content_type == 'BlogPost'
+    if content_item.content_type == 'BlogPost'
       path = blog_path(content_item)
     end
     return path
@@ -203,8 +201,6 @@ module ConversationsHelper
   def get_path_sym(content_item)
     if content_item
       case content_item.content_type
-      when 'RadioShow'
-        :radioshow
       when 'BlogPost'
         :blog
       end

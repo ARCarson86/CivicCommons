@@ -47,7 +47,6 @@ class SearchService
     region_metrocodes = options.delete(:region_metrocodes)
     results = @search.search(models) do
       with(:content_type, 'BlogPost') if filter == 'blogs'
-      with(:content_type, 'RadioShow') if filter == 'radioshows'
       with(:type, 'Issue') if filter == 'issues'
       case filter
       when 'projects'

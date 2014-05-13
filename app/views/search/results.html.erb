@@ -51,8 +51,6 @@
                   activeFilterCommunity = "active"
                 when "blogs"
                   activeFilterBlogs = "active"
-                when "radioshows"
-                  activeFilterRadioShows = "active"
                 when "contributions"
                   activeFilterContributions = "active"
                 when "projects"
@@ -63,7 +61,6 @@
             <li><%= link_to "Conversations", search_path(:q => params['q'], :filter => 'conversations'), id: "conv-s",  title: "Filter by conversations", class: activeFilterConversation %></li>
             <li><%= link_to "Community", search_path(:q => params['q'], :filter => 'community'), id: "comm-s",  title: "Filter by community", class: activeFilterCommunity %></li>
             <li><%= link_to "Blogs", search_path(:q => params['q'], :filter => 'blogs'), id: "blog-s",  title: "Filter by blog posts", class: activeFilterBlogs %></li>
-            <li><%= link_to "Radio Shows", search_path(:q => params['q'], :filter => 'radioshows'), id: "radio-s",  title: "Filter by radio shows", class: activeFilterRadioShows %></li>
             <li><%= link_to "Contributions", search_path(:q => params['q'], :filter => 'contributions'), id: "contrib-s",  title: "Filter by contributions", class: activeFilterContributions %></li>
             <li><%= link_to "Projects", search_path(:q => params['q'], :filter => 'projects'), id: "project-s",  title: "Filter by projects", class: activeFilterProjects %></li>
           </ul>
