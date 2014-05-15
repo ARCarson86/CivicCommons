@@ -37,5 +37,4 @@ class Subscription < ActiveRecord::Base
       person.subscriptions.create(subscribable: subscribable)
     end
   end
-
 end

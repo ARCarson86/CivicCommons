@@ -4,3 +4,5 @@
     $(this).remove()
   });
 <% end %>
+
+$("#participants-list").html("<%= j render(partial: "/conversations/participants_aside", locals: {moderators_count: @contribution.conversation.moderators.count, moderators: @contribution.conversation.moderators, participants_count: @contribution.conversation.participants.count, participants: @contribution.conversation.participants}) %>");

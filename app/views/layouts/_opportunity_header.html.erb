@@ -57,7 +57,7 @@
           <div class='conversation-supplement'>
             <%= render partial: "/conversations/share_buttons" %>
           </div>
-          <div class='conversation-supplement'>
+          <div class='conversation-supplement' id="participants-list">
             <%= render partial: "/conversations/participants_aside", locals: {
               moderators_count: @conversation.moderators.count,
               moderators: @conversation.moderators,

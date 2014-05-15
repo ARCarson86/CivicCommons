@@ -36,6 +36,7 @@ function update_sort(event, ui){
       }
     });
     $("table.issues").trigger("update");
+    window.location.reload();
   });
 }
 
