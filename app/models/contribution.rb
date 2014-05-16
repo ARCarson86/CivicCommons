@@ -1,4 +1,5 @@
 require 'parent_validator'
+require 'obscenity/active_model'
 class Contribution < ActiveRecord::Base
   include Visitable
 
@@ -12,12 +13,11 @@ class Contribution < ActiveRecord::Base
   end
 
   attr_accessor :top_level
-
+  validates :content,  obscenity: { sanitize: true, replacement: :vowels }
   # nested contributions are destroyed via callbacks
   acts_as_nested_set :exclude_unless => {:confirmed => true}, :dependent => :destroy, :scope => :conversation_id
   attr_protected :lft, :rgt
   acts_as_revisionable
-  profanity_filter :content, :method => 'hollow'
   attr_accessor :moderation_reason
 
   belongs_to :person, :foreign_key => "owner"
@@ -101,6 +101,7 @@ class Contribution < ActiveRecord::Base
     :s3_credentials => S3Config.credential_file,
     :path => IMAGE_ATTACHMENT_PATH,
     :styles => {:thumb => "75x75>", :medium => "300x300>", :large => "800x800>"}
+  validates_attachment_content_type :attachment, :content_type => %w(image/jpeg image/jpg image/png image/gif)
 
   before_attachment_post_process :is_image?
 

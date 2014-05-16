@@ -6,7 +6,7 @@ gem 'mysql2'
 
 gem 'sass-rails', '~> 3.2.3'
 gem 'compass-rails'
-gem 'coffee-rails', '~> 3.2.1'
+gem 'coffee-rails'
 gem 'uglifier', '>= 1.0.3'
 gem "font-awesome-rails"
 
@@ -20,7 +20,7 @@ gem 'newrelic_rpm'
 gem 'redis-rails'
 
 gem 'devise', '1.5.2'
-gem "cancan", '1.6.8'
+gem "cancan"
 gem 'omniauth', '1.0.1'
 gem 'omniauth-facebook'
 
@@ -29,13 +29,13 @@ gem 'fb_graph'
 gem 'json', '~>1.7.7'
 
 gem 'date_validator'
-gem "will_paginate", "~> 3.0.3"
+gem "will_paginate"
 
 gem 'httparty'
 
 gem 'geokit'
 
-gem "friendly_id", "~> 4.0.1"
+gem "friendly_id"
 gem 'acts_as_revisionable'
 gem 'awesome_nested_set'
 gem 'embedly', '1.5.2'
@@ -49,7 +49,7 @@ gem 'daemons'
 gem 'remotipart'
 
 # gem 'paperclip', "~>2.5.0"
-gem 'paperclip', '~> 3.1'
+gem 'paperclip'
 gem 'aws-s3'
 gem 'aws-sdk', "~> 1.9.1"
 gem 'nokogiri'
@@ -57,8 +57,9 @@ gem 'sanitize'
 gem 'highline'
 gem 'htmlentities'
 gem 'truncate_html'
+gem 'obscenity'
 
-gem "gchart", "~> 1.0.0"
+gem "gchart"
 
 gem 'sunspot_rails'
 gem 'sunspot_solr'
@@ -66,9 +67,7 @@ gem 'progress_bar'
 
 gem 'sixarm_ruby_email_address_validation'
 
-gem 'profanity_filter', :git => 'git://github.com/CivicCommons/profanity_filter.git'
-
-gem 'ckeditor', :git => 'git://github.com/paramaw/ckeditor.git', :branch  => "master" # a bug was introduced to 3.7.3 that made ckeditor unable to work with IE
+gem 'ckeditor'
 
 gem 'prawn_rails'
 gem 'prawn', '>= 1.0.0.rc1'
