@@ -6,7 +6,6 @@ class ConversationsController < ApplicationController
     :create,
     :toggle_rating,
     :create_from_blog_post,
-    :create_from_radioshow,
     :edit
   ]
 
@@ -231,25 +230,6 @@ class ConversationsController < ApplicationController
     end
   end
 
-  # PUT /conversations/radio/:id
-  def create_from_radioshow
-    @radioshow = ContentItem.find(params[:id])
-    if request.xhr?
-      render partial: 'shared/redirect_after_xhr', locals: { url: radioshow_url(@radioshow) }
-    else
-      params[:conversation][:summary] = "<em>This is a conversation about The Civic Commons Radio <a href=\"#{radioshow_url(@radioshow)}\">#{@radioshow.title}</a></em><br/><br/>#{@radioshow.summary}"
-      params[:conversation][:title] = "The Civic Commons Radio #{@radioshow.title}"
-      params[:conversation][:zip_code] = "ALL"
-      prep_convo(params)
-      if @conversation.save
-        @radioshow.conversations << @conversation
-        redirect_to conversation_path(@conversation)
-      else
-        render 'radioshow/show'
-      end
-    end
-  end
-
   # PUT /conversations/1
   # NOT IMPLEMENTED YET, I.E. NOT ROUTEABLE
   def update
@@ -318,8 +298,8 @@ class ConversationsController < ApplicationController
   end
 
   def get_content_item(params)
-    if params[:radioshow_id] || params[:blog_id]
-      @content_item = ContentItem.find(params[:radioshow_id]||params[:blog_id])
+    if params[:blog_id]
+      @content_item = ContentItem.find(params[:blog_id])
       @start_from = @content_item.content_type
     end
   end

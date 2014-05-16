@@ -1,16 +1,12 @@
 <h2>Content Items: <%= @filter %></h2>
 
 <%= render "admin/content_items/blog_post/description_form" if @filter == 'BlogPost' %>
-<%= render "admin/content_items/radio_show/description_form" if @filter == 'RadioShow' %>
 
 <table class="tablesorter" summary="List of Content Items">
   <thead>
     <tr>
       <th>Content Item Title</th>
       <th>Author</th>
-      <% if @filter == 'RadioShow' %>
-        <th>Hosts/Guests</th>
-      <% end %>
       <th>Type</th>
       <th>Published Date</th>
       <th>Created Date</th>
@@ -29,16 +25,6 @@
         <td><%= link_to item.title, admin_content_item_path(item) %></td>
       <% end %>
       <td><%= item.author.name %></td>
-      <% if @filter == 'RadioShow' %>
-        <td>
-          <% if item.people.count > 0 %>
-            <%= item.people.collect(&:name).join(', ') %>
-            <%= link_to "Manage Host/Guest", admin_content_item_content_items_people_path(item) %>
-          <% else %>
-            <%= link_to "Add Host/Guest", admin_content_item_content_items_people_path(item) %>
-          <% end %>
-        </td>
-      <% end %>
       <td><%= item.content_type %></td>
       <td><%= item.published.blank? ? '' : item.published.strftime("%m-%d-%Y") %></td>
       <td><%= item.created_at.strftime("%m-%d-%Y") %></td>

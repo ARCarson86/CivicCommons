@@ -16,11 +16,4 @@
    <h4><%= link_to title, hit.result.external_link, :title => title, :target => "blank" %></h4>
    <p><%= best_hit_description(hit, :body) %></p>
  </div>
-<% 
-  when "RadioShow"
-%>
-  <div class="result radio-result">
-   <h4><%= link_to 'Radio Show: ' + title , radioshow_path(hit.result) %></h4>
-   <p><%= best_hit_description(hit, :body) %></p>
- </div>
 <% end %>
