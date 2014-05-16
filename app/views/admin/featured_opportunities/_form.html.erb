@@ -46,7 +46,7 @@
 <% end %>
 
 <script type="text/javascript">
-  $("#featured_opportunity_conversation_id").live('change',function(){
+  $("#featured_opportunity_conversation_id").on('change',function(){
     var url = '<%= change_conversation_selection_admin_featured_opportunities_path(:format => :js)%>'
     var conversation_id = $('option:selected',$(this)).attr('value');
     $.get(url + '?conversation_id=' + conversation_id)

@@ -4,13 +4,13 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
 //
-//= require 'jquery/jquery-1.4.4'
+//= require jquery
 //= require 'jquery/jquery-ui-1.8.16'
 //= require 'jquery/jquery-ui-timepicker-addon-0.5'
 //= require 'modernizr-2.6.1'
 //= require 'underscore.js'
 //= require 'jquery_ujs'
-//= require 'jquery/jquery.colorbox-1.3.15'
+//= require 'jquery/jquery.colorbox'
 //= require 'jquery/jquery.form'
 //= require 'jquery/jquery.remotipart'
 //= require 'jquery/jquery.loadmask'
@@ -19,7 +19,6 @@
 //= require 'jquery/jquery.cookie'
 //= require 'authentication'
 //= require 'omniauth_handler'
-//= require 'conversations/rating_button'
 //= require 'master'
 //= require 'chosen_issues'
 //= require 'jquery-plugins/mask-me.js'
@@ -30,7 +29,6 @@
 //= require "upgrade-browser.js"
 //= require "jquery/jquery.ui.touch-punch.js"
 //= require 'ckeditor/init'
-//= require jquery/jquery.fancybox-1.3.4.js
 //= require moment
 
 //= require editable

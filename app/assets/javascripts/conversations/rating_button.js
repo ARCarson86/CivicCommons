@@ -4,10 +4,10 @@
   $.fn.extend({
     ratingButton: function() {
       var button = this;
-      button.live('ajax:before', function() {
+      button.on('ajax:before', function() {
        button.children('.loading').show();
       });
-      button.live('ajax:complete', function() {
+      button.on('ajax:complete', function() {
         button.children('.loading').hide();
       });
       return this;

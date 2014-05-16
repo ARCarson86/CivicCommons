@@ -41,7 +41,7 @@ jQuery(function ($) {
   });
 
   $('#ajax-login-form')
-  .live('ajax:error', function(evt, xhr, status, error){
+  .on('ajax:error', function(evt, xhr, status, error){
     alert('Login failed!');
   });
 
@@ -49,7 +49,7 @@ jQuery(function ($) {
 });
 
 $(document).ready(function(){
-  $('a[data-colorbox]').not('[data-remote]').live('click', function(e){
+  $('a[data-colorbox]').not('[data-remote]').on('click', function(e){
     $.colorbox({
       transition: 'fade', // needed to fix colorbox bug with jquery 1.4.4
       href: $(this).attr('href')
