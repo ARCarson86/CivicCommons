@@ -2,7 +2,14 @@
   <div class="wrapper">
     <div class="content-container">
 
-      <%= cache ["opportunity_header", @conversation.id, @conversation.updated_at] do %>
+      <%-
+         user_type = "annonymous"
+         if current_person.present?
+           user_type = current_person.admin? ? "admin" : "user"
+         end
+       %>
+ 
+       <%= cache [@conversation.id, user_type, @conversation.updated_at, "opportunity_header"] do %>
 
         <% @managed_issue = @conversation.managed_issue.first %>
         <% if @managed_issue && @managed_issue.standard_banner_image.exists? %>
@@ -51,7 +58,6 @@
           <% end %>
 
         </div><!-- /.main-content -->
-      <% end %>
 
         <div class='aside'>
           <div class='conversation-supplement'>
@@ -65,6 +71,7 @@
               participants: @conversation.participants } %>
           </div>
         </div>
+      <% end %>
     </div>
   </div>
 </div>

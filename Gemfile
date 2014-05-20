@@ -14,6 +14,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'jquery-migrate-rails'
 
 gem 'newrelic_rpm'
 
@@ -68,6 +69,7 @@ gem 'progress_bar'
 gem 'sixarm_ruby_email_address_validation'
 
 gem 'ckeditor'
+
 
 gem 'prawn_rails'
 gem 'prawn', '>= 1.0.0.rc1'

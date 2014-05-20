@@ -10,6 +10,7 @@
 //= require 'modernizr-2.6.1'
 //= require 'underscore.js'
 //= require 'jquery_ujs'
+//= require 'jquery/jquery-migrate'
 //= require 'jquery/jquery.colorbox'
 //= require 'jquery/jquery.form'
 //= require 'jquery/jquery.remotipart'
