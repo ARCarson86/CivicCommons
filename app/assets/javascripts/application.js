@@ -5,7 +5,7 @@
 // the compiled file.
 //
 //= require jquery
-//= require 'jquery/jquery-ui-1.8.16'
+//= require 'jquery/jquery-ui'
 //= require 'jquery/jquery-ui-timepicker-addon-0.5'
 //= require 'modernizr-2.6.1'
 //= require 'underscore.js'
