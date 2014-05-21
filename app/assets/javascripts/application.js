@@ -19,6 +19,7 @@
 //= require 'jquery/jquery.hashchange'
 //= require 'jquery/jquery.easytabs'
 //= require 'jquery/jquery.cookie'
+//= require 'jquery/sizzle'
 //= require 'authentication'
 //= require 'omniauth_handler'
 //= require 'master'
