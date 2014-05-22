@@ -4,6 +4,11 @@ module ApplicationHelper
     @meta_info && !@meta_info[:page_title].blank? ? @meta_info[:page_title].chomp : "The Civic Commons"
   end
 
+  def is_admin(person=nil)
+    person ||= current_person
+    person && person.admin?
+  end
+
   def meta_description
     @meta_info && !@meta_info[:meta_description].blank? ? @meta_info[:meta_description].chomp : "The Civic Commons is a new way to bring communities together with conversation and emerging technology. We are focused on building conversations and connections that have the power to become informed, productive collective civic action."
   end
