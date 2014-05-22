@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div class="content-container">
 
-      <%= cache ["opportunity_header", @conversation.id, @conversation.updated_at] do %>
+      <%= cache ["opportunity_header", @conversation.id, @conversation.updated_at, is_admin] do %>
 
         <% @managed_issue = @conversation.managed_issue.first %>
         <% if @managed_issue && @managed_issue.standard_banner_image.exists? %>
