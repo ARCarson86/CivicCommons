@@ -5,6 +5,7 @@
 // the compiled file.
 //
 //= require jquery
+//- require 'jquery/jquery-1.11'
 //= require 'jquery/jquery-ui'
 //= require jquery-migrate-min
 //= require 'jquery/jquery-ui-timepicker-addon-0.5'
