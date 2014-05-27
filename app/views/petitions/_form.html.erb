@@ -15,7 +15,7 @@
   <fieldset class="top-align">
       <div class="form-block">
         <%= f.label :description, 'Your Petition:*' %>
-        <%= f.cktext_area :description, :toolbar => 'Civic', :width => 460, :height => 152, :input_html => {:class => 'short textbox'} %>
+        <%= f.text_area :description, class: "ckeditor", :toolbar => 'Civic', :width => 460, :height => 152, :input_html => {:class => 'short textbox'} %>
       </div>
   </fieldset>
 
