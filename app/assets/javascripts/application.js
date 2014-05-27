@@ -8,6 +8,7 @@
 //= require 'jquery/jquery-ui'
 //= require jquery-migrate-min
 //= require 'jquery/jquery-ui-timepicker-addon-0.5'
+//= require jquery.equalheights
 //= require 'modernizr-2.6.1'
 //= require 'underscore.js'
 //= require 'jquery_ujs'
@@ -54,8 +55,6 @@
 //= require registration_page
 
 //= require "notifications/notification_info"
-
-//= require jquery.equalheights
 //= require surveys
 
 //= require users/edit
