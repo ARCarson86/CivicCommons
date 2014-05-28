@@ -12447,7 +12447,6 @@ tinymce.create('tinymce.ui.Toolbar:tinymce.ui.Container', {
 				if (typeof s.theme != "function") {
 					s.theme = s.theme.replace(/-/, '');
 					o = ThemeManager.get(s.theme);
-          console.log(t);
 					t.theme = new o();
 
 					if (t.theme.init)

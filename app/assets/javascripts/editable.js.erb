@@ -13,14 +13,9 @@
     extended_valid_elements: "a[title|href|target=_blank|title]",
   };
 
-  // preload tiny_mce
-  //$.getScript(defaults.script_url);
-
-
   $(document).on("focus", ".editable textarea", function(event) {
     $(this).parent(".editable").addClass("editor-active");
     options = $.extend({}, defaults, {auto_focus: $(this).attr("id")});
-    console.log(options);
     $(this).tinymce(options);
   });
   $(document).on("click", ".editable .cancel", function(event) {
