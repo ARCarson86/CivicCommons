@@ -38,4 +38,11 @@ Civiccommons::Application.configure do
   redis_config = YAML.load_file(Rails.root.join('config/redis.yml'))
   config.cache_store = :redis_store, "redis://#{redis_config[Rails.env]["host"]}:#{redis_config[Rails.env]["port"]}/0/cache"
 
+  config.serve_static_assets = false
+  config.assets.compress = true
+  config.assets.js_compressor  = :uglifier
+  config.assets.css_compressor = :yui
+  config.assets.compile = true
+  config.assets.digest = true
+
 end

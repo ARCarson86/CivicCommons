@@ -1,6 +1,6 @@
 (function($) {
   var defaults = {
-    script_url : '/assets/tiny_mce/tiny_mce.js',
+    script_url : '/assets/tiny_mce/tiny_mce_src.js',
     theme : "advanced",
     plugins : "autolink,inlinepopups",
     width : '100%',
@@ -13,13 +13,17 @@
     extended_valid_elements: "a[title|href|target=_blank|title]",
   };
 
+  // preload tiny_mce
+  //$.getScript(defaults.script_url);
 
-  $(document).delegate(".editable textarea", "focus", function(event) {
+
+  $(document).on("focus", ".editable textarea", function(event) {
     $(this).parent(".editable").addClass("editor-active");
-    defaults.auto_focus = $(this).attr("id");
-    $(this).tinymce(defaults);
+    options = $.extend({}, defaults, {auto_focus: $(this).attr("id")});
+    console.log(options);
+    $(this).tinymce(options);
   });
-  $(document).delegate(".editable .cancel", "click", function(event) {
+  $(document).on("click", ".editable .cancel", function(event) {
     event.preventDefault();
     var $editable = $(this).closest(".editable");
     var $textarea = $($editable).children("textarea").first();

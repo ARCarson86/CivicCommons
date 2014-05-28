@@ -32,7 +32,6 @@
 //= require 'charCount.js'
 //= require "upgrade-browser.js"
 //= require "jquery/jquery.ui.touch-punch.js"
-//= require ckeditor/init
 //= require moment
 
 //= require editable
@@ -40,6 +39,8 @@
 //= require readmore
 //= require jquery.sticky
 //= require conversation
+
+//= require ckeditor/init
 
 //= require 'tiny_mce/jquery.tinymce.js'
 
