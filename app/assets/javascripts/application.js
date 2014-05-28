@@ -32,7 +32,7 @@
 //= require 'charCount.js'
 //= require "upgrade-browser.js"
 //= require "jquery/jquery.ui.touch-punch.js"
-//= require 'ckeditor/init'
+//= require ckeditor/init
 //= require moment
 
 //= require editable
