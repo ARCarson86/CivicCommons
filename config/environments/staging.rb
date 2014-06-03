@@ -41,7 +41,6 @@ Civiccommons::Application.configure do
 
   # Choose the compressors to use
   config.assets.js_compressor  = :uglifier
-  config.assets.css_compressor = :uglifier
 
   # fallback to assets pipeline if a precompiled asset is missed
   # must be set to true, because there is bug in rails 3.1.0 http://stackoverflow.com/questions/7252872/upgrade-to-rails-3-1-0-from-rc6-asset-precompile-fails
