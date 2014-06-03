@@ -11,9 +11,9 @@ group :assets do
   gem 'coffee-rails'
   gem 'uglifier'
   gem "font-awesome-rails"
-  gem 'jquery-rails'
   #gem 'jquery-migrate-rails'
 end
+gem 'jquery-rails'
 
 gem 'newrelic_rpm'
 
