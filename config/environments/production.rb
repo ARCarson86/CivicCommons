@@ -70,7 +70,6 @@ Civiccommons::Application.configure do
 
   # Choose the compressors to use
   config.assets.js_compressor  = :uglifier
-  config.assets.css_compressor = :yui
 
   # fallback to assets pipeline if a precompiled asset is missed
   # must be set to true, because there is bug in rails 3.1.0 http://stackoverflow.com/questions/7252872/upgrade-to-rails-3-1-0-from-rc6-asset-precompile-fails
@@ -84,7 +83,7 @@ Civiccommons::Application.configure do
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
-  config.assets.precompile += %w( admin.js ie7_jsIE9.js ie7_js/ie7-recalc.js show_colorbox.js conversations/activities.embed.js conversations/show_embed.js tiny_mce/**/*.js tiny_mce/*.js )
+  config.assets.precompile += %w( admin.js show_colorbox.js conversations/activities.embed.js conversations/show_embed.js tiny_mce/**/*.js tiny_mce/*.js )
   config.assets.precompile += %w( admin.css widget.css tiny_mce/**/*.css)
   config.assets.precompile += Ckeditor.assets
 

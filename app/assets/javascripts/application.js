@@ -3,35 +3,31 @@
 // be included in the compiled file accessible from http://example.com/assets/application.js
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
-//
+
 //= require jquery
-//- require 'jquery/jquery-1.11'
-//= require 'jquery/jquery-ui'
-//= require jquery-migrate-min
-//= require 'jquery/jquery-ui-timepicker-addon-0.5'
+//= require jquery/jquery-ui
+//= require jquery/jquery-ui-timepicker-addon-0.5
 //= require jquery.equalheights
-//= require 'modernizr-2.6.1'
-//= require 'underscore.js'
-//= require 'jquery_ujs'
-//= require 'jquery/jquery-migrate'
-//= require 'jquery/jquery.colorbox'
-//= require 'jquery/jquery.form'
-//= require 'jquery/jquery.remotipart'
-//= require 'jquery/jquery.loadmask'
-//= require 'jquery/jquery.hashchange'
-//= require 'jquery/jquery.easytabs'
-//= require 'jquery/jquery.cookie'
-//= require 'authentication'
-//= require 'omniauth_handler'
-//= require 'master'
-//= require 'chosen_issues'
-//= require 'jquery-plugins/mask-me.js'
-//= require 'jquery-plugins/jquery.cycle.all.js'
-//= require 'dropdown.js'
-//= require 'alert.js'
-//= require 'charCount.js'
-//= require "upgrade-browser.js"
-//= require "jquery/jquery.ui.touch-punch.js"
+//= require modernizr-2.6.1
+//= require underscore.js
+//= require jquery_ujs
+//= require jquery/jquery.colorbox
+//= require jquery/jquery.form
+//= require jquery/jquery.remotipart
+//= require jquery/jquery.loadmask
+//= require jquery/jquery.hashchange
+//= require jquery/jquery.easytabs
+//= require jquery/jquery.cookie
+//= require authentication
+//= require omniauth_handler
+//= require master
+//= require chosen_issues
+//= require jquery-plugins/jquery.cycle.all.js
+//= require dropdown.js
+//= require alert.js
+//= require charCount.js
+//= require upgrade-browser.js
+//= require jquery/jquery.ui.touch-punch.js
 //= require moment
 
 //= require editable
@@ -42,7 +38,7 @@
 
 //= require ckeditor/init
 
-//= require 'tiny_mce/jquery.tinymce.js'
+//= require tiny_mce/jquery.tinymce.js
 
 //= require issues/show
 //= require subscriptions/show
@@ -56,7 +52,7 @@
 //= require registrations
 //= require registration_page
 
-//= require "notifications/notification_info"
+//= require notifications/notification_info
 //= require surveys
 
 //= require users/edit

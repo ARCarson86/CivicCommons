@@ -4,17 +4,16 @@ gem 'rails', '~> 3.2.16'
 
 gem 'mysql2'
 
-gem 'sass-rails', '~> 3.2.3'
-gem 'compass-rails'
-gem 'coffee-rails'
-gem 'uglifier', '>= 1.0.3'
-gem "font-awesome-rails"
 
 group :assets do
+  gem 'sass-rails', '~> 3.2.3'
+  gem 'compass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
+  gem "font-awesome-rails"
+  gem 'jquery-rails'
+  #gem 'jquery-migrate-rails'
 end
-
-gem 'jquery-rails'
-gem 'jquery-migrate-rails'
 
 gem 'newrelic_rpm'
 
@@ -69,7 +68,6 @@ gem 'progress_bar'
 gem 'sixarm_ruby_email_address_validation'
 
 gem 'ckeditor'
-
 
 gem 'prawn_rails'
 gem 'prawn', '>= 1.0.0.rc1'
