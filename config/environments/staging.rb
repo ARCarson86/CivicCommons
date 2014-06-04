@@ -27,6 +27,8 @@ Civiccommons::Application.configure do
     :enable_starttls_auto => true
   }
 
+  ActionMailer::Base.register_interceptor(MailInterceptor)
+
   config.active_support.deprecation = :log
 
   # For devise gem
@@ -38,9 +40,6 @@ Civiccommons::Application.configure do
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
-
-  # Choose the compressors to use
-  config.assets.js_compressor  = :uglifier
 
   # fallback to assets pipeline if a precompiled asset is missed
   # must be set to true, because there is bug in rails 3.1.0 http://stackoverflow.com/questions/7252872/upgrade-to-rails-3-1-0-from-rc6-asset-precompile-fails
@@ -54,9 +53,6 @@ Civiccommons::Application.configure do
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
-  config.assets.precompile += %w( admin.js ie7_jsIE9.js ie7_js/ie7-recalc.js show_colorbox.js conversations/activities.embed.js conversations/show_embed.js tiny_mce/**/*.js tiny_mce/*.js )
-  config.assets.precompile += %w( admin.css widget.css tiny_mce/**/*.css)
-  config.assets.precompile += Ckeditor.assets
 
   redis_config = YAML.load_file(Rails.root.join('config/redis.yml'))
   config.cache_store = :redis_store, "redis://#{redis_config[Rails.env]["host"]}:#{redis_config[Rails.env]["port"]}/0/cache"

@@ -11,6 +11,7 @@ end
 
 module Civiccommons
   class Application < Rails::Application
+    config.assets.initialize_on_precompile = false
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -61,6 +62,12 @@ module Civiccommons
 
     # Change the path that assets are served from
     # config.assets.prefix = "/assets"
+
+    config.assets.js_compressor  = :uglifier
+    config.assets.css_compressor  = :yui
+
+    config.assets.precompile += %w( admin.js conversations/activities.embed.js conversations/show_embed.js tiny_mce/**/*.js )
+    config.assets.precompile += %w( petition.print.css admin.css widget.css tiny_mce/**/*.css)
 
   end
 end

@@ -10,6 +10,7 @@ group :assets do
   gem 'compass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
+  gem 'yui-compressor'
   gem "font-awesome-rails"
   #gem 'jquery-migrate-rails'
 end
@@ -78,8 +79,6 @@ gem 'mini_magick'
 
 gem 'rails_autolink' # auto_link was removed on rails 3.1, this is for migration purposes. A suggestion is to use Rinku
 gem 'sass'
-
-gem 'therubyracer'
 
 gem 'whenever', require: false
 
