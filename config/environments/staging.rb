@@ -1,4 +1,5 @@
 require File.expand_path('./config/initializers/civic_commons.rb')
+require File.expand_path('./lib/mail_interceptor.rb')
 
 Civiccommons::Application.configure do
   # Settings specified here will take precedence over those in config/environment.rb
