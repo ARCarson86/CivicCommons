@@ -37,7 +37,7 @@
               </div>
               <div class="text-container" id="label_<%= community_member.id %>">
                 <h4><%= link_to community_member.display_name, user_path(community_member), title: community_member.name %></h4>
-                <p><%= truncate(community_member.bio,:length => 290) if community_member.bio %></p>
+                <p><%= truncate(sanitize(community_member.bio, tags: %w()),:length => 290) if community_member.bio %></p>
               </div>
 
               <% if community_member.is_a?(Organization) && community_member.respond_to?(:members) %>
