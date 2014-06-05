@@ -66,6 +66,8 @@ module Civiccommons
     config.assets.js_compressor  = :uglifier
     config.assets.css_compressor  = :yui
 
+    config.assets.logger = Logger.new("#{Rails.root}/log/assets.log")
+
     config.assets.precompile += %w( admin.js conversations/activities.embed.js conversations/show_embed.js tiny_mce/**/*.js tiny_mce/*.js )
     config.assets.precompile += %w( petition.print.css admin.css widget.css tiny_mce/**/*.css)
 
