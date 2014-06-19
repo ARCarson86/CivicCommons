@@ -47,7 +47,7 @@ class ConversationsController < ApplicationController
 
     @recommended = @search.filter_metro_region(default_region).recommended.limit(3)
     if default_region == cc_metro_region || default_region.blank? #&& !@current_topic.present?
-      @active = @search.filter_metro_region(default_region).most_active.limit(6)
+      @active = @search.filter_metro_region(default_region).most_active(daysago: 60).limit(6)
       @recent = @search.filter_metro_region(default_region).latest_created.limit(6)
     else
       @all_conversations = @search.filter_metro_region(default_region).paginate(:page => params[:page], :per_page => 12)
