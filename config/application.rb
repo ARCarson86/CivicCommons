@@ -1,4 +1,4 @@
-require File.expand_path('../boot', __FILE__)
+
 
 require 'rails/all'
 
@@ -69,7 +69,7 @@ module Civiccommons
     config.assets.logger = Logger.new(STDOUT)
 
     config.assets.precompile += %w( admin.js conversations/activities.embed.js conversations/show_embed.js tiny_mce/**/*.js tiny_mce/*.js )
-    config.assets.precompile += %w( petition.print.css admin.css widget.css tiny_mce/**/*.css)
+    config.assets.precompile += %w( editor.css petition.print.css admin.css widget.css tiny_mce/**/*.css)
 
   end
 end
