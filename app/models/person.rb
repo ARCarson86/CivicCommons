@@ -89,6 +89,7 @@ class Person < ActiveRecord::Base
   validates_length_of :zip_code, :message => ' must be 5 characters or higher', :within => (5..10), :allow_blank => false, :allow_nil => false
   validates_presence_of :first_name, :last_name, :if => Proc.new{|record| record.type != 'Organization'}
   validate :check_twitter_username_format
+  validates_inclusion_of :subscriptions_setting, :in => %w(realtime daily weekly never), :message => "not a valid option"
 
   friendly_id :name, :use => :slugged
   def should_generate_new_friendly_id?

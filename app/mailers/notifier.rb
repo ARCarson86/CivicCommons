@@ -63,7 +63,7 @@ class Notifier < Devise::Mailer
     @person = person
     @conversations = conversations
     headers['X-SMTPAPI'] = '{"category": "daily_digest"}'
-    mail(:subject => "The Civic Commons Daily Digest",
+    mail(:subject => "The Civic Commons Digest",
          :from => '"Curator of Conversation" <curator@theciviccommons.com>',
          :to => @person.email)
   end

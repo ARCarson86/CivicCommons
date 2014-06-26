@@ -4,7 +4,6 @@ class DigestService
               :digest_set,
               :updated_contributions,
               :updated_conversations,
-              :updated_reflections,
               :votes_created_activities,
               :votes_ended_activities,
               :vote_response_activities,
@@ -21,7 +20,6 @@ class DigestService
   #TODO: Optimize the data retrieval
   def generate_digest_set(letter = nil)
     get_digest_recipients
-    get_updated_reflections
     get_vote_activities
     get_petition_related_activities
     get_updated_contributions
@@ -65,8 +63,6 @@ class DigestService
 
     # Get conversations from updated contributions
     @updated_conversations = @updated_contributions.map { |c| c.conversation }
-    # Get conversations from updated reflections
-    @updated_conversations += @updated_reflections.map { |c| c.conversation }
 
     # Get conversations from votes created
     @updated_conversations += @votes_created_activities.map { |c| c.surveyable }
@@ -82,10 +78,6 @@ class DigestService
     @updated_conversations += @petition_signatures_activity.map {|sig| sig.petition_conversation } if @petition_signatures_activity
 
     @updated_conversations.uniq!
-  end
-
-  def get_updated_reflections
-    @updated_reflections = Reflection.includes(:conversation).order('conversation_id ASC, id ASC').where(created_at: time_range)
   end
 
   def get_recipient_subscriptions
@@ -165,10 +157,6 @@ class DigestService
           contribution.conversation == conversation.first
         end
 
-        reflections = @updated_reflections.select do |reflection|
-          reflection.conversation == conversation.first
-        end
-
         votes_created = @votes_created_activities.select do |vote|
           vote.surveyable == conversation.first
         end
@@ -188,8 +176,8 @@ class DigestService
         grouped_petition_signatures = @grouped_petition_signatures_activity.select do |petition_signature|
           petition_signature[1][0].petition_conversation == conversation.first
         end
-        
-        items = (contributions + reflections + votes_created + votes_ended + vote_responses + petitions_created + grouped_petition_signatures)
+
+        items = (contributions + votes_created + votes_ended + vote_responses + petitions_created + grouped_petition_signatures)
 
         conversation << items
       end
