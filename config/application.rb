@@ -63,8 +63,11 @@ module Civiccommons
     # Change the path that assets are served from
     # config.assets.prefix = "/assets"
 
-    config.assets.js_compressor  = :uglifier
-    config.assets.css_compressor  = :yui
+    config.assets.js_compressor = Uglifier.new({
+      mangle: false
+    })
+
+    config.assets.css_compressor = :yui
 
     config.assets.logger = Logger.new(STDOUT)
 
