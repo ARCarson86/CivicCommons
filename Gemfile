@@ -4,12 +4,12 @@ gem 'rails', '~> 3.2.16'
 
 gem 'mysql2'
 
+gem 'uglifier'
 
 group :assets do
   gem 'sass-rails', '~> 3.2.3'
   gem 'compass-rails'
   gem 'coffee-rails'
-  gem 'uglifier'
   gem 'yui-compressor'
   gem "font-awesome-rails"
   #gem 'jquery-migrate-rails'
