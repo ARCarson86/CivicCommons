@@ -8,93 +8,99 @@
           <li><a href="#email">Email</a></li>
         </ul>
       <div class="tab-content">
-      <div id="your-info" class="tab active">
-      <%= form_for @person, :url => secure_user_url(@person), :method => :put, :html=> {:multipart => true} do |person| %>
-        <fieldset class="form-group">
-          <div class="form-block">
-            <%= person.label :name, name_label_text %>
-            <%= person.text_field :name, :class => 'textbox' %> 
-          </div>
-          <div class="form-block">
-            <%= person.label :title, title_label_text %>
-            <%= person.text_field :title, :class => 'textbox' %> 
-          </div>
-          <div class="form-block">
-            <%= person.label :zip_code %>
-            <%= person.text_field :zip_code, :class => 'textbox' %>
-          </div>
-          <% unless @person.facebook_authenticated? %>
+        <div id="your-info" class="tab active">
+          <%= form_for @person, :url => secure_user_url(@person), :method => :put, :html=> {:multipart => true} do |person| %>
             <fieldset class="form-group">
               <div class="form-block">
-                <%= person.label :password %>
-                <%= person.password_field :password, :class => 'textbox' %>
+                <%= person.label :name, name_label_text %>
+                <%= person.text_field :name, :class => 'textbox' %> 
               </div>
               <div class="form-block">
-                <%= person.label :password_again %>
-                <%= person.password_field :password_confirmation, :class => 'textbox' %>
+                <%= person.label :title, title_label_text %>
+                <%= person.text_field :title, :class => 'textbox' %> 
+              </div>
+              <div class="form-block">
+                <%= person.label :zip_code %>
+                <%= person.text_field :zip_code, :class => 'textbox' %>
+              </div>
+              <% unless @person.facebook_authenticated? %>
+                <fieldset class="form-group">
+                  <div class="form-block">
+                    <%= person.label :password %>
+                    <%= person.password_field :password, :class => 'textbox' %>
+                  </div>
+                  <div class="form-block">
+                    <%= person.label :password_again %>
+                    <%= person.password_field :password_confirmation, :class => 'textbox' %>
+                  </div>
+                </fieldset>
+              <% end %>
+              <div class="form-block">
+                <%= person.label 'curr_image', current_image_label_text %>
+                <div class="curr_image form-label-offset">
+                  <a id="profileImage" href="<%= user_path(@person) %>">
+                    <%= profile_image @person, 70 %>
+                  </a>
+                  <%= link_to remove_avatar_text, destroy_avatar_user_path(@person), id: "delete", remote: true, method: :delete, confirm: "Are you sure?" if @person.avatar? %>
+                </div>
+              </div>
+              <div class="form-block">
+                <%= person.label :avatar, avatar_label_text %>
+                <%= person.file_field :avatar, :class => 'textbox' %>
+              </div>
+              <div class="form-block">
+                <%= person.label bio_label_text %>
+                <%= person.text_area :bio, :class => 'short textbox', :cols => 20, :rows => 10 %>
+              </div>
+              <div class="form-block">
+                <%= person.label :website %>
+                <%= person.text_field :website, :class => 'textbox' %>
+              </div>
+              <div class="form-block">
+                <%= person.label :twitter_username, 'Twitter' %>
+                <%= person.text_field :twitter_username, :class => 'textbox' %>
               </div>
             </fieldset>
-          <% end %>
-          <div class="form-block">
-            <%= person.label 'curr_image', current_image_label_text %>
-            <div class="curr_image form-label-offset">
-              <a id="profileImage" href="<%= user_path(@person) %>">
-                <%= profile_image @person, 70 %>
-              </a>
-              <%= link_to remove_avatar_text, destroy_avatar_user_path(@person), id: "delete", remote: true, method: :delete, confirm: "Are you sure?" if @person.avatar? %>
-            </div>
-          </div>
-          <div class="form-block">
-            <%= person.label :avatar, avatar_label_text %>
-            <%= person.file_field :avatar, :class => 'textbox' %>
-          </div>
-          <div class="form-block">
-            <%= person.label bio_label_text %>
-            <%= person.text_area :bio, :class => 'short textbox', :cols => 20, :rows => 10 %>
-          </div>
-          <div class="form-block">
-            <%= person.label :website %>
-            <%= person.text_field :website, :class => 'textbox' %>
-          </div>
-          <div class="form-block">
-            <%= person.label :twitter_username, 'Twitter' %>
-            <%= person.text_field :twitter_username, :class => 'textbox' %>
-          </div>
-        </fieldset>
-        <% unless person.object.is_organization?  %>
-        <fieldset class="form-group">
-          <div class="form-block facebook-auth">
-            <% if person.object.facebook_authenticated? %>
-              <%= unlink_from_facebook_link %>
-            <% else %>
-              <%= link_with_facebook_link if current_person == person.object%>
+            <% unless person.object.is_organization?  %>
+              <fieldset class="form-group">
+                <div class="form-block facebook-auth">
+                  <% if person.object.facebook_authenticated? %>
+                    <%= unlink_from_facebook_link %>
+                  <% else %>
+                    <%= link_with_facebook_link if current_person == person.object%>
+                  <% end %>
+                </div>
+              </fieldset>
             <% end %>
+            <fieldset class="form-group">
+              <div class="form-block form-no-label">
+                <%= person.check_box :daily_digest %> Yes, please send me the digest of activity relevant to my interests
+              </div>
+              <div class="form-block form-no-label">
+                <%= person.check_box :weekly_newsletter %>
+                Yes, please send me The Civic Commons weekly newsletter
+              </div>
+            </fieldset>
           </div>
-        </fieldset>
-        <% end %>
-        <fieldset class="form-group">
-          <div class="form-block form-no-label">
-            <%= person.check_box :daily_digest %> Yes, please send me the digest of activity relevant to my interests
+
+          <div id="email" class="tab">
+            <fieldset class="form-group">
+              <div class="form-block">
+                <%= person.label :subscriptions_setting, "Activity Digest" %>
+                Select when you would like to receive an update of what is going on at the Civic Commons.
+              </div>
+              <div class="form-block">
+                <%= person.text_field :twitter_username, :class => 'textbox' %>
+              </div>
+            </fieldset>
           </div>
-          <div class="form-block form-no-label">
-            <%= person.check_box :weekly_newsletter %>
-            Yes, please send me The Civic Commons weekly newsletter
-          </div>
-        </fieldset>
+        </div>
         <fieldset class="footer">
-          <%= person.submit :class => 'submit', :value => 'Update Settings' %>
-        </fieldset>
-      <% end %>
+              <%= person.submit :class => 'submit', :value => 'Update Settings' %>
+            </fieldset>
+          <% end %>
+      </div>
     </div>
-
-  <div id="email" class="tab">
-     <!-- Email Tab Form here -->
-  </div>
-</div>
-</div>
-</div>
- 
-
   </div>
 <% end %>
 
