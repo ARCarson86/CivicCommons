@@ -1,10 +1,10 @@
 jQuery(function ($){
 
   $('a.delete')
-    .live('ajax:success', function(evt, data, status, xhr){
+    .on('ajax:success', function(evt, data, status, xhr){
       $(this).closest('li,div.dnld').remove();
     })
-    .live('ajax:error', function(evt, xhr, status, error){
+    .on('ajax:error', function(evt, xhr, status, error){
       try {
         alert( $.parseJSON(xhr.responseText)['base'] );
       } catch(err) {
@@ -83,7 +83,7 @@ jQuery(function ($){
         $('p#resource-contributions').hide();
         var formSelector = 'form#new-' + type + '-contribution';
         $(formSelector).show('slow');
-        $(formSelector + ' button.cancel').live('click', function() {
+        $(formSelector + ' button.cancel').on('click', function() {
           $(formSelector).hide();
           $('p#resource-contributions').show();
           return false;

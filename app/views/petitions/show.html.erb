@@ -63,11 +63,11 @@
   <script type="text/javascript">
     $(document).ready(function(){
       $('a.modal-launch').colorbox({href:'<%= sign_conversation_petition_path(@conversation, @petition) %>', width:'400px', transition: 'fade'});
-      $('#cboxContent .agreebutton').live('click', function(){
+      $('#cboxContent .agreebutton').on('click', function(){
 
         return false;
       });
-      $('#cboxContent .closebutton').live('click', function(){
+      $('#cboxContent .closebutton').on('click', function(){
         $.fn.colorbox.close();
         return false;
       });

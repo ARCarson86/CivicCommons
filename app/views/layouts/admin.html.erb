@@ -134,13 +134,6 @@
                   </li>
                 </ul>
               <% end %>
-              <% if can?(:manage, :admin_radio_shows) || can?(:manage, :admin_content_items) %>
-                <ul>
-                  <li>
-                    <%= link_to "Radio Shows", admin_content_items_type_path('radio_shows') %>
-                  </li>
-                </ul>
-              <% end %>
               <ul>
                 <li>
                   <%= link_to "Add Content Item", new_admin_content_item_path %>

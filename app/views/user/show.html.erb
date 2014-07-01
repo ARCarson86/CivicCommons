@@ -15,7 +15,7 @@
           <% if @user.prompt_to_fill_out_bio? current_person %>
             <p class="empty">Looks like you haven't filled out your bio&hellip; Head over to your <%= link_to_settings(current_person).downcase.html_safe %> and tell us a little bit about yourself.</p>
           <% else %>
-            <p><%= simple_format @user.bio %></p>
+            <p><%= simple_format(sanitize(@user.bio, tags: %w(p br li)), {}, sanitize: false) %></p>
           <% end %>
         </div>
         <% if @user.is_organization? %>

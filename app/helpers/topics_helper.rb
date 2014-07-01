@@ -17,10 +17,6 @@ module TopicsHelper
     link_to raw("<span>#{topic.name}</span> <em>#{topic.conversation_count}</em>"), conversations_path(:topic => topic_id), :class=> css_class
   end
 
-  def render_radioshow_topics_sidebar
-    render 'topics/radioshow_topic_sidebar', :topics => @topics
-  end
-
   def render_blogpost_topics_sidebar
     render 'topics/blogpost_topic_sidebar', :topics => @topics
   end
@@ -33,8 +29,6 @@ module TopicsHelper
     case content_type
     when :blogpost
       path = blog_index_path(request.parameters.merge({:topic => topic_id, :page => nil}))
-    when :radioshow
-      path = radioshow_index_path(:topic => topic_id)
     else
       path = ''
     end
@@ -56,8 +50,6 @@ module TopicsHelper
     rendered_list = obj.topics.map do |topic|
       if obj.class == Issue
         render partial: "issues/issue_list_item", locals: { topic: topic }
-      elsif obj.class == ContentItem and obj.content_type == 'RadioShow'
-        render partial: "radioshow/radioshow_list_item", locals: { topic: topic }
       elsif obj.class == ContentItem and obj.content_type == 'BlogPost'
         render partial: "blog/blog_list_item", locals: { topic: topic }
       end

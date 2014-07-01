@@ -4,7 +4,7 @@ class ContentItem < ActiveRecord::Base
 
   attr_accessor :url_slug
 
-  CONTENT_TYPES = ["BlogPost", "NewsItem", "RadioShow"]
+  CONTENT_TYPES = ["BlogPost", "NewsItem"]
 
   searchable :include => [:author, :conversations], :ignore_attribute_changes_of => [ :updated_at ] do
     text :title, :boost => 2, :default_boost => 2
@@ -18,7 +18,6 @@ class ContentItem < ActiveRecord::Base
   end
 
   scope :blog_post, where(:content_type => 'BlogPost')
-  scope :radio_show, where(:content_type => 'RadioShow' )
   scope :news_item, where(:content_type => 'NewsItem')
   scope :newer_than, lambda {|date| where(['published >= ?',date.to_s(:db)])}
   scope :recent_blog_posts, lambda { |author = nil|
@@ -56,33 +55,6 @@ class ContentItem < ActiveRecord::Base
 
   has_many :content_items_people, uniq: true
 
-  # Any radioshow people
-  has_many :people,
-    :through => :content_items_people,
-    :readonly => true,
-    :uniq => true,
-    :class_name => 'Person'
-
-  #radioshow hosts 
-  # creating or deleting this doesn't work as it should, there's an open issue https://github.com/rails/rails/issues/5057
-  # use add_person method, or delete_person method, instead of content_item.hosts = [@person] and content_item.hosts.delete(@person)
-  has_many :hosts,
-    :through => :content_items_people,
-    :uniq => true,
-    :class_name => 'Person',
-    :conditions => {:content_items_people => {:role => 'Host'}},
-    :source => :person
-
-  #radioshow guests
-  # creating or deleting this doesn't work as it should, there's an open issue https://github.com/rails/rails/issues/5057
-  # use add_person method, or delete_person method, instead of content_item.guests = [@person] and content_item.guests.delete(@person)
-  has_many :guests,
-    :through => :content_items_people,
-    :uniq => true,
-    :class_name => 'Person',
-    :conditions => {:content_items_people => {:role => 'Guest'}},
-    :source => :person
-
   delegate   :name, :to => :author, :prefix => true
 
   validates_presence_of :title, :body, :author
@@ -113,21 +85,15 @@ class ContentItem < ActiveRecord::Base
 
   def link_title(title=nil)
     if title.nil?
-      title = "Listen to the podcast..." if self.content_type_is_radio_show?
       title = "Continue reading..." if self.content_type_is_blog_post? || title.nil?
     end
 
     self.link_text.blank? ? title : self.link_text
   end
 
-  def self.recent_radio_shows
-    ContentItem.where('content_type = ?', 'RadioShow').order("published desc, created_at desc")
-  end
-
   def url
     return blog_path(self) if self.content_type == 'BlogPost'
     return self.external_link if self.content_type == 'NewsItem'
-    return radioshow_path(self) if self.content_type == 'RadioShow'
     return content_path(self)
   end
 
@@ -167,10 +133,6 @@ class ContentItem < ActiveRecord::Base
 
   def content_type_is_news_item?
     content_type == "NewsItem"
-  end
-
-  def content_type_is_radio_show?
-    content_type == "RadioShow"
   end
 
   def self.blog_authors

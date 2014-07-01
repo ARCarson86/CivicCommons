@@ -33,7 +33,7 @@
     <span class="required">*</span>
     <p class="tip mln">Select the topics associated with this conversation.</p>
     <table class="pts conversation-topics" style="margin-left: 20px;" width="50%">
-      <% topics = Topic.order(:name) %>
+      <% topics = Topic.where('name <> ?' , "Project - Placeholder").order(:name) %>
       <% topics << OpenStruct.new(:name => 'Other', :id => '999') %>
       <% topics.each_slice(2) do |slice| %>
         <tr>

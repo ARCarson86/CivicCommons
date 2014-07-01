@@ -43,8 +43,6 @@ class SearchController < ApplicationController
       return Person
     when "blogs"
       return ContentItem
-    when "radioshows"
-      return ContentItem
     when "projects"
       return [ManagedIssue, ManagedIssuePage]
     end

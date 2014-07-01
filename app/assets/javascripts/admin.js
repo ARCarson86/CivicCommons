@@ -1,4 +1,4 @@
-//=require 'jquery/jquery-1.4.4'
+//=require 'jquery'
 //=require 'jquery/jquery-ui-1.8.16'
 //=require 'jquery_ujs'
 //=require 'tiny_mce/jquery.tinymce.js'

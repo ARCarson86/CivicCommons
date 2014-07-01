@@ -1,4 +1,5 @@
 class Conversation < ActiveRecord::Base
+require 'obscenity/active_model'
   extend FriendlyId
   include Visitable
   include Subscribable
@@ -92,6 +93,8 @@ class Conversation < ActiveRecord::Base
   validates_format_of :link, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix, :on => :create, :allow_blank => true, :message => "Link must look like a url (example http://google.com)."
   validates_presence_of :zip_code, :message => "Please give us a zip code for a little geographic context."
   validates_presence_of :metro_region_id, :message => 'Please give us a Location name.'
+  validates :title,  obscenity: { sanitize: true, replacement: :vowels }
+  validates :summary,  obscenity: { sanitize: true, replacement: :vowels }
 
   after_create :set_initial_position, :subscribe_creator
   around_create :send_notification_on_other_topic

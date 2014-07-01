@@ -34,7 +34,7 @@ var link = function() {
     $("li.attach-conversation input.submit").click(handleLinkClick("conversation"));
 
     // TODO: this should not be here.
-    $(".placeholder").live("click", function() {
+    $(".placeholder").on("click", function() {
       $(this).val("").removeClass("placeholder");
     });
   };

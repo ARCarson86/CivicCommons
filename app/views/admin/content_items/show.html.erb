@@ -46,19 +46,6 @@
     <legend>Embed:</legend>
     <%= raw (@content_item.embed_code) %>
   </fieldset>
-  <% if @content_item.content_type_is_radio_show? %>
-    <fieldset>
-      <legend>RadioShow Links:</legend>
-      <%= link_to 'Manage/Add RadioShow Links', admin_content_item_content_item_links_path(@content_item) %>
-      <% @content_item.links.each do |link| %>
-        <p>
-          Title: <%= link.title %><br/>
-          Url: <%= link.url %><br/>
-          Description: <%= truncate link.description, :length => 300 %><br/>
-        </p>
-      <% end %>
-    </fieldset>
-  <% end %>
   
 </article>
 

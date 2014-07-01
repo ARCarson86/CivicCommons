@@ -180,6 +180,9 @@
   .contribute {
     background: #efefef url(/assets/body_bg.gif) repeat;
   }
+  &.is-sticky {
+    height: 168px;
+  }
 }
 .what-do-you-think {
   @include pie-clearfix;
@@ -482,11 +485,7 @@
     background: url(/assets/header_bg.png) no-repeat bottom center;
   }
 }
-.is-sticky {
-  .recent-activity {
-    //border-top: 1px solid #cdcdcd;
-  }
-}
+
 .recent-activity {
   position: absolute;
   right: 0;

@@ -87,7 +87,7 @@ class Survey < ActiveRecord::Base
   #
   # This is for the Eastern Time zone since our users are EST.  Then it's converted to UTC for server use.
   def real_end_date_time
-    Time.parse((end_date + 1).to_s)
+    Time.zone.parse((end_date + 1).to_s)
   end
 
   def expired?
