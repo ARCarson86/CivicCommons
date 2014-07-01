@@ -61,6 +61,8 @@ class Person < ActiveRecord::Base
   accepts_nested_attributes_for :authentications
 
   has_one :facebook_authentication, :class_name => 'Authentication', :conditions => {:provider => 'facebook'}, :dependent => :destroy
+  has_one :personal_setting
+  has_many :notifications
 
   has_many :content_items_people
   has_many :content_items, :through => :content_items_people, :foreign_key => 'person_id', :dependent => :restrict

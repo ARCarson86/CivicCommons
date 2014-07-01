@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140617191601) do
+ActiveRecord::Schema.define(:version => 20140701115417) do
 
   create_table "actions", :force => true do |t|
     t.integer  "conversation_id"
@@ -480,6 +480,8 @@ ActiveRecord::Schema.define(:version => 20140617191601) do
     t.integer  "conversation_id"
     t.integer  "issue_id"
     t.integer  "receiver_id"
+    t.datetime "emailed_at"
+    t.boolean  "emailed"
   end
 
   add_index "notifications", ["conversation_id"], :name => "index_notifications_on_conversation_id"
@@ -560,6 +562,14 @@ ActiveRecord::Schema.define(:version => 20140617191601) do
   add_index "people", ["email"], :name => "index_people_on_email", :unique => true
   add_index "people", ["reset_password_token"], :name => "index_people_on_reset_password_token", :unique => true
   add_index "people", ["slug"], :name => "index_people_on_slug", :unique => true
+
+  create_table "personal_settings", :force => true do |t|
+    t.integer  "person_id"
+    t.boolean  "tag_notification"
+    t.string   "notification_frequency", :default => "daily"
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+  end
 
   create_table "petition_signatures", :force => true do |t|
     t.integer  "petition_id"
