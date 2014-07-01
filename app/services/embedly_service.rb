@@ -287,9 +287,7 @@ class EmbedlyService
         <script type='text/javascript'> 
           //<![CDATA[
             $(document).ready(function() {
-              if ($(\"a#single_image-#{r}\").size() > 0) {
-                $(\"a#single_image-#{r}\").fancybox({'scrolling': 'no'});
-              }
+              $(\"a#single_image-#{r}\").fancybox({'scrolling': 'no'});
             });
           //]]>
         </script>
