@@ -48,7 +48,8 @@ class Person < ActiveRecord::Base
                   :remember_me,
                   :daily_digest,
                   :create_from_auth,
-                  :facebook_unlinking
+                  :facebook_unlinking,
+                  :tag_notification
 
   # Setup protected attributes
   attr_protected :admin, :blog_admin
@@ -61,7 +62,6 @@ class Person < ActiveRecord::Base
   accepts_nested_attributes_for :authentications
 
   has_one :facebook_authentication, :class_name => 'Authentication', :conditions => {:provider => 'facebook'}, :dependent => :destroy
-  has_one :personal_setting
   has_many :notifications
 
   has_many :content_items_people

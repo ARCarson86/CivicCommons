@@ -17,7 +17,7 @@
               </div>
               <div class="form-block">
                 <%= person.label :title, title_label_text %>
-                <%= person.text_field :title, :class => 'textbox' %> 
+                <%= person.text_field :title, :class => 'textbox' %>
               </div>
               <div class="form-block">
                 <%= person.label :zip_code %>
@@ -76,10 +76,6 @@
               <div class="form-block form-no-label">
                 <%= person.check_box :daily_digest %> Yes, please send me the digest of activity relevant to my interests
               </div>
-              <div class="form-block form-no-label">
-                <%= person.check_box :weekly_newsletter %>
-                Yes, please send me The Civic Commons weekly newsletter
-              </div>
             </fieldset>
           </div>
 
@@ -88,9 +84,17 @@
               <div class="form-block">
                 <%= person.label :subscriptions_setting, "Activity Digest" %>
                 Select when you would like to receive an update of what is going on at the Civic Commons.
+                <%= person.select :subscriptions_setting, options_for_select(["realtime", "daily", "weekly", "never"], :selected => @person.subscriptions_setting) %>
               </div>
               <div class="form-block">
-                <%= person.text_field :twitter_username, :class => 'textbox' %>
+                <%= person.label :tag_notification, "Mentioned" %>
+                <%= person.check_box :tag_notification %>
+                Yes, please send me an email when I am mentioned in a post
+              </div>
+              <div class="form-block">
+                <%= person.label :weekly_newsletter, "Weekly Newsletter" %>
+                <%= person.check_box :weekly_newsletter %>
+                Yes, please send me The Civic Commons weekly newsletter
               </div>
             </fieldset>
           </div>

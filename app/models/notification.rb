@@ -2,6 +2,8 @@
 # The main difference is that the Notification model is per person.
 class Notification < ActiveRecord::Base
 
+   attr_accessible :emailed
+
   belongs_to :item, polymorphic: true
   belongs_to :person
   belongs_to :receiver, :class_name => 'Person'
