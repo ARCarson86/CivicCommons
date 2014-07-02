@@ -329,6 +329,10 @@ class Contribution < ActiveRecord::Base
 
   #############################################################################
 
+  def people_mentioned
+    Person.where(id: content.scan(/<a[^>]+data-mention\=\"(\d+)\"[^>]*>/))
+  end
+
   protected
 
   def set_confirmed
