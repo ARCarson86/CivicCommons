@@ -1,0 +1,7 @@
+<p>
+  <%= survey_response.person.display_name %> voted on:
+  <blockquote>
+    <%= survey_response.survey.title.html_safe %><br/>
+    <%= survey_response.survey.description.html_safe %>
+  </blockquote>
+</p>

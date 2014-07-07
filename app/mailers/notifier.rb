@@ -5,6 +5,8 @@ class Notifier < Devise::Mailer
   add_template_helper(SurveysHelper)
   add_template_helper(ApplicationHelper)
 
+  prepend_view_path "app/views/notifier"
+
   def email_changed(old_email, new_email)
     @old_email = old_email
     @new_email = new_email
@@ -59,13 +61,14 @@ class Notifier < Devise::Mailer
          :to => Civiccommons::Config.email["default_email"])
   end
 
-  def daily_digest(person, conversations)
-    @person = person
+  def daily_digest(recipient, notifications, conversations)
+    @recipient = recipient
+    @notifications = notifications
     @conversations = conversations
     headers['X-SMTPAPI'] = '{"category": "daily_digest"}'
     mail(:subject => "The Civic Commons Digest",
          :from => '"Curator of Conversation" <curator@theciviccommons.com>',
-         :to => @person.email)
+         :to => @recipient.email)
   end
 
   def survey_confirmation(survey_response)
@@ -113,5 +116,9 @@ class Notifier < Devise::Mailer
     mail(:subject => "A conversation has been created with Other Topic selected",
          :from => Devise.mailer_sender,
          :to => 'suggestions@theciviccommons.com')
+  end
+
+  def to_partial_path
+    return "app/view/notifier"
   end
 end

@@ -6,6 +6,8 @@ class Notification < ActiveRecord::Base
 
   belongs_to :item, polymorphic: true
   belongs_to :person
+  belongs_to :conversation
+  belongs_to :rating_group
   belongs_to :receiver, :class_name => 'Person'
 
   validates :item_id, presence: true
@@ -295,6 +297,10 @@ class Notification < ActiveRecord::Base
   def self.viewed(person)
     notifications = self.where("receiver_id = ?", person).where("viewed_at is null")
     notifications.update_all(:viewed_at => Time.now)
+  end
+
+  def self.by_conversation(conversation)
+    where(conversation_id: conversation.id)
   end
 
   # Retrieve list of Old Notifications
