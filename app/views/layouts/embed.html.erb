@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title><%= page_title %></title>
+  <%= javascript_include_tag 'embed/main' %>
+  <%= stylesheet_link_tag 'embed', :media => "screen, projection" %>
+  <%= yield :header %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <%= yield %>
+</body>
+</html>
