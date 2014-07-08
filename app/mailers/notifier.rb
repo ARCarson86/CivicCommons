@@ -95,6 +95,16 @@ class Notifier < Devise::Mailer
     end
   end
 
+  def mention(poster, mentioned, contribution)
+    @poster = poster
+    @mentioned = mentioned
+    @contribution = contribution
+
+    mail(:subject => "You were mentioned on The Civic Commons!",
+         :from => '"Curator of Conversation" <curator@theciviccommons.com>',
+         :to => @mentioned.email)
+  end
+
   def products_services_promo(name, email, question, product = '')
     @name = name
     @email = email
