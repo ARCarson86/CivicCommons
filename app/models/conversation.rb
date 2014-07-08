@@ -29,7 +29,7 @@ require 'obscenity/active_model'
   has_many :featured_opportunities, :dependent => :nullify
 
   def top_level_contributions
-    Contribution.where(:conversation_id => self.id, :top_level_contribution => true)
+    contributions.where parent_id: nil
   end
 
   # any person that has made a contribution to the convo

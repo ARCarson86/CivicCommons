@@ -255,6 +255,20 @@ Civiccommons::Application.routes.draw do
     resources :redirects
   end
 
+  namespace :api do
+    api_version(:module => "V1", path: { value: "v1" }) do
+      get 'me', controller: "users"
+      resources :users, only: [:show] do
+        collection do
+          get 'me'
+        end
+      end
+      resources :conversations do
+        resources :contributions
+      end
+    end
+  end
+
   get '*path', to: 'redirects#show'
 
 end

@@ -82,6 +82,10 @@ gem 'sass'
 
 gem 'whenever', require: false
 
+gem 'versionist'
+gem 'jbuilder'
+gem 'yajl-ruby'
+
 group :development do
   gem "rails3-generators"
   gem "hpricot"
