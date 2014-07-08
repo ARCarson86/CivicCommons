@@ -2,7 +2,20 @@
 # The main difference is that the Notification model is per person.
 class Notification < ActiveRecord::Base
 
-   attr_accessible :emailed
+   attr_accessible :id,
+                   :emailed,
+                   :item_id,
+                   :item_type,
+                   :item_created_at,
+                   :person_id,
+                   :conversation_id,
+                   :status,
+                   :viewed_at,
+                   :created_at,
+                   :updated_at,
+                   :issue_id,
+                   :receiver_id,
+                   :expire_at
 
   belongs_to :item, polymorphic: true
   belongs_to :person
@@ -18,6 +31,7 @@ class Notification < ActiveRecord::Base
 
   VALID_TYPES = [ Conversation, Contribution, Issue, RatingGroup, SurveyResponse,
                   Petition, PetitionSignature, Survey]
+
 
   delegate :name, :to => :person, :prefix => true
 

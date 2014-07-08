@@ -26,7 +26,7 @@ class DigestService
 
   def get_notifications
     @digest_recipients.each do |recipient|
-      @notifications = recipient.notifications.where(emailed: nil).order(:conversation_id)
+      @notifications = recipient.get_notifications
       @conversations = Conversation.where(id: @notifications.pluck(:conversation_id).uniq)
       Notifier.daily_digest(recipient, @notifications, @conversations).deliver unless @notifications.blank?
       @notifications.update_all(emailed: DateTime.now)

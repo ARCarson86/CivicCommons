@@ -84,7 +84,7 @@
               <div class="form-block">
                 <%= person.label :subscriptions_setting, "Activity Digest" %>
                 Select when you would like to receive an update of what is going on at the Civic Commons.
-                <%= person.select :subscriptions_setting, options_for_select(["realtime", "daily", "weekly", "never"], :selected => @person.subscriptions_setting) %>
+                <%= person.select :subscriptions_setting, options_for_select(["hourly", "daily", "weekly", "never"], :selected => @person.subscriptions_setting) %>
               </div>
               <div class="form-block">
                 <%= person.label :tag_notification, "Mentioned" %>
