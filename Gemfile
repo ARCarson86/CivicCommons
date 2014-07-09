@@ -88,6 +88,7 @@ group :development do
   gem "ruby_parser"
   gem "zeus"
   gem "letter_opener"
+  gem "foreman"
 end
 
 group :test do
