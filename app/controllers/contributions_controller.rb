@@ -20,7 +20,6 @@ class ContributionsController < ApplicationController
     @contribution.confirmed = true
 
     if @contribution.save
-      puts "hello" @contri
       flash[:notice] = "Thank you for participating"
       Subscription.create_unless_exists(current_person, @contribution.item)
       @ratings = RatingGroup.default_contribution_hash
