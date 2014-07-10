@@ -1,0 +1,11 @@
+<h1>You were mentioned at The Commons.</h1>
+<h2><%= short_title(@notification.conversation.title) %></h2>
+<p>
+  <%= "#{@notification.person.name} said #{ clean_view(@notification.item.content)}" %>
+</p>
+<%= link_to 'Check it out', conversation_url(@notification.conversation) %>
+<h3>Too much information?</h3>
+<p>
+You can opt out of specific conversations by clicking "Stop Following this Conversation" on that conversation page at
+<%= link_to 'theciviccommons.com', root_url %>, or you can
+</p>

@@ -81,6 +81,12 @@ module ApplicationHelper
     base_url + asset_path(asset)
   end
 
+  def clean_view(text)
+    text = strip_tags(text)
+    text = text.gsub("&nbsp;", " ")
+    return text
+  end
+
   def conversation_edit_link(conversation)
     edit_link = ""
     if current_person && current_person.admin?

@@ -83,18 +83,25 @@
             <fieldset class="form-group">
               <div class="form-block">
                 <%= person.label :subscriptions_setting, "Activity Digest" %>
-                Select when you would like to receive an update of what is going on at the Civic Commons.
-                <%= person.select :subscriptions_setting, options_for_select(["hourly", "daily", "weekly", "never"], :selected => @person.subscriptions_setting) %>
+                <div style="padding-top: 6px;">
+                  Select when you would like to receive an update of what is going on at the Civic Commons.
+                  <br>
+                  <%= person.select :subscriptions_setting, options_for_select([["Hourly", "hourly"], ["Daily", "daily"], ["Weekly", "weekly"], ["Never", "never"]], :selected => @person.subscriptions_setting) %>
+                </div>
               </div>
               <div class="form-block">
                 <%= person.label :tag_notification, "Mentioned" %>
-                <%= person.check_box :tag_notification %>
-                Yes, please send me an email when I am mentioned in a post
+                <div style="padding-top: 7px;">
+                  <%= person.check_box :tag_notification %>
+                  Yes, please send me an email when I am mentioned in a post
+                </div>
               </div>
               <div class="form-block">
                 <%= person.label :weekly_newsletter, "Weekly Newsletter" %>
-                <%= person.check_box :weekly_newsletter %>
-                Yes, please send me The Civic Commons weekly newsletter
+                <div style="padding-top: 7px;">
+                  <%= person.check_box :weekly_newsletter %>
+                  Yes, please send me The Civic Commons weekly newsletter
+                </div>
               </div>
             </fieldset>
           </div>
