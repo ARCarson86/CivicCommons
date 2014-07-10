@@ -271,6 +271,8 @@ Civiccommons::Application.routes.draw do
 
   resources :embed, only: [:index]
 
+  get '/embed/*path', to: 'embed#index'
+
   get '*path', to: 'redirects#show'
 
 end

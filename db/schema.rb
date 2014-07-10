@@ -11,14 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140103171546) do
+ActiveRecord::Schema.define(:version => 20140709134613) do
 
   create_table "actions", :force => true do |t|
     t.integer  "conversation_id"
     t.integer  "actionable_id"
     t.string   "actionable_type"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "actions", ["actionable_id"], :name => "index_actions_on_actionable_id"
@@ -77,8 +77,8 @@ ActiveRecord::Schema.define(:version => 20140103171546) do
     t.string   "type",              :limit => 30
     t.integer  "width"
     t.integer  "height"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], :name => "idx_ckeditor_assetable"
@@ -95,8 +95,8 @@ ActiveRecord::Schema.define(:version => 20140103171546) do
     t.text     "description"
     t.text     "url"
     t.integer  "content_item_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "content_item_links", ["content_item_id"], :name => "index_content_item_links_on_content_item_id"
@@ -133,8 +133,8 @@ ActiveRecord::Schema.define(:version => 20140103171546) do
   create_table "content_items_conversations", :id => false, :force => true do |t|
     t.integer  "conversation_id"
     t.integer  "content_item_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "content_items_conversations", ["conversation_id", "content_item_id"], :name => "content_items_conversations_ids_index"
@@ -143,8 +143,8 @@ ActiveRecord::Schema.define(:version => 20140103171546) do
     t.integer  "content_item_id"
     t.integer  "person_id"
     t.string   "role"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "content_items_people", ["content_item_id", "person_id"], :name => "index_content_items_people_on_content_item_id_and_person_id"
@@ -152,8 +152,8 @@ ActiveRecord::Schema.define(:version => 20140103171546) do
   create_table "content_items_topics", :id => false, :force => true do |t|
     t.integer  "content_item_id"
     t.integer  "topic_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "content_items_topics", ["content_item_id", "topic_id"], :name => "index_content_items_topics_on_content_item_id_and_topic_id"
@@ -211,6 +211,7 @@ ActiveRecord::Schema.define(:version => 20140103171546) do
   add_index "contributions", ["conversation_id"], :name => "index_contributions_on_conversation_id"
   add_index "contributions", ["issue_id"], :name => "index_contributions_on_issue_id"
   add_index "contributions", ["owner"], :name => "index_contributions_on_owner"
+  add_index "contributions", ["parent_id"], :name => "index_contributions_on_parent_id"
 
   create_table "conversations", :force => true do |t|
     t.datetime "started_at"
@@ -266,8 +267,8 @@ ActiveRecord::Schema.define(:version => 20140103171546) do
   create_table "conversations_people", :force => true do |t|
     t.integer  "conversation_id"
     t.integer  "person_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "conversations_people", ["conversation_id", "person_id"], :name => "index_conversations_people_on_conversation_id_and_person_id"
@@ -275,8 +276,8 @@ ActiveRecord::Schema.define(:version => 20140103171546) do
   create_table "conversations_topics", :force => true do |t|
     t.integer  "conversation_id"
     t.integer  "topic_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "conversations_topics", ["conversation_id", "topic_id"], :name => "index_conversations_topics_on_conversation_id_and_topic_id", :unique => true
@@ -301,8 +302,8 @@ ActiveRecord::Schema.define(:version => 20140103171546) do
     t.datetime "pub_date"
     t.text     "raw"
     t.integer  "curated_feed_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "curated_feed_items", ["curated_feed_id"], :name => "index_curated_feed_items_on_curated_feed_id"
@@ -311,8 +312,8 @@ ActiveRecord::Schema.define(:version => 20140103171546) do
     t.string   "title",       :null => false
     t.string   "description"
     t.string   "cached_slug"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "slug"
   end
 
@@ -337,8 +338,8 @@ ActiveRecord::Schema.define(:version => 20140103171546) do
 
   create_table "email_restrictions", :force => true do |t|
     t.string   "domain"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "featured_opportunities", :force => true do |t|
@@ -382,8 +383,8 @@ ActiveRecord::Schema.define(:version => 20140103171546) do
   create_table "homepage_featureds", :force => true do |t|
     t.integer  "homepage_featureable_id",   :null => false
     t.string   "homepage_featureable_type", :null => false
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "homepage_featureds", ["homepage_featureable_id", "homepage_featureable_type"], :name => "homepage_featureable_id_and_type", :unique => true
@@ -429,8 +430,8 @@ ActiveRecord::Schema.define(:version => 20140103171546) do
   create_table "issues_topics", :id => false, :force => true do |t|
     t.integer  "issue_id"
     t.integer  "topic_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "issues_topics", ["issue_id", "topic_id"], :name => "index_issues_topics_on_issue_id_and_topic_id"
@@ -460,8 +461,8 @@ ActiveRecord::Schema.define(:version => 20140103171546) do
     t.string   "display_name"
     t.string   "metrocode"
     t.string   "province_code"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "city_province_token"
   end
 
@@ -474,8 +475,8 @@ ActiveRecord::Schema.define(:version => 20140103171546) do
     t.string   "status"
     t.datetime "viewed_at"
     t.datetime "expire_at"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.datetime "item_created_at"
     t.integer  "conversation_id"
     t.integer  "issue_id"
@@ -498,15 +499,15 @@ ActiveRecord::Schema.define(:version => 20140103171546) do
     t.string   "phone"
     t.string   "facebook_page"
     t.integer  "organization_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "organization_members", :id => false, :force => true do |t|
     t.integer  "organization_id"
     t.integer  "person_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "people", :force => true do |t|
@@ -563,8 +564,8 @@ ActiveRecord::Schema.define(:version => 20140103171546) do
   create_table "petition_signatures", :force => true do |t|
     t.integer  "petition_id"
     t.integer  "person_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "petition_signatures", ["petition_id", "person_id"], :name => "index_petition_signatures_on_petition_id_and_person_id"
@@ -576,8 +577,8 @@ ActiveRecord::Schema.define(:version => 20140103171546) do
     t.text     "resulting_actions"
     t.integer  "signature_needed"
     t.date     "end_on"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "person_id"
   end
 
@@ -615,16 +616,16 @@ ActiveRecord::Schema.define(:version => 20140103171546) do
   create_table "redirects", :force => true do |t|
     t.string   "path"
     t.string   "destination"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "reflection_comments", :force => true do |t|
     t.text     "body"
     t.integer  "person_id"
     t.integer  "reflection_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "reflection_comments", ["person_id"], :name => "index_reflection_comments_on_person_id"
@@ -635,8 +636,8 @@ ActiveRecord::Schema.define(:version => 20140103171546) do
     t.text     "details",         :null => false
     t.integer  "owner",           :null => false
     t.integer  "conversation_id", :null => false
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "regions", :force => true do |t|
@@ -663,8 +664,8 @@ ActiveRecord::Schema.define(:version => 20140103171546) do
     t.integer  "survey_option_id"
     t.integer  "survey_response_id"
     t.integer  "position"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "slugs", :force => true do |t|
@@ -692,16 +693,16 @@ ActiveRecord::Schema.define(:version => 20140103171546) do
   create_table "survey_options", :force => true do |t|
     t.text     "title"
     t.integer  "survey_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.text     "description"
     t.integer  "position"
   end
 
   create_table "survey_responses", :force => true do |t|
     t.integer  "person_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "survey_id"
   end
 
@@ -711,8 +712,8 @@ ActiveRecord::Schema.define(:version => 20140103171546) do
     t.string   "title"
     t.text     "description"
     t.string   "type"
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "max_selected_options",        :default => 0
     t.boolean  "show_progress"
     t.date     "start_date"
@@ -732,8 +733,8 @@ ActiveRecord::Schema.define(:version => 20140103171546) do
     t.datetime "updated_at"
     t.integer  "conversation_id"
     t.integer  "issue_id"
-    t.text     "activity_cache",  :limit => 2147483647
     t.integer  "person_id"
+    t.text     "activity_cache",  :limit => 2147483647
   end
 
   add_index "top_items", ["conversation_id"], :name => "conversations_index"
@@ -743,8 +744,8 @@ ActiveRecord::Schema.define(:version => 20140103171546) do
 
   create_table "topics", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "visits", :force => true do |t|

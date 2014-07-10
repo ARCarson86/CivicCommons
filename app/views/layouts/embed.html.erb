@@ -1,13 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <title><%= page_title %></title>
-  <%= javascript_include_tag 'embed/main' %>
-  <%= stylesheet_link_tag 'embed', :media => "screen, projection" %>
-  <%= yield :header %>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-  <%= yield %>
-</body>
+<html lang="en" ng-app="civicApp">
+  <head>
+    <title><%= page_title %></title>
+    <%= javascript_include_tag 'embed/main' %>
+    <%= stylesheet_link_tag 'embed', :media => "screen, projection" %>
+    <%= yield :header %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <base href="/embed/">
+  </head>
+  <body>
+    <header>
+      <%= link_to '/', target: '_blank' do %>
+        <%= image_tag 'CC_rgb.png', alt: 'The Civic Commons Logo' %>
+      <% end %>
+    </header>
+
+    <div ng-view ></div>
+
+  </body>
 </html>
