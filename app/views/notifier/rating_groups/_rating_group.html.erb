@@ -1,0 +1,5 @@
+<p><%= "#{rating_group.person.name}" %> rated <%= "#{rating_group.contribution.person.name}'s " %>comment:
+  <blockquote>
+    <span class="label label-rating"><%= rating_group.ratings.last && rating_group.ratings.last.rating_descriptor.title %></span>
+  </blockquote>
+</p>

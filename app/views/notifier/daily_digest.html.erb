@@ -1,23 +1,16 @@
-<% unless @conversations.empty? %>
+<% unless @notifications.empty? %>
   <h1>Here’s a quick update on what’s going on at the Commons.</h1>
   <% @conversations.each do |conversation| %>
-    <% unless conversation.first == nil%>
-      <h2><%= short_title(conversation.first.title) %></h2>
-
-      <% conversation.last.each do |item| %>
-        <% if item.is_a?(Array) && item[1][0].is_a?(PetitionSignature) %>
-          <%= render :partial => "daily_digest_grouped_petition_signature", :locals => {:item => item, :conversation => conversation} %>
-        <% else %>
-          <%= render :partial => "daily_digest_#{item.class.name.underscore}", :locals => {:item => item, :conversation => conversation} %>
-        <% end %>
-      <% end %>
-
-    <% end %>
+  	<h2><%= conversation.title %></h2>
+  	<% @notifications.by_conversation(conversation).each do |notification| %>
+  		<%= render notification.item %>
+  	<% end %>
+  	<%= link_to 'Check it out', "#{conversation_url(conversation)}" %>
   <% end %>
 <% end %>
-<h3>Too much information?</h3>
-<p>
-You can opt out of specific conversations by clicking "Stop Following this Conversation" on that conversation page at
-<%= link_to 'theciviccommons.com', root_url %>, or you can
-<%= link_to 'unsubscribe', unsubscribe_confirmation_url(@person) %> all together.
+<h5 style="color: #999999; margin-bottom: 0; margin-top: 50px; font-size: 13px;">Too much information?</h5>
+<p style="font-size: 13px; margin-top: 0; color: #999999;">
+Opt out of specific conversations by clicking "Stop Following this Conversation" on that conversation page at
+<%= link_to 'theciviccommons.com', root_url, {style: 'color: #999999;'} %>, or you can nsubscribe from all Conversation activity emails
+<%= link_to 'unsubscribe', unsubscribe_confirmation_url(@recipient), {style: 'color: #999999;'} %>
 </p>

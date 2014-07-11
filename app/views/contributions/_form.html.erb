@@ -1,5 +1,10 @@
 <%= form_for [contribution.conversation, contribution], remote: true do |f| %>
     <%= f.hidden_field :parent_id, value: contribution.parent.id if contribution.parent %>
+    <div class="popup">
+    <div id="mention-note">
+      <div id="new">New Feature!</div>
+      <div>Mention another person by entering an @ and typing their name. They'll be notified when you post.<%= image_tag('closebox.png') %></div>
+    </div>
     <div class="content editable">
       <%= f.text_area :content, rows: 2, class: "thread-reply", id: "#{"edit-" if contribution.persisted?}contribution-content-#{contribution.id || contribution.parent.id}", placeholder: ("Click here to respond to #{contribution.parent.person.first_name}" if contribution.parent) %>
 

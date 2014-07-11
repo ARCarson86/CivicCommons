@@ -191,6 +191,10 @@ GEM
     json (1.7.7)
     jwt (0.1.5)
       multi_json (>= 1.0)
+    launchy (2.4.2)
+      addressable (~> 2.3)
+    letter_opener (1.2.0)
+      launchy (~> 2.2)
     linguistics (1.0.9)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -448,6 +452,7 @@ DEPENDENCIES
   jasmine-headless-webkit (~> 0.8.4)
   jquery-rails
   json (~> 1.7.7)
+  letter_opener
   linguistics (~> 1.0.9)
   mini_magick
   mysql2

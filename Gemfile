@@ -87,6 +87,7 @@ group :development do
   gem "hpricot"
   gem "ruby_parser"
   gem "zeus"
+  gem "letter_opener"
   gem "foreman"
 end
 

@@ -150,8 +150,8 @@
     var contribution = $('#show-contribution-' + node_id);
     if ($(contribution).hasClass("response")) {
       $(contribution).closest(".thread").addClass("expanded");
+      $(contribution).closest(".popup").show();
     }
     contribution.jump();
   }
-
 })(jQuery)

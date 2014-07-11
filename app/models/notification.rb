@@ -2,8 +2,25 @@
 # The main difference is that the Notification model is per person.
 class Notification < ActiveRecord::Base
 
+   attr_accessible :id,
+                   :emailed,
+                   :item_id,
+                   :item_type,
+                   :item_created_at,
+                   :person_id,
+                   :conversation_id,
+                   :status,
+                   :viewed_at,
+                   :created_at,
+                   :updated_at,
+                   :issue_id,
+                   :receiver_id,
+                   :expire_at
+
   belongs_to :item, polymorphic: true
   belongs_to :person
+  belongs_to :conversation
+  belongs_to :rating_group
   belongs_to :receiver, :class_name => 'Person'
 
   validates :item_id, presence: true
@@ -13,7 +30,8 @@ class Notification < ActiveRecord::Base
   validates :receiver_id, presence: true
 
   VALID_TYPES = [ Conversation, Contribution, Issue, RatingGroup, SurveyResponse,
-                  Petition, PetitionSignature, Reflection, ReflectionComment, Survey]
+                  Petition, PetitionSignature, Survey]
+
 
   delegate :name, :to => :person, :prefix => true
 
@@ -55,18 +73,6 @@ class Notification < ActiveRecord::Base
     super(attributes)
   end
 
-  def self.commented_on_created_reflection_notification(reflection_comment)
-    if reflection_comment.reflection
-      Notification.update_or_create_notification(reflection_comment, reflection_comment.person_id, reflection_comment.reflection.owner)
-    end
-  end
-
-  def self.commented_on_commented_reflection_notification(reflection_comment)
-    if reflection_comment.reflection
-      Notification.update_or_create_notification(reflection_comment, reflection_comment.person_id, reflection_comment.reflection.commenter_ids)
-    end
-  end
-
   def self.contributed_on_created_conversation_notification(contribution)
     if contribution.conversation
       Notification.update_or_create_notification(contribution, contribution.owner, contribution.conversation.owner)
@@ -94,8 +100,6 @@ class Notification < ActiveRecord::Base
     when RatingGroup
       self.rated_on_contribution_notification(item)
       self.rated_on_followed_conversation_notification(item)
-    when Reflection
-      self.reflected_on_followed_conversation_notification(item)
     when SurveyResponse
       self.voted_on_followed_conversation_notification(item)
       self.voted_on_created_vote_notification(item)
@@ -104,21 +108,6 @@ class Notification < ActiveRecord::Base
       self.signed_petition_on_followed_conversation_notification(item)
       self.signed_on_created_petition_notification(item)
       self.signed_on_signed_petition_notification(item)
-    when ReflectionComment
-      self.commented_on_created_reflection_notification(item)
-      self.commented_on_commented_reflection_notification(item)
-    end
-  end
-
-  def self.destroy_commented_on_commented_reflection_notification(reflection_comment)
-    if reflection_comment.reflection
-      Notification.destroy_notification(reflection_comment, reflection_comment.person_id, reflection_comment.reflection.commenter_ids)
-    end
-  end
-
-  def self.destroy_commented_on_created_reflection_notification(reflection_comment)
-    if reflection_comment.reflection
-      Notification.destroy_notification(reflection_comment, reflection_comment.person_id, reflection_comment.reflection.owner)
     end
   end
 
@@ -152,12 +141,6 @@ class Notification < ActiveRecord::Base
     end
   end
 
-  def self.destroy_reflected_on_followed_conversation_notification(reflection)
-    if reflection.conversation
-      Notification.destroy_notification(reflection, reflection.owner, reflection.conversation.subscriber_ids)
-    end
-  end
-
   def self.destroy_signed_petition_on_followed_conversation_notification(petition_signature)
     if petition_signature.petition && petition_signature.petition.conversation
       Notification.destroy_notification(petition_signature, petition_signature.person_id, petition_signature.petition.conversation.subscriber_ids)
@@ -173,8 +156,6 @@ class Notification < ActiveRecord::Base
     when RatingGroup
       self.destroy_rated_on_contribution_notification(item)
       self.destroy_rated_on_followed_conversation_notification(item)
-    when Reflection
-      self.destroy_reflected_on_followed_conversation_notification(item)
     when SurveyResponse
       self.destroy_voted_on_followed_conversation_notification(item)
       self.destroy_voted_on_created_vote_notification(item)
@@ -183,9 +164,6 @@ class Notification < ActiveRecord::Base
       self.destroy_signed_petition_on_followed_conversation_notification(item)
       self.destroy_signed_on_created_petition_notification(item)
       self.destroy_signed_on_signed_petition_notification(item)
-    when ReflectionComment
-      self.destroy_commented_on_created_reflection_notification(item)
-      self.destroy_commented_on_commented_reflection_notification(item)
     end
   end
 
@@ -253,12 +231,6 @@ class Notification < ActiveRecord::Base
   def self.rated_on_followed_conversation_notification(rating_group)
     if rating_group.conversation
       Notification.update_or_create_notification(rating_group, rating_group.person_id, rating_group.conversation.subscriber_ids)
-    end
-  end
-
-  def self.reflected_on_followed_conversation_notification(reflection)
-    if reflection.conversation
-      Notification.update_or_create_notification(reflection, reflection.owner, reflection.conversation.subscriber_ids)
     end
   end
 
@@ -339,6 +311,10 @@ class Notification < ActiveRecord::Base
   def self.viewed(person)
     notifications = self.where("receiver_id = ?", person).where("viewed_at is null")
     notifications.update_all(:viewed_at => Time.now)
+  end
+
+  def self.by_conversation(conversation)
+    where(conversation_id: conversation.id)
   end
 
   # Retrieve list of Old Notifications

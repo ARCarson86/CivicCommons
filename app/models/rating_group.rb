@@ -5,6 +5,7 @@ class RatingGroup < ActiveRecord::Base
   belongs_to :conversation
   belongs_to :contribution
   has_many   :ratings, :dependent => :destroy
+  has_many   :notifications
 
   before_validation :set_conversation_id
 

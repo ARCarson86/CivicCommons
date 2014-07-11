@@ -1,0 +1,18 @@
+<% case vote.daily_digest_type %>
+<% when 'created' %>
+  <p>
+    <%= "#{vote.person.name}" %> created a vote:
+    <blockquote>
+      <%= vote.title.html_safe %><br/>
+      <%= vote.description.html_safe %>
+    </blockquote>
+  </p>
+<% when 'ended' %>
+  <p>
+    A vote has ended:
+    <blockquote>
+      <%= vote.title.html_safe %><br/>
+      <%= vote.description.html_safe %>
+    </blockquote>
+  </p>
+<% end %>
