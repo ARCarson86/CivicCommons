@@ -133,7 +133,7 @@ private
         notification.emailed = DateTime.now
         Notifier.mentioned_notification(person, notification).deliver
       end
-      @notification.save
+      notification.save
     end
   end
 end

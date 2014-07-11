@@ -102,7 +102,7 @@ class Notifier < Devise::Mailer
     @recipient = recipient
     @notification = notification
 
-    mail(:subject => "You were mentioned on The Civic Commons!",
+    mail(:subject => "#{@notification.person.name} tagged you in a Conversation at The Civic Commons!",
          :from => '"Curator of Conversation" <curator@theciviccommons.com>',
          :to => @recipient.email)
 

@@ -1,11 +1,15 @@
-<h1>You were mentioned at The Commons.</h1>
-<h2><%= short_title(@notification.conversation.title) %></h2>
-<p>
-  <%= "#{@notification.person.name} said #{ clean_view(@notification.item.content)}" %>
-</p>
+<h2><%= "#{@notification.person.name} tagged you in a Conversation at The Civic Commons!" %></h2>
+<div style="margin-right: 10px;">
+	<h3><%= short_title(@notification.conversation.title) %></h3>
+	<h5 style="color: #a3a3a3; font-weight: normal;"><%= "#{@notification.person.name} added:" %></h5>
+	<p style="margin-left: 10px; font-size: 12px;">
+  <%= clean_view(@notification.item.content) %>
+	</p>
+</div>
 <%= link_to 'Check it out', conversation_url(@notification.conversation) %>
-<h3>Too much information?</h3>
-<p>
+<br>
+<h5 style="color: #a3a3a3; margin-bottom: 0; margin-top: 50px;">Too much information?</h5>
+<p style="font-size: 12px; margin-top: 0; color: #a3a3a3;">
 You can opt out of specific conversations by clicking "Stop Following this Conversation" on that conversation page at
 <%= link_to 'theciviccommons.com', root_url %>, or you can
 </p>
