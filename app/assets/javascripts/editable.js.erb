@@ -47,12 +47,19 @@
     $(this).parent(".editable").addClass("editor-active");
     options = $.extend({}, defaults, {auto_focus: $(this).attr("id")});
     $(this).tinymce(options);
+    var popup = $(this).closest('#popup-holder').children('.popup');
+    $(popup).addClass('active');
+    setTimeout(func, 4000);
+      function func() {
+        $(popup).removeClass('active');
+      }
   });
   $(document).on("click", ".editable .cancel", function(event) {
     event.preventDefault();
     var $editable = $(this).closest(".editable");
     var $textarea = $($editable).children("textarea").first();
     $editable.removeClass("editor-active");
+    $('.popup').removeClass('active');
     $($textarea).text("");
     if ($($textarea).tinymce() != undefined) {
       $($textarea).tinymce().remove();
