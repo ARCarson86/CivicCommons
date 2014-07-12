@@ -11,11 +11,11 @@
 civicApp = angular.module 'civicApp', ['ngRoute','civicControllers', 'civicServices', 'ngSanitize']
 
 civicApp.config ['$locationProvider','$routeProvider', ($locationProvider, $routeProvider) ->
-  $locationProvider.html5Mode(true).hashPrefix('!');
+  $locationProvider.html5Mode(true).hashPrefix('!')
   $routeProvider
     .when '/conversations/:id', {
       controller: 'ConversationDetailCtrl',
-      templateUrl: '/partials/conversation-detail.html'
+      templateUrl: '<%= asset_path 'embed/ng/templates/conversations/conversation-detail.html' %>'
     }
     .otherwise {
       redirect_to: '/'

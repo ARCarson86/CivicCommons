@@ -1,10 +1,6 @@
 <div ng-hide="conversation_loaded">Conversation Loading...</div>
-
 <h1>{{conversation.title}}</h1>
-
 <div ng-bind-html="conversation.summary"></div>
-
 <br />
 
-<div ng-include="'/partials/contributions.html'"></div>
-
+<div ng-include="'<%= asset_path 'embed/ng/templates/contributions/contributions.html' %>'"></div>

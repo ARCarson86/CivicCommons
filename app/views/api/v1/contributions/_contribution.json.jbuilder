@@ -5,7 +5,7 @@ json.cache! [@conversation, contribution, contribution.updated_at] do
     json.partial! contribution.person
   end
 
-  json.conrtibutions do |json|
+  json.contributions do |json|
     json.partial! 'api/v1/contributions/contribution', collection: contribution.descendants, as: :contribution
   end
 end
