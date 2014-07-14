@@ -21,7 +21,7 @@ class DigestService
   end
 
   def get_digest_recipients
-    @digest_recipients = Person.where(subscriptions_setting: @interval).joins(:notifications).group('person_id').having('COUNT(*) >?', 0)
+    @digest_recipients = Person.select("people.*, COUNT(notifications.id) notification_count").where(subscriptions_setting: @interval).joins("INNER JOIN notifications ON receiver_id=people.id AND notifications.emailed=NULL").group('receiver_id').having('notification_count >?', 0)
   end
 
   def get_notifications
