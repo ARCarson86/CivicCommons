@@ -1,3 +1,5 @@
+@import "compass/css3/box-shadow";
+
 .notification-container {
   position: relative;
   float: right;
@@ -28,7 +30,7 @@
 }
 
 .notification {
-  @include border-radius(15px);
+  border-radius: 15px;
   @include box-shadow(0 1px 1px rgba(0,0,0,.3));
   position: absolute;
   top: -5px;

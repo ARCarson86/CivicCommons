@@ -1,3 +1,9 @@
+@import "compass/utilities/general/clearfix";
+@import "compass/css3/images";
+@import "compass/css3/box-shadow";
+@import "compass/css3/box-sizing";
+@import "compass/css3/inline-block";
+
 // Base styles
 
 body {
@@ -514,7 +520,7 @@ button.cancel, input.submit, input#contribution_submit {
   text-align: center;
   text-decoration: none;
   text-shadow: 0 -1px 0px rgba(0,0,0,.3);
-  @include border-radius(4px);
+  border-radius: 4px;
   background-color: #abbb64;
   @include background-image(linear-gradient(top, rgb(185, 201, 116), rgb(157, 174, 85)));
   @include filter-gradient(rgb(185, 201, 116), rgb(157, 174, 85), vertical);
@@ -778,10 +784,7 @@ a.see-more {
   background-color: rgba(255,255,255,.6);
   background-color: #fff;
   border: 1px solid #ccc;
-  -webkit-border-radius: 4px;
-     -moz-border-radius: 4px;
-       -o-border-radius: 4px;
-          border-radius: 4px;
+  border-radius: 4px;
   -webkit-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2) inset, 0px 1px 1px rgba(255, 255, 255, 0.9);
      -moz-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2) inset, 0px 1px 1px rgba(255, 255, 255, 0.9);
        -o-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2) inset, 0px 1px 1px rgba(255, 255, 255, 0.9);
@@ -804,10 +807,7 @@ a.see-more {
   background-color: rgba(242,134,131,.6);
   background-color: #f28683;
   border-color: #b0362f;
-  -webkit-border-radius: 0 0 4px 4px;
-     -moz-border-radius: 0 0 4px 4px;
-       -o-border-radius: 0 0 4px 4px;
-          border-radius: 0 0 4px 4px;
+  border-radius: 0 0 4px 4px;
 }
 
 .cbx-error-message {
@@ -816,10 +816,7 @@ a.see-more {
   display: none;
   padding: 7px 20px 5px;
   margin-bottom: 0;
-  -webkit-border-radius: 4px 4px 0 0;
-     -moz-border-radius: 4px 4px 0 0;
-       -o-border-radius: 4px 4px 0 0;
-          border-radius: 4px 4px 0 0;
+  border-radius: 4px 4px 0 0;
 }
 
 .frame {
@@ -1005,20 +1002,14 @@ div.three-col-sm div.photobank img {margin: 0 0 6px 6px;}
   margin: 10px 0 0 0;
   padding: 10px;
   cursor: move;
-  -webkit-border-radius: 4px;
-     -moz-border-radius: 4px;
-       -o-border-radius: 4px;
-          border-radius: 4px;
+  border-radius: 4px;
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
      -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
        -o-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 .selected-survey-options .survey-option {
-  -webkit-border-radius: 0;
-     -moz-border-radius: 0;
-       -o-border-radius: 0;
-          border-radius: 0;
+  border-radius: 0;
 }
 .survey-option-locator {
   border: none;
@@ -1081,10 +1072,7 @@ div.three-col-sm div.photobank img {margin: 0 0 6px 6px;}
 .selected-survey-options {
   border: 1px solid #b5b5b5;
   background-color: #fff;
-  -webkit-border-radius: 4px;
-     -moz-border-radius: 4px;
-       -o-border-radius: 4px;
-          border-radius: 4px;
+  border-radius: 4px;
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
      -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
        -o-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
@@ -1123,10 +1111,7 @@ div.three-col-sm div.photobank img {margin: 0 0 6px 6px;}
   height: 100%;
   color: #a2a2a2;
   font-size: 1.3em;
-  -webkit-border-radius: 4px;
-     -moz-border-radius: 4px;
-       -o-border-radius: 4px;
-          border-radius: 4px;
+  border-radius: 4px;
 }
 .selected-survey-options .sortable .placeholder.over {
   color: #555;
@@ -1202,9 +1187,6 @@ div.three-col-sm div.photobank img {margin: 0 0 6px 6px;}
   margin-left: -4px;
   overflow: hidden;
   text-indent: -9999px;
-  -moz-border-radius: 0 4px 4px 0;
-  -webkit-border-radius: 0 4px 4px 0;
-  -o-border-radius: 0 4px 4px 0;
   border-radius: 0 4px 4px 0;
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#c4c4c4), to(#A8A8A8));
   background: -moz-linear-gradient(center top , #c4c4c4, #A8A8A8);
@@ -1222,9 +1204,6 @@ div.three-col-sm div.photobank img {margin: 0 0 6px 6px;}
   line-height: 3em;
   width: 8%;
   z-index: 5;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -o-border-radius: 4px;
   border-radius: 4px;
 }
 .survey_results .winning.info {background:#3a505b;}
@@ -1286,10 +1265,7 @@ div.three-col-sm div.photobank img {margin: 0 0 6px 6px;}
   position: absolute;
   text-indent: -9999px;
   top: 0;
-  -webkit-border-radius: 4px;
-     -moz-border-radius: 4px;
-       -o-border-radius: 4px;
-          border-radius: 4px;
+  border-radius: 4px;
 }
 
 .vote-bar:hover .vote-row {
@@ -1357,10 +1333,7 @@ div.three-col-sm div.photobank img {margin: 0 0 6px 6px;}
 
 .entry-container {
   margin-bottom: 25px;
-  -webkit-border-radius: 4px;
-     -moz-border-radius: 4px;
-       -o-border-radius: 4px;
-          border-radius: 4px;
+  border-radius: 4px;
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
      -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
        -o-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
@@ -1372,24 +1345,15 @@ div.three-col-sm div.photobank img {margin: 0 0 6px 6px;}
   border: 1px solid #ccc;
   overflow: hidden;
   padding: 15px 15px 10px;
-  -webkit-border-radius: 4px 4px 0 0;
-     -moz-border-radius: 4px 4px 0 0;
-       -o-border-radius: 4px 4px 0 0;
-          border-radius: 4px 4px 0 0;
+  border-radius: 4px 4px 0 0;
 }
 
 .reverse .entry-details {
-  -webkit-border-radius: 0 0 4px 4px;
-     -moz-border-radius: 0 0 4px 4px;
-       -o-border-radius: 0 0 4px 4px;
-          border-radius: 0 0 4px 4px;
+  border-radius: 0 0 4px 4px;
 }
 
 .entry-details.rounded {
--webkit-border-radius: 4px;
-   -moz-border-radius: 4px;
-     -o-border-radius: 4px;
-        border-radius: 4px;
+  border-radius: 4px;
 }
 
 .entry-details h4 {
@@ -1421,10 +1385,7 @@ div.three-col-sm div.photobank img {margin: 0 0 6px 6px;}
 .entry-details img {
   float: left;
   margin-bottom: 10px;
-  -webkit-border-radius: 0 1px 3px rgba(0, 0, 0, 0.15);
-     -moz-border-radius: 0 1px 3px rgba(0, 0, 0, 0.15);
-       -o-border-radius: 0 1px 3px rgba(0, 0, 0, 0.15);
-          border-radius: 0 1px 3px rgba(0, 0, 0, 0.15);
+  border-radius: 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 
 .entry-details.full h4,
@@ -1444,19 +1405,13 @@ div.three-col-sm div.photobank img {margin: 0 0 6px 6px;}
   overflow: hidden;
   padding: 10px 15px 0;
   text-align: right;
-  -webkit-border-radius: 0 0 4px 4px;
-     -moz-border-radius: 0 0 4px 4px;
-       -o-border-radius: 0 0 4px 4px;
-          border-radius: 0 0 4px 4px;
+  border-radius: 0 0 4px 4px;
 }
 
 .reverse .entry-meta {
   border-bottom: none;
   border-top: 1px solid #ccc;
-  -webkit-border-radius: 4px 4px 0 0;
-     -moz-border-radius: 4px 4px 0 0;
-       -o-border-radius: 4px 4px 0 0;
-          border-radius: 4px 4px 0 0;
+  border-radius: 4px 4px 0 0;
 }
 
 .entry-meta {
@@ -1518,15 +1473,9 @@ div.three-col-sm div.photobank img {margin: 0 0 6px 6px;}
 .pagination span {color: #999;}
 .pagination .previous_page {
   border-left: 1px solid #ccc;
-  -moz-border-radius: 4px 0 0 4px;
-  -webkit-border-radius: 4px 0 0 4px;
-  -o-border-radius: 4px 0 0 4px;
   border-radius: 4px 0 0 4px;
 }
 .pagination .next_page {
-  -moz-border-radius: 0 4px 4px 0;
-  -webkit-border-radius: 0 4px 4px 0;
-  -o-border-radius: 0 4px 4px 0;
   border-radius: 0 4px 4px 0;
 }
 .pagination em {
@@ -3092,7 +3041,7 @@ vertical-align: middle;
   margin-bottom: 20px;
   padding: 20px 20px 15px;
   text-shadow: 0 1px 1px rgba(255,255,255,.9);
-  @include border-radius(4px);
+  border-radius: 4px;
   @include box-shadow(0 1px 3px rgba(0, 0, 0, 0.15));
 }
 
@@ -3621,7 +3570,7 @@ input.textbox.input-short {
       height: 65px - 8px;
 
       .envelope {
-        @include border-radius(5px);
+        border-radius: 5px;
         margin-bottom: 8px;
       }
 
@@ -3651,7 +3600,7 @@ input.textbox.input-short {
     }
 
     .follows {
-      @include border-radius(25px);
+      border-radius: 25px;
       border: 3px solid #d1e07f;
       background-color: #6a727f;
       width: 34px;

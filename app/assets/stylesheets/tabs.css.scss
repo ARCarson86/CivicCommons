@@ -44,7 +44,7 @@
   border: 1px solid #bbb;
   padding-top: 9px;
   padding-bottom: 9px;
-  @include border-radius (4px 4px 0 0);
+  border-radius: 4px 4px 0 0;
 }
 
 .tab-section > li > a:hover {
