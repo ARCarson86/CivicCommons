@@ -9,7 +9,6 @@
     <%= javascript_tag '$.fx.off = true;' if Rails.env.test? %>
     <%= stylesheet_link_tag 'application', :media => "screen, projection" %>
     <script>
-      
       $(document).ready(function(){
 
         $("input.datetime").datetimepicker({
