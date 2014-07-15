@@ -256,7 +256,7 @@ Civiccommons::Application.routes.draw do
   end
 
   namespace :api do
-    api_version(:module => "V1", path: { value: "v1" }) do
+    api_version(:module => "V1", path: { value: "v1" }, defaults: {format: :json}) do
       get 'me', controller: "users"
       resources :users, only: [:show] do
         collection do
@@ -265,6 +265,10 @@ Civiccommons::Application.routes.draw do
       end
       resources :conversations do
         resources :contributions
+      end
+      devise_scope :person do
+        post :sessions, to: 'sessions#create'
+        delete :sessions, to: 'sessions#destroy'
       end
     end
   end

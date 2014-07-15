@@ -12,6 +12,7 @@ group :assets do
   gem 'uglifier'
   gem 'yui-compressor'
   gem "font-awesome-rails"
+  gem 'angular-rails-templates'
   #gem 'jquery-migrate-rails'
 end
 gem 'jquery-rails'

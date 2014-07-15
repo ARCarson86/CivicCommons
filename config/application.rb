@@ -68,8 +68,10 @@ module Civiccommons
 
     config.assets.logger = Logger.new(STDOUT)
 
-    config.assets.precompile += %w( admin.js conversations/activities.embed.js conversations/show_embed.js tiny_mce/**/*.js tiny_mce/*.js )
-    config.assets.precompile += %w( petition.print.css admin.css widget.css tiny_mce/**/*.css)
+    config.assets.precompile = %w( admin.js conversations/activities.embed.js conversations/show_embed.js tiny_mce/**/*.js tiny_mce/*.js )
+    config.assets.precompile << %w( petition.print.css admin.css widget.css tiny_mce/**/*.css)
+
+    config.angular_templates.ignore_prefix = ['embed/ng/templates/', 'templates']
 
   end
 end

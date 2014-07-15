@@ -1,4 +1,4 @@
-json.(@conversation, :title, :starter, :created_at)
+json.(@conversation, :id, :slug, :title, :starter, :created_at)
 
 json.summary sanitize(auto_link(@conversation.summary, html: {target: "_blank"}, sanitize: false), tags: %w(strong em span p ul ol li a), attributes: %w(href title target style))
 

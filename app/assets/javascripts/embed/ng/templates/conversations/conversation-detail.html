@@ -1,0 +1,10 @@
+<div ng-hide="conversation_loaded">Conversation Loading...</div>
+<div id="conversation conversation-{{conversation.slug}}">
+  <h1>{{conversation.title}}</h1>
+  <div ng-bind-html="conversation.summary"></div>
+  <br />
+
+  <div class="contributions" ng-include="'contributions/contributions.html'"></div>
+
+</div>
+

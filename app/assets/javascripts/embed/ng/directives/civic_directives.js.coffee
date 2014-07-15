@@ -1,0 +1,1 @@
+civicDirectives = angular.module 'civicDirectives', []
