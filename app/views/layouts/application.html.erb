@@ -170,7 +170,7 @@
       </div>
     </div>
 
-    <%= render :partial => '/shared/suggest_facebook_auth.js' if signed_in? && !current_person.declined_fb_auth? && !current_person.facebook_authenticated? && current_person.allow_facebook_connect? %>
+    <%= render :partial => '/shared/suggest_facebook_auth.js' if signed_in? && !current_person.declined_fb_auth? && !current_person.social_authenticated?("facebook") && current_person.allow_facebook_connect? %>
     <%= render :partial => 'layouts/get_satisfaction' %>
 
     <div id="fb-root"></div>

@@ -11,6 +11,10 @@ module AuthenticationHelper
     link_to "Sign in with Facebook", person_omniauth_authorize_path(:facebook), :class => 'createacct-link facebook-auth fb-login-btn'
   end
 
+  def twitter_sign_in_link
+    link_to "Sign in with Twitter", person_omniauth_authorize_path(:twitter), :class => 'createacct-link facebook-auth fb-login-btn'
+  end
+
   # uses url instead of path if https
   def person_omniauth_authorize_path_or_url(provider)
     SecureUrlHelper.https? ? person_omniauth_authorize_url(provider, :protocol => 'https') : person_omniauth_authorize_path(provider)

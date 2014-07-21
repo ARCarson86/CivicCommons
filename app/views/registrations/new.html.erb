@@ -20,7 +20,7 @@
         </div>
         <div class="form-block">
           <%= f.label :email, 'Email Address:' %>
-          <%= f.text_field :email, :class => 'textbox', :readonly => form_presenter.show_facebook_fields? %>
+          <%= f.text_field :email, :class => 'textbox' %>
           <span class="required">*</span>
         </div>
         <div class="form-block <%= 'hide' if form_presenter.show_facebook_fields? %>">
@@ -59,6 +59,10 @@
       </fieldset>
       <div class="form-block facebook-auth <%= 'hide' unless form_presenter.blank_form? %>">
         <%= link_with_facebook_link %>
+        <%= link_to("Connect with Twitter", person_omniauth_authorize_path(:twitter), :class => 'connectacct-link facebook-auth', :id => 'facebook-connect' )%>
+        <br>
+        <%= link_to("Connect with Linkedin", person_omniauth_authorize_path(:linkedin), :class => 'connectacct-link facebook-auth', :id => 'facebook-connect' )%>
+        <%= link_to("Connect with Google +", person_omniauth_authorize_path(:google_oauth2), :class => 'connectacct-link facebook-auth', :id => 'facebook-connect' )%>
         or
         <%= link_to "Register with an email address", '#', :class => 'no-fb' %>
       </div>

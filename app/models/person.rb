@@ -62,6 +62,9 @@ class Person < ActiveRecord::Base
   accepts_nested_attributes_for :authentications
 
   has_one :facebook_authentication, :class_name => 'Authentication', :conditions => {:provider => 'facebook'}, :dependent => :destroy
+  has_one :twitter_authentication, :class_name => 'Authentication', :conditions => {:provider => 'twitter'}, :dependent => :destroy
+  has_one :google_authentication, :class_name => 'Authentication', :conditions => {:provider => 'google_oauth2'}, :dependent => :destroy
+  has_one :linkedin_authentication, :class_name => 'Authentication', :conditions => {:provider => 'linkedin'}, :dependent => :destroy
   has_many :notifications
 
   has_many :content_items_people
@@ -374,20 +377,43 @@ class Person < ActiveRecord::Base
     true
   end
 
-  def facebook_authenticated?
-    !facebook_authentication.blank?
+  def social_authenticated?(provider)
+    case provider
+    when "facebook"
+      !facebook_authentication.blank?
+    when "twitter"
+      !twitter_authentication.blank?
+    when "google_oauth2"
+      !google_authentication.blank?
+    when "linkedin"
+      !linkedin_authentication.blank?
+    end
   end
 
-  def link_with_facebook(authentication)
-    begin 
-      ActiveRecord::Base.transaction do
-        self.facebook_authentication = authentication
-        self.encrypted_password = ''
-        self.create_from_auth = true
-        save!
-        AvatarService.update_avatar_url_for(self)
-        facebook_authentication.persisted?
-      end
+  def authentication_type(provider)
+    case provider
+    when "facebook"
+      facebook_authentication
+    when "twitter"
+      twitter_authentication
+    when "google_oauth2"
+      google_authentication
+    when "linkedin"
+      linkedin_authentication
+    end
+  end
+
+  def link_with_social(authentication, provider)
+    begin
+      @authentication = Authentication.new
+      @authentication = authentication
+      @authentication.provider = provider
+      self.encrypted_password = ''
+      self.create_from_auth = true
+      @authentication.person_id = self
+      save!
+      @authentication.save
+      AvatarService.update_avatar_url_for(self)
     rescue ActiveRecord::RecordNotSaved
       return false
     end
@@ -475,7 +501,7 @@ protected
   end
 
   def password_required?
-    if facebook_authenticated?
+    if social_authenticated?("facebook") || social_authenticated?("twitter") || social_authenticated?("linkedin") || social_authenticated?("google")
       facebook_unlinking? ? true : false
     else
       (!persisted? && !create_from_auth?) || password.present? || password_confirmation.present?

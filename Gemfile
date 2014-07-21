@@ -22,8 +22,14 @@ gem 'redis-rails'
 
 gem 'devise', '1.5.2'
 gem "cancan"
-gem 'omniauth', '1.0.1'
+gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-linkedin'
+
+gem "better_errors"
+gem "binding_of_caller"
 
 gem 'fb_graph'
 
