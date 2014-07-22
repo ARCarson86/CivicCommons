@@ -5,7 +5,6 @@ civicDirectives
     restrict: 'A'
     require: '?ngModel'
     link: (scope, element, attrs, ngModel) ->
-      console.log scope
       return unless ngModel
 
       read = ->

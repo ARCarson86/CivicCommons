@@ -14,5 +14,5 @@ civicControllers.controller 'ConversationDetailCtrl', ['$scope', '$routeParams',
   $scope.login = ->
     $rootScope.flagLogin = true
 
-  $scope.user = User.get {conversation_id: 'what-to-do-about-dropouts', user_id: 252}
+  #$scope.author = User.get {conversation_id: 'what-to-do-about-dropouts', user_id: $scope.conversation.}
 ]

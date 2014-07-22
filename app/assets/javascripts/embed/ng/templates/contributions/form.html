@@ -1,0 +1,5 @@
+<form class="contribute-form" ng-submit="submitComment()">
+  <div contenteditable ng-model="body" placeholder="Reply To {{replyToAuthor}}"></div>
+  <input type="hidden" ng-model="replyTo" />
+  <input type="submit" value="Submit" />
+</form>

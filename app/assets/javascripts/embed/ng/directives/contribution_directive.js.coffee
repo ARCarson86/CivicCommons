@@ -1,0 +1,28 @@
+civicDirectives = angular.module 'civicDirectives'
+  .directive 'contribute', ['User', (User) ->
+    restrict: 'E'
+    transclude: true
+    templateUrl: 'contributions/new.html'
+    link: (scope, element, attrs) ->
+      attrs.$observe 'replyTo', (val) ->
+        scope.replyTo = val
+
+      attrs.$observe 'replyToAuthor', (val) ->
+        scope.replyToAuthor = val
+
+      attrs.$observe 'active', (val) ->
+        if val == "true" && !attrs.replyToParent
+          scope.initialized = "true" # Put it in the DOM
+          setTimeout -> # setting timeout to allow template to render
+            inputs = element.find('form').children() # get form children
+            for el in inputs
+              if el.tagName == "DIV" && el.getAttribute("contenteditable") != null
+                el.focus()
+                return # return if we've found it
+          , 1 # 1ms
+        scope.active = val # Show the form
+
+      scope.submitComment = ->
+        console.log "comment submitted"
+        console.log scope.body
+  ]
