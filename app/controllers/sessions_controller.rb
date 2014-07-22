@@ -15,6 +15,7 @@ class SessionsController < Devise::SessionsController
   end
 
   def create
+    cookies[:civiccommons_login_update] = DateTime.now.to_i
     super
     session[:previous] = nil
     default_region(current_person.default_region)

@@ -1,8 +1,8 @@
 civicServices = angular.module 'civicServices'
 
-civicServices.factory 'Conversation', ['$resource',
-  ($resource) ->
-    $resource '/api/v1/conversations/:id.json', {},
+civicServices.factory 'Conversation', ['$resource', 'CivicApi',
+  ($resource, CivicApi) ->
+    $resource CivicApi.endpoint('conversations/:id'), {},
       get:
         cache: true
 ]

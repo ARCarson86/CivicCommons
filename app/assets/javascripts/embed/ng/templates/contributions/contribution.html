@@ -1,6 +1,6 @@
 <div class="contribution">
+  <user id="{{contribution.owner_id}}"></user>
   <div ng-bind-html="contribution.content"></div>
-  <a href ng-click="login()">Sign in</a>
 
   <div class="contributions">
     <div ng-repeat="contribution in contribution.contributions" ng-include="'contributions/contribution.html'"></div>

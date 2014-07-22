@@ -1,4 +1,4 @@
-class Api::V1::ContributionsController < ApplicationController
+class Api::V1::ContributionsController < Api::V1::BaseController
   before_filter :get_conversation
 
   def index

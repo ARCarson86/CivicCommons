@@ -1,13 +1,21 @@
 civicDirectives = angular.module 'civicDirectives'
 
-civicDirectives.controller 'AccountDirective', [ '$scope', '$rootScope', 'Account', ($scope, $rootScope, Account) ->
+civicDirectives.controller 'AccountDirective', [ '$scope', '$rootScope', '$document', '$cookies', '$http', 'Account', ($scope, $rootScope, $document, $cookies, $http, Account) ->
   $scope.account = {}
 
+  $scope.$watch () ->
+    $cookies.civiccommons_login_update
+  , (newValue, oldValue) ->
+    unless newValue == oldValue
+      $scope.getCurrentUser(true)
+
   $scope.getCurrentUser = (resetCache = false) ->
-    $scope.current_user = Account.getAccount {}, resetCache, (data)->
+    Account.getAccount {}, resetCache, (data, status, headers)->
+      $scope.current_user = data
       $scope.logged_in = true
-    , (data) ->
-      $scope.logged_in = false
+    , (error) ->
+      $scope.current_user = error.data
+      $scope.logged_in = true
 
   $scope.getCurrentUser()
 

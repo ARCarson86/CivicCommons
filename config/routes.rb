@@ -265,6 +265,7 @@ Civiccommons::Application.routes.draw do
       end
       resources :conversations do
         resources :contributions
+        resources :users, controller: "conversations/users"
       end
       devise_scope :person do
         post :sessions, to: 'sessions#create'

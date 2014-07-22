@@ -1,13 +1,25 @@
 civicServices = angular.module 'civicServices'
 
-civicServices.factory 'Me', ['$resource', '$cacheFactory',
-  ($resource, $cacheFactory) ->
+civicServices.factory 'Account', ['$resource', '$cacheFactory', 'CivicApi',
+  ($resource, $cacheFactory, CivicApi) ->
     accountCache = $cacheFactory 'accountCache'
-    Account = $resource '/api/v1/me.json', {}
+    Account = $resource CivicApi.endpoint('sessions'), {},
+      get:
+        url: CivicApi.endpoint 'me'
+        method: 'GET'
+      post:
+        method: 'POST'
+      delete:
+        method: 'DELETE'
 
-    get: (refreshCache = false) ->
-      if refreshCache or !accountCache.get('accountCache')
-        console.log 'resetcache'
-        accountCache.put 'accountInfo', Account.get
-      accountCache.get 'accountCache'
+    Account.getAccount = (params, resetCache, success, error) ->
+      account = accountCache.get('accountInfo')
+      if resetCache or !account
+        account = Account.get(params, success, error)
+        accountCache.put 'accountInfo', account
+
+      account
+
+    Account
 ]
+

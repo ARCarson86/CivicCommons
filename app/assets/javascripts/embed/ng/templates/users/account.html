@@ -3,21 +3,37 @@
     <div class="{{error.status}}" ng-repeat="error in errors" >{{error.message}}</div>
   </div>
   <div class="sign-in" ng-hide="logged_in">
-    <form ng-submit="signIn()">
-      <label>Email:</label>
-      <input type="text" name="person[email]" ng-model="account.email" />
+    <form class="form-horizontal" ng-submit="signIn()">
+      <div class="form-group">
+        <label class="control-label col-xs-5">Email:</label>
+        <div class="col-xs-6">
+          <input type="text" name="person[email]" ng-model="account.email" />
+        </div>
+      </div>
 
-      <label>Password:</label>
-      <input type="password" name="person[password]" ng-model="account.password" />
+      <div class="form-group">
+        <label class="control-label col-xs-5">Password:</label>
+        <div class="col-xs-6">
+          <input type="password" name="person[password]" ng-model="account.password" />
+        </div>
+      </div>
       <input type="submit" value="Sign In" />
 
     </form>
   </div>
   <div class="account-information" ng-show="logged_in">
-    <img ng-src="{{current_user.avatar}}" />
-    <a href="{{current_user.location}}" target="_blank">{{current_user.name}}</a><br />
-    <a href ng-click="signOut()" >
-      logout
-    </a>
+    <div class="btn-group pull-right" dropdown>
+      <button type="button" class="btn btn-default dropdown-toggle" >
+        <img width="20" height="20" ng-src="{{current_user.avatar}}" />
+        <a href="{{current_user.location}}" target="_blank">{{current_user.name}}</a>
+        <span class="caret"></span>
+      </button>
+
+      <ul class="dropdown-menu dropdown-menu-right" role="menu">
+        <li><a href="{{current_user.location}}/edit" target="_blank">Settings</a></li>
+        <li class="divider"></li>
+        <li><a href ng-click="signOut()">Sign Out</a></li>
+      </ul>
+    </div>
   </div>
 </div>
