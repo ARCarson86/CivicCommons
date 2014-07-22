@@ -1,12 +1,13 @@
 civicDirectives = angular.module 'civicDirectives'
   .directive 'contribute', ['User', (User) ->
     restrict: 'E'
-    transclude: true
     templateUrl: 'contributions/new.html'
     link: (scope, element, attrs) ->
       attrs.$observe 'replyTo', (val) ->
         scope.replyTo = val
+        console.log scope.replyTo
 
+      scope.body = "test"
       attrs.$observe 'replyToAuthor', (val) ->
         scope.replyToAuthor = val
 
