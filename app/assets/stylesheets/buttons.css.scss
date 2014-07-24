@@ -1,3 +1,7 @@
+@import "compass/css3/images";
+@import "compass/css3/box-shadow";
+@import "compass/utilities/general/clearfix";
+
 // Button styles
 
 a.button,
@@ -15,7 +19,7 @@ a.off_button,
   text-align: center;
   text-decoration: none;
   text-shadow: 0 -1px 0 rgba(0,0,0,.3);
-  @include border-radius(4px);
+  border-radius: 4px;
   background-color: #abbb64;
   @include background-image(linear-gradient(top, rgb(185, 201, 116), rgb(157, 174, 85)));
   @include filter-gradient(rgb(185, 201, 116), rgb(157, 174, 85), vertical);
@@ -160,7 +164,7 @@ a.button:active span.stitcher {
   margin: 0 -5px 0 5px;
   padding: 1px 3px;
   text-shadow: none;
-  @include border-radius(2px);
+  border-radius: 2px;
 }
 
 // Button groups
@@ -175,17 +179,17 @@ a.button:active span.stitcher {
 	float: left;
 	margin-left: -1px;
 	margin-right: 0;
-  @include border-radius(0);
+  border-radius: 0;
 }
 
 .btn-group .button:first-child {
 	margin-left: 0;
-  @include border-radius(4px 0 0 4px);
+  border-radius: 4px 0 0 4px;
 }
 
 .btn-group .button:last-child,
 .btn-group .button.dropdown-toggle {
-  @include border-radius(0 4px 4px 0);
+  border-radius: 0 4px 4px 0;
 }
 
 .btn-group .button:hover,
@@ -226,7 +230,7 @@ a.button:active span.stitcher {
 // Xtra Large Buttons
 
 .btn-group.btn-group-x-large .button {
-  @include border-radius(6px);
+  border-radius: 6px;
 	padding: 12px 18px;
   font-size: 26px;
   text-align: left;
@@ -237,7 +241,7 @@ a.button:active span.stitcher {
   }
 
   .participant-count {
-    @include border-radius(4px);
+    border-radius: 4px;
     position: absolute;
     top: 10px;
     right: 10px;
