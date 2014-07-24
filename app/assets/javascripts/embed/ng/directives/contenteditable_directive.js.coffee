@@ -1,6 +1,4 @@
-civicDirectives = angular.module 'civicDirectives'
-
-civicDirectives
+angular.module 'civicDirectives'
   .directive 'contenteditable', ['$sce', ($sce) ->
     restrict: 'A'
     require: '?ngModel'

@@ -22,4 +22,3 @@ civicServices.factory 'Account', ['$resource', '$cacheFactory', 'CivicApi',
 
     Account
 ]
-

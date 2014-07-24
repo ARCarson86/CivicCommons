@@ -1,11 +1,22 @@
-civicDirectives = angular.module 'civicDirectives'
+angular.module 'civicDirectives'
+  .directive 'contribution', ['CivicApi', 'Contribution', (CivicApi, Contribution) ->
+    restrict: 'E'
+    transclude: true
+    templateUrl: 'contributions/contribution.html'
+    scope:
+      id: '@'
+    controller: ($scope) ->
+    link: (scope, element, attrs) ->
+      scope.contribution = Contribution.getContribution(scope.id)
+  ]
+
   .directive 'contribute', ['User', (User) ->
     restrict: 'E'
+    require: '^contribution'
     templateUrl: 'contributions/new.html'
     link: (scope, element, attrs) ->
       attrs.$observe 'replyTo', (val) ->
         scope.replyTo = val
-        console.log scope.replyTo
 
       scope.body = "test"
       attrs.$observe 'replyToAuthor', (val) ->

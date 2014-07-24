@@ -6,5 +6,6 @@ civicDirectives
     templateUrl: 'users/user.html'
     transclude: true
     link: (scope, element, attrs) ->
-      scope.user = User.get conversation_id: scope.conversation.slug, user_id: attrs.id
+      console.log attrs
+      scope.user = User.get user_id: attrs.id
   ]
