@@ -87,10 +87,14 @@ private
   end
 
   def successful_authentication(authentication)
-    flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Facebook"
-    authentication.person.remember_me = true
-    sign_in authentication.person, :event => :authentication
-    render_js_redirect_to (env['omniauth.origin'] || root_path), :text => 'Logging in to CivicCommons with Facebook...'
+    unless authentication.person.blank?
+      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Facebook"
+      authentication.person.remember_me = true
+      sign_in authentication.person, :event => :authentication
+      render_js_redirect_to (env['omniauth.origin'] || root_path), :text => 'Logging in to CivicCommons with Facebook...'
+    else
+      create_account_using_social_credentials
+    end
   end
 
   def render_js_registering_email_taken(options={})

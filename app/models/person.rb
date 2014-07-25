@@ -410,7 +410,7 @@ class Person < ActiveRecord::Base
       @authentication.provider = provider
       self.encrypted_password = ''
       self.create_from_auth = true
-      @authentication.person_id = self
+      @authentication.person_id = self.id
       save!
       @authentication.save
       AvatarService.update_avatar_url_for(self)
