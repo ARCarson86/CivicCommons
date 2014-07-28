@@ -6,7 +6,7 @@
 function init_tiny_mce(JqueryListOfElements){
   $(JqueryListOfElements).tinymce({
     // Location of TinyMCE script
-    script_url : '<%=asset_path"tiny_mce/tiny_mce.js"%>',
+    script_url : '/assets/tiny_mce/tiny_mce_src.js',
     mode : "textareas",
     theme : "advanced",
 
