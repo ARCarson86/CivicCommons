@@ -1,6 +1,7 @@
 require File.expand_path('./config/initializers/civic_commons.rb')
 
 Civiccommons::Application.configure do
+    config.assets.initialize_on_precompile = false
   # Settings specified here will take precedence over those in config/environment.rb
 
   # The production environment is meant for finished, "live" apps.
