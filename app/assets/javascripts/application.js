@@ -21,7 +21,6 @@
 //= require authentication
 //= require omniauth_handler
 //= require master
-//= require chosen_issues
 //= require jquery-plugins/jquery.cycle.all.js
 //= require dropdown.js
 //= require alert.js
