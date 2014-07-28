@@ -3,6 +3,7 @@ require File.expand_path('./lib/mail_interceptor.rb')
 
 Civiccommons::Application.configure do
   # Settings specified here will take precedence over those in config/environment.rb
+  config.assets.initialize_on_precompile = false
 
   # In the development environment your application's code is reloaded on
   # every request.  This slows down response time but is perfect for development
