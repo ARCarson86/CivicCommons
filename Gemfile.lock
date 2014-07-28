@@ -481,7 +481,6 @@ DEPENDENCIES
   rspec-spies (~> 2.1.0)
   ruby_parser
   sanitize
-  sass
   sass-rails (~> 3.2.3)
   shoulda
   simplecov (~> 0.6.2)

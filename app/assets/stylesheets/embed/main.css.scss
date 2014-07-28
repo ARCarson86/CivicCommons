@@ -1,6 +1,8 @@
 //= require bootstrap/css/bootstrap.css
 //= require bootstrap/css/bootstrap-theme.css
 
+//@import "compass/css3/inline-block";
+
 header {
   margin-top: 1em;
 }
@@ -11,11 +13,11 @@ header {
 
 .contribution {
   overflow-x: scroll;
-  .contributions {
-    .contribution {
-      border-left: 4px solid pink;
-      padding-left: 5px;
-    }
+  header {
+    margin: 0;
+  }
+  .content {
+    overflow: hidden;
   }
 }
 
@@ -24,7 +26,34 @@ header {
   margin: 30px 0;
 }
 
+.actions {
+  .reply {
+    background-image: image-url('icons-svg/reply.svg');
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+    padding-left: 20px;
+  }
+}
+
 [contenteditable]:empty:before {
   content: attr(placeholder);
   opacity: 0.5;
+}
+
+.user-avatar {
+  width: 40px;
+  float: left;
+  margin-right: .5em;
+}
+.user {
+  display: inline;
+}
+
+.new-contribution {
+  .body {
+    border: 1px solid #AAA;
+    outline: none;
+    min-height: 3em;
+    padding: 3px;
+  }
 }

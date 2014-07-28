@@ -11,7 +11,6 @@ civicServices.factory 'Contribution', ['$resource', 'CivicApi', ($resource, Civi
       cache: true
 
   index: (params = {}, success = null, failure = null) ->
-    conts = _.merge(contributions, Contribution.query(params, success, failure))
     conts = Contribution.query params, (data, headers) ->
       contributions = _.merge(contributions, data)
       (success)(data,headers)

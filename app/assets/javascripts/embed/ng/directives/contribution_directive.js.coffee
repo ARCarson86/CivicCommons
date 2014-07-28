@@ -17,8 +17,8 @@ angular.module 'civicDirectives'
     link: (scope, element, attrs) ->
       attrs.$observe 'replyTo', (val) ->
         scope.replyTo = val
+        scope.replyToAuthor = User.getUser(val)["name"]
 
-      scope.body = "test"
       attrs.$observe 'replyToAuthor', (val) ->
         scope.replyToAuthor = val
 

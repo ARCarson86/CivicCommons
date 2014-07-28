@@ -13,6 +13,8 @@ civicControllers.controller 'ConversationDetailCtrl', ['$scope', '$routeParams',
 
   $scope.current_user = Account.get {}
 
+  User.index()
+
   $scope.login = ->
     $rootScope.flagLogin = true
 

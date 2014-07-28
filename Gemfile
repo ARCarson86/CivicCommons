@@ -4,7 +4,6 @@ gem 'rails', '~> 3.2.16'
 
 gem 'mysql2'
 
-
 group :assets do
   gem 'sass-rails', '~> 3.2.3'
   gem 'compass-rails'
@@ -13,7 +12,6 @@ group :assets do
   gem 'yui-compressor'
   gem "font-awesome-rails"
   gem 'angular-rails-templates'
-  #gem 'jquery-migrate-rails'
 end
 gem 'jquery-rails'
 
@@ -79,7 +77,6 @@ gem 'carrierwave'
 gem 'mini_magick'
 
 gem 'rails_autolink' # auto_link was removed on rails 3.1, this is for migration purposes. A suggestion is to use Rinku
-gem 'sass'
 
 gem 'whenever', require: false
 
