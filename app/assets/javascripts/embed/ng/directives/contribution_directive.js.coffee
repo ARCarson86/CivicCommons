@@ -10,7 +10,7 @@ angular.module 'civicDirectives'
       scope.contribution = Contribution.getContribution(scope.id)
   ]
 
-  .directive 'contribute', ['User', (User) ->
+  .directive 'contribute', ['User', 'Contribution', (User, Contribution) ->
     restrict: 'E'
     require: '^contribution'
     templateUrl: 'contributions/new.html'
@@ -37,4 +37,9 @@ angular.module 'civicDirectives'
       scope.submitComment = ->
         console.log "comment submitted"
         console.log scope.body
+        newContribution = new Contribution
+          contribution:
+            body: scope.body
+
+        newContribution.$save()
   ]

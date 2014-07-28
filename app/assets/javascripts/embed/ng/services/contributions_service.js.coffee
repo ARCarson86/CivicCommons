@@ -10,13 +10,16 @@ civicServices.factory 'Contribution', ['$resource', 'CivicApi', ($resource, Civi
       method: 'GET'
       cache: true
 
-  index: (params = {}, success = null, failure = null) ->
+  Contribution.index = (params = {}, success = null, failure = null) ->
     conts = Contribution.query params, (data, headers) ->
       contributions = _.merge(contributions, data)
       (success)(data,headers)
     , failure
 
-  getContribution: (id, success = null, failure = null) ->
+  Contribution.getContribution = (id, success = null, failure = null) ->
     contribution = contributions[id]
+
+  return Contribution
+
 
 ]

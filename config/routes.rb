@@ -264,7 +264,7 @@ Civiccommons::Application.routes.draw do
         end
       end
       resources :conversations do
-        resources :contributions
+        resources :contributions, controller: "conversations/contributions"
         resources :users, controller: "conversations/users"
       end
       devise_scope :person do
