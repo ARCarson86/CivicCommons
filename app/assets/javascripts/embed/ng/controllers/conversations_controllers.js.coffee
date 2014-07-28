@@ -11,6 +11,12 @@ civicControllers.controller 'ConversationDetailCtrl', ['$scope', '$routeParams',
   $scope.contributions = Contribution.index {}, ->
     $scope.contributions_loaded = true
 
+  Contribution.registerObserverCallback ->
+    console.log 'called'
+    $scope.contributions = Contribution.getContributions()
+    console.log "Contribution.getContributions()"
+    console.log Contribution.getContributions()
+
   $scope.current_user = Account.get {}
 
   User.index()

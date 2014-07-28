@@ -6,7 +6,11 @@ class Api::V1::Conversations::ContributionsController < Api::V1::BaseController
   end
 
   def create
-    Rails.logger.info params
+    empty_user unless current_person
+    @contribution = current_person.contributions.new params[:contribution]
+    @contribution.conversation = @conversation
+    @contribution.save
+    render "show"
   end
 
   private

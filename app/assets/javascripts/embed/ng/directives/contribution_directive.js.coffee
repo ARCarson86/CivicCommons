@@ -1,26 +1,27 @@
 angular.module 'civicDirectives'
   .directive 'contribution', ['CivicApi', 'Contribution', (CivicApi, Contribution) ->
     restrict: 'E'
-    transclude: true
     templateUrl: 'contributions/contribution.html'
     scope:
       id: '@'
     controller: ($scope) ->
     link: (scope, element, attrs) ->
-      scope.contribution = Contribution.getContribution(scope.id)
+      #scope.contribution = Contribution.getContribution(scope.id)
   ]
 
   .directive 'contribute', ['User', 'Contribution', (User, Contribution) ->
     restrict: 'E'
-    require: '^contribution'
     templateUrl: 'contributions/new.html'
     link: (scope, element, attrs) ->
-      attrs.$observe 'replyTo', (val) ->
-        scope.replyTo = val
-        scope.replyToAuthor = User.getUser(val)["name"]
+      replyToObserver = attrs.$observe 'replyTo', (val) ->
+        unless _.isUndefined val
+          scope.replyTo = val
+          replyToObserver()
 
-      attrs.$observe 'replyToAuthor', (val) ->
-        scope.replyToAuthor = val
+      replyToAuthorObserver = attrs.$observe 'replyToAuthor', (val) ->
+        unless _.isUndefined val
+          scope.replyToAuthor = val
+          replyToAuthorObserver()
 
       attrs.$observe 'active', (val) ->
         if val == "true" && !attrs.replyToParent
@@ -35,11 +36,10 @@ angular.module 'civicDirectives'
         scope.active = val # Show the form
 
       scope.submitComment = ->
-        console.log "comment submitted"
-        console.log scope.body
         newContribution = new Contribution
           contribution:
-            body: scope.body
+            content: scope.content
+            parent_id: scope.replyTo
 
-        newContribution.$save()
+        result = newContribution.$save()
   ]

@@ -14,6 +14,8 @@ class ApplicationController < ActionController::Base
   before_filter :require_no_ssl
   helper_method :with_format, :default_region, :region_recent_conversations
 
+  after_filter :set_csrf_cookie_for_ng
+
   rescue_from CanCan::AccessDenied do |exception|
     flash[:notice] = exception.message
     redirect_to root_url
@@ -112,6 +114,14 @@ protected
 
   def current_ability
     @current_ability ||= ::Ability.new(current_person)
+  end
+
+  def set_csrf_cookie_for_ng
+      cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
+  end
+
+  def verified_request?
+    super || form_authenticity_token == request.headers['X-XSRF-TOKEN']
   end
 
 end

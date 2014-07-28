@@ -3,9 +3,10 @@
 <div id="conversation conversation-{{conversation.slug}}">
   <h1>{{conversation.title}}</h1>
   <div ng-bind-html="conversation.summary"></div>
-  <br />
 
   <a href ng-init="contributionActive = false" ng-click="contributionActive = !contributionActive">reply</a>
+
+  <contribute ng-show="contributionActive" data-active="{{contributionActive}}" data-reply-to="{{contribution.id}}" data-reply-to-parent="{{contribution.parent_id}}" data-reply-to-author="{{user.name}}"></contribute>
 
   <div class="contributions" ng-include="'contributions/contributions.html'"></div>
 
