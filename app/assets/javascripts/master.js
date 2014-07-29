@@ -149,7 +149,7 @@ $(document).ready(function(){
               if(event.currentTarget == this &&
                 $(this).find('.loading-icon').length === 0 &&
                 CKEDITOR.dialog.getCurrent().getContentElement('Upload', 'upload').getValue() !== '') {
-                var $spinner = $('<img class="loading-icon" src="<%= asset_path "loading.gif"%>" style="padding-left: 5px; vertical-align: middle;" />');
+                var $spinner = $('<img class="loading-icon" src="//s3.amazonaws.com/com.theciviccommons.production/images/general/loading.gif" style="padding-left: 5px; vertical-align: middle;" />');
                 $(this).find('span').append($spinner);
               }
             });
