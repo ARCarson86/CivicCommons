@@ -1,16 +1,32 @@
 class Registrations::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_filter :require_no_ssl
 
-  def facebook
-    if signed_in? && !current_person.facebook_authenticated?
-      link_with_facebook
+  def social(provider)
+    if signed_in? && !current_person.social_authenticated?(provider)
+      link_with_social
     else
       if authentication = Authentication.find_from_auth_hash(env['omniauth.auth'])
         successful_authentication(authentication)
       else
-        create_account_using_facebook_credentials
+        create_account_using_social_credentials
       end
     end
+  end
+
+  def twitter
+    social("twitter")
+  end
+
+  def facebook
+    social("facebook")
+  end
+
+  def linkedin
+    social("linkedin")
+  end
+
+  def google_oauth2
+    social("google_oauth2")
   end
 
   def failure
@@ -23,7 +39,7 @@ private
     params[:auth_popup] && params[:auth_popup] == true
   end
 
-  def create_account_using_facebook_credentials
+  def create_account_using_social_credentials
     person = Person.build_from_auth_hash(env['omniauth.auth'])
     if Person.where(email: person.email).size == 0
       send_person_data_to_the_opening_window(person, registrations_principles_path)
@@ -42,10 +58,11 @@ private
     render_js_redirect_to(env['omniauth.origin'] || root_path)
   end
 
-  def link_with_facebook
+  def link_with_social
     authentication = Authentication.new_from_auth_hash(env['omniauth.auth'])
+    provider = authentication.provider
 
-    if current_person.link_with_facebook(authentication)
+    if current_person.link_with_social(authentication, provider)
       @other_email = Authentication.email_from_auth_hash(env['omniauth.auth'])
 
       sign_in current_person, :event => :authentication, :bypass => true
@@ -70,10 +87,14 @@ private
   end
 
   def successful_authentication(authentication)
-    flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Facebook"
-    authentication.person.remember_me = true
-    sign_in authentication.person, :event => :authentication
-    render_js_redirect_to (env['omniauth.origin'] || root_path), :text => 'Logging in to CivicCommons with Facebook...'
+    unless authentication.person.blank?
+      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Facebook"
+      authentication.person.remember_me = true
+      sign_in authentication.person, :event => :authentication
+      render_js_redirect_to (env['omniauth.origin'] || root_path), :text => 'Logging in to CivicCommons with Facebook...'
+    else
+      create_account_using_social_credentials
+    end
   end
 
   def render_js_registering_email_taken(options={})

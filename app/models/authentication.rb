@@ -13,6 +13,10 @@ class Authentication < ActiveRecord::Base
     find_by_provider_and_uid( auth_hash['provider'], auth_hash['uid'])
   end
 
+  def self.provider_from_auth_hash(auth_hash)
+    auth_hash && auth_hash['info'] && auth_hash['info']['provider'] && auth_hash['info']['provider'].to_s.downcase.strip
+  end
+
   def self.email_from_auth_hash(auth_hash)
     auth_hash && auth_hash['info'] && auth_hash['info']['email'] && auth_hash['info']['email'].to_s.downcase.strip
   end

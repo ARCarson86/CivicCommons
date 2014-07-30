@@ -20,7 +20,7 @@
         </div>
         <div class="form-block">
           <%= f.label :email, 'Email Address:' %>
-          <%= f.text_field :email, :class => 'textbox', :readonly => form_presenter.show_facebook_fields? %>
+          <%= f.text_field :email, :class => 'textbox' %>
           <span class="required">*</span>
         </div>
         <div class="form-block <%= 'hide' if form_presenter.show_facebook_fields? %>">
@@ -57,10 +57,35 @@
           <%= f.label :weekly_newsletter, 'Yes, please send me The Civic Commons weekly newsletter', class: 'checkbox' %>
         </div>
       </fieldset>
-      <div class="form-block facebook-auth <%= 'hide' unless form_presenter.blank_form? %>">
-        <%= link_with_facebook_link %>
-        or
-        <%= link_to "Register with an email address", '#', :class => 'no-fb' %>
+      <div class="form-block facebook-auth <%= 'hide' unless form_presenter.blank_form? %>" style="font-weight: bold; ">
+        <div class="social-holder">
+            <div class="sign-in-social register">
+              <span>Connect with</span>
+              <%= image_tag ('arrow.png') %>
+            </div>
+            <%= link_to person_omniauth_authorize_path(:facebook), {style: "margin-right: 0;"} do %>
+              <div class="social-link-sign facebook"></div>
+            <% end %>
+            <%= link_to person_omniauth_authorize_path(:twitter), {style: "margin-right: 0;"} do %>
+              <div class="social-link-sign twitter"> </div>
+            <% end %>
+            <%= link_to person_omniauth_authorize_path(:linkedin), {style: "margin-right: 0;"} do %>
+              <div class="social-link-sign linkedin"> </div>
+            <% end %>
+            <%= link_to person_omniauth_authorize_path(:google_oauth2) do %>
+              <div class="social-link-sign google" style="margin-right: 10px;"> </div>
+            <% end %>
+          </div>
+        OR
+        <div class="social-holder" style="margin-left: 10px;">
+            <div class="sign-in-social non-social">
+              <span>Register with</span>
+              <%= image_tag ('arrow.png') %>
+            </div>
+            <%= link_to '#', {class: 'no-fb'}, {style: "margin-right: 0;"} do %>
+              <div class="social-link-sign email"></div>
+            <% end %>
+        </div>
       </div>
       <div class="form-block regular-reg <%= 'show' unless form_presenter.blank_form? %>">
         <%= f.submit "Continue", :class => 'submit' %> 
