@@ -161,13 +161,20 @@ img.advert {
       background-color: #1f6fa0;
     }
     &.twitter {
-      background: url('sign-twitter.png') no-repeat scroll center;
+      background: url('sign-twitter-high.png') no-repeat scroll center;
+      background-color: #1f6fa0;
     }
     &.google {
-      background: url('sign-google.png') no-repeat scroll center;
+      background: url('sign-google-high.png') no-repeat scroll center;
+      background-color: #d0433a;
     }
     &.linkedin {
-      background: url('sign-linkedin.png') no-repeat scroll center;
+      background: url('sign-linkedin-high.png') no-repeat scroll center;
+      background-color: #1f6fa0;
+    }
+    &.email {
+      background: url('sign-email-high.png') no-repeat scroll center;
+      background-color: #a7bb5d;
     }
   }
 }
