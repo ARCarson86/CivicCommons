@@ -63,58 +63,34 @@
             </fieldset>
             <% unless person.object.is_organization?  %>
               <fieldset class="form-group">
-                <div class="social-holder">
-                  <div class="sign-in-social profile">
-                    <span>Connect Account With</span>
-                    <%= image_tag ('arrow.png') %>
+                <% unless current_person.authentications.count == 4 %>
+                  <div class="social-holder">
+                    <div class="sign-in-social profile">
+                      <span>Connect Account With</span>
+                      <%= image_tag ('arrow.png') %>
+                    </div>
+                    <% @providers.each do |provider| %>
+                      <% unless current_person.social_authenticated?(provider) %>
+                        <%= link_to person_omniauth_authorize_path(provider.to_sym), {style: "margin-right: 0;"} do %>
+                          <div class="social-link-sign <%= provider %>"></div>
+                        <% end %>
+                      <% end %>
+                    <% end %>
                   </div>
-                  <% unless current_person.social_authenticated?("facebook") %>
-                    <%= link_to person_omniauth_authorize_path(:facebook), {style: "margin-right: 0;"} do %>
-                      <div class="social-link-sign facebook"></div>
-                    <% end %>
-                  <% end %>
-                  <% unless current_person.social_authenticated?("twitter") %>
-                    <%= link_to person_omniauth_authorize_path(:twitter), {style: "margin-right: 0;"} do %>
-                      <div class="social-link-sign twitter"> </div>
-                    <% end %>
-                  <% end %>
-                  <% unless current_person.social_authenticated?("linkedin") %>
-                    <%= link_to person_omniauth_authorize_path(:linkedin), {style: "margin-right: 0;"} do %>
-                      <div class="social-link-sign linkedin"> </div>
-                    <% end %>
-                  <% end %>
-                  <% unless current_person.social_authenticated?("google_oauth2") %>
-                    <%= link_to person_omniauth_authorize_path(:google_oauth2) do %>
-                      <div class="social-link-sign google"> </div>
-                    <% end %>
-                  <% end %>
-                </div>
+                <% end %>
               </fieldset>
               <% unless current_person.authentications.blank? %>
                 <fieldset class="form-group">
                   <div class="social-holder">
                     <div class="sign-in-social profile">
-                      <span>Disconnect Account</span>
+                      <span>Disconnect Account </span>
                       <%= image_tag ('arrow.png') %>
                     </div>
-                    <% if current_person.social_authenticated?("facebook") %>
-                      <%= link_to person_omniauth_authorize_path(:facebook), {style: "margin-right: 0;"} do %>
-                        <div class="social-link-sign facebook"></div>
-                      <% end %>
-                    <% end %>
-                    <% if current_person.social_authenticated?("twitter") %>
-                      <%= link_to person_omniauth_authorize_path(:twitter), {style: "margin-right: 0;"} do %>
-                        <div class="social-link-sign twitter"> </div>
-                      <% end %>
-                    <% end %>
-                    <% if current_person.social_authenticated?("linkedin") %>
-                      <%= link_to person_omniauth_authorize_path(:linkedin), {style: "margin-right: 0;"} do %>
-                        <div class="social-link-sign linkedin"> </div>
-                      <% end %>
-                    <% end %>
-                    <% if current_person.social_authenticated?("google_oauth2") %>
-                      <%= link_to person_omniauth_authorize_path(:google_oauth2) do %>
-                        <div class="social-link-sign google"> </div>
+                    <% @providers.each do |provider| %>
+                      <% if current_person.social_authenticated?(provider) %>
+                        <%= link_to person_omniauth_authorize_path(provider.to_sym), {style: "margin-right: 0;"} do %>
+                          <div class="social-link-sign <%= provider %>"></div>
+                        <% end %>
                       <% end %>
                     <% end %>
                   </div>

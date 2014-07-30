@@ -45,6 +45,7 @@ class UserController < ApplicationController
     @person = Person.find(params[:id])
     @person.require_zip_code = true  #did this So that there is a validation error on the view.
     @person.valid?
+    @providers = ["facebook", "twitter", "linkedin", "google_oauth2"]
   end
 
   def show
