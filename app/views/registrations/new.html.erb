@@ -59,23 +59,16 @@
       </fieldset>
       <div class="form-block facebook-auth <%= 'hide' unless form_presenter.blank_form? %>" style="font-weight: bold; ">
         <div class="social-holder">
-            <div class="sign-in-social register">
-              <span>Connect with</span>
+          <div class="sign-in-social register">
+            <span>Connect with</span>
               <%= image_tag ('arrow.png') %>
-            </div>
-            <%= link_to person_omniauth_authorize_path(:facebook), {style: "margin-right: 0;"} do %>
-              <div class="social-link-sign facebook"></div>
-            <% end %>
-            <%= link_to person_omniauth_authorize_path(:twitter), {style: "margin-right: 0;"} do %>
-              <div class="social-link-sign twitter"> </div>
-            <% end %>
-            <%= link_to person_omniauth_authorize_path(:linkedin), {style: "margin-right: 0;"} do %>
-              <div class="social-link-sign linkedin"> </div>
-            <% end %>
-            <%= link_to person_omniauth_authorize_path(:google_oauth2) do %>
-              <div class="social-link-sign google_oauth2" style="margin-right: 10px;"> </div>
-            <% end %>
           </div>
+          <% Authentication::PROVIDERS.each do |provider| %>
+            <%= link_to person_omniauth_authorize_path(provider.to_sym), {style: "margin-right: 0;"} do %>
+              <div class="social-link-sign <%= provider %>"></div>
+            <% end %>
+          <% end %>
+        </div>
         OR
         <div class="social-holder" style="margin-left: 10px;">
             <div class="sign-in-social non-social">

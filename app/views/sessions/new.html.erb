@@ -17,18 +17,11 @@
               <span>Sign in with</span>
               <%= image_tag ('arrow.png') %>
             </div>
-            <%= link_to person_omniauth_authorize_path(:facebook) do %>
-              <div class="social-link-sign facebook"></div>
+            <% Authentication::PROVIDERS.each do |provider| %>
+            <%= link_to person_omniauth_authorize_path(provider.to_sym), {style: "margin-right: 0;"} do %>
+              <div class="social-link-sign <%= provider %>"></div>
             <% end %>
-            <%= link_to person_omniauth_authorize_path(:twitter) do %>
-              <div class="social-link-sign twitter"> </div>
-            <% end %>
-            <%= link_to person_omniauth_authorize_path(:linkedin) do %>
-              <div class="social-link-sign linkedin"> </div>
-            <% end %>
-            <%= link_to person_omniauth_authorize_path(:google_oauth2) do %>
-              <div class="social-link-sign google_oauth2"> </div>
-            <% end %>
+          <% end %>
           </div>
         </p>
       </div>

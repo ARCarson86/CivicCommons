@@ -69,7 +69,7 @@
                       <span>Connect Account With</span>
                       <%= image_tag ('arrow.png') %>
                     </div>
-                    <% @providers.each do |provider| %>
+                    <% Authentication::PROVIDERS.each do |provider| %>
                       <% unless current_person.social_authenticated?(provider) %>
                         <%= link_to person_omniauth_authorize_path(provider.to_sym), {style: "margin-right: 0;"} do %>
                           <div class="social-link-sign <%= provider %>"></div>
@@ -86,7 +86,7 @@
                       <span>Disconnect Account </span>
                       <%= image_tag ('arrow.png') %>
                     </div>
-                    <% @providers.each do |provider| %>
+                    <% Authentication::PROVIDERS.each do |provider| %>
                       <% if current_person.social_authenticated?(provider) %>
                         <%= link_to person_omniauth_authorize_path(provider.to_sym), {style: "margin-right: 0;"} do %>
                           <div class="social-link-sign <%= provider %>"></div>

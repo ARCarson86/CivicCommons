@@ -4,6 +4,11 @@ class RegistrationsController < Devise::RegistrationsController
   skip_before_filter :require_no_ssl
   helper_method :form_presenter
 
+  def new
+    @providers = ["facebook", "twitter", "linkedin", "google_oauth2"]
+    super
+  end
+
   def create
     if params['person'].has_key?('authentications_attributes')
       params['person']['create_from_auth'] = true
