@@ -7,7 +7,6 @@ directory "#{deploy[:deploy_to]}/shared/assets" do
   owner deploy[:user]
   mode 0775
   action :create
-  recursive true
 end
 
 execute "rake assets:precompile" do
