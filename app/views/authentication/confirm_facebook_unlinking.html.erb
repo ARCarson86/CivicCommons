@@ -1,11 +1,11 @@
 <% content_for(:main_body) do%>
 <div class="fb-auth confirm-facebook-unlinking fb-modal" id="auth-confirm-facebook-unlinking">
-  <h2>You are about to disconnect Facebook from your account with The Civic Commons.</h2>
+  <h2>You are about to disconnect <%= provider %> from your account with The Civic Commons.</h2>
   <p>
-    If you disconnect, you cannot login using Facebook to this account anymore, but you will still be able to access The Civic Commons using your regular account.
+    If you disconnect, you cannot login using <%= provider %> to this account anymore, but you will still be able to access The Civic Commons using your regular account.
   </p>
   <p>
-    <strong>Are you sure you want to disconnect from Facebook?</strong>
+    <strong>Are you sure you want to disconnect from <%= provider %>?</strong>
   </p>
   <p class="fb-cnct-links">
     <%= link_to "Yes", before_facebook_unlinking_path, :id=>'confirm-facebook-unlinking', :class => 'confirm-facebook-unlinking' %>

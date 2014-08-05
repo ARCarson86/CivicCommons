@@ -332,15 +332,18 @@ class Person < ActiveRecord::Base
     subscriptions.map(&:subscribable).include?(subscribable)
   end
 
-  def unlink_from_facebook(person_hash)
+  def unlink_from_social(provider)
     ActiveRecord::Base.transaction do
-      self.email = person_hash[:email]
-      self.password = person_hash[:password]
-      self.password_confirmation = person_hash[:password_confirmation]
-      self.facebook_unlinking = true
-      self.send_email_change_notification = true # sends email change notification
-      save!
-      self.facebook_authentication.destroy
+      case provider
+      when "facebook"
+        self.facebook_authentication.destroy
+      when "twitter"
+        self.twitter_authentication.destroy
+      when "google_oauth2"
+        self.google_authentication.destroy
+      when "linkedin"
+        self.linkedin_authentication.destroy
+      end
     end
   rescue
     self

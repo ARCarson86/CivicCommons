@@ -69,16 +69,13 @@ private
       if current_person.conflicting_email?(@other_email)
         successfully_linked_but_conflicting_email
       else
-        successfully_linked_to_facebook
+        flash[:notice] = I18n.t "devise.omniauth_callbacks.linked_success", :kind => "#{provider}"
+        redirect_to edit_user_path(current_person)
       end
     else
-      failed_linked_to_facebook
+      flash[:notice] = I18n.t "devise.omniauth_callbacks.linked_failure", :kind => "#{provider}"
+        redirect_to edit_user_path(current_person)
     end
-  end
-
-  def successfully_linked_to_facebook
-    flash[:notice] = I18n.t "devise.omniauth_callbacks.linked_success", :kind => "Facebook"
-    render_js_fb_linking_success
   end
 
   def successfully_linked_but_conflicting_email
@@ -88,10 +85,10 @@ private
 
   def successful_authentication(authentication)
     unless authentication.person.blank?
-      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Facebook"
       authentication.person.remember_me = true
       sign_in authentication.person, :event => :authentication
-      render_js_redirect_to (env['omniauth.origin'] || root_path), :text => 'Logging in to CivicCommons with Facebook...'
+      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "#{authentication.provider}"
+      redirect_to root_path, :kind => "#{authentication.provider}"
     else
       create_account_using_social_credentials
     end
@@ -104,11 +101,6 @@ private
 
   def render_js_conflicting_email(options={})
     options[:path] = conflicting_email_path
-    render_js_colorbox(options)
-  end
-
-  def render_js_fb_linking_success(options={})
-    options[:path] = fb_linking_success_path
     render_js_colorbox(options)
   end
 
@@ -133,8 +125,8 @@ private
     @text = options.delete(:text) || 'Redirecting back to CivicCommons....'
     @script = isUnsafeJSPopup
     @script += "
-      #{isUnsafeJSPopup}
       if(window.opener) {
+        console.log('window.opener');
         if(isUnsafeJSPopup() != true){
           window.opener.onunload = function(){
               window.close();
