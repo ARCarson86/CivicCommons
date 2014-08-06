@@ -184,11 +184,11 @@ Devise.setup do |config|
   config.omniauth :twitter,
     Civiccommons::Config.twitter['api_key'],
     Civiccommons::Config.twitter['api_secret'],
-    :scope => 'email', :display => "popup"
+    :scope => 'email'
   config.omniauth :linkedin,
     Civiccommons::Config.linkedin['api_key'],
     Civiccommons::Config.linkedin['secret_key'],
-    :scope => 'r_emailaddress r_basicprofile', :display => "popup"
+    :scope => 'r_emailaddress r_basicprofile'
   config.omniauth :google_oauth2,
     Civiccommons::Config.google_oauth2['client_id'],
     Civiccommons::Config.google_oauth2['client_secret'],

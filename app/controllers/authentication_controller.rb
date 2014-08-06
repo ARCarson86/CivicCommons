@@ -51,9 +51,6 @@ class AuthenticationController < ApplicationController
     end
   end
 
-  def fb_linking_success
-    render :layout => false
-  end
 
 protected
 
@@ -63,7 +60,7 @@ protected
 
   def require_social_authentication(provider)
     unless current_person.social_authenticated?(provider)
-      render :text => '<p>Your account needs to have been connected to Facebook in order to do this.</p>' 
+      render :text => "<p>Your account needs to have been connected to #{provider} in order to do this.</p>"
       return false
     end
   end

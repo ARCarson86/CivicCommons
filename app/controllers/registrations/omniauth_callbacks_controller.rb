@@ -53,11 +53,6 @@ private
      request.env['omniauth.origin'] == new_person_registration_url or request.env['omniauth.origin'] == person_registration_url
   end
 
-  def failed_linked_to_facebook
-    flash[:notice] = I18n.t "devise.omniauth_callbacks.linked_failure", :kind => "Facebook"
-    render_js_redirect_to(env['omniauth.origin'] || root_path)
-  end
-
   def link_with_social
     authentication = Authentication.new_from_auth_hash(env['omniauth.auth'])
     provider = authentication.provider
