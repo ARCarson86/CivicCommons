@@ -1,4 +1,6 @@
 class UnlinkController < ApplicationController
+	skip_before_filter :require_no_ssl
+
   def delete
   	person = current_person
     person.unlink_from_social(params[:provider])
