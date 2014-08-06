@@ -10,7 +10,7 @@ Civiccommons::Application.routes.draw do
   end
 
 
-  delete "/users/:id/:provider/unlink" => "unlink#delete", as: "unlink"
+  delete "/users/:id/:provider/unlink" => "unlink#delete", as: :unlink
 
   #Application Root
   root to: "homepage#show"
