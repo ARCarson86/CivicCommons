@@ -42,7 +42,9 @@ private
   def create_account_using_social_credentials
     person = Person.build_from_auth_hash(env['omniauth.auth'])
     if Person.where(email: person.email).size == 0
-      send_person_data_to_the_opening_window(person, registrations_principles_path)
+      provider = (env['omniauth.auth'])[:provider]
+      flash[:notice] = "Your #{provider} account is not connected to your login. Select another login method and connect #{provider} account."
+      redirect_to new_person_session_path
     else
       flash[:email] = person.email
       render_js_registering_email_taken
@@ -59,6 +61,10 @@ private
 
     if current_person.link_with_social(authentication, provider)
       @other_email = Authentication.email_from_auth_hash(env['omniauth.auth'])
+      if provider == "twitter"
+        current_person.twitter_username = request.env['omniauth.auth'].info[:nickname]
+        current_person.save
+      end
 
       sign_in current_person, :event => :authentication, :bypass => true
       if current_person.conflicting_email?(@other_email)

@@ -411,7 +411,6 @@ class Person < ActiveRecord::Base
       @authentication = Authentication.new
       @authentication = authentication
       @authentication.provider = provider
-      self.encrypted_password = ''
       self.create_from_auth = true
       @authentication.person_id = self.id
       save!
