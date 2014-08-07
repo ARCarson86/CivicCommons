@@ -421,15 +421,6 @@ class Person < ActiveRecord::Base
     end
   end
 
-  def conflicting_email?(other_email)
-    if other_email.blank? || (other_email.to_s.downcase.strip == email.to_s.downcase.strip)
-      false
-    else
-      true
-    end
-  end
-
-
   # Avatar Image Cache
   # The cached avatar image url as determined by the AvatarService.
   def avatar_image_url

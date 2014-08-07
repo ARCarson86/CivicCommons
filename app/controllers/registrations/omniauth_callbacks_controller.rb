@@ -47,7 +47,6 @@ private
       redirect_to new_person_session_path
     else
       flash[:email] = person.email
-      render_js_registering_email_taken
     end
   end
 
@@ -68,7 +67,6 @@ private
 
       sign_in current_person, :event => :authentication, :bypass => true
       if current_person.conflicting_email?(@other_email)
-        successfully_linked_but_conflicting_email
       else
         flash[:notice] = I18n.t "devise.omniauth_callbacks.linked_success", :kind => "#{provider}"
         redirect_to edit_user_path(current_person)
@@ -77,11 +75,6 @@ private
       flash[:notice] = I18n.t "devise.omniauth_callbacks.linked_failure", :kind => "#{provider}"
         redirect_to edit_user_path(current_person)
     end
-  end
-
-  def successfully_linked_but_conflicting_email
-    session[:other_email] = @other_email
-    render_js_conflicting_email
   end
 
   def successful_authentication(authentication)
@@ -93,73 +86,5 @@ private
     else
       create_account_using_social_credentials
     end
-  end
-
-  def render_js_registering_email_taken(options={})
-    options[:path] = registering_email_taken_path
-    render_js_colorbox(options)
-  end
-
-  def render_js_conflicting_email(options={})
-    options[:path] = conflicting_email_path
-    render_js_colorbox(options)
-  end
-
-  def render_js_colorbox(options={})
-    @text = options.delete(:text) || 'Redirecting back to CivicCommons....'
-    @path = options.delete(:path)
-    @script = "
-      #{isUnsafeJSPopup}
-      if(window.opener) {
-        if(isUnsafeJSPopup() != true){
-          window.opener.$.colorbox({href:'#{@path}',opacity:0.5, onComplete: function(){
-            window.close();
-          }});
-        }else{
-          window.close();
-        }
-      }"
-    render_popup(@text, @script)
-  end
-
-  def render_js_redirect_to(path = '', options={})
-    @text = options.delete(:text) || 'Redirecting back to CivicCommons....'
-    @script = isUnsafeJSPopup
-    @script += "
-      if(window.opener) {
-        console.log('window.opener');
-        if(isUnsafeJSPopup() != true){
-          window.opener.onunload = function(){
-              window.close();
-          };
-          window.opener.location = '#{path}';
-        }else{
-          window.opener.location = '#{path}';
-          window.close();
-        }
-      }"
-   render_popup(@text, @script)
-  end
-
-  def isUnsafeJSPopup
-    #used to see if it's cross domain or not
-    "isUnsafeJSPopup = function(){
-      var cross_domain = false;
-      try{
-        cross_domain = window.opener.location.protocol != window.location.protocol;
-      } catch(e){
-        cross_domain = true;
-      }
-      return cross_domain;
-    }"
-  end
-
-  def render_popup(text,script = nil)
-    render :partial => '/authentication/fb_interstitial_message', :layout => 'fb_popup', :locals => {:text => text, :script => script}
-  end
-
-  def send_person_data_to_the_opening_window(person, redirect_path)
-    render :partial => '/plain_old_javascript', locals: {
-      script: "window.opener.OmniAuthHandler.handleAccountCreation(#{person.to_json(:include=>:authentications)}, '#{redirect_path}')" }
   end
 end
