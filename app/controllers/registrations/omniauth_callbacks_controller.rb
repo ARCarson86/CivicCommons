@@ -68,7 +68,6 @@ private
       sign_in current_person, :event => :authentication, :bypass => true
       flash[:notice] = I18n.t "devise.omniauth_callbacks.linked_success", :kind => "#{provider}"
       redirect_to edit_user_path(current_person)
-      end
     else
       flash[:notice] = I18n.t "devise.omniauth_callbacks.linked_failure", :kind => "#{provider}"
         redirect_to edit_user_path(current_person)
