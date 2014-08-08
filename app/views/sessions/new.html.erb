@@ -18,7 +18,7 @@
               <%= image_tag ('arrow.png') %>
             </div>
             <% Authentication::PROVIDERS.each do |provider| %>
-            <%= link_to person_omniauth_authorize_path(provider.to_sym), {style: "margin-right: 0;"} do %>
+            <%= link_to person_omniauth_authorize_path(provider.to_sym, :login => "correct"), {style: "margin-right: 0;"} do %>
               <div class="social-link-sign <%= provider %>"></div>
             <% end %>
           <% end %>

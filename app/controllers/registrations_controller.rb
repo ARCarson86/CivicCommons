@@ -58,5 +58,4 @@ class RegistrationsController < Devise::RegistrationsController
     hash ||= params[:organization] || {}
     self.resource = Organization.new(hash)
   end
-  
 end

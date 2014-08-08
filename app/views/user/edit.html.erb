@@ -13,11 +13,15 @@
             <fieldset class="form-group">
               <div class="form-block">
                 <%= person.label :name, name_label_text %>
-                <%= person.text_field :name, :class => 'textbox' %> 
+                <%= person.text_field :name, :class => 'textbox' %>
               </div>
               <div class="form-block">
                 <%= person.label :title, title_label_text %>
                 <%= person.text_field :title, :class => 'textbox' %>
+              </div>
+              <div class="form-block">
+                <%= person.label :email, "Email" %>
+                <%= person.text_field :email, :class => 'textbox' %>
               </div>
               <div class="form-block">
                 <%= person.label :zip_code %>
