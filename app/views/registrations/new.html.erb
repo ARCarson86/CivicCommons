@@ -7,11 +7,11 @@
         <%= authentication_form.hidden_field :uid %>
         <%= authentication_form.hidden_field :provider %>
       <% end %>
-      <fieldset class="regular-reg <%= 'show' if form_presenter.show_normal_fields? %>">
+      <fieldset class="regular-reg <%= 'show' %>">
         <div class="form-block">
           <%= f.label :first_name, 'Your Name:' %>
-          <%= f.text_field :first_name, :class => 'textbox first-name', :readonly => form_presenter.show_facebook_fields? %>
-          <%= f.text_field :last_name, :class => 'textbox last-name', :readonly => form_presenter.show_facebook_fields? %>
+          <%= f.text_field :first_name, :class => 'textbox first-name' %>
+          <%= f.text_field :last_name, :class => 'textbox last-name' %>
           <span class="required">*</span>
         </div>
         <div class="form-block">
@@ -23,17 +23,17 @@
           <%= f.text_field :email, :class => 'textbox' %>
           <span class="required">*</span>
         </div>
-        <div class="form-block <%= 'hide' if form_presenter.show_facebook_fields? %>">
+        <div class="form-block">
           <%= f.label :password %>
           <%= f.password_field :password, :class=> 'textbox' %>
           <span class="required">*</span>
         </div>
-        <div class="form-block <%= 'hide' if form_presenter.show_facebook_fields? %>">
+        <div class="form-block">
           <%= f.label :password_confirmation, 'Password Again:' %>
           <%= f.password_field :password_confirmation, :class=> 'textbox' %>
           <span class="required">*</span>
         </div>
-        <div class="form-block <%= 'hide' if form_presenter.show_facebook_fields? %>">
+        <div class="form-block">
           <%= f.label :avatar, "Your Photo:" %>
           <%= f.file_field :avatar, :class => 'textbox' %>
         </div>
@@ -60,30 +60,7 @@
           <%= f.label :weekly_newsletter, 'Yes, please send me The Civic Commons weekly newsletter', class: 'checkbox' %>
         </div>
       </fieldset>
-      <div class="form-block facebook-auth <%= 'hide' unless form_presenter.blank_form? %>" style="font-weight: bold; ">
-        <div class="social-holder">
-          <div class="sign-in-social register">
-            <span>Connect with</span>
-              <%= image_tag ('arrow.png') %>
-          </div>
-          <% Authentication::PROVIDERS.each do |provider| %>
-            <%= link_to person_omniauth_authorize_path(provider.to_sym), {style: "margin-right: 0;", class: "social_link"} do %>
-              <div class="social-link-sign <%= provider %>"></div>
-            <% end %>
-          <% end %>
-        </div>
-        OR
-        <div class="social-holder" style="margin-left: 10px;">
-            <div class="sign-in-social non-social">
-              <span>Register with</span>
-              <%= image_tag ('arrow.png') %>
-            </div>
-            <%= link_to '#', {class: 'no-fb'}, {style: "margin-right: 0;"} do %>
-              <div class="social-link-sign email"></div>
-            <% end %>
-        </div>
-      </div>
-      <div class="form-block regular-reg <%= 'show' unless form_presenter.blank_form? %>">
+      <div class="form-block regular-reg show">
         <%= f.submit "Continue", :class => 'submit' %>
         or
         <%= link_to 'Cancel', '/', :class=> 'cancel' %>
@@ -91,23 +68,3 @@
     <% end %>
   </div>
 </div>
-
-<script type="text/javascript" charset="utf-8">
-  $().ready(function(){
-    $('.social_link').click(function(e){
-      e.preventDefault();
-      var zipcode = $('#person_zip_code').val();
-       if (zipcode == ""){
-        $("#zipcode_warning").show();
-       }
-       else {
-        var url = $(this).attr('href');
-        var bio = $('#person_bio').val();
-        var digest = $('#person_daily_digest').is(':checked');
-        var newsletter = $('#person_weekly_newsletter').is(':checked');
-        var val = url + "?zipcode=" + zipcode + "&bio=" + bio + "&digest=" + digest + "&newsletter=" + newsletter;
-        window.location.href = val;
-      }
-    });
-  });
-</script>

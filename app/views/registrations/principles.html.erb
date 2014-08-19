@@ -36,14 +36,38 @@
           <div class="inset">
             <h3>I am an individual</h3>
             <p>Choose this if you want to create an account to use The Civic Commons as an individual citizen. You'll be able to start and contribute to conversations and interact with other community members.</p>
-            <p><%= link_to 'Continue', new_person_registration_path, :class=> 'button verify', :id=> 'continue-as-individual' %></p>
+            <div class="main-social-holder">
+              <%= link_to new_person_registration_path do %>
+                <div class="sign-in-social non-social">
+                  <span>Register with an email address</span>
+                  <div class="social-link-sign email"></div>
+                </div>
+              <% end %>
+            </div>
+            <%= image_tag('register_or.png', class: "or-image") %>
+            <div class="form-block facebook-auth" style="font-weight: bold; ">
+              <div class="main-social-holder social-links">
+                <% Authentication::PROVIDERS.each do |provider| %>
+                  <%= link_to person_omniauth_authorize_path(provider.to_sym), {style: "margin-right: 0;", class: "social_link"} do %>
+                    <div class="social-link-sign <%= provider %>"></div>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
           </div>
         </div>
         <div class="cols">
           <div class="inset">
             <h3>I am an organization</h3>
             <p>Choose this if you want to create an account for an Organization to use The Civic Commons to communicate with and engage the community your organization serves. You'll be able to start and contribute to conversations as your Organization and community members will be able to follow your Organization.</p>
-            <p><%= link_to 'Continue', new_organization_registration_path, :class=> 'button verify', :id=> 'continue-as-organization' %></p>
+            <div class="main-social-holder">
+              <%= link_to new_organization_registration_path do %>
+                <div class="sign-in-social non-social">
+                  <span>Register with an email address</span>
+                  <div class="social-link-sign email"></div>
+                </div>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>

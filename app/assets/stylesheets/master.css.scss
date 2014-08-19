@@ -77,6 +77,104 @@ img.advert {
           box-shadow: none !important;
 }
 
+.or-image {
+  height: 10px;
+  width: 255px;
+  margin: 10px 0 10px 4px;
+}
+
+.main-social-holder {
+  @include inline-block;
+  width: 100%;
+  a {
+    height: 42px;
+    text-decoration: none;
+    margin-right: 0;
+  }
+  &.social-links {
+    text-align: center;
+  }
+  .sign-in-social {
+    @include inline-block;
+    border: 1px solid #cbc9c9;
+    height: 42px;
+    background-color: #ffffff;
+    margin-right: -4px;
+    line-height: 42px;
+    position: relative;
+    width: 100%;
+    &.register {
+      margin-left: 160px;
+      span {
+        padding-left: 10px;
+      }
+      img {
+        left: 85px;
+      }
+    }
+    &.non-social {
+      margin-left: 5px;
+      border: 1px solid #ffffff;
+      background-color: #a7bb5d;
+      color: #ffffff;
+      span {
+        padding-left: 10px;
+      }
+      img {
+        left: 85px;
+      }
+    }
+
+    &.profile {
+      margin-left: 160px;
+      width: 200px;
+    }
+    img {
+      position: absolute;
+      top: 15px;
+      left: 82px;
+    }
+    span {
+      font: 'Helvetica Neue';
+      font-weight: bold;
+      vertical-align: middle;
+      padding-left: 15px;
+    }
+  }
+  .social-link-sign {
+    @include inline-block;
+    border-left: 1px solid #ffffff;
+    height: 42px;
+    background-color: #ffffff;
+    width: 42px;
+    &.facebook {
+      background: url('sign-facebook-high.png') no-repeat scroll center;
+      background-color: #1f6fa0;
+    }
+    &.twitter {
+      background: url('sign-twitter-high.png') no-repeat scroll center;
+      background-color: #1f6fa0;
+    }
+    &.google_oauth2 {
+      background: url('sign-google-high.png') no-repeat scroll center;
+      background-color: #d0433a;
+    }
+    &.linkedin {
+      background: url('sign-linkedin-high.png') no-repeat scroll center;
+      background-color: #1f6fa0;
+    }
+    &.email {
+      background: url('sign-email-high.png') no-repeat scroll center;
+      background-color: #a7bb5d;
+      float: right;
+    }
+
+  }
+}
+
+
+
+
 .social-holder {
   @include inline-block;
   a {

@@ -5,7 +5,6 @@ class RegistrationsController < Devise::RegistrationsController
   helper_method :form_presenter
 
   def new
-    @providers = ["facebook", "twitter", "linkedin", "google_oauth2"]
     super
   end
 
@@ -14,6 +13,9 @@ class RegistrationsController < Devise::RegistrationsController
       params['person']['create_from_auth'] = true
       params['person']['encrypted_password'] = ''
       params['person']['confirmed_at'] = DateTime.now
+    end
+    if @authentication.present?
+      @authentication.save!
     end
     super
   end

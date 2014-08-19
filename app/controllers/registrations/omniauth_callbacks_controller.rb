@@ -1,5 +1,6 @@
 class Registrations::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_filter :require_no_ssl
+  helper_method :form_presenter
 
   def social(provider)
     if signed_in? && !current_person.social_authenticated?(provider)
@@ -29,6 +30,10 @@ class Registrations::OmniauthCallbacksController < Devise::OmniauthCallbacksCont
     social("google_oauth2")
   end
 
+  def form_presenter
+    @presenter = RegistrationFormPresenter.new(@person)
+  end
+
 private
   def auth_popup?
     params[:auth_popup] && params[:auth_popup] == true
@@ -42,18 +47,9 @@ private
       redirect_to new_person_session_path
     else
       if Authentication.where(uid: (omniauth)[:uid]).blank?
-        person = Person.build_from_auth_hash(omniauth)
-        person.zip_code = params[:zipcode]
-        person.bio = params[:bio]
-        person.daily_digest = params[:digest]
-        person.weekly_newsletter = params[:newsletter]
-        if provider == "twitter"
-          person.email = (omniauth).info[:nickname] + "@twitter.theciviccommons.com"
-        end
-        person.save!
-        person.confirm!
-        authentication = Authentication.find_from_auth_hash(omniauth)
-        successful_authentication(authentication)
+        @person = Person.build_from_auth_hash(omniauth)
+        @authentication = Authentication.new_from_auth_hash(omniauth)
+        render "registrations/new", layout: "registrations"
       end
     end
   end
@@ -65,18 +61,23 @@ private
   def link_with_social
     authentication = Authentication.new_from_auth_hash(env['omniauth.auth'])
     provider = authentication.provider
-    if current_person.link_with_social(authentication, provider)
-      @other_email = Authentication.email_from_auth_hash(env['omniauth.auth'])
-      if provider == "twitter"
-        current_person.twitter_username = request.env['omniauth.auth'].info[:nickname]
-        current_person.save
-      end
-      sign_in current_person, :event => :authentication, :bypass => true
-      flash[:notice] = I18n.t "devise.omniauth_callbacks.linked_success", :kind => "#{provider}"
-      redirect_to edit_user_path(current_person)
-    else
-      flash[:notice] = I18n.t "devise.omniauth_callbacks.linked_failure", :kind => "#{provider}"
+    if Authentication.where(uid: authentication.uid).blank?
+      if current_person.link_with_social(authentication, provider)
+        @other_email = Authentication.email_from_auth_hash(env['omniauth.auth'])
+        if provider == "twitter"
+          current_person.twitter_username = request.env['omniauth.auth'].info[:nickname]
+          current_person.save
+        end
+        sign_in current_person, :event => :authentication, :bypass => true
+        flash[:notice] = I18n.t "devise.omniauth_callbacks.linked_success", :kind => "#{provider}"
         redirect_to edit_user_path(current_person)
+      else
+        flash[:notice] = I18n.t "devise.omniauth_callbacks.linked_failure", :kind => "#{provider}"
+          redirect_to edit_user_path(current_person)
+      end
+    else
+      flash[:notice] = "Another account is linked to this #{provider} account."
+      redirect_to edit_user_path(current_person)
     end
   end
 
