@@ -1,0 +1,16 @@
+<h2><%= "#{@notification.person.name} tagged you in a Conversation at The Civic Commons!" %></h2>
+<div style="margin-right: 10px;">
+	<h3 style="font-size 19px;"><%= short_title(@notification.conversation.title) %></h3>
+	<h5 style="color: #999999; font-weight: normal; font-size: 13px;"><%= "#{@notification.person.name} added:" %></h5>
+	<p style="margin-left: 10px; font-size: 13px;">
+  <%= clean_view(@notification.item.content) %>
+	</p>
+</div>
+<%= link_to 'Check it out', conversation_url(@notification.conversation), {style: "font-size: 13px; color: #3300ff"} %>
+<br>
+<h5 style="color: #999999; margin-bottom: 0; margin-top: 50px; font-size: 13px;">Too much information?</h5>
+<p style="font-size: 13px; margin-top: 0; color: #999999;">
+Opt out of specific conversations by clicking "Stop Following this Conversation" on that conversation page at
+<%= link_to 'theciviccommons.com', root_url, {style: 'color: #999999;'} %>, or you can unsubscribe from all Conversation activity emails
+<%= link_to 'unsubscribe', unsubscribe_confirmation_url(@recipient), {style: 'color: #999999;'} %>
+</p>

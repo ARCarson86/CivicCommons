@@ -12,10 +12,7 @@ civicControllers.controller 'ConversationDetailCtrl', ['$scope', '$routeParams',
     $scope.contributions_loaded = true
 
   Contribution.registerObserverCallback ->
-    console.log 'called'
     $scope.contributions = Contribution.getContributions()
-    console.log "Contribution.getContributions()"
-    console.log Contribution.getContributions()
 
   $scope.current_user = Account.get {}
 
@@ -23,6 +20,10 @@ civicControllers.controller 'ConversationDetailCtrl', ['$scope', '$routeParams',
 
   $scope.login = ->
     $rootScope.flagLogin = true
+
+  $scope.curpage = 1
+  $scope.loadMore = ->
+    Contribution.index page: ++$scope.curpage
 
   #$scope.author = User.get {conversation_id: 'what-to-do-about-dropouts', user_id: $scope.conversation.}
 ]

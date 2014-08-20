@@ -1,33 +1,32 @@
 /*
- * This is a manifest file that'll automatically include all the stylesheets available in this directory
- * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
- * the top of the compiled file, but it's generally better to create a new file per style scope.
+* This is a manifest file that'll automatically include all the stylesheets available in this directory
+* and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+* the top of the compiled file, but it's generally better to create a new file per style scope.
+*=require reset
+*=require grid
+*=require forms
+*=require tabs
+*=require icons
+*=require arrowbox
+*=require readmore
+*=require convo-gallery
+*=require convo
+*=require notification
+*=require states
+*=require dropdown
+*=require labels
+*=require spacing
+*=require hero
+*=require regions
+*=require lists
+*=require hpblog
+*=require ie
+*=require ui-lightness/jquery-ui-1.8.16.custom
+*=require jquery.loadmask
+*=require colorbox
+*=require font-awesome
+*=require master
+*=require modals
+*=require buttons
+*=require conversation
 */
-
-@import "reset";
-@import "grid";
-@import "states";
-@import "master";
-@import "modals";
-@import "buttons";
-@import "dropdown";
-@import "labels";
-@import "forms";
-@import "tabs";
-@import "spacing";
-@import "icons";
-@import "hero";
-@import "arrowbox";
-@import "regions";
-@import "lists";
-@import "readmore";
-@import "convo-gallery";
-@import "convo";
-@import "conversation";
-@import "hpblog";
-@import "ie";
-@import "ui-lightness/jquery-ui-1.8.16.custom";
-@import "jquery.loadmask";
-@import "colorbox";
-@import "notification";
-@import "font-awesome";

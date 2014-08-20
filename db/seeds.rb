@@ -17,12 +17,12 @@ admin.save!
 user_1 = Person.create!(email: "nconan@test.com", first_name: "Neal", last_name: "Conan", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
 user_2 = Person.create!(email: "chayes@test.com", first_name: "Chauncy", last_name: "Hart", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
 user_3 = Person.create!(email: "rrowe@test.com", first_name: "Rob", last_name: "Rowe", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
-user_4 = Person.create!(email: "jduke@test.com", first_name: "Jenny", last_name: "Duke", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
-user_5 = Person.create!(email: "bbaggins@test.com", first_name: "Barry", last_name: "Baggins", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
-user_6 = Person.create!(email: "kruss@test.com", first_name: "Kurt", last_name: "Russ", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
-user_7 = Person.create!(email: "jross@test.com", first_name: "Jay", last_name: "Ross", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
-user_8 = Person.create!(email: "msmith@test.com", first_name: "Mike", last_name: "Smith", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
-user_9 = Person.create!(email: "acampman@test.com", first_name: "Adam", last_name: "Campman", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
+user_4 = Person.create!(email: "jduke@test.com", first_name: "Jenny", last_name: "Duke", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now, subscription_settings: "daily")
+user_5 = Person.create!(email: "bbaggins@test.com", first_name: "Barry", last_name: "Baggins", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now, subscription_settings: "daily")
+user_6 = Person.create!(email: "kruss@test.com", first_name: "Kurt", last_name: "Russ", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now, subscription_settings: "weekly")
+user_7 = Person.create!(email: "jross@test.com", first_name: "Jay", last_name: "Ross", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now, subscription_settings: "never")
+user_8 = Person.create!(email: "msmith@test.com", first_name: "Mike", last_name: "Smith", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now, subscription_settings: "realtime")
+user_9 = Person.create!(email: "acampman@test.com", first_name: "Adam", last_name: "Campman", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now, tag_notification: false, subscription_settings: "weekly")
 user_10 = Person.create!(email: "Kreed@test.com", first_name: "Kenton", last_name: "Reed", password: "password", zip_code: "44221", proxy: true)
 
 #Create Articles

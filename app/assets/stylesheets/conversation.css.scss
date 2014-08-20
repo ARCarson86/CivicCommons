@@ -6,6 +6,46 @@
   width: 600px;
 }
 
+.popup {
+  @include transition(opacity, .5s);
+  position: absolute;
+  right: 30px;
+  top: 0;
+  width: 350px;
+  background-color: #ffffcc;
+  border: 1px grey solid;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  height: 35px;
+  opacity: 0;
+  display: block;
+  border-bottom: none;
+  position: absolute;
+  border-bottom: 0 none;
+  &.active {
+  @include transition(opacity, .5s);
+    opacity: 1;
+  }
+  #mention-note {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    font-size: 12px;
+    #new {
+      color: #c5d36a;
+      font-weight: bold;
+    }
+    div {
+      display: inline;
+    }
+    img {
+      position: absolute;
+      top: 3px;
+      right: 0;
+    }
+  }
+}
+
 .main-content-left {
   width: 140px;
 }
@@ -197,6 +237,7 @@
     font-style: italic;
   }
   .comment {
+    position: relative;
     img {
       float: left;
       display: block;
@@ -431,6 +472,9 @@
             display: none;
           }
         }
+      }
+       .popup {
+      right: 0;
       }
       .response-inner {
         height: auto;

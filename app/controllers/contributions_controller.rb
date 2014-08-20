@@ -20,6 +20,7 @@ class ContributionsController < ApplicationController
     @contribution.confirmed = true
 
     if @contribution.save
+      create_mention_notification(@contribution)
       flash[:notice] = "Thank you for participating"
       Subscription.create_unless_exists(current_person, @contribution.item)
       @ratings = RatingGroup.default_contribution_hash
@@ -120,4 +121,19 @@ private
     attributes
   end
 
+  def create_mention_notification(contribution)
+    return if contribution.people_mentioned.blank?
+
+    contribution.people_mentioned.each do |person|
+      next if person == contribution.person
+
+      notification = Notification.new(@contribution)
+      notification.receiver_id = person.id
+      if person.tag_notification?
+        notification.emailed = DateTime.now
+        Notifier.mentioned_notification(person, notification).deliver
+      end
+      notification.save
+    end
+  end
 end

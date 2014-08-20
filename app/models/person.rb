@@ -48,7 +48,8 @@ class Person < ActiveRecord::Base
                   :remember_me,
                   :daily_digest,
                   :create_from_auth,
-                  :facebook_unlinking
+                  :facebook_unlinking,
+                  :tag_notification
 
   # Setup protected attributes
   attr_protected :admin, :blog_admin
@@ -61,6 +62,7 @@ class Person < ActiveRecord::Base
   accepts_nested_attributes_for :authentications
 
   has_one :facebook_authentication, :class_name => 'Authentication', :conditions => {:provider => 'facebook'}, :dependent => :destroy
+  has_many :notifications
 
   has_many :content_items_people
   has_many :content_items, :through => :content_items_people, :foreign_key => 'person_id', :dependent => :restrict
@@ -89,6 +91,7 @@ class Person < ActiveRecord::Base
   validates_length_of :zip_code, :message => ' must be 5 characters or higher', :within => (5..10), :allow_blank => false, :allow_nil => false
   validates_presence_of :first_name, :last_name, :if => Proc.new{|record| record.type != 'Organization'}
   validate :check_twitter_username_format
+  validates_inclusion_of :subscriptions_setting, :in => %w(hourly daily weekly never), :message => "not a valid option"
 
   friendly_id :name, :use => :slugged
   def should_generate_new_friendly_id?
@@ -459,6 +462,10 @@ class Person < ActiveRecord::Base
 
   def is_organization?
     is_a? Organization
+  end
+
+  def get_notifications
+    Notification.where(receiver_id: self.id).where(emailed: nil).order(:conversation_id)
   end
 
 protected

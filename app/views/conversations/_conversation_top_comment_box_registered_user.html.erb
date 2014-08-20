@@ -1,4 +1,10 @@
-<div class="comment">
+<div class="comment" id="popup-holder">
+  <div class="popup">
+    <div id="mention-note">
+      <div id="new">New Feature!</div>
+      <div>Mention another person by entering an @ and typing their name. They'll be notified when you post.<%= image_tag('closebox.png') %></div>
+    </div>
+  </div>
   <%= avatar_profile(person, 80, nil) %>
   <div class="name">
     <%= person.name %>

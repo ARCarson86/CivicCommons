@@ -26,8 +26,9 @@ civicServices.factory 'Contribution', ['$resource', 'CivicApi', ($resource, Civi
 
   Contribution.index = (params = {}, success = null, failure = null) =>
     conts = Contribution.query params, (data, headers) =>
-      @contributions = _.merge(@contributions, data)
-      (success)(data,headers)
+      @contributions = @contributions.concat data
+      Contribution.notifyObservers()
+      (success || Function())(data,headers)
     , failure
 
   Contribution.getContribution = (id, success = null, failure = null) =>

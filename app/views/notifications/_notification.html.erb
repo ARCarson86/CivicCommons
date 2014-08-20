@@ -1,4 +1,4 @@
-<% @notifications = [] if !@notifications.present? %>
+<% @notifications ||= [] %>
 <div class="notification-container">
   <div class="notification-main notification-<%= @notifications.select(&:not_viewed?).count > 0 ? "active" : "inactive"%> dropdown dropdown-toggle">
     <span class="notification notification-info"><%= @notifications.present? ? @notifications.select(&:not_viewed?).count : "0" %></span>
@@ -9,4 +9,3 @@
     <% end %>
   </ul>
 </div>
-<%# end %>
