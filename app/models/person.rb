@@ -406,7 +406,6 @@ class Person < ActiveRecord::Base
 
   def link_with_social(authentication, provider)
     begin
-      @authentication = Authentication.new
       @authentication = authentication
       @authentication.provider = provider
       self.create_from_auth = true
@@ -439,7 +438,6 @@ class Person < ActiveRecord::Base
   def self.build_from_auth_hash(auth_hash)
     new_person = new(:name => auth_hash['info']['name'],
         :email => Authentication.email_from_auth_hash(auth_hash),
-        :encrypted_password => '',
         :create_from_auth => true
       )
     new_person.authentications << Authentication.new_from_auth_hash(auth_hash)
@@ -489,14 +487,6 @@ protected
   def check_twitter_username_format
     match = /^@?(?<username>.*)$/.match(self.twitter_username)
     self.twitter_username = match[:username] unless match.nil?
-  end
-
-  def password_required?
-    if social_authenticated?("facebook") || social_authenticated?("twitter") || social_authenticated?("linkedin") || social_authenticated?("google")
-      facebook_unlinking? ? true : false
-    else
-      (!persisted? && !create_from_auth?) || password.present? || password_confirmation.present?
-    end
   end
 
   def add_newsletter_subscription

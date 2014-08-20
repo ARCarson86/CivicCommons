@@ -11,7 +11,6 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     if params['person'].has_key?('authentications_attributes')
       params['person']['create_from_auth'] = true
-      params['person']['encrypted_password'] = ''
       params['person']['confirmed_at'] = DateTime.now
     end
     if @authentication.present?
