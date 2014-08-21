@@ -1,8 +1,10 @@
 civicServices = angular.module 'civicServices'
 
 civicServices.factory 'Contribution', ['$resource', 'CivicApi', ($resource, CivicApi) ->
+  @page = 1
   @contributions = []
   observerCallbacks = []
+
   Contribution = $resource CivicApi.endpoint('conversations/:conversation_id/contributions/:id'),
     conversation_id: ->
       CivicApi.getVar 'conversation_id'
@@ -39,10 +41,13 @@ civicServices.factory 'Contribution', ['$resource', 'CivicApi', ($resource, Civi
 
   Contribution.notifyObservers = ->
     angular.forEach observerCallbacks, (callback) ->
-      (callback)()
+      (callback || Function())()
 
   Contribution.getContributions = =>
     @contributions
+
+  Contribution.loadMore = (success, failure) =>
+    Contribution.index page: ++@page, success, failure
 
   return Contribution
 

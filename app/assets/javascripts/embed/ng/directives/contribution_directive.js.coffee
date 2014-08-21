@@ -43,3 +43,16 @@ angular.module 'civicDirectives'
 
         result = newContribution.$save()
   ]
+
+  .directive 'loadMoreContributions', ['Contribution', (Contribution) ->
+    restrict: 'E'
+    template: '<a href class="btn btn-default btn-block">Load More</a>'
+    replace: true
+    link: (scope, element, attrs) ->
+      element.on 'click', ->
+        element.addClass "disabled"
+        Contribution.loadMore (data, headers) ->
+          element.removeClass "disabled"
+          element.addClass "hide" if data.length < 20
+  ]
+
