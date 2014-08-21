@@ -91,9 +91,6 @@ img.advert {
     text-decoration: none;
     margin-right: 0;
   }
-  &.social-links {
-    text-align: center;
-  }
   .sign-in-social {
     @include inline-block;
     border: 1px solid #cbc9c9;
@@ -132,7 +129,6 @@ img.advert {
     img {
       position: absolute;
       top: 15px;
-      left: 82px;
     }
     span {
       font: 'Helvetica Neue';
@@ -150,10 +146,12 @@ img.advert {
     &.facebook {
       background: url('sign-facebook-high.png') no-repeat scroll center;
       background-color: #05719f;
+      margin-right: 26px;
     }
     &.twitter {
       background: url('sign-twitter-high.png') no-repeat scroll center;
       background-color: #0092cf;
+      margin-right: 26px;
     }
     &.google_oauth2 {
       background: url('sign-google-high.png') no-repeat scroll center;
@@ -162,6 +160,7 @@ img.advert {
     &.linkedin {
       background: url('sign-linkedin-high.png') no-repeat scroll center;
       background-color: #3c8fb9;
+      margin-right: 25px;
     }
     &.email {
       background: url('sign-email-high.png') no-repeat scroll center;
@@ -216,7 +215,6 @@ img.advert {
     img {
       position: absolute;
       top: 15px;
-      left: 82px;
     }
     span {
       font: 'Helvetica Neue';
