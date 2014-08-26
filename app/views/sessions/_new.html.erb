@@ -1,40 +1,45 @@
 <%= remotipart_response do %>
-<div id="ajax-login-container">
+  <div id="ajax-login-container">
+    <p>
+    Please login to continue. If you don't have an account, please <%= link_to 'register', secure_registration_form_url %>.
+    </p>
+    <%= form_for(:person, :url => people_ajax_login_path, :remote => true, :html => {:id => 'ajax-login-form'}) do |f| %>
+      <p class="validation-error"></p>
 
-  <p>
-  Please login to continue. If you don't have an account, please <%= link_to 'register', secure_registration_form_url %>.
-  </p>
+      <fieldset class="form-group">
+        <%= hidden_field_tag 'requested_url', @requested_url %>
+        <div class="form-block">
+          <%= f.label :email, 'Email:' %>
+          <%= f.text_field :email, :placeholder => "me@johnnyappleseed.com",  :class => 'textbox' %>
+        </div>
+        <div class="form-block">
+          <%= f.label :password, 'Password:' %>
+          <%= f.password_field :password,  :class => 'textbox' %>
+        </div>
+        <p>
+        <%= f.check_box :remember_me, class: 'checkbox' %>
+        <%= f.label :remember_me, 'Remember me on this computer', class: 'checkbox' %>
+        </p>
+      </fieldset>
 
-  <%= form_for(:person, :url => people_ajax_login_path, :remote => true, :html => {:id => 'ajax-login-form'}) do |f| %>
-    <p class="validation-error"></p>
-
-    <fieldset class="form-group">
-      <%= hidden_field_tag 'requested_url', @requested_url %>
-      <div class="form-block">
-        <%= f.label :email, 'Email:' %>
-        <%= f.text_field :email, :placeholder => "me@johnnyappleseed.com",  :class => 'textbox' %>
+      <fieldset class="footer">
+        <%= f.submit 'Login', :class => 'submit' %>
+        or
+        <%= link_to 'cancel', '', :onclick => '$.colorbox.close(); return false;', :class => 'cancel' %>
+      </fieldset>
+    <% end %>
+    <p>
+      <div class="social-holder">
+        <div class="sign-in-social">
+          <span>Sign in with</span>
+          <%= image_tag ('arrow.png') %>
+        </div>
+        <% Authentication::PROVIDERS.each do |provider| %>
+          <%= link_to person_omniauth_authorize_path(provider.to_sym, :login => "correct"), {style: "margin-right: 0;"} do %>
+            <div class="social-link-sign <%= provider %>"></div>
+          <% end %>
+        <% end %>
       </div>
-      <div class="form-block">
-        <%= f.label :password, 'Password:' %>
-        <%= f.password_field :password,  :class => 'textbox' %>
-      </div>
-      <p>
-      <%= f.check_box :remember_me, class: 'checkbox' %>
-      <%= f.label :remember_me, 'Remember me on this computer', class: 'checkbox' %>
-      </p>
-    </fieldset>
-
-    <fieldset class="footer">
-      <%= f.submit 'Login', :class => 'submit' %>
-      or
-      <%= link_to 'cancel', '', :onclick => '$.colorbox.close(); return false;', :class => 'cancel' %>
-    </fieldset>
-
-  <% end %>
-
-  <p id="facebook">
-  Or login using Facebook <%= facebook_sign_in_link %>
-  </p>
-
-</div>
+    </p>
+  </div>
 <% end %>
