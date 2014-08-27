@@ -33,8 +33,11 @@ civicServices.factory 'Contribution', ['$resource', 'CivicApi', ($resource, Civi
       (success || Function())(data,headers)
     , failure
 
-  Contribution.getContribution = (id, success = null, failure = null) =>
-    contribution = @contributions[id]
+  Contribution.getContributionByParentIndexAndIndex = (parentIndex, index) =>
+    @contributions[parentIndex].contributions[index]
+
+  Contribution.getContributionByIndex = (index) =>
+    @contributions[index]
 
   Contribution.registerObserverCallback = (callback) ->
     observerCallbacks.push callback

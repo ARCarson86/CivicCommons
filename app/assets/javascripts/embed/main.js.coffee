@@ -6,6 +6,8 @@
 #= require angular/angular-cookies
 #= require angular/ui-bootstrap-tpls-0.11.0
 #= require lodash
+#= require ./ng/helpers/civic_helpers
+#= require_tree ./ng/helpers
 #= require ./ng/services/civic_services
 #= require_tree ./ng/services
 #= require ./ng/controllers/civic_controllers
@@ -14,7 +16,7 @@
 #= require_tree ./ng/directives
 #= require_tree ./ng/templates
 
-civicApp = angular.module 'civicApp', ['ngRoute','civicControllers', 'civicServices', 'civicDirectives', 'ngCookies', 'ngSanitize', 'templates', 'ui.bootstrap']
+civicApp = angular.module 'civicApp', ['ngRoute','civicControllers', 'civicServices', 'civicDirectives', 'civicHelpers', 'ngCookies', 'ngSanitize', 'templates', 'ui.bootstrap']
 
 civicApp.config ['$locationProvider','$routeProvider', ($locationProvider, $routeProvider) ->
   $locationProvider.html5Mode(true).hashPrefix('!')

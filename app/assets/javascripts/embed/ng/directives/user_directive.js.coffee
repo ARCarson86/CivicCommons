@@ -5,6 +5,7 @@ angular.module 'civicDirectives'
     link: (scope, element, attrs) ->
       userWatcher = null
       idObserver = attrs.$observe 'id', (val) ->
+        return unless val
         userWatcher = scope.$watch ->
           User.getUser(val)
         , (userobj) ->

@@ -1,12 +1,11 @@
 angular.module 'civicDirectives'
-  .directive 'contribution', ['CivicApi', 'Contribution', (CivicApi, Contribution) ->
-    restrict: 'E'
+  .directive 'contribution', ['CivicApi', 'Contribution', 'RecursionHelper', (CivicApi, Contribution, RecursionHelper) ->
+    restrict: 'EA'
     templateUrl: 'contributions/contribution.html'
     scope:
-      id: '@'
-    controller: ($scope) ->
-    link: (scope, element, attrs) ->
-      #scope.contribution = Contribution.getContribution(scope.id)
+      contribution: '='
+    compile: (cElement) ->
+      RecursionHelper.compile cElement, (scope, element, attrs) ->
   ]
 
   .directive 'contribute', ['User', 'Contribution', (User, Contribution) ->
@@ -44,15 +43,33 @@ angular.module 'civicDirectives'
         result = newContribution.$save()
   ]
 
-  .directive 'loadMoreContributions', ['Contribution', (Contribution) ->
+  .directive 'loadMoreContributions', ['Contribution', '$window', '$q', (Contribution, $window, $q) ->
     restrict: 'E'
     template: '<a href class="btn btn-default btn-block">Load More</a>'
     replace: true
     link: (scope, element, attrs) ->
-      element.on 'click', ->
+      offset = parseInt(attrs.offset, 10) || 10
+      scrolling = false
+
+      infiniteScroll = ->
+        angular.element($window).bind 'scroll', ->
+          if not scrolling and element[0].offsetTop + parseInt(element[0].offsetHeight, 10) < $window.scrollY + $window.innerHeight - offset
+            scrolling = true
+            deferred = $q.defer()
+            element.attr 'disabled', 'disabled'
+            Contribution.loadMore (data, headers) ->
+              element.removeAttr 'disabled'
+              element.addClass "hide" if data.length < 20
+              scrolling = false
+
+      observer = attrs.$observe 'initialized', (newValue, oldValue) ->
+        return unless newValue == 'true'
+        infiniteScroll()
+        observer() # destroy observer
+
+
+
+      element.on 'click', -> # click fallback for when infinite scrolling doesn't work
         element.addClass "disabled"
-        Contribution.loadMore (data, headers) ->
-          element.removeClass "disabled"
-          element.addClass "hide" if data.length < 20
   ]
 
