@@ -181,6 +181,18 @@ Devise.setup do |config|
     Civiccommons::Config.facebook['api_key'],
     Civiccommons::Config.facebook['app_secret'],
     :scope => 'email', :display => "popup"
+  config.omniauth :twitter,
+    Civiccommons::Config.twitter['api_key'],
+    Civiccommons::Config.twitter['api_secret'],
+    :scope => 'email'
+  config.omniauth :linkedin,
+    Civiccommons::Config.linkedin['api_key'],
+    Civiccommons::Config.linkedin['secret_key'],
+    :scope => 'r_emailaddress r_basicprofile'
+  config.omniauth :google_oauth2,
+    Civiccommons::Config.google_oauth2['client_id'],
+    Civiccommons::Config.google_oauth2['client_secret'],
+    :scope => 'email', :display => "popup"
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

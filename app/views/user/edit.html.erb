@@ -13,17 +13,21 @@
             <fieldset class="form-group">
               <div class="form-block">
                 <%= person.label :name, name_label_text %>
-                <%= person.text_field :name, :class => 'textbox' %> 
+                <%= person.text_field :name, :class => 'textbox' %>
               </div>
               <div class="form-block">
                 <%= person.label :title, title_label_text %>
                 <%= person.text_field :title, :class => 'textbox' %>
               </div>
               <div class="form-block">
+                <%= person.label :email, "Email" %>
+                <%= person.text_field :email, :class => 'textbox' %>
+              </div>
+              <div class="form-block">
                 <%= person.label :zip_code %>
                 <%= person.text_field :zip_code, :class => 'textbox' %>
               </div>
-              <% unless @person.facebook_authenticated? %>
+              <% unless @person.social_authenticated?("facebook") %>
                 <fieldset class="form-group">
                   <div class="form-block">
                     <%= person.label :password %>
@@ -63,14 +67,39 @@
             </fieldset>
             <% unless person.object.is_organization?  %>
               <fieldset class="form-group">
-                <div class="form-block facebook-auth">
-                  <% if person.object.facebook_authenticated? %>
-                    <%= unlink_from_facebook_link %>
-                  <% else %>
-                    <%= link_with_facebook_link if current_person == person.object%>
-                  <% end %>
-                </div>
+                <% unless current_person.authentications.count == 4 %>
+                  <div class="social-holder">
+                    <div class="sign-in-social profile">
+                      <span>Connect Account With</span>
+                      <%= image_tag ('arrow.png') %>
+                    </div>
+                    <% Authentication::PROVIDERS.each do |provider| %>
+                      <% unless current_person.social_authenticated?(provider) %>
+                        <%= link_to person_omniauth_authorize_path(provider.to_sym), {style: "margin-right: 0;"} do %>
+                          <div class="social-link-sign <%= provider %>"></div>
+                        <% end %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                <% end %>
               </fieldset>
+              <% unless current_person.authentications.blank? %>
+                <fieldset class="form-group">
+                  <div class="social-holder">
+                    <div class="sign-in-social profile">
+                      <span>Disconnect Account </span>
+                      <%= image_tag ('arrow.png') %>
+                    </div>
+                    <% Authentication::PROVIDERS.each do |provider| %>
+                      <% if current_person.social_authenticated?(provider) %>
+                        <%= link_to unlink_path(current_person, provider), {method: :delete}, {style: "margin-right: 0;"} do %>
+                          <div class="social-link-sign <%= provider %>"></div>
+                        <% end %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </fieldset>
+              <% end %>
             <% end %>
             <fieldset class="form-group">
               <div class="form-block form-no-label">

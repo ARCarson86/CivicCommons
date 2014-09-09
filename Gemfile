@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'unicorn'
+
 gem 'rails', '~> 3.2.16'
 
 gem 'mysql2'
@@ -13,6 +15,8 @@ group :assets do
   gem 'yui-compressor'
   gem "font-awesome-rails"
   gem 'angular-rails-templates'
+  #gem 'jquery-migrate-rails'
+  gem 'turbo-sprockets-rails3'
 end
 gem 'jquery-rails'
 
@@ -22,8 +26,14 @@ gem 'redis-rails'
 
 gem 'devise', '1.5.2'
 gem "cancan"
-gem 'omniauth', '1.0.1'
+gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-linkedin'
+
+gem "better_errors"
+gem "binding_of_caller"
 
 gem 'fb_graph'
 

@@ -9,10 +9,20 @@
       </p>
       <div class="mod">
         <p>
-          <strong>Did you register with Facebook?</strong>
+          <strong>Did you register with a social network?</strong>
         </p>
         <p>
-          <%= facebook_sign_in_link %>
+          <div class="social-holder">
+            <div class="sign-in-social">
+              <span>Sign in with</span>
+              <%= image_tag ('arrow.png') %>
+            </div>
+            <% Authentication::PROVIDERS.each do |provider| %>
+              <%= link_to person_omniauth_authorize_path(provider.to_sym, :login => "correct"), {style: "margin-right: 0;"} do %>
+                <div class="social-link-sign <%= provider %>"></div>
+              <% end %>
+            <% end %>
+          </div>
         </p>
       </div>
       <p>

@@ -3,6 +3,8 @@ class Authentication < ActiveRecord::Base
   validates_presence_of :uid, :provider
   validates_uniqueness_of :uid, :scope => :provider
 
+  PROVIDERS = ["facebook", "twitter", "linkedin", "google_oauth2"]
+
   def self.new_from_auth_hash(auth_hash)
     new(:provider => auth_hash['provider'],
           :uid => auth_hash['uid'],
@@ -11,6 +13,10 @@ class Authentication < ActiveRecord::Base
 
   def self.find_from_auth_hash(auth_hash)
     find_by_provider_and_uid( auth_hash['provider'], auth_hash['uid'])
+  end
+
+  def self.provider_from_auth_hash(auth_hash)
+    auth_hash && auth_hash['info'] && auth_hash['info']['provider'] && auth_hash['info']['provider'].to_s.downcase.strip
   end
 
   def self.email_from_auth_hash(auth_hash)

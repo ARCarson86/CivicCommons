@@ -23,7 +23,7 @@ class Person < ActiveRecord::Base
          :validatable,
          :confirmable,
          :lockable,
-         :omniauthable
+         :omniauthable, :omniauth_providers => [:facebook, :twitter, :linkedin, :google_oauth2]
 
   attr_accessor :send_welcome,
                 :create_from_auth,
@@ -62,6 +62,9 @@ class Person < ActiveRecord::Base
   accepts_nested_attributes_for :authentications
 
   has_one :facebook_authentication, :class_name => 'Authentication', :conditions => {:provider => 'facebook'}, :dependent => :destroy
+  has_one :twitter_authentication, :class_name => 'Authentication', :conditions => {:provider => 'twitter'}, :dependent => :destroy
+  has_one :google_authentication, :class_name => 'Authentication', :conditions => {:provider => 'google_oauth2'}, :dependent => :destroy
+  has_one :linkedin_authentication, :class_name => 'Authentication', :conditions => {:provider => 'linkedin'}, :dependent => :destroy
   has_many :notifications
 
   has_many :content_items_people
@@ -84,8 +87,6 @@ class Person < ActiveRecord::Base
 
   has_many :petition_signatures, :dependent => :destroy
   has_many :signed_petitions, :class_name => 'Petition', :through => :petition_signatures, :source => :petition
-
-  validates_length_of :email, :within => 6..255, :too_long => "please use a shorter email address", :too_short => "please use a longer email address"
 
   validates_presence_of :zip_code, :message => ' please enter zipcode'
   validates_length_of :zip_code, :message => ' must be 5 characters or higher', :within => (5..10), :allow_blank => false, :allow_nil => false
@@ -329,15 +330,18 @@ class Person < ActiveRecord::Base
     subscriptions.map(&:subscribable).include?(subscribable)
   end
 
-  def unlink_from_facebook(person_hash)
+  def unlink_from_social(provider)
     ActiveRecord::Base.transaction do
-      self.email = person_hash[:email]
-      self.password = person_hash[:password]
-      self.password_confirmation = person_hash[:password_confirmation]
-      self.facebook_unlinking = true
-      self.send_email_change_notification = true # sends email change notification
-      save!
-      self.facebook_authentication.destroy
+      case provider
+      when "facebook"
+        self.facebook_authentication.destroy
+      when "twitter"
+        self.twitter_authentication.destroy
+      when "google_oauth2"
+        self.google_authentication.destroy
+      when "linkedin"
+        self.linkedin_authentication.destroy
+      end
     end
   rescue
     self
@@ -374,33 +378,45 @@ class Person < ActiveRecord::Base
     true
   end
 
-  def facebook_authenticated?
-    !facebook_authentication.blank?
+  def social_authenticated?(provider)
+    case provider
+    when "facebook"
+      !facebook_authentication.blank?
+    when "twitter"
+      !twitter_authentication.blank?
+    when "google_oauth2"
+      !google_authentication.blank?
+    when "linkedin"
+      !linkedin_authentication.blank?
+    end
   end
 
-  def link_with_facebook(authentication)
-    begin 
-      ActiveRecord::Base.transaction do
-        self.facebook_authentication = authentication
-        self.encrypted_password = ''
-        self.create_from_auth = true
-        save!
-        AvatarService.update_avatar_url_for(self)
-        facebook_authentication.persisted?
-      end
+  def authentication_type(provider)
+    case provider
+    when "facebook"
+      facebook_authentication
+    when "twitter"
+      twitter_authentication
+    when "google_oauth2"
+      google_authentication
+    when "linkedin"
+      linkedin_authentication
+    end
+  end
+
+  def link_with_social(authentication, provider)
+    begin
+      @authentication = authentication
+      @authentication.provider = provider
+      self.create_from_auth = true
+      @authentication.person_id = self.id
+      save!
+      @authentication.save
+      AvatarService.update_avatar_url_for(self)
     rescue ActiveRecord::RecordNotSaved
       return false
     end
   end
-
-  def conflicting_email?(other_email)
-    if other_email.blank? || (other_email.to_s.downcase.strip == email.to_s.downcase.strip)
-      false
-    else
-      true
-    end
-  end
-
 
   # Avatar Image Cache
   # The cached avatar image url as determined by the AvatarService.
@@ -422,7 +438,6 @@ class Person < ActiveRecord::Base
   def self.build_from_auth_hash(auth_hash)
     new_person = new(:name => auth_hash['info']['name'],
         :email => Authentication.email_from_auth_hash(auth_hash),
-        :encrypted_password => '',
         :create_from_auth => true
       )
     new_person.authentications << Authentication.new_from_auth_hash(auth_hash)
@@ -472,14 +487,6 @@ protected
   def check_twitter_username_format
     match = /^@?(?<username>.*)$/.match(self.twitter_username)
     self.twitter_username = match[:username] unless match.nil?
-  end
-
-  def password_required?
-    if facebook_authenticated?
-      facebook_unlinking? ? true : false
-    else
-      (!persisted? && !create_from_auth?) || password.present? || password_confirmation.present?
-    end
   end
 
   def add_newsletter_subscription

@@ -4,11 +4,17 @@ class RegistrationsController < Devise::RegistrationsController
   skip_before_filter :require_no_ssl
   helper_method :form_presenter
 
+  def new
+    super
+  end
+
   def create
     if params['person'].has_key?('authentications_attributes')
       params['person']['create_from_auth'] = true
-      params['person']['encrypted_password'] = ''
       params['person']['confirmed_at'] = DateTime.now
+    end
+    if @authentication.present?
+      @authentication.save!
     end
     super
   end
@@ -53,5 +59,4 @@ class RegistrationsController < Devise::RegistrationsController
     hash ||= params[:organization] || {}
     self.resource = Organization.new(hash)
   end
-  
 end

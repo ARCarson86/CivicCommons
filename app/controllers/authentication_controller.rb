@@ -1,7 +1,7 @@
 class AuthenticationController < ApplicationController
   skip_before_filter :require_no_ssl
   before_filter :require_user, :except => [:registering_email_taken]
-  before_filter :require_facebook_authenticated, :only => [:before_facebook_unlinking,:confirm_facebook_unlinking, :process_facebook_unlinking]
+  before_filter :require_social_authentication, :only => [:before_facebook_unlinking,:confirm_facebook_unlinking, :process_facebook_unlinking]
   layout :set_layout, :only => [:before_facebook_unlinking, :confirm_facebook_unlinking, :process_facebook_unlinking]
 
   def before_facebook_unlinking
@@ -51,9 +51,6 @@ class AuthenticationController < ApplicationController
     end
   end
 
-  def fb_linking_success
-    render :layout => false
-  end
 
 protected
 
@@ -61,9 +58,9 @@ protected
     request.xhr? ? 'content_for/main_body' : 'application'
   end
 
-  def require_facebook_authenticated
-    unless current_person.facebook_authenticated?
-      render :text => '<p>Your account needs to have been connected to Facebook in order to do this.</p>' 
+  def require_social_authentication(provider)
+    unless current_person.social_authenticated?(provider)
+      render :text => "<p>Your account needs to have been connected to #{provider} in order to do this.</p>"
       return false
     end
   end
