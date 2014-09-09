@@ -76,5 +76,7 @@ module Civiccommons
 
     config.angular_templates.ignore_prefix = ['embed/ng/templates/', 'templates']
 
+    config.assets.paths << Rails.root.join('spec/karma')
+
   end
 end
