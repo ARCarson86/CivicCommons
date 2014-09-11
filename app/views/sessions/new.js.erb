@@ -1,6 +1,7 @@
 <%= remotipart_response do %>
   <% if person_signed_in? %>
 
+    console.log(lastAjaxIsColorbox);
     if ( ! lastAjaxIsColorbox ) {
       $.colorbox.close();
     }
@@ -13,17 +14,21 @@
       var el = $('input[name="remotipart_submitted"]').parents('form');
       el.submit();
     } else {
-      $.ajax({
-        url: lastAjaxSettings.url,
-        data: lastAjaxSettings.data,
-        dataType: lastAjaxSettings.dataType,
-        type: lastAjaxSettings.type,
-        beforeSend: lastAjaxSettings.beforeSend,
-        success: lastAjaxSettings.success,
-        complete: lastAjaxSettings.complete,
-        error: lastAjaxSettings.error
-
-      });
+      if(lastAjaxIsColorbox){
+        $.colorbox({href: lastAjaxSettings.url});
+      }
+      else {
+        $.ajax({
+          url: lastAjaxSettings.url,
+          data: lastAjaxSettings.data,
+          dataType: lastAjaxSettings.dataType,
+          type: lastAjaxSettings.type,
+          beforeSend: lastAjaxSettings.beforeSend,
+          success: lastAjaxSettings.success,
+          complete: lastAjaxSettings.complete,
+          error: lastAjaxSettings.error
+        });
+      }
     }
   <% else %>
     // Devise populates login error message in flash.alert

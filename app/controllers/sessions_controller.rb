@@ -31,6 +31,7 @@ class SessionsController < Devise::SessionsController
     resource = warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#new")
     sign_in(resource_name, resource)
     if session.has_key?(:close_modal_on_exit) and session[:close_modal_on_exit]
+      raise session.inspect
       @notice = "You have successfully logged in."
       respond_to do |format|
         format.js {render :partial => 'sessions/close_modal_on_exit', :layout => false}
