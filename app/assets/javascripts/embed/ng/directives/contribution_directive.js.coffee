@@ -1,5 +1,5 @@
 angular.module 'civicDirectives'
-  .directive 'contribution', ['CivicApi', 'Contribution', 'RecursionHelper', (CivicApi, Contribution, RecursionHelper) ->
+  .directive 'contribution', ['RecursionHelper', (RecursionHelper) ->
     restrict: 'EA'
     templateUrl: 'contributions/contribution.html'
     scope:

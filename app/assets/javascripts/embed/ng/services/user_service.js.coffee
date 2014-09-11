@@ -20,9 +20,11 @@ angular.module 'civicServices'
     index: (params = {}, success = null, failure = null) =>
       if _.isEmpty @users
         indexUsers(params, success, failure)
+      else
+        @users
 
     getUser: (id, success=null, failure=null) =>
-      if !@initialized
+      if !@initialized && _.isEmpty @users
         @initialized = true
         indexUsers {}, =>
           @initialized = true
@@ -30,5 +32,6 @@ angular.module 'civicServices'
       else
         return false if _.isEmpty @users
         user = @users[id]
+        user
 
-  ]
+]
