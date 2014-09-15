@@ -64,12 +64,16 @@ angular.module 'civicDirectives'
 
       observer = attrs.$observe 'initialized', (newValue, oldValue) ->
         return unless newValue == 'true'
-        infiniteScroll()
+        #infiniteScroll()
         observer() # destroy observer
 
 
 
       element.on 'click', -> # click fallback for when infinite scrolling doesn't work
         element.addClass "disabled"
+        Contribution.loadMore (data, headers) ->
+          element.removeAttr 'disabled'
+          element.addClass "hide" if data.length < 20
+          scrolling = false
   ]
 

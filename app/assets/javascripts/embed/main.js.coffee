@@ -4,7 +4,6 @@
 #= require angular/angular-resource
 #= require angular/angular-sanitize
 #= require angular/angular-cookies
-#= require angular/ui-bootstrap-tpls-0.11.0
 #= require lodash
 #= require ./ng/helpers/civic_helpers
 #= require_tree ./ng/helpers
@@ -16,16 +15,22 @@
 #= require_tree ./ng/directives
 #= require_tree ./ng/templates
 
-civicApp = angular.module 'civicApp', ['ngRoute','civicControllers', 'civicServices', 'civicDirectives', 'civicHelpers', 'ngCookies', 'ngSanitize', 'templates', 'ui.bootstrap']
 
-civicApp.config ['$locationProvider','$routeProvider', ($locationProvider, $routeProvider) ->
-  $locationProvider.html5Mode(true).hashPrefix('!')
-  $routeProvider
-    .when '/conversations/:id', {
-      controller: 'ConversationDetailCtrl',
-      templateUrl: 'conversations/conversation-detail.html'
-    }
-    .otherwise {
-      redirect_to: '/'
-    }
-]
+civicApp = angular.module 'civicApp', ['ngRoute','civicControllers', 'civicServices', 'civicDirectives', 'civicHelpers', 'ngCookies', 'ngSanitize', 'templates']
+
+civicApp
+  .config ['$locationProvider','$routeProvider', '$windowProvider', ($locationProvider, $routeProvider, $window) ->
+    $locationProvider.html5Mode(true).hashPrefix('!')
+    $routeProvider
+      .when '/conversations/:id', {
+        controller: 'ConversationDetailCtrl',
+        templateUrl: 'conversations/conversation-detail.html'
+        redirectTo: (params, path, search) ->
+          return ''
+          if $window.$get() == $window.$get().parent # not embedded
+            $window.$get().location.href = "http://theciviccommons.com/conversations/#{params.id}"
+      }
+      .otherwise {
+        redirect_to: '/'
+      }
+  ]
