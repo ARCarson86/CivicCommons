@@ -14,7 +14,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       APPLICATION_SPEC,
-      'spec/javascripts/**/*_spec.{js.coffee,js}',
+      'spec/javascripts/**/*_spec.{coffee,js}',
       'app/assets/javascripts/embed/ng/templates/**/*.html'
     ],
 
