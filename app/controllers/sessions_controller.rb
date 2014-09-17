@@ -1,11 +1,13 @@
 class SessionsController < Devise::SessionsController
-  layout 'devise/sessions'
+  layout 'devise/sessions', except: [:popup_new]
+  layout '_popup', only: [:popup_new]
   include RegionHelper
 
   prepend_before_filter :require_no_authentication, :only => [:new, :create, :ajax_new, :ajax_create]
   prepend_before_filter :allow_params_authentication!, :only => [:create, :ajax_create]
   before_filter :require_ssl, :only => [:new, :create]
   skip_before_filter :require_no_ssl
+  after_filter :update_signin_cookie
 
   def new
     super
@@ -15,7 +17,6 @@ class SessionsController < Devise::SessionsController
   end
 
   def create
-    cookies[:civiccommons_login_update] = DateTime.now.to_i
     super
     session[:previous] = nil
     default_region(current_person.default_region)
@@ -43,6 +44,9 @@ class SessionsController < Devise::SessionsController
     else
       render :action => :new
     end
+  end
+
+  def popup_new
   end
 
 end

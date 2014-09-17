@@ -13,10 +13,7 @@
   <body>
     <div class="container">
       <header class="row">
-        <%= link_to '/', target: '_blank', class: "col-xs-5" do %>
-          <%= image_tag 'CC_rgb.png', alt: 'The Civic Commons Logo' %>
-        <% end %>
-        <div ng-include="'users/account.html'" ng-controller="AccountDirective" class="pull-right col-xs-5"></div>
+        <account></account>
       </header>
 
       <div ng-view ></div>

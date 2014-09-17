@@ -124,4 +124,8 @@ protected
     super || form_authenticity_token == request.headers['X-XSRF-TOKEN']
   end
 
+  def update_signin_cookie
+    cookies[:civiccommons_login_update] = DateTime.now.to_i
+  end
+
 end

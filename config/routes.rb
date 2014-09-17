@@ -112,6 +112,7 @@ Civiccommons::Application.routes.draw do
   devise_scope :person do
     match '/people/ajax_login', :to=>'sessions#ajax_create', :via=>[:post]
     match '/people/ajax_new_login', :to=>'sessions#ajax_new', :via=>[:get]
+    match '/people/popup_new_login', :to=>'sessions#popup_new', :via=>[:get]
     get '/people/secret/fb_auth_forgot_password', to: 'passwords#fb_auth_forgot_password', as: 'fb_auth_forgot_password'
     get "/registrations/omniauth_callbacks/failure", to: "registrations/omniauth_callbacks#failure"
     get '/registrations/principles', to: 'registrations#principles'

@@ -3,7 +3,8 @@
   <div class="content">
     <header>
       <div class="actions pull-right">
-        <a class="reply" href ng-init="contributionActive = false" ng-click="contributionActive = !contributionActive" ng-show="{{contribution.parent_id == null}}">reply</a>
+        <a class="reply" href ng-init="contributionActive = false"
+          ng-click="contribute()" ng-show="{{contribution.parent_id == null}}">reply</a>
       </div>
       <user id="{{contribution.owner_id}}"></user>
       on {{contribution.created_at | date:'medium'}}

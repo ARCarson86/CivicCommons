@@ -1,14 +1,16 @@
 angular.module 'civicDirectives'
-  .directive 'contribution', ['RecursionHelper', (RecursionHelper) ->
+  .directive 'contribution', ['Account', 'RecursionHelper', (Account, RecursionHelper) ->
     restrict: 'EA'
     templateUrl: 'contributions/contribution.html'
     scope:
       contribution: '='
     compile: (cElement) ->
       RecursionHelper.compile cElement, (scope, element, attrs) ->
+        scope.contribute = ->
+          console.log Account.getAccount()
   ]
 
-  .directive 'contribute', ['User', 'Contribution', (User, Contribution) ->
+  .directive 'contribute', ['Account', 'User', 'Contribution', (Account, User, Contribution) ->
     restrict: 'E'
     templateUrl: 'contributions/new.html'
     link: (scope, element, attrs) ->

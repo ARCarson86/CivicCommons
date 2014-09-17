@@ -1,6 +1,7 @@
 class Registrations::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_filter :require_no_ssl
   helper_method :form_presenter
+  after_filter :update_signin_cookie
 
   def social(provider)
     if signed_in? && !current_person.social_authenticated?(provider)
