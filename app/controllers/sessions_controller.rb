@@ -35,7 +35,7 @@ class SessionsController < Devise::SessionsController
       @notice = "You have successfully logged in."
       respond_to do |format|
         format.js {render :partial => 'sessions/close_modal_on_exit', :layout => false}
-        format.html do 
+        format.html do
           redirect_to session[:previous] || root_path
           session[:previous] = nil
         end
