@@ -7,12 +7,14 @@
           ng-click="contribute()" ng-show="{{contribution.parent_id == null}}">reply</a>
       </div>
       <user id="{{contribution.owner_id}}"></user>
-      on {{contribution.created_at | date:'medium'}}
+      <span class="created-date">{{contribution.created_at | date : 'MMM d, y h:mm a'}}</span>
     </header>
 
     <div class="clearfix" ng-bind-html="contribution.content"></div>
     <div class="contributions">
-      <div contribution="contribution" ng-repeat="contribution in contribution.contributions"></div>
+      <div class="contributions-list" ng-show="contribution.contributions">
+        <div contribution="contribution" ng-repeat="contribution in contribution.contributions"></div>
+      </div>
       <div ng-show="{{contribution.parent_id == null}}">
         <contribute ng-show="contributionActive" data-active="{{contributionActive}}" data-reply-to="{{$parent.contribution.id}}" data-reply-to-parent="{{$parent.contribution.parent_id}}" data-reply-to-author="{{user.name}}"></contribute>
       </div>

@@ -2,6 +2,7 @@ angular.module 'civicDirectives'
   .directive 'contribution', ['RecursionHelper', (RecursionHelper) ->
     restrict: 'EA'
     templateUrl: 'contributions/contribution.html'
+    replace: true
     scope:
       contribution: '='
     compile: (cElement) ->

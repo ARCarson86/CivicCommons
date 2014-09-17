@@ -7,16 +7,12 @@ civicControllers.controller 'ConversationDetailCtrl', ['$scope', '$routeParams',
   $scope.conversation = Conversation.get {}, (conversation) ->
     $scope.conversation_loaded = true
     $rootScope.conversation_slug = conversation.slug
-    #IframeHeight.updateHeight()
 
   $scope.contributions = Contribution.index {}, ->
     $scope.contributions_loaded = true
 
   Contribution.registerObserverCallback ->
     $scope.contributions = Contribution.getContributions()
-    IframeHeight.updateHeight()
-
-  $scope.current_user = Account.get {}
 
   User.index()
 
