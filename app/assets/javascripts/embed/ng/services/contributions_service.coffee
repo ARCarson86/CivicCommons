@@ -1,5 +1,5 @@
 angular.module 'civicServices'
-  .factory 'Contribution', ['$resource', 'CivicApi', ($resource, CivicApi) ->
+  .factory 'Contribution', ['$resource', 'CivicApi', 'User', ($resource, CivicApi, User) ->
     @page = 1
     @contributions = []
     observerCallbacks = []
@@ -50,6 +50,13 @@ angular.module 'civicServices'
 
     Contribution.loadMore = (success, failure) =>
       Contribution.index page: ++@page, success, failure
+
+    Contribution.prototype.construct = ->
+      User.get(this.owner_id).then (data) =>
+        @author = data
+      if @contributions
+        for contribution, i in @contributions
+          @contributions[i] = new Contribution contribution
 
     return Contribution
 

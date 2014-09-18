@@ -14,7 +14,7 @@ civicControllers.controller 'ConversationDetailCtrl', ['$scope', '$routeParams',
   Contribution.registerObserverCallback ->
     $scope.contributions = Contribution.getContributions()
 
-  User.index()
+  User.index({})
 
   $scope.login = ->
     $rootScope.flagLogin = true

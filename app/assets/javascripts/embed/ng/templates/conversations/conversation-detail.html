@@ -4,9 +4,9 @@
 
   <h1>{{conversation.title}}</h1>
   <div class="authoring-information">
-    <user-avatar id="{{conversation.author.id}}"></user-avatar>
+    <user-avatar user="conversation.author"></user-avatar>
     <div class="authoring-information-primary">
-      <user id="{{conversation.author.id}}"></user>
+      <user user="conversation.author"></user>
       <div class="created-date">{{conversation.created_at | date : 'MMMM d, y h:mm a'}}</div>
     </div>
   </div>

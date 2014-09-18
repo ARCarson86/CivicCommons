@@ -7,7 +7,7 @@ angular.module 'civicDirectives'
       contribution: '='
     compile: (cElement) ->
       RecursionHelper.compile cElement, (scope, element, attrs) ->
-        scope.contribute = ->
+        scope.contribution.construct()
   ]
 
   .directive 'contribute', ['User', 'Contribution', (User, Contribution) ->
