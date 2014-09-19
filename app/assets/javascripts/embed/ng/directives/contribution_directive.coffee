@@ -1,5 +1,5 @@
 angular.module 'civicDirectives'
-  .directive 'contribution', ['RecursionHelper', (RecursionHelper) ->
+  .directive 'contribution', ['RecursionHelper', '$timeout', (RecursionHelper, $timeout) ->
     restrict: 'EA'
     templateUrl: 'contributions/contribution.html'
     replace: true
@@ -7,6 +7,16 @@ angular.module 'civicDirectives'
       contribution: '='
     compile: (cElement) ->
       RecursionHelper.compile cElement, (scope, element, attrs) ->
+        contributionsContainer =  element.children()[1].children[2]
+        scope.$watch ->
+          parseInt getComputedStyle(contributionsContainer).height
+        , (newValue, oldValue) ->
+          if newValue >= 300
+            angular.element contributionsContainer
+              .addClass 'scroll'
+          else
+            angular.element contributionsContainer
+              .removeClass 'scroll'
 
   ]
 
@@ -52,24 +62,6 @@ angular.module 'civicDirectives'
     link: (scope, element, attrs) ->
       offset = parseInt(attrs.offset, 10) || 10
       scrolling = false
-
-      infiniteScroll = ->
-        angular.element($window).bind 'scroll', ->
-          if not scrolling and element[0].offsetTop + parseInt(element[0].offsetHeight, 10) < $window.scrollY + $window.innerHeight - offset
-            scrolling = true
-            deferred = $q.defer()
-            element.attr 'disabled', 'disabled'
-            Contribution.loadMore (data, headers) ->
-              element.removeAttr 'disabled'
-              element.addClass "hide" if data.length < 20
-              scrolling = false
-
-      observer = attrs.$observe 'initialized', (newValue, oldValue) ->
-        return unless newValue == 'true'
-        #infiniteScroll()
-        observer() # destroy observer
-
-
 
       element.on 'click', -> # click fallback for when infinite scrolling doesn't work
         element.addClass "disabled"

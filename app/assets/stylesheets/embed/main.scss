@@ -28,6 +28,11 @@ h2 {
   text-transform: uppercase;
 }
 
+a {
+  color: $darkGray;
+  text-decoration: underline;
+}
+
 .created-date {
   color: $darkGray
 }
@@ -172,4 +177,22 @@ h2 {
     min-height: 3em;
     padding: 3px;
   }
+}
+
+.scroll {
+  height: 300px;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+  }
+  &::-webkit-scrollbar:vertical {
+    background-color: $veryVeryLightGray;
+    width: 7px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border: 2px solid $lightGray; /* should match background, can't be transparent */
+    background-color: $lightGray
+  }
+
 }
