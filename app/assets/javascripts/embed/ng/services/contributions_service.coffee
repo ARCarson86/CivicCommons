@@ -1,5 +1,5 @@
 angular.module 'civicServices'
-  .factory 'Contribution', ['$resource', 'CivicApi', 'User', ($resource, CivicApi, User) ->
+  .factory 'Contribution', ['$resource', '$rootScope', 'CivicApi', 'User', ($resource, $rootScope, CivicApi, User) ->
     @page = 1
     @contributions = []
     observerCallbacks = []
@@ -12,6 +12,20 @@ angular.module 'civicServices'
         method: 'GET'
         isArray: true
         cache: true
+        transformResponse: (data, headers) ->
+          contributions = angular.fromJson data
+          angular.forEach contributions, (item, i) ->
+
+            contributions[i] = new Contribution item
+
+            contributions[i].author = User.get(item.owner_id)
+
+            angular.forEach item.contributions, (nested, nestedIndex) ->
+              contributions[i].contributions[nestedIndex] = new Contribution nested
+              contributions[i].contributions[nestedIndex].author = User.get(contributions[i].contributions[nestedIndex].owner_id)
+
+          return contributions
+
       save:
         method: 'POST'
         cache: false
@@ -26,7 +40,7 @@ angular.module 'civicServices'
           return contribution
 
     Contribution.index = (params = {}, success = null, failure = null) =>
-      conts = Contribution.query params, (data, headers) =>
+      Contribution.query params, (data, headers) =>
         @contributions = @contributions.concat data
         Contribution.notifyObservers()
         (success || Function())(data,headers)
@@ -50,13 +64,6 @@ angular.module 'civicServices'
 
     Contribution.loadMore = (success, failure) =>
       Contribution.index page: ++@page, success, failure
-
-    Contribution.prototype.construct = ->
-      User.get(this.owner_id).then (data) =>
-        @author = data
-      if @contributions
-        for contribution, i in @contributions
-          @contributions[i] = new Contribution contribution
 
     return Contribution
 

@@ -14,14 +14,7 @@ angular.module 'civicServices'
       User.users = User.query params, success, failure
 
     User.get = (id) ->
-      deferred = $q.defer()
-      promise = deferred.promise
-      promise.then (response) ->
-        return response
-      User.index {}, ->
-        deferred.resolve User.users[id]
-        return
-      return promise
+      User.users[id]
 
     return User
 ]

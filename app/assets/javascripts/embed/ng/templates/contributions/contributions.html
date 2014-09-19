@@ -2,7 +2,9 @@
 
 <div ng-hide="contributions_loaded">Contributions Loading...</div>
 
-<div contribution="contribution" ng-repeat="contribution in contributions"></div>
+<div class="contributions-list">
+  <div contribution="contribution" ng-repeat="contribution in contributions"></div>
+</div>
 
 <load-more-contributions initialized="{{contributions_loaded}}"></load-more-contributions>
 

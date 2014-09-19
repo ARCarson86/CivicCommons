@@ -1,10 +1,10 @@
 describe 'Directives', ->
   describe 'User', ->
-    $compile = $scope = $element = element = null
+    $compile = $scope = $element = User = element = null
 
     beforeEach ->
       User =
-        getUser: (id) ->
+        get: (id) ->
           testData.users[id]
       module 'civicDirectives', 'users/user.html', 'users/avatar.html', ($provide) ->
         $provide.value 'User', User
@@ -18,7 +18,8 @@ describe 'Directives', ->
     describe 'User Directive',  ->
       anchor = null
       beforeEach ->
-        element = $compile("<user id='#{testData.users[1].id}'></user>")($scope)
+        $scope.user = User.get(1)
+        element = $compile("<user user='user'></user>")($scope)
         $scope.$digest()
         anchor = angular.element(angular.element(element.children()).children())
 
@@ -33,7 +34,8 @@ describe 'Directives', ->
       anchor = null
       img = null
       beforeEach ->
-        element = $compile('<user-avatar id="1"></user-avatar>')($scope)
+        $scope.user = User.get(1)
+        element = $compile("<user-avatar user='user'></user-avatar>")($scope)
         $scope.$digest()
         anchor = angular.element(angular.element(element.children()).children())
         img = angular.element(anchor.children())

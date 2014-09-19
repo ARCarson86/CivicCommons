@@ -1,15 +1,16 @@
 describe 'Services', ->
   describe 'Contribution', ->
-    $httpBackend = Contribution = undefined
+    $httpBackend = Contribution = User = undefined
 
     beforeEach ->
       module 'civicServices'
 
-    beforeEach inject((_$httpBackend_, _Contribution_, _CivicApi_) ->
+    beforeEach inject((_$httpBackend_, _Contribution_, _CivicApi_, _User_) ->
       $httpBackend = _$httpBackend_
       CivicApi = _CivicApi_
       CivicApi.setVar 'conversation_id', testData.conversation.slug
       Contribution = _Contribution_
+      User = _User_
     )
 
     beforeEach ->
@@ -17,6 +18,8 @@ describe 'Services', ->
         .expectGET "/api/v1/conversations/#{testData.conversation.slug}/contributions"
         .respond testData.contributions.slice 0, 19
     beforeEach (done) ->
+      spyOn User, 'get'
+        .and.returnValue {}
       Contribution.index {}, (data, headers) ->
         done()
       $httpBackend.flush()

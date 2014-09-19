@@ -1,15 +1,13 @@
 angular.module 'civicDirectives'
-  .directive 'user', ['User', (User)->
+  .directive 'user', ->
     restrict: 'E'
     templateUrl: 'users/user.html'
     scope:
       user: '='
     link: (scope, element, attrs) ->
-  ]
-  .directive 'userAvatar', ['User', (User)->
+  .directive 'userAvatar', ->
     restrict: 'E'
     templateUrl: 'users/avatar.html'
     scope:
       user: '='
     link: (scope, element, attrs) ->
-  ]

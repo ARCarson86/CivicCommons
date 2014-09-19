@@ -5,7 +5,7 @@
       <div class="actions pull-right">
         <a class="reply" href ng-init="contributionActive = false" ng-click="contribute()" ng-show="{{contribution.parent_id == null}}">reply</a>
       </div>
-      <user user="contribution.author"></user>
+      <user user="contribution.author" ng-show="contribution.author"></user>
       <span class="created-date">{{contribution.created_at | date : 'MMM d, y h:mm a'}}</span>
     </header>
 

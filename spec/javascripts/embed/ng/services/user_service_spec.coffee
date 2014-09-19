@@ -12,19 +12,22 @@ describe 'Services', ->
       User = _User_
     )
 
-    beforeEach (done) ->
+    beforeEach ->
       $httpBackend
         .expectGET "/api/v1/conversations/#{testData.conversation.slug}/users"
         .respond testData.users
-      User.index {}, (data)->
+
+    it 'Returns All Users', (done)->
+      User.query {}, (data)->
+        expect(data).toEqualData testData.users
         done()
       $httpBackend.flush()
 
-    it 'Returns All Users', ->
-      expect(User.index()).toEqualData testData.users
+    describe 'already having been indexed', ->
+      beforeEach (done) ->
+        User.index {}, ->
+          done()
+        $httpBackend.flush()
 
-    describe "that was already indexed", ->
-
-      it 'Returns a single user', (done) ->
-        expect(User.getUser(2)).toEqualData testData.users[2]
-        done()
+      it 'Returns a single user', () ->
+        expect(User.get(2)).toEqualData testData.users[2]
