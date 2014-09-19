@@ -57,17 +57,19 @@ angular.module 'civicDirectives'
 
   .directive 'loadMoreContributions', ['Contribution', '$window', '$q', (Contribution, $window, $q) ->
     restrict: 'E'
-    template: '<a href class="btn btn-default btn-block">Load More</a>'
-    replace: true
+    template: [
+      '<a href class="btn btn-center">',
+        'Load More ',
+        '<i class="icon-spinner icon-spin" ng-show="loading"></i>',
+      '</a>'
+    ].join ''
     link: (scope, element, attrs) ->
-      offset = parseInt(attrs.offset, 10) || 10
-      scrolling = false
+      scope.loading = false
 
       element.on 'click', -> # click fallback for when infinite scrolling doesn't work
-        element.addClass "disabled"
+        scope.loading = true
         Contribution.loadMore (data, headers) ->
-          element.removeAttr 'disabled'
+          scope.loading = false
           element.addClass "hide" if data.length < 20
-          scrolling = false
   ]
 

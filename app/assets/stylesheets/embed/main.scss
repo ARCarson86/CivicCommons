@@ -33,6 +33,10 @@ a {
   text-decoration: underline;
 }
 
+.hide {
+  display: none;
+}
+
 .created-date {
   color: $darkGray
 }
@@ -195,4 +199,28 @@ a {
     background-color: $lightGray
   }
 
+}
+
+.btn {
+  display: inline-block;
+  height: 30px;
+  padding: 0 20px;
+  line-height: 30px;
+  border-radius: 8px;
+  border: 1px solid $veryLightGray;
+  background-color: $veryVeryLightGray;
+  font-weight: bold;
+  &, a {
+    color: $blue;
+    text-decoration: none;
+  }
+
+  &.btn-center {
+    margin: 0 auto;
+  }
+}
+
+load-more-contributions {
+  text-align: center;
+  display: block;
 }
