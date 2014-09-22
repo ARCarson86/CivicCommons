@@ -1,9 +1,11 @@
 #= require angular/angular
 #= require angular-rails-templates
-#= require angular/angular-route
-#= require angular/angular-resource
-#= require angular/angular-sanitize
-#= require angular/angular-cookies
+#= require angular-route/angular-route
+#= require angular-resource/angular-resource
+#= require angular-sanitize/angular-sanitize
+#= require angular-cookies/angular-cookies
+#= require textAngular/dist/textAngular-sanitize.min.js
+#= require textAngular/dist/textAngular.min.js
 #= require lodash
 #= require ./ng/helpers/civic_helpers
 #= require_tree ./ng/helpers
@@ -16,7 +18,7 @@
 #= require_tree ./ng/templates
 
 
-civicApp = angular.module 'civicApp', ['ngRoute','civicControllers', 'civicServices', 'civicDirectives', 'civicHelpers', 'ngCookies', 'ngSanitize', 'templates']
+civicApp = angular.module 'civicApp', ['ngRoute','civicControllers', 'civicServices', 'civicDirectives', 'civicHelpers', 'ngCookies', 'ngSanitize', 'templates', 'textAngular']
 
 civicApp
   .config ['$locationProvider','$routeProvider', '$windowProvider', ($locationProvider, $routeProvider, $window) ->

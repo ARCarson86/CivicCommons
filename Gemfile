@@ -13,10 +13,10 @@ group :assets do
   gem 'compass-rails'
   gem 'coffee-rails'
   gem 'yui-compressor'
-  gem "font-awesome-rails"
   gem 'angular-rails-templates'
   #gem 'jquery-migrate-rails'
   gem 'turbo-sprockets-rails3'
+  gem 'bower-rails'
 end
 gem 'jquery-rails'
 

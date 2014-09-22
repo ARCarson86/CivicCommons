@@ -19,9 +19,7 @@
     <div ng-bind-html="conversation.starter"></div>
   </div>
 
-  <a href ng-init="contributionActive = false" ng-click="contributionActive = !contributionActive">reply</a>
-
-  <contribute ng-show="contributionActive" data-active="{{contributionActive}}" data-reply-to="{{contribution.id}}" data-reply-to-parent="{{contribution.parent_id}}" data-reply-to-author="{{user.name}}"></contribute>
+  <contribute data-active="{{contributionActive}}"></contribute>
 
   <div class="contributions-list">
     <div class="contributions" ng-include="'contributions/contributions.html'"></div>

@@ -1,5 +1,5 @@
 //= require normalize
-//= require font-awesome
+//= require font-awesome/css/font-awesome
 
 @import 'compass/utilities/general/clearfix';
 @import 'variables';
@@ -44,7 +44,7 @@ a {
 .account {
   float:right;
   &, a {
-    color: $lightGray;
+    color: $gray;
   }
   a {
     text-decoration: none;
@@ -70,12 +70,12 @@ a {
       list-style-type: none;
       text-align: right;
       margin: 3px 0 0;
-      border: 1px solid $lightGray;
+      border: 1px solid $gray;
       border-collapse: collapse;
       padding: 0;
       width: auto;
       li {
-        border-bottom: 1px solid $lightGray;
+        border-bottom: 1px solid $gray;
         box-sizing: border-box;
         height: 25px;
         line-height: 25px;
@@ -110,7 +110,7 @@ a {
 .contribution {
   padding: 1.5em 0;
   overflow-x: scroll;
-  border-bottom: 1px solid $veryLightGray;
+  border-bottom: 1px solid $lightGray;
   &:last-child {
     border-bottom: 0 none;
   }
@@ -128,7 +128,7 @@ a {
     }
   }
   .contributions-list {
-    background-color: $veryVeryLightGray;
+    background-color: $nestedContributionBackground;
     padding: 0 1em;
   }
   .contribution {
@@ -174,9 +174,15 @@ a {
   }
 }
 
-.new-contribution {
+
+.contribute {
+  .form {
+    overflow-x: hidden;
+  }
   .body {
-    border: 1px solid #AAA;
+    margin-bottom: 5px;
+    border: 2px solid $lightGray;
+    border-radius: 2px;
     outline: none;
     min-height: 3em;
     padding: 3px;
@@ -191,32 +197,39 @@ a {
     -webkit-appearance: none;
   }
   &::-webkit-scrollbar:vertical {
-    background-color: $veryVeryLightGray;
+    background-color: $nestedContributionBackground;
     width: 7px;
   }
   &::-webkit-scrollbar-thumb {
-    border: 2px solid $lightGray; /* should match background, can't be transparent */
-    background-color: $lightGray
+    border: 2px solid $gray; /* should match background, can't be transparent */
+    background-color: $gray
   }
 
 }
 
 .btn {
   display: inline-block;
-  height: 30px;
-  padding: 0 20px;
-  line-height: 30px;
-  border-radius: 8px;
-  border: 1px solid $veryLightGray;
-  background-color: $veryVeryLightGray;
+  height: 25px;
+  padding: 0 10px;
+  line-height: 25px;
+  border: 0 none;
+  background-color: $loadMoreButtonColor;
   font-weight: bold;
   &, a {
-    color: $blue;
+    color: $lightBlue;
     text-decoration: none;
   }
 
   &.btn-center {
     margin: 0 auto;
+  }
+  &.btn-block {
+    display: block;
+  }
+
+  &.btn-submit {
+    background-color: $lightBlue;
+    color: white;
   }
 }
 

@@ -20,10 +20,15 @@ angular.module 'civicDirectives'
 
   ]
 
-  .directive 'contribute', ['User', 'Contribution', (User, Contribution) ->
+  .directive 'contribute', ['Account', 'User', 'Contribution', (Account, User, Contribution) ->
     restrict: 'E'
-    templateUrl: 'contributions/new.html'
+    templateUrl: 'contributions/form.html'
+    scope:{}
     link: (scope, element, attrs) ->
+      Account.registerObserverCallback 'sessionState', (data) ->
+        scope.user = data
+
+      scope.contribution = Contribution.new()
       replyToObserver = attrs.$observe 'replyTo', (val) ->
         unless _.isUndefined val
           scope.replyTo = val
@@ -47,18 +52,13 @@ angular.module 'civicDirectives'
         scope.active = val # Show the form
 
       scope.submitComment = ->
-        newContribution = new Contribution
-          contribution:
-            content: scope.content
-            parent_id: scope.replyTo
-
-        result = newContribution.$save()
+        result = contribution.$save()
   ]
 
   .directive 'loadMoreContributions', ['Contribution', '$window', '$q', (Contribution, $window, $q) ->
     restrict: 'E'
     template: [
-      '<a href class="btn btn-center">',
+      '<a href class="btn btn-block">',
         'Load More ',
         '<i class="icon-spinner icon-spin" ng-show="loading"></i>',
       '</a>'

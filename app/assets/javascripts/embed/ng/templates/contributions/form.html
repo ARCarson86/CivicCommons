@@ -1,5 +1,10 @@
-<form class="new-contribution" ng-submit="submitComment()">
-  <div class="body" tabindex="0" contenteditable ng-model="$parent.content" placeholder="Reply To {{$parent.replyToAuthor}}"></div>
-  <input type="hidden" ng-model="$parent.replyTo" />
-  <input type="submit" value="Submit" />
-</form>
+<div class="contribute">
+  <user-avatar user="user"></user-avatar>
+  <div class="form">
+    <form class="new-contribution" ng-submit="submitComment()" ng-hide="">
+      <text-angular class="body" tabindex="0" ta-toolbar="[['bold','italics'], ['link', 'image']]" ng-model="content"></text-angular>
+      <input type="hidden" ng-model="$parent.replyTo" />
+      <input class="btn btn-submit" type="submit" value="Post" />
+    </form>
+  </div>
+</div>
