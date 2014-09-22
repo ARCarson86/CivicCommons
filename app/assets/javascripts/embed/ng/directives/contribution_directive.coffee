@@ -32,6 +32,7 @@ angular.module 'civicDirectives'
     templateUrl: 'contributions/form.html'
     scope:
       contribution: '='
+      inReplyTo: '='
     replace: true
     link: (scope, element, attrs) ->
       Account.registerObserverCallback 'sessionState', (data) ->
@@ -39,6 +40,11 @@ angular.module 'civicDirectives'
 
       unless scope.contribution
         scope.contribution = new Contribution
+        console.log 'scope.contribution'
+
+      scope.contribution.parent_id = scope.inReplyTo
+
+      console.log scope.contribution
 
       replyToObserver = attrs.$observe 'replyTo', (val) ->
         unless _.isUndefined val
