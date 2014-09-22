@@ -60,7 +60,7 @@ angular.module 'civicDirectives'
     template: [
       '<a href class="btn btn-block">',
         'Load More ',
-        '<i class="icon-spinner icon-spin" ng-show="loading"></i>',
+        '<i class="fa fa-spinner fa-spin" ng-show="loading"></i>',
       '</a>'
     ].join ''
     link: (scope, element, attrs) ->

@@ -91,7 +91,7 @@ module ApplicationHelper
     edit_link = ""
     if current_person && current_person.admin?
       edit_link << '<span class="edit_conversation_link_admin">'
-      edit_link << "- #{ link_to "<i class=\"icon-edit\"></i> Edit".html_safe, edit_conversation_path(@conversation) }"
+      edit_link << "- #{ link_to "<i class=\"fa fa-edit\"></i> Edit".html_safe, edit_conversation_path(@conversation) }"
       edit_link << '</span>'
     end
     edit_link.html_safe
