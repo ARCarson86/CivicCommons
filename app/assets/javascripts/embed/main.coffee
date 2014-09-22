@@ -4,8 +4,9 @@
 #= require angular-resource/angular-resource
 #= require angular-sanitize/angular-sanitize
 #= require angular-cookies/angular-cookies
-#= require textAngular/dist/textAngular-sanitize.min.js
-#= require textAngular/dist/textAngular.min.js
+#= require textAngular/src/textAngular-sanitize
+#= require textAngular/src/textAngularSetup
+#= require textAngular/src/textAngular
 #= require lodash
 #= require ./ng/helpers/civic_helpers
 #= require_tree ./ng/helpers

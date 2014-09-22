@@ -33,6 +33,9 @@ a {
   text-decoration: underline;
 }
 
+p {
+}
+
 .hide {
   display: none;
 }
@@ -185,7 +188,6 @@ a {
     border-radius: 2px;
     outline: none;
     min-height: 3em;
-    padding: 3px;
   }
 }
 
@@ -237,3 +239,37 @@ load-more-contributions {
   text-align: center;
   display: block;
 }
+
+.ta-root {
+  .ta-toolbar {
+    display: block;
+    border-bottom: 1px solid $lightGray;
+    .btn {
+      background-color: transparent;
+      color: $editorIconColor;
+    }
+  }
+  .ta-editor {
+    height: 75px;
+    outline: none;
+    box-shadow: none;
+    border-color: transparent;
+  }
+
+  .ta-scroll-window {
+    > .ta-bind {
+      padding: 6px;
+    }
+  }
+
+  &.focussed {
+    .ta-scroll-window {
+      &.form-control {
+        outline: none;
+        box-shadow: none;
+      }
+    }
+  }
+  
+}
+
