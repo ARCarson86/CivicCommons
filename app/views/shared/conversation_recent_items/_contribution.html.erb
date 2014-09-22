@@ -20,7 +20,7 @@ end
 
   <div class="contribution inner">
     <%= link_to "#node-#{contribution.id}", class: "show-contribution", title: "Show Contribution" do %>
-      <i class="icon-reply"></i>
+      <i class="fa fa-reply"></i>
     <% end %>
     <%= render partial: "user/author_card", locals: {author: contribution.person, conversation_created_at: contribution.created_at} %>
     <div class="body">
