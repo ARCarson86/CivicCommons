@@ -45,7 +45,6 @@ civicServices.factory 'Account', ['$rootScope', '$cacheFactory', '$cookies', '$q
     Account.registerObserverCallback = (group, callback) ->
       observerCallbacks[group].push callback
       Account.getAccount {}, true, null, null if group == 'sessionState'
-      console.log 'registered'
 
     Account.notifyObservers = (group, data) ->
       angular.forEach observerCallbacks[group], (callback) ->
