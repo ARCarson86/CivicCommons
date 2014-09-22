@@ -15,11 +15,8 @@ angular.module 'civicServices'
         transformResponse: (data, headers) ->
           contributions = angular.fromJson data
           angular.forEach contributions, (item, i) ->
-
             contributions[i] = new Contribution item
-
             contributions[i].author = User.get(item.owner_id)
-
             angular.forEach item.contributions, (nested, nestedIndex) ->
               contributions[i].contributions[nestedIndex] = new Contribution nested
               contributions[i].contributions[nestedIndex].author = User.get(contributions[i].contributions[nestedIndex].owner_id)
@@ -29,8 +26,13 @@ angular.module 'civicServices'
       save:
         method: 'POST'
         cache: false
+        transformRequest: (data, headers) ->
+          console.log 'data', data
+          angular.toJson contribution: data
+
         transformResponse: (data, headersGetter) =>
-          contribution = JSON.parse data
+          contribution = new Contribution JSON.parse(data)
+          contribution.author = User.get contribution.owner_id
           if contribution.parent_id is null
             @contributions.unshift(contribution)
           else

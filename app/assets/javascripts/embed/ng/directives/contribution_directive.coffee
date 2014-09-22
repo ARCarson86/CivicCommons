@@ -37,7 +37,9 @@ angular.module 'civicDirectives'
       Account.registerObserverCallback 'sessionState', (data) ->
         scope.user = data
 
-      scope.contribution = new Contribution unless scope.contribution
+      unless scope.contribution
+        scope.contribution = new Contribution
+
       replyToObserver = attrs.$observe 'replyTo', (val) ->
         unless _.isUndefined val
           scope.replyTo = val
@@ -49,7 +51,10 @@ angular.module 'civicDirectives'
           replyToAuthorObserver()
 
       scope.submitComment = ->
-        result = contribution.$save()
+        result = scope.contribution.$save {}, (data) ->
+          scope.contribution = new Contribution
+        , (data) ->
+          # TODO add errors
   ]
 
   .directive 'loadMoreContributions', ['Contribution', '$window', '$q', (Contribution, $window, $q) ->

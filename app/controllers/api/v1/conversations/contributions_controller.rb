@@ -9,6 +9,7 @@ class Api::V1::Conversations::ContributionsController < Api::V1::BaseController
     empty_user unless current_person
     @contribution = current_person.contributions.new params[:contribution]
     @contribution.conversation = @conversation
+    @contribution.confirmed = true
     @contribution.save
     render "show"
   end
