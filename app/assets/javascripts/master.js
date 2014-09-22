@@ -62,8 +62,6 @@ if ( !jQuery.browser ) {
   });
 })(jQuery);
 
-jQuery(function ($) {
-
   // Log all jQuery AJAX requests to Google Analytics
   $(document).ajaxSend(function(event, xhr, settings){
     if(typeof(_gaq) != 'undefined') {
@@ -82,7 +80,6 @@ jQuery(function ($) {
   });
 
 
-});
 
 $(document).ready(function(){
   $('.user-tabs .tab-links a').on('click', function(e)  {
@@ -98,7 +95,6 @@ $(document).ready(function(){
   });
   $('a[data-colorbox]').not('[data-remote]').on('click', function(e){
     $.colorbox({
-      transition: 'fade', // needed to fix colorbox bug with jquery 1.4.4
       href: $(this).attr('href')
     });
     e.preventDefault();
