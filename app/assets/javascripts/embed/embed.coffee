@@ -5,7 +5,7 @@ receiveMessage = (message) ->
       data = if message.data instanceof Object then message.data else JSON.parse message.data
       iframe.height = data.iframeHeight if iframe
   catch exception
-    if console
+    if 'console' in window
       console.log exception
 
 defaultSettings =
