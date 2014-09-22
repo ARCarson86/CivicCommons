@@ -1,34 +1,43 @@
 angular.module 'civicDirectives'
   .directive 'contribution', ['RecursionHelper', '$timeout', (RecursionHelper, $timeout) ->
-    restrict: 'EA'
+    restrict: 'E'
     templateUrl: 'contributions/contribution.html'
     replace: true
     scope:
       contribution: '='
     compile: (cElement) ->
       RecursionHelper.compile cElement, (scope, element, attrs) ->
-        contributionsContainer =  element.children()[1].children[2]
-        scope.$watch ->
-          parseInt getComputedStyle(contributionsContainer).height
-        , (newValue, oldValue) ->
-          if newValue >= 300
-            angular.element contributionsContainer
-              .addClass 'scroll'
-          else
-            angular.element contributionsContainer
-              .removeClass 'scroll'
-
+        contributionsContainer =  element.children()[2].children[2]
   ]
+
+  .directive 'contributions', ->
+    restrict: 'E'
+    template: [
+      '<div class="contributions" ng-transclude>',
+      '</div>'
+    ].join ''
+    replace: true
+    transclude: true
+    link: (scope, element, attrs) ->
+      scope.$watch ->
+        parseInt element[0].clientHeight
+      , (newValue, oldValue) ->
+        if newValue >= 330
+          element.addClass 'scroll'
+        else
+          element.removeClass 'scroll'
 
   .directive 'contribute', ['Account', 'User', 'Contribution', (Account, User, Contribution) ->
     restrict: 'E'
     templateUrl: 'contributions/form.html'
-    scope:{}
+    scope:
+      contribution: '='
+    replace: true
     link: (scope, element, attrs) ->
       Account.registerObserverCallback 'sessionState', (data) ->
         scope.user = data
 
-      scope.contribution = Contribution.new()
+      scope.contribution = new Contribution unless scope.contribution
       replyToObserver = attrs.$observe 'replyTo', (val) ->
         unless _.isUndefined val
           scope.replyTo = val
@@ -38,18 +47,6 @@ angular.module 'civicDirectives'
         unless _.isUndefined val
           scope.replyToAuthor = val
           replyToAuthorObserver()
-
-      attrs.$observe 'active', (val) ->
-        if val == "true" && !attrs.replyToParent
-          scope.initialized = "true" # Put it in the DOM
-          setTimeout -> # setting timeout to allow template to render
-            inputs = element.find('form').children() # get form children
-            for el in inputs
-              if el.tagName == "DIV" && el.getAttribute("contenteditable") != null
-                el.focus()
-                return # return if we've found it
-          , 1 # 1ms
-        scope.active = val # Show the form
 
       scope.submitComment = ->
         result = contribution.$save()

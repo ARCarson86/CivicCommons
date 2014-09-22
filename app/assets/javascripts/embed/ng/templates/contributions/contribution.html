@@ -1,5 +1,8 @@
 <div class="contribution row">
   <user-avatar user="contribution.author"></user-avatar>
+  <a href ng-click="editContribution = !editContribution">
+    <i class="fa fa-edit"></i>
+  </i>
   <div class="content">
     <header>
       <div class="actions pull-right">
@@ -9,11 +12,13 @@
       <span class="created-date">{{contribution.created_at | date : 'MMM d, y h:mm a'}}</span>
     </header>
 
-    <div class="clearfix" ng-bind-html="contribution.content"></div>
-    <div class="contributions">
-      <div class="contributions-list" ng-show="contribution.contributions">
+    <contribute ng-if="editContribution" contribution="contribution"></contribute>
+    <div ng-if="!editContribution" class="clearfix" ng-bind-html="contribution.content"></div>
+
+    <contributions ng-if="contribution.contributions.length > 0">
+      <div class="contributions-list">
         <div contribution="contribution" ng-repeat="contribution in contribution.contributions"></div>
       </div>
-    </div>
+    </contributions>
   </div>
 </div>

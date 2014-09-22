@@ -8,4 +8,7 @@ json.avatar person.avatar.url :medium
 # Private Information
 if (person == current_person)
   json.(person, :email)
+  if (person.admin?)
+    json.admin true
+  end
 end

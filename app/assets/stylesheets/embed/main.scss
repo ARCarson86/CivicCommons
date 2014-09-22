@@ -192,7 +192,7 @@ p {
 }
 
 .scroll {
-  height: 300px;
+  height: 330px;
   overflow-y: scroll;
 
   &::-webkit-scrollbar {
@@ -242,23 +242,39 @@ load-more-contributions {
 
 .ta-root {
   .ta-toolbar {
+    line-height: 35px;
     display: block;
     border-bottom: 1px solid $lightGray;
-    .btn {
+    .ta-button-group {
+      margin: 0 5px;
+    }
+    .ta-button {
+      border: 0;
+      padding: 0 0.5em;
       background-color: transparent;
       color: $editorIconColor;
     }
   }
   .ta-editor {
-    height: 75px;
     outline: none;
     box-shadow: none;
     border-color: transparent;
   }
 
+  .ta-scroll-window.form-control,
+  .ta-root.focussed .ta-scroll-window.form-control,
+  .ta-editor.ta-html,
+  .ta-scroll-window > .ta-bind {
+    min-height: 0;
+  }
+
   .ta-scroll-window {
+    // override min-heights
     > .ta-bind {
       padding: 6px;
+      > p:first-child {
+        margin-top: 0;
+      }
     }
   }
 

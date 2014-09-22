@@ -1,9 +1,9 @@
 <div class="contribute">
   <user-avatar user="user"></user-avatar>
   <div class="form">
-    <form class="new-contribution" ng-submit="submitComment()" ng-hide="">
+    <form class="contribution-form" ng-submit="submitComment()" ng-hide="">
       <div class="body">
-        <text-angular tabindex="0" ta-toolbar="[['bold','italics', 'underline', 'insertLink', 'insertImage']]" ng-model="content"></text-angular>
+        <text-angular tabindex="0" ng-model="contribution.content"></text-angular>
       </div>
       <input type="hidden" ng-model="$parent.replyTo" />
       <input class="btn btn-submit" type="submit" value="Post" />
