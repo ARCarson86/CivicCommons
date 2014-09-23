@@ -269,7 +269,7 @@ class ConversationsController < ApplicationController
   def people
     @conversation = Conversation.find(params[:id])
     @contributors = Person.search do
-      fulltext "kyle balderson"
+      fulltext params[:term]
     end
     respond_to do |format|
       format.json { render json: @contributors.results.to_json(only: [:id], methods: [:name, :friendly_id]) }
