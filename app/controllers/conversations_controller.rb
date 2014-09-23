@@ -268,9 +268,11 @@ class ConversationsController < ApplicationController
 
   def people
     @conversation = Conversation.find(params[:id])
-    @contributors = Person.where("first_name LIKE ? OR last_name LIKE ?", "%#{params[:term]}%", "%#{params[:term]}%").limit(25)
+    @contributors = Person.search do
+      fulltext params[:term]
+    end
     respond_to do |format|
-      format.json { render json: @contributors.to_json(only: [:id], methods: [:name, :friendly_id]) }
+      format.json { render json: @contributors.results.to_json(only: [:id], methods: [:name, :friendly_id]) }
     end
   end
 
