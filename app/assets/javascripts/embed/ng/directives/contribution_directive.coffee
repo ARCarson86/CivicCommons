@@ -13,19 +13,20 @@ angular.module 'civicDirectives'
   .directive 'contributions', ->
     restrict: 'E'
     template: [
-      '<div class="contributions" ng-transclude>',
+      '<div class="contributions-list" ng-transclude>',
       '</div>'
     ].join ''
     replace: true
     transclude: true
     link: (scope, element, attrs) ->
       scope.$watch ->
-        parseInt element[0].clientHeight
+        parseInt element[0].scrollHeight
       , (newValue, oldValue) ->
-        if newValue >= 330
+        if newValue > 330
           element.addClass 'scroll'
+          element[0].scrollTop = newValue - 330
         else
-          element.removeClass 'scroll'
+          element.removeClass 'scroll' unless newValue == 330
 
   .directive 'contribute', ['Account', 'User', 'Contribution', (Account, User, Contribution) ->
     restrict: 'E'

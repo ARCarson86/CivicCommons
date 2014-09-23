@@ -2,11 +2,10 @@
   <user-avatar user="contribution.author"></user-avatar>
   <a href ng-click="editContribution = !editContribution">
     <i class="fa fa-edit"></i>
-  </i>
+  </a>
   <div class="content">
     <header>
       <div class="actions pull-right">
-        <a class="reply" href ng-click="reply = !reply">reply</a>
       </div>
       <user user="contribution.author" ng-show="contribution.author"></user>
       <span class="created-date">{{contribution.created_at | date : 'MMM d, y h:mm a'}}</span>
@@ -15,11 +14,15 @@
     <contribute ng-if="editContribution" contribution="contribution"></contribute>
     <div ng-if="!editContribution" class="clearfix" ng-bind-html="contribution.content"></div>
 
-    <contributions ng-if="contribution.contributions.length > 0">
-      <div class="contributions-list">
-        <div contribution="contribution" ng-repeat="contribution in contribution.contributions"></div>
+    <div class="contributions" ng-if="contribution.contributions.length > 0">
+      <div class="">
+        {{contribution.contributions.length}} Comments | 
+        <a class="reply" href ng-click="reply = !reply">reply</a>
       </div>
-    </contributions>
+      <contributions>
+        <contribution contribution="contribution" ng-repeat="contribution in contribution.contributions"></contribution>
+      </contributions>
+    </div>
 
     <contribute ng-if="reply" contribution="newContribution" in-reply-to="contribution.parent_id != null ? contribution.parent_id : contribution.id"></contribute>
   </div>
