@@ -1,7 +1,6 @@
 angular.module 'textAngularDecorator', ['textAngular']
   .config ['$provide', ($provide) ->
     $provide.decorator 'taOptions', ['$delegate', (taOptions) ->
-      console.log 'taoptions', taOptions
       taOptions.toolbar = [
         ['bold', 'italics', 'underline', 'insertImage', 'insertLink', 'unlink']
       ]

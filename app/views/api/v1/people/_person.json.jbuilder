@@ -1,5 +1,5 @@
 # General Information
-json.(person, :id, :name, :slug)
+json.(person, :id, :name, :slug, :first_name)
 json.location user_path(person, only_path: false)
 
 # Model Methods

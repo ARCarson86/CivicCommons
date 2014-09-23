@@ -7,7 +7,7 @@ angular.module 'civicDirectives'
       contribution: '='
     compile: (cElement) ->
       RecursionHelper.compile cElement, (scope, element, attrs) ->
-        contributionsContainer =  element.children()[2].children[2]
+
   ]
 
   .directive 'contributions', ->
@@ -34,18 +34,14 @@ angular.module 'civicDirectives'
     scope:
       contribution: '='
       inReplyTo: '='
-    replace: true
     link: (scope, element, attrs) ->
       Account.registerObserverCallback 'sessionState', (data) ->
         scope.user = data
 
       unless scope.contribution
         scope.contribution = new Contribution
-        console.log 'scope.contribution'
 
       scope.contribution.parent_id = scope.inReplyTo
-
-      console.log scope.contribution
 
       replyToObserver = attrs.$observe 'replyTo', (val) ->
         unless _.isUndefined val

@@ -138,17 +138,34 @@ p {
   }
 }
 
+.comment-meta {
+  text-align: right;
+  margin-bottom: 20px;
+  &, a {
+    color: $gray;
+  }
+  a {
+    display: inline-block;
+    text-decoration: none;
+    &:hover {
+      border-bottom: 1px solid $gray;
+    }
+  }
+}
+
 .contribution-content {
   border-top: 1px solid black;
   margin: 30px 0;
 }
 
 .actions {
-  .reply {
-    background-image: image-url('icons-svg/reply.svg');
-    background-size: 15px 15px;
-    background-repeat: no-repeat;
-    padding-left: 20px;
+
+  > a {
+    display: inline-block;
+    color: $lightGray;
+    &:hover {
+      color: $gray;
+    }
   }
 }
 
