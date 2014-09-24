@@ -5,13 +5,14 @@ angular.module 'civicServices'
     observerCallbacks = []
 
     permitted_params = [
-      "content"
+      'content',
+      'parent_id'
     ]
 
     contributionJsonFromRequestObject = (requestObject) ->
       data = {}
       angular.forEach requestObject, (value, key) ->
-        data[key] = value if key in allowed_params
+        data[key] = value if key in permitted_params
       angular.toJson contribution: data
 
     Contribution = $resource CivicApi.endpoint('conversations/:conversation_id/contributions/:id'),
