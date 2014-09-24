@@ -7,6 +7,14 @@ angular.module 'civicDirectives'
       contribution: '='
     compile: (cElement) ->
       RecursionHelper.compile cElement, (scope, element, attrs) ->
+        element
+          .on 'mouseenter', (event) ->
+            scope.showactions = true
+            scope.$apply()
+          .on 'mouseleave', (event) ->
+            scope.showactions = false
+            scope.$apply()
+
 
   ]
 
@@ -58,6 +66,19 @@ angular.module 'civicDirectives'
           scope.contribution = new Contribution
         , (data) ->
           # TODO add errors
+
+      scope.people = [
+        { name: "Kyle" }
+        { name: "Testing" }
+      ]
+
+      scope.searchPeople = (term) ->
+        console.log 'search', term
+        ['test', 'test']
+
+      scope.getPeopleText = (item) ->
+        console.log 'getPeopleText', item
+        people
   ]
 
   .directive 'loadMoreContributions', ['Contribution', '$window', '$q', (Contribution, $window, $q) ->
