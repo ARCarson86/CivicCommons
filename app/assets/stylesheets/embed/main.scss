@@ -118,7 +118,7 @@ p {
     border-bottom: 0 none;
   }
   header {
-    margin: 0;
+    margin: 0 0 10px;
   }
   .content {
     overflow: hidden;
@@ -133,6 +133,7 @@ p {
   .contributions-list {
     background-color: $nestedContributionBackground;
     padding: 0 1em;
+    margin-bottom: 1em;
   }
   .contribution {
   }

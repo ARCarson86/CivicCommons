@@ -1,13 +1,10 @@
 angular.module 'civicServices'
-  .factory 'Contribution', ['$resource', '$rootScope', 'CivicApi', 'User', ($resource, $rootScope, CivicApi, User) ->
+  .factory 'Contribution', ['$filter', '$resource', '$rootScope', 'CivicApi', 'User', ($filter, $resource, $rootScope, CivicApi, User) ->
     @page = 1
     @contributions = []
     observerCallbacks = []
 
-    permitted_params = [
-      'content',
-      'parent_id'
-    ]
+    permitted_params = [ 'content', 'parent_id' ]
 
     contributionJsonFromRequestObject = (requestObject) ->
       data = {}
