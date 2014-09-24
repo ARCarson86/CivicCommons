@@ -1,5 +1,6 @@
 class Api::V1::Conversations::ContributionsController < Api::V1::BaseController
   before_filter :get_conversation
+  load_and_authorize_resource
 
   def index
     @contributions = @conversation.top_level_contributions.includes(:person, children: [:person]).order("created_at DESC").paginate(page: params[:page], per_page: 20)
@@ -11,7 +12,14 @@ class Api::V1::Conversations::ContributionsController < Api::V1::BaseController
     @contribution.conversation = @conversation
     @contribution.confirmed = true
     @contribution.save
-    render "show"
+    render 'show'
+  end
+
+  def update
+    empty_user unless current_person
+    @contribution = @conversation.contributions.find params[:id]
+    @contribution.update_attributes params[:contribution]
+    render 'show'
   end
 
   private

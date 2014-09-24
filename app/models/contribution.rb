@@ -12,7 +12,7 @@ class Contribution < ActiveRecord::Base
     integer :region_metrocodes, :multiple => true
   end
 
-  attr_accessor :top_level
+  attr_accessor :top_level, :owner_id
   validates :content,  obscenity: { sanitize: true, replacement: :vowels }
   # nested contributions are destroyed via callbacks
   acts_as_nested_set :exclude_unless => {:confirmed => true}, :dependent => :destroy, :scope => :conversation_id
