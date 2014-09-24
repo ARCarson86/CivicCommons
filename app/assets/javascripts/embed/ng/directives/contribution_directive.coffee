@@ -60,9 +60,10 @@ angular.module 'civicDirectives'
           replyToAuthorObserver()
 
       scope.submitComment = ->
-        result = scope.contribution.$save {}, (data) ->
+        result = scope.contribution.save {}, (data) ->
           scope.contribution = new Contribution
         , (data) ->
+          console.log 'failure data', data
           # TODO add errors
 
       scope.people = [
