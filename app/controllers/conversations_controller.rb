@@ -268,7 +268,8 @@ class ConversationsController < ApplicationController
 
   def people
     @conversation = Conversation.find(params[:id])
-    @contributors = Person.select('*, CONCAT(first_name, " ", last_name) as full_name').having("full_name LIKE ?", "%#{params[:term]}%")
+    term = ActiveSupport::Inflector.parameterize params[:term], "-"
+    @contributors = Person.where('slug LIKE ?', "%#{term}%").order("LOCATE('#{params[:term]}', slug) ASC, first_name ASC, last_name ASC").limit 10
     respond_to do |format|
       format.json do
         render json: @contributors.to_json(only: [:id], methods: [:name, :friendly_id])
