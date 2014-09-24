@@ -4,6 +4,8 @@
 #= require angular-resource/angular-resource
 #= require angular-sanitize/angular-sanitize
 #= require angular-cookies/angular-cookies
+#= require ment.io/dist/mentio
+#= require ment.io/dist/templates
 #= require textAngular/src/textAngular-sanitize
 #= require textAngular/src/textAngularSetup
 #= require textAngular/src/textAngular
@@ -20,7 +22,7 @@
 #= require_tree ./ng/templates
 
 
-civicApp = angular.module 'civicApp', ['ngRoute','civicControllers', 'civicServices', 'civicDirectives', 'civicHelpers', 'ngCookies', 'ngSanitize', 'templates', 'textAngular', 'textAngularDecorator']
+civicApp = angular.module 'civicApp', ['ngRoute','civicControllers', 'civicServices', 'civicDirectives', 'civicHelpers', 'ngCookies', 'ngSanitize', 'templates', 'textAngular', 'textAngularDecorator', 'mentio']
 
 civicApp
   .config ['$locationProvider','$routeProvider', '$windowProvider', ($locationProvider, $routeProvider, $window) ->
