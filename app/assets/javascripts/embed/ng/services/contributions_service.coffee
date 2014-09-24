@@ -4,9 +4,20 @@ angular.module 'civicServices'
     @contributions = []
     observerCallbacks = []
 
+    permitted_params = [
+      "content"
+    ]
+
+    contributionJsonFromRequestObject = (requestObject) ->
+      data = {}
+      angular.forEach requestObject, (value, key) ->
+        data[key] = value if key in allowed_params
+      angular.toJson contribution: data
+
     Contribution = $resource CivicApi.endpoint('conversations/:conversation_id/contributions/:id'),
       conversation_id: ->
         CivicApi.getVar 'conversation_id'
+      id: '@id'
     ,
       query:
         method: 'GET'
@@ -23,13 +34,10 @@ angular.module 'civicServices'
 
           return contributions
 
-      save:
+      create:
         method: 'POST'
         cache: false
-        transformRequest: (data, headers) ->
-          console.log 'data', data
-          angular.toJson contribution: data
-
+        transformRequest: contributionJsonFromRequestObject
         transformResponse: (data, headersGetter) =>
           contribution = new Contribution JSON.parse(data)
           contribution.author = User.get contribution.owner_id
@@ -40,6 +48,11 @@ angular.module 'civicServices'
             @contributions[parentIndex].contributions.push contribution
           Contribution.notifyObservers()
           return contribution
+
+      update:
+        method: 'PUT'
+        cache: false
+        transformRequest: contributionJsonFromRequestObject
 
     Contribution.index = (params = {}, success = null, failure = null) =>
       Contribution.query params, (data, headers) =>
@@ -66,6 +79,15 @@ angular.module 'civicServices'
 
     Contribution.loadMore = (success, failure) =>
       Contribution.index page: ++@page, success, failure
+
+    Contribution.prototype.is_new_record = ->
+      !@id
+
+    Contribution.prototype.save = (params, success, failure) ->
+      if @is_new_record()
+        @$create(params, success, failure)
+      else
+        @$update(params, success, failure)
 
     return Contribution
 
