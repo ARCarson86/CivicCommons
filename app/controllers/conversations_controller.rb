@@ -268,11 +268,11 @@ class ConversationsController < ApplicationController
 
   def people
     @conversation = Conversation.find(params[:id])
-    @contributors = Person.search do
-      fulltext params[:term]
-    end
+    @contributors = Person.select('*, CONCAT(first_name, " ", last_name) as full_name').having("full_name LIKE ?", "%#{params[:term]}%")
     respond_to do |format|
-      format.json { render json: @contributors.results.to_json(only: [:id], methods: [:name, :friendly_id]) }
+      format.json do
+        render json: @contributors.to_json(only: [:id], methods: [:name, :friendly_id])
+      end
     end
   end
 
