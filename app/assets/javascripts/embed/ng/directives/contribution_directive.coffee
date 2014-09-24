@@ -49,8 +49,6 @@ angular.module 'civicDirectives'
       unless scope.contribution
         scope.contribution = new Contribution
 
-      scope.contribution.parent_id = scope.inReplyTo
-
       replyToObserver = attrs.$observe 'replyTo', (val) ->
         unless _.isUndefined val
           scope.replyTo = val
