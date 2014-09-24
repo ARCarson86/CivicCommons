@@ -68,6 +68,9 @@ angular.module 'civicServices'
     Contribution.getContributionByIndex = (index) =>
       @contributions[index]
 
+    Contribution.find = (id) =>
+      $filter('filter')(@contributions, id: id)[0]
+
     Contribution.registerObserverCallback = (callback) ->
       observerCallbacks.push callback
 
@@ -89,6 +92,15 @@ angular.module 'civicServices'
         @$create(params, success, failure)
       else
         @$update(params, success, failure)
+
+    Contribution.prototype.reply = ->
+      if @parent_id
+        parent = Contribution.find(@parent_id)
+        parent.replyActive = !parent.replyActive
+      else
+        @replyActive = !@replyActive
+        console.log 'false', @parent_id
+
 
     return Contribution
 

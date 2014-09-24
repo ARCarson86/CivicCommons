@@ -25,7 +25,7 @@
       <span ng-hide="contribution.parent_id">
         {{contribution.contributions.length}} Comments | 
       </span>
-      <a href ng-click="replyActive = !replyActive">
+      <a href ng-click="createReply()">
         <i class="fa fa-reply"></i> Reply to {{contribution.author.first_name}}
       </a>
     </div>
@@ -36,6 +36,6 @@
       </contributions>
     </div>
 
-    <contribute ng-if="replyActive" contribution="newContribution" in-reply-to="contribution.parent_id != null ? contribution.parent_id : contribution.id"></contribute>
+    <contribute ng-if="contribution.replyActive" contribution="newContribution" in-reply-to="contribution.parent_id != null ? contribution.parent_id : contribution.id"></contribute>
   </div>
 </div>

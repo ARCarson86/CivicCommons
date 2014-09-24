@@ -7,6 +7,8 @@ angular.module 'civicDirectives'
       contribution: '='
     compile: (cElement) ->
       RecursionHelper.compile cElement, (scope, element, attrs) ->
+        scope.createReply = ->
+          scope.contribution.reply()
         element
           .on 'mouseenter', (event) ->
             scope.showactions = true
