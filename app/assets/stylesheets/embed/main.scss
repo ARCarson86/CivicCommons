@@ -202,11 +202,6 @@ p {
     overflow-x: hidden;
   }
   .body {
-    margin-bottom: 5px;
-    border: 2px solid $lightGray;
-    border-radius: 2px;
-    outline: none;
-    min-height: 3em;
   }
 }
 
@@ -263,7 +258,6 @@ load-more-contributions {
   .ta-toolbar {
     line-height: 35px;
     display: block;
-    border-bottom: 1px solid $lightGray;
     .ta-button-group {
       margin: 0 5px;
     }
