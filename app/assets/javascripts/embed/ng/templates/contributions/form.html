@@ -1,9 +1,9 @@
 <div class="contribute">
-  <user-avatar user="user"></user-avatar>
+  <user-avatar user="user" ng-if="!contribution.id"></user-avatar>
   <div class="form">
     <form class="contribution-form" ng-submit="submitComment()" ng-hide="">
       <div class="body">
-        <text-angular tabindex="0" ng-model="contribution.content"></text-angular>
+        <wysiwyg ng-model="contribution.content"></wysiwyg>
       </div>
       <input class="btn btn-submit" type="submit" value="Post" />
     </form>
