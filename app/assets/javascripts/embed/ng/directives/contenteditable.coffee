@@ -1,21 +1,29 @@
 angular.module 'civicDirectives'
   .directive 'contenteditable', ['$sce', ($sce) ->
-    restrict: 'A'
-    require: '?ngModel'
+    restrict: 'A' # only activate on element attribute
+    require: '?ngModel' # get a hold of NgModelController
     link: (scope, element, attrs, ngModel) ->
-      return unless ngModel
+      if(!ngModel)
+        return
 
-      read = ->
-        html = element.html()
-        if( attrs.stripBr && html == '<br>' )
-          html = ''
-        ngModel.$setViewValue(html)
-
+      # Specify how UI should be updated
       ngModel.$render = ->
         element.html($sce.getTrustedHtml(ngModel.$viewValue || ''))
 
+      # Listen for change events to enable binding
       element.on 'blur keyup change', ->
         scope.$apply(read)
 
-      read()
+      # Write data to the model
+      read = ->
+        html = element.html()
+        # When we clear the content editable the browser leaves a <br> behind
+        # If strip-br attribute is provided then we strip this out
+        if ( attrs.stripBr && html == '<br>' )
+          html = ''
+        ngModel.$setViewValue(html)
+
+      unless element.html() == ''
+        read(); # initialize
+
   ]
