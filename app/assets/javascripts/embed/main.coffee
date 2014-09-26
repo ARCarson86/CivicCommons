@@ -15,7 +15,6 @@
 #= require_tree ./ng/controllers
 #= require ./ng/directives/civic_directives
 #= require_tree ./ng/directives
-#= require_tree ./ng/decorators
 #= require_tree ./ng/templates
 
 
