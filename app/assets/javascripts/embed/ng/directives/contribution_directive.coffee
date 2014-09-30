@@ -57,8 +57,10 @@ angular.module 'civicDirectives'
           replyToAuthorObserver()
 
       scope.submitComment = ->
+        scope.busy = true
         result = scope.contribution.save {}, (data) ->
           scope.contribution = new Contribution
+          scope.busy = false
         , (data) ->
           console.log 'failure data', data
           # TODO add errors
