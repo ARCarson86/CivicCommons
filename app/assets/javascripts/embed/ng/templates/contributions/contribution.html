@@ -18,7 +18,24 @@
     </header>
 
     <contribute ng-if="editContribution" contribution="contribution"></contribute>
-    <div ng-if="!editContribution" class="clearfix" ng-bind-html="contribution.content"></div>
+    <div ng-if="!editContribution">
+      <div class="clearfix" ng-bind-html="contribution.content"></div>
+      <div class="embed" ng-if="contribution.embed">
+        <a href={{contribution.embed.url}}" class="image" target="_blank">
+          <img src="{{contribution.embed.thumbnail_url}}" />
+        </a>
+        <div class="embed-content">
+          <h4>
+            <a href="{{contribution.embed.url}}" target="_blank">{{contribution.embed.title}}</a>
+            <a ng-show="contribution.embed.provider_url" class="provider" href="{{contribution.embed.provider_url}}" title="{{contribution.embed.provider_name || contribution.embed.provider_url}}">{{contribution.embed.provider_url}}</a>
+          </h4>
+          <p>{{contribution.embed.description}}</p>
+        </div>
+      </div>
+      <div class="attachments" ng-if="contribution.attachment">
+        <img src="{{contribution.attachment}}" />
+      </div>
+    </div>
 
 
     <div class="comment-meta">

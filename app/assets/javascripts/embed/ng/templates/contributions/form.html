@@ -3,9 +3,9 @@
   <div class="form">
     <form class="contribution-form" ng-submit="submitComment()" ng-hide="">
       <div class="body">
-        <wysiwyg ng-model="contribution.content"></wysiwyg>
+        <wysiwyg ng-model="contribution"></wysiwyg>
       </div>
-      <input class="btn btn-submit" type="submit" value="Post" />
+      <button class="btn btn-submit">Post <i ng-show="busy" class="fa fa-spinner fa-spin"></i></button>
     </form>
   </div>
 </div>

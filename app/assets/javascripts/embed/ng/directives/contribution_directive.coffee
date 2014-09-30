@@ -96,4 +96,3 @@ angular.module 'civicDirectives'
           scope.loading = false
           element.addClass "hide" if data.length < 20
   ]
-

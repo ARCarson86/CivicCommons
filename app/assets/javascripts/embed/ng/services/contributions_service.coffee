@@ -4,7 +4,7 @@ angular.module 'civicServices'
     @contributions = []
     observerCallbacks = []
 
-    permitted_params = [ 'content', 'parent_id' ]
+    permitted_params = [ 'content', 'parent_id', 'attachment', 'url' ]
 
     contributionJsonFromRequestObject = (requestObject) ->
       data = {}
@@ -51,6 +51,11 @@ angular.module 'civicServices'
         method: 'PUT'
         cache: false
         transformRequest: contributionJsonFromRequestObject
+        transformResponse: (data, headersGetter) =>
+          contribution = new Contribution JSON.parse(data)
+          contribution.author = User.get contribution.owner_id
+          if contribution.parent_id is null
+            parent = Contribution.find contribution.parent_id
 
     Contribution.index = (params = {}, success = null, failure = null) =>
       Contribution.query params, (data, headers) =>
