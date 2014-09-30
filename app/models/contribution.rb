@@ -3,7 +3,7 @@ require 'obscenity/active_model'
 class Contribution < ActiveRecord::Base
   include Visitable
 
-  searchable :include => [:person, :conversation, :issue], :ignore_attribute_changes_of => [ :total_visits, :recent_visits, :last_visit_date, :updated_at, :recent_rating ] do
+  searchable :include => [:person, :contributable, :issue], :ignore_attribute_changes_of => [ :total_visits, :recent_visits, :last_visit_date, :updated_at, :recent_rating ] do
     text :title
     text :description, :stored => true
     text :content, :stored => true, :boost => 1, :default_boost => 1 do
@@ -15,13 +15,13 @@ class Contribution < ActiveRecord::Base
   attr_accessor :top_level, :owner_id
   validates :content,  obscenity: { sanitize: true, replacement: :vowels }
   # nested contributions are destroyed via callbacks
-  acts_as_nested_set :exclude_unless => {:confirmed => true}, :dependent => :destroy, :scope => :conversation_id
+  acts_as_nested_set :exclude_unless => {:confirmed => true}, :dependent => :destroy, :scope => [:contributable_id, :contributable_type]
   attr_protected :lft, :rgt
   acts_as_revisionable
   attr_accessor :moderation_reason
 
   belongs_to :person, :foreign_key => "owner"
-  belongs_to :conversation, :touch => true
+  belongs_to :contributable, polymorphic: true, touch: true
   belongs_to :issue
   has_many   :rating_groups, :dependent => :destroy
   has_and_belongs_to_many :featured_opportunities, :join_table => :featured_opportunities_contributions, :uniq => true
@@ -128,12 +128,10 @@ class Contribution < ActiveRecord::Base
 
   # Scope for contributions that are still editable, i.e. no descendants and less than 30 minutes old
   scope :editable, where(["created_at >= DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 30 MINUTE)"])
-  scope :for_conversation, lambda { |convo|
-    confirmed.
-      where(:conversation_id => convo.id).
-      includes([:person]).
-      order('contributions.created_at ASC')
-  }
+
+  def conversation
+    contributable if contributable_type == 'Conversation'
+  end
 
   #############################################################################
   # Confirmation
@@ -178,18 +176,6 @@ class Contribution < ActiveRecord::Base
       self.errors[:base] << "Contributions cannot be deleted if they are older than 30 minutes or have any responses."
       return false
     end
-  end
-
-  #############################################################################
-  # Finders
-
-  def self.find_or_new_unconfirmed(params,person)
-    attrs = {
-      :conversation_id => params[:id],
-      :parent_id => params[:contribution_id],
-      :owner => person.id
-    }
-    return Contribution.unconfirmed.editable.where(attrs).first || Contribution.new(attrs)
   end
 
   #############################################################################
@@ -307,19 +293,6 @@ class Contribution < ActiveRecord::Base
 
   #############################################################################
   # Ratings
-
-  def newest_rating_for_contribution_branch
-    # First get the Rating Group that is associated with each Contribution
-    #   Contribution_id => [Rating Group(s)]
-    rgs       = RatingGroup.scoped
-    rgs       = rgs.where(:conversation_id => conversation).includes(:ratings)
-    contribution_ids = self.self_and_descendants.collect(&:id).uniq
-    rgs       = rgs.where("contribution_id in (?)", contribution_ids )
-
-    newest = rgs.max_by(&:updated_at)
-
-    newest.respond_to?(:updated_at) ? newest.updated_at : nil
-  end
 
   def ratings_count
     self.rating_groups.includes(:ratings).reduce(0) do |sum, rg|

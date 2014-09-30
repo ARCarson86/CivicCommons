@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140808180254) do
+ActiveRecord::Schema.define(:version => 20140930183304) do
 
   create_table "actions", :force => true do |t|
     t.integer  "conversation_id"
@@ -180,7 +180,7 @@ ActiveRecord::Schema.define(:version => 20140808180254) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "official",                                      :default => false
-    t.integer  "conversation_id"
+    t.integer  "contributable_id"
     t.integer  "parent_id"
     t.integer  "issue_id"
     t.string   "attachment_file_name"
@@ -206,9 +206,10 @@ ActiveRecord::Schema.define(:version => 20140808180254) do
     t.string   "embedly_type"
     t.boolean  "top_level_contribution",                        :default => false
     t.boolean  "moderator_post"
+    t.string   "contributable_type"
   end
 
-  add_index "contributions", ["conversation_id"], :name => "index_contributions_on_conversation_id"
+  add_index "contributions", ["contributable_id"], :name => "index_contributions_on_conversation_id"
   add_index "contributions", ["issue_id"], :name => "index_contributions_on_issue_id"
   add_index "contributions", ["owner"], :name => "index_contributions_on_owner"
   add_index "contributions", ["parent_id"], :name => "index_contributions_on_parent_id"
