@@ -20,6 +20,19 @@ $("#error_explanation").remove();
   $("#show-contribution-<%= @contribution.parent_id %>").addClass("expanded");
   $('#show-contribution-<%= @contribution.id %>').jump();
 
+  <% if @contribution.parent %>
+      $("#show-contribution-<%= @contribution.parent.id %> form .contribution-attachments .button").each(function(index) {
+        $(this).parent('.contribution-attachments').removeClass($(this).attr('rel'));
+        $(this).find('input').val("");
+      });
+  <% else %>
+      $("#new_contribution .contribution-attachments .button").each(function(index, element) {
+        $(this).parent('.contribution-attachments').removeClass($(this).attr('rel'));
+        $(this).find('input').val("");
+      });
+  <% end %>
+
+
 <% else %>
 
   <% if @contribution.parent %>
