@@ -15,6 +15,10 @@ module ContributionsHelper
     end
   end
 
+  def hide_popup?
+    cookies['hide_popup'] || current_person.current_sign_in_at > Time.zone.parse('2014-08-01 00:00')
+  end
+
   def link_to_edit_contribution(contribution,options= {})
     link_to edit_conversation_contribution_path(contribution.conversation, contribution),
       options.merge({
