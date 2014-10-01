@@ -5,7 +5,7 @@ if contribution.attachment_file_name
   json.attachment_full contribution.attachment.url :full
 end
 
-if contribution.url
+if contribution.embedly_code
   json.embed JSON.parse(contribution.embedly_code)['oembed'].select { |k,v| ['title', 'description', 'url', 'provider_name', 'provider_url', 'thumbnail_url'].include? k }
 end
 
