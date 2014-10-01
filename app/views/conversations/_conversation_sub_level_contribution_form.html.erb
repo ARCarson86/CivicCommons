@@ -3,12 +3,14 @@
   <%= form_for [new_contribution.conversation, new_contribution], remote: true, html: {id: "contribution-response-#{parent.id}", multipart: true} do |f| %>
     <%= f.hidden_field :parent_id, value: parent.id %>
     <div id="popup-holder">
-      <div class="popup">
-        <div id="mention-note">
-          <div id="new">New Feature!</div>
-          <div>Mention another person by entering an @ and typing their name. They'll be notified when you post.<%= image_tag('closebox.png') %></div>
+      <% unless hide_popup? %>
+        <div class="popup">
+          <div id="mention-note">
+            <div id="new">New Feature!</div>
+            <div>Mention another person by entering an @ and typing their name. They'll be notified when you post.<%= image_tag('closebox.png') %></div>
+          </div>
         </div>
-      </div>
+      <% end %>
       <div class="content editable">
         <%= f.text_area :content, rows: 2, class: "thread-reply", id: "contribution-content-#{parent.id}", placeholder: "Click here to respond to #{parent.person.first_name || parent.person.name}" %>
 
