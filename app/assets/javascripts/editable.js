@@ -49,6 +49,7 @@
     $(this).tinymce(options);
     var popup = $(this).closest('#popup-holder').children('.popup');
     $(popup).addClass('active');
+    $.cookie('hide_popup', true);
     setTimeout(func, 4000);
       function func() {
         $(popup).removeClass('active');
