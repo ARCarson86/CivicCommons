@@ -1,1 +1,1 @@
-civicControllers = angular.module 'civicControllers', []
+civicControllers = angular.module 'civic.controllers', []

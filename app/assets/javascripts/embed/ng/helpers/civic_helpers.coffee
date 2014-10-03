@@ -1,1 +1,1 @@
-civicHelpers = angular.module 'civicHelpers', []
+civicHelpers = angular.module 'civic.helpers', []

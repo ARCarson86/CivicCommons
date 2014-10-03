@@ -1,4 +1,4 @@
-angular.module 'civicDirectives'
+angular.module 'civic.directives'
   .directive 'contenteditable', ['$sce', ($sce) ->
     restrict: 'A' # only activate on element attribute
     require: '?ngModel' # get a hold of NgModelController

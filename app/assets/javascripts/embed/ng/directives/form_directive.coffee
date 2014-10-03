@@ -1,4 +1,4 @@
-civicDirectives = angular.module 'civicDirectives'
+civicDirectives = angular.module 'civic.directives'
   .directive 'form', ->
     restrict: 'E'
     link: (scope, element, attrs, ngModel) ->

@@ -1,4 +1,4 @@
-civicServices = angular.module 'civicServices'
+civicServices = angular.module 'civic.services'
 
 civicServices.factory 'Account', ['$rootScope', '$cacheFactory', '$cookies', '$q', '$resource', '$timeout', '$window', 'CivicApi', ($rootScope, $cacheFactory, $cookies, $q, $resource, $timeout, $window, CivicApi) ->
     observerCallbacks =

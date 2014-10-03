@@ -1,4 +1,4 @@
-civicServices = angular.module 'civicServices'
+civicServices = angular.module 'civic.services'
 
 civicServices.factory 'Conversation', ['$resource', 'CivicApi', ($resource, CivicApi) ->
   $resource CivicApi.endpoint('conversations/:id'), {},

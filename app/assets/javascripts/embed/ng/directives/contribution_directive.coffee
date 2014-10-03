@@ -1,4 +1,4 @@
-angular.module 'civicDirectives'
+angular.module 'civic.directives'
   .directive 'contribution', ['RecursionHelper', '$timeout', (RecursionHelper, $timeout) ->
     restrict: 'E'
     templateUrl: 'contributions/contribution.html'

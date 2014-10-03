@@ -1,4 +1,4 @@
-angular.module 'civicServices'
+angular.module 'civic.services'
   .factory 'Contribution', ['$filter', '$resource', '$rootScope', 'CivicApi', 'User', ($filter, $resource, $rootScope, CivicApi, User) ->
     @page = 1
     @contributions = []

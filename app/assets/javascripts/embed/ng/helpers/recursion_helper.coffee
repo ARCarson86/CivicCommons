@@ -1,4 +1,4 @@
-angular.module 'civicHelpers'
+angular.module 'civic.helpers'
   .factory 'RecursionHelper', ['$compile', ($compile) ->
     compile: (element, link) ->
       if angular.isFunction link

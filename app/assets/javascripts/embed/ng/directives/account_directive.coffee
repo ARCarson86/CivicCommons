@@ -1,4 +1,4 @@
-angular.module 'civicDirectives'
+angular.module 'civic.directives'
   .directive 'account', ['$rootScope', '$cookies', 'Account', ($rootScope, $cookies, Account) ->
     restrict: 'E'
     templateUrl: 'users/account.html'

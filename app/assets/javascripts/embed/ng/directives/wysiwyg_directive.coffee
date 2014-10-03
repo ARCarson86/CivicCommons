@@ -1,4 +1,4 @@
-angular.module 'civicDirectives'
+angular.module 'civic.directives'
   .directive 'wysiwyg', ->
     restrict: 'E'
     scope:

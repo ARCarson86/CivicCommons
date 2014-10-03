@@ -1,4 +1,4 @@
-angular.module 'civicServices'
+angular.module 'civic.services'
   .factory 'User', ['$q', '$resource', '$rootScope', '$timeout', 'CivicApi', ($q, $resource, $rootScope, $timeout, CivicApi) ->
     @users = {}
     @initialized = false

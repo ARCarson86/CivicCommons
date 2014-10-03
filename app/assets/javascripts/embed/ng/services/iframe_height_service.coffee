@@ -6,7 +6,7 @@ getDocHeight = ->
     document.body.clientHeight,
     document.documentElement.clientHeight
 
-angular.module 'civicServices'
+angular.module 'civic.services'
   .service 'IframeHeight', ['$rootScope', '$timeout', '$window', ($rootScope, $timeout, $window) ->
 
     @updateHeight = ->

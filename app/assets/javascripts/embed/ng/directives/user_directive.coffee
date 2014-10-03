@@ -1,4 +1,4 @@
-angular.module 'civicDirectives'
+angular.module 'civic.directives'
   .directive 'user', ->
     restrict: 'E'
     templateUrl: 'users/user.html'
