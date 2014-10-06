@@ -16,5 +16,4 @@ angular.module 'civic.controllers'
     $scope.login = ->
       $rootScope.flagLogin = true
 
-
   ]

@@ -15,9 +15,11 @@
 #= require_tree ./controllers
 #= require ./directives/civic_directives
 #= require_tree ./directives
+#= require ./filters/civic_filters
+#= require_tree ./filters
 #= require_tree ./templates
 
-civicApp = angular.module 'civicApp', ['ngRoute','civic.controllers', 'civic.services', 'civic.directives', 'civic.helpers', 'ngCookies', 'ngSanitize', 'templates', 'mentio']
+civicApp = angular.module 'civicApp', ['ngRoute','civic.controllers', 'civic.services', 'civic.directives', 'civic.filters', 'civic.helpers', 'ngCookies', 'ngSanitize', 'templates', 'mentio']
 
 civicApp
   .config ['$locationProvider','$routeProvider', '$windowProvider', ($locationProvider, $routeProvider, $window) ->

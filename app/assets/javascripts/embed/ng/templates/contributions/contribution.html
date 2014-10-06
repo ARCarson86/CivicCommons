@@ -19,7 +19,7 @@
 
     <contribute ng-if="editContribution" contribution="contribution"></contribute>
     <div ng-if="!editContribution">
-      <div class="clearfix" ng-bind-html="contribution.content"></div>
+      <div class="clearfix" ng-bind-html="contribution.content | linkTarget:'_blank'"></div>
       <div class="embed" ng-if="contribution.embed">
         <a href={{contribution.embed.url}}" class="image" target="_blank">
           <img src="{{contribution.embed.thumbnail_url}}" />
