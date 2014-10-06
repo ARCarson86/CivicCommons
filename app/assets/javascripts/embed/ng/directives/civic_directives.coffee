@@ -1,1 +1,1 @@
-civicDirectives = angular.module 'civic.directives', ['ngCookies', 'ngSanitize']
+angular.module 'civic.directives', ['ngCookies', 'ngSanitize']
