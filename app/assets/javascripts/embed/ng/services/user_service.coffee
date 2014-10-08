@@ -1,11 +1,13 @@
 angular.module 'civic.services'
-  .factory 'User', ['$q', '$resource', '$rootScope', '$timeout', 'CivicApi', ($q, $resource, $rootScope, $timeout, CivicApi) ->
+  .factory 'User', ['$resource', 'CivicApi', ($resource, CivicApi) ->
     @users = {}
     @initialized = false
 
-    User = $resource CivicApi.endpoint('conversations/:conversation_id/users/:user_id'),
-      conversation_id: ->
-        CivicApi.getVar 'conversation_id'
+    User = $resource CivicApi.endpoint(':contributable_type/:contributable_id/users/:user_id'),
+      contributable_type: ->
+        CivicApi.getVar 'contributable_type'
+      contributable_id: ->
+        CivicApi.getVar 'contributable_id'
     , query:
       method: 'GET'
       cache: true

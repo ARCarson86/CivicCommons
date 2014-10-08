@@ -4,7 +4,8 @@ angular.module 'civic.controllers'
 
     $scope.conversation = conversation
 
-    CivicApi.setVar 'conversation_id', $routeParams.id
+    CivicApi.setVar 'contributable_type', 'conversations'
+    CivicApi.setVar 'contributable_id', $routeParams.id
 
     Contribution.registerObserverCallback ->
       $scope.contributions = Contribution.getContributions()

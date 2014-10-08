@@ -7,12 +7,10 @@ getDocHeight = ->
     document.documentElement.clientHeight
 
 angular.module 'civic.services'
-  .service 'IframeHeight', ['$rootScope', '$timeout', '$window', ($rootScope, $timeout, $window) ->
+  .service 'IframeHeight', ['$rootScope', '$window', ($rootScope, $window) ->
 
     @updateHeight = ->
-      $timeout -> # $timout will run after digest completes, ensuring the correct height is returned
-        $window.parent.postMessage JSON.stringify({iframeHeight: getDocHeight()}), '*'
-      , 0, false
+      $window.parent.postMessage JSON.stringify({iframeHeight: getDocHeight()}), '*'
 
     $rootScope.$watch ->
       getDocHeight()

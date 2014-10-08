@@ -12,9 +12,11 @@ angular.module 'civic.services'
         data[key] = value if key in permitted_params
       angular.toJson contribution: data
 
-    Contribution = $resource CivicApi.endpoint('conversations/:conversation_id/contributions/:id'),
-      conversation_id: ->
-        CivicApi.getVar 'conversation_id'
+    Contribution = $resource CivicApi.endpoint(':contributable_type/:contributable_id/contributions/:id'),
+      contributable_type: ->
+        CivicApi.getVar 'contributable_type'
+      contributable_id: ->
+        CivicApi.getVar 'contributable_id'
       id: '@id'
     ,
       query:
@@ -24,9 +26,11 @@ angular.module 'civic.services'
         transformResponse: (data, headers) ->
           contributions = angular.fromJson data
           angular.forEach contributions, (item, i) ->
+            contributions[i].content = $filter('linkTarget')(contributions[i].content, '_blank')
             contributions[i] = new Contribution item
             contributions[i].author = User.get(item.owner_id)
             angular.forEach item.contributions, (nested, nestedIndex) ->
+              contributions[i].contributions[nestedIndex].content = $filter('linkTarget')(contributions[i].contributions[nestedIndex].content, '_blank')
               contributions[i].contributions[nestedIndex] = new Contribution nested
               contributions[i].contributions[nestedIndex].author = User.get(contributions[i].contributions[nestedIndex].owner_id)
 

@@ -1,5 +1,5 @@
 angular.module 'civic.directives'
-  .directive 'contribution', ['RecursionHelper', '$timeout', (RecursionHelper, $timeout) ->
+  .directive 'contribution', ['RecursionHelper', (RecursionHelper) ->
     restrict: 'E'
     templateUrl: 'contributions/contribution.html'
     replace: true
@@ -47,6 +47,7 @@ angular.module 'civic.directives'
     link: (scope, element, attrs) ->
       Account.registerObserverCallback 'sessionState', (data) ->
         scope.user = data
+        User.users[scope.user.id] = scope.user
 
       unless scope.contribution
         scope.contribution = new Contribution parent_id: scope.inReplyTo

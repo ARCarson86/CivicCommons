@@ -192,7 +192,7 @@ class Contribution < ActiveRecord::Base
   end
 
   def item
-    self.conversation || self.issue
+    self.contributable || self.issue
   end
 
   #############################################################################
@@ -287,7 +287,7 @@ class Contribution < ActiveRecord::Base
   end
 
   def region_metrocodes
-    item.region_metrocodes if item
+    item.region_metrocodes if item and item.class.method_defined? :region_metrocodes
   end
 
 

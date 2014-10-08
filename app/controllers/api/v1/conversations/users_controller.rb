@@ -1,15 +1,17 @@
 class Api::V1::Conversations::UsersController < Api::V1::BaseController
-  before_filter :get_conversation
+  before_filter :load_contributable
+
   def index
-    @users = @conversation.contributors
+    @users = @contributable.contributors
   end
 
   def show
-    @user = @conversation.contributors.find params[:id]
+    @user = @contributable.contributors.find params[:id]
   end
 
   private
-  def get_conversation
-    @conversation = Conversation.find params[:conversation_id]
-  end
+    def load_contributable
+      klass = [Conversation, RemotePage].detect { |c| params["#{c.name.underscore}_id"]}
+      @contributable  = klass.find(params["#{klass.name.underscore}_id"])
+    end
 end

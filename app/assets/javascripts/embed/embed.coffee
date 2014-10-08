@@ -21,11 +21,12 @@ window.civicCommonsEmbed =
   settings:
     conversationId: ''
     targetElement: null
-    targetElementId: ''
+    targetElementId: null
     targetElementEmbedId: ''
     borderStyling: '0 none'
     host: 'http://theciviccommons.com'
     embedType: 'comments'
+    remotePageAddress: window.location.href
   log: (message) ->
     logArr = ['Civic Embed: '].concat arguments
     console?.log.apply console, logArr
@@ -33,6 +34,17 @@ window.civicCommonsEmbed =
     id = ""
     id += Math.random().toString(36).substr(2) while id.length < length
     "civiccommons-embed-#{id.substr 0, length}"
+  getParamsFromScriptSrc: ->
+    return unless scriptTag = document.getElementById 'cc_embed_script_tag'
+    PARAM_REGEX = /(\w+)=\"?([^&]*)\"?/
+    params = {}
+    scriptSearch = scriptTag.src.substring scriptTag.src.match(/\?/)?.index + 1
+    while match = scriptSearch.match PARAM_REGEX
+      params[match[1]] = decodeURIComponent match[2]
+      scriptSearch = scriptSearch.substring match.index + match[0].length
+
+    return params
+
   findOrGenerateContainer: ->
     unless @settings.targetElementId
       container = document.createElement 'div'
@@ -50,14 +62,17 @@ window.civicCommonsEmbed =
       container.className += " #{@settings.targetElementId}"
     return container
   generateIframe: ->
+    src = []
     iframe = document.createElement 'iframe'
-    src = "#{@settings.host}/embed/"
-    src += "#{@settings.embedType}/" if @settings.embedType in availableEmbedTypes
-    src += @settings.conversationId if @settings.conversationId
-    iframe.src = src
+    src.push "#{@settings.host}/embed/"
+    src.push "#{@settings.embedType}/" if @settings.embedType in availableEmbedTypes
+    src.push @settings.conversationId if @settings.conversationId
+    src.push "?remotePageAddress=#{@settings.remotePageAddress}" if @settings.remotePageAddress
+    iframe.src = src.join ''
     iframe.style.border = @settings.borderStyling
     iframe
   initialize: (options = {}) ->
+    extend @settings, @getParamsFromScriptSrc()
     extend @settings, options
     @settings.targetElementEmbedId = @generateId 8
     @settings.targetElement ||= @findOrGenerateContainer()

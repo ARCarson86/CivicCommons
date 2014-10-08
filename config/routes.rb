@@ -269,8 +269,12 @@ Civiccommons::Application.routes.draw do
         end
       end
       resources :conversations do
-        resources :contributions, controller: "conversations/contributions"
-        resources :users, controller: "conversations/users"
+        resources :contributions
+        resources :users
+      end
+      resources :remote_pages do
+        resources :contributions
+        resources :users
       end
       devise_scope :person do
         post :sessions, to: 'sessions#create'

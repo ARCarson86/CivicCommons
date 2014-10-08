@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140930183304) do
+ActiveRecord::Schema.define(:version => 20141001173334) do
 
   create_table "actions", :force => true do |t|
     t.integer  "conversation_id"
@@ -652,6 +652,14 @@ ActiveRecord::Schema.define(:version => 20140930183304) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.text     "description"
+  end
+
+  create_table "remote_pages", :force => true do |t|
+    t.text     "url"
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "revision_records", :force => true do |t|

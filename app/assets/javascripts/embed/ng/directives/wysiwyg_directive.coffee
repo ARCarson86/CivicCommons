@@ -55,7 +55,7 @@ angular.module 'civic.directives'
         document.execCommand attrs['action'], false, null
   ]
 
-  .directive 'editorImages', ['$window', '$timeout', ($window, $timeout)->
+  .directive 'editorImages', ['$window', ($window)->
     restrict: 'E'
     scope:
       contribution: '='
@@ -77,8 +77,7 @@ angular.module 'civic.directives'
       hiddenInput = angular.element('<input type="file" class="hide" />')
       element.append hiddenInput
       scope.openDialog = ->
-        $timeout ->
-          hiddenInput[0].click()
+        hiddenInput[0].click()
 
       hiddenInput.on 'change', (event) ->
         handleFile event.target.files[0]

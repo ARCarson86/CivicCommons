@@ -1,6 +1,6 @@
 civicServices = angular.module 'civic.services'
 
-civicServices.factory 'Account', ['$rootScope', '$cacheFactory', '$cookies', '$q', '$resource', '$timeout', '$window', 'CivicApi', ($rootScope, $cacheFactory, $cookies, $q, $resource, $timeout, $window, CivicApi) ->
+civicServices.factory 'Account', ['$rootScope', '$cacheFactory', '$cookies', '$resource', '$window', 'CivicApi', ($rootScope, $cacheFactory, $cookies, $resource, $window, CivicApi) ->
     observerCallbacks =
       sessionState: []
       loginRequired: []
@@ -31,12 +31,12 @@ civicServices.factory 'Account', ['$rootScope', '$cacheFactory', '$cookies', '$q
       account
 
     Account.openLogin = ->
-      $timeout ->
-        Account.loginWindow = $window.open 'http://localhost:3000/people/popup_new_login', 'loginWindow', 'width=650, height=300, top=50, left=50'
-      , 0, false
+      Account.loginWindow = $window.open '/people/popup_new_login', 'loginWindow', 'width=650, height=300, top=50, left=50'
+      return true
 
     Account.closeLogin = ->
       Account.loginWindow?.close()
+      return true
 
     Account.logOut = ->
       Account.delete {}, ->

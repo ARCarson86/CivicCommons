@@ -37,6 +37,14 @@ civicApp
           if $window.$get() == $window.$get().parent # not embedded
             $window.$get().location.href = "http://theciviccommons.com/conversations/#{params.id}"
       }
+      .when '/comments', {
+        controller: 'RemotePageCtrl'
+        templateUrl: 'remote_pages/show.html'
+        resolve:
+          remotePage: ['$route', 'RemotePage', 'CivicApi', ($route, RemotePage, CivicApi) ->
+            RemotePage.get({remote_page_url: $route.current.params.remotePageAddress}).$promise
+          ]
+      }
       .when '/404', {
         templateUrl: '404.html'
       }
