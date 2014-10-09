@@ -4,6 +4,6 @@
   <contribution contribution="contribution" ng-repeat="contribution in contributions"></contribution>
 </div>
 
-<load-more-contributions initialized="{{contributions_loaded}}"></load-more-contributions>
+<load-more-contributions ng-if="contributions.length != totalContributions" ></load-more-contributions>
 
 <br>

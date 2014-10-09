@@ -1,5 +1,5 @@
 angular.module 'civic.directives'
-  .directive 'contribution', ['RecursionHelper', (RecursionHelper) ->
+  .directive 'contribution', ['RecursionHelper', 'Account', (RecursionHelper, Account) ->
     restrict: 'E'
     templateUrl: 'contributions/contribution.html'
     replace: true
@@ -7,6 +7,8 @@ angular.module 'civic.directives'
       contribution: '='
     compile: (cElement) ->
       RecursionHelper.compile cElement, (scope, element, attrs) ->
+        Account.registerObserverCallback 'sessionState', (data) ->
+          scope.user = data
         scope.createReply = ->
           scope.contribution.reply()
         element
@@ -20,7 +22,7 @@ angular.module 'civic.directives'
 
   ]
 
-  .directive 'contributions', ->
+  .directive 'contributions', ['Contribution', (Contribution) ->
     restrict: 'E'
     template: [
       '<div class="contributions-list" ng-transclude>',
@@ -37,6 +39,7 @@ angular.module 'civic.directives'
           element[0].scrollTop = newValue - 330
         else
           element.removeClass 'scroll' unless newValue == 330
+  ]
 
   .directive 'contribute', ['Account', 'User', 'Contribution', (Account, User, Contribution) ->
     restrict: 'E'
@@ -45,12 +48,16 @@ angular.module 'civic.directives'
       contribution: '='
       inReplyTo: '='
     link: (scope, element, attrs) ->
+      scope.errors = []
       Account.registerObserverCallback 'sessionState', (data) ->
         scope.user = data
         User.users[scope.user.id] = scope.user
 
       unless scope.contribution
         scope.contribution = new Contribution parent_id: scope.inReplyTo
+
+      scope.contribute = () ->
+        contributeActive = true
 
       replyToAuthorObserver = attrs.$observe 'replyToAuthor', (val) ->
         unless _.isUndefined val
@@ -62,9 +69,14 @@ angular.module 'civic.directives'
         result = scope.contribution.save {}, (data) ->
           scope.contribution = new Contribution
           scope.busy = false
+          scope.errors = []
         , (data) ->
-          console.log 'failure data', data
-          # TODO add errors
+          console.log 'arguments', arguments
+          scope.busy = false
+          scope.errors.push switch
+            when data.status is 403 then 'You are not authorized'
+            when data.status is 422 then 'Invalid Input'
+            else 'An unknown error occurred'
 
       scope.people = [
         { name: "Kyle" }

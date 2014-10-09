@@ -41,7 +41,8 @@ class Ability
       can :manage, :admin_blog_posts
     else
       can :read, :all
-      can :update, Contribution, owner_id: user.id
+      can :create, Contribution
+      can :update, Contribution, owner: user.id
     end
 
 

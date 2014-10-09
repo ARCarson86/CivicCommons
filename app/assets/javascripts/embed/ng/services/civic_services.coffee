@@ -1,19 +1,17 @@
 civicServices = angular.module 'civic.services', ['ngResource']
 
 civicServices.factory 'CivicApi', ->
-  civicApi =
+  CivicApi =
     root: "/api/"
     version: "v1/"
+    vars: {}
+    base_path: ->
+      [@root, @version].join ''
+    endpoint: (path) ->
+      [@root, @version, path].join ''
+    getVar: (name, defaultValue) ->
+      @vars[name] || defaultValue
+    setVar: (name, value) ->
+      @vars[name] = value
 
-  vars = {}
-
-  civicApi.base_path = ->
-    "#{this.root}#{this.version}"
-  civicApi.endpoint = (path) ->
-    "#{this.root}#{this.version}#{path}"
-  civicApi.getVar = (name) ->
-    vars[name]
-  civicApi.setVar = (name, value) ->
-    vars[name] = value
-
-  return civicApi
+  return CivicApi

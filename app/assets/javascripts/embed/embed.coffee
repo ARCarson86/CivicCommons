@@ -17,24 +17,27 @@ window.addEventListener 'message', receiveMessage, false
 
 availableEmbedTypes = ['comments', 'conversations']
 
-window.civicCommonsEmbed =
-  settings:
+embedObj = ->
+  @initialized = false
+
+  @settings =
     conversationId: ''
     targetElement: null
     targetElementId: null
     targetElementEmbedId: ''
     borderStyling: '0 none'
-    host: 'http://theciviccommons.com'
+    host: null
     embedType: 'comments'
     remotePageAddress: window.location.href
-  log: (message) ->
+    autoInit: true
+  @log = (message) ->
     logArr = ['Civic Embed: '].concat arguments
     console?.log.apply console, logArr
-  generateId: (length) ->
+  @generateId = (length) ->
     id = ""
     id += Math.random().toString(36).substr(2) while id.length < length
     "civiccommons-embed-#{id.substr 0, length}"
-  getParamsFromScriptSrc: ->
+  @getParamsFromScriptSrc = ->
     return unless scriptTag = document.getElementById 'cc_embed_script_tag'
     PARAM_REGEX = /(\w+)=\"?([^&]*)\"?/
     params = {}
@@ -42,10 +45,12 @@ window.civicCommonsEmbed =
     while match = scriptSearch.match PARAM_REGEX
       params[match[1]] = decodeURIComponent match[2]
       scriptSearch = scriptSearch.substring match.index + match[0].length
-
     return params
-
-  findOrGenerateContainer: ->
+  @getHostFromScriptSrc = ->
+    return unless scriptTag = document.getElementById 'cc_embed_script_tag'
+    domain = scriptTag.src.split('/')[2]
+    "http://#{domain}"
+  @findOrGenerateContainer = ->
     unless @settings.targetElementId
       container = document.createElement 'div'
       container.id = @settings.targetElementId
@@ -61,7 +66,7 @@ window.civicCommonsEmbed =
     else
       container.className += " #{@settings.targetElementId}"
     return container
-  generateIframe: ->
+  @generateIframe = ->
     src = []
     iframe = document.createElement 'iframe'
     src.push "#{@settings.host}/embed/"
@@ -71,9 +76,18 @@ window.civicCommonsEmbed =
     iframe.src = src.join ''
     iframe.style.border = @settings.borderStyling
     iframe
-  initialize: (options = {}) ->
+  @initialize = (options = {}) ->
+    return if @initialized
+    @initialized = true
     extend @settings, @getParamsFromScriptSrc()
     extend @settings, options
+    @settings.host = @getHostFromScriptSrc() unless @settings.host
     @settings.targetElementEmbedId = @generateId 8
     @settings.targetElement ||= @findOrGenerateContainer()
     @settings.targetElement.appendChild(@generateIframe()) if @settings.targetElement
+
+  @initialize() if @settings.autoInit
+
+  return this
+
+window.civicCommonsEmbed = embedObj()

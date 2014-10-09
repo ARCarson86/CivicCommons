@@ -9,6 +9,7 @@ angular.module 'civic.services'
           conversation = angular.fromJson data
           conversation.summary = $filter('linkTarget')(conversation.summary, '_blank')
           conversation.starter = $filter('linkTarget')(conversation.starter, '_blank')
+          CivicApi.setVar 'totalContributions', conversation.number_of_top_level_contributions
           new Conversation conversation
 
   ]

@@ -24,6 +24,13 @@
     outline: none;
     min-height: 3em;
     padding: 5px;
+
+    > p {
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
   }
   .editor-attachments {
     .badge {

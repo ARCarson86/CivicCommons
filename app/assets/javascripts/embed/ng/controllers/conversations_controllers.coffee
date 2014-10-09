@@ -9,6 +9,7 @@ angular.module 'civic.controllers'
 
     Contribution.registerObserverCallback ->
       $scope.contributions = Contribution.getContributions()
+      $scope.totalContributions = CivicApi.getVar 'totalContributions'
 
     User.index {}, (data) ->
       Contribution.index {}, ->

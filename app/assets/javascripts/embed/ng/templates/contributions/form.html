@@ -1,7 +1,8 @@
 <div class="contribute">
   <user-avatar user="user" ng-if="!contribution.id"></user-avatar>
   <div class="form">
-    <form class="contribution-form" ng-submit="submitComment()" ng-hide="">
+    <div errors="errors" ng-show="errors.length > 0"></div>
+    <form name="contributeForm" class="contribution-form" ng-submit="submitComment()" ng-hide="">
       <div class="body">
         <wysiwyg ng-model="contribution"></wysiwyg>
       </div>

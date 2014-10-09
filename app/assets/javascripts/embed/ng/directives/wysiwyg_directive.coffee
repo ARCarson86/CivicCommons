@@ -39,6 +39,8 @@ angular.module 'civic.directives'
     link: (scope, element, attrs) ->
       scope.attachImg = true if scope.contribution?.attachment
       scope.attachLink = true if scope.contribution?.url
+      editorBodyEl = angular.element(element.children()[1])
+      editorBodyEl[0].focus()
 
   .directive 'editorAction', ['$document', ($document) ->
     restrict: 'E'

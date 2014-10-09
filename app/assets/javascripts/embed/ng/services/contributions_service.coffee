@@ -41,7 +41,9 @@ angular.module 'civic.services'
         cache: false
         transformRequest: contributionJsonFromRequestObject
         transformResponse: (data, headersGetter) =>
-          contribution = new Contribution JSON.parse(data)
+          jsonData = JSON.parse(data)
+          return data if jsonData.error
+          contribution = new Contribution jsonData
           contribution.author = User.get contribution.owner_id
           if contribution.parent_id is null
             @contributions.unshift(contribution)
@@ -60,6 +62,12 @@ angular.module 'civic.services'
           contribution.author = User.get contribution.owner_id
           if contribution.parent_id is null
             parent = Contribution.find contribution.parent_id
+            @contributions.unshift(contribution)
+          else
+            parentIndex = _.findIndex @contributions, id: contribution.parent_id
+            @contributions[parentIndex].contributions.push contribution
+          Contribution.notifyObservers()
+          return contribution
 
     Contribution.index = (params = {}, success = null, failure = null) =>
       Contribution.query params, (data, headers) =>
@@ -107,6 +115,10 @@ angular.module 'civic.services'
         @replyActive = !@replyActive
         console.log 'false', @parent_id
 
+    Contribution.prototype.editable = ->
+      created_at = new Date @created_at
+      now = new Date
+      Math.round((now.getTime() - created_at.getTime()) / 1000 / 60) <= 30
 
     return Contribution
 

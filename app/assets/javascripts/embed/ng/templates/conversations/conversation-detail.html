@@ -16,7 +16,11 @@
     <div ng-bind-html="conversation.starter"></div>
   </div>
 
-  <contribute data-active="{{contributionActive}}" contribution="newContribution"></contribute>
+  <div ng-hide="contributionActive">
+    <user-avatar user="conversation.author"></user-avatar>
+    <a href ng-click="contributionActive = !contributionActive"></a>
+  </div>
+  <contribute contribution="newContribution"></contribute>
 
   <div class="contributions-list">
     <div class="contributions" ng-include="'contributions/contributions.html'"></div>

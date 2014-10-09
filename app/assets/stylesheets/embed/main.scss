@@ -11,9 +11,13 @@
 
 body {
   background-color: #FFF;
-  padding: 0.7em;
   font-family: $fontFamilyBase;
   font-size: $fontSizeBase;
+  padding: 0;
+}
+
+.container {
+  padding: 0.7em;
 }
 
 header {
@@ -51,6 +55,7 @@ p {
 
 .account {
   float:right;
+  line-height: 2.5em;
   &, a {
     color: $gray;
   }
@@ -71,8 +76,9 @@ p {
   .account-information {
     position: relative;
     .account-links {
+      white-space: nowrap;
       position: absolute;
-      top: 100%;
+      top: 2em;
       right: 0;
       list-style-position: outside;
       list-style-type: none;
@@ -247,6 +253,23 @@ p {
   }
 }
 
+.contribute-placeholder {
+  @include pie-clearfix;
+  .what-do-you-think {
+    margin-bottom: 2em;
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border: 2px solid $lightGray;
+    color: $gray;
+    border-radius: 2px;
+    font-size: 1.5em;
+    height: 40px;
+    line-height: 36px;
+    padding: 0 0.5em;
+  }
+}
+
 .scroll {
   height: 330px;
   overflow-y: scroll;
@@ -355,5 +378,49 @@ load-more-contributions {
     transform: translate(-50%, -50%);
     font-size: 1.3em;
     font-weight: bold;
+  }
+}
+
+.errors {
+  &:empty {
+    display: none;
+  }
+
+  background-color: #f2dede;
+  padding: 1em;
+  margin: 1em 0;
+
+  h2 {
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: none;
+  }
+
+  &, a {
+    color: #a94442;
+  }
+
+  .close {
+    float: right;
+  }
+}
+
+footer {
+  @include pie-clearfix;
+  text-align: right;
+  border-top: 2px solid $lightGray;
+  background-color: white;
+  padding: 1em;
+  font-size: 0.8em;
+  line-height: 1em;
+  
+  &, a {
+    color: $gray;
+    text-decoration: none;
+  }
+
+  img {
+    float: right;
+    margin: 0 0 0 1em;
   }
 }

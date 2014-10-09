@@ -127,7 +127,8 @@ class Contribution < ActiveRecord::Base
   scope :unconfirmed, where(:confirmed => false)
 
   # Scope for contributions that are still editable, i.e. no descendants and less than 30 minutes old
-  scope :editable, where(["created_at >= DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 30 MINUTE)"])
+  scope :editable, where(created_at: (DateTime.now - 30.minutes)..(DateTime.now))
+
 
   def conversation
     contributable if contributable_type == 'Conversation'
