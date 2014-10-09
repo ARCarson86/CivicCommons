@@ -1,5 +1,10 @@
 rails_env = new_resource.environment["RAILS_ENV"]
 
+execute "npm install" do
+  command 'npm install --production'
+  cwd release_path
+end
+
 Chef::Log.info("Precompiling assets for RAILS_ENV=#{rails_env}...")
 
 execute "rake assets:precompile" do
