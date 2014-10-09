@@ -11,6 +11,7 @@ end
 
 module Civiccommons
   class Application < Rails::Application
+    require "/Users/kbalderson/Projects/CivicComons/CivicCommons/config/initializers/bower_rails.rb"
     config.assets.initialize_on_precompile = false
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -71,8 +72,12 @@ module Civiccommons
 
     config.assets.logger = Logger.new(STDOUT)
 
-    config.assets.precompile += %w( admin.js conversations/activities.embed.js conversations/show_embed.js tiny_mce/**/*.js tiny_mce/*.js )
-    config.assets.precompile += %w( editor.css petition.print.css admin.css widget.css tiny_mce/**/*.css)
+    config.assets.precompile = %w( admin.js conversations/activities.embed.js conversations/show_embed.js tiny_mce/**/*.js tiny_mce/*.js )
+    config.assets.precompile << %w( petition.print.css admin.css widget.css tiny_mce/**/*.css)
+
+    config.angular_templates.ignore_prefix = ['embed/ng/templates/', 'templates']
+
+    config.assets.paths << Rails.root.join('spec/karma')
 
   end
 end

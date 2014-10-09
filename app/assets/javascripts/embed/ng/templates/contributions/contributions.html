@@ -1,0 +1,9 @@
+<div ng-hide="contributions_loaded">Contributions Loading...</div>
+
+<div class="contributions-list">
+  <contribution contribution="contribution" ng-repeat="contribution in contributions"></contribution>
+</div>
+
+<load-more-contributions ng-if="contributions.length != totalContributions" ></load-more-contributions>
+
+<br>

@@ -1,0 +1,20 @@
+<div class="account">
+  <div class="errors" ng-show="errors">
+    <div class="{{error.status}}" ng-repeat="error in errors" >{{error.message}}</div>
+  </div>
+  <div class="sign-in" ng-hide="logged_in">
+    <a href ng-click="openAuthWindow()">Sign In</a>
+  </div>
+  <div class="account-information" ng-show="logged_in">
+    <a href="{{current_user.location}}" target="_blank">{{current_user.name}}</a>
+    <a href ng-click="showDropdown = !showDropdown" class="caret" ng-class="{active: showDropdown}">
+      <i class="fa fa-caret-down"></i>
+    </a>
+
+    <ul class="account-links" ng-show="showDropdown">
+      <li><a href="/conversations/new" target="_blank">Start a Conversation</a></li>
+      <li><a href="{{current_user.location}}/edit" target="_blank">Edit</a></li>
+      <li><a href ng-click="showDropdown = !showDropdown; signOut()">Logout</a></li>
+    </ul>
+  </div>
+</div>

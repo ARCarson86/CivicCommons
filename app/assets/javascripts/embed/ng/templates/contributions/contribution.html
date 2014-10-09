@@ -1,0 +1,58 @@
+<div class="contribution row" id="contribution-{{contribution.id}}">
+  <user-avatar user="contribution.author"></user-avatar>
+  <div class="content">
+    <header>
+      <div class="actions pull-right" ng-show="showactions">
+        <a href ng-click="editContribution = !editContribution" ng-show="user.admin || (user.id == contribution.owner_id && contribution.editable())">
+          <i class="fa fa-edit"></i>
+        </a>
+        <a href ng-click="minimized = !minimized" ng-show="contribution.contributions.length > 0">
+          <i class="fa" ng-class="minimized ? 'fa-plus' : 'fa-minus'"></i>
+        </a>
+        <a href="">
+          <i class="fa fa-flag"></i>
+        </a>
+      </div>
+      <user user="contribution.author" ng-show="contribution.author"></user>
+      <span class="created-date">{{contribution.created_at | date : 'MMM d, y h:mm a'}}</span>
+    </header>
+
+    <contribute ng-if="editContribution" contribution="contribution"></contribute>
+    <div ng-if="!editContribution">
+      <div class="clearfix" ng-bind-html="contribution.content"></div>
+      <div class="embed" ng-if="contribution.embed">
+        <a href={{contribution.embed.url}}" class="image" target="_blank">
+          <img src="{{contribution.embed.thumbnail_url}}" />
+        </a>
+        <div class="embed-content">
+          <h4>
+            <a href="{{contribution.embed.url}}" target="_blank">{{contribution.embed.title}}</a>
+            <a ng-show="contribution.embed.provider_url" class="provider" href="{{contribution.embed.provider_url}}" title="{{contribution.embed.provider_name || contribution.embed.provider_url}}">{{contribution.embed.provider_url}}</a>
+          </h4>
+          <p>{{contribution.embed.description}}</p>
+        </div>
+      </div>
+      <div class="attachments" ng-if="contribution.attachment">
+        <img src="{{contribution.attachment}}" />
+      </div>
+    </div>
+
+
+    <div class="comment-meta">
+      <span ng-hide="contribution.parent_id">
+        {{contribution.contributions.length}} Comments | 
+      </span>
+      <a href ng-click="createReply()">
+        <i class="fa fa-reply"></i> Reply to {{contribution.author.first_name}}
+      </a>
+    </div>
+
+    <div class="contributions" ng-hide="minimized" ng-if="contribution.contributions.length > 0">
+      <contributions>
+        <contribution contribution="contribution" ng-repeat="contribution in contribution.contributions"></contribution>
+      </contributions>
+    </div>
+
+    <contribute ng-if="contribution.replyActive" contribution="newContribution" in-reply-to="contribution.parent_id != null ? contribution.parent_id : contribution.id"></contribute>
+  </div>
+</div>

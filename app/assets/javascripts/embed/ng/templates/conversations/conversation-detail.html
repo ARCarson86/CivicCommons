@@ -1,0 +1,29 @@
+<div id="conversation-{{conversation.slug}}" class="conversation">
+
+  <h1>{{conversation.title}}</h1>
+  <div class="authoring-information">
+    <user-avatar user="conversation.author"></user-avatar>
+    <div class="authoring-information-primary">
+      <user user="conversation.author"></user>
+      <div class="created-date">{{conversation.created_at | date : 'MMMM d, y h:mm a'}}</div>
+    </div>
+  </div>
+
+  <div ng-bind-html="conversation.summary"></div>
+
+  <div class="starter" ng-show="conversation.starter">
+    <h2>Conversation Starter</h2>
+    <div ng-bind-html="conversation.starter"></div>
+  </div>
+
+  <div ng-hide="contributionActive">
+    <user-avatar user="conversation.author"></user-avatar>
+    <a href ng-click="contributionActive = !contributionActive"></a>
+  </div>
+  <contribute contribution="newContribution"></contribute>
+
+  <div class="contributions-list">
+    <div class="contributions" ng-include="'contributions/contributions.html'"></div>
+  </div>
+
+</div>

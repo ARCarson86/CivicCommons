@@ -112,6 +112,7 @@ Civiccommons::Application.routes.draw do
   devise_scope :person do
     match '/people/ajax_login', :to=>'sessions#ajax_create', :via=>[:post]
     match '/people/ajax_new_login', :to=>'sessions#ajax_new', :via=>[:get]
+    match '/people/popup_new_login', :to=>'sessions#popup_new', :via=>[:get]
     get '/people/secret/fb_auth_forgot_password', to: 'passwords#fb_auth_forgot_password', as: 'fb_auth_forgot_password'
     get "/registrations/omniauth_callbacks/failure", to: "registrations/omniauth_callbacks#failure"
     get '/registrations/principles', to: 'registrations#principles'
@@ -258,6 +259,33 @@ Civiccommons::Application.routes.draw do
     end
     resources :redirects
   end
+
+  namespace :api do
+    api_version(:module => "V1", path: { value: "v1" }, defaults: {format: :json}) do
+      get 'me', controller: "users"
+      resources :users, only: [:show] do
+        collection do
+          get 'me'
+        end
+      end
+      resources :conversations do
+        resources :contributions
+        resources :users
+      end
+      resources :remote_pages do
+        resources :contributions
+        resources :users
+      end
+      devise_scope :person do
+        post :sessions, to: 'sessions#create'
+        delete :sessions, to: 'sessions#destroy'
+      end
+    end
+  end
+
+  resources :embed, only: [:index]
+
+  get '/embed/*path', to: 'embed#index'
 
   get '*path', to: 'redirects#show'
 

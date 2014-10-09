@@ -13,9 +13,10 @@ group :assets do
   gem 'compass-rails'
   gem 'coffee-rails'
   gem 'yui-compressor'
-  gem "font-awesome-rails"
+  gem 'angular-rails-templates'
   #gem 'jquery-migrate-rails'
   gem 'turbo-sprockets-rails3'
+  gem 'bower-rails'
 end
 gem 'jquery-rails'
 
@@ -87,9 +88,12 @@ gem 'carrierwave'
 gem 'mini_magick'
 
 gem 'rails_autolink' # auto_link was removed on rails 3.1, this is for migration purposes. A suggestion is to use Rinku
-gem 'sass'
 
 gem 'whenever', require: false
+
+gem 'versionist'
+gem 'jbuilder'
+gem 'yajl-ruby'
 
 group :development do
   gem "rails3-generators"
@@ -109,6 +113,7 @@ group :test do
   gem "database_cleaner", "~>0.7.2"
   gem 'email_spec', '~>1.2.1'
   gem "factory_girl_rails", '~>3.1'
+  gem "faker"
   gem 'fuubar', '~>1.0.0'
   gem "jasmine", "~> 1.3.1"
   gem "jasmine-headless-webkit", '~>0.8.4'

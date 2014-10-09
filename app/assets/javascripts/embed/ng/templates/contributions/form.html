@@ -1,0 +1,12 @@
+<div class="contribute">
+  <user-avatar user="user" ng-if="!contribution.id"></user-avatar>
+  <div class="form">
+    <div errors="errors" ng-show="errors.length > 0"></div>
+    <form name="contributeForm" class="contribution-form" ng-submit="submitComment()" ng-hide="">
+      <div class="body">
+        <wysiwyg ng-model="contribution"></wysiwyg>
+      </div>
+      <button class="btn btn-submit">Post <i ng-show="busy" class="fa fa-spinner fa-spin"></i></button>
+    </form>
+  </div>
+</div>

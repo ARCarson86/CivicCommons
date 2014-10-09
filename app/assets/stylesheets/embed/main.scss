@@ -1,0 +1,426 @@
+//= require normalize
+//= require embed/editor
+//= require font-awesome/css/font-awesome
+
+@import 'compass/utilities/general/clearfix';
+@import 'variables';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #FFF;
+  font-family: $fontFamilyBase;
+  font-size: $fontSizeBase;
+  padding: 0;
+}
+
+.container {
+  padding: 0.7em;
+}
+
+header {
+  @include pie-clearfix;
+}
+
+h1 {
+  margin: 0 0 0.33em 0;
+  font-size: 1.5em;
+  font-weight: 500;
+}
+
+h2 {
+  margin: 0 0 .33em 0;
+  font-size: 1.2em;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+a {
+  color: $darkGray;
+  text-decoration: underline;
+}
+
+p {
+}
+
+.hide {
+  display: none;
+}
+
+.created-date {
+  color: $darkGray
+}
+
+.account {
+  float:right;
+  line-height: 2.5em;
+  &, a {
+    color: $gray;
+  }
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .caret {
+    &, &:hover {
+      text-decoration: none;
+    }
+    &.active {
+      color: $lightBlue;
+    }
+  }
+  .account-information {
+    position: relative;
+    .account-links {
+      white-space: nowrap;
+      position: absolute;
+      top: 2em;
+      right: 0;
+      list-style-position: outside;
+      list-style-type: none;
+      text-align: right;
+      margin: 3px 0 0;
+      border: 1px solid $gray;
+      border-collapse: collapse;
+      padding: 0;
+      width: auto;
+      li {
+        border-bottom: 1px solid $gray;
+        box-sizing: border-box;
+        height: 25px;
+        line-height: 25px;
+        &:last-child {
+          border-bottom: 0 none;
+        }
+
+        a {
+          display: block;
+          height: 100%;
+          background-color: white;
+          padding: 0 8px;
+          &:hover {
+            background-color: $lightBlue;
+            color: white;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+.conversation {
+  .authoring-information {
+    .authoring-information-primary {
+      line-height: 17px;
+    }
+  }
+}
+
+.contribution {
+  padding: 1.5em 0;
+  border-bottom: 1px solid $lightGray;
+  &:last-child {
+    border-bottom: 0 none;
+  }
+  header {
+    margin: 0 0 10px;
+  }
+  .content {
+    overflow: hidden;
+  }
+  .created-date {
+    &:before {
+      content: '|';
+      display: inline-block;
+      margin: 0 5px 0 3px;
+    }
+  }
+  .contributions-list {
+    background-color: $nestedContributionBackground;
+    padding: 0 1em;
+    margin-bottom: 1em;
+  }
+  .contribution {
+  }
+  .embed {
+    margin: 2em 0;
+    .image {
+      float: left;
+      margin-right: 1em;
+      img {
+        width: 3em;
+        &:empty {
+          display: none;
+        }
+      }
+    }
+    a {
+      text-decoration: none;
+    }
+    h4 {
+      padding-bottom: 0.5em;
+      border-bottom: 1px solid $lightGray;
+    }
+    h4, p {
+      overflow-x: hidden;
+      margin-top: 0;
+    }
+    .embed-content {
+      overflow-x: hidden;
+    }
+    .provider {
+      font-size: .8em;
+      display: inline-block;
+      margin-left: 5px;
+    }
+  }
+  .attachments {
+    padding-top: 1em;
+    margin: 2em 0;
+    border-top: 1px solid $lightGray;
+    text-align: center;
+  }
+}
+
+.comment-meta {
+  text-align: right;
+  margin-bottom: 20px;
+  &, a {
+    color: $gray;
+  }
+  a {
+    display: inline-block;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    &:hover {
+      border-bottom: 1px solid $gray;
+    }
+  }
+}
+
+.contribution-content {
+  border-top: 1px solid black;
+  margin: 30px 0;
+}
+
+.actions {
+
+  > a {
+    display: inline-block;
+    color: $lightGray;
+    &:hover {
+      color: $gray;
+    }
+  }
+}
+
+[contenteditable]:empty:before {
+  content: attr(placeholder);
+  opacity: 0.5;
+}
+
+.user-avatar {
+  width: 34px;
+  height: 34px;
+  overflow: hidden;
+  float: left;
+  margin-right: .5em;
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+.user {
+  display: inline;
+  &, a {
+    color: $darkGray;
+    text-decoration: none;
+    font-weight: bold;
+  }
+}
+
+
+.contribute {
+  .form {
+    overflow-x: hidden;
+  }
+  .body {
+  }
+}
+
+.contribute-placeholder {
+  @include pie-clearfix;
+  .what-do-you-think {
+    margin-bottom: 2em;
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border: 2px solid $lightGray;
+    color: $gray;
+    border-radius: 2px;
+    font-size: 1.5em;
+    height: 40px;
+    line-height: 36px;
+    padding: 0 0.5em;
+  }
+}
+
+.scroll {
+  height: 330px;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+  }
+  &::-webkit-scrollbar:vertical {
+    background-color: $nestedContributionBackground;
+    width: 7px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border: 2px solid $gray; /* should match background, can't be transparent */
+    background-color: $gray
+  }
+
+}
+
+.btn {
+  display: inline-block;
+  height: 25px;
+  padding: 0 10px;
+  line-height: 25px;
+  border: 0 none;
+  background-color: $loadMoreButtonColor;
+  font-weight: bold;
+  &, a {
+    color: $lightBlue;
+    text-decoration: none;
+  }
+
+  &.btn-center {
+    margin: 0 auto;
+  }
+  &.btn-block {
+    display: block;
+  }
+
+  &.btn-submit {
+    background-color: $lightBlue;
+    color: white;
+  }
+}
+
+load-more-contributions {
+  text-align: center;
+  display: block;
+}
+
+.ta-root {
+  .ta-toolbar {
+    line-height: 35px;
+    display: block;
+    .ta-button-group {
+      margin: 0 5px;
+    }
+    .ta-button {
+      border: 0;
+      padding: 0 0.5em;
+      background-color: transparent;
+      color: $editorIconColor;
+    }
+  }
+  .ta-editor {
+    outline: none;
+    box-shadow: none;
+    border-color: transparent;
+  }
+
+  .ta-scroll-window.form-control,
+  .ta-root.focussed .ta-scroll-window.form-control,
+  .ta-editor.ta-html,
+  .ta-scroll-window > .ta-bind {
+    min-height: 0;
+  }
+
+  .ta-scroll-window {
+    // override min-heights
+    > .ta-bind {
+      padding: 6px;
+      > p:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+
+  &.focussed {
+    .ta-scroll-window {
+      &.form-control {
+        outline: none;
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+.not-found {
+  min-height: 200px;
+  position: relative;
+  margin-bottom: 1.5em;
+  .message {
+    position: absolute;
+    width: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.3em;
+    font-weight: bold;
+  }
+}
+
+.errors {
+  &:empty {
+    display: none;
+  }
+
+  background-color: #f2dede;
+  padding: 1em;
+  margin: 1em 0;
+
+  h2 {
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: none;
+  }
+
+  &, a {
+    color: #a94442;
+  }
+
+  .close {
+    float: right;
+  }
+}
+
+footer {
+  @include pie-clearfix;
+  text-align: right;
+  border-top: 2px solid $lightGray;
+  background-color: white;
+  padding: 1em;
+  font-size: 0.8em;
+  line-height: 1em;
+  
+  &, a {
+    color: $gray;
+    text-decoration: none;
+  }
+
+  img {
+    float: right;
+    margin: 0 0 0 1em;
+  }
+}
