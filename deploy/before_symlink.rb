@@ -2,6 +2,7 @@ rails_env = new_resource.environment["RAILS_ENV"]
 
 execute "npm install" do
   command 'npm install --production'
+  user 'deploy'
   cwd release_path
 end
 
