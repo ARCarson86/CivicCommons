@@ -1,5 +1,5 @@
 angular.module 'civic.directives'
-  .directive 'contribution', ['RecursionHelper', 'Account', (RecursionHelper, Account) ->
+  .directive 'contribution', ['RecursionHelper', (RecursionHelper) ->
     restrict: 'E'
     templateUrl: 'contributions/contribution.html'
     replace: true
