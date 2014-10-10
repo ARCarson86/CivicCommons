@@ -7,8 +7,6 @@ angular.module 'civic.directives'
       contribution: '='
     compile: (cElement) ->
       RecursionHelper.compile cElement, (scope, element, attrs) ->
-        Account.registerObserverCallback 'sessionState', (data) ->
-          scope.user = data
         scope.createReply = ->
           scope.contribution.reply()
         element
