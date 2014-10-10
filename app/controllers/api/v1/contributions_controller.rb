@@ -2,7 +2,7 @@ class Api::V1::ContributionsController < Api::V1::BaseController
   before_filter :load_contributable
   load_resource :conversation
   load_resource :remote_page
-  load_and_authorize_resource :contribution, through: [:contribution, :remote_page]
+  load_and_authorize_resource :contribution, through: [:contribution, :remote_page], only: [:create, :update]
 
   def index
     @contributions = @contributable.top_level_contributions.includes(:person, children: [:person]).order("created_at DESC").paginate(page: params[:page], per_page: 20)
