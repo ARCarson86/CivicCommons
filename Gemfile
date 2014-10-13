@@ -14,8 +14,8 @@ group :assets do
   gem 'yui-compressor'
   #gem 'jquery-migrate-rails'
   gem 'turbo-sprockets-rails3'
-  gem 'angular-rails-templates'
 end
+gem 'angular-rails-templates'
 gem 'coffee-rails'
 gem 'bower-rails'
 gem 'jquery-rails'
