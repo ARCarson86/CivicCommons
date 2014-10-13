@@ -6,7 +6,7 @@ angular.module 'civic.filters', []
     count = 0
 
     (text, target) ->
-      raw = text
+      raw = if text then text else ""
       html = []
 
       addText = (text) ->
