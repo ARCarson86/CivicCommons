@@ -1,5 +1,5 @@
 angular.module 'civic.controllers'
-  .controller 'ConversationDetailCtrl', ['$scope', '$routeParams', '$sce', '$rootScope', '$window', 'conversation', 'CivicApi', 'User', 'Contribution', 'Account', ($scope, $routeParams, $sce, $rootScope, $window, conversation, CivicApi, User, Contribution, Account) ->
+  .controller 'ConversationDetailCtrl', ['$scope', '$routeParams', '$sce', '$rootScope', '$window', 'conversation', 'CivicApi', 'User', 'Contribution', ($scope, $routeParams, $sce, $rootScope, $window, conversation, CivicApi, User, Contribution) ->
     [$scope.conversation_loaded, $scope.contributions_loaded] = false
 
     $scope.conversation = conversation
