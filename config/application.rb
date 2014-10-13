@@ -73,8 +73,6 @@ module Civiccommons
 
     config.assets.logger = Logger.new(STDOUT)
 
-    config.angular_templates.ignore_prefix = ['embed/ng/templates/', 'templates'] if config.angular_templates
-
     config.assets.paths << Rails.root.join('spec/karma')
 
   end
