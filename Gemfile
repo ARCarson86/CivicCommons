@@ -11,11 +11,11 @@ gem 'uglifier'
 group :assets do
   gem 'sass-rails', '~> 3.2.3'
   gem 'compass-rails'
-  gem 'coffee-rails'
   gem 'yui-compressor'
   #gem 'jquery-migrate-rails'
   gem 'turbo-sprockets-rails3'
 end
+gem 'coffee-rails'
 gem 'angular-rails-templates'
 gem 'bower-rails'
 gem 'jquery-rails'
