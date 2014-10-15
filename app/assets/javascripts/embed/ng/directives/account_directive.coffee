@@ -12,6 +12,13 @@ angular.module 'civic.directives'
 
       scope.signOut = ->
         Account.logOut()
-
-
+  ]
+  .directive 'accountAvatar', ['Account', (Account) ->
+    restrict: 'E'
+    scope: {}
+    templateUrl: 'users/avatar.html'
+    link: (scope, element, attrs) ->
+      Account.registerObserverCallback 'sessionState', (data) ->
+        scope.user = data || {}
+        scope.user.avatar ||= '/assets/avatar_180.gif'
   ]

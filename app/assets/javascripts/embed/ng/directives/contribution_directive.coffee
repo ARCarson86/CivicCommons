@@ -39,7 +39,7 @@ angular.module 'civic.directives'
           element.removeClass 'scroll' unless newValue == 330
   ]
 
-  .directive 'contribute', ['Account', 'User', 'Contribution', (Account, User, Contribution) ->
+  .directive 'contribute', ['Contribution', (Contribution) ->
     restrict: 'E'
     templateUrl: 'contributions/form.html'
     scope:
@@ -47,9 +47,6 @@ angular.module 'civic.directives'
       inReplyTo: '='
     link: (scope, element, attrs) ->
       scope.errors = []
-      Account.registerObserverCallback 'sessionState', (data) ->
-        scope.user = data
-        User.users[scope.user.id] = scope.user
 
       unless scope.contribution
         scope.contribution = new Contribution parent_id: scope.inReplyTo
@@ -69,25 +66,12 @@ angular.module 'civic.directives'
           scope.busy = false
           scope.errors = []
         , (data) ->
-          console.log 'arguments', arguments
           scope.busy = false
           scope.errors.push switch
             when data.status is 403 then 'You are not authorized'
             when data.status is 422 then 'Invalid Input'
             else 'An unknown error occurred'
 
-      scope.people = [
-        { name: "Kyle" }
-        { name: "Testing" }
-      ]
-
-      scope.searchPeople = (term) ->
-        console.log 'search', term
-        ['test', 'test']
-
-      scope.getPeopleText = (item) ->
-        console.log 'getPeopleText', item
-        people
   ]
 
   .directive 'loadMoreContributions', ['Contribution', '$window', '$q', (Contribution, $window, $q) ->

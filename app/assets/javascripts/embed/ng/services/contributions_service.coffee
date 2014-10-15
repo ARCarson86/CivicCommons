@@ -28,7 +28,9 @@ angular.module 'civic.services'
           angular.forEach contributions, (item, i) ->
             contributions[i].content = $filter('linkTarget')(contributions[i].content, '_blank')
             contributions[i] = new Contribution item
-            contributions[i].author = User.get(item.owner_id)
+            User.registerObserverCallback ->
+              contributions[i].author = User.get(item.owner_id)
+            , true
             angular.forEach item.contributions, (nested, nestedIndex) ->
               contributions[i].contributions[nestedIndex].content = $filter('linkTarget')(contributions[i].contributions[nestedIndex].content, '_blank')
               contributions[i].contributions[nestedIndex] = new Contribution nested
@@ -99,7 +101,7 @@ angular.module 'civic.services'
       Contribution.index page: ++@page, success, failure
 
     Contribution.prototype.is_new_record = ->
-      !@id
+      not @id
 
     Contribution.prototype.save = (params, success, failure) ->
       if @is_new_record()

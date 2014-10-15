@@ -27,8 +27,16 @@ civicApp
         controller: 'ConversationDetailCtrl',
         templateUrl: 'conversations/conversation-detail.html'
         resolve:
-          conversation: ['$route', 'Conversation', ($route, Conversation) ->
+          conversation: ['$route', 'CivicApi', 'Conversation', ($route, CivicApi, Conversation) ->
+            CivicApi.setVar 'contributable_type', 'conversations'
+            CivicApi.setVar 'contributable_id', $route.current.params.id
             Conversation.get({id: $route.current.params.id}).$promise
+          ]
+          users: ['User', (User) ->
+            User.index({}).$promise
+          ]
+          contributions: ['Contribution', (Contribution) ->
+            Contribution.index({}).$promise
           ]
         redirectTo: (params, path, search) ->
           return ''

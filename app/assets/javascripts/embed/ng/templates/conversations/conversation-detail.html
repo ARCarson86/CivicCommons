@@ -17,10 +17,10 @@
   </div>
 
   <div ng-hide="contributionActive">
-    <user-avatar user="conversation.author"></user-avatar>
-    <a href ng-click="contributionActive = !contributionActive"></a>
+    <account-avatar></account-avatar>
+    <a href ng-click="contributionActive = !contributionActive">What do you think?</a>
   </div>
-  <contribute contribution="newContribution"></contribute>
+  <contribute contribution="newContribution" ng-show="contributionActive"></contribute>
 
   <div class="contributions-list">
     <div class="contributions" ng-include="'contributions/contributions.html'"></div>
