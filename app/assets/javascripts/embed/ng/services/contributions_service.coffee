@@ -12,6 +12,15 @@ angular.module 'civic.services'
         data[key] = value if key in permitted_params
       angular.toJson contribution: data
 
+    contributionResourceFromData = (data) ->
+      contribution = new Contribution data
+      contribution.content = $filter('linkTarget')(contribution.content, '_blank')
+
+      angular.forEach contribution.contributions, (nested, i) ->
+        contribution.contributions[i] = contributionResourceFromData nested
+
+      contribution
+
     Contribution = $resource CivicApi.endpoint(':contributable_type/:contributable_id/contributions/:id'),
       contributable_type: ->
         CivicApi.getVar 'contributable_type'
@@ -26,17 +35,8 @@ angular.module 'civic.services'
         transformResponse: (data, headers) ->
           contributions = angular.fromJson data
           angular.forEach contributions, (item, i) ->
-            contributions[i].content = $filter('linkTarget')(contributions[i].content, '_blank')
-            contributions[i] = new Contribution item
-            User.registerObserverCallback ->
-              contributions[i].author = User.get(item.owner_id)
-            , true
-            angular.forEach item.contributions, (nested, nestedIndex) ->
-              contributions[i].contributions[nestedIndex].content = $filter('linkTarget')(contributions[i].contributions[nestedIndex].content, '_blank')
-              contributions[i].contributions[nestedIndex] = new Contribution nested
-              contributions[i].contributions[nestedIndex].author = User.get(contributions[i].contributions[nestedIndex].owner_id)
-
-          return contributions
+            contributions[i] = contributionResourceFromData item
+          contributions
 
       create:
         method: 'POST'
@@ -115,12 +115,14 @@ angular.module 'civic.services'
         parent.replyActive = !parent.replyActive
       else
         @replyActive = !@replyActive
-        console.log 'false', @parent_id
 
     Contribution.prototype.editable = ->
       created_at = new Date @created_at
       now = new Date
       Math.round((now.getTime() - created_at.getTime()) / 1000 / 60) <= 30
+
+    Contribution.prototype.author = ->
+      User.get @owner_id
 
     return Contribution
 
