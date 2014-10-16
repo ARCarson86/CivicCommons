@@ -16,11 +16,13 @@
     <div ng-bind-html="conversation.starter"></div>
   </div>
 
-  <div ng-hide="contributionActive">
-    <account-avatar></account-avatar>
-    <a href ng-click="contributionActive = !contributionActive">What do you think?</a>
+  <div class="new-contribution">
+    <div class='contribute-placeholder' ng-hide="contributionActive">
+      <account-avatar></account-avatar>
+      <a href class="what-do-you-think" ng-click="contributionActive = !contributionActive">What do you think?</a>
+    </div>
+    <contribute contribution="newContribution" ng-show="contributionActive"></contribute>
   </div>
-  <contribute contribution="newContribution" ng-show="contributionActive"></contribute>
 
   <div class="contributions-list">
     <div class="contributions" ng-include="'contributions/contributions.html'"></div>
