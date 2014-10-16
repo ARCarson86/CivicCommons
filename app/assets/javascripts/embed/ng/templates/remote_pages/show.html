@@ -1,0 +1,10 @@
+<div class="contribute-placeholder" ng-show="!contributionActive">
+  <user-avatar user="user"></user-avatar>
+  <a href class="what-do-you-think" ng-click="contributionActive = !contributionActive">What do <em>you</em> think?</a>
+</div>
+
+<contribute ng-if="contributionActive" data-active="{{contributionActive}}" contribution="newContribution"></contribute>
+
+<div class="contributions-list">
+  <div class="contributions" ng-include="'contributions/contributions.html'"></div>
+</div>

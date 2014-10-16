@@ -3,7 +3,7 @@ require File.expand_path('./lib/mail_interceptor.rb')
 
 Civiccommons::Application.configure do
   # Settings specified here will take precedence over those in config/environment.rb
-  config.assets.initialize_on_precompile = false
+  config.assets.initialize_on_precompile = true
 
   # In the development environment your application's code is reloaded on
   # every request.  This slows down response time but is perfect for development
@@ -38,7 +38,7 @@ Civiccommons::Application.configure do
 
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
-  config.serve_static_assets = false
+  #config.serve_static_assets = true
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
@@ -55,6 +55,13 @@ Civiccommons::Application.configure do
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
+
+  config.assets.precompile = [ Proc.new{ |path| !File.extname(path).in?(['.js', '.css', '.map', '.gzip']) }, /(?:\/|\\|\A)application\.(css|js)$/ ]
+
+  config.assets.precompile << %w( admin.js conversations/activities.embed.js conversations/show_embed.js tiny_mce/**/*.js tiny_mce/*.js )
+  config.assets.precompile << %w( petition.print.css admin.css widget.css tiny_mce/**/*.css)
+
+  config.angular_templates.ignore_prefix = ['embed/ng/templates/', 'templates'] if config.angular_templates
 
   redis_config = YAML.load_file(Rails.root.join('config/redis.yml'))
   config.cache_store = :redis_store, "redis://#{redis_config[Rails.env]["host"]}:#{redis_config[Rails.env]["port"]}/0/cache"

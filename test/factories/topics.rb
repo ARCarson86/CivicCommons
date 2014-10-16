@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :topic do |f|
-    f.sequence(:name) {|n| "Topic #{n}" }
+    f.name { Faker::Lorem.word }
   end
 end

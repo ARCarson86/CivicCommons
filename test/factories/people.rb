@@ -9,12 +9,12 @@ FactoryGirl.define do |f|
   end
 
   factory :normal_person, :class=>Person do |u|
-    u.first_name 'John'
+    u.first_name { Faker::Name.first_name }
     u.title 'staff at CivicCommons'
-    u.last_name 'Doe'
+    u.last_name { Faker::Name.last_name }
     u.zip_code '44313'
     u.password 'password'
-    u.sequence(:email) {|n| "test.account#{n}@mysite.com" }
+    u.email { Faker::Internet.email }
     u.daily_digest false
     u.avatar_url '/images/avatar_70.gif'
     u.avatar_cached_image_url '/images/avatar.jpg'

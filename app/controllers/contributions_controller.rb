@@ -16,7 +16,7 @@ class ContributionsController < ApplicationController
     end
     @contribution = Contribution.new(params[:contribution])
     @contribution.person = current_person
-    @contribution.item = @conversation
+    @conversation.contributions << @contribution
     @contribution.confirmed = true
 
     if @contribution.save

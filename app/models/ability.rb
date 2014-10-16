@@ -30,16 +30,21 @@ class Ability
     
   
   def initialize(user)
-    
-    # CanCan is curently used only on the admin controller.
+
+    user ||= Person.new # guest user (not logged in)
+
     if user.admin?
       can :manage,  :all
     elsif user.blog_admin?
       can :manage,  :admin_dashboard
       can :manage, ContentItem
       can :manage, :admin_blog_posts
+    else
+      can :read, :all
+      can :create, Contribution
+      can :update, Contribution, owner: user.id
     end
-    
+
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

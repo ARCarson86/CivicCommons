@@ -24,6 +24,9 @@ class Issue < ActiveRecord::Base
   has_many :issues_topics, uniq: true
   has_many :topics, through: :issues_topics, uniq: true
 
+  has_many :conversation_contributions, through: :conversations, source: :contributions
+  has_many :convo_participants, through: :conversations, source: :participants, uniq: true
+
   # Contributions directly related to this Issue
   has_many :contributions
   has_many :suggested_actions
@@ -169,7 +172,7 @@ class Issue < ActiveRecord::Base
 
   def conversation_contributer_ids
     self.conversations.collect do |conversation|
-      conversation.contributor_ids
+      conversation.contributors.pluck :id
     end.uniq
   end
 
@@ -191,7 +194,7 @@ class Issue < ActiveRecord::Base
   # Determine the user ids for participants of this issue.
   def community_user_ids
     person_ids = Array.new
-    person_ids += participant_ids
+    person_ids += participants.pluck :id
     person_ids += conversation_creators_ids
     person_ids += conversation_contributer_ids
     person_ids += conversation_rater_ids
