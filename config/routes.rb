@@ -269,11 +269,19 @@ Civiccommons::Application.routes.draw do
         end
       end
       resources :conversations do
-        resources :contributions
+        resources :contributions do
+          member do
+            post :flag
+          end
+        end
         resources :users
       end
       resources :remote_pages do
-        resources :contributions
+        resources :contributions do
+          member do
+            post :flag
+          end
+        end
         resources :users
       end
       devise_scope :person do

@@ -21,7 +21,7 @@ angular.module 'civic.services'
 
       contribution
 
-    Contribution = $resource CivicApi.endpoint(':contributable_type/:contributable_id/contributions/:id'),
+    Contribution = $resource CivicApi.endpoint(':contributable_type/:contributable_id/contributions/:id/:action'),
       contributable_type: ->
         CivicApi.getVar 'contributable_type'
       contributable_id: ->
@@ -43,10 +43,9 @@ angular.module 'civic.services'
         cache: false
         transformRequest: contributionJsonFromRequestObject
         transformResponse: (data, headersGetter) =>
-          jsonData = JSON.parse(data)
-          return data if jsonData.error
-          contribution = new Contribution jsonData
-          contribution.author = User.get contribution.owner_id
+          contribution = JSON.parse(data)
+          return data if contribution.error
+          contribution = contributionResourceFromData contribution
           if contribution.parent_id is null
             @contributions.unshift(contribution)
           else
@@ -54,6 +53,13 @@ angular.module 'civic.services'
             @contributions[parentIndex].contributions.push contribution
           Contribution.notifyObservers()
           return contribution
+
+      flag:
+        params: {
+          action: 'flag'
+        }
+        method: 'POST'
+        cache: false
 
       update:
         method: 'PUT'
@@ -100,14 +106,16 @@ angular.module 'civic.services'
     Contribution.loadMore = (success, failure) =>
       Contribution.index page: ++@page, success, failure
 
-    Contribution.prototype.is_new_record = ->
-      not @id
-
     Contribution.prototype.save = (params, success, failure) ->
       if @is_new_record()
         @$create(params, success, failure)
       else
         @$update(params, success, failure)
+
+    Contribution.prototype.flag = (params, success, failure) ->
+      contribution = new Contribution
+        id: @id
+      contribution.$flag params, success, failure
 
     Contribution.prototype.reply = ->
       if @parent_id
@@ -115,6 +123,9 @@ angular.module 'civic.services'
         parent.replyActive = !parent.replyActive
       else
         @replyActive = !@replyActive
+
+    Contribution.prototype.is_new_record = ->
+      not @id
 
     Contribution.prototype.editable = ->
       created_at = new Date @created_at

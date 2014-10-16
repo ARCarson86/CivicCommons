@@ -17,7 +17,6 @@ angular.module 'civic.directives'
             scope.showactions = false
             scope.$apply()
 
-
   ]
 
   .directive 'contributions', ['Contribution', (Contribution) ->

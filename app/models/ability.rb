@@ -32,7 +32,7 @@ class Ability
   def initialize(user)
 
     user ||= Person.new # guest user (not logged in)
-    
+
     if user.admin?
       can :manage,  :all
     elsif user.blog_admin?
@@ -44,7 +44,6 @@ class Ability
       can :create, Contribution
       can :update, Contribution, owner: user.id
     end
-
 
     # Define abilities for the passed in user here. For example:
     #

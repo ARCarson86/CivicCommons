@@ -115,9 +115,19 @@ p {
 
 .conversation {
   .authoring-information {
+    margin-bottom: 1em;
     .authoring-information-primary {
       line-height: 17px;
     }
+  }
+}
+
+
+.contributions-list {
+  .contribution-count {
+    color: $gray;
+    text-align: right;
+    margin: 0 0 1em 0;
   }
 }
 
@@ -259,7 +269,7 @@ p {
 .contribute-placeholder {
   @include pie-clearfix;
   .what-do-you-think {
-    margin-bottom: 2em;
+    margin-bottom: 1em;
     text-decoration: none;
     overflow: hidden;
     display: block;
@@ -384,12 +394,12 @@ load-more-contributions {
   }
 }
 
-.errors {
+.alerts{
   &:empty {
     display: none;
   }
 
-  background-color: #f2dede;
+  background-color: #dff0d8;
   padding: 1em;
   margin: 1em 0;
 
@@ -400,11 +410,17 @@ load-more-contributions {
   }
 
   &, a {
-    color: #a94442;
+    color: #3c763d;
   }
 
   .close {
     float: right;
+  }
+  &.errors {
+    background-color: #f2dede;
+    &, a {
+      color: #a94442;
+    }
   }
 }
 

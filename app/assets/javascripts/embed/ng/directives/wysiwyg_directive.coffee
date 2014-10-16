@@ -1,5 +1,5 @@
 angular.module 'civic.directives'
-  .directive 'wysiwyg', ->
+  .directive 'wysiwyg', ['$timeout', ($timeout) ->
     restrict: 'E'
     scope:
       contribution: '=ngModel'
@@ -16,7 +16,7 @@ angular.module 'civic.directives'
           '<editor-action action="underline">',
             '<i class="fa fa-underline"></i>',
           '</editor-action>',
-          '<a href class="editor-button" ng-class="{active: attachLink}" ng-click="attachLink = !attachLink">',
+          '<a href class="editor-button" ng-class="{active: attachLink}" ng-click="attachLink = !attachLink; focusLink()">',
             '<i class="fa fa-link"></i>',
           '</a>',
           '<a href class="editor-button" ng-click="attachImg = !attachImg">',
@@ -24,12 +24,12 @@ angular.module 'civic.directives'
           '</a>',
         '</div>',
         '<div class="editor-body" contenteditable ng-model="contribution.content"></div>',
-        '<div class="editor-attachments" ng-if="(attachLink || attachImg)">',
+        '<div class="editor-attachments" ng-show="(attachLink || attachImg)">',
           '<div ng-show="attachLink" class="editor-link">',
             '<div class="badge">',
               '<i class="fa fa-link"></i>',
             '</div>',
-            '<input type="text" ng-model="contribution.url" />',
+            '<input type="text" ng-model="contribution.url" placeholder="Enter a URL" />',
           '</div>',
           '<editor-images contribution="contribution" ng-show="attachImg"></editor-images>'
         '</div>',
@@ -37,10 +37,21 @@ angular.module 'civic.directives'
     ].join ''
     replace: true
     link: (scope, element, attrs) ->
+      editorBodyEl = angular.element(element.children()[1])
+      attachmentsEl = angular.element(element.children()[2])
+      linkEl = angular.element(attachmentsEl.children()[0])
+      linkInputEl = angular.element(linkEl.children()[1])
+
       scope.attachImg = true if scope.contribution?.attachment
       scope.attachLink = true if scope.contribution?.url
-      editorBodyEl = angular.element(element.children()[1])
       editorBodyEl[0].focus()
+
+      scope.focusLink = ->
+        $timeout ->
+          linkInputEl[0].focus()
+
+      return
+  ]
 
   .directive 'editorAction', ['$document', ($document) ->
     restrict: 'E'

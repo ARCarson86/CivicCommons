@@ -9,7 +9,7 @@
         <a href ng-click="minimized = !minimized" ng-show="contribution.contributions.length > 0">
           <i class="fa" ng-class="minimized ? 'fa-plus' : 'fa-minus'"></i>
         </a>
-        <a href="">
+        <a href ng-click="flagActive = !flagActive">
           <i class="fa fa-flag"></i>
         </a>
       </div>
@@ -55,4 +55,6 @@
 
     <contribute ng-if="contribution.replyActive" contribution="newContribution" in-reply-to="contribution.parent_id != null ? contribution.parent_id : contribution.id"></contribute>
   </div>
+
+  <flag-contribution contribution="contribution" ng-if="flagActive"></flag-contribution>
 </div>

@@ -21,10 +21,11 @@
       <account-avatar></account-avatar>
       <a href class="what-do-you-think" ng-click="contributionActive = !contributionActive">What do you think?</a>
     </div>
-    <contribute contribution="newContribution" ng-show="contributionActive"></contribute>
+    <contribute contribution="newContribution" ng-show="contributionActive" active-variable="contributionActive"></contribute>
   </div>
 
   <div class="contributions-list">
+    <div class="contribution-count"> Displaying {{contributions.length}} of {{conversation.number_of_top_level_contributions}} </div>
     <div class="contributions" ng-include="'contributions/contributions.html'"></div>
   </div>
 
