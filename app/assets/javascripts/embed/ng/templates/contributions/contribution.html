@@ -1,5 +1,5 @@
 <div class="contribution row" id="contribution-{{contribution.id}}">
-  <user-avatar user="contribution.author"></user-avatar>
+  <user-avatar user="contribution.author()"></user-avatar>
   <div class="content">
     <header>
       <div class="actions pull-right" ng-show="showactions">
@@ -13,7 +13,7 @@
           <i class="fa fa-flag"></i>
         </a>
       </div>
-      <user user="contribution.author" ng-show="contribution.author"></user>
+      <user user="contribution.author()" ng-show="contribution.author()"></user>
       <span class="created-date">{{contribution.created_at | date : 'MMM d, y h:mm a'}}</span>
     </header>
 
@@ -43,7 +43,7 @@
         {{contribution.contributions.length}} Comments | 
       </span>
       <a href ng-click="createReply()">
-        <i class="fa fa-reply"></i> Reply to {{contribution.author.first_name}}
+        <i class="fa fa-reply"></i> Reply to {{contribution.author().first_name}}
       </a>
     </div>
 

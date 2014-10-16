@@ -1,1 +1,1 @@
-json.(organization, :id, :name)
+json.partial! 'api/v1/people/person', person: organization
