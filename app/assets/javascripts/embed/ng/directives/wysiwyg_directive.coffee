@@ -75,7 +75,7 @@ angular.module 'civic.directives'
     ].join ''
     replace: true
     link: (scope, element, attrs) ->
-      scope.previous_attachment = scope.contribution.attachment
+      scope.previous_attachment = scope.contribution?.attachment
       hiddenInput = angular.element('<input type="file" class="hide" />')
       element.append hiddenInput
       scope.openDialog = ->
