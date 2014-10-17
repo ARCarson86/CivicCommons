@@ -19,7 +19,8 @@
   <div class="new-contribution">
     <div class='contribute-placeholder' ng-hide="contributionActive">
       <account-avatar></account-avatar>
-      <a href class="what-do-you-think" ng-click="contributionActive = !contributionActive">What do you think?</a>
+      <span class="what-do-you-think" ng-show="account == null"><sign-in-link href >Sign in</sign-in-link> to reply</span>
+      <a href class="what-do-you-think" ng-show="account" ng-click="contributionActive = !contributionActive">What do you think?</a>
     </div>
     <contribute contribution="newContribution" ng-show="contributionActive" active-variable="contributionActive"></contribute>
   </div>

@@ -22,3 +22,30 @@ angular.module 'civic.directives'
         scope.user = data || {}
         scope.user.avatar ||= '/assets/avatar_180.gif'
   ]
+  .directive 'signInLink', ['Account', (Account) ->
+    restrict: 'E'
+    transclude: true
+    template: [
+      '<a href ng-click="openAuthWindow()" ng-hide="account" ng-transclude="true" >',
+      '</a>',
+    ].join ''
+    link: (scope, element, attrs) ->
+      Account.registerObserverCallback 'sessionState', (data) ->
+        scope.account = data
+      , false
+      scope.openAuthWindow = ->
+        Account.openLogin()
+  ]
+
+  .directive 'accountShow', ['Account', (Account) ->
+    restrict: 'A'
+    transclude: true
+    template: [
+      '<span ng-show="account" ng-transclude="true" >',
+      '</span>',
+    ].join ''
+    link: (scope, element, attrs) ->
+      Account.registerObserverCallback 'sessionState', (data) ->
+        scope.account = data
+      , false
+  ]

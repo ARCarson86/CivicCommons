@@ -42,9 +42,9 @@ civicServices.factory 'Account', ['$rootScope', '$cacheFactory', '$cookies', '$r
       Account.delete {}, ->
         Account.notifyObservers 'sessionState', null
 
-    Account.registerObserverCallback = (group, callback) ->
+    Account.registerObserverCallback = (group, callback, resetCache = true) ->
       observerCallbacks[group].push callback
-      Account.getAccount {}, true, null, null if group == 'sessionState'
+      Account.getAccount {}, resetCache, null, null if group == 'sessionState'
 
     Account.notifyObservers = (group, data) ->
       angular.forEach observerCallbacks[group], (callback) ->

@@ -42,7 +42,10 @@
       <span ng-hide="contribution.parent_id">
         {{contribution.contributions.length}} Comments | 
       </span>
-      <a href ng-click="createReply()">
+      <sign-in-link>
+        <i class="fa fa-reply"></i> Sign in to Reply to {{contribution.author().first_name}}
+      </sign-in-link>
+      <a href ng-click="createReply()" account-show >
         <i class="fa fa-reply"></i> Reply to {{contribution.author().first_name}}
       </a>
     </div>
