@@ -6,6 +6,12 @@ class Api::V1::BaseController < ApplicationController
     }
   end
 
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    render status: 404, json: {
+      error: "Not Found"
+    }
+  end
+
   rescue_from ActiveRecord::RecordInvalid do |exception|
     Rails.logger.info 'invalid'
     render status: 422, json: {
