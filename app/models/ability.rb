@@ -33,16 +33,21 @@ class Ability
 
     user ||= Person.new # guest user (not logged in)
 
+    can :read, :all
+
+    can :flag, Contribution
+    can :index, Contribution, parent_id: nil
+
+    if user.persisted?
+      can [:create, :update], Contribution, owner: user.id
+    end
+
     if user.admin?
       can :manage,  :all
     elsif user.blog_admin?
       can :manage,  :admin_dashboard
       can :manage, ContentItem
       can :manage, :admin_blog_posts
-    else
-      can :read, :all
-      can :create, Contribution
-      can :update, Contribution, owner: user.id
     end
 
     # Define abilities for the passed in user here. For example:

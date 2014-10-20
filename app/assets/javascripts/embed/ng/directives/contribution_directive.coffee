@@ -64,12 +64,13 @@ angular.module 'civic.directives'
           scope.contribution = new Contribution
           scope.busy = false
           scope.errors = []
-        , (data) ->
+        , (response) ->
+          data = angular.fromJson response.data
           scope.busy = false
-          scope.errors.push switch
-            when data.status is 403 then 'You are not authorized'
-            when data.status is 422 then 'Invalid Input'
-            else 'An unknown error occurred'
+          if data?.errors
+            scope.errors.push error for error in data.errors
+          else
+            scope.errors.push 'An unknown error occurred'
 
   ]
 

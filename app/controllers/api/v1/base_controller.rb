@@ -2,7 +2,7 @@ class Api::V1::BaseController < ApplicationController
 
   rescue_from CanCan::AccessDenied do |exception|
     render status: 403, json: {
-      error: "Access Denied"
+      errors: ["Access Denied"]
     }
   end
 
@@ -12,10 +12,10 @@ class Api::V1::BaseController < ApplicationController
     }
   end
 
-  rescue_from ActiveRecord::RecordInvalid do |exception|
+  rescue_from ActiveRecord::RecordInvalid do |invalid|
     Rails.logger.info 'invalid'
     render status: 422, json: {
-      error: "Input was invalid"
+      errors: invalid.record.errors.full_messages
     }
   end
 

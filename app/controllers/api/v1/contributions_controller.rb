@@ -2,17 +2,13 @@ class Api::V1::ContributionsController < Api::V1::BaseController
   before_filter :load_contributable
   load_resource :conversation
   load_resource :remote_page
-  load_and_authorize_resource :contribution, through: [:contribution, :remote_page], only: [:update]
-  load_resource :contribution, through: [:conversation, :remote_page], only: [:flag]
+  load_and_authorize_resource :contribution, through: [:conversation, :remote_page]
 
   def index
-    @contributions = @contributable.top_level_contributions.includes(:person, children: [:person]).order("created_at DESC").paginate(page: params[:page], per_page: 20)
+    @contributions = @contributions.includes(:person, children: [:person]).order("created_at DESC").paginate(page: params[:page], per_page: 20)
   end
 
   def create
-    empty_user unless current_person
-    @contribution = current_person.contributions.new params[:contribution]
-    @contributable.contributions << @contribution
     @contribution.save!
     render 'show'
   end

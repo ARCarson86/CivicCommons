@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
   include AvatarHelper
   include RegionHelper
 
+  alias_method :current_user, :current_person
+
   layout 'application'
 
   before_filter :fetch_notifications
@@ -110,10 +112,6 @@ protected
 
   def region_recent_conversations
     Conversation.filter_metro_region(default_region).latest_created.limit(6)
-  end
-
-  def current_ability
-    @current_ability ||= ::Ability.new(current_person)
   end
 
   def set_csrf_cookie_for_ng

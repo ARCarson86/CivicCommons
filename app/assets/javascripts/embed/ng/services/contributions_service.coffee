@@ -44,7 +44,7 @@ angular.module 'civic.services'
         transformRequest: contributionJsonFromRequestObject
         transformResponse: (data, headersGetter) =>
           contribution = JSON.parse(data)
-          return data if contribution.error
+          return data if contribution.errors
           contribution = contributionResourceFromData contribution
           if contribution.parent_id is null
             @contributions.unshift(contribution)
