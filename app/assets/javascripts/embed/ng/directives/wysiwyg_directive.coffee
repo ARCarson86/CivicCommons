@@ -75,7 +75,7 @@ angular.module 'civic.directives'
     template: [
       '<div class="editor-images">',
         '<div class="badge">', '<i class="fa fa-image"></i>', '</div>',
-        '<div ng-click="openDialog()" class="hint" ng-hide="contribution.attachment">Drag & Drop images here or click to select from your computer</div>',
+        '<div ng-click="openDialog()" class="hint" ng-hide="contribution.attachment">Drag & drop images here or click to select from your computer</div>',
         '<div class="attachment-info" ng-show="contribution.attachment" >',
           '<div class="preview">',
             '<img ng-src="{{contribution.attachment}}" />',
