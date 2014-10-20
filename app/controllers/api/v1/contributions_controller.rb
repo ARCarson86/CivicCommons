@@ -1,8 +1,9 @@
 class Api::V1::ContributionsController < Api::V1::BaseController
-  before_filter :load_contributable
   load_resource :conversation
   load_resource :remote_page
   load_and_authorize_resource :contribution, through: [:conversation, :remote_page]
+
+  before_filter :update_embedly_attributes, only: [:create, :update]
 
   def index
     @contributions = @contributions.includes(:person, children: [:person]).order("created_at DESC").paginate(page: params[:page], per_page: 20)
@@ -28,9 +29,12 @@ class Api::V1::ContributionsController < Api::V1::BaseController
 
   private
 
-    def load_contributable
-      klass = [Conversation, RemotePage].detect { |c| params["#{c.name.underscore}_id"]}
-      @contributable  = klass.find(params["#{klass.name.underscore}_id"])
+  def update_embedly_attributes
+    unless @contribution.url.blank?
+      embedly = EmbedlyService.new
+      embedly.fetch_and_update_attributes(@contribution)
     end
+  end
+
 
 end
