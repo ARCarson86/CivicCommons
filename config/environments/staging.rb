@@ -59,7 +59,7 @@ Civiccommons::Application.configure do
   config.assets.precompile = [ Proc.new{ |path| !File.extname(path).in?(['.js', '.css', '.map', '.gzip']) }, /(?:\/|\\|\A)application\.(css|js)$/ ]
 
   config.assets.precompile << %w( admin.js conversations/activities.embed.js conversations/show_embed.js tiny_mce/**/*.js tiny_mce/*.js )
-  config.assets.precompile << %w( petition.print.css admin.css widget.css tiny_mce/**/*.css)
+  config.assets.precompile << %w( reset.css petition.print.css admin.css widget.css tiny_mce/**/*.css)
 
   config.angular_templates.ignore_prefix = ['embed/ng/templates/', 'templates'] if config.angular_templates
 
