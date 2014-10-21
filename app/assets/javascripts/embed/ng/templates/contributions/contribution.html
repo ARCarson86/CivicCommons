@@ -40,7 +40,13 @@
 
     <div class="comment-meta">
       <span ng-hide="contribution.parent_id">
-        {{contribution.contributions.length}} Comments | 
+        <ng-pluralize count="contribution.contributions.length" 
+        when="{'0': 'No Comments',
+               'one': '1 Comment',
+               'other': '{} Comments'
+          }">
+        </ng-pluralize>
+        | 
       </span>
       <sign-in-link>
         <i class="fa fa-reply"></i> Sign in to Reply to {{contribution.author().first_name}}
