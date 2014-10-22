@@ -75,6 +75,7 @@ embedObj = ->
     src.push "?remotePageAddress=#{@settings.remotePageAddress}" if @settings.remotePageAddress
     iframe.src = src.join ''
     iframe.style.border = @settings.borderStyling
+    iframe.style.width = "100%"
     iframe
   @initialize = (options = {}) ->
     return if @initialized
