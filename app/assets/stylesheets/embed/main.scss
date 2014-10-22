@@ -4,6 +4,7 @@
 
 @import 'compass/utilities/general/clearfix';
 @import 'variables';
+@import "compass/css3/images";
 
 * {
   box-sizing: border-box;
@@ -483,4 +484,47 @@ footer {
   background-color: rgba(0,0,0,.6) ;
   z-index: 999;
   margin-left: -0.7em;
+}
+
+.read-more-container {
+  position: relative;
+  max-height: 10em;
+  transition: max-height 0.3s;
+  overflow-y: hidden;
+  padding-bottom: 3em;
+
+  &.expanded {
+    max-height: 300em;
+  }
+  .read-more-link {
+    @include background-image(linear-gradient(to bottom, rgba(0,0,0,0), #FFF 60%));
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 3em;
+    padding-top: 1.5em;
+    line-height: 1.5em;
+    text-align: center;
+
+    a {
+      background-color: white;
+      display: inline-block;
+      z-index: 2;
+      position: relative;
+      padding: 0 1em;
+      color: $lightGray;
+      text-decoration: none;
+    }
+
+    &:before {
+      content: "";
+      position: absolute;
+      height: 1px;
+      width: 100%;
+      bottom: 0.75em;
+      left: 0;
+      background-color: $lightGray;
+      z-index: 1;
+    }
+  }
 }
