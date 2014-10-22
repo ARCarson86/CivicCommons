@@ -514,6 +514,10 @@ footer {
       padding: 0 1em;
       color: $lightGray;
       text-decoration: none;
+      font-size: 0.85em;
+      i {
+        margin-left: 0.5em;
+      }
     }
 
     &:before {
@@ -521,7 +525,7 @@ footer {
       position: absolute;
       height: 1px;
       width: 100%;
-      bottom: 0.75em;
+      bottom: 0.6em;
       left: 0;
       background-color: $lightGray;
       z-index: 1;
