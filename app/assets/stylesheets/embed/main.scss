@@ -315,6 +315,7 @@ p {
   border: 0 none;
   background-color: $loadMoreButtonColor;
   font-weight: bold;
+  outline: none;
   &, a {
     color: $lightBlue;
     text-decoration: none;
