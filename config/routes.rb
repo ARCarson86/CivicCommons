@@ -272,6 +272,7 @@ Civiccommons::Application.routes.draw do
         resources :contributions do
           member do
             post :flag
+            post :moderate
           end
         end
         resources :users
@@ -280,6 +281,7 @@ Civiccommons::Application.routes.draw do
         resources :contributions do
           member do
             post :flag
+            post :moderate
           end
         end
         resources :users

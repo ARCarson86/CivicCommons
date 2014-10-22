@@ -61,6 +61,13 @@ angular.module 'civic.services'
         method: 'POST'
         cache: false
 
+      moderate:
+        params: {
+          action: 'moderate'
+        }
+        method: 'POST'
+        cache: false
+
       update:
         method: 'PUT'
         cache: false

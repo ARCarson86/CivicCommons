@@ -6,6 +6,9 @@
         <a href ng-click="editContribution = !editContribution" ng-show="user.admin || (user.id == contribution.owner_id && contribution.editable())">
           <i class="fa fa-edit"></i>
         </a>
+        <a href ng-click="moderateActive = !moderateActive" ng-show="user.admin">
+          <i class="fa fa-ban"></i>
+        </a>
         <a href ng-click="deleteContribution()" ng-show="user.admin || (user.id == contribution.owner_id && contribution.editable())">
           <i class="fa fa-trash"></i>
         </a>
@@ -68,5 +71,6 @@
     <contribute ng-if="contribution.replyActive" contribution="newContribution" in-reply-to="contribution.parent_id != null ? contribution.parent_id : contribution.id"></contribute>
   </div>
 
+  <moderate-contribution contribution="contribution" ng-if="moderateActive"></moderate-contribution>
   <flag-contribution contribution="contribution" ng-if="flagActive"></flag-contribution>
 </div>

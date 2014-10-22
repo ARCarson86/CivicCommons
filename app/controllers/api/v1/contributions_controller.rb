@@ -35,6 +35,11 @@ class Api::V1::ContributionsController < Api::V1::BaseController
     }
   end
 
+  def moderate
+    @contribution.moderate_content(params[:reason], current_person)
+    render :show
+  end
+
   private
 
   def update_embedly_attributes

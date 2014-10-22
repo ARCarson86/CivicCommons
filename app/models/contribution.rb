@@ -250,8 +250,8 @@ class Contribution < ActiveRecord::Base
     end
   end
 
-  def moderate_content(params, moderated_by)
-   reason = params[:contribution][:moderation_reason]
+  def moderate_content(reason, moderated_by)
+   reason = reason[:contribution][:moderation_reason] unless reason.is_a? String
    self.content = "<b><i>Contribution removed by #{moderated_by.name} on #{Time.now.strftime('%B %d, %Y')}, for the following reason: #{reason}</i></b>"
    self.clear_attributes
    self.save(validate: false)

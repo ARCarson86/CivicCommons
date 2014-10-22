@@ -44,6 +44,7 @@ class Ability
 
     if user.admin?
       can :manage,  :all
+      can :moderate, Contribution
     elsif user.blog_admin?
       can :manage,  :admin_dashboard
       can :manage, ContentItem
