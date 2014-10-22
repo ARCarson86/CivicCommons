@@ -85,12 +85,12 @@ p {
       list-style-type: none;
       text-align: right;
       margin: 3px 0 0;
-      border: 1px solid $gray;
+      border: 1px solid $lightGray;
       border-collapse: collapse;
       padding: 0;
       width: auto;
       li {
-        border-bottom: 1px solid $gray;
+        border-bottom: 1px solid $lightGray;
         box-sizing: border-box;
         height: 25px;
         line-height: 25px;
