@@ -44,6 +44,7 @@ angular.module 'civic.directives'
     scope:
       contribution: '='
       inReplyTo: '='
+      activeVariable: '=?'
     link: (scope, element, attrs) ->
       scope.errors = []
 

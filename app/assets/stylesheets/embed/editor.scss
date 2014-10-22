@@ -8,8 +8,8 @@
   margin-bottom: 5px;
   .editor-toolbar {
     @include pie-clearfix;
-    height: 35px;
-    padding: 8px 0;
+    height: 2em;
+    line-height: 2em;
     &, a {
       color: $editorIconColor;
     }
@@ -17,7 +17,12 @@
     .editor-button {
       display: inline-block;
       text-align: center;
-      margin: 0 0.5em;
+      padding: 0.2em;
+      margin: 0 0.2em;
+      line-height: normal;
+      &.active {
+        background-color: $lightGray;
+      }
     }
   }
   .editor-body {

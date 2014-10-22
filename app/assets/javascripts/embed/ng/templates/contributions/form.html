@@ -2,9 +2,9 @@
   <div errors="errors"></div>
   <account-avatar></account-avatar>
   <div class="form">
-    <form name="contributeForm" class="contribution-form" ng-submit="submitComment()" ng-hide="">
+    <form name="contributeForm" class="contribution-form" ng-submit="submitComment()">
       <div class="body">
-        <wysiwyg ng-model="contribution"></wysiwyg>
+        <wysiwyg ng-model="contribution" active="{{activeVariable}}"></wysiwyg>
       </div>
       <button class="btn btn-submit">Post <i ng-show="busy" class="fa fa-spinner fa-spin"></i></button>
     </form>

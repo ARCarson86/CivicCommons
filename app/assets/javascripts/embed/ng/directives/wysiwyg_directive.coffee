@@ -16,22 +16,22 @@ angular.module 'civic.directives'
           '<editor-action action="underline">',
             '<i class="fa fa-underline"></i>',
           '</editor-action>',
-          '<a href class="editor-button" ng-class="{active: attachLink}" ng-click="attachLink = !attachLink; focusLink()">',
+          '<a href class="editor-button" ng-class="{active: attachment == \'link\'}" ng-click="toggleAttachment(\'link\')">',
             '<i class="fa fa-link"></i>',
           '</a>',
-          '<a href class="editor-button" ng-click="attachImg = !attachImg">',
+          '<a href class="editor-button" ng-class="{active: attachment==\'image\'}" ng-click="toggleAttachment(\'image\')">',
             '<i class="fa fa-image"></i>',
           '</a>',
         '</div>',
         '<div class="editor-body" contenteditable ng-model="contribution.content"></div>',
-        '<div class="editor-attachments" ng-show="(attachLink || attachImg)">',
-          '<div ng-show="attachLink" class="editor-link">',
+        '<div class="editor-attachments" ng-show="attachment">',
+          '<div ng-show="attachment == \'link\'" class="editor-link">',
             '<div class="badge">',
               '<i class="fa fa-link"></i>',
             '</div>',
             '<input type="text" ng-model="contribution.url" placeholder="Enter a URL" />',
           '</div>',
-          '<editor-images contribution="contribution" ng-show="attachImg"></editor-images>'
+          '<editor-images contribution="contribution" ng-if="attachment==\'image\'"></editor-images>',
         '</div>',
       '</div>'
     ].join ''
@@ -42,13 +42,24 @@ angular.module 'civic.directives'
       linkEl = angular.element(attachmentsEl.children()[0])
       linkInputEl = angular.element(linkEl.children()[1])
 
-      scope.attachImg = true if scope.contribution?.attachment
-      scope.attachLink = true if scope.contribution?.url
-      editorBodyEl[0].focus()
+      scope.attachment = 'image' if scope.contribution?.attachment
+      scope.attachment = 'link' if scope.contribution?.url
 
-      scope.focusLink = ->
+      focusElement = (element)->
         $timeout ->
-          linkInputEl[0].focus()
+          element[0].focus()
+
+      attrs.$observe 'active', (isActive) ->
+        focusElement(editorBodyEl) if isActive
+
+      focusElement(editorBodyEl)
+
+      scope.toggleAttachment = (attachment) ->
+        scope.attachment = if scope.attachment == attachment then '' else attachment
+        scope.contribution?.url = null if scope.attachment == 'image'
+        scope.contribution?.attachment = null if scope.attachment == 'link'
+        focusElement(linkInputEl) if scope.attachment == 'link'
+
 
       return
   ]
