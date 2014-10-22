@@ -1,5 +1,5 @@
 angular.module 'civic.directives'
-  .directive 'contribution', ['RecursionHelper', (RecursionHelper) ->
+  .directive 'contribution', ['RecursionHelper', 'Account', (RecursionHelper, Account) ->
     restrict: 'E'
     templateUrl: 'contributions/contribution.html'
     replace: true
@@ -16,6 +16,13 @@ angular.module 'civic.directives'
           .on 'mouseleave', (event) ->
             scope.showactions = false
             scope.$apply()
+        Account.registerObserverCallback 'sessionState', (data) ->
+          scope.user = data
+        scope.deleteContribution = ->
+          console.log scope.contribution
+          scope.contribution.$delete {}, (data) ->
+            scope.contribution = null
+
 
   ]
 

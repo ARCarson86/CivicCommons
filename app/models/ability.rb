@@ -39,7 +39,7 @@ class Ability
     can :index, Contribution, parent_id: nil
 
     if user.persisted?
-      can [:create, :update], Contribution, owner: user.id
+      can [:create, :update, :destroy], Contribution, owner: user.id
     end
 
     if user.admin?

@@ -1,10 +1,13 @@
-<div class="contribution row" id="contribution-{{contribution.id}}">
+<div class="contribution row" ng-show="contribution" id="contribution-{{contribution.id}}">
   <user-avatar user="contribution.author()"></user-avatar>
   <div class="content">
     <header>
       <div class="actions pull-right" ng-show="showactions">
         <a href ng-click="editContribution = !editContribution" ng-show="user.admin || (user.id == contribution.owner_id && contribution.editable())">
           <i class="fa fa-edit"></i>
+        </a>
+        <a href ng-click="deleteContribution()" ng-show="user.admin || (user.id == contribution.owner_id && contribution.editable())">
+          <i class="fa fa-trash"></i>
         </a>
         <a href ng-click="minimized = !minimized" ng-show="contribution.contributions.length > 0">
           <i class="fa" ng-class="minimized ? 'fa-plus' : 'fa-minus'"></i>

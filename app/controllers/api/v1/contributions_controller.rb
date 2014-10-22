@@ -20,6 +20,14 @@ class Api::V1::ContributionsController < Api::V1::BaseController
     render 'show'
   end
 
+  def destroy
+    if @contribution.destroy
+      render json: {
+        success: true
+      }
+    end
+  end
+
   def flag
     Tos.send_violation_complaint (current_person || Person.new), @contribution, (params[:reason] || 'No Reason Given')
     render json: {
