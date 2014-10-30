@@ -721,16 +721,21 @@ textarea {
 }
 
 .editable {
-  .contribution-attachments, .contribute-actions {
+  .contribution-attachments, .contribute-actions, .post-as-moderator {
     display: none;
   }
   &.editor-active {
-    .contribution-attachments, .contribute-actions {
+    .contribution-attachments, .contribute-actions, .post-as-moderator {
       display: block;
     }
   }
 }
 
+.post-as-moderator {
+  > span {
+    white-space: nowrap;
+  }
+}
 .contribution-blocked {
   background-color: #EEE;
   border: 1px solid #000;
