@@ -1,11 +1,13 @@
 <% if conversation.moderated_by?(current_person) %>
-  <div>
+  <div class="post-as-moderator">
     As the moderator, you can help guide the conversation by posting important responses as "moderator posts". Would you like to make this a moderator post?
-    <%= label_tag :contribution_moderator_post_false, class: "plain" do %>
-      <%= form.radio_button :moderator_post, false, checked: "checked"  %> No
-    <% end %>
-    <%= label_tag :contribution_moderator_post_true, class: "plain" do %>
-      <%= form.radio_button :moderator_post, true  %> Yes
-    <% end %>
+    <span class="checkboxes">
+      <%= label_tag :contribution_moderator_post_false, class: "plain" do %>
+        <%= form.radio_button :moderator_post, false, checked: "checked"  %> No
+      <% end %>
+      <%= label_tag :contribution_moderator_post_true, class: "plain" do %>
+        <%= form.radio_button :moderator_post, true  %> Yes
+      <% end %>
+    </span>
   </div>
 <% end %>
