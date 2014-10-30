@@ -1,0 +1,39 @@
+<div id="ajax-login-container">
+  <p>Please login to continue. If you don't have an account, please <%= link_to 'register', secure_registration_form_url %>.</p>
+  <%= form_for(resource, :url => people_login_compact_path(), method: 'POST') do |f| %>
+    <p class="validation-error">
+      <%= flash.inspect %>
+    </p>
+    <fieldset class="form-group">
+      <div class="form-block">
+        <%= f.label :email, 'Email:' %>
+        <%= f.text_field :email, :placeholder => "me@johnnyappleseed.com",  :class => 'textbox' %>
+      </div>
+      <div class="form-block">
+        <%= f.label :password, 'Password:' %>
+        <%= f.password_field :password,  :class => 'textbox' %>
+      </div>
+      <p>
+        <%= f.check_box :remember_me, class: 'checkbox' %>
+        <%= f.label :remember_me, 'Remember me on this computer', class: 'checkbox' %>
+      </p>
+    </fieldset>
+
+    <fieldset class="footer">
+      <%= f.submit 'Login', :class => 'submit'  %>
+    </fieldset>
+  <% end %>
+  <p>
+    <div class="social-holder">
+      <div class="sign-in-social">
+        <span>Sign in with</span>
+        <%= image_tag ('arrow.png') %>
+      </div>
+      <% Authentication::PROVIDERS.each do |provider| %>
+        <%= link_to person_omniauth_authorize_path(provider.to_sym, :login => "correct"), {style: "margin-right: 0;"} do %>
+          <div class="social-link-sign <%= provider %>"></div>
+        <% end %>
+      <% end %>
+    </div>
+  </p>
+</div>

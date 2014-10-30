@@ -1,11 +1,11 @@
 class SessionsController < Devise::SessionsController
-  layout 'devise/sessions', except: [:popup_new]
-  layout '_popup', only: [:popup_new]
+  layout 'devise/sessions', only: [:new, :create, :ajax_new, :ajax_create]
+  layout 'compact', only: [:new_compact, :create_compact]
   include RegionHelper
 
-  prepend_before_filter :require_no_authentication, :only => [:new, :create, :ajax_new, :ajax_create]
-  prepend_before_filter :allow_params_authentication!, :only => [:create, :ajax_create]
-  before_filter :require_ssl, :only => [:new, :create]
+  prepend_before_filter :require_no_authentication, :only => [:new, :create, :ajax_new, :ajax_create, :new_compact, :create_compact]
+  prepend_before_filter :allow_params_authentication!, :only => [:create, :ajax_create, :create_compact]
+  before_filter :require_ssl, :only => [:new, :create, :new_compact, :create_compact]
   skip_before_filter :require_no_ssl
   after_filter :update_signin_cookie
 
@@ -30,6 +30,7 @@ class SessionsController < Devise::SessionsController
 
   # POST /resource/ajax_login
   def ajax_create
+    Rails.logger.info 'ajax create'
     resource = warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#new")
     sign_in(resource_name, resource)
     if session.has_key?(:close_modal_on_exit) and session[:close_modal_on_exit]
@@ -47,7 +48,16 @@ class SessionsController < Devise::SessionsController
     end
   end
 
-  def popup_new
+  def new_compact
+    resource = build_resource
+    clean_up_passwords(resource)
+    respond_with_navigational(resource, stub_options(resource)){ render_with_scope :new_compact }
+  end
+
+  def create_compact
+    resource = warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#new_compact")
+    sign_in(resource_name, resource)
+    redirect_to people_login_compact_path
   end
 
 end

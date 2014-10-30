@@ -118,6 +118,10 @@ Civiccommons::Application.routes.draw do
     get '/registrations/principles', to: 'registrations#principles'
     get  "/organizations/register/new", :to => "registrations#new_organization", :as => "new_organization_registration"
     post "/organizations/register", :to => "registrations#create_organization", :as => "organization_registration"
+
+    get '/people/login/compact', :to=>'sessions#new_compact'
+    post '/people/login/compact', to: 'sessions#create_compact'
+
   end
 
   #Sort and Filters
