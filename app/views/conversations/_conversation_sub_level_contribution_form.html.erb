@@ -15,7 +15,6 @@
         <%= f.text_area :content, rows: 2, class: "thread-reply", id: "contribution-content-#{parent.id}", placeholder: "Click here to respond to #{parent.person.first_name || parent.person.name}" %>
 
         <%= render partial: '/contributions/contribution_attachments_form', locals: {form: f, contribution: @contribution} %>
-        <%= render partial: '/contributions/contribution_moderator_form', locals: {form: f, conversation: @conversation} %>
 
         <%= render partial: '/contributions/contribution_moderator_form', locals: {form: f, conversation: @conversation} %>
 
