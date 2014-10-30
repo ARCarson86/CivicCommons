@@ -1,4 +1,4 @@
-<div class="response <%= css_classes ||= "" %>" id="<%= "show-contribution-#{contribution.id}" %>">
+<div class="response <%= css_classes ||= "" %> <%= "moderator-post" if contribution.moderator_post? %>" id="<%= "show-contribution-#{contribution.id}" %>">
   <div class="response-inner">
     <%= render :partial => '/contributions/contribution_aux_actions', locals: {contribution:contribution, is_sub_contribution: true} %>
     <% cache ["sub_level_contribution", contribution.id, contribution.updated_at] do %>
