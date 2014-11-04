@@ -95,7 +95,6 @@
     $(document).delegate(".thread .response", "click", function(event) {
       $(this).toggleClass("show-all");
     });
-    init_date_changer();
 
     if (window.location.hash != "") {
       goToNode(parseInt(_.last(window.location.hash.split('-'))));
@@ -128,22 +127,6 @@
       var to_footer = $("#footer").offset().top - $("#recent-activity .activities").offset().top;
       $("#recent-activity .activities").height(Math.min(to_bottom, to_footer));
     }
-  }
-
-  function init_date_changer() {
-    var now = moment();
-    $(".date[data-date]").each(function(index, element) {
-      var mmnt = moment($(this).data("date"));
-      mmnt.format();
-      if (now.diff(mmnt, "days") <= 7) {
-        $(this).text(mmnt.fromNow());
-      }
-    });
-    window.dateListenerMinutes = setInterval(function() {
-      $(".date[data-minutes-ago]").each(function(index, element) {
-        $(this).text(moment($(this).data("date")).fromNow());
-      });
-    }, 60000);
   }
 
   function goToNode(node_id) {
