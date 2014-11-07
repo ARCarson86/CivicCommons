@@ -391,6 +391,10 @@ class Person < ActiveRecord::Base
     end
   end
 
+  def facebook_authenticated?
+    social_authenticated? 'facebook'
+  end
+
   def authentication_type(provider)
     case provider
     when "facebook"
@@ -447,7 +451,7 @@ class Person < ActiveRecord::Base
   # overriding devise's recoverable
   def self.send_reset_password_instructions(attributes={})
     recoverable = find_or_initialize_with_errors(authentication_keys, attributes, :not_found)
-    recoverable.send_reset_password_instructions if recoverable.persisted? && !recoverable.facebook_authenticated?
+    recoverable.send_reset_password_instructions if recoverable.persisted? && !recoverable.social_authenticated?('facebook')
     recoverable
   end
 

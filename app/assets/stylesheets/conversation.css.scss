@@ -298,7 +298,7 @@
 
 .moderator-post {
   padding: 0;
-  .primary, .response-inner {
+  .primary, > .response-inner {
     @include box-sizing(border-box);
     padding: 10px;
     background-color: rgba(136, 204, 136, 0.3);

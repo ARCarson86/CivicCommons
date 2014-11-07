@@ -7,7 +7,7 @@ class PasswordsController < Devise::PasswordsController
   def create
     self.resource = resource_class.send_reset_password_instructions(params[resource_name])
 
-    if resource.facebook_authenticated?
+    if resource.social_authenticated?('facebook')
       @fb_auth_forgot_password = true
       
       # resets the resource, as new instance
