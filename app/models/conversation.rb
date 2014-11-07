@@ -243,6 +243,7 @@ require 'obscenity/active_model'
                      order('count_all DESC, max_contributions_created_at DESC')
 
     results = results.where("contributions.created_at > ?", Time.now - daysago.days) if daysago
+    results = results.where("conversations.created_at > ?", Time.now - daysago.days) if daysago
     return results
   end
 
