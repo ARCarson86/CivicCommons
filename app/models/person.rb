@@ -391,6 +391,10 @@ class Person < ActiveRecord::Base
     end
   end
 
+  def facebook_authenticated?
+    social_authenticated? 'facebook'
+  end
+
   def authentication_type(provider)
     case provider
     when "facebook"
