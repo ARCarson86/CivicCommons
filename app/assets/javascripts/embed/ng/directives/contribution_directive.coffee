@@ -1,5 +1,5 @@
 angular.module 'civic.directives'
-  .directive 'contribution', ['RecursionHelper', 'Account', (RecursionHelper, Account) ->
+  .directive 'contribution', ['$window', 'RecursionHelper', 'Account', ($window, RecursionHelper, Account) ->
     restrict: 'E'
     templateUrl: 'contributions/contribution.html'
     replace: true
@@ -19,9 +19,9 @@ angular.module 'civic.directives'
         Account.registerObserverCallback 'sessionState', (data) ->
           scope.user = data
         scope.deleteContribution = ->
-          console.log scope.contribution
-          scope.contribution.$delete {}, (data) ->
-            scope.contribution = null
+          if $window.confirm('Are you sure you want to delete this contribution?')
+            scope.contribution.$delete {}, (data) ->
+              scope.contribution = null
 
 
   ]
