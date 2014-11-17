@@ -79,6 +79,13 @@ angular.module 'civic.directives'
             scope.errors.push error for error in data.errors
           else
             scope.errors.push 'An unknown error occurred'
+      scope.cancel = ->
+        unless scope.contribution.is_new_record()
+          scope.$parent.$parent.editContribution = false
+        else if scope.contribution.parent_id
+          scope.contribution.reply()
+        else
+          scope.$parent.contributionActive = false
 
   ]
 

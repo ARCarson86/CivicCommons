@@ -347,6 +347,15 @@ p {
     background-color: $lightBlue;
     color: white;
   }
+
+  &.btn-plain {
+    color: $gray;
+    background-color: transparent;
+    font-weight: normal;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
 load-more-contributions {
