@@ -6,7 +6,7 @@ class Api::V1::ContributionsController < Api::V1::BaseController
   before_filter :update_embedly_attributes, only: [:create, :update]
 
   def index
-    @contributions = @contributions.includes(:person, children: [:person]).order("created_at DESC").paginate(page: params[:page], per_page: 20)
+    @contributions = @contributions.where(parent_id: nil).includes(:person, children: [:person]).order("created_at DESC").paginate(page: params[:page], per_page: 20)
   end
 
   def create
