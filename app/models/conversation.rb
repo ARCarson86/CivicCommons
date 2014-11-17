@@ -23,7 +23,7 @@ require 'obscenity/active_model'
   end
   has_many :contributions, dependent: :destroy, as: :contributable
   alias_method :confirmed_contributions, :contributions
-  has_many :participants, through: :contributions, source: :person, order: 'contributions.created_at DESC'
+  has_many :participants, through: :contributions, uniq: true, source: :person, order: 'contributions.created_at DESC'
   alias_method :contributors, :participants
 
   accepts_nested_attributes_for :contributions, :allow_destroy => true
