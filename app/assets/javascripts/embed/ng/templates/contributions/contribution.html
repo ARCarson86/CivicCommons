@@ -46,12 +46,14 @@
 
     <div class="comment-meta">
       <span ng-hide="contribution.parent_id">
+        <a href ng-click="minimized = !minimized">
         <ng-pluralize count="contribution.contributions.length" 
         when="{'0': 'No Comments',
                'one': '1 Comment',
                'other': '{} Comments'
           }">
         </ng-pluralize>
+        </a>
         | 
       </span>
       <sign-in-link>
