@@ -10,6 +10,8 @@ require 'obscenity/active_model'
 
   attr_accessor :agree_to_be_civil, :other_topic
 
+  default_scope where(:private_label_id => nil)
+
   has_many :actions, :dependent => :destroy
   has_many :activities
   has_many :notifications
@@ -68,6 +70,7 @@ require 'obscenity/active_model'
 
   belongs_to :person, :foreign_key => "owner"
   belongs_to :metro_region
+  belongs_to :private_label
 
   delegate :name, :to => :person, :prefix => true
   delegate :standard_issue, :to => :issues

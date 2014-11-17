@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140808180254) do
+ActiveRecord::Schema.define(:version => 20141117131122) do
 
   create_table "actions", :force => true do |t|
     t.integer  "conversation_id"
@@ -206,6 +206,7 @@ ActiveRecord::Schema.define(:version => 20140808180254) do
     t.string   "embedly_type"
     t.boolean  "top_level_contribution",                        :default => false
     t.boolean  "moderator_post"
+    t.integer  "private_label_id"
   end
 
   add_index "contributions", ["conversation_id"], :name => "index_contributions_on_conversation_id"
@@ -249,6 +250,7 @@ ActiveRecord::Schema.define(:version => 20140808180254) do
     t.boolean  "permission_to_use_image"
     t.text     "starter"
     t.boolean  "expanded"
+    t.integer  "private_label_id"
   end
 
   add_index "conversations", ["cached_slug"], :name => "index_conversations_on_cached_slug", :unique => true
@@ -586,6 +588,21 @@ ActiveRecord::Schema.define(:version => 20140808180254) do
 
   add_index "petitions", ["conversation_id"], :name => "index_petitions_on_conversation_id"
   add_index "petitions", ["person_id"], :name => "index_petitions_on_person_id"
+
+  create_table "private_label_administrators", :force => true do |t|
+    t.integer  "person_id"
+    t.integer  "private_label_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  create_table "private_labels", :force => true do |t|
+    t.string   "name"
+    t.string   "namespace"
+    t.string   "domain"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "rating_descriptors", :force => true do |t|
     t.string   "title"
