@@ -3,8 +3,7 @@
     <p style="line-height:1.4em;">Hi:</p>
     <p style="line-height:1.4em;"><%= @user.name %> wants to inform The Civic Commons about a potential TOS violation with the contribution content</b></p>
     <p style="line-height:1.4em;">
-      <% Rails.logger.info @contribution %>
-      <% if @contribution.contributable -%>
+      <% if @contribution.contributable and @contribution.contributable.class == Conversation -%>
         Posted on:
         <%= link_to( short_title(@contribution.contributable.title), conversation_node_url( @contribution ) ) -%>
       <% end -%>
