@@ -3,19 +3,19 @@
   <div class="content">
     <header>
       <div class="actions pull-right" ng-show="showactions">
-        <a href ng-click="editContribution = !editContribution" ng-show="user.admin || (user.id == contribution.owner_id && contribution.editable())">
+        <a href ng-click="editContribution = !editContribution" ng-show="user.admin || (user.id == contribution.owner_id && contribution.editable())" title="Edit post">
           <i class="fa fa-edit"></i>
         </a>
-        <a href ng-click="moderateActive = !moderateActive" ng-show="user.admin">
+        <a href ng-click="moderateActive = !moderateActive" ng-show="user.admin" title="Moderate post">
           <i class="fa fa-ban"></i>
         </a>
-        <a href ng-click="deleteContribution()" ng-show="user.admin || (user.id == contribution.owner_id && contribution.editable())">
+        <a href ng-click="deleteContribution()" ng-show="user.admin || (user.id == contribution.owner_id && contribution.editable())" title="Delete post">
           <i class="fa fa-trash"></i>
         </a>
-        <a href ng-click="minimized = !minimized" ng-show="contribution.contributions.length > 0">
+        <a href ng-click="minimized = !minimized" ng-show="contribution.contributions.length > 0" title="{{minimized ? 'Collapse' : 'Expand'}}">
           <i class="fa" ng-class="minimized ? 'fa-plus' : 'fa-minus'"></i>
         </a>
-        <a href ng-click="flagActive = !flagActive">
+        <a href ng-click="flagActive = !flagActive" title="Flag this post as a violation of the Terms of Service">
           <i class="fa fa-flag"></i>
         </a>
       </div>
