@@ -3,8 +3,6 @@ require 'obscenity/active_model'
 class Contribution < ActiveRecord::Base
   include Visitable
 
-  default_scope where(:private_label_id => nil)
-
   searchable :include => [:person, :conversation, :issue], :ignore_attribute_changes_of => [ :total_visits, :recent_visits, :last_visit_date, :updated_at, :recent_rating ] do
     text :title
     text :description, :stored => true
@@ -31,6 +29,7 @@ class Contribution < ActiveRecord::Base
   delegate :title, :to => :item, :prefix => true
   delegate :name, :to => :person, :prefix => true
 
+  # Private Label Relations
   belongs_to :private_label
   #############################################################################
   # Validations

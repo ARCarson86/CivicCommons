@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :fetch_notifications
   before_filter :require_no_ssl
+  before_filter :enable_swayze
   helper_method :with_format, :default_region, :region_recent_conversations
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -24,6 +25,12 @@ class ApplicationController < ActionController::Base
   end
 
 protected
+
+  def enable_swayze
+    domain = request.subdomains.first
+    @swayze = Swayze.new(domain)
+  end
+
   def verify_admin
     if require_user and not current_person.admin?
       flash[:error] = "You must be an admin to view this page."

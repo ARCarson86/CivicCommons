@@ -54,6 +54,10 @@ class Person < ActiveRecord::Base
   # Setup protected attributes
   attr_protected :admin, :blog_admin
 
+  # Private Label Relations
+  has_many :private_label_administrators
+  has_many :private_labels, :through => :private_label_administrators
+
   has_many :authentications, :dependent => :destroy
   has_many :organization_members
   has_many :organizations,

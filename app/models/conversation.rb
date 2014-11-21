@@ -10,8 +10,6 @@ require 'obscenity/active_model'
 
   attr_accessor :agree_to_be_civil, :other_topic
 
-  default_scope where(:private_label_id => nil)
-
   has_many :actions, :dependent => :destroy
   has_many :activities
   has_many :notifications
@@ -47,7 +45,7 @@ require 'obscenity/active_model'
 
   has_many :conversations_topics, :dependent => :destroy
   has_many :topics, :through => :conversations_topics, :uniq => true
-  validates_length_of :topics, :minimum => 1, :message => 'Please select at least one topic for your conversation', :if => 'self.other_topic.nil?'
+  validates_length_of :topics, :minimum => 1, :message => 'Please select at least one topic for your conversation', :if => 'self.other_topic.nil? && self.private_label_id.nil?'
 
   accepts_nested_attributes_for :topics
 
@@ -95,8 +93,8 @@ require 'obscenity/active_model'
   validates_length_of :title, :maximum => 50, :message => 'Please enter a title with less than 50 characters', :on => :create
   validates_presence_of :summary, :message => "Please give us a short summary."
   validates_format_of :link, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix, :on => :create, :allow_blank => true, :message => "Link must look like a url (example http://google.com)."
-  validates_presence_of :zip_code, :message => "Please give us a zip code for a little geographic context."
-  validates_presence_of :metro_region_id, :message => 'Please give us a Location name.'
+  validates_presence_of :zip_code, :message => "Please give us a zip code for a little geographic context.", :if => 'self.private_label_id.nil?'
+  validates_presence_of :metro_region_id, :message => 'Please give us a Location name.', :if => 'self.private_label_id.nil?'
   validates :title,  obscenity: { sanitize: true, replacement: :vowels }
   validates :summary,  obscenity: { sanitize: true, replacement: :vowels }
 
@@ -104,6 +102,8 @@ require 'obscenity/active_model'
   around_create :send_notification_on_other_topic
 
   friendly_id :title, :use => :slugged
+
+  default_scope where(private_label_id: nil)
   def should_generate_new_friendly_id?
     new_record? || slug.nil?
   end

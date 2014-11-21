@@ -124,6 +124,14 @@ Civiccommons::Application.routes.draw do
     get 'conversations/:filter', to: 'conversations#filter', as: 'conversations_filter'
   end
 
+  namespace "private_label", path: '' do
+    constraints subdomain: /.+\.pl/ do
+      resources :conversations do
+        resources :contributions
+      end
+    end
+  end
+
 #Resource Declared Routes
   #Declare genericly-matched GET routes after Filters
 

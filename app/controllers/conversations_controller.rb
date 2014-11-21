@@ -253,7 +253,7 @@ class ConversationsController < ApplicationController
   end
 
   def updates
-    @conversation = Conversation.find(params[:id])
+    @conversation = Conversation.unscoped.find(params[:id])
     @ratings = RatingGroup.ratings_for_conversation_by_contribution_with_count(@conversation, current_person)
     @new_contribution = @conversation.contributions.new
     @time = params[:time].to_datetime
