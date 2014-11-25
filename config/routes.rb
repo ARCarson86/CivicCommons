@@ -12,6 +12,23 @@ Civiccommons::Application.routes.draw do
 
   delete "/users/:id/:provider/unlink" => "unlink#delete", as: :unlink
 
+  #Private Label Routes
+  namespace "private_label", path: '' do
+    constraints subdomain: /.+\.pl/ do
+      root to: 'homepage#show'
+      namespace "admin" do
+        root to: 'dashboard#show'
+        resources :dashboard, only: [:show]
+        resources :users
+        resources :conversations
+        resources :contributions
+      end
+      resources :conversations, only: [:index, :show] do
+        resources :contributions
+      end
+    end
+  end
+
   #Application Root
   root to: "homepage#show"
 
@@ -122,14 +139,6 @@ Civiccommons::Application.routes.draw do
   #Sort and Filters
   constraints FilterConstraint do
     get 'conversations/:filter', to: 'conversations#filter', as: 'conversations_filter'
-  end
-
-  namespace "private_label", path: '' do
-    constraints subdomain: /.+\.pl/ do
-      resources :conversations do
-        resources :contributions
-      end
-    end
   end
 
 #Resource Declared Routes

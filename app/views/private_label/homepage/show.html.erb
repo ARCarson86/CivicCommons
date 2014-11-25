@@ -1,0 +1,6 @@
+<%= @people.count %>
+<br>
+<% @conversations.each do |convo| %>
+	<%= convo.title %> - <%= convo.summary %>
+	<br>
+<% end %>

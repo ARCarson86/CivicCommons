@@ -1,6 +1,8 @@
 class PrivateLabel::ApplicationController < ActionController::Base
 	before_filter :enable_swayze
 
+	layout 'private_label/layouts/application'
+
 	protected
 	def enable_swayze
     domain = request.subdomains.first

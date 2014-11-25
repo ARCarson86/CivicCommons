@@ -1,0 +1,33 @@
+<div id="header-wrapper">
+  <div id="header">
+    <%= link_to 'The Civic Commons', root_url, :id => 'logo', :title => 'The Civic Commons' %>
+    <div id="header-utility">
+      <% if current_person %>
+        <%= render :partial => 'notifications/notification' %>
+        <div id="login-status">
+          <%= render :partial => 'layouts/logged_in' %>
+        </div>
+      <% else %>
+        <div class="signed-out" id="login-status">
+          <div class="offset-2">
+            <%= render :partial => 'layouts/single_column' %>
+          </div>
+        </div>
+      <% end %>
+      <div class="important"></div>
+    </div>
+  </div>
+</div>
+<div id="nav">
+  <ul class="main-nav">
+    <li>
+      <a href="/" title="Home">Home</a>
+    </li>
+    <li>
+      <a href="/conversations" title="Conversations">Conversations</a>
+    </li>
+  </ul>
+  <div class="nav-search">
+    <%= render :partial => 'search/search', locals: { filter_type: params[:filter] } %>
+  </div>
+</div>

@@ -596,12 +596,20 @@ ActiveRecord::Schema.define(:version => 20141117131122) do
     t.datetime "updated_at",       :null => false
   end
 
+  create_table "private_label_people", :force => true do |t|
+    t.integer  "private_label_id"
+    t.integer  "person_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
   create_table "private_labels", :force => true do |t|
     t.string   "name"
     t.string   "namespace"
     t.string   "domain"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.text     "terms_of_service"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "rating_descriptors", :force => true do |t|
