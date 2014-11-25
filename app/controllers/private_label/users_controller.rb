@@ -9,7 +9,7 @@ class PrivateLabel::UsersController < PrivateLabel::ApplicationController
 	end
 
 	def new
-		@person = Person.new()
+		@person = Person.new
 	end
 
 	def create
