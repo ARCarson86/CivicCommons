@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   end
 
   def fetch_notifications
-    @notifications = Notification.where(receiver_id:current_person).order("created_at desc") if current_person
+    @notifications = Notification.where(receiver_id:current_person).order("created_at desc").limit(25) if current_person
   end
 
 protected
