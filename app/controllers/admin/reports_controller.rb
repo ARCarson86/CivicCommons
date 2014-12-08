@@ -67,13 +67,14 @@ require 'csv'
 			@pccsv = CSV.generate do |csv|
 				csv << ["Conversation ID", "Conersation", "Contribution ID", "Posted", "Contributor", "Contribution Title", "Contribution Content", "Contribution Attachment", "Persuasive Ratings", "Informative Ratings", "Inspiring Ratings", "Sort ID", "Sort Level"]
 				@records.each do |record|
-					record[6] = ActionController::Base.helpers.strip_tags(record[6])
-					record[6] = record[6].gsub!(/&nbsp;/i,"")
+					#record[6] = ActionController::Base.helpers.strip_tags(record[6])
+					record[6].gsub!(/&nbsp;/i," ")
+					record[6] = Nokogiri::HTML(record[6]).text
 					csv << record
 				end
 			end
 			respond_to do |format|
-				format.csv { send_data @pccsv, type: 'text/csv', filename: "#{Issue.find(params[:project_conversations][:id]).name} Conversations #{DateTime.now.strftime("%F %H:%M")}.csv" }
+				format.csv { send_data @pccsv, type: 'text/csv', filename: "#{Issue.find(params[:project_conversations][:id]).name} Conversations #{DateTime.now.strftime("%F %H:%M")}.csv", encoding: "utf-8" }
 			end
 		else
 			redirect_to reports_path, :flash => { :error => "Project cannot be left blank!" }
