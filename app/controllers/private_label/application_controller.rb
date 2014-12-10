@@ -6,6 +6,6 @@ class PrivateLabel::ApplicationController < ActionController::Base
 	protected
 	def enable_swayze
     domain = request.subdomains.first
-    @swayze = Swayze.new(domain)
+    @swayze = ::Swayze.new(domain)
   end
 end

@@ -23,6 +23,7 @@ Civiccommons::Application.routes.draw do
         resources :conversations
         resources :contributions
       end
+      resources :users, only: [:show, :new, :create, :edit, :update]
       resources :conversations, only: [:index, :show] do
         resources :contributions
       end

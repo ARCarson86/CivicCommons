@@ -1,11 +1,7 @@
 class PrivateLabel::UsersController < PrivateLabel::ApplicationController
-
-	def index
-		@people = @swayze.people
-	end
+	before_filter :get_private_user, only: [:show, :edit]
 
 	def show
-		@person = @swayze.people.find(params[:id])
 	end
 
 	def new
@@ -13,6 +9,21 @@ class PrivateLabel::UsersController < PrivateLabel::ApplicationController
 	end
 
 	def create
-		@person = Person.new(params[:person])
+		if params[:person_id]
+			@person = Person.find(params[:person_id])
+		else
+			@person = Person.new(params[:person])
+			@person.save
+		end
+		@private_label_person = PrivateLabelPerson.new(private_label_id: @swayze.id, person_id: @person.id)
+	end
+
+	def edit
+	end
+
+	private
+
+	def get_private_user
+		@person = @swayze.people.find(params[:id])
 	end
 end
