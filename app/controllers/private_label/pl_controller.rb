@@ -1,4 +1,4 @@
-class PrivateLabel::ApplicationController < ActionController::Base
+class PrivateLabel::PlController < ActionController::Base
 	before_filter :enable_swayze
 
 	layout 'private_label/layouts/application'

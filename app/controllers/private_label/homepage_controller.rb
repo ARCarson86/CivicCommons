@@ -1,4 +1,4 @@
-class PrivateLabel::HomepageController < PrivateLabel::ApplicationController
+class PrivateLabel::HomepageController < PrivateLabel::PlController
 
 	def show
 		@people = @swayze.people
