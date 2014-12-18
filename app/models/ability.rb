@@ -19,27 +19,33 @@ class Ability
       :admin_curated_feeds ,
       :admin_surveys ,
       :admin_email_restrictions ,
-      :admin_widget_stats, 
-      :admin_content_item_links, 
+      :admin_widget_stats,
+      :admin_content_item_links,
       :admin_curated_feed_items,
       :admin_managed_issue_pages,
       :admin_regions,
       :admin_user_registrations,
       :admin_redirects
       ]
-    
-  
-  def initialize(user)
-    
-    # CanCan is curently used only on the admin controller.
-    if user.admin?
-      can :manage,  :all
-    elsif user.blog_admin?
-      can :manage,  :admin_dashboard
-      can :manage, ContentItem
-      can :manage, :admin_blog_posts
+
+  def initialize(user, private_label={})
+
+    unless user.blank?
+      if user.private_labels.include? private_label
+        can :manage, PrivateLabelPerson
+        can :manage, PrivateLabel
+        can :manage, Conversation.where(private_label_id: private_label.id).first
+      end
+      # CanCan is curently used only on the admin controller.
+      if user.admin?
+        can :manage,  :all
+      elsif user.blog_admin?
+        can :manage,  :admin_dashboard
+        can :manage, ContentItem
+        can :manage, :admin_blog_posts
+      end
     end
-    
+
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

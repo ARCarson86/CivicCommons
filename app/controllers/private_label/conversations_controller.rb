@@ -1,4 +1,4 @@
-class PrivateLabel::ConversationsController < PrivateLabel::ApplicationController
+class PrivateLabel::ConversationsController < PrivateLabel::PlController
 
 	def index
 		@conversations = @swayze.conversations

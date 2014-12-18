@@ -1,4 +1,4 @@
-class PrivateLabel::UsersController < PrivateLabel::ApplicationController
+class PrivateLabel::UsersController < PrivateLabel::plController
 	before_filter :get_private_user, only: [:show, :edit]
 
 	def show
