@@ -546,3 +546,27 @@ footer {
     }
   }
 }
+
+.sign-in-on-conversation {
+  margin-bottom: 1em;
+  overflow: hidden;
+  display: block;
+  border: 1px solid #cccccc;
+  color: #999999;
+  margin-right: 15px;
+  margin-left: 15px;
+  border-radius: 2px;
+  font-size: 1.5em;
+  height: 40px;
+  line-height: 36px;
+  padding: 0 0.5em;
+  background-color: #ececec;
+  text-align: center;
+  i {
+    margin-right: 10px;
+  }
+  a {
+    text-decoration: none;
+    font-size: 18px;
+  }
+}
