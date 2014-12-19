@@ -91,18 +91,24 @@ angular.module 'civic.directives'
 
   .directive 'loadMoreContributions', ['Contribution', '$window', '$q', (Contribution, $window, $q) ->
     restrict: 'E'
+    replace: true
     template: [
-      '<a href class="btn btn-block">',
-        'Load More ',
+      '<a href class="load-more-contributions btn btn-block" ng-hide="count == total">',
+        'Load More',' ',
         '<i class="fa fa-spinner fa-spin" ng-show="loading"></i>',
       '</a>'
     ].join ''
     link: (scope, element, attrs) ->
       scope.loading = false
 
-      element.on 'click', -> # click fallback for when infinite scrolling doesn't work
+      scope.total = Contribution.total()
+      scope.count = Contribution.count()
+
+      Contribution.registerObserverCallback ->
+        scope.count = Contribution.count()
+
+      element.on 'click', ->
         scope.loading = true
         Contribution.loadMore (data, headers) ->
           scope.loading = false
-          element.addClass "hide" if data.length < 20
   ]

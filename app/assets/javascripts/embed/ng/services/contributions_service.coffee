@@ -2,6 +2,7 @@ angular.module 'civic.services'
   .factory 'Contribution', ['$filter', '$resource', '$rootScope', 'CivicApi', 'User', ($filter, $resource, $rootScope, CivicApi, User) ->
     @page = 1
     @contributions = []
+    @count = 0
     observerCallbacks = []
 
     permitted_params = [ 'content', 'parent_id', 'attachment', 'url' ]
@@ -32,8 +33,10 @@ angular.module 'civic.services'
         method: 'GET'
         isArray: true
         cache: true
-        transformResponse: (data, headers) ->
-          contributions = angular.fromJson data
+        transformResponse: (data, headers) =>
+          responseData = angular.fromJson data
+          contributions = responseData.contributions
+          @count = responseData.total
           angular.forEach contributions, (item, i) ->
             contributions[i] = contributionResourceFromData item
           contributions
@@ -117,6 +120,13 @@ angular.module 'civic.services'
 
     Contribution.loadMore = (success, failure) =>
       Contribution.index page: ++@page, success, failure
+
+    Contribution.total = () =>
+      @count
+
+    Contribution.count = () =>
+      @contributions.length
+
 
     Contribution.prototype.save = (params, success, failure) ->
       if @is_new_record()
