@@ -73,15 +73,20 @@ angular.module 'civic.services'
         cache: false
         transformRequest: contributionJsonFromRequestObject
         transformResponse: (data, headersGetter) =>
-          contribution = new Contribution JSON.parse(data)
-          contribution.author = User.get contribution.owner_id
+          contribution = JSON.parse(data)
+          return data if contribution.errors
+          contribution = contributionResourceFromData contribution
+
           if contribution.parent_id is null
-            parent = Contribution.find contribution.parent_id
-            @contributions.unshift(contribution)
+            contributionIndex = _.findIndex @contributions, id: contribution.id
+            @contributions[contributionIndex] = contribution
           else
             parentIndex = _.findIndex @contributions, id: contribution.parent_id
-            @contributions[parentIndex].contributions.push contribution
+            contributionIndex = _.findIndex @contributions[parentIndex].contributions, id: contribution.id
+            @contributions[parentIndex].contributions[contributionIndex] = contribution
+
           Contribution.notifyObservers()
+
           return contribution
 
     Contribution.index = (params = {}, success = null, failure = null) =>

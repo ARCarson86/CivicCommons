@@ -8,14 +8,13 @@ getDocHeight = ->
 
 angular.module 'civic.services'
   .service 'IframeHeight', ['$rootScope', '$window', ($rootScope, $window) ->
-
-    @updateHeight = ->
-      $window.parent.postMessage JSON.stringify({iframeHeight: getDocHeight()}), '*'
+    @updateHeight = (height) ->
+      $window.parent.postMessage JSON.stringify({iframeHeight: height}), '*'
 
     $rootScope.$watch ->
       getDocHeight()
     , (newValue, oldValue) =>
-      @updateHeight()
+      @updateHeight(newValue)
 
     return
   ]
