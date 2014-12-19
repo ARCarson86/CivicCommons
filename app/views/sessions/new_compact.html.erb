@@ -2,7 +2,7 @@
   <p>Please login to continue. If you don't have an account, please <%= link_to 'register', secure_registration_form_url %>.</p>
   <%= form_for(resource, :url => people_login_compact_path(), method: 'POST') do |f| %>
     <p class="validation-error">
-      <%= flash.inspect %>
+      <%= flash[:alert] %>
     </p>
     <fieldset class="form-group">
       <div class="form-block">

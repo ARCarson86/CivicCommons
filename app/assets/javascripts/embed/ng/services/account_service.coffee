@@ -31,7 +31,7 @@ civicServices.factory 'Account', ['$rootScope', '$cacheFactory', '$cookies', '$r
       account
 
     Account.openLogin = ->
-      Account.loginWindow = $window.open '/people/popup_new_login', 'loginWindow', 'width=650, height=300, top=50, left=50'
+      Account.loginWindow = $window.open '/people/login/compact', 'loginWindow', 'width=650, height=300, top=50, left=50'
       return true
 
     Account.closeLogin = ->
