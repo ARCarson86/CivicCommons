@@ -15,23 +15,22 @@ class SearchService
     fields = accepted_fields(models)
     fields[:fragment_size] = -1
     region_metrocodes = options.delete(:region_metrocodes)
-    
+
     results = @search.search(models) do
       keywords(query) do
         highlight fields
       end
-      
+
       # If region_metrocodes present, then filter conversation and issues, Contribution, and ignore filter an other objects
       if region_metrocodes.present?
         classes_with_regional_metrocodes = [Conversation, ManagedIssue, Contribution]
         any_of do
           all_of do
              with(:class, classes_with_regional_metrocodes)
-             with(:region_metrocodes, region_metrocodes) 
+             with(:region_metrocodes, region_metrocodes)
           end
           without(:class, classes_with_regional_metrocodes)
         end
-        
       end
     end
 
@@ -69,9 +68,9 @@ class SearchService
 
   def accepted_fields(models)
     fields = {}
-    i = 0 
+    i = 0
     models.each do |mod|
-      case 
+      case
       when mod == Contribution then
         fields[i] = :content
       when mod == Conversation then

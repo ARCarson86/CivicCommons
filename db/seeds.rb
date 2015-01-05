@@ -9,21 +9,21 @@
 
 # Create an Admin
 
-admin = Person.create(email: "admin@admin.com", first_name: "Admin", last_name: "Admin", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
+admin = Person.create!(email: "admin@admin.com", first_name: "Admin", last_name: "Admin", password: "password", zip_code: "44221", proxy: true, confirmed_at: (Time.now - 1.days))
 admin.admin = true
-admin.save!
+admin.save
 
 # Create people
-user_1 = Person.create!(email: "nconan@test.com", first_name: "Neal", last_name: "Conan", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
-user_2 = Person.create!(email: "chayes@test.com", first_name: "Chauncy", last_name: "Hart", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
-user_3 = Person.create!(email: "rrowe@test.com", first_name: "Rob", last_name: "Rowe", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now)
-user_4 = Person.create!(email: "jduke@test.com", first_name: "Jenny", last_name: "Duke", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now, subscription_settings: "daily")
-user_5 = Person.create!(email: "bbaggins@test.com", first_name: "Barry", last_name: "Baggins", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now, subscription_settings: "daily")
-user_6 = Person.create!(email: "kruss@test.com", first_name: "Kurt", last_name: "Russ", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now, subscription_settings: "weekly")
-user_7 = Person.create!(email: "jross@test.com", first_name: "Jay", last_name: "Ross", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now, subscription_settings: "never")
-user_8 = Person.create!(email: "msmith@test.com", first_name: "Mike", last_name: "Smith", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now, subscription_settings: "realtime")
-user_9 = Person.create!(email: "acampman@test.com", first_name: "Adam", last_name: "Campman", password: "password", zip_code: "44221", proxy: true, confirmed_at: Time.now, tag_notification: false, subscription_settings: "weekly")
-user_10 = Person.create!(email: "Kreed@test.com", first_name: "Kenton", last_name: "Reed", password: "password", zip_code: "44221", proxy: true)
+user_1 = Person.create!(email: "nconan@test.com", first_name: "Neal", last_name: "Conan", password: "password", zip_code: "44221", proxy: true, confirmed_at: (Time.now - 1.days))
+user_2 = Person.create!(email: "chayes@test.com", first_name: "Chauncy", last_name: "Hart", password: "password", zip_code: "44221", proxy: true, confirmed_at: (Time.now - 1.days))
+user_3 = Person.create!(email: "rrowe@test.com", first_name: "Rob", last_name: "Rowe", password: "password", zip_code: "44221", proxy: true, confirmed_at: (Time.now - 1.days))
+user_4 = Person.create!(email: "jduke@test.com", first_name: "Jenny", last_name: "Duke", password: "password", zip_code: "44221", proxy: true, confirmed_at: (Time.now - 1.days))
+user_5 = Person.create!(email: "bbaggins@test.com", first_name: "Barry", last_name: "Baggins", password: "password", zip_code: "44221", proxy: true, confirmed_at: (Time.now - 1.days))
+user_6 = Person.create!(email: "kruss@test.com", first_name: "Kurt", last_name: "Russ", password: "password", zip_code: "44221", proxy: true, confirmed_at: (Time.now - 1.days))
+user_7 = Person.create!(email: "jross@test.com", first_name: "Jay", last_name: "Ross", password: "password", zip_code: "44221", proxy: true, confirmed_at: (Time.now - 1.days))
+user_8 = Person.create!(email: "msmith@test.com", first_name: "Mike", last_name: "Smith", password: "password", zip_code: "44221", proxy: true, confirmed_at: (Time.now - 1.days))
+user_9 = Person.create!(email: "acampman@test.com", first_name: "Adam", last_name: "Campman", password: "password", zip_code: "44221", proxy: true, confirmed_at: (Time.now - 1.days))
+user_10 = Person.create!(email: "Kreed@test.com", first_name: "Kenton", last_name: "Reed", password: "password", zip_code: "44221", proxy: true, confirmed_at: (Time.now - 1.days))
 
 #Create Articles
 Article.create(title: "An Introduction to the Civic Commons", author: "Dan Moulthrop", current: true, description: "Here's a short introduction to what this project is all about. Please check it out! It was made possible by lots of people, including a group of superfriends who sent in pictures.")

@@ -23,6 +23,7 @@ Civiccommons::Application.routes.draw do
         resources :conversations
         resources :contributions
       end
+      match '/search/results', to: 'search#results', as: 'search'
       resources :users, only: [:show, :new, :create, :edit, :update]
       resources :conversations, only: [:index, :show] do
         resources :contributions
@@ -222,7 +223,7 @@ Civiccommons::Application.routes.draw do
 #Namespaces
   namespace "admin" do
     root      to: "dashboard#show"
-    resources :articles
+    resources :articles, :private_labels
     resources :content_items do#, only: [:index, :show, :new, :create, :update, :destroy]
       resources :content_items_people, :only => [:index, :new, :create, :destroy], :path => 'people'
       resources :content_item_links, :path => 'links'

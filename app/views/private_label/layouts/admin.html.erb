@@ -1,5 +1,11 @@
-<%= render partial: 'private_label/shared/admin_header' %>
+<head>
+	<%= stylesheet_link_tag '_bootstrap' %>
+</head>
 
-<%= yield %>
+<body>
+	<%= render partial: 'private_label/shared/admin_header' %>
 
-<%= render partial: 'private_label/shared/admin_footer' %>
+	<%= yield %>
+
+	<%= render partial: 'private_label/shared/admin_footer' %>
+</body>

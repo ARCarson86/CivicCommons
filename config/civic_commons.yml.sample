@@ -13,6 +13,12 @@ development:
     api_key: 'crazyfacebookid'
     app_secret: 'facebooksecretsauce'
     page_access_token: 'facebookPageTokenThatNeverExpires'
+  google_oauth2:
+    client_id: 'id'
+    client_secret: 'secret'
+  linkedin:
+    api_key: 'key'
+    secret_key: 'key'
   mailer:
     mailchimp: true
     api_token: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-us1"

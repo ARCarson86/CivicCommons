@@ -4,12 +4,16 @@ class Swayze
 		@domain = domain
 	end
 
+	def private_id
+		get_private_label(@domain).id
+	end
+
 	def contributions
-		Contribution.unscoped.where private_label_id: get_private_label(@domain).id
+		Contribution.unscoped.where private_label_id: private_id
 	end
 
 	def conversations
-		Conversation.unscoped.where private_label_id: get_private_label(@domain).id
+		Conversation.unscoped.where private_label_id: private_id
 	end
 
 	def people

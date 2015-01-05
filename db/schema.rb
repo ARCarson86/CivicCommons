@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141117131122) do
+ActiveRecord::Schema.define(:version => 20141229180926) do
 
   create_table "actions", :force => true do |t|
     t.integer  "conversation_id"
@@ -608,8 +608,16 @@ ActiveRecord::Schema.define(:version => 20141117131122) do
     t.string   "namespace"
     t.string   "domain"
     t.text     "terms_of_service"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
+    t.string   "main_image_file_name"
+    t.string   "main_image_content_type"
+    t.integer  "main_image_file_size"
+    t.datetime "main_image_updated_at"
   end
 
   create_table "rating_descriptors", :force => true do |t|
