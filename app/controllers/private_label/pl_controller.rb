@@ -7,7 +7,7 @@ class PrivateLabel::PlController < ActionController::Base
 
 	protected
 	def enable_swayze
-    domain = request.subdomains.first
-    @swayze = ::Swayze.new(domain)
+    find_by = request.subdomains.length > 1 ? { namespace: request.subdomains.first } : { domain: request.host }
+    @swayze = ::Swayze.new(find_by)
   end
 end
