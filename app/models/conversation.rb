@@ -20,6 +20,7 @@ require 'obscenity/active_model'
       Sanitize.clean(summary, :remove_contents => ['style','script'])
     end
     integer :region_metrocodes, :multiple => true
+    integer :private_label_id
   end
   has_many :contributions, :dependent => :destroy
   has_many :confirmed_contributions, :class_name => 'Contribution',
