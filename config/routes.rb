@@ -14,7 +14,7 @@ Civiccommons::Application.routes.draw do
 
   #Private Label Routes
   namespace "private_label", path: '' do
-    constraints subdomain: /.+\.pl/ do
+    constraints PrivateLabelConstraint do
       root to: 'homepage#show'
       namespace "admin" do
         root to: 'dashboard#show'
