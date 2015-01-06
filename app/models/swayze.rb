@@ -32,6 +32,6 @@ class Swayze
 	private
 
 	def get_private_label(find_by)
-		PrivateLabel.first(conditions: find_by)
+		PrivateLabel.first(conditions: find_by) or raise ActiveRecord::RecordNotFound
 	end
 end
