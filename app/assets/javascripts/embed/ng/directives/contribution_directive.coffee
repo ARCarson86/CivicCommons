@@ -40,7 +40,6 @@ angular.module 'civic.directives'
       , (newValue, oldValue) ->
         if newValue > 330
           element.addClass 'scroll'
-          element[0].scrollTop = newValue - 330
         else
           element.removeClass 'scroll' unless newValue == 330
   ]
