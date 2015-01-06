@@ -123,7 +123,7 @@ require 'obscenity/active_model'
   # Filters by metro region, if metrocode parameter is supplied, otherwise, ignores it.
   scope :filter_metro_region, lambda{|metrocode| joins(:metro_region).where(:metro_regions=>{metrocode: metrocode}) if metrocode.present?}
 
-
+  default_scope where(:private_label_id => nil)
   # position starts from 0, and so forth
   def move_to_position(new_position)
     if new_position.is_a?(Integer)

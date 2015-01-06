@@ -1,9 +1,11 @@
 <%= @swayze.conversations.count %>
 <br>
-<% unless @search.blank? %>
-	<%= @search.results.count %>
-	<br>
-	<% @search.each_hit_with_result do |hit| %>
-		<%= hit.result.title %>
+<% Conversation.unscoped do %>
+	<% unless @search.blank? %>
+		<%= @search.results.count %>
+		<br>
+		<% @search.each_hit_with_result do |hit| %>
+			<%= hit.result.title %>
+		<% end %>
 	<% end %>
 <% end %>
