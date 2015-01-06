@@ -104,7 +104,6 @@ require 'obscenity/active_model'
 
   friendly_id :title, :use => :slugged
 
-  default_scope where(private_label_id: nil)
   def should_generate_new_friendly_id?
     new_record? || slug.nil?
   end
