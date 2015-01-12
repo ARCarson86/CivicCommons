@@ -29,7 +29,7 @@ class SessionsController < Devise::SessionsController
   end
 
   def status
-    respond_with current_person || { logged_in: false }
+    @person = current_person
   end
 
   # POST /resource/ajax_login
