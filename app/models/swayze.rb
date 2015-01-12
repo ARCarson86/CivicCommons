@@ -21,9 +21,17 @@ class Swayze
 		@private_label.admins
 	end
 
+  def private_label
+    @private_label
+  end
+
+  def private_label_id
+    @private_label_id
+  end
+
 	private
 
 	def get_private_label(find_by)
-		PrivateLabel.first(conditions: find_by)
+		PrivateLabel.first(conditions: find_by) or raise ActiveRecord::RecordNotFound
 	end
 end
