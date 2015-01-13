@@ -180,7 +180,7 @@ ActiveRecord::Schema.define(:version => 20141229180926) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "official",                                      :default => false
-    t.integer  "conversation_id"
+    t.integer  "contributable_id"
     t.integer  "parent_id"
     t.integer  "issue_id"
     t.string   "attachment_file_name"
@@ -206,12 +206,14 @@ ActiveRecord::Schema.define(:version => 20141229180926) do
     t.string   "embedly_type"
     t.boolean  "top_level_contribution",                        :default => false
     t.boolean  "moderator_post"
+    t.string   "contributable_type"
     t.integer  "private_label_id"
   end
 
-  add_index "contributions", ["conversation_id"], :name => "index_contributions_on_conversation_id"
+  add_index "contributions", ["contributable_id"], :name => "index_contributions_on_conversation_id"
   add_index "contributions", ["issue_id"], :name => "index_contributions_on_issue_id"
   add_index "contributions", ["owner"], :name => "index_contributions_on_owner"
+  add_index "contributions", ["parent_id"], :name => "index_contributions_on_parent_id"
 
   create_table "conversations", :force => true do |t|
     t.datetime "started_at"
@@ -683,6 +685,14 @@ ActiveRecord::Schema.define(:version => 20141229180926) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.text     "description"
+  end
+
+  create_table "remote_pages", :force => true do |t|
+    t.text     "url"
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "revision_records", :force => true do |t|
