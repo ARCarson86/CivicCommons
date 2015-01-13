@@ -68,7 +68,7 @@ angular.module 'civic.directives'
       scope.submitComment = ->
         scope.busy = true
         result = scope.contribution.save {}, (data) ->
-          scope.contribution = new Contribution
+          scope.contribution = new Contribution parent_id: scope.inReplyTo
           scope.busy = false
           scope.errors = []
         , (response) ->
