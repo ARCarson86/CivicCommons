@@ -27,6 +27,7 @@
     <%= csrf_meta_tag %>
   </head>
   <body>
+    <div class="container">
     <%= render partial: 'private_label/shared/header' %>
 
     <%= yield %>
@@ -39,6 +40,7 @@
         <%= image_tag 'flash-close.png' %>
       </div>
     <% end %>
+    </div>
   </body>
 
 </html>
