@@ -28,6 +28,9 @@ Civiccommons::Application.routes.draw do
       resources :conversations, only: [:index, :show] do
         resources :contributions
       end
+
+      devise_for :people, :controllers => { :registrations => 'private_label/registrations', :confirmations => 'private_label/confirmations', :sessions => 'private_label/sessions', :omniauth_callbacks => "private_label/registrations/omniauth_callbacks", :passwords => 'passwords'},
+        :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :registration => 'register', :sign_up => 'new' }
     end
   end
 
