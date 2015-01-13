@@ -34,7 +34,11 @@ class AvatarService
   end
 
   def self.gravatar_available?(person)
-    gravatar_response = Net::HTTP.get_response(URI.parse(gravatar_image_url(person)))
+    begin
+      gravatar_response = Net::HTTP.get_response(URI.parse(gravatar_image_url(person)))
+    rescue Errno::ENOTCONN
+      return false
+    end
 
     unless gravatar_response.class == Net::HTTPNotFound
       true

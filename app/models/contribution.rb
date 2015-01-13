@@ -13,7 +13,7 @@ class Contribution < ActiveRecord::Base
   end
 
   attr_accessor :top_level, :owner_id
-  validates :content,  obscenity: { sanitize: true, replacement: :vowels }
+  validates :content,  presence: true, obscenity: { sanitize: true, replacement: :vowels }
   # nested contributions are destroyed via callbacks
   acts_as_nested_set :exclude_unless => {:confirmed => true}, :dependent => :destroy, :scope => [:contributable_id, :contributable_type]
   attr_protected :lft, :rgt
@@ -41,7 +41,7 @@ class Contribution < ActiveRecord::Base
   # -Jerry
   #validates :person, :presence => true
   validate :requires_an_owner
-  validate :requires_content_or_link
+  #validate :requires_content_or_link
   validate :requires_one_of_url_or_attachement
 
   def requires_an_owner

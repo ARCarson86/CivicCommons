@@ -40,7 +40,6 @@ angular.module 'civic.directives'
       , (newValue, oldValue) ->
         if newValue > 330
           element.addClass 'scroll'
-          element[0].scrollTop = newValue - 330
         else
           element.removeClass 'scroll' unless newValue == 330
   ]
@@ -69,7 +68,7 @@ angular.module 'civic.directives'
       scope.submitComment = ->
         scope.busy = true
         result = scope.contribution.save {}, (data) ->
-          scope.contribution = new Contribution
+          scope.contribution = new Contribution parent_id: scope.inReplyTo
           scope.busy = false
           scope.errors = []
         , (response) ->
