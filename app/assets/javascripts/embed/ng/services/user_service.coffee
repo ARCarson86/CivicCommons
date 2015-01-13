@@ -24,5 +24,10 @@ angular.module 'civic.services'
 
     User.importAccount = (account) ->
       User.users[account.id] = new User account
+
+    Account.registerObserverCallback 'sessionState', (data) ->
+      User.importAccount data
+    , false
+
     return User
 ]
