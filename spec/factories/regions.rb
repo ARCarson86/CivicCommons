@@ -2,6 +2,6 @@
 FactoryGirl.define do
   factory :region do |f|
     f.name "MyString"
-    f.image File.new(Rails.root + 'test/fixtures/images/test_image.jpg')
+    f.image File.new(Rails.root + 'spec/fixtures/images/test_image.jpg')
   end
 end

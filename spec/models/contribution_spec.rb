@@ -274,7 +274,7 @@ describe Contribution do
     end
 
     it "updates the attached file if file is specified" do
-      @attached_file.update_attributes_by_user({contribution: {:attachment => File.new(Rails.root + 'test/fixtures/images/test_image2.jpg')}}, @person)
+      @attached_file.update_attributes_by_user({contribution: {:attachment => File.new(Rails.root + 'spec/fixtures/images/test_image2.jpg')}}, @person)
       @attached_file.attachment_file_name.should == "test_image2.jpg"
     end
 
