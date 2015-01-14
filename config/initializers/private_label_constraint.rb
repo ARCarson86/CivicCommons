@@ -4,6 +4,6 @@ class PrivateLabelConstraint
   end
 
   def self.matching_privatelabel?(host)
-    PrivateLabel.where(domain: host).any?
+    host != "theciviccommons.com" or PrivateLabel.where(domain: host).any?
   end
 end
