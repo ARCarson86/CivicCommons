@@ -1,3 +1,5 @@
+ENV["RAILS_ENV"] ||= 'test'
+
 require 'rubygems'
 require File.dirname(__FILE__) + "/../config/environment" unless defined?(Rails)
 require 'rspec/rails'
@@ -8,8 +10,6 @@ require 'email_spec'
 require 'paperclip/matchers'
 require 'pp'
 require 'database_cleaner'
-
-ENV["RAILS_ENV"] ||= 'test'
 
 if ENV['COVERAGE'] #$ COVERAGE=true RAILS_ENV=test bundle exec rake spec
   require 'simplecov'
