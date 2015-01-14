@@ -1,5 +1,13 @@
+##
+# Convenience method to provide the content of a specific 
+# fixture file in a test.
+#
+# @param path [String] The path to the fixture file to get
+#   content from; should be relative to the fixture directory
+#
+# @return The contents of the file in the path
 def fixture_content(path)
-  File.open(File.dirname(__FILE__) + '/../test/fixtures/' + path, 'rb') { |f| f.read }
+  File.open(File.join(Rails.root, 'spec', 'fixtures' + path, 'rb')) { |f| f.read }
 end
 
 def mask_with_intercept_email(address, subject = nil)

@@ -14,7 +14,6 @@ group :assets do
   gem 'coffee-rails'
   gem 'yui-compressor'
   gem "font-awesome-rails"
-  #gem 'jquery-migrate-rails'
   gem 'turbo-sprockets-rails3'
 end
 gem 'jquery-rails'

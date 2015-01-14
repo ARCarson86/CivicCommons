@@ -29,7 +29,7 @@ describe "custom_image?" do
     instance.image = nil
     instance.custom_image?.should be_false
 
-    instance.image = File.new(Rails.root + 'test/fixtures/images/test_image.jpg')
+    instance.image = File.new(Rails.root + 'spec/fixtures/images/test_image.jpg')
     instance.custom_image?.should be_true
 
     instance = FactoryGirl.build(:issue) # class does not have a :default_url
@@ -57,7 +57,7 @@ describe "default_image?" do
     instance = FactoryGirl.build(:conversation)
     instance.default_image?.should be_true
 
-    instance.image = File.new(Rails.root + 'test/fixtures/images/test_image.jpg')
+    instance.image = File.new(Rails.root + 'spec/fixtures/images/test_image.jpg')
     instance.default_image?.should be_false
 
     instance = FactoryGirl.build(:issue)

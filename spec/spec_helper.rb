@@ -1,3 +1,5 @@
+ENV["RAILS_ENV"] ||= 'test'
+
 require 'rubygems'
 require File.dirname(__FILE__) + "/../config/environment" unless defined?(Rails)
 require 'rspec/rails'
@@ -8,8 +10,6 @@ require 'email_spec'
 require 'paperclip/matchers'
 require 'pp'
 require 'database_cleaner'
-
-ENV["RAILS_ENV"] ||= 'test'
 
 if ENV['COVERAGE'] #$ COVERAGE=true RAILS_ENV=test bundle exec rake spec
   require 'simplecov'
@@ -86,14 +86,25 @@ RSpec.configure do |config|
   end
 end
 
-##
-# Convenience method to provide the content of a specific 
-# fixture file in a test.
-#
-# @param path [String] The path to the fixture file to get
-#   content from; should be relative to the fixture directory
-#
-# @return The contents of the file in the path
-def fixture_content(path)
-  File.open(File.dirname(__FILE__) + '/../test/fixtures/' + path, 'rb') { |f| f.read }
+# figure out where we are being loaded from
+if $LOADED_FEATURES.grep(/spec\/spec_helper\.rb/).any?
+  begin
+    raise "foo"
+  rescue => e
+    puts <<-MSG
+  ===================================================
+  It looks like spec_helper.rb has been loaded
+  multiple times. Normalize the require to:
+
+    require "spec/spec_helper"
+
+  Things like File.join and File.expand_path will
+  cause it to be loaded multiple times.
+
+  Loaded this time from:
+
+    #{e.backtrace.join("\n    ")}
+  ===================================================
+    MSG
+  end
 end

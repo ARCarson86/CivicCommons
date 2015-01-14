@@ -14,7 +14,7 @@ module IngesterExampleHelperMethods
   end
 
   def read_fixture(filename)
-    File.read(File.join(Rails.root, "test", "fixtures", "ingester", filename))
+    File.read(File.join(Rails.root, "spec", "fixtures", "ingester", filename))
   end
 
 end
