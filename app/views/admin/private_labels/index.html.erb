@@ -5,23 +5,31 @@
       <th>Name</th>
       <th>Domain</th>
       <th>Namespace</th>
-      <th>Created On</th>
+      <th>Created</th>
     </tr>
   </thead>
   <tbody>
     <% @private_labels.each do |pl| %>
       <tr>
         <td>
-          <%= link_to pl.name, admin_private_label_path(pl) %>
+          <%= pl.name %>
         </td>
         <td>
-          <%= link_to pl.domain, admin_private_label_path(pl) %>
+          <%= pl.domain %>
         </td>
         <td>
-          <%= link_to pl.namespace, admin_private_label_path(pl) %>
+          <%= pl.namespace %>
         </td>
         <td>
           <%= pl.created_at %>
+        </td>
+        <td class="list-actions">
+          <%= link_to [:edit, :admin, pl], title: "Edit" do %>
+            <i class="icon icon-edit"></i>
+          <% end %>
+          <%= link_to [:admin, pl], title: "Delete", method: :delete, confirm: "Are you sure?" do %>
+            <i class="icon icon-trash"></i>
+          <% end %>
         </td>
       </tr>
     <% end %>

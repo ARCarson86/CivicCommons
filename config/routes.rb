@@ -227,7 +227,8 @@ Civiccommons::Application.routes.draw do
 #Namespaces
   namespace "admin" do
     root      to: "dashboard#show"
-    resources :articles, :private_labels
+    resources :articles
+    resources :private_labels, only: [:index, :new, :create, :edit, :update, :destroy]
     resources :content_items do#, only: [:index, :show, :new, :create, :update, :destroy]
       resources :content_items_people, :only => [:index, :new, :create, :destroy], :path => 'people'
       resources :content_item_links, :path => 'links'
