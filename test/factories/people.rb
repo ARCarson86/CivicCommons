@@ -18,6 +18,7 @@ FactoryGirl.define do |f|
     u.daily_digest false
     u.avatar_url '/images/avatar_70.gif'
     u.avatar_cached_image_url '/images/avatar.jpg'
+    u.send_welcome false
   end
 
   factory :proxy_person, :parent => :normal_person do |u|
