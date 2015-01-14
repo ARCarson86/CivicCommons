@@ -118,7 +118,6 @@ group :test do
   gem "rspec-rails", "~> 2.10.0"
   gem 'rspec-spies', '~>2.1.0'
   gem 'simplecov', '~>0.6.2'
-  gem 'spork', '~>0.9.0'
   gem 'steak', '~>2.0.0'
   gem 'timecop', '~>0.3.5'
   gem 'webmock'
