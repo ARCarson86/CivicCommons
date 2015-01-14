@@ -51,7 +51,7 @@ Given /^I have contributed a attached_file:$/ do |attached_file_comment|
                  content: attached_file_comment,
                  person: @current_person,
                  conversation: @conversation,
-                 attachment: File.new(Rails.root + 'test/fixtures/test_pdf.pdf'),
+                 attachment: File.new(Rails.root + 'spec/fixtures/test_pdf.pdf'),
                  created_at: Date.parse("2010/10/10"))
 end
 

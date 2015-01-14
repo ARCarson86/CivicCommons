@@ -43,7 +43,7 @@ FactoryGirl.define do |f|
   end
 
   factory :registered_user_with_avatar, :parent => :registered_user do |u|
-    u.avatar File.new(Rails.root + 'test/fixtures/images/test_image.jpg')
+    u.avatar File.new(Rails.root + 'spec/fixtures/images/test_image.jpg')
   end
 
   factory :person, :parent => :registered_user do | u |
