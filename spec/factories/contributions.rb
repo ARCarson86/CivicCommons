@@ -65,14 +65,14 @@ FactoryGirl.define do
     f.association :parent, :factory => :contribution
     f.conversation { |c| c.parent.conversation }
     f.content "Attached Image Contribution"
-    f.attachment File.new(Rails.root + 'test/fixtures/images/test_image.jpg')
+    f.attachment File.new(Rails.root + 'spec/fixtures/images/test_image.jpg')
   end
 
   factory :attached_file, :parent => :contribution do |f|
     f.association :parent, :factory => :contribution
     f.conversation { |c| c.parent.conversation }
     f.content "Attached File Contribution"
-    f.attachment File.new(Rails.root + 'test/fixtures/test_pdf.pdf')
+    f.attachment File.new(Rails.root + 'spec/fixtures/test_pdf.pdf')
   end
 
   factory :link, :parent => :contribution do |f|
