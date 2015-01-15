@@ -1,4 +1,4 @@
-# Welcome to The Civic Commons ![Build Status](http://ci.l7lab.com/buildStatus/icon?job=Civic%20Commons)
+# Welcome to The Civic Commons [![Build Status](http://ci.l7lab.com/buildStatus/icon?job=Civic Commons)](http://ci.l7lab.com/job/Civic%20Commons/)
 
 [www.theciviccommons.com](http://www.theciviccommons.com)
 
