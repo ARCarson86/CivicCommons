@@ -98,8 +98,7 @@ require 'obscenity/active_model'
   validates :title,  obscenity: { sanitize: true, replacement: :vowels }
   validates :summary,  obscenity: { sanitize: true, replacement: :vowels }
 
-  after_create :set_initial_position, :subscribe_creator
-  around_create :send_notification_on_other_topic
+  #around_create :send_notification_on_other_topic
 
   friendly_id :title, :use => :slugged
 

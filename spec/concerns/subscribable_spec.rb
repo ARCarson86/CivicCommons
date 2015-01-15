@@ -2,7 +2,15 @@ require 'spec_helper'
 
 [Conversation, Issue, Organization].each do |model_type|
   describe model_type.to_s do
-    let(:item) {FactoryGirl.create(model_type.to_s.downcase)}
+    if ActiveRecord::Base.observers.include? "#{model_type.to_s.downcase}_observer"
+      let(:item) do 
+        model_type.observers.enable "#{model_type.to_s.downcase}_observer" do
+          the_item = FactoryGirl.create(model_type.to_s.downcase)
+        end
+      end
+    else
+      let(:item) { FactoryGirl.create(model_type.to_s.downcase) }
+    end
 
     before(:each) do
       @person = FactoryGirl.create(:normal_person)
