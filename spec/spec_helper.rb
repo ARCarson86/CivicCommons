@@ -9,6 +9,7 @@ require 'capybara/rspec'
 require 'email_spec'
 require 'paperclip/matchers'
 require 'pp'
+require 'shoulda'
 require 'database_cleaner'
 
 if ENV['COVERAGE'] #$ COVERAGE=true RAILS_ENV=test bundle exec rake spec
