@@ -1,0 +1,24 @@
+#header-wrapper{
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 100;
+	background-color: rgba(0,0,0,.35);
+	.with-borders{
+		border-left: 1px solid #000;
+		border-right: 1px solid #000;
+	}
+	.left-border{
+		border-left: 1px solid #000;
+	}
+	a{
+		color: #fff;
+	}
+}
+.header-second{
+	margin-bottom: 40px;
+	.placeholder{
+		background-color: #9cbe15;
+		height: 50px;
+	}
+}
