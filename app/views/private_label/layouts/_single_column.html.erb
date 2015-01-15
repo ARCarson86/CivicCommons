@@ -8,7 +8,7 @@
     <% end %>
   <% else %>
     <li class="left-border">
-      <a class="cc-login-btn" href="/people/login">Login</a>
+      <%= link_to 'login', '#', :data => {:'toggle' => 'modal', :'target' => '#loginModal'} %>
     </li>
     <li class="with-borders">
       <%= link_to 'register', registrations_principles_path %>

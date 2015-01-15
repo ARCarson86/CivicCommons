@@ -147,10 +147,7 @@ class Person < ActiveRecord::Base
   delegate :organizations, :to => :subscriptions, :prefix => true
 
   # All these emails could be moved to an observer - Jerry
-  after_create :notify_civic_commons
   before_save :check_to_send_welcome_email
-  after_save :send_welcome_email, :if => :send_welcome?
-  around_save :update_newsletter_subscription
 
   around_update :check_to_notify_email_change, :if => :send_email_change_notification?
 
@@ -351,13 +348,8 @@ class Person < ActiveRecord::Base
     self
   end
 
-  def update_newsletter_subscription
-    # store if it's a new record before save since *_changed? only works with existing models
-    new_record = new_record?
-
-    yield
-
-    if new_record or weekly_newsletter_changed?
+  def update_newsletter_subscription(update_setting)
+    if update_setting
       if weekly_newsletter
         add_newsletter_subscription
       else

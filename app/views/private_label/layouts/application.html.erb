@@ -41,13 +41,9 @@
         </div>
       </div>
       <div class="row">
-      <% if content_for?(:sidebar) %>
-        <div class="col-md-8">
-      <% else %>
-        <div class="col-md-12">
-      <% end %>
+        <div class="<%= content_area_column_width_class %>">
           <div class="content-area">
-            <%= yield :content_area %>
+            <%= yield %>
           </div>
         </div>
         <% if content_for?(:sidebar) %>
@@ -67,6 +63,8 @@
         <%= image_tag 'flash-close.png' %>
       </div>
     <% end %>
+
+    <%= render partial: 'private_label/shared/modals/login' %>
   </body>
 
 </html>
