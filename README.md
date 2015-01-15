@@ -1,4 +1,4 @@
-# Welcome to The Civic Commons [![Build Status](https://secure.travis-ci.org/CivicCommons/CivicCommons.png)](http://travis-ci.org/CivicCommons/CivicCommons?branch=master)
+# Welcome to The Civic Commons ![Build Status](http://ci.l7lab.com/buildStatus/icon?job=Civic%20Commons)
 
 [www.theciviccommons.com](http://www.theciviccommons.com)
 
