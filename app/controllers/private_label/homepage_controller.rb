@@ -4,4 +4,5 @@ class PrivateLabel::HomepageController < PrivateLabel::PlController
 		@people = @swayze.people
 		@conversations = @swayze.conversations
 	end
+
 end

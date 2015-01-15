@@ -7,6 +7,8 @@ class SessionsController < Devise::SessionsController
   before_filter :require_ssl, :only => [:new, :create]
   skip_before_filter :require_no_ssl
 
+  respond_to :json, only: [:status]
+
   def new
     super
     if RedirectHelper.valid?(request.headers['Referer'])
@@ -24,6 +26,10 @@ class SessionsController < Devise::SessionsController
     session[:close_modal_on_exit] = true
     session[:previous] = request.headers['Referer'] if RedirectHelper.valid?(request.headers['Referer'])
     render :partial => 'sessions/new', :layout => false
+  end
+
+  def status
+    @person = current_person
   end
 
   # POST /resource/ajax_login

@@ -1,5 +1,6 @@
 //=require_self
 //=require 'ui-lightness/jquery-ui-1.8.16.custom.css'
+//= require 'font-awesome'
 /*resets
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp,
@@ -381,4 +382,32 @@ fieldset.meta {
   .validation-error {
     display: none;
   }
+}
+
+.field {
+  margin-bottom: 1em;
+
+  label {
+    display: inline-block;
+    width: 7em;
+    &:after {
+      display: inline;
+      content: ":";
+    }
+  }
+}
+
+table.private-label-table {
+  th {
+    font-weight: bold;
+  }
+
+  th,td {
+    padding: 5px;
+  }
+}
+
+.list-actions a {
+  color: black;
+  text-decoration: none;
 }

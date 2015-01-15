@@ -14,7 +14,7 @@ Civiccommons::Application.routes.draw do
 
   #Private Label Routes
   namespace "private_label", path: '' do
-    constraints subdomain: /.+\.pl/ do
+    constraints PrivateLabelConstraint do
       root to: 'homepage#show'
       namespace "admin" do
         root to: 'dashboard#show'
@@ -28,6 +28,11 @@ Civiccommons::Application.routes.draw do
       resources :conversations, only: [:index, :show] do
         resources :contributions
       end
+
+      devise_for :people, :controllers => { :registrations => 'private_label/registrations', :confirmations => 'private_label/confirmations', :sessions => 'private_label/sessions', :omniauth_callbacks => "private_label/registrations/omniauth_callbacks", :passwords => 'passwords'},
+        :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :registration => 'register', :sign_up => 'new' }
+
+      get '*path', to: 'pl#raise_routing_error'
     end
   end
 
@@ -136,6 +141,7 @@ Civiccommons::Application.routes.draw do
     get '/registrations/principles', to: 'registrations#principles'
     get  "/organizations/register/new", :to => "registrations#new_organization", :as => "new_organization_registration"
     post "/organizations/register", :to => "registrations#create_organization", :as => "organization_registration"
+    get '/session_status', to: 'sessions#status', as: 'session_status', defaults: { format: :json }
   end
 
   #Sort and Filters
@@ -223,7 +229,8 @@ Civiccommons::Application.routes.draw do
 #Namespaces
   namespace "admin" do
     root      to: "dashboard#show"
-    resources :articles, :private_labels
+    resources :articles
+    resources :private_labels, only: [:index, :new, :create, :edit, :update, :destroy]
     resources :content_items do#, only: [:index, :show, :new, :create, :update, :destroy]
       resources :content_items_people, :only => [:index, :new, :create, :destroy], :path => 'people'
       resources :content_item_links, :path => 'links'

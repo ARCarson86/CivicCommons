@@ -90,6 +90,9 @@ gem 'sass'
 
 gem 'whenever', require: false
 
+gem 'jbuilder'
+gem 'jpbuilder'
+
 group :development do
   gem "rails3-generators"
   gem "hpricot"

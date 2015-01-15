@@ -1,13 +1,20 @@
 class PrivateLabel::PlController < ActionController::Base
-	before_filter :enable_swayze
+  include PrivateLabelControllerConcern
 
-	alias_method :current_user, :current_person
+  # Rescue from routing error
+  rescue_from ActionController::RoutingError do |exception|
+    raise if ["development", "test"].include? ENV["RAILS_ENV"]
+    render_404
+  end
 
-	layout 'private_label/layouts/application'
+  def raise_routing_error
+    raise ActionController::RoutingError.new "No route matches [#{request.method}] #{request.path.inspect}"
+  end
 
-	protected
-	def enable_swayze
-    domain = request.subdomains.first
-    @swayze = ::Swayze.new(domain)
+  protected
+  def render_404
+    respond_to do |f|
+      f.html { render 'private_label/pl/404', status: 404 }
+    end
   end
 end

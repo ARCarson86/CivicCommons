@@ -5,22 +5,11 @@
       <%= page_title %>
     </title>
     <%= render :partial => 'layouts/meta_tags' %>
-    <%= javascript_include_tag 'application.js' %>
+    <%= javascript_include_tag 'private_label/application.js' %>
     <%= javascript_tag '$.fx.off = true;' if Rails.env.test? %>
-    <%= stylesheet_link_tag 'application', :media => "screen, projection" %>
     <%= stylesheet_link_tag '_bootstrap' %>
+    <%= stylesheet_link_tag 'private_label/application', :media => "screen, projection" %>
     <script>
-      $(document).ready(function(){
-
-        $("input.datetime").datetimepicker({
-          ampm: true,
-          stepMinute: 15
-        });
-
-        <%= "#{yield :document_ready}" %>
-
-      });
-
       /* Google Analytics */
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-19685339-1']);
@@ -35,29 +24,15 @@
 
     </script>
     <%= yield :header %>
-    <%= auto_discovery_link_tag(:rss, "http://feeds.theciviccommons.com/civiccommons_new_conversations", { :title => "The Civic Commons: Conversations" } ) %>
-    <%= auto_discovery_link_tag(:rss, "http://feeds.theciviccommons.com/civiccommonsblog", { :title => "The Civic Commons: Common Blog" } ) %>
-    <%= auto_discovery_link_tag(:rss, "http://feeds.theciviccommons.com/civiccommonsnews", { :title => "The Civic Commons In The News" } ) %>
     <%= csrf_meta_tag %>
   </head>
   <body>
-    <!--[if lte IE 6]>
-      <div class="global-warning">You are using a browser which isn't supported.  Try using <a href="http://www.firefox.com">Firefox</a>, <a href="http://www.apple.com/safari">Safari</a> or <a href="http://www.google.com/chrome">Chrome</a>.</div>
-    <![endif]-->
+    <div class="container">
     <%= render partial: 'private_label/shared/header' %>
 
     <%= yield %>
 
     <%= render partial: 'private_label/shared/footer' %>
-
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=<%= Civiccommons::Config.facebook['api_key'] %>";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
 
     <% if flash[:notice] %>
       <div class="flash-notice" style="display:none;">
@@ -65,6 +40,7 @@
         <%= image_tag 'flash-close.png' %>
       </div>
     <% end %>
+    </div>
   </body>
 
 </html>
