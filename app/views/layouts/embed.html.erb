@@ -19,6 +19,9 @@
       <div ng-view></div>
     </div>
     <footer>
+      <% unless current_person %>
+        <span class="sign-in-on-conversation"><sign-in-link href ><i class="fa fa-sign-in"></i>Log in to post what you think.</sign-in-link></span>
+      <% end %>
       <%= link_to '/', target: '_blank' do %>
         powered by <%= image_tag 'CC_rgb.png', height: 40 %>
       <% end %>
