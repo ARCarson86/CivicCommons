@@ -90,12 +90,18 @@ gem 'sass'
 
 gem 'whenever', require: false
 
-group :development do
+gem 'jbuilder'
+gem 'jpbuilder'
+
+group :development, :test do
   gem 'pry'
   gem 'pry-doc'
   gem 'pry-remote'
   gem 'pry-stack_explorer'
   gem 'pry-debugger'
+end
+
+group :development do
   gem "rails3-generators"
   gem "hpricot"
   gem "ruby_parser"
