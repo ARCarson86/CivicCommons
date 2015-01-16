@@ -93,12 +93,15 @@ gem 'whenever', require: false
 gem 'jbuilder'
 gem 'jpbuilder'
 
-group :development do
+group :development, :test do
   gem 'pry'
   gem 'pry-doc'
   gem 'pry-remote'
   gem 'pry-stack_explorer'
   gem 'pry-debugger'
+end
+
+group :development do
   gem "rails3-generators"
   gem "hpricot"
   gem "ruby_parser"
