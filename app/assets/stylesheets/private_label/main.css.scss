@@ -1,0 +1,23 @@
+@import "variables";
+
+*{
+	&:focus{
+		outline: none;
+	}
+}
+html, body{
+	height: 100%;
+	font-family: 'Open Sans', sans-serif;
+	background-color: #f5f5f5;
+}
+.pl-content{
+	min-height: 100%;
+}
+h2{
+	color: #9cbe15;
+	font-size: 20px;
+	line-height: 50px;
+	text-transform: uppercase;
+	font-family: 'Oswald', sans-serif;
+	margin: 0;
+}
