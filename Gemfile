@@ -94,6 +94,11 @@ gem 'jbuilder'
 gem 'jpbuilder'
 
 group :development do
+  gem 'pry'
+  gem 'pry-doc'
+  gem 'pry-remote'
+  gem 'pry-stack_explorer'
+  gem 'pry-debugger'
   gem "rails3-generators"
   gem "hpricot"
   gem "ruby_parser"
@@ -105,6 +110,7 @@ group :test do
   # Addressable Required by WebMock but breaks everything at 2.2.5
   # Can use latest addressable when pull request is accepted: https://github.com/sporkmonger/addressable/pull/33
   gem 'shoulda', require: false
+  gem 'faker'
   gem 'addressable'
   gem "capybara", '~> 1.1.2'
   gem "database_cleaner", "~>0.7.2"
@@ -114,7 +120,6 @@ group :test do
   gem "jasmine", "~> 1.3.1"
   gem "jasmine-headless-webkit", '~>0.8.4'
   gem 'linguistics', '~>1.0.9'
-  gem 'no_peeping_toms', "~>2.1.2"
   gem "rack-test", '~> 0.6.0'
   gem "rspec-rails", "~> 2.10.0"
   gem 'rspec-spies', '~>2.1.0'
