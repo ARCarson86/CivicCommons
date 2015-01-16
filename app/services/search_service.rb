@@ -15,6 +15,7 @@ class SearchService
     fields = accepted_fields(models)
     fields[:fragment_size] = -1
     region_metrocodes = options.delete(:region_metrocodes)
+    private_label_id = options.delete(:private_label_id)
 
     results = @search.search(models) do
       keywords(query) do
@@ -32,6 +33,12 @@ class SearchService
           without(:class, classes_with_regional_metrocodes)
         end
       end
+      if private_label_id.present?
+        all_of do
+          with(:class, Conversation)
+          with(:private_label_id, private_label_id)
+        end
+      end
     end
 
     results.hits({ verify: true }).reject do |hit|
@@ -44,6 +51,7 @@ class SearchService
     fields = accepted_fields(models)
     fields[:fragment_size] = -1
     region_metrocodes = options.delete(:region_metrocodes)
+    private_label_id = options.delete(:private_label_id)
     results = @search.search(models) do
       with(:content_type, 'BlogPost') if filter == 'blogs'
       with(:type, 'Issue') if filter == 'issues'
@@ -54,6 +62,7 @@ class SearchService
           with(:type, 'ManagedIssuePage')
         end
       when 'issues', 'conversations', 'contributions'
+        with(:private_label_id, private_label_id) if private_label_id.present?
         with(:region_metrocodes, region_metrocodes) if region_metrocodes.present?
       end
       keywords(query) do
