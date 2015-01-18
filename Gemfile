@@ -30,9 +30,6 @@ gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-linkedin'
 
-gem "better_errors"
-gem "binding_of_caller"
-
 gem 'fb_graph'
 
 gem 'json', '~>1.7.7'
@@ -105,6 +102,8 @@ end
 group :development do
   gem "letter_opener"
   gem "foreman"
+  gem "better_errors"
+  gem "binding_of_caller"
 end
 
 group :test do
