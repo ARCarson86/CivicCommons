@@ -27,7 +27,7 @@
     <%= yield :header %>
     <%= csrf_meta_tag %>
   </head>
-  <body>
+  <body class="<%= page_classes %>">
     <%= render partial: 'private_label/shared/header' %>
     <div class="header-second">
       <%= yield :header_second %>
@@ -63,7 +63,7 @@
         <%= image_tag 'flash-close.png' %>
       </div>
     <% end %>
-
+    
     <%= render partial: 'private_label/shared/modals/login' %>
   </body>
 
