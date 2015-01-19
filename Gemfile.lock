@@ -54,17 +54,8 @@ GEM
       debug_inspector (>= 0.0.1)
     builder (3.0.4)
     cancan (1.6.8)
-    capybara (1.1.3)
-      mime-types (>= 1.16)
-      nokogiri (>= 1.3.3)
-      rack (>= 1.0.0)
-      rack-test (>= 0.5.4)
-      selenium-webdriver (~> 2.0)
-      xpath (~> 0.1.4)
     carrierwave (0.5.8)
       activesupport (~> 3.0)
-    childprocess (0.3.9)
-      ffi (~> 1.0, >= 1.0.11)
     chronic (0.10.2)
     chunky_png (1.3.1)
     ckeditor (4.0.8)
@@ -115,9 +106,6 @@ GEM
     dotenv (0.11.1)
       dotenv-deployment (~> 0.0.2)
     dotenv-deployment (0.0.2)
-    email_spec (1.2.1)
-      mail (~> 2.2)
-      rspec (~> 2.0)
     embedly (1.5.2)
       oauth
       querystring
@@ -163,10 +151,6 @@ GEM
     friendly_id (4.0.10.1)
       activerecord (>= 3.0, < 4.0)
     fssm (0.2.10)
-    fuubar (1.0.0)
-      rspec (~> 2.0)
-      rspec-instafail (~> 0.2.0)
-      ruby-progressbar (~> 0.0.10)
     gchart (1.0.0)
     geokit (1.6.5)
       multi_json
@@ -180,7 +164,6 @@ GEM
     highline (1.6.20)
     hike (1.2.3)
     hominid (3.0.4)
-    hpricot (0.8.6)
     htmlentities (4.3.1)
     httparty (0.8.3)
       multi_json (~> 1.0)
@@ -188,18 +171,6 @@ GEM
     httpauth (0.2.0)
     httpclient (2.3.4.1)
     i18n (0.6.9)
-    jasmine (1.3.1)
-      jasmine-core (~> 1.3.1)
-      rack (~> 1.0)
-      rspec (>= 1.3.1)
-      selenium-webdriver (>= 0.1.3)
-    jasmine-core (1.3.1)
-    jasmine-headless-webkit (0.8.4)
-      coffee-script
-      jasmine-core (~> 1.1)
-      multi_json
-      rainbow
-      sprockets (~> 2)
     jbuilder (2.1.1)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -217,7 +188,6 @@ GEM
       addressable (~> 2.3)
     letter_opener (1.2.0)
       launchy (~> 2.2)
-    linguistics (1.0.9)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -321,8 +291,6 @@ GEM
       activesupport (= 3.2.16)
       bundler (~> 1.0)
       railties (= 3.2.16)
-    rails3-generators (0.17.6)
-      railties (>= 3.0.0)
     rails_autolink (1.0.9)
       rails (~> 3.1)
     railties (3.2.16)
@@ -332,7 +300,6 @@ GEM
       rake (>= 0.8.7)
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
-    rainbow (1.1.4)
     raindrops (0.13.0)
     rake (10.3.2)
     rdoc (3.12.2)
@@ -364,21 +331,14 @@ GEM
     rspec-core (2.10.1)
     rspec-expectations (2.10.0)
       diff-lcs (~> 1.1.3)
-    rspec-instafail (0.2.4)
     rspec-mocks (2.10.1)
     rspec-rails (2.10.1)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
       rspec (~> 2.10.0)
-    rspec-spies (2.1.0)
-      rspec (~> 2.0)
     ruby-hmac (0.4.0)
-    ruby-progressbar (0.0.10)
     ruby-rc4 (0.1.5)
-    ruby_parser (2.3.1)
-      sexp_processor (~> 3.0)
-    rubyzip (0.9.9)
     safe_yaml (1.0.2)
     sanitize (2.0.3)
       nokogiri (>= 1.4.4, < 1.6)
@@ -387,21 +347,7 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
-    selenium-webdriver (2.35.1)
-      childprocess (>= 0.2.5)
-      multi_json (~> 1.0)
-      rubyzip (< 1.0.0)
-      websocket (~> 1.0.4)
-    sexp_processor (3.2.0)
-    shoulda (3.0.1)
-      shoulda-context (~> 1.0.0)
-      shoulda-matchers (~> 1.0.0)
-    shoulda-context (1.0.0)
     shoulda-matchers (1.0.0)
-    simplecov (0.6.4)
-      multi_json (~> 1.0)
-      simplecov-html (~> 0.5.3)
-    simplecov-html (0.5.3)
     sixarm_ruby_email_address_validation (2.0.0)
     slop (3.6.0)
     sprockets (2.2.2)
@@ -409,9 +355,6 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    steak (2.0.0)
-      capybara (>= 1.0.0)
-      rspec-rails (>= 2.5.0)
     subexec (0.2.2)
     sunspot (1.3.3)
       pr_geohash (~> 1.0)
@@ -448,11 +391,6 @@ GEM
     webmock (1.17.4)
       addressable (>= 2.2.7)
       crack (>= 0.3.2)
-    webrat (0.7.3)
-      nokogiri (>= 1.2.0)
-      rack (>= 1.0)
-      rack-test (>= 0.5.3)
-    websocket (1.0.7)
     whenever (0.9.1)
       activesupport (>= 2.3.4)
       chronic (>= 0.6.3)
@@ -468,50 +406,42 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_revisionable
-  addressable
   awesome_nested_set
   aws-s3
   aws-sdk (~> 1.9.1)
   better_errors
   binding_of_caller
   cancan
-  capybara (~> 1.1.2)
   carrierwave
   ckeditor
   coffee-rails
   compass-rails
   daemons
-  database_cleaner (~> 0.7.2)
+  database_cleaner
   date_validator
   delayed_job (>= 2.1.2)
   delayed_job_active_record
   devise (= 1.5.2)
-  email_spec (~> 1.2.1)
   embedly (= 1.5.2)
-  factory_girl_rails (~> 3.1)
+  factory_girl_rails
   faker
   fb_graph
   fog
   font-awesome-rails
   foreman
   friendly_id
-  fuubar (~> 1.0.0)
   gchart
   geokit
   gibbon
   highline
   hominid (~> 3.0.2)
-  hpricot
   htmlentities
   httparty
-  jasmine (~> 1.3.1)
-  jasmine-headless-webkit (~> 0.8.4)
   jbuilder
   jpbuilder
   jquery-rails
   json (~> 1.7.7)
   letter_opener
-  linguistics (~> 1.0.9)
   mini_magick
   mysql2
   newrelic_rpm
@@ -531,31 +461,24 @@ DEPENDENCIES
   pry-doc
   pry-remote
   pry-stack_explorer
-  rack-test (~> 0.6.0)
   rails (~> 3.2.16)
-  rails3-generators
   rails_autolink
   redis-rails
   remotipart
-  rspec-rails (~> 2.10.0)
-  rspec-spies (~> 2.1.0)
-  ruby_parser
+  rspec-rails
   sanitize
   sass
   sass-rails (~> 3.2.3)
-  shoulda
-  simplecov (~> 0.6.2)
+  shoulda-matchers
   sixarm_ruby_email_address_validation
-  steak (~> 2.0.0)
   sunspot_rails
   sunspot_solr
-  timecop (~> 0.3.5)
+  timecop
   truncate_html
   turbo-sprockets-rails3
   uglifier
   unicorn
   webmock
-  webrat (~> 0.7.3)
   whenever
   will_paginate
   yui-compressor

@@ -9,6 +9,7 @@ class Contribution < ActiveRecord::Base
     text :content, :stored => true, :boost => 1, :default_boost => 1 do
       Sanitize.clean(content, :remove_contents => ['style','script'])
     end
+    integer :private_label_id
     integer :region_metrocodes, :multiple => true
   end
 
