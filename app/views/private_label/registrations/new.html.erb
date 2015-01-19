@@ -1,7 +1,7 @@
 <div class="wrapper">
   <div class="content-container">
     <h1>Register</h1>
-    <%= form_for resource, :method => "post", :html => { :multipart => 'true', :class => "register" }) do |f| %>
+    <%= form_for resource, url: person_registration_path, :method => "post", "data-remote" => 'true', :html => { :multipart => 'true', :class => "register" } do |f| %>
       <%= f.fields_for :authentications do |authentication_form| %>
         <%= authentication_form.hidden_field :token %>
         <%= authentication_form.hidden_field :uid %>

@@ -8,7 +8,11 @@
         </h4>
       </div>
       <div class="modal-body">
-        ...
+        <% Authentication::PROVIDERS.each do |provider| %>
+          <%= link_to person_omniauth_authorize_url(provider.to_sym, host: "civic.dev:3000", private_label: request.host), {style: "margin-right: 0;"} do %>
+            <%= provider %>
+          <% end %>
+        <% end %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

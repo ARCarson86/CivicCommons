@@ -5,7 +5,7 @@ class PrivateLabel::UsersController < PrivateLabel::plController
 	end
 
 	def new
-		@person = Person.new
+		@person = Person.new params[:person]
 	end
 
 	def create

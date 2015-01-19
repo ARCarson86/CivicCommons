@@ -130,7 +130,7 @@ Civiccommons::Application.routes.draw do
 
 #Devise Routes
 
-  devise_for :people, :controllers => { :registrations => 'registrations', :confirmations => 'confirmations', :sessions => 'sessions', :omniauth_callbacks => "registrations/omniauth_callbacks", :passwords => 'passwords'},
+  devise_for :people, :controllers => { :registrations => 'private_label/registrations', :confirmations => 'confirmations', :sessions => 'private_label/sessions', :omniauth_callbacks => "registrations/omniauth_callbacks", :passwords => 'passwords'},
                       :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :registration => 'register', :sign_up => 'new' }
 
   devise_scope :person do

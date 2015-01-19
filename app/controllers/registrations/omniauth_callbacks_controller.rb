@@ -7,7 +7,13 @@ class Registrations::OmniauthCallbacksController < Devise::OmniauthCallbacksCont
       link_with_social
     else
       if authentication = Authentication.find_from_auth_hash(env['omniauth.auth'])
-        successful_authentication(authentication)
+        omniauth_params = env['omniauth.params']
+        authentication_attributes = authentication.attributes.select { |k,v| ["provider", "token", "uid"].include? k }
+        if omniauth_params["private_label"]
+          redirect_to new_person_session_url(host: omniauth_params["private_label"], test: "test", authentication: authentication_attributes)
+        else
+          successful_authentication(authentication)
+        end
       else
         create_account_using_social_credentials
       end
@@ -42,6 +48,7 @@ private
   def create_account_using_social_credentials
     omniauth = env['omniauth.auth']
     provider = (omniauth)[:provider]
+    omniauth_params = env['omniauth.params']
     if params[:login].present?
       flash[:notice] = "Your #{provider} account is not connected to your login. Select another login method and connect #{provider} account."
       redirect_to new_person_session_path
@@ -49,7 +56,13 @@ private
       if Authentication.where(uid: (omniauth)[:uid]).blank?
         @person = Person.build_from_auth_hash(omniauth)
         @authentication = Authentication.new_from_auth_hash(omniauth)
-        render "registrations/new", layout: "registrations"
+        if (omniauth_params["private_label"])
+          person_attributes = @person.attributes.select { |k,v| ["first_name", "last_name", "email"].include? k }
+          authentication_attributes = @authentication.attributes.select { |k,v| ["provider", "token", "uid"].include? k }
+          redirect_to new_person_registration_url(host: omniauth_params["private_label"], test: "test", person: person_attributes, authentication: authentication_attributes)
+        else
+          render "registrations/new", layout: "registrations"
+        end
       end
     end
   end
