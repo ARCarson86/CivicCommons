@@ -13,8 +13,10 @@ Civiccommons::Application.routes.draw do
   delete "/users/:id/:provider/unlink" => "unlink#delete", as: :unlink
 
   #Private Label Routes
-  namespace "private_label", path: '' do
-    constraints PrivateLabelConstraint do
+  constraints PrivateLabelConstraint do
+    devise_for :people, :controllers => { :registrations => 'private_label/registrations', :confirmations => 'private_label/confirmations', :sessions => 'private_label/sessions', :omniauth_callbacks => "private_label/registrations/omniauth_callbacks", :passwords => 'passwords'},
+      :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :registration => 'register', :sign_up => 'new' }
+    namespace "private_label", path: '' do
       root to: 'homepage#show'
       namespace "admin" do
         root to: 'dashboard#show'
@@ -29,8 +31,6 @@ Civiccommons::Application.routes.draw do
         resources :contributions
       end
 
-      devise_for :people, :controllers => { :registrations => 'private_label/registrations', :confirmations => 'private_label/confirmations', :sessions => 'private_label/sessions', :omniauth_callbacks => "private_label/registrations/omniauth_callbacks", :passwords => 'passwords'},
-        :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :registration => 'register', :sign_up => 'new' }
 
       get '*path', to: 'pl#raise_routing_error'
     end
