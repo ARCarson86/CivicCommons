@@ -1,7 +1,59 @@
 .content-area{
 	section{
 		background-color: #fff;
-		min-height: 150px;
+		height: auto;
 		margin-bottom: 30px;
+		padding: 25px;
+		&.comment-section{
+			.user-image{
+				a{
+					display: inline-block;
+					border-radius: 45px;
+					height: 90px;
+					width: 90px;
+					border: 2px solid #949798;
+					overflow: hidden;
+					img{
+						height: 100%;
+						width: 100%;
+					}
+				}
+			}
+			.editable{
+				padding-top: 15px;
+				textarea{
+					width: 100%;
+					resize: none;
+					line-height: 60px;
+					padding-left: 20px;
+					font-family: 'OpenSans', sans-serif;
+					font-size: 15px;
+					color: #3a3a3a;
+				}
+			}
+			.contribute-actions{
+				padding-top: 15px;
+				.button{
+					color: #fff;
+					font-family: 'Open Sans',sans-serif;
+					font-size: 14px;
+					text-transform: uppercase;
+					line-height: 40px;
+					border-radius: 2px;
+					font-weight: lighter;
+					&.cancel{
+						background-color: #b7b7b7;
+						padding: 0 30px;
+						display: inline-block;
+					}
+					&.submit{
+						padding: 0 60px;
+						background-color: #9cbe15;
+						border: 0 none;
+						margin-left: 5px;
+					}
+				}
+			}
+		}
 	}
 }
