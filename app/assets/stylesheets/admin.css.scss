@@ -388,8 +388,10 @@ fieldset.meta {
   margin-bottom: 1em;
 
   label {
-    display: inline-block;
+    display: block;
+    float: left;
     width: 7em;
+    margin-right: 1em;
     &:after {
       display: inline;
       content: ":";

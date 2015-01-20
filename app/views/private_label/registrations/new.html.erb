@@ -1,70 +1,86 @@
-<div class="wrapper">
-  <div class="content-container">
-    <h1>Register</h1>
-    <%= form_for resource, url: person_registration_path, :method => "post", "data-remote" => 'true', :html => { :multipart => 'true', :class => "register" } do |f| %>
-      <%= f.fields_for :authentications do |authentication_form| %>
-        <%= authentication_form.hidden_field :token %>
-        <%= authentication_form.hidden_field :uid %>
-        <%= authentication_form.hidden_field :provider %>
-      <% end %>
-      <fieldset class="regular-reg <%= 'show' %>">
-        <div class="form-block">
-          <%= f.label :first_name, 'Your Name:' %>
-          <%= f.text_field :first_name, :class => 'textbox first-name' %>
-          <%= f.text_field :last_name, :class => 'textbox last-name' %>
-          <span class="required">*</span>
-        </div>
-        <div class="form-block">
-          <%= f.label :title, 'Your Title' %>
-          <%= f.text_field :title, :class => 'textbox first-name' %>
-        </div>
-        <div class="form-block">
-          <%= f.label :email, 'Email Address:' %>
-          <%= f.text_field :email, :class => 'textbox' %>
-          <span class="required">*</span>
-        </div>
-        <div class="form-block">
-          <%= f.label :password %>
-          <%= f.password_field :password, :class=> 'textbox' %>
-          <span class="required">*</span>
-        </div>
-        <div class="form-block">
-          <%= f.label :password_confirmation, 'Password Again:' %>
-          <%= f.password_field :password_confirmation, :class=> 'textbox' %>
-          <span class="required">*</span>
-        </div>
-        <div class="form-block">
-          <%= f.label :avatar, "Your Photo:" %>
-          <%= f.file_field :avatar, :class => 'textbox' %>
-        </div>
-      </fieldset>
-      <fieldset>
-        <div class="form-block">
-          <%= f.label :bio, 'Tell us a little about yourself:' %>
-          <%= f.text_area :bio, class: 'textbox', rows: 10, placeholder: 'What should others know about you? (This will appear on your profile page. You can always edit it later through your settings.)' %>
-        </div>
-        <div id= "zipcode_warning" style="display: none; padding-left: 160px; margin-bottom: 5px; color: #900;">
-          You need to enter a valid zipcode
-        </div>
-        <div class="form-block">
-          <%= f.label :zip_code, 'Zipcode:' %>
-          <%= f.text_field :zip_code, class: 'textbox' %>
-          <span class="required">*</span>
-        </div>
-        <div class="form-block">
-          <%= f.check_box :daily_digest, class: 'checkbox' %>
-          <%= f.label :daily_digest, 'Yes, please send me the digest of activity relevant to my interests', class: 'checkbox' %>
-        </div>
-        <div class="form-block">
-          <%= f.check_box :weekly_newsletter, class: 'checkbox' %>
-          <%= f.label :weekly_newsletter, 'Yes, please send me The Civic Commons weekly newsletter', class: 'checkbox' %>
-        </div>
-      </fieldset>
-      <div class="form-block regular-reg show">
-        <%= f.submit "Continue", :class => 'submit' %>
-        or
-        <%= link_to 'Cancel', '/', :class=> 'cancel' %>
-      </div>
-    <% end %>
+<% content_for :header_second do %>
+  <h1>Register for an Account</h1>
+<% end %>
+
+<h2>Our Guiding Principles</h1>
+<p>The first thing you should know: This place operates by a few key principles and we'd like you to agree to them.</p>
+
+<section>
+  <div class="tos">
+    <h3><%= @swayze.private_label.name %> Terms </h3>
+    <%= simple_format(@swayze.private_label.terms_of_service) %>
+    <h3>Civic Commons Principles</h3>
+    <%= render partial: 'private_label/shared/civic_principles' %>
+  </div>
+  <div class="agree-to-terms checkbox">
+    <label for="agree-to-terms">
+      <input type="checkbox" name="agree-to-terms" id="agree-to-terms">
+      I'm on board, and will do my best to keep these principles in mind.
+    </label>
+  </div>
+</section>
+<div class="row">
+  <div class="col-md-7">
+    <section>
+      <p>Lorem ipsum dolor sit amet.</p>
+    </section>
+  </div>
+  <div class="col-md-5">
+    <section>
+      <p>Lorem ipsum dolor sit amet.</p>
+    </section>
   </div>
 </div>
+
+<section class="register-form">
+  <%= form_for resource, url: person_registration_path, :method => "post", "data-remote" => 'true', :html => { :multipart => 'true', :class => "register" } do |f| %>
+    <%= f.fields_for :authentications do |authentication_form| %>
+      <%= authentication_form.hidden_field :token %>
+      <%= authentication_form.hidden_field :uid %>
+      <%= authentication_form.hidden_field :provider %>
+    <% end %>
+    <div class="row">
+      <div class="form-group col-md-6 form-required">
+        <%= f.label :first_name, 'Your Name' %>
+        <div class="row">
+          <div class="col-md-6">
+            <%= f.text_field :first_name, :class => 'form-control' %>
+          </div>
+          <div class="col-md-6">
+            <%= f.text_field :last_name, :class => 'form-control' %>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-6 form-required">
+        <%= f.label :email, 'Email Address' %>
+        <%= f.text_field :email, :class => 'form-control' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-6 form-required">
+        <%= f.label :password %>
+        <%= f.password_field :password, :class=> 'form-control' %>
+      </div>
+      <div class="form-group col-md-6 form-required">
+        <%= f.label :password_confirmation, 'Password Again' %>
+        <%= f.password_field :password_confirmation, :class=> 'form-control' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-6">
+        <%= f.label :avatar, "Your Photo:" %>
+        <%= f.file_field :avatar, :class => 'textbox' %>
+      </div>
+      <div class="form-group col-md-6 form-required">
+        <%= f.label :zip_code, 'Zipcode' %>
+        <%= f.text_field :zip_code, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-block regular-reg show">
+      <%= f.submit "Continue", :class => 'submit' %>
+      or
+      <%= link_to 'Cancel', '/', :class=> 'cancel' %>
+    </div>
+  <% end %>
+</section>

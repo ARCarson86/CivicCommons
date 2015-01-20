@@ -30,8 +30,12 @@
   </head>
   <body>
     <%= render partial: 'private_label/shared/header' %>
-    <div class="header-second">
-      <%= yield :header_second %>
+    <div class="header-second container">
+      <div class="row">
+        <div class="col-md-12">
+          <%= yield :header_second %>
+        </div>
+      </div>
     </div>
     <div class="pl-content container">
       <div class="row">

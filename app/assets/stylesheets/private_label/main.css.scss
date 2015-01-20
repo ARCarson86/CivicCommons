@@ -13,13 +13,29 @@ html, body{
 .pl-content{
 	min-height: 100%;
 }
-h2{
-	color: #9cbe15;
-	font-size: 20px;
-	line-height: 50px;
+
+h1, h2, h3 {
+  line-height: 2.5em;
 	text-transform: uppercase;
 	font-family: 'Oswald', sans-serif;
 	margin: 0;
+	color: #9cbe15;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+.header h1 {
+  color: white;
+}
+h2{
+	font-size: 20px;
+}
+
+h3 {
+  color: $darkGray;
+  font-size: 16px;
 }
 .login-modal {
   .modal-dialog {
@@ -56,5 +72,76 @@ h2{
 
   .modal-header {
     border-bottom: 0;
+  }
+}
+
+.tos {
+  height: 300px;
+  overflow-y: scroll;
+  border: 2px solid #e7e7e7;
+  padding: 10px 25px;
+}
+
+.agree-to-terms {
+  padding: 20px 25px;
+  margin-top: 2em;
+  margin-bottom: 0;
+  background-color: $lightGray;
+
+  label {
+    font-size: 16px;
+    font-weight: normal;
+    font-family: 'Oswald', sans-serif;
+    margin: 0;
+    color: darken($gray, 30%);
+    text-transform: uppercase;
+    padding-left: 1.5em;
+    input[type=checkbox] {
+      margin-left: -1.5em;
+    }
+  }
+}
+
+.register-form {
+  position: relative;
+
+  &:before {
+    content: "";
+    display: block;
+
+    position: absolute;
+    bottom: 100%;
+    left: 90px;
+
+    width: 0; 
+    height: 0; 
+
+    border-left: 13px solid transparent;
+    border-right: 13px solid transparent;
+    border-bottom: 13px solid white;
+
+  }
+}
+
+.form-control {
+  font-size: 16px;
+  height: 34px;
+  border: 1px solid darken($gray, 20%);
+  border-radius: 1px;
+}
+
+.form-required label {
+
+  color: darken($gray, 20%);
+	font-family: 'Oswald', sans-serif;
+  font-weight: normal;
+  text-transform: uppercase;
+
+  &:after {
+    display: inline;
+    content: " *";
+    vertical-align: super;
+    font-size: 0.7em;
+    color: red;
   }
 }
