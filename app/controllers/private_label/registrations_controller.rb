@@ -44,7 +44,7 @@ class PrivateLabel::RegistrationsController < Devise::RegistrationsController
     return unless params[:authentication_id]
     if Rails.cache.exist? [:omniauth, :auth, params[:authentication_id]]
       omniauth_auth = Rails.cache.read [:omniauth, :auth, params[:authentication_id]]
-      #Rails.cache.delete [:omniauth, :auth, params[:authentication_id]] #TODO uncomment this line for production
+      Rails.cache.delete [:omniauth, :auth, params[:authentication_id]] #TODO uncomment this line for production
       if authentication = Authentication.find_from_auth_hash(omniauth_auth)
         if authentication.person.present?
           authentication.person.remember_me = true
