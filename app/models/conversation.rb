@@ -20,6 +20,7 @@ require 'obscenity/active_model'
       Sanitize.clean(summary, :remove_contents => ['style','script'])
     end
     integer :region_metrocodes, :multiple => true
+    integer :private_label_id
   end
   has_many :contributions, :dependent => :destroy
   has_many :confirmed_contributions, :class_name => 'Contribution',
@@ -98,12 +99,10 @@ require 'obscenity/active_model'
   validates :title,  obscenity: { sanitize: true, replacement: :vowels }
   validates :summary,  obscenity: { sanitize: true, replacement: :vowels }
 
-  after_create :set_initial_position, :subscribe_creator
-  around_create :send_notification_on_other_topic
+  #around_create :send_notification_on_other_topic
 
   friendly_id :title, :use => :slugged
 
-  default_scope where(private_label_id: nil)
   def should_generate_new_friendly_id?
     new_record? || slug.nil?
   end
@@ -123,7 +122,7 @@ require 'obscenity/active_model'
   # Filters by metro region, if metrocode parameter is supplied, otherwise, ignores it.
   scope :filter_metro_region, lambda{|metrocode| joins(:metro_region).where(:metro_regions=>{metrocode: metrocode}) if metrocode.present?}
 
-
+  default_scope where(:private_label_id => nil)
   # position starts from 0, and so forth
   def move_to_position(new_position)
     if new_position.is_a?(Integer)

@@ -1,4 +1,4 @@
-# Welcome to The Civic Commons [![Build Status](https://secure.travis-ci.org/CivicCommons/CivicCommons.png)](http://travis-ci.org/CivicCommons/CivicCommons?branch=master)
+# Welcome to The Civic Commons [![Build Status](http://ci.l7lab.com/buildStatus/icon?job=Civic Commons)](http://ci.l7lab.com/job/Civic%20Commons/)
 
 [www.theciviccommons.com](http://www.theciviccommons.com)
 
@@ -31,14 +31,10 @@ Contributing
 
 Runtime Dependencies
 --------------------
-    * Ruby 1.9.*
+    * Ruby 2
     * mysql
     * libiconv
     * imagemagick
-
-Test Dependencies
------------------
-    * qt4.7+
 
 Installation
 ------------
@@ -47,21 +43,6 @@ From your command line:
     git pull git@github.com/CivicCommons/CivicCommons
     bundle install
     bundle exec rake db:setup
-
-Running the App
----------------
-From your command line:
-
-    bundle exec rake server:start
-
-Deploying the app
------------------
-    ey recipes upload -e <environment you want to deploy to>
-    ey rebuild -e <environment you want to deploy to>
-
-Note: You will be asked to log in with the engine yard credentials. 
-
-    If you don't have access, talk to Winston.
 
 Copyright
 ---------

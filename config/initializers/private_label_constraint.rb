@@ -1,6 +1,6 @@
 class PrivateLabelConstraint
   def self.matches? request
-    request.subdomains.last == "pl" or matching_privatelabel?(request.host)
+    ["privatelabel", "pl"].include? request.subdomains.last or matching_privatelabel?(request.host)
   end
 
   def self.matching_privatelabel?(host)

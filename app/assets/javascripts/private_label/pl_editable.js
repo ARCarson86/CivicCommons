@@ -81,6 +81,7 @@
     if ($($textarea).tinymce() != undefined) {
       $($textarea).tinymce().remove();
     }
+    $(this).parents('.contribute-form').find('.contribution-attachments .add-link, .contribution-attachments .add-file').addClass('hide');
     $(this).parent().addClass('hide');
   });
 })(jQuery);

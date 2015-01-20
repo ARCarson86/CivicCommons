@@ -11,7 +11,7 @@ FactoryGirl.define do
     f.last_visit_date nil
     f.zip_code '44313' 
     f.position nil
-    f.image File.new(Rails.root + 'test/fixtures/images/test_image.jpg')
+    f.image File.new(Rails.root + 'spec/fixtures/images/test_image.jpg')
     f.topics { |topics| [topics.association(:topic)] }
   end
 

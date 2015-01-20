@@ -18,6 +18,7 @@ FactoryGirl.define do |f|
     u.daily_digest false
     u.avatar_url '/images/avatar_70.gif'
     u.avatar_cached_image_url '/images/avatar.jpg'
+    u.send_welcome false
   end
 
   factory :proxy_person, :parent => :normal_person do |u|
@@ -42,7 +43,7 @@ FactoryGirl.define do |f|
   end
 
   factory :registered_user_with_avatar, :parent => :registered_user do |u|
-    u.avatar File.new(Rails.root + 'test/fixtures/images/test_image.jpg')
+    u.avatar File.new(Rails.root + 'spec/fixtures/images/test_image.jpg')
   end
 
   factory :person, :parent => :registered_user do | u |
