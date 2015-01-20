@@ -5,35 +5,24 @@
 <h2>Our Guiding Principles</h1>
 <p>The first thing you should know: This place operates by a few key principles and we'd like you to agree to them.</p>
 
-<section>
-  <div class="tos">
-    <h3><%= @swayze.private_label.name %> Terms </h3>
-    <%= simple_format(@swayze.private_label.terms_of_service) %>
-    <h3>Civic Commons Principles</h3>
-    <%= render partial: 'private_label/shared/civic_principles' %>
-  </div>
-  <div class="agree-to-terms checkbox">
-    <label for="agree-to-terms">
-      <input type="checkbox" name="agree-to-terms" id="agree-to-terms">
-      I'm on board, and will do my best to keep these principles in mind.
-    </label>
-  </div>
-</section>
-<div class="row">
-  <div class="col-md-7">
-    <section>
-      <p>Lorem ipsum dolor sit amet.</p>
-    </section>
-  </div>
-  <div class="col-md-5">
-    <section>
-      <p>Lorem ipsum dolor sit amet.</p>
-    </section>
-  </div>
-</div>
+<%= form_for resource, url: person_registration_path, :method => "post", "data-remote" => 'true', :html => { :multipart => 'true', :class => "register" } do |f| %>
 
-<section class="register-form">
-  <%= form_for resource, url: person_registration_path, :method => "post", "data-remote" => 'true', :html => { :multipart => 'true', :class => "register" } do |f| %>
+  <%= render partial: 'tos', locals: { form: f } %>
+
+  <div class="row">
+    <div class="col-md-7">
+      <section>
+        <p>Lorem ipsum dolor sit amet.</p>
+      </section>
+    </div>
+    <div class="col-md-5">
+      <section>
+        <p>Lorem ipsum dolor sit amet.</p>
+      </section>
+    </div>
+  </div>
+
+  <section class="register-form">
     <%= f.fields_for :authentications do |authentication_form| %>
       <%= authentication_form.hidden_field :token %>
       <%= authentication_form.hidden_field :uid %>
@@ -82,5 +71,5 @@
       or
       <%= link_to 'Cancel', '/', :class=> 'cancel' %>
     </div>
-  <% end %>
-</section>
+  </section>
+<% end %>

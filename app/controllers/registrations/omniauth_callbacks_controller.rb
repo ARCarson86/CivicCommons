@@ -3,17 +3,16 @@ class Registrations::OmniauthCallbacksController < Devise::OmniauthCallbacksCont
   helper_method :form_presenter
 
   def social(provider)
-    if signed_in? && !current_person.social_authenticated?(provider)
+    omniauth_params = env['omniauth.params']
+    if omniauth_params["private_label"]
+      cache_id = SecureRandom.hex
+      Rails.cache.write [:omniauth, :auth, cache_id], env['omniauth.auth'], expires_in: 30.minutes
+      redirect_to new_person_registration_url(host: omniauth_params["private_label"], authentication_id: cache_id)
+    elsif signed_in? && !current_person.social_authenticated?(provider)
       link_with_social
     else
       if authentication = Authentication.find_from_auth_hash(env['omniauth.auth'])
-        omniauth_params = env['omniauth.params']
-        authentication_attributes = authentication.attributes.select { |k,v| ["provider", "token", "uid"].include? k }
-        if omniauth_params["private_label"]
-          redirect_to new_person_session_url(host: omniauth_params["private_label"], test: "test", authentication: authentication_attributes)
-        else
-          successful_authentication(authentication)
-        end
+        successful_authentication(authentication)
       else
         create_account_using_social_credentials
       end
@@ -56,13 +55,7 @@ private
       if Authentication.where(uid: (omniauth)[:uid]).blank?
         @person = Person.build_from_auth_hash(omniauth)
         @authentication = Authentication.new_from_auth_hash(omniauth)
-        if (omniauth_params["private_label"])
-          person_attributes = @person.attributes.select { |k,v| ["first_name", "last_name", "email"].include? k }
-          authentication_attributes = @authentication.attributes.select { |k,v| ["provider", "token", "uid"].include? k }
-          redirect_to new_person_registration_url(host: omniauth_params["private_label"], test: "test", person: person_attributes, authentication: authentication_attributes)
-        else
-          render "registrations/new", layout: "registrations"
-        end
+        render "registrations/new", layout: "registrations"
       end
     end
   end

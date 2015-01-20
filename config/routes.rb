@@ -16,6 +16,10 @@ Civiccommons::Application.routes.draw do
   constraints PrivateLabelConstraint do
     devise_for :people, :controllers => { :registrations => 'private_label/registrations', :confirmations => 'private_label/confirmations', :sessions => 'private_label/sessions', :omniauth_callbacks => "private_label/registrations/omniauth_callbacks", :passwords => 'passwords'},
       :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :registration => 'register', :sign_up => 'new' }
+    devise_scope :person do
+      get "/registrations/agree_to_terms", to: "private_label/registrations#present_terms", as: "agree_to_terms"
+      post "/registrations/agree_to_terms", to: "private_label/registrations#agree_to_terms"
+    end
     namespace "private_label", path: '' do
       root to: 'homepage#show'
       namespace "admin" do
