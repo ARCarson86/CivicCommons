@@ -82,6 +82,7 @@ RSpec.configure do |config|
   end
 
   config.after :each do
+    ActiveRecord::Base.observers.enable :all
     DatabaseCleaner.clean
   end
 end
