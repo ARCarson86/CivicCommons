@@ -17,4 +17,8 @@ class PrivateLabel < ActiveRecord::Base
   has_many :conversations
   has_many :contributions
 
+  def add_admin(person)
+    private_label_people.create person: person, admin: true
+  end
+
 end
