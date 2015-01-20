@@ -17,6 +17,10 @@ class PrivateLabel < ActiveRecord::Base
   has_many :conversations
   has_many :contributions
 
+  # Adds a person to a private label as an administrator
+  #
+  # @param person the person to add as an administrator
+  # @return the PrivateLabel to which the administrator was added
   def add_admin(person)
     private_label_people.create person: person, admin: true
   end
