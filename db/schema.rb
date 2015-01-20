@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141229180926) do
+ActiveRecord::Schema.define(:version => 20150120023814) do
 
   create_table "actions", :force => true do |t|
     t.integer  "conversation_id"
@@ -601,6 +601,7 @@ ActiveRecord::Schema.define(:version => 20141229180926) do
     t.integer  "person_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.boolean  "admin"
   end
 
   create_table "private_labels", :force => true do |t|
