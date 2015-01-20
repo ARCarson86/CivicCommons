@@ -79,10 +79,10 @@ RSpec.describe Swayze do
       create(:private_label_person, person: @non_admin, private_label: @private_label) 
 
       @admin = create(:person)
-      create(:private_label_administrator, person: @admin, private_label: @private_label)
+      create(:private_label_person, person: @admin, private_label: @private_label, admin: true)
 
       @other_admin = create(:person)
-      create(:private_label_administrator, person: @other_admin, private_label: @another_private_label)
+      create(:private_label_person, person: @other_admin, private_label: @another_private_label, admin: true)
     end
 
     it 'returns an array ' do
