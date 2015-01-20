@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150120023814) do
+ActiveRecord::Schema.define(:version => 20150120023905) do
 
   create_table "actions", :force => true do |t|
     t.integer  "conversation_id"
@@ -588,13 +588,6 @@ ActiveRecord::Schema.define(:version => 20150120023814) do
 
   add_index "petitions", ["conversation_id"], :name => "index_petitions_on_conversation_id"
   add_index "petitions", ["person_id"], :name => "index_petitions_on_person_id"
-
-  create_table "private_label_administrators", :force => true do |t|
-    t.integer  "person_id"
-    t.integer  "private_label_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-  end
 
   create_table "private_label_people", :force => true do |t|
     t.integer  "private_label_id"
