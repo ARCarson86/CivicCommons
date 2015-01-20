@@ -38,12 +38,13 @@
             <div class="col-md-10">
     			<%= form_for [:private_label, @conversation, @newContribrution], :html => { :class => 'contribute-form', multipart: true } do |f| %>
     				<div class="editable">
-                        <%= f.text_area :content %>
+                        <%= f.text_area :content, rows: 1, placeholder: "Click here to respond to #{@swayze.private_label.name}"  %>
                     </div>
-                    <%= render partial: 'contributions/contribution_attachments_form', locals: {form: f, contribution: @newContribrution} %>
-    				<div class="contribute-actions">
+                        <%= render partial: 'private_label/contributions/contributions_attachment_form', locals: {form: f, contribution: @newContribrution} %>
+
+    				<div class="contribute-actions pull-right hide">
                       <a href="#" class="button tertiary cancel">Cancel</a>
-                      <%= f.submit "Comment", class: "button", disable_with: "Posting..." %>
+                      <%= f.submit "Comment", class: "button submit", disable_with: "Posting..." %>
                     </div>
     			<% end %>
             </div>
@@ -54,7 +55,7 @@
 		<section class="comment-section">
 			<div class="placeholder">
 				<% @conversation.contributions.each do |contribution| %>
-					<%= contribution.content %>
+					<%= sanitize contribution.content %>
 				<% end %>
 			</div>
 		</section>
