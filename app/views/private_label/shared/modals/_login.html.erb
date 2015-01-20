@@ -8,15 +8,38 @@
         </h4>
       </div>
       <div class="modal-body">
-        <% Authentication::PROVIDERS.each do |provider| %>
-          <%= link_to person_omniauth_authorize_url(provider.to_sym, host: "civic.dev", private_label: request.host), {style: "margin-right: 0;"} do %>
-            <%= provider %>
+        <h3>Did you register with a social network?</h3>
+        <div class="social-holder">
+          <div class="title">Sign in with</div>
+          <% Authentication::PROVIDERS.each do |provider| %><%= link_to person_omniauth_authorize_url(provider.to_sym, host: "civic.dev", private_label: request.host), class: "social-sign-in-button #{provider}" do %><div class="social-link-sign <%= provider %>"></div><% end %><% end %>
+        </div>
+
+        <h3>if not, login with your username and password:</h3>
+
+        <div>
+          <%= form_for :person, url: session_path(:person) do |f| %>
+            <div class="form-group">
+              <%= f.label :email %>
+              <%= f.email_field :email, class: "form-control" %>
+            </div>
+
+            <div class="form-group">
+            <%= f.label :password %>
+            <%= f.password_field :password, class: "form-control" %>
+            </div>
+
+            <div class="checkbox">
+              <%= f.label :remember_me, class: "label-small" do %>
+                <%= f.check_box :remember_me %> 
+                Remember me on this computer
+              <% end %>
+            </div>
+
+            <div>
+              <%= f.submit "Login", class: "btn btn-block btn-success" %>
+            </div>
           <% end %>
-        <% end %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
       </div>
     </div>
   </div>
