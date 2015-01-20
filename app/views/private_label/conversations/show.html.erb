@@ -1,7 +1,81 @@
-<%= @conversation.title %>
-<br>
-<%= @conversation.summary %>
-<% @conversation.contributions.each do |contribution| %>
-	<%= contribution.content %>
+<% content_for :header_second do %>
+ 	<div class="placeholder">
+ 		<div class="container">
+			<div class="row">
+				<div class="col-md-9">
+					<h1><%= @conversation.title %>
+					<h2><%= image_tag('private_label/clock-wh.png') %><%= @conversation.created_at.strftime("%^B %e, %Y") %><span class="separator">/</span><%= image_tag('private_label/user-wh.png', height: '26') %><%= PrivateLabel.name %><span class="separator">/</span></h2>
+				</div>
+				<div class="col-md-3">
+					<div class="header-comment-count-wrapper pull-right">
+						<div class="header-comment-count"><%= @conversation.contributions.count %></div>
+						<%= image_tag('private_label/chat-bubble-wh.png') %>
+					</div>
+				</div>
+			</div>
+ 		</div>
+ 	</div>
 <% end %>
-<br>
+<div class="row">
+	<div class="col-md-12">
+		<section>
+			<%= sanitize @conversation.summary %>
+			<% if @conversation.starter.blank? %>
+				<div class="convo-starter">
+					<%= sanitize @conversation.starter %>
+				</div>
+			<% end %>
+		</section>
+
+		<h2>What do you think?</h2>
+		<section class="comment-section">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="user-image">
+    		      <%= user_profile(current_person).html_safe %>
+                </div>
+            </div>
+            <div class="col-md-10">
+    			<%= form_for [:private_label, @conversation, @newContribrution], :html => { :class => 'contribute-form', multipart: true } do |f| %>
+    				<div class="editable">
+                        <%= f.text_area :content, rows: 1, placeholder: "Click here to respond to #{@swayze.private_label.name}"  %>
+                    </div>
+                        <%= render partial: 'private_label/contributions/contributions_attachment_form', locals: {form: f, contribution: @newContribrution} %>
+
+    				<div class="contribute-actions pull-right hide">
+                      <a href="#" class="button tertiary cancel">Cancel</a>
+                      <%= f.submit "Comment", class: "button submit", disable_with: "Posting..." %>
+                    </div>
+    			<% end %>
+            </div>
+        </div>
+		</section>
+
+		<h2>Comments</h2>
+		<section class="comment-section">
+			<div class="placeholder">
+				<% @conversation.contributions.each do |contribution| %>
+					<%= sanitize contribution.content %>
+				<% end %>
+			</div>
+		</section>
+	</div>
+</div>
+
+
+
+<% content_for :sidebar do %>
+ 	<div class="row">
+		<div class="col-md-12">
+			<h2>Recent Activity</h2>
+			<section>
+				
+			</section>
+
+			<h2>Upcoming Dates</h2>
+			<section>
+				
+			</section>
+		</div>
+ 	</div>
+<% end %>

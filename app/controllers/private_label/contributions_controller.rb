@@ -1,6 +1,6 @@
-class PrivateLabel::ContributionsController < PrivateLabel::ApplicationController
+class PrivateLabel::ContributionsController < PrivateLabel::PlController
 
-  before_filter :require_user, only: [ :create ]
+  before_filter :get_conversation
 	def index
 		@contributions = @swayze.contributions
 	end
@@ -14,6 +14,15 @@ class PrivateLabel::ContributionsController < PrivateLabel::ApplicationControlle
 	end
 
 	def create
-		@contribution = Contribution.new(params[:contribution])
+		@contribution = @conversation.contributions.new(params[:contribution])
+
+
+		@contribution.save validate: false # TODO: Fix validation
 	end
+
+	protected 
+
+		def get_conversation
+			@conversation = @swayze.conversations.find(params[:conversation_id])
+		end
 end
