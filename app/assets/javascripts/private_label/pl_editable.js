@@ -74,7 +74,6 @@
   $(document).on("click", ".contribute-actions .cancel", function(event) {
     event.preventDefault();
     var $editable = $(this).parents(".contribute-form").find('.editable');
-    console.log($editable);
     var $textarea = $($editable).children("textarea").first();
     $editable.removeClass("editor-active");
     $($textarea).text("");
