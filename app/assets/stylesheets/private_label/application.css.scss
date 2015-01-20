@@ -11,6 +11,10 @@
 
 */
 *{
+	-webkit-transition: all 300ms ease;
+    -moz-transition: all 300ms ease;
+    -o-transition: all 300ms ease;
+    transition: all 300ms ease;
 	&:focus{
 		outline: none;
 	}
@@ -22,6 +26,11 @@ html, body{
 }
 .pl-content{
 	min-height: 100%;
+}
+h1{
+	margin: 0;
+	font-size: 36px;
+	line-height: 50px;
 }
 h2{
 	color: #9cbe15;
