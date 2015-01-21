@@ -7,6 +7,6 @@ class PrivateLabel::ConversationsController < PrivateLabel::PlController
 	def show
 		@conversation = @swayze.conversations.find(params[:id])
 		@contributions = @conversation.contributions
-		@newContribrution = @conversation.contributions.new
+		@newContribrution = Contribution.new
 	end
 end
