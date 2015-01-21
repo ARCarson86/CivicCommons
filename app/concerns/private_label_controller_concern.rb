@@ -4,7 +4,7 @@ module PrivateLabelControllerConcern
   included do
     before_filter :enable_swayze
     alias_method :current_user, :current_person
-    layout 'private_label/layouts/application'
+    layout 'private_labels/layouts/application'
   end
 
   def after_sign_in_path_for(resource)

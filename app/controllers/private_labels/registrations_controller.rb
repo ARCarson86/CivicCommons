@@ -1,4 +1,4 @@
-class PrivateLabel::RegistrationsController < Devise::RegistrationsController
+class PrivateLabels::RegistrationsController < Devise::RegistrationsController
   include PrivateLabelControllerConcern
 
   before_filter :omniauth_registration, only: [:new]
