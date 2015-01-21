@@ -4,21 +4,20 @@
 		height: auto;
 		margin-bottom: 30px;
 		padding: 25px;
-		&.comment-section{
-			.user-image{
-				a{
-					display: inline-block;
-					border-radius: 45px;
-					height: 90px;
-					width: 90px;
-					border: 2px solid #949798;
-					overflow: hidden;
-					img{
-						height: 100%;
-						width: 100%;
-					}
-				}
+		.user-image{			
+			display: inline-block;
+			border-radius: 45px;
+			height: 90px;
+			width: 90px;
+			border: 2px solid #949798;
+			overflow: hidden;
+			img{
+				height: 100%;
+				width: 100%;
 			}
+		}
+		&.comment-section{
+			
 			.editable{
 				padding-top: 15px;
 				textarea{
@@ -54,6 +53,34 @@
 					}
 				}
 			}
+		}
+	}
+	.conversation-contributions{
+		.contribution-container{
+			padding: 0 10px;
+			.contribution-header{
+				padding: 15px 0;
+				color: #a7c530;	
+				line-height: 30px;
+				font-family: 'Open Sans', sans-serif;
+				font-size: 13px;
+				text-transform: uppercase;
+				border-bottom: 1px solid rgba(0,0,0,.3);
+				.contribution-info{
+					border-right: 1px solid rgba(0,0,0,.3);
+					.base{
+						vertical-align: baseline;
+					}
+				}
+			}
+			.contribution-content{
+				padding-top: 15px;
+				font-size: 15px;
+				color: #3a3a3a;
+				line-height: 26px;
+			}
+			
+
 		}
 	}
 }
