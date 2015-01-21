@@ -39,7 +39,7 @@
     </div>
   </div>
 
-  <section class="register-form hide">
+  <section class="register-form <%= "hide" unless resource.changed? %>">
     <%= f.fields_for :authentications do |authentication_form| %>
       <%= authentication_form.hidden_field :token %>
       <%= authentication_form.hidden_field :uid %>
@@ -84,9 +84,8 @@
       </div>
     </div>
     <div class="form-block regular-reg show">
-      <%= f.submit "Continue", :class => 'submit' %>
-      or
-      <%= link_to 'Cancel', '/', :class=> 'cancel' %>
+      <%= f.submit "Register", class: 'btn btn-success btn-wide' %>&nbsp;&nbsp;&nbsp;
+      <%= link_to 'Cancel', '/', :class=> 'btn btn-default' %>
     </div>
   </section>
 <% end %>

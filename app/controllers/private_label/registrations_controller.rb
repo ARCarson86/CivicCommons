@@ -18,9 +18,19 @@ class PrivateLabel::RegistrationsController < Devise::RegistrationsController
       @authentication.save!
     end
 
-    super
+    unless params[:agree_to_terms]
+      flash[:notice] = "Please agree to the terms"
+      build_resource params[:person]
+      clean_up_passwords(resource)
+      respond_with_navigational(resource) { render_with_scope :new }
+    else
+      super
+    end
 
-    @swayze.private_label.people << resource
+    if params[:agree_to_terms]
+      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "#{authentication.provider}"
+      @swayze.private_label.people << resource
+    end
   end
 
   def present_terms

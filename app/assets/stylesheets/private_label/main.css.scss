@@ -334,6 +334,23 @@ label {
   text-transform: uppercase
 }
 
+.btn-wide {
+  width: 310px;
+  text-align: center;
+}
+
+.btn-default {
+  background-color: $midGray;
+  border-color: $midGray;
+  color: white;
+
+  &:hover {
+    color: white;
+    background-color: darken($midGray,5%);
+    border-color: darken($midGray,5%);
+  }
+}
+
 .btn-success {
   background-color: $green;
   border-color: $green;
