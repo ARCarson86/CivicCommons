@@ -1,3 +1,5 @@
-class PrivateLabel::SessionsController < Devise::SessionsController
-  include PrivateLabelControllerConcern
+module PrivateLabels
+  class SessionsController < Devise::SessionsController
+    include PrivateLabelControllerConcern
+  end
 end

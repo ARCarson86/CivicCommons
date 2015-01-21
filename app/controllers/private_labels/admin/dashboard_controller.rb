@@ -1,7 +1,10 @@
-class PrivateLabel::Admin::DashboardController < PrivateLabel::PlController
-	layout 'private_label/layouts/admin'
+module PrivateLabels
+  module Admin
+    class DashboardController < PlController
+      def show
+        @people = @swayze.people
+      end
+    end
 
-  def show
-  	@people = @swayze.people
-  end
-end
+  end # Admin module
+end # PrivateLabels module

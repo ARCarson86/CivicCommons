@@ -13,13 +13,13 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li id="nav-search" class="left-border">
-            <%= render :partial => 'private_label/search/search', locals: { filter_type: params[:filter] } %>
+            <%= render :partial => 'private_labels/search/search', locals: { filter_type: params[:filter] } %>
           </li>
           <% if current_person %>
               <%= render :partial => 'notifications/notification' %>
-                <%= render :partial => 'private_label/layouts/logged_in' %>
+                <%= render :partial => 'private_labels/layouts/logged_in' %>
             <% else %>
-                <%= render :partial => 'private_label/layouts/single_column' %>
+                <%= render :partial => 'private_labels/layouts/single_column' %>
             <% end %>
         </ul>
       </div>

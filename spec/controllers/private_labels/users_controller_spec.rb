@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 module PrivateLabels
-  RSpec.describe ConversationsController do
+  RSpec.describe UsersController do
     it { should be_a PlController }
   end
-
-end # PrivateLabels module
+end

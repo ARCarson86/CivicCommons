@@ -7,23 +7,7 @@
 					<td>Agreed On</td>
 					<td>Admin</td>
 				</thead>
-				<% @people.each do |person| %>
-				<tr>
-					<td><%= person.email %></td>
-					<td><%= person.created_at %></td>
-					<td><%= person.admin? %></td>
-				</tr>
-				<% end %>
-			</table>
-		</div>
-		<div class="col-sm-6">
-			<table>
-				<thead>
-					<td>Email</td>
-					<td>Agreed On</td>
-					<td>Admin</td>
-				</thead>
-				<% @people.each do |person| %>
+				<% @admins.each do |person| %>
 				<tr>
 					<td><%= person.email %></td>
 					<td><%= person.created_at %></td>

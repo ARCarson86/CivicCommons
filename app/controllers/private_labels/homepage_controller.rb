@@ -1,8 +1,11 @@
-class PrivateLabel::HomepageController < PrivateLabel::PlController
+module PrivateLabels
+  class HomepageController < PlController
 
-	def show
-		@people = @swayze.people
-		@conversations = @swayze.conversations
-	end
+    def show
+      @people = @swayze.people
+      @conversations = @swayze.conversations
+    end
 
-end
+  end
+
+end # PrivateLabels module
