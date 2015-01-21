@@ -21,7 +21,7 @@
             onclick : function() {
                 // Add you own code to execute something on click
                 ed.focus();
-                $('.contribution-attachments .add-link').toggleClass('hide');
+                $(ed.formElement).find('.contribution-attachments .add-link').toggleClass('hide');
             }
         });
         ed.addButton('plimage', {
@@ -30,7 +30,7 @@
             onclick : function() {
                 // Add you own code to execute something on click
                 ed.focus();
-                $('.contribution-attachments .add-file').toggleClass('hide');
+                $(ed.formElement).find('.contribution-attachments .add-file').toggleClass('hide');
             }
         });
     },
@@ -68,6 +68,7 @@
   $(document).on("focus", ".editable textarea", function(event) {
     $(this).parent(".editable").addClass("editor-active");
     options = $.extend({}, defaults, {auto_focus: $(this).attr("id")});
+    console.log($(this));
     $(this).tinymce(options);
     $(this).parents('.contribute-form').find('.contribute-actions').removeClass('hide');
   });

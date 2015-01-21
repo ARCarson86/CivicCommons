@@ -15,7 +15,7 @@ class PrivateLabel::ContributionsController < PrivateLabel::PlController
 
 	def create
 		@contribution = @conversation.contributions.new(params[:contribution])
-		@contribution.owner = current_person
+		@contribution.person = current_person
 
 
 		@contribution.save validate: false # TODO: Fix validation
