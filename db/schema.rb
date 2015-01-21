@@ -592,9 +592,9 @@ ActiveRecord::Schema.define(:version => 20150120023905) do
   create_table "private_label_people", :force => true do |t|
     t.integer  "private_label_id"
     t.integer  "person_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-    t.boolean  "admin"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.boolean  "admin",            :default => false
   end
 
   create_table "private_labels", :force => true do |t|
