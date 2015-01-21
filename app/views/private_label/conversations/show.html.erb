@@ -4,7 +4,7 @@
 			<div class="row">
 				<div class="col-md-9">
 					<h1><%= @conversation.title %>
-					<h2><%= image_tag('private_label/clock-wh.png') %><%= @conversation.created_at.strftime("%^B %e, %Y") %><span class="separator">/</span><%= image_tag('private_label/user-wh.png', height: '26') %><%= PrivateLabel.name %><span class="separator">/</span></h2>
+					<h2><%= image_tag('private_label/clock-wh.png') %><%= @conversation.created_at.strftime("%^B %e, %Y") %><span class="separator">/</span><%= image_tag('private_label/user-wh.png', height: '26') %><%= @swayze.private_label.name %><span class="separator">/</span></h2>
 				</div>
 				<div class="col-md-3">
 					<div class="header-comment-count-wrapper pull-right">

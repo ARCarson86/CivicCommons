@@ -3,6 +3,7 @@
 	top: 0;
 	width: 100%;
 	z-index: 100;
+	text-transform: uppercase;
 	background-color: rgba(0,0,0,.35);
 	.with-borders{
 		border-left: 1px solid #000;
@@ -13,6 +14,57 @@
 	}
 	a{
 		color: #fff;
+	}
+	li{
+		position: relative;
+		overflow: visible;
+		#profile-options{
+			position: absolute;
+			top: 50px;
+			left: 0;
+			background-color: rgba(0,0,0,.35);
+			padding: 10px 15px;
+			width: 100%;
+			text-align: center;
+			border-top: 1px solid #000;
+		}
+		#pl-search-form{
+			position: absolute;
+			top: 50px;
+			right: 0px;
+			background-color: rgba(0,0,0,.35);
+			padding: 10px 15px;
+			width: 283px;
+			border-top: 1px solid #000;
+			.submit{
+				display: inline-block;
+				float: right;
+			}
+		}
+	}
+	.nav-user-info{
+		padding: 9.5px 15px;
+		>a{
+			padding: 0;
+			display: inline-block;
+			line-height: 30px;
+		}
+		img{
+			border-radius: 15px;
+			height: 30px;
+			width: 30px;
+			border: 1px solid #fff;
+			overflow: hidden;
+		}
+		#profile-more{
+			display: inline-block;
+			line-height: 20px;
+			border: 1px solid #fff;
+			padding: 0 4px;
+			margin-left: 5px;
+			border-radius: 3px;
+			font-size: 17px;
+		}
 	}
 }
 .header-second{
