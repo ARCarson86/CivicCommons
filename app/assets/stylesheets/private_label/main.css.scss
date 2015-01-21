@@ -239,3 +239,107 @@ label {
     }
   }
 }
+
+.register-options {
+  margin-top: 2em;
+}
+.social-register-button {
+  height: 45px;
+  width: 45px;
+  display: inline-block;
+  text-align: center;
+  line-height: 45px;
+  margin-left: .5em;
+  color: white;
+  vertical-align: middle;
+  > .icon {
+    line-height: inherit;
+  }
+
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+
+  &.facebook {
+    background-color: #3d7aa2;
+    &:hover {
+      background-color: darken(#3d7aa2, 10%);
+    }
+  }
+  &.twitter {
+    background-color: #298fd0;
+    &:hover {
+      background-color: darken(#298fd0, 10%);
+    }
+  }
+  &.linkedin {
+    background-color: #468dba;
+    &:hover {
+      background-color: darken(#468dba, 10%);
+    }
+  }
+  &.google-plus {
+    background-color: #d0433a;
+    &:hover {
+      background-color: darken(#d0433a, 10%);
+    }
+  }
+
+}
+
+.register-options-group {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  .register-separator {
+    display: inline-block;
+    vertical-align: middle;
+    width: 45px;
+    height: 45px;
+    text-align:center;
+    margin-left: .5em;
+    position: relative;
+    background-color: white;
+    &:after {
+      border-left: 2px solid darken($gray, 20%);
+      content: "";
+      display: block;
+      height: 45px;
+      position: absolute;
+      top: 0;
+      left: 22px;
+    }
+
+    span {
+      background-color: white;
+      z-index:2;
+      position: absolute;
+      top: 50%;
+      width: 45px;
+      text-align:center;
+      transform: translateY(-50%);
+      left: 0;
+      line-height: 1.4em;
+      color: darken($gray, 20%);
+
+    }
+  }
+}
+
+.btn {
+  padding: 9px 24px;
+  line-height: 25px;
+  border-radius: 1px;
+  text-transform: uppercase
+}
+
+.btn-success {
+  background-color: $green;
+  border-color: $green;
+
+  &:hover {
+    background-color: darken($green,5%);;
+    border-color: darken($green,5%);;
+  }
+}

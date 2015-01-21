@@ -12,17 +12,34 @@
   <div class="row">
     <div class="col-md-7">
       <section>
-        <p>Lorem ipsum dolor sit amet.</p>
+        <h3>Register for an Account</h3>
+        <p>Choose this if you want to create an account. You'll be able to start and contribute to conversations and interact with other community members.</p>
+        <div class="register-options">
+          <a class="btn btn-success register-with-email" href="#">Register with an Email Address</a>
+
+          <div class="register-options-group">
+            <div class="register-separator"><span>OR</span></div>
+            <% Authentication::PROVIDERS.each do |provider| %>
+              <%= link_to person_omniauth_authorize_url(provider.to_sym, host: "civic.dev", private_label: request.host), class: "social-register-button #{provider}" do %>
+                <i class="icon icon-<%=provider%> icon-2x"></i>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
       </section>
     </div>
     <div class="col-md-5">
       <section>
-        <p>Lorem ipsum dolor sit amet.</p>
+        <h3>Already Have a Civic Commons Account?</h3>
+        <p>Choose this if you already have an account with Civic Commons.</p>
+        <div class="register-options">
+          <%= link_to 'Sign in with Civic Commons', '#', class: 'btn btn-success', :data => {:'toggle' => 'modal', :'target' => '#loginModal'} %>
+        </div>
       </section>
     </div>
   </div>
 
-  <section class="register-form">
+  <section class="register-form hide">
     <%= f.fields_for :authentications do |authentication_form| %>
       <%= authentication_form.hidden_field :token %>
       <%= authentication_form.hidden_field :uid %>
