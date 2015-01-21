@@ -14,15 +14,15 @@
 
         <ul class="nav navbar-nav navbar-right">
           <li id="nav-search" class="left-border">
-            <%= link_to image_tag('private_label/search-wh.png'), '#', id: 'pl-search' %>
+            <%= link_to image_tag('private_labels/search-wh.png'), '#', id: 'pl-search' %>
             <div id="pl-search-form" class="hide">
-              <%= render :partial => 'private_label/search/search', locals: { filter_type: params[:filter] } %>
+              <%= render :partial => 'private_labels/search/search', locals: { filter_type: params[:filter] } %>
             </div>
           </li>
           <% if current_person %>
-                <%= render :partial => 'private_label/layouts/logged_in' %>
+                <%= render :partial => 'private_labels/layouts/logged_in' %>
             <% else %>
-                <%= render :partial => 'private_label/layouts/single_column' %>
+                <%= render :partial => 'private_labels/layouts/single_column' %>
             <% end %>
           </ul>
           

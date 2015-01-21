@@ -28,7 +28,7 @@
     <%= csrf_meta_tag %>
   </head>
   <body class="<%= page_classes %>">
-    <%= render partial: 'private_label/shared/header' %>
+    <%= render partial: 'private_labels/shared/header' %>
     <div class="header-second">
       <%= yield :header_second %>
     </div>
@@ -55,7 +55,7 @@
         <% end %>
       </div>
     </div>
-    <%= render partial: 'private_label/shared/footer' %>
+    <%= render partial: 'private_labels/shared/footer' %>
 
     <% if flash[:notice] %>
       <div class="flash-notice" style="display:none;">
@@ -64,7 +64,7 @@
       </div>
     <% end %>
     
-    <%= render partial: 'private_label/shared/modals/login' %>
+    <%= render partial: 'private_labels/shared/modals/login' %>
   </body>
 
 </html>
