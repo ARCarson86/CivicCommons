@@ -84,4 +84,11 @@
     $(this).parents('.contribute-form').find('.contribution-attachments .add-link, .contribution-attachments .add-file').addClass('hide');
     $(this).parent().addClass('hide');
   });
+  $(document).on("click", ".contribution-header .reply-to-contribution", function(event) {
+    event.preventDefault();
+    $('html, body').animate({
+        scrollTop: $(this).closest('.contribution-wrapper').find('.reply-form').offset().top
+    }, 'fast');
+    $(this).closest('.contribution-wrapper').find('.reply-form .editable textarea').focus();
+  });
 })(jQuery);

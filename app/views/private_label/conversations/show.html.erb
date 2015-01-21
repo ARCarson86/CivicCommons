@@ -54,112 +54,114 @@
 		<h2>Comments</h2>
         <div class="conversation-contributions">
     		<% @conversation.contributions.without_parent.each do |contribution| %>
-                <section class="top-level-contribution">
+                <div class="contribution-wrapper">
+                    <section class="top-level-contribution">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="user-image">
+                                    <%= user_profile(contribution.owner).html_safe %>
+                                </div>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="contribution-container">
+                                    <div class="contribution-header row">
+                                        <div class="col-md-9 contribution-info">
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <%= image_tag('private_label/user-gray.png', class: "base") %>
+                                                    <%= contribution.person.name %>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <%= image_tag 'private_label/clock-gray.png' %>
+                                                    <%= contribution.created_at.strftime("%b %e, %Y") %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 text-right">
+                                            <span class="header-icon"><i class="icon-flag icon-2x"></i></span>
+                                            <span class="header-icon"><a href="#" class="reply-to-contribution"><i class="icon-share-alt icon-2x"></i></a></span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="contribution-content">
+                                                <%= sanitize contribution.content %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </section>
                     <div class="row">
-                        <div class="col-md-2">
-                            <div class="user-image">
-                                <%= user_profile(contribution.owner).html_safe %>
-                            </div>
-                        </div>
-                        <div class="col-md-10">
-                            <div class="contribution-container">
-                                <div class="contribution-header row">
-                                    <div class="col-md-9 contribution-info">
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                <%= image_tag('private_label/user-gray.png', class: "base") %>
-                                                <%= contribution.person.name %>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <%= image_tag 'private_label/clock-gray.png' %>
-                                                <%= contribution.created_at.strftime("%b %e, %Y") %>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 text-right">
-                                        <span class="header-icon"><i class="icon-flag icon-2x"></i></span>
-                                        <span class="header-icon"><i class="icon-share-alt icon-2x"></i></span>
-                                    </div>
-                                </div>
+                        <div class="col-md-offset-1 col-md-11">
+                        <% contribution.children.each do |child| %>
+                            <section class="contribution-reply">
                                 <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="contribution-content">
-                                            <%= sanitize contribution.content %>
+                                    <div class="col-md-2">
+                                        <div class="user-image">
+                                            <%= user_profile(child.owner).html_safe %>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <div class="contribution-container">
+                                            <div class="contribution-header row">
+                                                <div class="col-md-9 contribution-info">
+                                                    <div class="row">
+                                                        <div class="col-md-5">
+                                                            <%= image_tag('private_label/user-gray.png', class: "base") %>
+                                                            <%= child.person.name %>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <%= image_tag 'private_label/clock-gray.png' %>
+                                                            <%= child.created_at.strftime("%b %e, %Y") %>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 text-right">
+                                                    <span class="header-icon"><i class="icon-flag icon-2x"></i></span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="contribution-content">
+                                                        <%= sanitize child.content %>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </section>
+                        <% end %>
                         </div>
-                </section>
-                <div class="row">
-                    <div class="col-md-offset-1 col-md-11">
-                    <% contribution.children.each do |child| %>
-                        <section class="contribution-reply">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <div class="user-image">
-                                        <%= user_profile(child.owner).html_safe %>
-                                    </div>
-                                </div>
-                                <div class="col-md-10">
-                                    <div class="contribution-container">
-                                        <div class="contribution-header row">
-                                            <div class="col-md-9 contribution-info">
-                                                <div class="row">
-                                                    <div class="col-md-5">
-                                                        <%= image_tag('private_label/user-gray.png', class: "base") %>
-                                                        <%= child.person.name %>
-                                                    </div>
-                                                    <div class="col-md-5">
-                                                        <%= image_tag 'private_label/clock-gray.png' %>
-                                                        <%= child.created_at.strftime("%b %e, %Y") %>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3 text-right">
-                                                <span class="header-icon"><i class="icon-flag icon-2x"></i></span>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="contribution-content">
-                                                    <%= sanitize child.content %>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    <% end %>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-offset-1 col-md-11">
-                        <section class="contribution-reply">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <div class="user-image">
-                                        <%= user_profile(contribution.owner).html_safe %>
+                    <div class="row reply-form">
+                        <div class="col-md-offset-1 col-md-11">
+                            <section class="contribution-reply">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="user-image">
+                                            <%= user_profile(contribution.owner).html_safe %>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-10">
-                                    <%= form_for [@conversation, contribution.children.new], :html => { :class => 'contribute-form', multipart: true } do |f| %>
-                                    <%= f.hidden_field :parent_id %>
-                                    <div class="editable">
-                                        
-                                        <%= f.text_area :content, rows: 1, placeholder: "Click here to respond to #{@swayze.private_label.name}", id: "reply-#{contribution.id}" %>
-                                    </div>
-                                        <%= render partial: 'private_label/contributions/contributions_attachment_form', locals: {form: f, contribution: @newContribrution} %>
+                                    <div class="col-md-10">
+                                        <%= form_for [@conversation, contribution.children.new], :html => { :class => 'contribute-form', multipart: true } do |f| %>
+                                        <%= f.hidden_field :parent_id %>
+                                        <div class="editable">
+                                            
+                                            <%= f.text_area :content, rows: 1, placeholder: "Click here to respond to #{@swayze.private_label.name}", id: "reply-#{contribution.id}" %>
+                                        </div>
+                                            <%= render partial: 'private_label/contributions/contributions_attachment_form', locals: {form: f, contribution: @newContribrution} %>
 
-                                    <div class="contribute-actions pull-right hide">
-                                      <a href="#" class="button tertiary cancel">Cancel</a>
-                                      <%= f.submit "Comment", class: "button submit", disable_with: "Posting..." %>
+                                        <div class="contribute-actions pull-right hide">
+                                          <a href="#" class="button tertiary cancel">Cancel</a>
+                                          <%= f.submit "Comment", class: "button submit", disable_with: "Posting..." %>
+                                        </div>
+                                        <% end %>
                                     </div>
-                                    <% end %>
                                 </div>
-                            </div>
-                        </section>
+                            </section>
+                        </div>
                     </div>
                 </div>
     		<% end %>
