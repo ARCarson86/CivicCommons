@@ -1,7 +1,0 @@
-<div id="search">
-  <%= form_tag(private_label_search_path, {:method => "get", :'accept-charset' => 'utf-8'}) do  %>
-    <%= text_field_tag :q, params['q'], :class => 'textbox', :placeholder => 'What are you looking for?' %>
-    <%= hidden_field_tag(:filter, filter_type) if defined?(filter_type) and not filter_type.nil?  %>
-    <%= submit_tag "Search", :class => 'submit', :id => 'Search', :name => nil %>
-  <% end %>
-  </div>
