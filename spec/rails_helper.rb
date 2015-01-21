@@ -26,6 +26,10 @@ RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
+  # Add the Devise test helpers
+  config.include Devise::TestHelpers, type: :controller
+  config.include Devise::TestHelpers, type: :helper
+
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
@@ -45,4 +49,39 @@ RSpec.configure do |config|
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
+
+  # Add the FactoryGirl methods as first-class citizens
+  config.include FactoryGirl::Syntax::Methods
+
+  config.before :suite do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  ##
+  # For integration tests (i.e., run by Capybara), use
+  # a different strategy because that will be run in a 
+  # different process.  Can't use transaction in that 
+  # case.
+  config.before type: :request do
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  config.after type: :request do
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before :each do
+    ActiveRecord::Base.observers.disable :all
+    DatabaseCleaner.start
+    ActionMailer::Base.deliveries.clear
+    WebMock.disable_net_connect!
+    stub_request(:post, "http://localhost:8981/solr/update?wt=ruby").to_return(:status => 200, :body => "", :headers => {})
+    stub_request(:get, /http:\/\/gravatar\.com\/avatar.*/).to_return(body: '', status: 404)
+  end
+
+  config.after :each do
+    ActiveRecord::Base.observers.enable :all
+    DatabaseCleaner.clean
+  end
 end

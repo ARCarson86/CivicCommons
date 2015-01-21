@@ -11,6 +11,6 @@ else
       :aws_secret_access_key  => S3Config.secret_access_key  # required
     }
     config.fog_directory  = S3Config.bucket                          # required
-    config.fog_host       = "http://s3.amazonaws.com/#{S3Config.bucket}"# 'https://assets.example.com'  # optional, defaults to nil
+    config.asset_host       = "http://s3.amazonaws.com/#{S3Config.bucket}"# 'https://assets.example.com'  # optional, defaults to nil
   end
 end
