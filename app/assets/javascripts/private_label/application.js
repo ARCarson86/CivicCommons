@@ -4,6 +4,7 @@
 //= require bootstrap/transition
 //= require tiny_mce/jquery.tinymce.js
 //= require private_label/pl_editable.js
+//= require private_label/header.js
 
 
 

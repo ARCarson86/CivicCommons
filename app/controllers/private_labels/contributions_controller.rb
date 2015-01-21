@@ -16,8 +16,7 @@ module PrivateLabels
 
     def create
       @contribution = @conversation.contributions.new(params[:contribution])
-
-
+      @contribution.owner = current_person
       @contribution.save validate: false # TODO: Fix validation
     end
 

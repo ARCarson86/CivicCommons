@@ -11,17 +11,22 @@
             <a href="/conversations" title="Conversations">Conversations</a>
           </li>
         </ul>
+
         <ul class="nav navbar-nav navbar-right">
           <li id="nav-search" class="left-border">
-            <%= render :partial => 'private_labels/search/search', locals: { filter_type: params[:filter] } %>
+            <%= link_to image_tag('private_labels/search-wh.png'), '#', id: 'pl-search' %>
+            <div id="pl-search-form" class="hide">
+              <%= render :partial => 'private_labels/search/search', locals: { filter_type: params[:filter] } %>
+            </div>
           </li>
           <% if current_person %>
-              <%= render :partial => 'notifications/notification' %>
                 <%= render :partial => 'private_labels/layouts/logged_in' %>
             <% else %>
                 <%= render :partial => 'private_labels/layouts/single_column' %>
             <% end %>
-        </ul>
+          </ul>
+          
+        
       </div>
     </div>
   </div>

@@ -8,7 +8,7 @@ module PrivateLabels
     def show
       @conversation = @swayze.conversations.find(params[:id])
       @contributions = @conversation.contributions
-      @newContribrution = @conversation.contributions.new
+      @newContribrution = Contribution.new
     end
   end
 end # PrivateLabels module
