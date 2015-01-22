@@ -21,6 +21,12 @@
       margin-right: 0.5em;
     }
 
+    &.warning {
+      color: $orange;
+      .alert-icon {
+        border-color: $orange;
+      }
+
     &.error {
       color: $red;
       .alert-icon {
