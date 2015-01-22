@@ -31,8 +31,8 @@ class Registrations::OmniauthCallbacksController < Devise::OmniauthCallbacksCont
     social("linkedin")
   end
 
-  def google_oauth2
-    social("google_oauth2")
+  def google_plus
+    social("google_plus")
   end
 
   def form_presenter
