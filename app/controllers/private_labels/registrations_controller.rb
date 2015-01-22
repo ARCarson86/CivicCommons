@@ -19,7 +19,7 @@ class PrivateLabels::RegistrationsController < Devise::RegistrationsController
     end
 
     unless params[:agree_to_terms]
-      flash[:notice] = "Please agree to the terms"
+      flash[:error] = "Please agree to the terms of service to continue."
       build_resource params[:person]
       clean_up_passwords(resource)
       respond_with_navigational(resource) { render_with_scope :new }
@@ -27,9 +27,10 @@ class PrivateLabels::RegistrationsController < Devise::RegistrationsController
       super
     end
 
-    if params[:agree_to_terms]
-      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "#{authentication.provider}"
+    if params[:agree_to_terms] && resource.persisted?
       @swayze.private_label.people << resource
+    else
+      flash[:error] = "Please correct the fields below"
     end
   end
 
