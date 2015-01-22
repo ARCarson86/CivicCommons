@@ -30,7 +30,7 @@
   </head>
   <body class="<%= page_classes %>">
     <%= render partial: 'private_labels/shared/header' %>
-    <div class="header-second container">
+    <div class="header-second">
       <div class="row">
         <div class="col-md-12">
           <%= yield :header_second %>
@@ -70,7 +70,10 @@
       </div>
     <% end %>
     
+    <%= render partial: 'private_labels/shared/modals/flag' %>
+
     <%= render partial: 'private_labels/shared/modals/login' %>
+
   </body>
 
 </html>

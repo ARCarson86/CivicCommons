@@ -4,22 +4,27 @@
 		height: auto;
 		margin-bottom: 30px;
 		padding: 25px;
-    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
+		&.top-level-contribution{
+			border-left: 5px solid #a7c530;
+			margin-bottom: 10px;
+		}
+		&.contribution-reply{
+			border-left: 15px solid #dddddd;
+			margin-bottom: 10px;
+		}
+    	box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
 
 		.user-image{			
 			display: inline-block;
-			border-radius: 45px;
-			height: 90px;
-			width: 90px;
-			border: 2px solid #949798;
-			overflow: hidden;
-			img{
-				height: 100%;
-				width: 100%;
-			}
-		}
-		&.comment-section{
 			
+			img{
+				border-radius: 45px;
+				height: 90px;
+				width: 90px;
+				border: 2px solid #999999;
+				overflow: hidden;
+			}
+		}		
 			.editable{
 				padding-top: 15px;
 				textarea{
@@ -56,7 +61,6 @@
 				}
 			}
 		}
-	}
 	.conversation-contributions{
 		.contribution-container{
 			padding: 0 10px;
@@ -68,6 +72,19 @@
 				font-size: 13px;
 				text-transform: uppercase;
 				border-bottom: 1px solid rgba(0,0,0,.3);
+				a{
+					color: #a7c530;	
+					text-decoration: none;
+					&:hover{
+						text-decoration: none;
+					}
+				}
+				.header-icon{
+					margin: 0 10px;
+				}
+				img{
+					margin-right: 3px;
+				}
 				.contribution-info{
 					border-right: 1px solid rgba(0,0,0,.3);
 					.base{

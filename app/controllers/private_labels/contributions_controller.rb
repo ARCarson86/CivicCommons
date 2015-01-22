@@ -16,9 +16,19 @@ module PrivateLabels
 
     def create
       @contribution = @conversation.contributions.new(params[:contribution])
-      @contribution.owner = current_person
+      @contribution.person = current_person
       @contribution.save validate: false # TODO: Fix validation
     end
+
+    def tos
+    @contribution = @conversation.contributions.find(params[:id])
+    # do the flagging
+    
+    end
+
+  def tos_flag
+    @contribution = @conversation.contributions.find(params[:id])
+  end
 
     protected 
 
