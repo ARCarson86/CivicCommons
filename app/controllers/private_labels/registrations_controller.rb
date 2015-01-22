@@ -14,23 +14,29 @@ class PrivateLabels::RegistrationsController < Devise::RegistrationsController
       params['person']['confirmed_at'] = DateTime.now
     end
 
-    if @authentication.present?
-      @authentication.save!
-    end
+    build_resource
 
     unless params[:agree_to_terms]
       flash[:error] = "Please agree to the terms of service to continue."
-      build_resource params[:person]
       clean_up_passwords(resource)
       respond_with_navigational(resource) { render_with_scope :new }
     else
-      super
-    end
-
-    if params[:agree_to_terms] && resource.persisted?
-      @swayze.private_label.people << resource
-    else
-      flash[:error] = "Please correct the fields below"
+      if resource.save
+        @swayze.private_label.people << resource
+        if resource.active_for_authentication?
+          set_flash_message :notice, :signed_up if is_navigational_format?
+          sign_in(resource_name, resource)
+          respond_with resource, :location => after_sign_up_path_for(resource)
+        else
+          set_flash_message :warning, :inactive_signed_up, :reason => inactive_reason(resource) if is_navigational_format?
+          expire_session_data_after_sign_in!
+          respond_with resource, :location => after_inactive_sign_up_path_for(resource)
+        end
+      else
+        clean_up_passwords(resource)
+        respond_with_navigational(resource) { render_with_scope :new }
+        flash[:error] = "Please correct the fields below"
+      end
     end
   end
 
