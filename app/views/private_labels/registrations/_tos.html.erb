@@ -3,7 +3,7 @@
     <h3><%= @swayze.private_label.name %> Terms </h3>
     <%= simple_format(@swayze.private_label.terms_of_service) %>
     <h3>Civic Commons Principles</h3>
-    <%= render partial: 'private_label/shared/civic_principles' %>
+    <%= render partial: 'private_labels/shared/civic_principles' %>
   </div>
   <div class="agree-to-terms checkbox">
     <%= label_tag :agree_to_terms do %>
