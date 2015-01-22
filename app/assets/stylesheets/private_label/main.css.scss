@@ -362,3 +362,45 @@ label {
     border-color: darken($green,5%);;
   }
 }
+
+.search-highlight {
+  background-color: transparentize($green, 0.5);
+  padding: 0 0.4em;
+  font-style: italic;
+}
+
+.search-result {
+  margin-top: 1em;
+  padding-bottom: 1em;
+  border-bottom: 1px solid $gray;
+  &:last-child {
+    border-bottom: 0 none;
+  }
+}
+
+.pagination {
+  display: block;
+  text-align: right;
+  .previous_page, .next_page {
+    color: white;
+    background-color: $green;
+
+    &.disabled {
+      display: none;
+    }
+  }
+  > * {
+    display: inline-block;
+    vertical-align: middle;
+    height: 35px;
+    width: 35px;
+    line-height: 35px;
+    text-align: center;
+    color: $green;
+    border-radius: 2px;
+    &.current {
+      color: white;
+      background-color: darken($gray, 10%);
+    }
+  }
+}

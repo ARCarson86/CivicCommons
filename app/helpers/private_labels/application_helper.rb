@@ -18,5 +18,9 @@ module PrivateLabels
         sanitize '<i class="icon icon-ok"></i>'
       end
     end
+
+    def parameterized_model_name(record)
+      record.class.model_name.parameterize
+    end
   end
 end
