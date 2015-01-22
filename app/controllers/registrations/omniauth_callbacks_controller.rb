@@ -3,7 +3,12 @@ class Registrations::OmniauthCallbacksController < Devise::OmniauthCallbacksCont
   helper_method :form_presenter
 
   def social(provider)
-    if signed_in? && !current_person.social_authenticated?(provider)
+    omniauth_params = env['omniauth.params']
+    if omniauth_params["private_label"]
+      cache_id = SecureRandom.hex
+      Rails.cache.write [:omniauth, :auth, cache_id], env['omniauth.auth'], expires_in: 30.minutes
+      redirect_to new_person_registration_url(host: omniauth_params["private_label"], authentication_id: cache_id)
+    elsif signed_in? && !current_person.social_authenticated?(provider)
       link_with_social
     else
       if authentication = Authentication.find_from_auth_hash(env['omniauth.auth'])
@@ -26,8 +31,8 @@ class Registrations::OmniauthCallbacksController < Devise::OmniauthCallbacksCont
     social("linkedin")
   end
 
-  def google_oauth2
-    social("google_oauth2")
+  def google_plus
+    social("google_plus")
   end
 
   def form_presenter
@@ -42,6 +47,7 @@ private
   def create_account_using_social_credentials
     omniauth = env['omniauth.auth']
     provider = (omniauth)[:provider]
+    omniauth_params = env['omniauth.params']
     if params[:login].present?
       flash[:notice] = "Your #{provider} account is not connected to your login. Select another login method and connect #{provider} account."
       redirect_to new_person_session_path

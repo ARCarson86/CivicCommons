@@ -1,0 +1,6 @@
+<%- flash.each do |level,message| %>
+  <section class="flash <%= level %>">
+    <div class="alert-icon"><%= alert_icon level %></div>
+    <div class="message"><%= message %></div>
+  </section>
+<%- end %>

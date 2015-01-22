@@ -1,0 +1,364 @@
+@import "compass/css3/inline-block";
+@import "variables";
+
+*{
+  -webkit-transition: all 300ms ease;
+  -moz-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
+  transition: all 300ms ease;
+  &:focus{
+    outline: none;
+  }
+}
+html, body{
+	height: 100%;
+	font-family: $openSans;
+	background-color: #f5f5f5;
+}
+.pl-content{
+	min-height: 100%;
+}
+
+h1, h2, h3 {
+  line-height: 2.5em;
+	text-transform: uppercase;
+	font-family: $oswald;
+	margin: 0;
+	color: $green;
+}
+
+h1 {
+  font-size: 36px;
+  line-height: 1.4em;
+}
+
+.header h1 {
+  color: white;
+}
+
+h2{
+	font-size: 20px;
+}
+
+h3 {
+  color: lighten($darkGray, 20%);
+  font-size: 16px;
+}
+.login-modal {
+  .modal-dialog {
+    width: 380px;
+    .modal-content {
+      border-radius: 3px;
+    }
+
+    .modal-title {
+      color: $green;
+      text-transform: uppercase;
+      font-family: $oswald;
+      font-weight: 300;
+      padding-bottom: 10px;
+      position: relative;
+
+      background: url('user_badge.png') top left no-repeat;
+      padding: 0 0 10px 40px;
+      margin: 15px 10px 0 20px;
+
+      border-bottom: 2px solid $gray;
+      &:after {
+        content: "";
+        display: block;
+        height: 2px;
+        width: 28px;
+        background-color: $green;
+        top: 100%;
+        left: 0;
+        position: absolute;
+      }
+    }
+  }
+
+  .modal-header {
+    border-bottom: 0;
+  }
+
+  .modal-body {
+    padding: 0 35px 35px;
+
+    h3 {
+      line-height: 1.4em;
+      margin: 1em 0;
+    }
+  }
+}
+
+.tos {
+  height: 300px;
+  overflow-y: scroll;
+  border: 2px solid #e7e7e7;
+  padding: 10px 25px;
+}
+
+.agree-to-terms {
+  padding: 20px 25px;
+  margin-top: 2em;
+  margin-bottom: 0;
+  background-color: $lightGray;
+
+  label {
+    font-size: 16px;
+    font-weight: normal;
+    font-family: $oswald;
+    margin: 0;
+    color: darken($gray, 30%);
+    text-transform: uppercase;
+    padding-left: 1.5em;
+    input[type=checkbox] {
+      margin-left: -1.5em;
+    }
+  }
+}
+
+.register-form {
+  position: relative;
+
+  &:before {
+    content: "";
+    display: block;
+
+    position: absolute;
+    bottom: 100%;
+    left: 90px;
+
+    width: 0; 
+    height: 0; 
+
+    border-left: 13px solid transparent;
+    border-right: 13px solid transparent;
+    border-bottom: 13px solid white;
+
+  }
+}
+
+.form-control {
+  font-size: 16px;
+  height: 34px;
+  border: 1px solid darken($gray, 20%);
+  border-radius: 1px;
+}
+
+label {
+
+  color: lighten($darkGray, 20%);
+	font-family: $oswald;
+  font-weight: normal;
+  text-transform: uppercase;
+
+  &:after {
+    display: inline;
+    content: " *";
+    vertical-align: super;
+    font-size: 0.7em;
+    color: red;
+  }
+
+  &.label-small {
+    text-transform: none;
+    font-family: $openSans;
+  }
+}
+
+.social-holder {
+  border: 1px solid $gray;
+  box-shadow: 0px 0px 3px 0px rgba(0,0,0,.1);
+  font-size: 14px;
+
+  &, > a, > div {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  > a, > div {
+    border-right: 1px solid $gray;
+    &:last-child {
+      border-right: 0 none;
+    }
+  }
+  a {
+    text-decoration: none;
+  }
+
+  .title {
+    line-height: 40px;
+    padding: 0 0.8em;
+    border-right: 0 none;
+    color: darken($gray, 30%);
+  }
+
+  .social-sign-in-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .social-link-sign {
+    height: 100%;
+    width: 100%;
+    background: no-repeat center #FFF;
+
+    &.facebook {
+      border-left: 1px solid $gray;
+      background-image: url('../sign-facebook.png');
+    }
+    &.twitter {
+      background-image: url('../sign-twitter.png');
+    }
+    &.google_oauth2, &.google_plus {
+      background-image: url('../sign-google.png');
+    }
+    &.linkedin {
+      background-image: url('../sign-linkedin.png');
+    }
+
+  }
+  .social-link-sign:hover {
+    &.facebook {
+      background-image: url('../sign-facebook-high.png');
+      background-color: #05719f;
+    }
+    &.twitter {
+      background-image: url('../sign-twitter-high.png');
+      background-color: #0092cf;
+    }
+    &.google_oauth2, &.google_plus {
+      background-image: url('../sign-google-high.png');
+      background-color: #d0433a;
+    }
+    &.linkedin {
+      background-image: url('../sign-linkedin-high.png');
+      background-color: #3c8fb9;
+    }
+    &.email {
+      background-image: url('../sign-email-high.png');
+      background-color: #a7bb5d;
+    }
+  }
+}
+
+.register-options {
+  margin-top: 2em;
+}
+.social-register-button {
+  height: 45px;
+  width: 45px;
+  display: inline-block;
+  text-align: center;
+  line-height: 45px;
+  margin-left: .5em;
+  color: white;
+  vertical-align: middle;
+  > .icon {
+    line-height: inherit;
+  }
+
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+
+  &.facebook {
+    background-color: #3d7aa2;
+    &:hover {
+      background-color: darken(#3d7aa2, 10%);
+    }
+  }
+  &.twitter {
+    background-color: #298fd0;
+    &:hover {
+      background-color: darken(#298fd0, 10%);
+    }
+  }
+  &.linkedin {
+    background-color: #468dba;
+    &:hover {
+      background-color: darken(#468dba, 10%);
+    }
+  }
+  &.google-plus {
+    background-color: #d0433a;
+    &:hover {
+      background-color: darken(#d0433a, 10%);
+    }
+  }
+
+}
+
+.register-options-group {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  .register-separator {
+    display: inline-block;
+    vertical-align: middle;
+    width: 45px;
+    height: 45px;
+    text-align:center;
+    margin-left: .5em;
+    position: relative;
+    background-color: white;
+    &:after {
+      border-left: 2px solid darken($gray, 20%);
+      content: "";
+      display: block;
+      height: 45px;
+      position: absolute;
+      top: 0;
+      left: 22px;
+    }
+
+    span {
+      background-color: white;
+      z-index:2;
+      position: absolute;
+      top: 50%;
+      width: 45px;
+      text-align:center;
+      transform: translateY(-50%);
+      left: 0;
+      line-height: 1.4em;
+      color: darken($gray, 20%);
+
+    }
+  }
+}
+
+.btn {
+  padding: 9px 24px;
+  line-height: 25px;
+  border-radius: 1px;
+  text-transform: uppercase
+}
+
+.btn-wide {
+  width: 310px;
+  text-align: center;
+}
+
+.btn-default {
+  background-color: $midGray;
+  border-color: $midGray;
+  color: white;
+
+  &:hover {
+    color: white;
+    background-color: darken($midGray,5%);
+    border-color: darken($midGray,5%);
+  }
+}
+
+.btn-success {
+  background-color: $green;
+  border-color: $green;
+
+  &:hover {
+    background-color: darken($green,5%);;
+    border-color: darken($green,5%);;
+  }
+}

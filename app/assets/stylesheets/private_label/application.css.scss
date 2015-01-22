@@ -2,57 +2,12 @@
 * This is a manifest file that'll automatically include all the stylesheets available in this directory
 * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
 * the top of the compiled file, but it's generally better to create a new file per style scope.
+*=require private_label/main
 *=require private_label/header
 *=require private_label/main-image
 *=require private_label/content-area
 *=require private_label/sidebar
 *=require private_label/footer
+*=require private_label/flash
 *=require font-awesome
-
-
-
 */
-*{
-	-webkit-transition: all 300ms ease;
-    -moz-transition: all 300ms ease;
-    -o-transition: all 300ms ease;
-    transition: all 300ms ease;
-	&:focus{
-		outline: none;
-	}
-}
-html, body{
-	height: 100%;
-	font-family: 'Open Sans', sans-serif;
-	background-color: #f5f5f5;
-}
-.pl-content{
-	min-height: 100%;
-}
-h1{
-	margin: 0;
-	font-size: 36px;
-	line-height: 50px;
-}
-h2{
-	color: #9cbe15;
-	font-size: 20px;
-	line-height: 50px;
-	text-transform: uppercase;
-	font-family: 'Oswald', sans-serif;
-	margin: 0;
-}
-h3{
-	position: relative;
-	line-height: 30px;
-	color: #9cbe15;
-	text-transform: uppercase;
-	font-family: 'Oswald', sans-serif;
-	margin: 0;
-	font-size: 20px;
-}
-a{
-	&:focus{
-		outline: none;
-	}
-}

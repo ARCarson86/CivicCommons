@@ -23,7 +23,7 @@ class Person < ActiveRecord::Base
          :validatable,
          :confirmable,
          :lockable,
-         :omniauthable, :omniauth_providers => [:facebook, :twitter, :linkedin, :google_oauth2]
+         :omniauthable, :omniauth_providers => [:facebook, :twitter, :linkedin, :google_plus]
 
   attr_accessor :send_welcome,
                 :create_from_auth,
@@ -146,7 +146,6 @@ class Person < ActiveRecord::Base
   delegate :issues,        :to => :subscriptions, :prefix => true
   delegate :organizations, :to => :subscriptions, :prefix => true
 
-  # All these emails could be moved to an observer - Jerry
   before_save :check_to_send_welcome_email
 
   around_update :check_to_notify_email_change, :if => :send_email_change_notification?
