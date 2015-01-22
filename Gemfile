@@ -92,6 +92,7 @@ gem 'jpbuilder'
 
 group :development, :test do
   gem 'pry'
+  gem 'pry-rails'
   gem 'pry-doc'
   gem 'pry-remote'
   gem 'pry-stack_explorer'
