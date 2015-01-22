@@ -10,12 +10,12 @@ module PrivateLabels
 
     def alert_icon(level)
       case level
-      when :notice
-        sanitize '<i class="icon icon-ok"></i>'
       when :warning
         sanitize '<strong>!</strong>'
       when :error
         sanitize '<i class="icon icon-remove"></i>'
+      else
+        sanitize '<i class="icon icon-ok"></i>'
       end
     end
 
