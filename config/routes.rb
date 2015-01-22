@@ -14,9 +14,9 @@ Civiccommons::Application.routes.draw do
 
   #Private Label Routes
   constraints PrivateLabelConstraint do
-    devise_for :people, :controllers => { :registrations => 'private_label/registrations', :confirmations => 'private_label/confirmations', :sessions => 'private_label/sessions', :omniauth_callbacks => "private_label/registrations/omniauth_callbacks", :passwords => 'passwords'},
+    devise_for :people, :controllers => { :registrations => 'private_labels/registrations', :confirmations => 'private_labels/confirmations', :sessions => 'private_labels/sessions', :omniauth_callbacks => "private_labels/registrations/omniauth_callbacks", :passwords => 'passwords'},
       :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :registration => 'register', :sign_up => 'new' }
-    namespace "private_label", path: '' do
+    namespace :private_labels, path: '' do
       root to: 'homepage#show'
       namespace "admin" do
         root to: 'dashboard#show'
