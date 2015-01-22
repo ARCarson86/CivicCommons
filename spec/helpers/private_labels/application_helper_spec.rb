@@ -11,5 +11,19 @@ module PrivateLabels
     describe '#page_classes' do
       it { should respond_to :page_classes }
     end
+
+    describe '#alert_icon' do
+      it { should respond_to :alert_icon }
+
+      it 'returns the proper notice icon' do
+        expect(helper.alert_icon(:notice)).to include('icon-ok')
+      end
+      it 'returns the proper warning icon' do
+        expect(helper.alert_icon(:warning)).to include('!')
+      end
+      it 'returns the proper error icon' do
+        expect(helper.alert_icon(:error)).to include('icon-remove')
+      end
+    end
   end
 end
