@@ -179,10 +179,41 @@
 <% content_for :sidebar do %>
  	<div class="row">
 		<div class="col-md-12">
-			<h2>Recent Activity</h2>
-			<section>
-				
-			</section>
+			
+      <div class="row">
+          <div class="col-md-12">
+            <section class="people-mods">
+              <h3><div class="sidebar-header-icon"><span><%= image_tag('private_label/users-wh.png') %></span></div>Moderators</h3>
+              <div id="carousel-moderators" class="carousel slide" data-ride="carousel">
+                <div class="row">
+                  <% @conversation.moderators.each_with_index do |moderator, index| %>
+                    <% if index % 2 == 0 %>
+                      <div class="item <%= index == 0 ? 'active' : '' %>">
+                    <% end %>
+                      <div class="col-md-6">
+                        <div class="user-image"><%= user_profile(moderator).html_safe %></div>
+                        <span><%= moderator.first_name %><br/><%= moderator.last_name %></span>
+                      </div>
+                    <% if (moderator == @conversation.moderators.last) || (index % 2 == 1) %>
+                      </div>
+                    <% end %>
+                  <% end %>
+                  <a class="left carousel-control" href="#carousel-moderators" role="button" data-slide="prev">
+                    <span><i class="icon-chevron-left icon-large"></i></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="right carousel-control" href="#carousel-moderators" role="button" data-slide="next">
+                    <span><i class="icon-chevron-right icon-large"></i></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </div>
+              </div>
+              
+            </section>
+          </div>
+      </div>
+
+			
 
 			<h2>Upcoming Dates</h2>
 			<section>
