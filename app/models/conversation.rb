@@ -19,6 +19,9 @@ require 'obscenity/active_model'
     text :summary, :stored => true, :boost => 2, :default_boost => 2 do
       Sanitize.clean(summary, :remove_contents => ['style','script'])
     end
+    text :starter, :stored => true, :boost => 2, :default_boost => 2 do
+      Sanitize.clean(summary, :remove_contents => ['style','script'])
+    end
     integer :region_metrocodes, :multiple => true
     integer :private_label_id
   end
