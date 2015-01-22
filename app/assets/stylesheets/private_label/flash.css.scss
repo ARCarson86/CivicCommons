@@ -26,6 +26,7 @@
       .alert-icon {
         border-color: $orange;
       }
+    }
 
     &.error {
       color: $red;
@@ -33,9 +34,6 @@
         border-color: $red;
       }
     }
-
-
-
   }
 }
 }
