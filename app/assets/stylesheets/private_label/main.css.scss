@@ -208,7 +208,7 @@ label {
     &.twitter {
       background-image: url('../sign-twitter.png');
     }
-    &.google_oauth2 {
+    &.google_oauth2, &.google_plus {
       background-image: url('../sign-google.png');
     }
     &.linkedin {
@@ -225,7 +225,7 @@ label {
       background-image: url('../sign-twitter-high.png');
       background-color: #0092cf;
     }
-    &.google_oauth2 {
+    &.google_oauth2, &.google_plus {
       background-image: url('../sign-google-high.png');
       background-color: #d0433a;
     }
