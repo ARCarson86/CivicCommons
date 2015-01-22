@@ -192,7 +192,7 @@ Devise.setup do |config|
   config.omniauth :google_oauth2,
     Civiccommons::Config.google_oauth2['client_id'],
     Civiccommons::Config.google_oauth2['client_secret'],
-    :scope => 'email', :display => "popup"
+    :scope => 'email', :display => "popup", name: 'google_plus'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

@@ -155,7 +155,7 @@ img.advert {
       background: url('sign-twitter-high.png') no-repeat scroll center;
       background-color: #0092cf;
     }
-    &.google_oauth2 {
+    &.google_oauth2, &.google_plus {
       background: url('sign-google-high.png') no-repeat scroll center;
       background-color: #d0433a;
     }
@@ -239,7 +239,7 @@ img.advert {
       background: url('sign-twitter.png') no-repeat scroll center;
       background-color: #ffffff;
     }
-    &.google_oauth2 {
+    &.google_oauth2, &.google_plus {
       background: url('sign-google.png') no-repeat scroll center;
       background-color: #ffffff;
     }
@@ -262,7 +262,7 @@ img.advert {
       background: url('sign-twitter-high.png') no-repeat scroll center;
       background-color: #0092cf;
     }
-    &.google_oauth2 {
+    &.google_oauth2, &.google_plus {
       background: url('sign-google-high.png') no-repeat scroll center;
       background-color: #d0433a;
     }

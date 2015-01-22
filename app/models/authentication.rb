@@ -3,7 +3,7 @@ class Authentication < ActiveRecord::Base
   validates_presence_of :uid, :provider
   validates_uniqueness_of :uid, :scope => :provider
 
-  PROVIDERS = ["facebook", "twitter", "linkedin", "google_oauth2"]
+  PROVIDERS = ['facebook', 'twitter', 'linkedin', 'google_plus']
 
   def self.new_from_auth_hash(auth_hash)
     new(:provider => auth_hash['provider'],
