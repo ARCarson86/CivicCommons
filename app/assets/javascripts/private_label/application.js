@@ -1,4 +1,5 @@
 //= require jquery
+//= require jquery_ujs
 //= require ./session_status
 //= require bootstrap/modal
 //= require bootstrap/transition

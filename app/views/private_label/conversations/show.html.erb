@@ -78,7 +78,9 @@
                                             </div>
                                         </div>
                                         <div class="col-md-3 text-right">
-                                            <span class="header-icon"><i class="icon-flag icon-2x"></i></span>
+                                            <span class="header-icon"><%= link_to tos_private_label_conversation_contribution_path(@conversation, contribution), remote: true, data: {'toggle' => 'modal', 'target' => '#flagModal'} do %>
+                                                            <i class="icon-flag icon-2x"></i>
+                                                            <% end %>
                                             <span class="header-icon"><a href="#" class="reply-to-contribution"><i class="icon-share-alt icon-2x"></i></a></span>
                                         </div>
                                     </div>
@@ -118,7 +120,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 text-right">
-                                                    <span class="header-icon"><i class="icon-flag icon-2x"></i></span>
+                                                    <span class="header-icon"><%= link_to tos_private_label_conversation_contribution_path(@conversation, contribution), remote: true, data: {'toggle' => 'modal', 'target' => '#flagModal'} do %>
+                                                            <i class="icon-flag icon-2x"></i>
+                                                            <% end %>
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div class="row">

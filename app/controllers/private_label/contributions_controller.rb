@@ -21,6 +21,15 @@ class PrivateLabel::ContributionsController < PrivateLabel::PlController
 		@contribution.save validate: false # TODO: Fix validation
 	end
 
+	def tos
+		@contribution = @conversation.contributions.find(params[:id])
+		# do the flagging
+		
+	end
+
+	def tos_flag
+		@contribution = @conversation.contributions.find(params[:id])
+	end
 	protected 
 
 		def get_conversation

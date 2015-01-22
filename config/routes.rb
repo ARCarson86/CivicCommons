@@ -28,7 +28,11 @@ Civiccommons::Application.routes.draw do
       match '/search/results', to: 'search#results', as: 'search'
       resources :users, only: [:show, :new, :create, :edit, :update]
       resources :conversations, only: [:index, :show] do
-        resources :contributions
+        resources :contributions do
+          get 'tos', on: :member
+          post 'tos', on: :member, action: :tos_flag
+        end
+
       end
 
 
