@@ -20,7 +20,7 @@ Civiccommons::Application.routes.draw do
       get "/registrations/agree_to_terms", to: "private_labels/registrations#present_terms", as: "agree_to_terms"
       post "/registrations/agree_to_terms", to: "private_labels/registrations#agree_to_terms"
     end
-    namespace "private_labels", path: '' do
+    namespace :private_labels, path: '' do
       root to: 'homepage#show'
       namespace "admin" do
         root to: 'dashboard#show'

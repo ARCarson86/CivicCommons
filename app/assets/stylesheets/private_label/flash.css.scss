@@ -1,0 +1,34 @@
+@import "variables";
+
+.content-area {
+  .flash {
+    color: $orange;
+    padding: 1em;
+    margin-bottom: 0.5em;
+    .message {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .alert-icon {
+      display: inline-block;
+      vertical-align: middle;
+
+      text-align: center;
+      height: 1.5em;
+      width: 1.5em;
+      border-radius: 0.75em;
+      border: 1px solid $orange;
+      margin-right: 0.5em;
+    }
+
+    &.error {
+      color: $red;
+      .alert-icon {
+        border-color: $red;
+      }
+    }
+
+
+
+  }
+}

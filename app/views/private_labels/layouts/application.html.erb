@@ -48,6 +48,7 @@
       <div class="row">
         <div class="<%= content_area_column_width_class %>">
           <div class="content-area">
+            <%= render partial: 'private_labels/shared/flash', locals: { flash: flash } if flash.any? %>
             <%= yield %>
           </div>
         </div>

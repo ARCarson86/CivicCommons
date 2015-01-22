@@ -12,7 +12,7 @@
 }
 html, body{
 	height: 100%;
-	font-family: 'Open Sans', sans-serif;
+	font-family: $openSans;
 	background-color: #f5f5f5;
 }
 .pl-content{
@@ -22,18 +22,20 @@ html, body{
 h1, h2, h3 {
   line-height: 2.5em;
 	text-transform: uppercase;
-	font-family: 'Oswald', sans-serif;
+	font-family: $oswald;
 	margin: 0;
-	color: #9cbe15;
+	color: $green;
 }
 
 h1 {
   font-size: 36px;
+  line-height: 1.4em;
 }
 
 .header h1 {
   color: white;
 }
+
 h2{
 	font-size: 20px;
 }
@@ -52,7 +54,7 @@ h3 {
     .modal-title {
       color: $green;
       text-transform: uppercase;
-      font-family: Oswald;
+      font-family: $oswald;
       font-weight: 300;
       padding-bottom: 10px;
       position: relative;
@@ -105,7 +107,7 @@ h3 {
   label {
     font-size: 16px;
     font-weight: normal;
-    font-family: 'Oswald', sans-serif;
+    font-family: $oswald;
     margin: 0;
     color: darken($gray, 30%);
     text-transform: uppercase;
@@ -147,7 +149,7 @@ h3 {
 label {
 
   color: lighten($darkGray, 20%);
-	font-family: 'Oswald', sans-serif;
+	font-family: $oswald;
   font-weight: normal;
   text-transform: uppercase;
 
@@ -161,7 +163,7 @@ label {
 
   &.label-small {
     text-transform: none;
-    font-family: 'Open Sans', sans-serif;
+    font-family: $openSans;
   }
 }
 
