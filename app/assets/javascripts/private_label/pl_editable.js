@@ -17,7 +17,7 @@
         // Add a custom button
         ed.addButton('pllink', {
             title : 'Link',
-            image : '/assets/private_label/link-icon.png',
+            image : '/assets/private_labels/link-icon.png',
             onclick : function() {
                 // Add you own code to execute something on click
                 ed.focus();
@@ -26,7 +26,7 @@
         });
         ed.addButton('plimage', {
             title : 'Image',
-            image : '/assets/private_label/image-icon.png',
+            image : '/assets/private_labels/image-icon.png',
             onclick : function() {
                 // Add you own code to execute something on click
                 ed.focus();

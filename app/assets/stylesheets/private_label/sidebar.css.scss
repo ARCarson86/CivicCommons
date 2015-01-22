@@ -47,10 +47,15 @@
 				}
 			}
 			&.people-mods{
+				#carousel-participants{
+					.item{
+						height: 120px;
+					}
+				}
 				.carousel{
 					padding: 20px 0;
 					.item{
-						padding: 0 20px;
+						
 						.user-image{
 							display: inline-block;
 							margin-right: 5px;
@@ -69,7 +74,7 @@
 							display: inline-block;
 							padding-top: 6px;
 							font-family: 'Open Sans', sans-serif;
-							font-size: 13px;
+							font-size: 10px;
 							text-transform: uppercase;
 							color: #999999;
 
@@ -93,12 +98,12 @@
 						&.right{
 							background: none;
 							text-shadow: none;
-							right: -10px;
+							right: -25px;
 						}
 						&.left{
 							background: none;
 							text-shadow: none;
-							left: -10px;
+							left: -25px;
 						}
 					}
 				}
