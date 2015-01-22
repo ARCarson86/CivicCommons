@@ -67,7 +67,7 @@ class Contribution < ActiveRecord::Base
     true
   end
 
-  before_save :set_private_label
+  before_save :ensure_private_label
 
   #############################################################################
   # Embedly
@@ -361,8 +361,8 @@ class Contribution < ActiveRecord::Base
     self.person = item.person unless item.nil?
   end
 
-  def set_private_label
-    self.private_label_id = self.conversation.private_label_id
+  def ensure_private_label
+    self.private_label_id = self.conversation.private_label_id unless private_label_id
   end
 
 end
