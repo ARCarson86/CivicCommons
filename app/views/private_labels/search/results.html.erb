@@ -1,11 +1,23 @@
-<%= @swayze.conversations.count %>
-<br>
-<% Conversation.unscoped do %>
-	<% unless @search.blank? %>
-		<%= @search.results.count %>
-		<br>
-		<% @search.each_hit_with_result do |hit| %>
-			<%= hit.result.title %>
-		<% end %>
-	<% end %>
+<% content_for :sidebar do %>
+  <h2>Recent Activity</h2>
 <% end %>
+<% content_for :header_second do %>
+  <h1>Search Results</h1>
+<% end %>
+
+<section>
+  <h2>Search results for: <%= content_tag :em, params[:q] %></h2>
+  <div class="search-results">
+  <% Conversation.unscoped do %>
+    <% Contribution.unscoped do %>
+      <% unless @search.blank? %>
+        <% @search.each_hit_with_result do |hit| %>
+          <%= render partial: 'hit', locals: { hit: hit } %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+  </div>
+</section>
+
+<%= will_paginate @search.hits, previous_label: '<i class="icon icon-chevron-left"></i>', next_label: '<i class="icon icon-chevron-right"></i>' %>

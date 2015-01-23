@@ -17,20 +17,20 @@
         // Add a custom button
         ed.addButton('pllink', {
             title : 'Link',
-            image : '/assets/private_label/link-icon.png',
+            image : '/assets/private_labels/link-icon.png',
             onclick : function() {
                 // Add you own code to execute something on click
                 ed.focus();
-                $('.contribution-attachments .add-link').toggleClass('hide');
+                $(ed.formElement).find('.contribution-attachments .add-link').toggleClass('hide');
             }
         });
         ed.addButton('plimage', {
             title : 'Image',
-            image : '/assets/private_label/image-icon.png',
+            image : '/assets/private_labels/image-icon.png',
             onclick : function() {
                 // Add you own code to execute something on click
                 ed.focus();
-                $('.contribution-attachments .add-file').toggleClass('hide');
+                $(ed.formElement).find('.contribution-attachments .add-file').toggleClass('hide');
             }
         });
     },
@@ -68,6 +68,7 @@
   $(document).on("focus", ".editable textarea", function(event) {
     $(this).parent(".editable").addClass("editor-active");
     options = $.extend({}, defaults, {auto_focus: $(this).attr("id")});
+    console.log($(this));
     $(this).tinymce(options);
     $(this).parents('.contribute-form').find('.contribute-actions').removeClass('hide');
   });
@@ -82,5 +83,12 @@
     }
     $(this).parents('.contribute-form').find('.contribution-attachments .add-link, .contribution-attachments .add-file').addClass('hide');
     $(this).parent().addClass('hide');
+  });
+  $(document).on("click", ".contribution-header .reply-to-contribution", function(event) {
+    event.preventDefault();
+    $('html, body').animate({
+        scrollTop: $(this).closest('.contribution-wrapper').find('.reply-form').offset().top
+    }, 'fast');
+    $(this).closest('.contribution-wrapper').find('.reply-form .editable textarea').focus();
   });
 })(jQuery);

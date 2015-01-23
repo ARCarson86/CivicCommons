@@ -25,5 +25,9 @@ module PrivateLabels
         expect(helper.alert_icon(:error)).to include('icon-remove')
       end
     end
+
+    describe '#parameterized_model_name' do
+      it { should respond_to :parameterized_model_name }
+    end
   end
 end

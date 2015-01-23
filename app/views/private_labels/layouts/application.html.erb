@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html>
   <head>
     <title>
@@ -7,6 +7,7 @@
     <%= render :partial => 'layouts/meta_tags' %>
     <%= javascript_include_tag 'private_label/application.js' %>
     <%= javascript_tag '$.fx.off = true;' if Rails.env.test? %>
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css'>
     <%= stylesheet_link_tag '_bootstrap' %>
     <%= stylesheet_link_tag 'private_label/application', :media => "screen, projection" %>
     <link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
@@ -30,7 +31,11 @@
   <body class="<%= page_classes %>">
     <%= render partial: 'private_labels/shared/header' %>
     <div class="header-second">
-      <%= yield :header_second %>
+      <div class="row">
+        <div class="col-md-12">
+          <%= yield :header_second %>
+        </div>
+      </div>
     </div>
     <div class="pl-content container">
       <div class="row">
@@ -65,7 +70,10 @@
       </div>
     <% end %>
     
+    <%= render partial: 'private_labels/shared/modals/flag' %>
+
     <%= render partial: 'private_labels/shared/modals/login' %>
+
   </body>
 
 </html>

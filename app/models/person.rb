@@ -23,7 +23,7 @@ class Person < ActiveRecord::Base
          :validatable,
          :confirmable,
          :lockable,
-         :omniauthable, :omniauth_providers => [:facebook, :twitter, :linkedin, :google_oauth2]
+         :omniauthable, :omniauth_providers => [:facebook, :twitter, :linkedin, :google_plus]
 
   attr_accessor :send_welcome,
                 :create_from_auth,

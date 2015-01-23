@@ -1,0 +1,14 @@
+<% content_for :header_second do %>
+  <h1>Register for an Account</h1>
+<% end %>
+
+<h2>Our Guiding Principles</h1>
+<p>The first thing you should know: This place operates by a few key principles and we'd like you to agree to them.</p>
+
+<%= form_tag registrations_agree_to_terms_path, :method => "post" do |f| %>
+  <%= render partial: 'tos' %>
+
+  <section class="text-right">
+    <%= submit_tag "Save My Preference", class: "btn btn-success" %>
+  </section>
+<% end %>

@@ -1,5 +1,5 @@
 module PrivateLabels
-  class UsersController < PlController
+  class PeopleController < PlController
     before_filter :get_private_user, only: [:show, :edit]
 
     def show
