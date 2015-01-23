@@ -18,6 +18,9 @@
 <% end %>
 <div class="row">
 	<div class="col-md-12">
+        <section>
+             <%= render partial: 'private_labels/forms/contact' %>
+        </section>
 		<section>
 			<%= sanitize @conversation.summary %>
 			<% if @conversation.starter.blank? %>
