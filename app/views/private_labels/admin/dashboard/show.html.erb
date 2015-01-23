@@ -1,20 +1,34 @@
-<div class="container">
-	<div class="row">
-		<div class="col-sm-6">
-			<table>
-				<thead>
-					<td>Email</td>
-					<td>Agreed On</td>
-					<td>Admin</td>
-				</thead>
-				<% @admins.each do |person| %>
-				<tr>
-					<td><%= person.email %></td>
-					<td><%= person.created_at %></td>
-					<td><%= person.admin? %></td>
-				</tr>
-				<% end %>
-			</table>
-		</div>
-	</div>
+<div class="page-header"><%= content_tag :h1, "#{@swayze.private_label.name} Administration Console" %></div>
+<div class="row">
+  <div class="col-md-8">
+  </div>
+  <div class="col-md-4">
+    <h2>Contributions</h2>
+    <p>Total: <%= @contributions.count %></p>
+    <p>Today: <%= @contributions_today.count %></p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <table class="table">
+      <thead>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Last Active</th>
+      </thead>
+      <% @admins.each do |person| %>
+      <tr>
+        <td><%= link_to person.name, edit_private_labels_admin_user_path(person) %></td>
+        <td><%= person.email %></td>
+        <td><%= person.last_sign_in_at.to_s(:long_friendly) %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="col-md-4">
+    <h2>Conversations</h2>
+    <p>Total: <%= @conversations.count %></p>
+    <p>Started Today: <%= @conversations_starting_today.count %></p>
+    <p>Ending Today: <%= @conversations_ending_today.count %></p>
+  </div>
 </div>
