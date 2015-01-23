@@ -92,6 +92,7 @@ gem 'jpbuilder'
 
 group :development, :test do
   gem 'pry'
+  gem 'pry-rails'
   gem 'pry-doc'
   gem 'pry-remote'
   gem 'pry-stack_explorer'
@@ -110,7 +111,7 @@ group :test do
   # Addressable Required by WebMock but breaks everything at 2.2.5
   # Can use latest addressable when pull request is accepted: https://github.com/sporkmonger/addressable/pull/33
   gem "rspec-rails"
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', require: false
   gem "database_cleaner"
   gem "factory_girl_rails"
   gem 'timecop'

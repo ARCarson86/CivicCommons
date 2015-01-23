@@ -3,8 +3,8 @@ require 'rails_helper'
 module PrivateLabels
   module Admin
 
-    RSpec.describe UsersController do
-      it { should be_a PrivateLabels::Admin::DashboardController }
+    RSpec.describe ContributionsController do
+      it { should be_a PrivateLabels::Admin::BaseController }
     end
 
   end # Admin module
