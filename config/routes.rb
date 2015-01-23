@@ -24,7 +24,7 @@ Civiccommons::Application.routes.draw do
       root to: 'homepage#show'
       namespace "admin" do
         root to: 'dashboard#show'
-        resources :dashboard, only: [:show]
+        get '/dashboard', to: 'dashboard#show'
         resources :users
         resources :conversations
         resources :contributions
