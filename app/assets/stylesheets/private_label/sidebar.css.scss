@@ -80,32 +80,6 @@
 
 						}
 					}
-					.carousel-control{
-						color: rgba(0,0,0,.5);
-						position: absolute;
-						/* Firefox */
-						top: -moz-calc(50% - 10px);
-						/* WebKit */
-						top: -webkit-calc(50% - 10px);
-						/* Opera */
-						top: -o-calc(50% - 10px);
-						/* Standard */
-						top: calc(50% - 10px);
-						z-index: 5;
-						display: inline-block;
-						height: 20px;
-						width: auto;
-						&.right{
-							background: none;
-							text-shadow: none;
-							right: -25px;
-						}
-						&.left{
-							background: none;
-							text-shadow: none;
-							left: -25px;
-						}
-					}
 				}
 			}
 		}
