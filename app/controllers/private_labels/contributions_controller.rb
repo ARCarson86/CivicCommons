@@ -1,5 +1,5 @@
 module PrivateLabels
-  class ContributionsController < PlController
+  class ContributionsController < ApplicationController
 
     before_filter :get_conversation
     def index
@@ -34,6 +34,6 @@ module PrivateLabels
     def get_conversation
       @conversation = @swayze.conversations.find(params[:conversation_id])
     end
-  end
 
+  end
 end # PrivateLabels module

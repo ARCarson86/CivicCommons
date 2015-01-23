@@ -1,5 +1,5 @@
 module PrivateLabels
-  class PlController < ActionController::Base
+  class ApplicationController < ActionController::Base
     include PrivateLabelControllerConcern
 
     # Rescue from routing error
@@ -18,5 +18,6 @@ module PrivateLabels
         f.html { render 'private_label/pl/404', status: 404 }
       end
     end
+
   end
-end
+end # PrivateLabels module

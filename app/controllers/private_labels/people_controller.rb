@@ -1,5 +1,5 @@
 module PrivateLabels
-  class PeopleController < PlController
+  class PeopleController < ApplicationController
     before_filter :get_private_user, only: [:show, :edit]
 
     def show
@@ -27,6 +27,6 @@ module PrivateLabels
     def get_private_user
       @person = @swayze.people.find(params[:id])
     end
-  end
 
+  end
 end # PrivateLabels module
