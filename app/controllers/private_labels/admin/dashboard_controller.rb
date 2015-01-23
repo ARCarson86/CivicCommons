@@ -1,6 +1,7 @@
 module PrivateLabels
   module Admin
-    class DashboardController < PlController
+    class DashboardController < BaseController
+
       def show
         @admins = @swayze.admins
 

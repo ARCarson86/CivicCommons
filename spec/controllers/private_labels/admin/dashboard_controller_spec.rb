@@ -4,19 +4,19 @@ module PrivateLabels
   module Admin
 
     RSpec.describe DashboardController do
-      it 'is a PlController subclass' do
-        expect(controller).to be_a(PlController)
+      it 'is a BaseController subclass' do
+        expect(controller).to be_a(PrivateLabels::Admin::BaseController)
       end
 
       describe 'GET #show' do
         let(:another_private_label) { create(:private_label) }
         let(:private_label)         { create(:private_label) }
-        let(:admin_one)             { create(:person) }
-        let(:other_person)          { create(:person) }
+        let(:admin)                 { create(:confirmed_person) }
 
         before(:each) do
-          create(:private_label_person, person: admin_one, private_label: private_label, admin: true)
           @request.host = private_label.domain
+          create(:private_label_person, person: admin, private_label: private_label, admin: true)
+          sign_in admin
 
           @conversation = create(:conversation, private_label: private_label)
           civic_conversation = create(:conversation)
@@ -29,7 +29,7 @@ module PrivateLabels
 
         it 'fetches only the admins for the current private label' do
           get :show
-          expect(assigns[:admins]).to match_array [admin_one]
+          expect(assigns[:admins]).to match_array [admin]
         end
 
         it 'fetches only the conversations for the private label' do
