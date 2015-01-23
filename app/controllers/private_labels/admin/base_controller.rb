@@ -3,7 +3,7 @@ module PrivateLabels
 
     ##
     # The superclass for all private label admin controllers
-    class BaseController < PlController
+    class BaseController < PrivateLabels::ApplicationController
       prepend_before_filter :authenticate_person!
       before_filter :check_for_admin
 

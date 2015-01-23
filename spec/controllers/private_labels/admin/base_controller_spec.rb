@@ -5,7 +5,7 @@ module PrivateLabels
 
     RSpec.describe BaseController do
 
-      it { should be_a PlController }
+      it { should be_a PrivateLabels::ApplicationController }
 
       describe 'authentication' do
         let!(:private_label)          { create(:private_label) }
