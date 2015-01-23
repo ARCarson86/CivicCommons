@@ -1,5 +1,5 @@
 module PrivateLabels
-  class ConversationsController < PlController
+  class ConversationsController < ApplicationController
 
     def index
       @conversations = @swayze.conversations
@@ -10,5 +10,6 @@ module PrivateLabels
       @contributions = @conversation.contributions
       @newContribrution = Contribution.new
     end
+
   end
 end # PrivateLabels module

@@ -1,5 +1,5 @@
 module PrivateLabels
-  class HomepageController < PlController
+  class HomepageController < ApplicationController
 
     def show
       @people = @swayze.people

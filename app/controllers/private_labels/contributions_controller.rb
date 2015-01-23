@@ -1,5 +1,5 @@
 module PrivateLabels
-  class ContributionsController < PlController
+  class ContributionsController < ApplicationController
 
     before_filter :get_conversation
     def index
@@ -21,20 +21,19 @@ module PrivateLabels
     end
 
     def tos
-    @contribution = @conversation.contributions.find(params[:id])
-    # do the flagging
-    
+      @contribution = @conversation.contributions.find(params[:id])
+      # TODO: do the flagging
     end
 
-  def tos_flag
-    @contribution = @conversation.contributions.find(params[:id])
+    def tos_flag
+      @contribution = @conversation.contributions.find(params[:id])
+    end
+
+    protected ##################################################
+
+    def get_conversation
+      @conversation = @swayze.conversations.find(params[:conversation_id])
+    end
+
   end
-
-    protected 
-
-      def get_conversation
-        @conversation = @swayze.conversations.find(params[:conversation_id])
-      end
-  end
-
 end # PrivateLabels module
