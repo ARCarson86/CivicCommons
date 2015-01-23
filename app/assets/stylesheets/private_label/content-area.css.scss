@@ -1,3 +1,6 @@
+@import "compass/css3/inline-block";
+@import "variables";
+
 .content-area{
 	section{
 		background-color: #fff;
@@ -115,17 +118,31 @@
 						text-decoration: none;
 					}
 				}
+        i{
+          color: #b9bec3;
+          vertical-align: sub;
+        }
 				.header-icon{
 					margin: 0 10px;
+          i{
+            color: #a7c530;
+          }
 				}
 				img{
 					margin-right: 3px;
+          vertical-align: sub;
 				}
 				.contribution-info{
 					border-right: 1px solid rgba(0,0,0,.3);
-					.base{
-						vertical-align: baseline;
-					}
+					span{
+            margin-right: 10px;
+            &:first-child{
+              margin-left: 5px;
+            }
+            &:last-child{
+              margin-right: 0;
+            }
+          }
 				}
 			}
 			.contribution-content{

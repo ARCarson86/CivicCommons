@@ -4,12 +4,12 @@
 			<div class="row">
 				<div class="col-md-9">
 					<h1><%= @conversation.title %>
-					<h2><%= image_tag('private_labels/clock-wh.png') %><%= @conversation.created_at.strftime("%^B %e, %Y") %><span class="separator">/</span><%= image_tag('private_labels/user-wh.png', height: '26') %><%= @swayze.private_label.name %><span class="separator">/</span></h2>
+					<h2><i class="fa fa-clock-o"></i><%= @conversation.created_at.strftime("%^B %e, %Y") %><span class="separator">/</span><%= image_tag('private_labels/user-wh.png', height: '26') %><%= @swayze.private_label.name %><span class="separator">/</span></h2>
 				</div>
 				<div class="col-md-3">
 					<div class="header-comment-count-wrapper pull-right">
 						<div class="header-comment-count"><%= @conversation.contributions.count %></div>
-						<%= image_tag('private_labels/chat-bubble-wh.png') %>
+						<i class="fa fa-comments-o"></i>
 					</div>
 				</div>
 			</div>
@@ -67,21 +67,21 @@
                                     <div class="contribution-header row">
                                         <div class="col-md-9 contribution-info">
                                             <div class="row">
-                                                <div class="col-md-5">
-                                                    <%= image_tag('private_labels/user-gray.png', class: "base") %>
+                                                <span>
+                                                    <%= image_tag('private_labels/user-gray.png') %>
                                                     <%= contribution.person.name %>
-                                                </div>
-                                                <div class="col-md-5">
-                                                    <%= image_tag 'private_labels/clock-gray.png' %>
+                                                </span>
+                                                <span>
+                                                    <i class="fa fa-clock-o fa-2x"></i>
                                                     <%= contribution.created_at.strftime("%b %e, %Y") %>
-                                                </div>
+                                                </span>
                                             </div>
                                         </div>
-                                        <div class="col-md-3 text-right">
+                                        <div class="col-md-3 text-center">
                                             <span class="header-icon"><%= link_to tos_private_labels_conversation_contribution_path(@conversation, contribution), remote: true, data: {'toggle' => 'modal', 'target' => '#flagModal'} do %>
-                                                            <i class="icon-flag icon-2x"></i>
+                                                            <i class="fa fa-flag fa-2x"></i>
                                                             <% end %>
-                                            <span class="header-icon"><a href="#" class="reply-to-contribution"><i class="icon-share-alt icon-2x"></i></a></span>
+                                            <span class="header-icon"><a href="#" class="reply-to-contribution"><i class="fa fa-share-square-o fa-2x"></i></a></span>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -109,20 +109,20 @@
                                             <div class="contribution-header row">
                                                 <div class="col-md-9 contribution-info">
                                                     <div class="row">
-                                                        <div class="col-md-5">
+                                                        <span>
 
-                                                            <%= image_tag('private_labels/user-gray.png', class: "base") %>
+                                                            <%= image_tag('private_labels/user-gray.png') %>
                                                             <%= child.person.name %>
-                                                        </div>
-                                                        <div class="col-md-5">
-                                                            <%= image_tag 'private_labels/clock-gray.png' %>
+                                                        </span>
+                                                        <span>
+                                                            <i class="fa fa-clock-o fa-2x"></i>
                                                             <%= child.created_at.strftime("%b %e, %Y") %>
-                                                        </div>
+                                                        </span>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3 text-right">
+                                                <div class="col-md-3 text-center">
                                                     <span class="header-icon"><%= link_to tos_private_labels_conversation_contribution_path(@conversation, contribution), remote: true, data: {'toggle' => 'modal', 'target' => '#flagModal'} do %>
-                                                            <i class="icon-flag icon-2x"></i>
+                                                            <i class="fa fa-flag fa-2x"></i>
                                                             <% end %>
                                                     </span>
                                                 </div>
@@ -206,11 +206,11 @@
               </div>
             </div>
               <a class="left carousel-control" href="#carousel-moderators" role="button" data-slide="prev">
-                <i class="icon-chevron-left icon-large"></i>
+                <i class="fa fa-chevron-left fa-lg"></i>
                 <span class="sr-only">Previous</span>
               </a>
               <a class="right carousel-control" href="#carousel-moderators" role="button" data-slide="next">
-                <i class="icon-chevron-right icon-large"></i>
+                <i class="fa fa-chevron-right fa-lg"></i>
                 <span class="sr-only">Next</span>
               </a>
             </div>
@@ -232,11 +232,11 @@
               </div>
             </div>
               <a class="left carousel-control" href="#carousel-participants" role="button" data-slide="prev">
-                <i class="icon-chevron-left icon-large"></i>
+                <i class="fa fa-chevron-left fa-lg"></i>
                 <span class="sr-only">Previous</span>
               </a>
               <a class="right carousel-control" href="#carousel-participants" role="button" data-slide="next">
-                <i class="icon-chevron-right icon-large"></i>
+                <i class="fa fa-chevron-right fa-lg"></i>
                 <span class="sr-only">Next</span>
               </a>
             </div>
