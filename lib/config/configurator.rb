@@ -119,7 +119,7 @@ module Configurator
     # Throw a ConfigNotFoundError if a method call is not found.
     # We assume they are trying for a valid config or mis-typed a config.
     def method_missing(methId, *params)
-      raise ConfigNotFoundError
+      raise ConfigNotFoundError, "Configuration option #{methId} missing from config/civic_commons.yml"
     end
 
   end
