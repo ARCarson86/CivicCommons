@@ -1,6 +1,6 @@
 class Swayze
 
-	def initialize find_by
+	def initialize(find_by)
     @private_label = get_private_label(find_by)
     @private_label_id = @private_label.id
 	end
