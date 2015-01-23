@@ -1,7 +1,7 @@
 module PrivateLabels
   module Admin
 
-    class UsersController < DashboardController
+    class PeopleController < DashboardController
 
       before_filter :load_person, only: [:show, :update, :edit]
       before_filter :create_person, only: [:new, :create]

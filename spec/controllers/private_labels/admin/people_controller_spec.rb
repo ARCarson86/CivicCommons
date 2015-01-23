@@ -3,7 +3,7 @@ require 'rails_helper'
 module PrivateLabels
   module Admin
 
-    RSpec.describe UsersController do
+    RSpec.describe PeopleController do
       it { should be_a PrivateLabels::Admin::DashboardController }
     end
 
