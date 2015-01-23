@@ -1,3 +1,5 @@
+
+
 #header-wrapper{
 	position: fixed;
 	top: 0;
@@ -88,10 +90,13 @@
 		.separator{
 			margin: 0 12px;
 		}
-		img{
-			vertical-align: sub;
+		img, i{
+			vertical-align: text-top;
 			margin-right: 5px;
 		}
+		i{
+      font-size: 26px;
+    }
 	}
 	.header-comment-count-wrapper{
 		height: 100px;
@@ -99,13 +104,17 @@
 		border: 3px solid #fff;
 		border-radius: 50px;
 		position: relative;
-		img{
+		i{
 			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			margin: auto;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      text-align: center;
+      height: 50px;
+      font-size: 50px;
+      color: #fff;
 		}
 		.header-comment-count{
 			height: 26px;
