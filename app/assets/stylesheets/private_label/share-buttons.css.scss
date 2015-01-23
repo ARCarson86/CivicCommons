@@ -1,0 +1,49 @@
+.share-buttons{
+	text-align: center;
+	padding-top: 20px;
+	font-size: 12px;
+	.social{
+		display: inline-block;
+		padding: 0 4px;
+		&:first-child{
+			padding-left: 0;
+		}
+		&:last-child{
+			padding-right: 0;
+		}
+		.share-icon-wrapper{
+			width: 46px;
+			height: 46px;
+			border-radius: 23px;
+			border: 2px solid;
+			position: relative;
+			display: inline-block;
+			i{
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				margin: auto;
+				display: inline-block;
+				height: 28px;
+			}
+		}
+		&.linkedin{
+			color: #1c5986;
+			border-color: #1c5986;
+		}
+		&.twitter{
+			color: #5c9cdb;
+			border-color: #5c9cdb;
+		}
+		&.facebook{
+			color: #4c60b0;
+			border-color: #4c60b0;
+		}
+		&.private-label{
+			color: #9cbe15;
+			border-color: #9cbe15;
+		}
+	}
+}

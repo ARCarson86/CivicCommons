@@ -443,3 +443,7 @@ label {
   margin-left: 40px;
   border-bottom: 15px solid #fff;
 }
+.form-group.required .control-label:after {
+  content:"*";
+  color:red;
+}
