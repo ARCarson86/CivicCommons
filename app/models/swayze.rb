@@ -7,6 +7,7 @@ class Swayze
 
 	def contributions
 		Contribution.unscoped.where private_label_id: @private_label_id
+		
 	end
 
 	def conversations

@@ -99,4 +99,6 @@
     }, 'fast');
     $('.conversation-contributions').find('#'+contributionID).closest('.contribution-wrapper').find('.reply-form .editable textarea').focus();
   });
+
+  
 })(jQuery);
