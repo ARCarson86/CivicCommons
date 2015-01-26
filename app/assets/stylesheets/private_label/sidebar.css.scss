@@ -74,7 +74,7 @@
 						.item-content{
 							padding-top: 15px;
 							color: #999999;
-							h5{
+							a{
 								margin: 0;
 								color: #9cbe15;
 								font-size: 12px;
@@ -179,32 +179,36 @@
 						.item-header{
 							color: #999999;
 							min-height: 36px;
-							.user-name{
+							.user{
 								display: inline-block;
-								width: 85px;
-								margin-left: 40px;
-								line-height: 15px;
-								a{
-									font-family: 'Open Sans', sans-serif;
-									font-size: 11px;
-									text-transform: uppercase;
-									color: #999999;
+								position: relative;
+								.user-name{
+									display: inline-block;
+									width: 85px;
+									margin-left: 40px;
+									line-height: 15px;
+									a{
+										font-family: 'Open Sans', sans-serif;
+										font-size: 11px;
+										text-transform: uppercase;
+										color: #999999;
+									}
 								}
-							}
-							.user-image{
-								display: inline-block;
-								margin-right: 5px;
-								height: 100%;
-								vertical-align: middle;
-								position: absolute;
-								top: 50%;
-								margin-top: -18px;
-								img{
-									border-radius: 18px;
-									height: 36px;
-									width: 36px;
-									border: 2px solid #999999;
-									overflow: hidden;
+								.user-image{
+									display: inline-block;
+									margin-right: 5px;
+									height: 100%;
+									vertical-align: middle;
+									position: absolute;
+									top: 50%;
+									margin-top: -18px;
+									img{
+										border-radius: 18px;
+										height: 36px;
+										width: 36px;
+										border: 2px solid #999999;
+										overflow: hidden;
+									}
 								}
 							}
 							.time{
@@ -230,6 +234,12 @@
 								color: #9cbe15;
 								font-size: 12px;
 								font-weight: bold;
+							}
+							p{
+								margin: 0;
+								&:empty{
+									display: none;
+								}	
 							}
 						}
 					}
