@@ -11,9 +11,12 @@ FactoryGirl.define do
     avatar_cached_image_url '/images/avatar.jpg'
     send_welcome            false
 
-    factory :admin do
-      admin                 true
-      confirmed_at          { Faker::Time.backward(1.month) }
+    factory :confirmed_person do
+      confirmed_at           { Faker::Time.backward(1.month) } 
+
+      factory :admin do
+        admin                 true
+      end
     end
   end
 end

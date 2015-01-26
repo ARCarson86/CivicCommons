@@ -24,8 +24,8 @@ Civiccommons::Application.routes.draw do
       root to: 'homepage#show'
       namespace "admin" do
         root to: 'dashboard#show'
-        resources :dashboard, only: [:show]
-        resources :users
+        get '/dashboard', to: 'dashboard#show'
+        resources :people
         resources :conversations
         resources :contributions
       end
@@ -39,7 +39,8 @@ Civiccommons::Application.routes.draw do
 
       end
 
-
+      post 'contact', to: 'forms#contact'
+      
       get '*path', to: 'pl#raise_routing_error'
     end
   end

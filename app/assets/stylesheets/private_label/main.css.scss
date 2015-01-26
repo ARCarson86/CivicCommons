@@ -435,3 +435,15 @@ label {
     left: -25px;
   }
 }
+.arrow-up {
+  width: 0; 
+  height: 0; 
+  border-left: 11px solid transparent;
+  border-right: 11px solid transparent;
+  margin-left: 40px;
+  border-bottom: 15px solid #fff;
+}
+.form-group.required .control-label:after {
+  content:"*";
+  color:red;
+}
