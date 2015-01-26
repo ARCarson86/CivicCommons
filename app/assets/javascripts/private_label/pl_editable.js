@@ -91,4 +91,12 @@
     }, 'fast');
     $(this).closest('.contribution-wrapper').find('.reply-form .editable textarea').focus();
   });
+  $(document).on("click", ".recent-activities .item-header .reply", function(event) {
+    event.preventDefault();
+    var contributionID = $(this).parents('.item').attr('id');
+    $('html, body').animate({
+        scrollTop: $('.conversation-contributions').find('#'+contributionID).closest('.contribution-wrapper').find('.reply-form').offset().top
+    }, 'fast');
+    $('.conversation-contributions').find('#'+contributionID).closest('.contribution-wrapper').find('.reply-form .editable textarea').focus();
+  });
 })(jQuery);
