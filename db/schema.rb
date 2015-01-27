@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150127150506) do
+ActiveRecord::Schema.define(:version => 20150127151413) do
 
   create_table "actions", :force => true do |t|
     t.integer  "conversation_id"
@@ -616,8 +616,9 @@ ActiveRecord::Schema.define(:version => 20150127150506) do
 
   create_table "private_labels_sidebars", :force => true do |t|
     t.text     "content"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "private_label_id"
   end
 
   create_table "rating_descriptors", :force => true do |t|
