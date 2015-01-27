@@ -145,6 +145,10 @@ h3 {
   height: 34px;
   border: 1px solid darken($gray, 20%);
   border-radius: 1px;
+  &.input-sm{
+    height: 26px;
+    font-size: 10px;
+  }
 }
 
 label {

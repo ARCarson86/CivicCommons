@@ -77,13 +77,11 @@
  	<div class="row">
 		<div class="col-md-12">
 			<h2>Recent Activity</h2>
-    		<section class="recent-activities">
-        	
-        		<div class="recent-activities-list">
-          			<% @swayze.contributions.most_recent.limit(6).each do |activity| %>
-                    
-                		<div class="item" id="contribution-<%= activity.id %>">
-                			<div class="row">
+  		<section class="recent-activities">  	
+      		<div class="recent-activities-list">
+      			<% @swayze.contributions.most_recent.limit(6).each do |activity| %>
+          		<div class="item" id="contribution-<%= activity.id %>">
+          			<div class="row">
                   <div class="item-header">
                     <div class="col-md-10">
                     	<div class="user">
@@ -105,29 +103,22 @@
                     		<% end %>
                   		<% end %>
                       </div>
-                    
-                  </div>
+                    </div>
                   </div>
                   <div class="row">
-                  <div class="item-content col-md-12">
-                  <% Conversation.unscoped do %>
-                    <%= link_to activity.conversation.title, activity.conversation %>
-                  <% end %>
-                    <%= truncate(simple_format(activity.content), length: 125, omission: '...') %>
-
+                    <div class="item-content col-md-12">
+                      <% Conversation.unscoped do %>
+                        <%= link_to activity.conversation.title, activity.conversation %>
+                      <% end %>
+                      <%= truncate(simple_format(activity.content), length: 125, omission: '...') %>
+                    </div>
                   </div>
                 </div>
-                </div>
-          <% end %>
+                <% end %>
+            </div>
+          </section>
         </div>
-      </section>
+      </div>
     </div>
   </div>
-
-			<h2>Upcoming Dates</h2>
-			<section>
-				
-			</section>
-		</div>
- 	</div>
 <% end %>
