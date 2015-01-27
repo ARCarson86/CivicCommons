@@ -1,15 +1,6 @@
 <div class="page-header"><%= content_tag :h1, "#{@swayze.private_label.name} Administration Console" %></div>
 <div class="row">
   <div class="col-md-8">
-  </div>
-  <div class="col-md-4">
-    <h2>Contributions</h2>
-    <p>Total: <%= @contributions.count %></p>
-    <p>Today: <%= @contributions_today.count %></p>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-8">
     <table class="table">
       <thead>
         <th>Name</th>
@@ -26,9 +17,16 @@
     </table>
   </div>
   <div class="col-md-4">
-    <h2>Conversations</h2>
-    <p>Total: <%= @conversations.count %></p>
-    <p>Started Today: <%= @conversations_starting_today.count %></p>
-    <p>Ending Today: <%= @conversations_ending_today.count %></p>
+    <div class="row">
+      <h2>Contributions</h2>
+      <p>Total: <%= @contributions.count %></p>
+      <p>Today: <%= @contributions_today.count %></p>
+    </div>
+    <div class="row">
+      <h2>Conversations</h2>
+      <p>Total: <%= @conversations.count %></p>
+      <p>Started Today: <%= @conversations_starting_today.count %></p>
+      <p>Ending Today: <%= @conversations_ending_today.count %></p>
+    </div>
   </div>
 </div>
