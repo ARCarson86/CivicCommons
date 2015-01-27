@@ -90,6 +90,8 @@ gem 'whenever', require: false
 gem 'jbuilder'
 gem 'jpbuilder'
 
+gem 'strong_parameters'
+
 group :development, :test do
   gem 'pry'
   gem 'pry-rails'
