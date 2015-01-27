@@ -98,6 +98,7 @@ group :development, :test do
   gem 'pry-stack_explorer'
   gem 'pry-debugger'
   gem 'faker'
+  gem "rspec-rails"
 end
 
 group :development do
@@ -110,7 +111,6 @@ end
 group :test do
   # Addressable Required by WebMock but breaks everything at 2.2.5
   # Can use latest addressable when pull request is accepted: https://github.com/sporkmonger/addressable/pull/33
-  gem "rspec-rails"
   gem 'shoulda-matchers', require: false
   gem "database_cleaner"
   gem "factory_girl_rails"
