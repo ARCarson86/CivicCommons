@@ -6,7 +6,7 @@ RSpec.shared_examples 'a private label scoped model' do
 
     context 'when a current private label is not set' do
       it 'looks for records with private_label_id set to nil' do
-        expect(described_class.default_scope.where_values_hash["private_label_id"]).to be_nil
+        expect(described_class.default_scope.where_values_hash).to eq({ "private_label_id" => nil })
       end
     end
 
@@ -15,7 +15,7 @@ RSpec.shared_examples 'a private label scoped model' do
       before(:each)             { Swayze.current_private_label = private_label }
 
       it 'looks for records only for that private label' do
-        expect(described_class.default_scope.where_values_hash["private_label_id"]).to be private_label.id
+        expect(described_class.default_scope.where_values_hash).to eq({ "private_label_id" => private_label.id })
       end
     end
   end
