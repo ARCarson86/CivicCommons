@@ -2,6 +2,7 @@ require 'parent_validator'
 require 'obscenity/active_model'
 class Contribution < ActiveRecord::Base
   include Visitable
+  include PrivateLabelScopable
 
   searchable :include => [:person, :conversation, :issue], :ignore_attribute_changes_of => [ :total_visits, :recent_visits, :last_visit_date, :updated_at, :recent_rating ] do
     text :title
