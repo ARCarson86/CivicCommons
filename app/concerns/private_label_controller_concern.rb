@@ -11,6 +11,10 @@ module PrivateLabelControllerConcern
     tos_path_if_unauthorized(resource) || stored_location_for(resource) || root_path
   end
 
+  def current_ability
+    @current_ability ||= PrivateLabels::Ability.new(current_person, @swayze)
+  end
+
   protected
 	def enable_swayze
     find_by = request.subdomains.length > 1 ? { namespace: request.subdomains.first } : { domain: request.host }
