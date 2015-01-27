@@ -1,14 +1,10 @@
 module PrivateLabels
   module Admin
 
-    class PeopleController < DashboardController
+    class PeopleController < BaseController
 
       before_filter :load_person, only: [:show, :update, :edit]
       before_filter :create_person, only: [:new, :create]
-
-      def index
-        @people = @swayze.people
-      end
 
       def show
       end
