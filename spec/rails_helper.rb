@@ -73,6 +73,7 @@ RSpec.configure do |config|
   end
 
   config.before :each do
+    Swayze.current_private_label = nil
     ActiveRecord::Base.observers.disable :all
     DatabaseCleaner.start
     ActionMailer::Base.deliveries.clear
