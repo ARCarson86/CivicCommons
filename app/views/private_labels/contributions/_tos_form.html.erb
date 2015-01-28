@@ -1,5 +1,5 @@
 <%= form_tag(tos_private_labels_conversation_contribution_path, remote: true, id: 'flag-contribution-form') do  %>
-	<p>Do you think this post violates The Civic Commons terms of service (<%= link_to 'TOS', terms_url, :target => "_blank" %>)? If so, please give your reason why below and submit to us.</p>
+	<p class="label-small">Do you think this post violates The Civic Commons terms of service (<%= link_to 'TOS', terms_url, :target => "_blank" %>)? If so, please give your reason why below and submit to us.</p>
 
 	<div class="form-group">
 		<%= hidden_field_tag :contribution, "#{@contribution}" %>
@@ -13,6 +13,6 @@
 	</div>
 
 	<div class="modal-footer">
-		 <%= submit_tag 'Report Violation', :class=> 'submit btn btn-default' %>
+		 <%= submit_tag 'Report Violation', :class=> 'btn-success btn btn-default btn-block' %>
 	</div>
 <% end %>

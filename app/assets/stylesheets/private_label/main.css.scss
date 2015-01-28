@@ -44,11 +44,12 @@ h3 {
   color: lighten($darkGray, 20%);
   font-size: 16px;
 }
-.login-modal {
+.login-modal, .flag-modal {
   .modal-dialog {
     width: 380px;
     .modal-content {
       border-radius: 3px;
+      color: #969696;
     }
 
     .modal-title {
@@ -144,6 +145,10 @@ h3 {
   height: 34px;
   border: 1px solid darken($gray, 20%);
   border-radius: 1px;
+  &.input-sm{
+    height: 26px;
+    font-size: 10px;
+  }
 }
 
 label {
