@@ -1,0 +1,8 @@
+<section>
+	<%= sanitize @conversation.summary %>
+	<% if @conversation.starter.blank? %>
+		<div class="convo-starter">
+			<%= sanitize @conversation.starter %>
+		</div>
+	<% end %>
+</section>

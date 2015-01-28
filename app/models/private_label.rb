@@ -17,6 +17,7 @@ class PrivateLabel < ActiveRecord::Base
   has_many :admins, through: :private_label_people, source: :person, conditions: ['private_label_people.admin = ?', true]
   has_many :conversations
   has_many :contributions
+  has_one :sidebar, class_name: 'PrivateLabels::Sidebar'
 
   # Adds a person to a private label as an administrator
   #

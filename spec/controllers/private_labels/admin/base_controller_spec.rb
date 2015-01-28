@@ -14,7 +14,7 @@ module PrivateLabels
         let!(:another_private_label)  { create(:private_label) }
         let!(:another_admin)          { create(:admin) }
         let(:body_content)            { "You hit my index!" }
-        before(:each)                 { @request.host = private_label.domain }
+        before(:each)                 { Swayze.current_private_label = private_label}
 
         controller do
           def index

@@ -14,7 +14,7 @@ module PrivateLabels
         let(:admin)                 { create(:confirmed_person) }
 
         before(:each) do
-          @request.host = private_label.domain
+          Swayze.current_private_label = private_label
           create(:private_label_person, person: admin, private_label: private_label, admin: true)
           sign_in admin
 
