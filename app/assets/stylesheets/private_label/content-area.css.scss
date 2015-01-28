@@ -59,26 +59,6 @@
 			}
 			.contribute-actions{
 				padding-top: 15px;
-				.button{
-					color: #fff;
-					font-family: 'Open Sans',sans-serif;
-					font-size: 14px;
-					text-transform: uppercase;
-					line-height: 40px;
-					border-radius: 2px;
-					font-weight: lighter;
-					&.cancel{
-						background-color: $midGray;
-						padding: 0 30px;
-						display: inline-block;
-					}
-					&.submit{
-						padding: 0 60px;
-						background-color: $green;
-						border: 0 none;
-						margin-left: 5px;
-					}
-				}
 			}
 		}
 	.conversation-contributions{
