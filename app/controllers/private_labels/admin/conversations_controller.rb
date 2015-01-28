@@ -3,11 +3,11 @@ module PrivateLabels
     class ConversationsController < BaseController
 
       def index
-        @conversations = @swayze.conversations
+        @conversations = Swayze.current_private_label.conversations
       end
 
       def show
-        @conversations = @swayze.conversations.find(params[:id])
+        @conversations = Swayze.current_private_label.conversations.find(params[:id])
       end
 
       def new

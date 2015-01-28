@@ -22,7 +22,7 @@ class PrivateLabels::RegistrationsController < Devise::RegistrationsController
       respond_with_navigational(resource) { render_with_scope :new }
     else
       if resource.save
-        @swayze.private_label.people << resource
+        Swayze.current_private_label.people << resource
         if resource.active_for_authentication?
           set_flash_message :notice, :signed_up if is_navigational_format?
           sign_in(resource_name, resource)
@@ -47,7 +47,7 @@ class PrivateLabels::RegistrationsController < Devise::RegistrationsController
   def agree_to_terms
     if current_person and params[:agree_to_terms]
       redirect_to registrations_agree_to_terms_path unless params[:agree_to_terms]
-      @swayze.private_label.people << current_person
+      Swayze.current_private_label.people << current_person
       flash[:notice] = "Thank you for agreeing to the terms"
       redirect_to root_url
     else

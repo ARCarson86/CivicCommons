@@ -16,7 +16,7 @@ module PrivateLabels
         @person = Person.new(params[:person])
         @person.save
       end
-      @private_label_person = PrivateLabelPerson.new(private_label_id: @swayze.id, person_id: @person.id)
+      @private_label_person = PrivateLabelPerson.new(private_label_id: Swayze.current_private_label.id, person_id: @person.id)
     end
 
     def edit
@@ -25,7 +25,7 @@ module PrivateLabels
     private
 
     def get_private_user
-      @person = @swayze.people.find(params[:id])
+      @person = Swayze.current_private_label.people.find(params[:id])
     end
 
   end
