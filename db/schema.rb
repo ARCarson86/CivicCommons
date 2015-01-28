@@ -12,6 +12,7 @@
 # It's strongly recommended to check this file into your version control system.
 
 ActiveRecord::Schema.define(:version => 20150122150446) do
+ActiveRecord::Schema.define(:version => 20150128190905) do
 
   create_table "actions", :force => true do |t|
     t.integer  "conversation_id"
@@ -612,6 +613,28 @@ ActiveRecord::Schema.define(:version => 20150122150446) do
     t.string   "main_image_content_type"
     t.integer  "main_image_file_size"
     t.datetime "main_image_updated_at"
+  end
+
+  create_table "private_labels_pages", :force => true do |t|
+    t.string   "title"
+    t.string   "slug"
+    t.text     "content"
+    t.boolean  "sidebar"
+    t.string   "meta_title"
+    t.string   "meta_keywords"
+    t.string   "meta_description"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "private_label_id"
+  end
+
+  add_index "private_labels_pages", ["slug"], :name => "index_private_labels_pages_on_slug", :unique => true
+
+  create_table "private_labels_sidebars", :force => true do |t|
+    t.text     "content"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "private_label_id"
   end
 
   create_table "rating_descriptors", :force => true do |t|
