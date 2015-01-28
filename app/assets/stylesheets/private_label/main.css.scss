@@ -2,10 +2,15 @@
 @import "variables";
 
 *{
-  -webkit-transition: all 300ms ease;
-  -moz-transition: all 300ms ease;
-  -o-transition: all 300ms ease;
-  transition: all 300ms ease;
+  -webkit-transition: all 100ms ease-in;
+  -moz-transition: all 100ms ease-in;
+  -o-transition: all 100ms ease-in;
+  transition: all 100ms ease-in;
+  &:focus{
+    outline: none;
+  }
+}
+a{
   &:focus{
     outline: none;
   }
@@ -53,33 +58,62 @@ h3 {
     }
 
     .modal-title {
-      color: $green;
-      text-transform: uppercase;
-      font-family: $oswald;
-      font-weight: 300;
-      padding-bottom: 10px;
-      position: relative;
-
-      background: url('user_badge.png') top left no-repeat;
-      padding: 0 0 10px 40px;
-      margin: 15px 10px 0 20px;
-
-      border-bottom: 2px solid $gray;
-      &:after {
-        content: "";
-        display: block;
-        height: 2px;
-        width: 28px;
-        background-color: $green;
-        top: 100%;
-        left: 0;
-        position: absolute;
-      }
+        color: $green;
+        text-transform: uppercase;
+        font-family: $oswald;
+        font-weight: 300;
+        position: relative;
+        padding-left: 40px;
+        padding-top: 0;
+        line-height: 30px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid $gray;
+      .modal-header-icon{
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: inline-block;
+          /* Firefox */
+          height: -moz-calc(100% + 2px);
+          /* WebKit */
+          height: -webkit-calc(100% + 2px);
+          /* Opera */
+          height: -o-calc(100% + 2px);
+          /* Standard */
+          height: calc(100% + 2px);
+          border-bottom: 2px solid $green;
+          span{
+            display: inline-block;
+            border-radius: 3px;
+            line-height: 30px;
+            background-color: $green;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            position: relative;
+            color: #fff;
+            i{
+              padding-top: 5px;
+            }
+            img, i{
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              margin: auto;
+              position: absolute;
+            }
+          }
+        }
     }
   }
 
   .modal-header {
     border-bottom: 0;
+    .close{
+      z-index: 1000;
+      position: relative;
+    }
   }
 
   .modal-body {

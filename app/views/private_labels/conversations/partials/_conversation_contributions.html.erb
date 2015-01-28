@@ -107,8 +107,8 @@
                                 <%= render partial: 'private_labels/contributions/contributions_attachment_form', locals: {form: f, contribution: @newContribrution} %>
 
                             <div class="contribute-actions pull-right hide">
-                              <a href="#" class="button tertiary cancel">Cancel</a>
-                              <%= f.submit "Comment", class: "button submit", disable_with: "Posting..." %>
+                              <a href="#" class="btn btn-default">Cancel</a>
+                              <%= f.submit "Comment", class: "btn btn-success", disable_with: "Posting..." %>
                             </div>
                             <% end %>
                         </div>
