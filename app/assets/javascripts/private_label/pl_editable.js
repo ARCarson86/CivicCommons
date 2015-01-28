@@ -21,6 +21,12 @@
             onclick : function() {
                 // Add you own code to execute something on click
                 ed.focus();
+                $(ed.formElement).find('.contribution-attachments').removeClass('hide');
+                if ($(ed.formElement).find('.contribution-attachments .add-file').hasClass('hide') == false){
+                  $(ed.formElement).find('.contribution-attachments .add-file').addClass('hide');
+                  $(ed.formElement).find('#contribute-text_plimage').removeClass('mceButtonActive');
+                }
+                $(ed.formElement).find('#contribute-text_pllink').toggleClass('mceButtonActive');
                 $(ed.formElement).find('.contribution-attachments .add-link').toggleClass('hide');
             }
         });
@@ -30,6 +36,12 @@
             onclick : function() {
                 // Add you own code to execute something on click
                 ed.focus();
+                $(ed.formElement).find('.contribution-attachments').removeClass('hide');
+                if ($(ed.formElement).find('.contribution-attachments .add-link').hasClass('hide') == false){
+                  $(ed.formElement).find('.contribution-attachments .add-link').addClass('hide');
+                  $(ed.formElement).find('#contribute-text_pllink').removeClass('mceButtonActive');
+                }
+                $(ed.formElement).find('#contribute-text_plimage').toggleClass('mceButtonActive');
                 $(ed.formElement).find('.contribution-attachments .add-file').toggleClass('hide');
             }
         });
@@ -70,6 +82,7 @@
     options = $.extend({}, defaults, {auto_focus: $(this).attr("id")});
     console.log($(this));
     $(this).tinymce(options);
+
     $(this).parents('.contribute-form').find('.contribute-actions').removeClass('hide');
   });
   $(document).on("click", ".contribute-actions .cancel", function(event) {
@@ -81,7 +94,7 @@
     if ($($textarea).tinymce() != undefined) {
       $($textarea).tinymce().remove();
     }
-    $(this).parents('.contribute-form').find('.contribution-attachments .add-link, .contribution-attachments .add-file').addClass('hide');
+    $(this).parents('.contribute-form').find('.contribution-attachments, .contribution-attachments .add-link, .contribution-attachments .add-file').addClass('hide');
     $(this).parent().addClass('hide');
   });
   $(document).on("click", ".contribution-header .reply-to-contribution", function(event) {
@@ -91,4 +104,31 @@
     }, 'fast');
     $(this).closest('.contribution-wrapper').find('.reply-form .editable textarea').focus();
   });
+  $(document).on("click", ".private_labels-conversations .recent-activities .item-header .reply", function(event) {
+    event.preventDefault();
+    var contributionID = $(this).parents('.item').attr('id');
+    $('html, body').animate({
+        scrollTop: $('.conversation-contributions').find('#'+contributionID).closest('.contribution-wrapper').find('.reply-form').offset().top
+    }, 'fast');
+    $('.conversation-contributions').find('#'+contributionID).closest('.contribution-wrapper').find('.reply-form .editable textarea').focus();
+  });
+  $(document).on("click", ".contribution-attachments .close", function(event) {
+    event.preventDefault();
+    $(this).parents('form').find('#contribute-text_pllink, #contribute-text_plimage').removeClass('mceButtonActive');
+    $(this).parents('.button').addClass('hide');
+  });
+
+  function MoveTo(path) {
+    var arr = path.split('-')
+    if ((arr[0] == 'reply') && (arr[1] != '' || undefined)){
+      $('html, body').animate({
+        scrollTop: $('.conversation-contributions').find('#contribution-'+arr[1]).closest('.contribution-wrapper').find('.reply-form').offset().top
+    }, 'fast');
+      $('.conversation-contributions').find('#contribution-'+arr[1]).closest('.contribution-wrapper').find('.reply-form .editable textarea').focus();
+    }
+    
+    }
+    $(document).on('ready', function(){
+       MoveTo(window.location.hash.replace('#', ''));
+    })
 })(jQuery);
