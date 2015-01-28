@@ -1,13 +1,13 @@
 module PrivateLabels
   class ContributionsController < ApplicationController
+    before_filter :get_conversation, except: [:index]
 
-    before_filter :get_conversation
     def index
-      @contributions = @swayze.contributions
+      @contributions = Swayze.current_private_label.contributions
     end
 
     def show
-      @contribution = @swayze.contributions.find(params[:id])
+      @contribution = Swayze.current_private_label.contributions.find(params[:id])
     end
 
     def new
@@ -32,7 +32,7 @@ module PrivateLabels
     protected ##################################################
 
     def get_conversation
-      @conversation = @swayze.conversations.find(params[:conversation_id])
+      @conversation = Swayze.current_private_label.conversations.find(params[:conversation_id])
     end
 
   end
