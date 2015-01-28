@@ -28,6 +28,7 @@ Civiccommons::Application.routes.draw do
         resources :people
         resources :conversations
         resources :contributions
+        resource :sidebar, only: [:edit, :update, :create]
       end
       match '/search/results', to: 'search#results', as: 'search'
       resources :people, only: [:show, :new, :create, :edit, :update]

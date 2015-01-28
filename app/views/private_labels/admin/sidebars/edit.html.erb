@@ -1,0 +1,4 @@
+<%= form_for @sidebar, url: private_labels_admin_sidebar_path, namespace: :admin do |f| %>
+  <%= f.text_area :content %><br />
+  <%= f.submit 'Submit' %>
+<% end %>
