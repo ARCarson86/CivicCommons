@@ -614,6 +614,13 @@ ActiveRecord::Schema.define(:version => 20150127151413) do
     t.datetime "main_image_updated_at"
   end
 
+  create_table "private_labels_sidebars", :force => true do |t|
+    t.text     "content"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "private_label_id"
+  end
+
   create_table "rating_descriptors", :force => true do |t|
     t.string   "title"
     t.datetime "created_at"
