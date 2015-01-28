@@ -9,7 +9,7 @@
     <div class="col-md-10">
     	<%= form_for [:private_labels, @conversation, @newContribrution], :html => { :class => 'contribute-form', multipart: true } do |f| %>
     		<div class="editable">
-          <%= f.text_area :content, rows: 1, placeholder: "Click here to respond to #{@swayze.private_label.name}", id: "contribute-text"  %>
+          <%= f.text_area :content, rows: 1, placeholder: "Click here to respond to #{Swayze.current_private_label.name}", id: "contribute-text"  %>
         </div>
           <%= render partial: 'private_labels/contributions/contributions_attachment_form', locals: {form: f, contribution: @newContribrution} %>
     		<div class="contribute-actions pull-right hide">

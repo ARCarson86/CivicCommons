@@ -102,7 +102,7 @@
                             <%= f.hidden_field :parent_id %>
                             <div class="editable">
                                 
-                                <%= f.text_area :content, rows: 1, placeholder: "Click here to respond to #{@swayze.private_label.name}", id: "reply-#{contribution.id}" %>
+                                <%= f.text_area :content, rows: 1, placeholder: "Click here to respond to #{Swayze.current_private_label.name}", id: "reply-#{contribution.id}" %>
                             </div>
                                 <%= render partial: 'private_labels/contributions/contributions_attachment_form', locals: {form: f, contribution: @newContribrution} %>
 
