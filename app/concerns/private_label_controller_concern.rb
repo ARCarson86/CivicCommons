@@ -12,7 +12,7 @@ module PrivateLabelControllerConcern
   end
 
   def current_ability
-    @current_ability ||= PrivateLabels::Ability.new(current_person, @swayze)
+    @current_ability ||= PrivateLabels::Ability.new(current_person)
   end
 
   protected
