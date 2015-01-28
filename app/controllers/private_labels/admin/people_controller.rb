@@ -7,7 +7,7 @@ module PrivateLabels
       before_filter :create_person, only: [:new, :create]
 
       def index
-        @people = @swayze.people
+        @people = Swayze.current_private_label.people
       end
 
       def show
@@ -28,7 +28,7 @@ module PrivateLabels
       # Fetch the person record to act upon using the id passed
       # in via the params hash and store it in an instance variable.
       def load_person
-        @person = @swayze.people.find(params[:id])
+        @person = Swayze.current_private_label.people.find(params[:id])
       end
     end
 

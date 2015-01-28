@@ -2,9 +2,8 @@ module PrivateLabels
   class SearchController < ApplicationController
 
     def results
-      swayze = @swayze
       @search = Sunspot.search [Conversation, Contribution] do
-        with(:private_label_id, swayze.private_label_id)
+        with(:private_label_id, Swayze.current_private_label.id)
         fulltext params[:q] do
           highlight :summary, :content, fragment_size: 200, max_snippets: 1
         end

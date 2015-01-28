@@ -4,7 +4,7 @@
 			<div class="row">
 				<div class="col-md-9">
 					<h1><%= @conversation.title %>
-					<h2><i class="fa fa-clock-o"></i><%= @conversation.created_at.strftime("%^B %e, %Y") %><span class="separator">/</span><%= image_tag('private_labels/user-wh.png', height: '26') %><%= @swayze.private_label.name %><span class="separator">/</span></h2>
+					<h2><i class="fa fa-clock-o"></i><%= @conversation.created_at.strftime("%^B %e, %Y") %><span class="separator">/</span><%= image_tag('private_labels/user-wh.png', height: '26') %><%= Swayze.current_private_label.name %><span class="separator">/</span></h2>
 				</div>
 				<div class="col-md-3">
 					<div class="header-comment-count-wrapper pull-right">
@@ -18,160 +18,12 @@
 <% end %>
 <div class="row">
 	<div class="col-md-12">
-		<section>
-			<%= sanitize @conversation.summary %>
-			<% if @conversation.starter.blank? %>
-				<div class="convo-starter">
-					<%= sanitize @conversation.starter %>
-				</div>
-			<% end %>
-		</section>
 
-		<h2>What do you think?</h2>
-		<section class="comment-section">
-        <div class="row">
-            <div class="col-md-2">
-                <div class="user-image">
-                    <%= user_profile(current_person).html_safe %>
-                </div>
-            </div>
-            <div class="col-md-10">
-    			<%= form_for [:private_labels, @conversation, @newContribrution], :html => { :class => 'contribute-form', multipart: true } do |f| %>
-    				<div class="editable">
-                        <%= f.text_area :content, rows: 1, placeholder: "Click here to respond to #{@swayze.private_label.name}", id: "contribute-text"  %>
-                    </div>
-                        <%= render partial: 'private_labels/contributions/contributions_attachment_form', locals: {form: f, contribution: @newContribrution} %>
+		<%= render partial: 'private_labels/conversations/partials/conversation_content' %>
+    <%= render partial: 'private_labels/conversations/partials/conversation_contribute_form' %>
+    <%= render partial: 'private_labels/conversations/partials/conversation_contributions' %>
 
-    				<div class="contribute-actions pull-right hide">
-                      <a href="#" class="btn-success btn-default btn button tertiary cancel">Cancel</a>
-                      <%= f.submit "Comment", class: "btn-success btn-default btn button submit", disable_with: "Posting..." %>
-                    </div>
-    			<% end %>
-            </div>
-        </div>
-		</section>
-
-		<h2>Comments</h2>
-        <div class="conversation-contributions">
-    		<% @conversation.contributions.without_parent.each do |contribution| %>
-                <div class="contribution-wrapper">
-                    <section class="top-level-contribution" id="contribution-<%= contribution.id %>">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="user-image">
-                                    <%= user_profile(contribution.owner).html_safe %>
-                                </div>
-                            </div>
-                            <div class="col-md-10">
-                                <div class="contribution-container">
-                                    <div class="contribution-header row">
-                                        <div class="col-md-9 contribution-info">
-                                            <div class="row">
-                                                <span>
-                                                    <%= image_tag('private_labels/user-gray.png') %>
-                                                    <%= contribution.person.name %>
-                                                </span>
-                                                <span>
-                                                    <i class="fa fa-clock-o fa-2x"></i>
-                                                    <%= contribution.created_at.strftime("%b %e, %Y") %>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 text-center">
-                                            <span class="header-icon"><%= link_to tos_private_labels_conversation_contribution_path(@conversation, contribution), remote: true, data: {'toggle' => 'modal', 'target' => '#flagModal'} do %>
-                                                            <i class="fa fa-flag fa-2x"></i>
-                                                            <% end %>
-                                            <span class="header-icon"><a href="#" class="reply-to-contribution"><i class="fa fa-share fa-2x"></i></a></span>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="contribution-content">
-                                                <%= sanitize contribution.content %>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                    </section>
-                    <div class="row">
-                        <div class="col-md-offset-1 col-md-11">
-                        <% contribution.children.each do |child| %>
-                            <section class="contribution-reply" id="contribution-<%= child.id %>">
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <div class="user-image">
-                                            <%= user_profile(child.owner).html_safe %>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-10">
-                                        <div class="contribution-container">
-                                            <div class="contribution-header row">
-                                                <div class="col-md-9 contribution-info">
-                                                    <div class="row">
-                                                        <span>
-
-                                                            <%= image_tag('private_labels/user-gray.png') %>
-                                                            <%= child.person.name %>
-                                                        </span>
-                                                        <span>
-                                                            <i class="fa fa-clock-o fa-2x"></i>
-                                                            <%= child.created_at.strftime("%b %e, %Y") %>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 text-center">
-                                                    <span class="header-icon"><%= link_to tos_private_labels_conversation_contribution_path(@conversation, contribution), remote: true, data: {'toggle' => 'modal', 'target' => '#flagModal'} do %>
-                                                            <i class="fa fa-flag fa-2x"></i>
-                                                            <% end %>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="contribution-content">
-                                                        <%= sanitize child.content %>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                        <% end %>
-                        </div>
-                    </div>
-                    <div class="row reply-form">
-                        <div class="col-md-offset-1 col-md-11">
-                            <section class="contribution-reply">
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <div class="user-image">
-                                            <%= user_profile(contribution.owner).html_safe %>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-10">
-                                        <%= form_for [@conversation, contribution.children.new], :html => { :class => 'contribute-form', multipart: true } do |f| %>
-                                        <%= f.hidden_field :parent_id %>
-                                        <div class="editable">
-                                            
-                                            <%= f.text_area :content, rows: 1, placeholder: "Click here to respond to #{@swayze.private_label.name}", id: "reply-#{contribution.id}" %>
-                                        </div>
-                                            <%= render partial: 'private_labels/contributions/contributions_attachment_form', locals: {form: f, contribution: @newContribrution} %>
-
-                                        <div class="contribute-actions pull-right hide">
-                                          <a href="#" class="button tertiary cancel">Cancel</a>
-                                          <%= f.submit "Comment", class: "button submit", disable_with: "Posting..." %>
-                                        </div>
-                                        <% end %>
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                    </div>
-                </div>
-    		<% end %>
-        </div>
+		
 	</div>
 </div>
 
@@ -181,108 +33,18 @@
 
   <div class="row">
     <div class="col-md-12">
-      <section>
-        <h2><div class="sidebar-header-icon"><span><%= image_tag('private_labels/share-wh.png') %></span></div>Share</h2>
-        <%= render :partial => "private_labels/conversations/share_buttons" %>
-      </section>
+      <%= render partial: 'private_labels/shared/sidebars/conversation_share' %>
     </div>
   </div>
     <div class="row">
       <div class="col-md-12">
-        <section class="people-mods">
-          <h2><div class="sidebar-header-icon"><span><%= image_tag('private_labels/users-wh.png') %></span></div>Moderators</h2>
-          <div id="carousel-moderators" class="carousel slide" data-ride="carousel">
-            <div class="row">
-              <div class="carousel-inner" role="listbox">
-                <% @conversation.moderators.each_slice(2).with_index do |array_of_2_items, i| %>
-                    <div class="item <%= "active" if i == 0 %>">
-                      <% array_of_2_items.each do |moderator|%>
-                        <div class="col-md-6">
-                          <div class="user-image"><%= user_profile(moderator).html_safe %></div>
-                          <span><%= moderator.first_name %><br/><%= moderator.last_name %></span>
-                        </div>
-                      <% end %>
-                    </div>
-                <% end %>
-              </div>
-            </div>
-              <a class="left carousel-control" href="#carousel-moderators" role="button" data-slide="prev">
-                <i class="fa fa-chevron-left fa-lg"></i>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="right carousel-control" href="#carousel-moderators" role="button" data-slide="next">
-                <i class="fa fa-chevron-right fa-lg"></i>
-                <span class="sr-only">Next</span>
-              </a>
-            </div>
-
-          <h2><div class="sidebar-header-icon"><span><%= image_tag('private_labels/users-wh.png') %></span></div>Participants</h2>
-          <div id="carousel-participants" class="carousel slide" data-ride="carousel" data-interval="false">
-            <div class="row">
-              <div class="carousel-inner" role="listbox">
-                <% @conversation.participants.each_slice(4).with_index do |array_of_4_items, i| %>
-                    <div class="item <%= "active" if i == 0 %>">
-                      <% array_of_4_items.each.with_index do |contributor, index|%>
-                        <div class="col-md-6" style="<%= 'margin-bottom: 20px' if index == 0 || index == 1 %>">
-                          <div class="user-image"><%= user_profile(contributor).html_safe %></div>
-                          <span><%= contributor.first_name %><br/><%= contributor.last_name %></span>
-                        </div>
-                      <% end %>
-                    </div>
-                <% end %>
-              </div>
-            </div>
-              <a class="left carousel-control" href="#carousel-participants" role="button" data-slide="prev">
-                <i class="fa fa-chevron-left fa-lg"></i>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="right carousel-control" href="#carousel-participants" role="button" data-slide="next">
-                <i class="fa fa-chevron-right fa-lg"></i>
-                <span class="sr-only">Next</span>
-              </a>
-            </div>
-        </section>
+        <%= render partial: 'private_labels/shared/sidebars/conversation_people_moderators' %>
       </div>
   </div>
 
   <div class="row">
     <div class="col-md-12">
-      <section class="recent-activities">
-        <h2><div class="sidebar-header-icon"><span><%= image_tag('private_labels/windows-wh.png') %></span></div>Recent Activity</h2>
-        <div class="recent-activities-list">
-          <% @conversation.contributions.most_recent.limit(6).each do |activity| %>
-                    
-                <div class="item" id="contribution-<%= activity.id %>">
-                <div class="row">
-                  <div class="item-header">
-                    <div class="col-md-10">
-                      <div class="user">
-                        <div class="user-image">
-                            <%= user_profile(activity.owner).html_safe %>
-                        </div>
-                        <span class="user-name"><%= text_profile(activity.owner).html_safe %></span>
-                      </div>
-                      <span class="time">
-                          <i class="fa fa-clock-o fa-2x"></i>
-                          <%= activity.created_at.strftime("%-m/%e/%y") %>
-                      </span>
-                      </div>
-                      <div class="col-md-2 text-right reply">
-                        <a href="#" class="recent-activity-reply"><i class="fa fa-share fa-lg"></i></a>
-                      </div>
-                    
-                  </div>
-                  </div>
-                  <div class="row">
-                  <div class="item-content col-md-12">
-                    <h5><%= @conversation.title %></h5>
-                    <%= truncate(simple_format(activity.content), length: 125, omission: '...') %>
-                  </div>
-                </div>
-                </div>
-          <% end %>
-        </div>
-      </section>
+      <%= render partial: 'private_labels/shared/sidebars/conversation_recent_activities' %>
     </div>
   </div>
   
