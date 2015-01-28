@@ -8,11 +8,11 @@
 		margin-bottom: 30px;
 		padding: 25px;
 		&.top-level-contribution{
-			border-left: 5px solid #a7c530;
+			border-left: 5px solid $green;
 			margin-bottom: 10px;
 		}
 		&.contribution-reply{
-			border-left: 15px solid #dddddd;
+			border-left: 15px solid $midGray;
 			margin-bottom: 10px;
 		}
     	box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
@@ -24,7 +24,7 @@
 				border-radius: 45px;
 				height: 90px;
 				width: 90px;
-				border: 2px solid #999999;
+				border: 2px solid $midGray;
 				overflow: hidden;
 			}
 		}		
@@ -49,7 +49,7 @@
 				.help-text{
 					font-family: 'OpenSans', sans-serif;
 					font-size: 12px;
-					color: #3a3a3a;
+					color: $midGray;
 					display: inline;
 				}
 				input{
@@ -59,26 +59,6 @@
 			}
 			.contribute-actions{
 				padding-top: 15px;
-				.button{
-					color: #fff;
-					font-family: 'Open Sans',sans-serif;
-					font-size: 14px;
-					text-transform: uppercase;
-					line-height: 40px;
-					border-radius: 2px;
-					font-weight: lighter;
-					&.cancel{
-						background-color: #b7b7b7;
-						padding: 0 30px;
-						display: inline-block;
-					}
-					&.submit{
-						padding: 0 60px;
-						background-color: #9cbe15;
-						border: 0 none;
-						margin-left: 5px;
-					}
-				}
 			}
 		}
 	.conversation-contributions{
@@ -86,27 +66,31 @@
 			padding: 0 10px;
 			.contribution-header{
 				padding: 15px 0;
-				color: #a7c530;	
+				color: $green;	
 				line-height: 30px;
 				font-family: 'Open Sans', sans-serif;
 				font-size: 13px;
 				text-transform: uppercase;
-				border-bottom: 1px solid rgba(0,0,0,.3);
+				border-bottom: 1px solid $midGray;
 				a{
-					color: #a7c530;	
+					color: $green;	
 					text-decoration: none;
 					&:hover{
+						color: darken($green, 5%);
 						text-decoration: none;
 					}
 				}
         i{
-          color: #b9bec3;
+          color: $midGray;
           vertical-align: sub;
         }
 				.header-icon{
 					margin: 0 10px;
           i{
-            color: #a7c530;
+            color: $green;
+            &:hover{
+              color: darken($green, 5%);
+            }
           }
 				}
 				img{
@@ -114,7 +98,7 @@
           vertical-align: sub;
 				}
 				.contribution-info{
-					border-right: 1px solid rgba(0,0,0,.3);
+					border-right: 1px solid $midGray;
 					span{
             margin-right: 10px;
             &:first-child{
@@ -129,7 +113,7 @@
 			.contribution-content{
 				padding-top: 15px;
 				font-size: 15px;
-				color: #3a3a3a;
+				color: $darkGray;
 				line-height: 26px;
 			}
 			
@@ -150,14 +134,19 @@
       .section-content{
         padding: 10px 25px 25px;
         a{
+          color: $green;
           h4{
-            color: #9db641;
+            
             font-size: 21px;
             line-height: 30px;
           }
+          &:hover{
+            color: darken($green, 5%);
+            text-decoration: none;
+          }
         }
         .conversation-info{
-          color: #9db641; 
+          color: $green; 
           span{
             margin-right: 10px;
           }
@@ -173,7 +162,7 @@
               border-radius: 20px;
               height: 40px;
               width: 40px;
-              border: 2px solid #999999;
+              border: 2px solid $midGray;
               overflow: hidden;
             }
           }
