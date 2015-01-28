@@ -13,7 +13,7 @@ module PrivateLabels
       # Ensure that the user is an administrator. If not, they should not
       # have any access to this controller.
       def check_for_admin
-        raise SecurityError.new unless Swayze.current_private_label.admins.include?(current_person)
+        raise SecurityError.new unless can?(:manage, Swayze.current_private_label)
       end
     end
 

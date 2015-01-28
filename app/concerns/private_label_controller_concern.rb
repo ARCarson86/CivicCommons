@@ -2,7 +2,6 @@ module PrivateLabelControllerConcern
   extend ActiveSupport::Concern
 
   included do
-    prepend_before_filter :enable_swayze
     alias_method :current_user, :current_person
     layout 'private_labels/layouts/application'
   end
@@ -16,16 +15,6 @@ module PrivateLabelControllerConcern
   end
 
   protected
-
-  def enable_swayze
-    find_by = request.subdomains.length > 1 ? { namespace: request.subdomains.first } : { domain: request.host }
-    private_label = PrivateLabel.first(conditions: find_by)
-    if private_label.nil?
-      raise ActiveRecord::RecordNotFound
-    else
-      Swayze.current_private_label = private_label
-    end
-  end
 
   def tos_path_if_unauthorized(resource)
     enable_swayze unless Swayze.current_private_label.present?

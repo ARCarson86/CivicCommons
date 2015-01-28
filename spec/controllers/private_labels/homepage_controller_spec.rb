@@ -14,7 +14,7 @@ module PrivateLabels
       let(:other_conversations)     { create_list(:conversation, 3) }
 
       before(:each) do
-        @request.host = private_label.domain
+        Swayze.current_private_label = private_label
         other_private_label = create(:private_label)
 
         people.each { |p| create(:private_label_person, person: p, private_label: private_label) }
