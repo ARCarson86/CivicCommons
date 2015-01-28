@@ -1,7 +1,7 @@
 <h2>Recent Activity</h2>
 <section class="recent-activities">  	
 	<div class="recent-activities-list">
-		<% @swayze.contributions.most_recent.limit(6).each do |activity| %>
+		<% Swayze.current_private_label.contributions.most_recent.limit(6).each do |activity| %>
   		<div class="item" id="contribution-<%= activity.id %>">
   			<div class="row">
         <div class="item-header">
