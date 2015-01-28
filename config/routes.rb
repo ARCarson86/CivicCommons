@@ -41,7 +41,7 @@ Civiccommons::Application.routes.draw do
 
       post 'contact', to: 'forms#contact'
       
-      get '*path', to: 'pl#raise_routing_error'
+      get '*path', to: 'application#raise_routing_error'
     end
   end
 
