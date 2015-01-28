@@ -3,11 +3,11 @@ module PrivateLabels
 
     class ContributionsController < BaseController
       def index
-        @contributions = @swayze.contributions
+        @contributions = Contributions.scoped
       end
 
       def show
-        @contributions = @swayze.contributions.find(params[:id])
+        @contributions = Contribution.find(params[:id])
       end
 
       def new

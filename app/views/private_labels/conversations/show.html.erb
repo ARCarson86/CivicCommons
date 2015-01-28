@@ -4,7 +4,7 @@
 			<div class="row">
 				<div class="col-md-9">
 					<h1><%= @conversation.title %>
-					<h2><i class="fa fa-clock-o"></i><%= @conversation.created_at.strftime("%^B %e, %Y") %><span class="separator">/</span><%= image_tag('private_labels/user-wh.png', height: '26') %><%= @swayze.private_label.name %><span class="separator">/</span></h2>
+					<h2><i class="fa fa-clock-o"></i><%= @conversation.created_at.strftime("%^B %e, %Y") %><span class="separator">/</span><%= image_tag('private_labels/user-wh.png', height: '26') %><%= Swayze.current_private_label.name %><span class="separator">/</span></h2>
 				</div>
 				<div class="col-md-3">
 					<div class="header-comment-count-wrapper pull-right">
@@ -38,13 +38,13 @@
             <div class="col-md-10">
     			<%= form_for [:private_labels, @conversation, @newContribrution], :html => { :class => 'contribute-form', multipart: true } do |f| %>
     				<div class="editable">
-                        <%= f.text_area :content, rows: 1, placeholder: "Click here to respond to #{@swayze.private_label.name}", id: "contribute-text"  %>
+                        <%= f.text_area :content, rows: 1, placeholder: "Click here to respond to #{Swayze.current_private_label.name}", id: "contribute-text"  %>
                     </div>
                         <%= render partial: 'private_labels/contributions/contributions_attachment_form', locals: {form: f, contribution: @newContribrution} %>
 
     				<div class="contribute-actions pull-right hide">
-                      <a href="#" class="button tertiary cancel">Cancel</a>
-                      <%= f.submit "Comment", class: "button submit", disable_with: "Posting..." %>
+                      <a href="#" class="btn-success btn-default btn button tertiary cancel">Cancel</a>
+                      <%= f.submit "Comment", class: "btn-success btn-default btn button submit", disable_with: "Posting..." %>
                     </div>
     			<% end %>
             </div>
@@ -55,7 +55,7 @@
         <div class="conversation-contributions">
     		<% @conversation.contributions.without_parent.each do |contribution| %>
                 <div class="contribution-wrapper">
-                    <section class="top-level-contribution">
+                    <section class="top-level-contribution" id="contribution-<%= contribution.id %>">
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="user-image">
@@ -81,7 +81,7 @@
                                             <span class="header-icon"><%= link_to tos_private_labels_conversation_contribution_path(@conversation, contribution), remote: true, data: {'toggle' => 'modal', 'target' => '#flagModal'} do %>
                                                             <i class="fa fa-flag fa-2x"></i>
                                                             <% end %>
-                                            <span class="header-icon"><a href="#" class="reply-to-contribution"><i class="fa fa-share-square-o fa-2x"></i></a></span>
+                                            <span class="header-icon"><a href="#" class="reply-to-contribution"><i class="fa fa-share fa-2x"></i></a></span>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -97,7 +97,7 @@
                     <div class="row">
                         <div class="col-md-offset-1 col-md-11">
                         <% contribution.children.each do |child| %>
-                            <section class="contribution-reply">
+                            <section class="contribution-reply" id="contribution-<%= child.id %>">
                                 <div class="row">
                                     <div class="col-md-2">
                                         <div class="user-image">
@@ -155,7 +155,7 @@
                                         <%= f.hidden_field :parent_id %>
                                         <div class="editable">
                                             
-                                            <%= f.text_area :content, rows: 1, placeholder: "Click here to respond to #{@swayze.private_label.name}", id: "reply-#{contribution.id}" %>
+                                            <%= f.text_area :content, rows: 1, placeholder: "Click here to respond to #{Swayze.current_private_label.name}", id: "reply-#{contribution.id}" %>
                                         </div>
                                             <%= render partial: 'private_labels/contributions/contributions_attachment_form', locals: {form: f, contribution: @newContribrution} %>
 
@@ -247,8 +247,41 @@
 
   <div class="row">
     <div class="col-md-12">
-      <section>
+      <section class="recent-activities">
         <h2><div class="sidebar-header-icon"><span><%= image_tag('private_labels/windows-wh.png') %></span></div>Recent Activity</h2>
+        <div class="recent-activities-list">
+          <% @conversation.contributions.most_recent.limit(6).each do |activity| %>
+                    
+                <div class="item" id="contribution-<%= activity.id %>">
+                <div class="row">
+                  <div class="item-header">
+                    <div class="col-md-10">
+                      <div class="user">
+                        <div class="user-image">
+                            <%= user_profile(activity.owner).html_safe %>
+                        </div>
+                        <span class="user-name"><%= text_profile(activity.owner).html_safe %></span>
+                      </div>
+                      <span class="time">
+                          <i class="fa fa-clock-o fa-2x"></i>
+                          <%= activity.created_at.strftime("%-m/%e/%y") %>
+                      </span>
+                      </div>
+                      <div class="col-md-2 text-right reply">
+                        <a href="#" class="recent-activity-reply"><i class="fa fa-share fa-lg"></i></a>
+                      </div>
+                    
+                  </div>
+                  </div>
+                  <div class="row">
+                  <div class="item-content col-md-12">
+                    <h5><%= @conversation.title %></h5>
+                    <%= truncate(simple_format(activity.content), length: 125, omission: '...') %>
+                  </div>
+                </div>
+                </div>
+          <% end %>
+        </div>
       </section>
     </div>
   </div>
