@@ -1,7 +1,18 @@
 module PrivateLabels
   module Admin
+    class SidebarsController < BaseController
 
-    class SidebarsController
+      before_filter :get_sidebar
+
+      def show
+      end
+
+      def edit
+      end
+
+      def get_sidebar
+        @sidebar = Swayze.current_private_label.sidebar || Swayze.current_private_label.build_sidebar
+      end
 
     end
 

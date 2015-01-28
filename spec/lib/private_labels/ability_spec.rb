@@ -8,6 +8,8 @@ RSpec.describe PrivateLabels::Ability do
   let(:restricted_conversation) { create(:conversation, private_label: restricted_private_label) }
   let(:contribution) { create(:contribution, conversation: conversation, private_label: private_label) }
   let(:restricted_contribution) { create(:contribution, conversation: restricted_conversation, private_label: private_label) }
+  let(:sidebar) { private_label.build_sidebar }
+  let(:restricted_sidebar) { restricted_private_label.build_sidebar }
 
   before(:each) do
     Swayze.current_private_label = private_label
@@ -33,6 +35,14 @@ RSpec.describe PrivateLabels::Ability do
       expect(ability.can? :manage, restricted_contribution).to be_truthy
     end
 
+    it 'allows them to manage the sidebar' do
+      expect(ability.can?(:manage, sidebar)).to be_truthy
+    end
+
+    it 'does not allow them to manage the sidebar of a different private label' do
+      expect(ability.can?(:manage, restricted_sidebar)).to be_falsey
+    end
+
   end
 
   context 'when person is an administrator of the current private label' do
@@ -56,6 +66,14 @@ RSpec.describe PrivateLabels::Ability do
 
     it 'does not allow them to manage a contribution for a different private label' do
       expect(ability.can? :manage, restricted_contribution).to be_falsey
+    end
+
+    it 'allows them to manage the sidebar' do
+      expect(ability.can?(:manage, sidebar)).to be_truthy
+    end
+
+    it 'does not allow them to manage the sidebar of a different private label' do
+      expect(ability.can?(:manage, restricted_sidebar)).to be_falsey
     end
 
   end

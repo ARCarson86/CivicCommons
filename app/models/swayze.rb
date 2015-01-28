@@ -3,6 +3,7 @@ class Swayze
 	def initialize(find_by)
     @private_label = get_private_label(find_by)
     @private_label_id = @private_label.id
+    Swayze.current_private_label = @private_label
 	end
 
 	def contributions
