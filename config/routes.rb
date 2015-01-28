@@ -25,7 +25,7 @@ Civiccommons::Application.routes.draw do
       namespace "admin" do
         root to: 'dashboard#show'
         get '/dashboard', to: 'dashboard#show'
-        resources :people, except: [ :index ]
+        resources :people, only: [ :index, :update ]
         resources :conversations
         resources :contributions
       end
