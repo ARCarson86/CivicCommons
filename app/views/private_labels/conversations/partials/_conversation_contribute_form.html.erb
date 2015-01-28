@@ -1,0 +1,22 @@
+<h2>What do you think?</h2>
+<section class="comment-section">
+  <div class="row">
+    <div class="col-md-2">
+      <div class="user-image">
+        <%= user_profile(current_person).html_safe %>
+      </div>
+    </div>
+    <div class="col-md-10">
+    	<%= form_for [:private_labels, @conversation, @newContribrution], :html => { :class => 'contribute-form', multipart: true } do |f| %>
+    		<div class="editable">
+          <%= f.text_area :content, rows: 1, placeholder: "Click here to respond to #{Swayze.current_private_label.name}", id: "contribute-text"  %>
+        </div>
+          <%= render partial: 'private_labels/contributions/contributions_attachment_form', locals: {form: f, contribution: @newContribrution} %>
+    		<div class="contribute-actions pull-right hide">
+          <a href="#" class="btn-success btn-default btn button tertiary cancel">Cancel</a>
+          <%= f.submit "Comment", class: "btn-success btn-default btn button submit", disable_with: "Posting..." %>
+        </div>
+    	<% end %>
+    </div>
+  </div>
+</section>

@@ -20,9 +20,9 @@
             </div>
           </li>
           <% if current_person %>
-                <%= render :partial => 'private_labels/layouts/logged_in' %>
+                <%= render :partial => 'private_labels/shared/user-profiles/logged_in' %>
             <% else %>
-                <%= render :partial => 'private_labels/layouts/single_column' %>
+                <%= render :partial => 'private_labels/shared/user-profiles/logged_out' %>
             <% end %>
           </ul>
           
