@@ -1,13 +1,15 @@
 require 'rails_helper'
+require 'support/private_label_ability_shared_examples'
 
 RSpec.describe PrivateLabels::Ability do
-  let(:ability) { PrivateLabels::Ability.new(person) }
-  let(:private_label) { create :private_label }
-  let(:restricted_private_label) { create :private_label }
-  let(:conversation) { create(:conversation, private_label: private_label) }
-  let(:restricted_conversation) { create(:conversation, private_label: restricted_private_label) }
-  let(:contribution) { create(:contribution, conversation: conversation, private_label: private_label) }
-  let(:restricted_contribution) { create(:contribution, conversation: restricted_conversation, private_label: private_label) }
+  let(:ability)                   { PrivateLabels::Ability.new(person) }
+  let(:private_label)             { create :private_label }
+  let(:restricted_private_label)  { create :private_label }
+  let(:conversation)              { create(:conversation, private_label: private_label) }
+  let(:restricted_conversation)   { create(:conversation, private_label: restricted_private_label) }
+  let(:contribution)              { create(:contribution, conversation: conversation, private_label: private_label) }
+  let(:restricted_contribution)   { create(:contribution, conversation: restricted_conversation, private_label: private_label) }
+  let(:other_person)              { create(:confirmed_person) }
 
   before(:each) do
     Swayze.current_private_label = private_label
@@ -16,6 +18,7 @@ RSpec.describe PrivateLabels::Ability do
   context 'when person is an admin' do
     let(:person) { create :admin }
 
+    it_behaves_like 'it allows editing their own account'
 
     it 'allows them to manage a conversation for the current private label' do
       expect(ability.can? :manage, conversation).to be_truthy
@@ -33,14 +36,28 @@ RSpec.describe PrivateLabels::Ability do
       expect(ability.can? :manage, restricted_contribution).to be_truthy
     end
 
+    it 'allows them to read another person' do
+      expect(ability.can? :read, other_person).to be_truthy
+    end
+
+    it 'does not allow them to manage another person' do
+      expect(ability.can? :create, Person).to be_falsey
+      expect(ability.can? :update, other_person).to be_falsey
+      expect(ability.can? :destroy, other_person).to be_falsey
+    end
   end
 
   context 'when person is an administrator of the current private label' do
-    let(:person) { create :person }
+    let(:person)                { create :person }
+    let(:restricted_person)     { create(:confirmed_person) }
 
     before(:each) do
       create :private_label_person, person: person, private_label: private_label, admin: true
+      create :private_label_person, person: restricted_person, private_label: restricted_private_label
+      create :private_label_person, person: other_person, private_label: private_label
     end
+
+    it_behaves_like 'it allows editing their own account'
 
     it 'allows them to manage the conversation for the current private label' do
       expect(ability.can? :manage, conversation).to be_truthy
@@ -58,6 +75,19 @@ RSpec.describe PrivateLabels::Ability do
       expect(ability.can? :manage, restricted_contribution).to be_falsey
     end
 
+    it 'allows them to read another person associated with the private label' do
+      expect(ability.can? :read, other_person).to be_truthy
+    end
+
+    it 'does not allow them to read a person not associated with the private label' do
+      expect(ability.can? :read, restricted_person).to be_falsey
+    end
+
+    it 'does not allow them to manage another person' do
+      expect(ability.can? :create, Person).to be_falsey
+      expect(ability.can? :update, other_person).to be_falsey
+      expect(ability.can? :destroy, other_person).to be_falsey
+    end
   end
 
   context 'when a person is not an administrator' do
@@ -68,6 +98,8 @@ RSpec.describe PrivateLabels::Ability do
       before(:each) do
         create :private_label_person, person: person, private_label: private_label
       end
+
+      it_behaves_like 'it allows editing their own account' 
 
       it 'allows them to read any conversation' do
         expect(ability.can?(:read, conversation)).to be_truthy
