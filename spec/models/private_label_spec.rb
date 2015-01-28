@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe PrivateLabel, :type => :model do
+  it { should have_one(:sidebar).class_name('PrivateLabels::Sidebar') }
+
   let(:private_label)   { FactoryGirl.create :private_label }
   let(:admin)           { FactoryGirl.create :person }
 
