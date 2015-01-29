@@ -103,6 +103,10 @@
                             <div class="editable">
                                 
                                 <%= f.text_area :content, rows: 1, placeholder: "Click here to respond to #{Swayze.current_private_label.name}", id: "reply-#{contribution.id}" %>
+                                <div class="pre-actions hidden-xs">
+                                  <a href="#" class="upload-image"><i class="fa fa-camera-retro fa-2x"></i></a>
+                                  <a href="#" class="upload-link"><i class="fa fa-link fa-2x"></i></a>
+                                </div>
                             </div>
                                 <%= render partial: 'private_labels/contributions/contributions_attachment_form', locals: {form: f, contribution: @newContribrution} %>
 
