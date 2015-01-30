@@ -40,3 +40,16 @@ public/assets
 dump.rdb
 node_modules/
 **/bower_components
+
+# Individual pry configuration
+.pryrc
+
+# Individual zeus configuration
+zeus.json
+custom_plan.rb
+
+# Generated ctags
+tags
+
+# Individual pow configuration
+.powrc
