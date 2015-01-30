@@ -195,3 +195,19 @@
   }
   
 }
+@media all and (max-width: 992px){
+  .content-area{
+    section{
+      .editable{
+        padding-top: 5px;
+      }
+      .user-image{
+        img{
+          height: 70px;
+          width: 70px;
+          border-radius: 35px;
+        }
+      }
+    }
+  }
+}

@@ -262,3 +262,22 @@
 		}
 	}
 }
+@media all and (max-width: 992px){
+	.private_labels-conversations{
+		.sidebar{
+			section{
+				&.people-mods{
+					#carousel-participants{
+						.item{
+							height: auto;
+							>div{
+								margin-bottom: 0 !important;	
+							}
+							
+						}
+					}
+				}
+			}
+		}
+	}
+}
