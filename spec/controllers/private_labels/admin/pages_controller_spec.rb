@@ -8,6 +8,9 @@ module PrivateLabels
       let(:private_label) { create(:private_label) }
       let(:admin) { create :confirmed_person }
 
+      context 'GET index' do
+      end
+
     end
 
   end # Admin module
