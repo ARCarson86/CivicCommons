@@ -9,7 +9,7 @@
       </thead>
       <% @admins.each do |person| %>
       <tr>
-        <td><%= link_to person.name, edit_private_labels_admin_person_path(person) %></td>
+        <td><%= link_to person.name %></td>
         <td><%= person.email %></td>
         <td><%= person.last_sign_in_at.to_s(:long_friendly) %></td>
       </tr>

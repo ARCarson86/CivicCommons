@@ -25,7 +25,7 @@ Civiccommons::Application.routes.draw do
       namespace "admin" do
         root to: 'dashboard#show'
         get '/dashboard', to: 'dashboard#show'
-        resources :people, only: [ :index, :update ]
+        resources :private_label_people, only: [:index, :update, :destroy]
         resources :conversations
         resources :contributions
         resource :sidebar, only: [:edit, :update, :create]

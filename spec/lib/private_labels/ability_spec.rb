@@ -46,12 +46,6 @@ RSpec.describe PrivateLabels::Ability do
       expect(ability.can? :read, other_person).to be_truthy
     end
 
-    it 'does not allow them to manage another person' do
-      expect(ability.can? :create, Person).to be_falsey
-      expect(ability.can? :update, other_person).to be_falsey
-      expect(ability.can? :destroy, other_person).to be_falsey
-    end
-
     it 'allows them to manage the sidebar' do
       expect(ability.can?(:manage, sidebar)).to be_truthy
     end
@@ -60,6 +54,9 @@ RSpec.describe PrivateLabels::Ability do
       expect(ability.can?(:manage, restricted_sidebar)).to be_falsey
     end
 
+    it 'allows them to manage PrivateLabelPerson records' do
+      expect(ability.can?(:manage, PrivateLabelPerson)).to be_truthy
+    end
   end
 
   context 'when person is an administrator of the current private label' do
@@ -67,9 +64,9 @@ RSpec.describe PrivateLabels::Ability do
     let(:restricted_person)     { create(:confirmed_person) }
 
     before(:each) do
-      create :private_label_person, person: person, private_label: private_label, admin: true
-      create :private_label_person, person: restricted_person, private_label: restricted_private_label
-      create :private_label_person, person: other_person, private_label: private_label
+      @admin_private_label_person = create :private_label_person, person: person, private_label: private_label, admin: true
+      @restricted_private_label_person = create :private_label_person, person: restricted_person, private_label: restricted_private_label
+      @private_label_person = create :private_label_person, person: other_person, private_label: private_label
     end
 
     it_behaves_like 'it allows editing their own account'
@@ -102,12 +99,6 @@ RSpec.describe PrivateLabels::Ability do
       expect(ability.can? :read, restricted_person).to be_falsey
     end
 
-    it 'does not allow them to manage another person' do
-      expect(ability.can? :create, Person).to be_falsey
-      expect(ability.can? :update, other_person).to be_falsey
-      expect(ability.can? :destroy, other_person).to be_falsey
-    end
-
     it 'allows them to manage the sidebar' do
       expect(ability.can?(:manage, sidebar)).to be_truthy
     end
@@ -116,6 +107,17 @@ RSpec.describe PrivateLabels::Ability do
       expect(ability.can?(:manage, restricted_sidebar)).to be_falsey
     end
 
+    it 'allows them to manage their own association with the private label' do
+      expect(ability.can?(:manage, @admin_private_label_person)).to be_truthy
+    end
+
+    it 'allows them to manage the association with the private label for other people' do
+      expect(ability.can?(:manage, @private_label_person)).to be_truthy
+    end
+
+    it 'does not allow them to manage the association to another private label' do
+      expect(ability.can?(:manage, @restricted_private_label_person)).to be_falsey
+    end
   end
 
   context 'when a person is not an administrator' do
@@ -124,7 +126,7 @@ RSpec.describe PrivateLabels::Ability do
       let (:updatable_contribution) { create :contribution, person: person, conversation: conversation }
 
       before(:each) do
-        create :private_label_person, person: person, private_label: private_label
+        @private_label_person = create :private_label_person, person: person, private_label: private_label
       end
 
       it_behaves_like 'it allows editing their own account' 
@@ -169,6 +171,10 @@ RSpec.describe PrivateLabels::Ability do
 
       it 'does not allow them to update someone else\'s own contribution' do
         expect(ability.can?(:update, contribution)).to be_falsey
+      end
+
+      it 'does not allow the user to view associations with the private label' do
+        expect(ability.can?(:read, @private_label_person)).to be_falsey
       end
 
     end
