@@ -4,6 +4,7 @@
 //= require bootstrap/modal
 //= require bootstrap/transition
 //= require bootstrap/carousel
+//= require bootstrap/collapse
 //= require tiny_mce/jquery.tinymce.js
 //= require private_label/pl_editable.js
 //= require private_label/header.js

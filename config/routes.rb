@@ -28,6 +28,7 @@ Civiccommons::Application.routes.draw do
         resources :private_label_people, only: [:index, :update, :destroy]
         resources :conversations
         resources :contributions
+        resources :pages, only: [:index, :new, :edit, :create, :update, :destroy]
         resource :sidebar, only: [:edit, :update, :create]
       end
       match '/search/results', to: 'search#results', as: 'search'

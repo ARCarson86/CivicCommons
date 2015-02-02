@@ -6,6 +6,7 @@ module PrivateLabels
     class BaseController < PrivateLabels::ApplicationController
       prepend_before_filter :authenticate_person!
       before_filter :check_for_admin
+      layout 'private_labels/layouts/admin'
 
       private ##################################################
 

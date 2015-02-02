@@ -6,7 +6,7 @@
         <% @conversation.moderators.each_slice(2).with_index do |array_of_2_items, i| %>
             <div class="item <%= "active" if i == 0 %>">
               <% array_of_2_items.each do |moderator|%>
-                <div class="col-md-6">
+                <div class="col-md-6 col-sm-3 col-xs-3">
                   <div class="user-image"><%= user_profile(moderator).html_safe %></div>
                   <span><%= moderator.first_name %><br/><%= moderator.last_name %></span>
                 </div>
@@ -32,7 +32,7 @@
         <% @conversation.participants.each_slice(4).with_index do |array_of_4_items, i| %>
             <div class="item <%= "active" if i == 0 %>">
               <% array_of_4_items.each.with_index do |contributor, index|%>
-                <div class="col-md-6" style="<%= 'margin-bottom: 20px' if index == 0 || index == 1 %>">
+                <div class="col-md-6 col-sm-3 col-xs-3" style="<%= 'margin-bottom: 20px' if index == 0 || index == 1 %>">
                   <div class="user-image"><%= user_profile(contributor).html_safe %></div>
                   <span><%= contributor.first_name %><br/><%= contributor.last_name %></span>
                 </div>

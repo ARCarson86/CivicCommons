@@ -1,16 +1,20 @@
 <% content_for :header_second do %>
- 	<div class="placeholder"></div>
+ 	
 <% end %>
 
 <% content_for :main_image do %>
- 	<div class="jumbotron">
-		Main Image
-	</div>
+ 	<div class="private-label-details">
+		<div class="header">
+			<div class="project-icon"><%= image_tag 'private_labels/folder-wh.png' %>Project /</div>
+			<h1><%= Swayze.current_private_label.title %></h1>
+			<h2><%= Swayze.current_private_label.tagline %></h2>
+		</div>
+ 	</div>
 <% end %>
 			
 <div class="row">
 	
-	<div class="col-md-12">
+	<div class="col-md-12 col-sm-12 col-xs-12">
 		<h2>About Us</h2>
 		<section>
 			<div class="placeholder"></div>
@@ -21,7 +25,7 @@
 		
 <% content_for :sidebar do %>
  	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-12 col-sm-12 col-xs-12">
 			<%= render partial: 'private_labels/shared/sidebars/home_recent_activities' %>
     </div>
   </div>

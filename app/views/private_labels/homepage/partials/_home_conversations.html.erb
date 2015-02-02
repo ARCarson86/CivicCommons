@@ -1,11 +1,11 @@
 <div class="row">
 	<h2 class="col-md-12">Recent Converstations</h2>
 	<% @conversations.each do |conversation| %>
-		<div class="col-md-4 t-grid call-out">
+		<div class="col-md-4 col-sm-4 col-xs-12 t-grid call-out">
 			<section>
         <div class="section-img">
   				<a href="<%= conversation_path(conversation)%>">
-  					<%= image_tag conversation.image.url(:panel), :class => 'main-img', :alt => short_title(conversation.title), :height => 140 %>
+  					<%= image_tag conversation.image.url(:panel), :class => 'main-img img-responsive', :alt => short_title(conversation.title), :height => 140 %>
   				</a>
         </div>
         <span class="arrow-up"></span>
@@ -30,7 +30,7 @@
 	                <% conversation.participants.each_slice(3).with_index do |array_of_3_items, i| %>
 	                    <div class="item <%= "active" if i == 0 %>">
 	                      <% array_of_3_items.each.with_index do |participant, index|%>
-	                        <div class="col-md-4 <%= 'text-right' if index == 0%> <%= 'text-left' if index == 2 %>">
+	                        <div class="col-md-4 col-sm-4 col-xs-4 <%= 'text-right' if index == 0%> <%= 'text-left' if index == 2 %>">
 	                          <div class="user-image"><%= conversation_profile(participant).html_safe %></div>
 	                        </div>
 	                      <% end %>

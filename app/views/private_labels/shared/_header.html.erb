@@ -1,9 +1,11 @@
-<div id="header-wrapper">
+<nav id="header-wrapper" class="navbar navbar-default">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <ul class="nav navbar-nav">
-          <li class="with-borders"><%= link_to 'The Civic Commons', root_url, :id => 'logo', :title => 'The Civic Commons' %></li>
+    <a class="navbar-brand with-borders" href="#">Brand</a>
+    <div class="collapse-nav nav-hide">
+        <ul class="nav navbar-nav ">
+          <li><%= link_to 'The Civic Commons', root_url, :id => 'logo', :title => 'The Civic Commons' %></li>
           <li>
             <a href="/" title="Home">Home</a>
           </li>
@@ -11,24 +13,35 @@
             <a href="/conversations" title="Conversations">Conversations</a>
           </li>
         </ul>
-
+      </div>
+      <div id="pl-search-form" class="hide header-util-item">
+        <%= render :partial => 'private_labels/search/search', locals: { filter_type: params[:filter] } %>
+      </div>
+      <div id="profile-options" class="hide header-util-item">
+        <%= link_to_settings(current_person).html_safe %> |
+        <%= link_to "Logout", destroy_person_session_path, :class => 'user-link' %>
+      </div>
         <ul class="nav navbar-nav navbar-right">
           <li id="nav-search" class="left-border">
-            <%= link_to image_tag('private_labels/search-wh.png'), '#', id: 'pl-search' %>
-            <div id="pl-search-form" class="hide">
-              <%= render :partial => 'private_labels/search/search', locals: { filter_type: params[:filter] } %>
-            </div>
+            <a href="#" id="pl-search"><i class="fa fa-search fa-lg"></i></a>
+            
           </li>
           <% if current_person %>
                 <%= render :partial => 'private_labels/shared/user-profiles/logged_in' %>
             <% else %>
                 <%= render :partial => 'private_labels/shared/user-profiles/logged_out' %>
             <% end %>
+            <li class="toggle-btn hidden-md hidden-lg">
+              <a href="#" class="toggle-nav"><i class="fa fa-bars fa-2x"></i></a>
+            </li>
           </ul>
           
         
       </div>
     </div>
   </div>
-</div>
+  <div class="header-utilities hide">
+    
+  </div>
+</nav>
 
