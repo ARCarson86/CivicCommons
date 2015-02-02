@@ -30,6 +30,28 @@
 		}		
 			.editable{
 				padding-top: 15px;
+        position: relative;
+        .pre-actions{
+          position: absolute;
+          right: 0;
+          padding-right: 10px;
+          /* Firefox */
+          top: -moz-calc(50% - 10px);
+          /* WebKit */
+          top: -webkit-calc(50% - 10px);
+          /* Opera */
+          top: -o-calc(50% - 10px);
+          /* Standard */
+          top: calc(50% - 10px);
+          a{
+            display: inline-block;
+            padding: 0 5px;
+            color: $midGray;
+            &:hover{
+              color: darken($midGray, 10%);
+            }
+          }
+        }
 				textarea{
 					width: 100%;
 					resize: none;
@@ -54,7 +76,7 @@
 				}
 				input{
 					display: inline;
-					width: auto;
+					width: 200px;
 				}
 			}
 			.contribute-actions{

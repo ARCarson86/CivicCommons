@@ -14,6 +14,7 @@
     extended_valid_elements: "a[title|href|target=_blank|title|class=mceNonEditable|data-mention-id]",
     content_css: '/assets/private_label/editor.css',
     setup : function(ed) {
+        
         // Add a custom button
         ed.addButton('pllink', {
             title : 'Link',
@@ -80,10 +81,11 @@
   $(document).on("focus", ".editable textarea", function(event) {
     $(this).parent(".editable").addClass("editor-active");
     options = $.extend({}, defaults, {auto_focus: $(this).attr("id")});
-    console.log($(this));
     $(this).tinymce(options);
 
+    $(this).parents('.contribute-form').find('.pre-actions').addClass('hide');
     $(this).parents('.contribute-form').find('.contribute-actions').removeClass('hide');
+    $(this).jump();
   });
   $(document).on("click", ".contribute-actions .cancel", function(event) {
     event.preventDefault();
@@ -96,6 +98,7 @@
     }
     $(this).parents('.contribute-form').find('.contribution-attachments, .contribution-attachments .add-link, .contribution-attachments .add-file').addClass('hide');
     $(this).parent().addClass('hide');
+    $(this).parents('.contribute-form').find('.pre-actions').removeClass('hide');
   });
   $(document).on("click", ".contribution-header .reply-to-contribution", function(event) {
     event.preventDefault();
@@ -117,7 +120,35 @@
     $(this).parents('form').find('#contribute-text_pllink, #contribute-text_plimage').removeClass('mceButtonActive');
     $(this).parents('.button').addClass('hide');
   });
+  $(document).on("click", ".contribution-attachments .close", function(event) {
+    event.preventDefault();
+    $(this).parents('form').find('#contribute-text_pllink, #contribute-text_plimage').removeClass('mceButtonActive');
+    $(this).parents('.button').addClass('hide');
+  });
+  $(document).on("click", ".editable .pre-actions .upload-image", function(event) {
+    event.preventDefault();
+    var $editable = $(this).parents(".contribute-form").find('.editable');
+    var $textarea = $($editable).children("textarea").first();
 
+    $textarea.focus();
+    setTimeout(function(){ 
+      $editable.parent().find('.mce_plimage').addClass('mceButtonActive');
+      $editable.parent().find('.contribution-attachments, .contribution-attachments .add-file').removeClass('hide');
+    }, 300);
+  });
+  $(document).on("click", ".editable .pre-actions .upload-link", function(event) {
+    event.preventDefault();
+    var $editable = $(this).parents(".contribute-form").find('.editable');
+    var $textarea = $($editable).children("textarea").first();
+
+    $textarea.focus();
+    setTimeout(function(){ 
+      $editable.parent().find('.mce_pllink').addClass('mceButtonActive');
+      $editable.parent().find('.contribution-attachments, .contribution-attachments .add-link').removeClass('hide');
+      $editable.parent().find('#contribution_url').focus();
+    }, 300);
+  });
+  
   function MoveTo(path) {
     var arr = path.split('-')
     if ((arr[0] == 'reply') && (arr[1] != '' || undefined)){
