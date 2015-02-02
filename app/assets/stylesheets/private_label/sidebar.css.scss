@@ -262,3 +262,27 @@
 		}
 	}
 }
+@media all and (max-width: 992px){
+	.private_labels-conversations{
+		.sidebar{
+			section{
+				&.people-mods{
+					#carousel-participants{
+						.item{
+							height: auto;
+							>div{
+								margin-bottom: 0 !important;	
+							}
+							
+						}
+					}
+				}
+			}
+		}
+	}
+}
+@media all and (max-width: 480px){
+	.private_labels-homepage .sidebar section.recent-activities .recent-activities-list .item .item-header .reply{
+		padding-top: 0;
+	}
+}

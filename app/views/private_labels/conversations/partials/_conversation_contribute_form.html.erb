@@ -1,12 +1,12 @@
 <h2>What do you think?</h2>
 <section class="comment-section">
   <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-2 col-sm-2 col-xs-2">
       <div class="user-image">
         <%= user_profile(current_person).html_safe %>
       </div>
     </div>
-    <div class="col-md-10">
+    <div class="col-md-10 col-sm-10 col-xs-10">
     	<%= form_for [:private_labels, @conversation, @newContribrution], :html => { :class => 'contribute-form', multipart: true } do |f| %>
     		<div class="editable">
           <%= f.text_area :content, rows: 1, placeholder: "Click here to respond to #{Swayze.current_private_label.name}", id: "contribute-text"  %>

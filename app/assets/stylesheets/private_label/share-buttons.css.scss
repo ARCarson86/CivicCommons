@@ -9,6 +9,7 @@
 	.social{
 		display: inline-block;
 		padding: 0 4px;
+		text-align: center;
 		&:hover{
 			text-decoration: none;
 		}
@@ -67,6 +68,15 @@
 				color: darken($green, 5%);
 				border-color: darken($green, 5%);
 			}
+		}
+	}
+}
+
+@media all and (max-width: 992px){
+	.share-buttons{
+		text-align: left;
+		.social{
+			padding: 0 10px;
 		}
 	}
 }
