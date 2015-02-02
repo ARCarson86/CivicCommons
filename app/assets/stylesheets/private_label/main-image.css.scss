@@ -1,3 +1,5 @@
+@import "variables";
+
 .pl-main-image{
 	margin-bottom: 40px;
 	.private-label-details{
@@ -17,8 +19,10 @@
 			.project-icon{
 				font-size: 18px;
 				margin-bottom: 5px;
+				font-family: $oswald;
+				text-transform: uppercase;
 				img{
-					vertical-align: sub;
+					vertical-align: baseline;
 					margin-right: 8px;
 				}
 			}
