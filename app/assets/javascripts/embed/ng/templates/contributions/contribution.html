@@ -12,7 +12,7 @@
         <a href ng-click="deleteContribution()" ng-show="user.admin || (user.id == contribution.owner_id && contribution.editable())" title="Delete post">
           <i class="fa fa-trash"></i>
         </a>
-        <a href ng-click="minimized = !minimized" ng-show="contribution.contributions.length > 0" title="{{minimized ? 'Collapse' : 'Expand'}}">
+        <a href ng-click="minimized = !minimized" ng-show="contribution.contributions.length > 0" ng-attr-title="{{minimized ? 'Collapse' : 'Expand'}}">
           <i class="fa" ng-class="minimized ? 'fa-plus' : 'fa-minus'"></i>
         </a>
         <a href ng-click="flagActive = !flagActive" title="Flag this post as a violation of the Terms of Service">
@@ -27,19 +27,19 @@
     <div ng-if="!editContribution">
       <div class="clearfix" ng-bind-html="contribution.content"></div>
       <div class="embed" ng-if="contribution.embed">
-        <a href={{contribution.embed.url}}" class="image" target="_blank">
-          <img src="{{contribution.embed.thumbnail_url}}" />
+        <a ng-attr-href={{contribution.embed.url}}" class="image" target="_blank">
+          <img ng-attr-src="{{contribution.embed.thumbnail_url}}" />
         </a>
         <div class="embed-content">
           <h4>
-            <a href="{{contribution.embed.url}}" target="_blank">{{contribution.embed.title}}</a>
-            <a ng-show="contribution.embed.provider_url" class="provider" href="{{contribution.embed.provider_url}}" title="{{contribution.embed.provider_name || contribution.embed.provider_url}}" target="_blank">{{contribution.embed.provider_url}}</a>
+            <a ng-attr-href="{{contribution.embed.url}}" target="_blank">{{contribution.embed.title}}</a>
+            <a ng-show="contribution.embed.provider_url" class="provider" ng-attr-href="{{contribution.embed.provider_url}}" ng-attr-title="{{contribution.embed.provider_name || contribution.embed.provider_url}}" target="_blank">{{contribution.embed.provider_url}}</a>
           </h4>
           <p>{{contribution.embed.description}}</p>
         </div>
       </div>
       <div class="attachments" ng-if="contribution.attachment">
-        <img src="{{contribution.attachment}}" />
+        <img ng-attr-src="{{contribution.attachment}}" />
       </div>
     </div>
 

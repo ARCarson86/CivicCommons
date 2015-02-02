@@ -22,8 +22,6 @@ angular.module 'civic.directives'
           if $window.confirm('Are you sure you want to delete this contribution?')
             scope.contribution.$delete {}, (data) ->
               scope.contribution = null
-
-
   ]
 
   .directive 'contributions', ['Contribution', (Contribution) ->
@@ -71,6 +69,7 @@ angular.module 'civic.directives'
           scope.contribution = new Contribution parent_id: scope.inReplyTo
           scope.busy = false
           scope.errors = []
+          scope.cancel()
         , (response) ->
           data = angular.fromJson response.data
           scope.busy = false

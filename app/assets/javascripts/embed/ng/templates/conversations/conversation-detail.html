@@ -20,12 +20,12 @@
   </div>
 
   <div class="new-contribution">
-    <div class='contribute-placeholder' ng-hide="contributionActive">
-      <account-avatar ng-show="account"></account-avatar>
-      <span class="sign-in-on-conversation" ng-show="account == null"><sign-in-link href ><i class="fa fa-sign-in"></i>Log in to post what you think.</sign-in-link></span>
-      <a href class="what-do-you-think" ng-show="account" ng-click="contributionActive = !contributionActive">What do you think?</a>
+    <div class='contribute-placeholder' ng-hide="contributionActive && account()">
+      <account-avatar ng-show="account()"></account-avatar>
+      <span class="sign-in-on-conversation" ng-show="!account()"><sign-in-link href ><i class="fa fa-sign-in"></i>Log in to post what you think.</sign-in-link></span>
+      <a href class="what-do-you-think" ng-show="account()" ng-click="contributionActive = !contributionActive">What do you think?</a>
     </div>
-    <contribute contribution="newContribution" ng-show="contributionActive" active-variable="contributionActive"></contribute>
+    <contribute contribution="newContribution" ng-show="contributionActive && account()" active-variable="contributionActive"></contribute>
   </div>
 
   <div class="contributions-list">

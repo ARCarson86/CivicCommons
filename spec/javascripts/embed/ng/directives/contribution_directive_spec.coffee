@@ -1,28 +1,36 @@
 describe 'Directives', ->
   describe 'Contribution', ->
-    $compile = $scope = $element = element = null
+    Contribution = Account = $timeout = $compile = $rootScope = scope = $element = element = link = null
 
     beforeEach ->
       User =
         getUser: (id) ->
           testData.users[id]
-      Contribution = {}
-      module 'civicDirectives', 'civicHelpers', 'contributions/contribution.html', 'users/avatar.html', 'users/user.html', 'contributions/new.html', ($provide)->
+      Account =
+        get: ->
+          testData.users[0]
+        registerObserverCallback: (group, callback) ->
+          callback(testData.users[0])
+      module 'civic.helpers', 'civic.directives', 'civic.services', 'contributions/contribution.html', 'users/avatar.html', 'users/user.html', 'contributions/form.html', ($provide)->
         $provide.value 'User', User
-        $provide.value 'Contribution', Contribution
+        $provide.value 'Account', Account
         return
 
-    beforeEach(inject((_$compile_, _$rootScope_) ->
+    beforeEach(inject((_$compile_, _$timeout_, $rootScope, _Contribution_) ->
       $compile = _$compile_
-      $scope = _$rootScope_.$new()
-      $scope.contribution = testData.contributions[0]
+      scope = $rootScope.$new()
+      $timeout = _$timeout_
+      scope.contribution = new _Contribution_ testData.contributions[0]
     ))
+
 
     describe 'Contribution Directive', ->
       element = null
-      beforeEach ->
-        element = $compile('<div contribution="contribution"></div>')($scope)
-        $scope.$apply()
 
       it 'contains the contribution content', ->
-        expect(element.html()).toContain(testData.contributions[0].content)
+        element = $compile('<contribution contribution="contributions"></contribution>')(scope)
+        scope.$digest()
+
+        setTimeout ->
+          expect(element.html()).toContain(testData.contributions[0].content)
+        , 100

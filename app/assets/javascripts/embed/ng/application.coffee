@@ -17,7 +17,7 @@
 #= require_tree ./filters
 #= require_tree ./templates
 
-civicApp = angular.module 'civicApp', [ 'ngRoute', 'ngCookies', 'ngSanitize', 'templates', 'civic.controllers', 'civic.services', 'civic.directives', 'civic.filters', 'civic.helpers' ]
+civicApp = angular.module 'civicApp', [ 'ngRoute', 'ngSanitize', 'templates', 'civic.controllers', 'civic.services', 'civic.directives', 'civic.filters', 'civic.helpers' ]
 
 civicApp
   .config ['$locationProvider','$routeProvider', '$windowProvider', ($locationProvider, $routeProvider, $window) ->
@@ -34,6 +34,9 @@ civicApp
           ]
           users: ['User', (User) ->
             User.index({}).$promise
+          ]
+          account: ['Account', (Account) ->
+            Account.get({}).$promise
           ]
           contributions: ['Contribution', (Contribution) ->
             Contribution.index({}).$promise

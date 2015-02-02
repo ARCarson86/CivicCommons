@@ -3,7 +3,7 @@ describe 'Services', ->
     $httpBackend = Conversation = undefined
 
     beforeEach ->
-      module 'civicServices'
+      module 'civic.services'
 
     beforeEach inject((_$httpBackend_, _Conversation_) ->
       $httpBackend = _$httpBackend_

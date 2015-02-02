@@ -12,6 +12,7 @@ group :assets do
   gem 'sass-rails', '~> 3.2.3'
   gem 'compass-rails'
   gem 'yui-compressor'
+  gem "font-awesome-rails"
   gem 'turbo-sprockets-rails3'
 end
 gem 'angular-rails-templates'
@@ -30,9 +31,6 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-linkedin'
-
-gem "better_errors"
-gem "binding_of_caller"
 
 gem 'fb_graph'
 
@@ -92,39 +90,31 @@ gem 'whenever', require: false
 
 gem 'versionist'
 gem 'jbuilder'
+gem 'jpbuilder'
 gem 'yajl-ruby'
 
+group :development, :test do
+  gem 'pry'
+  gem 'pry-doc'
+  gem 'pry-remote'
+  gem 'pry-stack_explorer'
+  gem 'pry-debugger'
+  gem 'faker'
+  gem "rspec-rails"
+  gem "jasmine-rails"
+end
+
 group :development do
-  gem "rails3-generators"
-  gem "hpricot"
-  gem "ruby_parser"
-  gem "zeus"
   gem "letter_opener"
   gem "foreman"
+  gem "better_errors"
+  gem "binding_of_caller"
 end
 
 group :test do
-  # Addressable Required by WebMock but breaks everything at 2.2.5
-  # Can use latest addressable when pull request is accepted: https://github.com/sporkmonger/addressable/pull/33
-  gem 'shoulda'
-  gem 'addressable'
-  gem "capybara", '~> 1.1.2'
-  gem "database_cleaner", "~>0.7.2"
-  gem 'email_spec', '~>1.2.1'
-  gem "factory_girl_rails", '~>3.1'
-  gem "faker"
-  gem 'fuubar', '~>1.0.0'
-  gem "jasmine", "~> 1.3.1"
-  gem "jasmine-headless-webkit", '~>0.8.4'
-  gem 'linguistics', '~>1.0.9'
-  gem 'no_peeping_toms', "~>2.1.2"
-  gem "rack-test", '~> 0.6.0'
-  gem "rspec-rails", "~> 2.10.0"
-  gem 'rspec-spies', '~>2.1.0'
-  gem 'simplecov', '~>0.6.2'
-  gem 'spork', '~>0.9.0'
-  gem 'steak', '~>2.0.0'
-  gem 'timecop', '~>0.3.5'
+  gem 'shoulda-matchers'
+  gem "database_cleaner"
+  gem "factory_girl_rails"
+  gem 'timecop'
   gem 'webmock'
-  gem 'webrat', "~> 0.7.3"
 end

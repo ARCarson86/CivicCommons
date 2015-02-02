@@ -1,60 +1,65 @@
 civicServices = angular.module 'civic.services'
 
-civicServices.factory 'Account', ['$rootScope', '$cacheFactory', '$cookies', '$resource', '$window', 'CivicApi', ($rootScope, $cacheFactory, $cookies, $resource, $window, CivicApi) ->
-    observerCallbacks =
-      sessionState: []
-      loginRequired: []
-
-    accountCache = $cacheFactory 'accountCache'
-
-    Account = $resource CivicApi.endpoint('sessions'), {},
-      get:
-        url: CivicApi.endpoint 'me'
-        method: 'GET'
-      post:
-        method: 'POST'
-      delete:
-        method: 'DELETE'
-
-    Account.getAccount = (params, resetCache, success, error) ->
-      account = accountCache.get('accountInfo')
-      if resetCache or !account
-        account = Account.get params, (data, headers)->
-          Account.notifyObservers 'sessionState', data
+civicServices.factory 'Account', ['$rootScope', '$cookies', '$resource', '$window', 'CivicApi', 'User', ($rootScope, $cookies, $resource, $window, CivicApi, User) ->
+  observerCallbacks =
+    sessionState: [
+      (data) ->
+        if data
+          User.importAccount data
           Account.closeLogin()
-          (success || Function())()
-        , (data) ->
-          Account.notifyObservers 'sessionState', null
-          (error || Function())()
-        accountCache.put 'accountInfo', account
+        else
+          Account.account = null
+    ]
+    loginRequired: []
 
-      account
+  Account = $resource CivicApi.endpoint('sessions'), {},
+    get:
+      url: CivicApi.endpoint 'me'
+      method: 'GET'
+      interceptor:
+        responseError: (rejection) ->
+          if rejection.status == 401
+            return rejection.data
+      transformResponse: (data, headers) =>
+        responseData = angular.fromJson data
+        Account.account = if (responseData?.id) then new Account(responseData) else null
+        Account.notifyObservers 'sessionState', Account.account
+        return Account.account
+    post:
+      method: 'POST'
+    delete:
+      method: 'DELETE'
 
-    Account.openLogin = ->
-      Account.loginWindow = $window.open '/people/login/compact', 'loginWindow', 'width=650, height=300, top=50, left=50'
-      return true
+  Account.account = null
 
-    Account.closeLogin = ->
-      Account.loginWindow?.close()
-      return true
+  Account.getAccount = () =>
+    if Account.account?.id then Account.account else false
 
-    Account.logOut = ->
-      Account.delete {}, ->
-        Account.notifyObservers 'sessionState', null
+  Account.openLogin = ->
+    Account.loginWindow = $window.open '/people/login/compact', 'loginWindow', 'width=650, height=300, top=50, left=50'
+    return true
 
-    Account.registerObserverCallback = (group, callback, resetCache = true) ->
-      observerCallbacks[group].push callback
-      Account.getAccount {}, resetCache, null, null if group == 'sessionState'
+  Account.closeLogin = ->
+    Account.loginWindow?.close()
+    return true
 
-    Account.notifyObservers = (group, data) ->
-      angular.forEach observerCallbacks[group], (callback) ->
-        (callback || Function())(data)
+  Account.logOut = ->
+    Account.delete {}, ->
+      Account.notifyObservers 'sessionState', null
 
-    $rootScope.$watch ->
-      $cookies.civiccommons_login_update
-    , (newValue, oldValue) ->
-      Account.getAccount {}, true, null, null unless newValue == oldValue
+  Account.registerObserverCallback = (group, callback) ->
+    observerCallbacks[group].push callback
+    (callback || Function())(Account.getAccount())
+
+  Account.notifyObservers = (group, data) ->
+    angular.forEach observerCallbacks[group], (callback) ->
+      (callback || Function())(data)
+
+  $rootScope.$watch ->
+    $cookies.civiccommons_login_update
+  , (newValue, oldValue) ->
+    Account.get({}) unless newValue == oldValue
 
 
-    Account
+  Account
 ]

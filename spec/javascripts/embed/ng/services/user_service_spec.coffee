@@ -3,16 +3,20 @@ describe 'Services', ->
     $httpBackend = User = undefined
 
     beforeEach ->
-      module 'civicServices'
+      module 'civic.services'
 
     beforeEach inject((_$httpBackend_, _User_, _CivicApi_) ->
       $httpBackend = _$httpBackend_
       CivicApi = _CivicApi_
-      CivicApi.setVar 'conversation_id', testData.conversation.slug
+      CivicApi.setVar 'contributable_type', 'conversations'
+      CivicApi.setVar 'contributable_id', testData.conversation.slug
       User = _User_
     )
 
     beforeEach ->
+      $httpBackend
+        .expectGET "/api/v1/me"
+        .respond testData.users[1]
       $httpBackend
         .expectGET "/api/v1/conversations/#{testData.conversation.slug}/users"
         .respond testData.users
