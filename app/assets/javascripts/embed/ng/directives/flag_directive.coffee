@@ -47,7 +47,7 @@ angular.module 'civic.directives'
         '<div class="flag-contribution">',
           '<a href class="pull-right" ng-click="close()"><i class="fa fa-close"></i></a>',
           '<h2>Report Violation</h2>',
-          '<p>Do you think this post violates The Civic Commons terms of service (<a href="/pages/terms" target="_blank">TOS</a>)? If so, please give your reason why below and submit to us.</p>'
+          '<p>Do you think this post violates <a href="/pages/terms" target="_blank">The Civic Commons terms of service</a>? If so, please give your reason why below and submit to us.</p>'
           '<div errors="errors" ng-if="errors.length > 0"></div>',
           '<div messages="messages" ng-if="messages.length > 0"></div>',
           '<form ng-submit="flagContribution()">',
