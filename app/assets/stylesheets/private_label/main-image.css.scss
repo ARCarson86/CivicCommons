@@ -1,7 +1,27 @@
 .pl-main-image{
-	.jumbotron{
+	margin-bottom: 40px;
+	.private-label-details{
+		color: #fff;
+		background-color: #000;
+		padding: 30px;
 		min-height: 300px;
-		text-align: center;
+		.header{
+			h1{
+				line-height: 40px;
+			}
+			h2{
+				color: #fff;
+				font-size: 22px;
+				line-height: 26px;
+			}
+			.project-icon{
+				font-size: 18px;
+				margin-bottom: 5px;
+				img{
+					vertical-align: sub;
+					margin-right: 8px;
+				}
+			}
+		}
 	}
-
 }

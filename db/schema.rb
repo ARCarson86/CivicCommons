@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150127151413) do
+ActiveRecord::Schema.define(:version => 20150202164219) do
 
   create_table "actions", :force => true do |t|
     t.integer  "conversation_id"
@@ -612,6 +612,8 @@ ActiveRecord::Schema.define(:version => 20150127151413) do
     t.string   "main_image_content_type"
     t.integer  "main_image_file_size"
     t.datetime "main_image_updated_at"
+    t.string   "title"
+    t.string   "tagline"
   end
 
   create_table "private_labels_sidebars", :force => true do |t|
