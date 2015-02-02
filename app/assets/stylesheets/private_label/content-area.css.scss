@@ -7,6 +7,21 @@
 		height: auto;
 		margin-bottom: 30px;
 		padding: 25px;
+    .convo-starter{
+      background-color: $lightGray;
+      padding: 20px;
+      margin-top: 20px;
+      color: $darkGray;
+      font-size: 16px;
+      h2{
+        font-size: 20px;
+        color: $darkGray;
+        border-bottom: 2px solid $gray;
+        line-height: 20px;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+      }
+    }
 		&.top-level-contribution{
 			border-left: 5px solid $green;
 			margin-bottom: 10px;
