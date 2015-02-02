@@ -5,7 +5,7 @@
   		<div class="item" id="contribution-<%= activity.id %>">
   			<div class="row">
         <div class="item-header">
-          <div class="col-md-10">
+          <div class="col-md-10 col-sm-10 col-xs-10">
           	<div class="user">
                 <div class="user-image">
                     <%= user_profile(activity.owner).html_safe %>
@@ -18,7 +18,7 @@
                 <%= activity.created_at.strftime("%-m/%e/%y") %>
             </span>
             </div>
-            <div class="col-md-2 text-right reply">
+            <div class="col-md-2 col-sm-2 col-xs-2 text-right reply">
             <% Conversation.unscoped do %>
           		<%= link_to conversation_path(activity.conversation, :anchor => "reply-#{activity.id}") do %>
   										<i class="fa fa-share fa-lg"></i>

@@ -171,6 +171,8 @@
 .header-second{
 	letter-spacing: .7px;
 	margin-bottom: 40px;
+  min-height: 50px;
+  background-color: $green;
 	.placeholder{
 		background-color: #9cbe15;
 		height: 200px;
@@ -278,6 +280,18 @@
         display: none;  
       }
       
+    }
+  }
+}
+@media all and (max-width: 480px){
+  #header-wrapper{
+    #pl-search-form{
+      .form-group{
+        input{
+          width: 180px;
+          line-height: 34px;
+        }
+      }
     }
   }
 }

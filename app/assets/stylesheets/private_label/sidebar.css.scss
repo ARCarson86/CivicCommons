@@ -281,3 +281,8 @@
 		}
 	}
 }
+@media all and (max-width: 480px){
+	.private_labels-homepage .sidebar section.recent-activities .recent-activities-list .item .item-header .reply{
+		padding-top: 0;
+	}
+}

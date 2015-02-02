@@ -1,6 +1,6 @@
 <li class="with-borders nav-user-info">
     <%= user_profile(current_person).html_safe %>
-    <%= text_profile(current_person).html_safe %>
+    <span class="hidden-xs"><%= text_profile(current_person).html_safe %></span>
     <a id="profile-more" href="#">
         <i class="fa fa-caret-down"></i>
     </a>

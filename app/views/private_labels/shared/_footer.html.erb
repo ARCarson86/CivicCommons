@@ -1,10 +1,10 @@
 <footer class="footer">
   <div id="footer-inner" class="container">
     <div class="row">
-        <div class="col-md-3" id="footer-logo">
+        <div class="col-md-3 col-sm-3 col-xs-12" id="footer-logo">
           <a class="navbar-brand" href="#">Footer Logo</a>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9 col-sm-9 hidden-xs">
           
           <ul class="nav navbar-nav social-media navbar-right">
             <li>
@@ -29,6 +29,33 @@
             </li>
           </ul>
         </div>
+        <div class="col-xs-12 hidden-sm hidden-md hidden-lg">
+          <ul class="nav navbar-nav">
+            <li>
+              <%= link_to 'About Us', about_url %>
+            </li>
+            <li>
+              <%= link_to 'Terms of Service', team_url %>
+            </li>
+          </ul>
+        </div>
+        <div class="col-xs-12 hidden-sm hidden-md hidden-lg">
+          <ul class="nav navbar-nav social-media navbar-right">
+            <li>
+              <a class="social-media-ico facebook_ico" href="http://www.facebook.com/pages/Civic-Commons/143930632284131">Facebook</a>
+            </li>
+            <li>
+              <a class="social-media-ico twitter_ico" href="http://twitter.com/civiccommons">Twitter</a>
+            </li>
+            <li>
+              <a class="social-media-ico youtube_ico" href="http://www.youtube.com/user/neociviccommons">YouTube</a>
+            </li>
+            <li>
+              <a class="social-media-ico rss_ico" href="<%= feeds_url %>">RSS</a>
+            </li>
+          </ul>
+        </div>
+        
     </div>
   </div>
 </footer>
