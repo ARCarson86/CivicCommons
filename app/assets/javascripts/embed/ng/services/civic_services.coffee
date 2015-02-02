@@ -1,4 +1,4 @@
-civicServices = angular.module 'civic.services', ['ngResource']
+civicServices = angular.module 'civic.services', ['ngResource', 'ngCookies', 'civic.filters']
 
 civicServices.factory 'CivicApi', ->
   CivicApi =
