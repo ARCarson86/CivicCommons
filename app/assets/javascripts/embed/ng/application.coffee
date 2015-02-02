@@ -35,6 +35,9 @@ civicApp
           users: ['User', (User) ->
             User.index({}).$promise
           ]
+          account: ['Account', (Account) ->
+            Account.get({}).$promise
+          ]
           contributions: ['Contribution', (Contribution) ->
             Contribution.index({}).$promise
           ]

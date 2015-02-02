@@ -2,6 +2,7 @@ angular.module 'civic.directives'
   .directive 'account', ['$rootScope', '$cookies', 'Account', ($rootScope, $cookies, Account) ->
     restrict: 'E'
     templateUrl: 'users/account.html'
+    scope: {}
     link: (scope, element, attrs) ->
       scope.openAuthWindow = ->
         Account.openLogin()
@@ -9,6 +10,7 @@ angular.module 'civic.directives'
       Account.registerObserverCallback 'sessionState', (data) ->
         scope.current_user = data || {}
         scope.logged_in = !!data
+      , true
 
       scope.signOut = ->
         Account.logOut()
@@ -25,6 +27,7 @@ angular.module 'civic.directives'
   .directive 'signInLink', ['Account', (Account) ->
     restrict: 'E'
     transclude: true
+    scope: {}
     template: [
       '<a href ng-click="openAuthWindow()" ng-hide="account" ng-transclude="true" >',
       '</a>',
@@ -32,7 +35,6 @@ angular.module 'civic.directives'
     link: (scope, element, attrs) ->
       Account.registerObserverCallback 'sessionState', (data) ->
         scope.account = data
-      , false
       scope.openAuthWindow = ->
         Account.openLogin()
   ]
@@ -40,6 +42,7 @@ angular.module 'civic.directives'
   .directive 'accountShow', ['Account', (Account) ->
     restrict: 'A'
     transclude: true
+    scope: {}
     template: [
       '<span ng-show="account" ng-transclude="true" >',
       '</span>',
