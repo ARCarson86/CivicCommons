@@ -16,9 +16,6 @@ describe 'Services', ->
 
     beforeEach ->
       $httpBackend
-        .expectGET "/api/v1/me"
-        .respond testData.users[1]
-      $httpBackend
         .expectGET "/api/v1/conversations/#{testData.conversation.slug}/contributions"
         .respond contributions: testData.contributions.slice 0, 19
 

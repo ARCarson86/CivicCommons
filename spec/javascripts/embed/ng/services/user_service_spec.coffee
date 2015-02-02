@@ -15,9 +15,6 @@ describe 'Services', ->
 
     beforeEach ->
       $httpBackend
-        .expectGET "/api/v1/me"
-        .respond testData.users[1]
-      $httpBackend
         .expectGET "/api/v1/conversations/#{testData.conversation.slug}/users"
         .respond testData.users
 
