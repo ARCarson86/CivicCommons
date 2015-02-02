@@ -6,7 +6,7 @@ describe 'Directives', ->
       User =
         get: (id) ->
           testData.users[id]
-      module 'civicDirectives', 'users/user.html', 'users/avatar.html', ($provide) ->
+      module 'civic.directives', 'users/user.html', 'users/avatar.html', ($provide) ->
         $provide.value 'User', User
         return
 
