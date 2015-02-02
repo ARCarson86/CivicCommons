@@ -1,6 +1,6 @@
 module PrivateLabels
   module Admin
-    class PagesController < ApplicationController
+    class PagesController < BaseController
     end
   end # Admin module
 end # PrivateLabels module
