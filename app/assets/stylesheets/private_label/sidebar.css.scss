@@ -1,3 +1,5 @@
+@import "variables";
+
 .sidebar{
 	section{
 		background-color: #fff;
@@ -15,12 +17,12 @@
 				.recent-activities-list{
 					.item{
 						padding: 20px 0;
-						border-bottom: 1px solid #c9c8c8;
+						border-bottom: 1px solid $darkGray;
 						&:last-child{
 							border: 0 none;
 						}
 						.item-header{
-							color: #999999;
+							color: $darkGray;
 							min-height: 36px;
 							.user{
 								display: inline-block;
@@ -34,7 +36,7 @@
 										font-family: 'Open Sans', sans-serif;
 										font-size: 11px;
 										text-transform: uppercase;
-										color: #999999;
+										color: $darkGray;
 									}
 								}
 								.user-image{
@@ -49,7 +51,7 @@
 										border-radius: 18px;
 										height: 36px;
 										width: 36px;
-										border: 2px solid #999999;
+										border: 2px solid $midGray;
 										overflow: hidden;
 									}
 								}
@@ -57,7 +59,8 @@
 							
 							.time{
 								
-								i{
+								i{	
+									color: $midGray;
 									vertical-align: middle;
 								}
 								
@@ -66,19 +69,26 @@
 								min-height: 28px;
 								padding-top: 10px;
 								a{
-									color: #a7c530;	
+									color: $green;	
+									&:hover{
+										color: darken($green, 5%);
+									}
 								}
 								
 							}
 						}
 						.item-content{
 							padding-top: 15px;
-							color: #999999;
+							color: $darkGray;
 							a{
 								margin: 0;
-								color: #9cbe15;
+								color: $green;
 								font-size: 12px;
 								font-weight: bold;
+								&:hover{
+			            color: darken($green, 5%);
+                  text-decoration: none;
+			          }
 							}
 							p{
 								margin: 0;
@@ -103,7 +113,7 @@
 				padding-top: 0;
 				line-height: 30px;
 				padding-bottom: 10px;
-				border-bottom: 2px solid #e4e6e8;
+				border-bottom: 2px solid $lightGray;
 				.sidebar-header-icon{
 					position: absolute;
 					top: 0;
@@ -117,12 +127,12 @@
 					height: -o-calc(100% + 2px);
 					/* Standard */
 					height: calc(100% + 2px);
-					border-bottom: 2px solid #9cbe15;
+					border-bottom: 2px solid $green;
 					span{
 						display: inline-block;
 						border-radius: 3px;
 						line-height: 30px;
-						background-color: #9cbe15;
+						background-color: $green;
 						width: 30px;
 						height: 30px;
 						text-align: center;
@@ -152,7 +162,7 @@
 								border-radius: 20px;
 								height: 40px;
 								width: 40px;
-								border: 2px solid #999999;
+								border: 2px solid $midGray;
 								overflow: hidden;
 							}
 						}
@@ -162,7 +172,7 @@
 							font-family: 'Open Sans', sans-serif;
 							font-size: 11px;
 							text-transform: uppercase;
-							color: #999999;
+							color: $darkGray;
 
 						}
 					}
@@ -172,12 +182,12 @@
 				.recent-activities-list{
 					.item{
 						padding: 20px 0;
-						border-bottom: 1px solid #c9c8c8;
+						border-bottom: 1px solid $darkGray;
 						&:last-child{
 							border: 0 none;
 						}
 						.item-header{
-							color: #999999;
+							color: $darkGray;
 							min-height: 36px;
 							.user{
 								display: inline-block;
@@ -191,7 +201,7 @@
 										font-family: 'Open Sans', sans-serif;
 										font-size: 11px;
 										text-transform: uppercase;
-										color: #999999;
+										color: $darkGray;
 									}
 								}
 								.user-image{
@@ -206,13 +216,14 @@
 										border-radius: 18px;
 										height: 36px;
 										width: 36px;
-										border: 2px solid #999999;
+										border: 2px solid $midGray;
 										overflow: hidden;
 									}
 								}
 							}
 							.time{
 								i{
+									color: $midGray;
 									vertical-align: middle;
 								}
 								
@@ -221,17 +232,20 @@
 								min-height: 28px;
 								padding-top: 10px;
 								a{
-									color: #a7c530;	
+									color: $green;	
+									&:hover{
+										color: darken($green, 5%);
+									}
 								}
 								
 							}
 						}
 						.item-content{
 							padding-top: 15px;
-							color: #999999;
+							color: $darkGray;
 							h5{
 								margin: 0;
-								color: #9cbe15;
+								color: $green;
 								font-size: 12px;
 								font-weight: bold;
 							}

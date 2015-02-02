@@ -1,12 +1,17 @@
+@import "variables";
+
 .share-buttons{
 	text-align: center;
 	padding-top: 20px;
 	padding-bottom: 20px;
 	font-size: 12px;
-	border-bottom: 2px solid #e4e6e8;
+	border-bottom: 2px solid $lightGray;
 	.social{
 		display: inline-block;
 		padding: 0 4px;
+		&:hover{
+			text-decoration: none;
+		}
 		&:first-child{
 			padding-left: 0;
 		}
@@ -34,18 +39,34 @@
 		&.linkedin{
 			color: #1c5986;
 			border-color: #1c5986;
+			&:hover{
+				color: darken(#1c5986, 5%);
+				border-color: darken(#1c5986, 5%);
+			}
 		}
 		&.twitter{
 			color: #5c9cdb;
 			border-color: #5c9cdb;
+			&:hover{
+				color: darken(#5c9cdb, 5%);
+				border-color: darken(#5c9cdb, 5%);
+			}
 		}
 		&.facebook{
 			color: #4c60b0;
 			border-color: #4c60b0;
+			&:hover{
+				color: darken(#4c60b0, 5%);
+				border-color: darken(#4c60b0, 5%);
+			}
 		}
 		&.private-label{
-			color: #9cbe15;
-			border-color: #9cbe15;
+			color: $green;
+			border-color: $green;
+			&:hover{
+				color: darken($green, 5%);
+				border-color: darken($green, 5%);
+			}
 		}
 	}
 }
