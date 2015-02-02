@@ -1,4 +1,4 @@
-angular.module 'civic.filters', []
+angular.module 'civic.filters'
   .filter 'linkTarget', ['$sanitize', ($sanitize) ->
     FIND_LINK_REGEX = /(<a[^>]+>)/
     LINK_TARGET_REGEX = /(target=\"(_[A-Za-z])\")/

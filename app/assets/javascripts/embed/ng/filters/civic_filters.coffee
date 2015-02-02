@@ -1,1 +1,1 @@
-angular.module 'civic.filters', []
+angular.module 'civic.filters', ['ngSanitize']
