@@ -40,8 +40,9 @@ Civiccommons::Application.routes.draw do
           get 'tos', on: :member
           post 'tos', on: :member, action: :tos_flag
         end
-
       end
+
+      resources :pages, only: [:show]
 
       post 'contact', to: 'forms#contact'
       
