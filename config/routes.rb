@@ -30,7 +30,7 @@ Civiccommons::Application.routes.draw do
         end
         resources :conversations
         resources :contributions
-        resources :pages, only: [:index, :new, :edit, :create, :update, :destroy]
+        resources :pages
         resource :sidebar, only: [:edit, :update, :create]
       end
       match '/search/results', to: 'search#results', as: 'search'

@@ -2,19 +2,19 @@ module PrivateLabels
   module Admin
     class SidebarsController < BaseController
 
-      authorize_resource class: 'PrivateLabels::Sidebar'
       before_filter :get_sidebar
+      authorize_resource class: 'PrivateLabels::Sidebar'
 
       def edit
       end
 
       def create
-        @sidebar = Swayze.current_private_label.create_sidebar private_labels_sidebar_params
+        @sidebar = Swayze.current_private_label.create_sidebar sidebar_params
         redirect_to private_labels_admin_root_path
       end
 
       def update
-        @sidebar.update_attributes private_labels_sidebar_params
+        @sidebar.update_attributes sidebar_params
         redirect_to private_labels_admin_root_path
       end
 
@@ -24,8 +24,8 @@ module PrivateLabels
         @sidebar = Swayze.current_private_label.sidebar || Swayze.current_private_label.build_sidebar
       end
 
-      def private_labels_sidebar_params
-        params.require(:private_labels_sidebar).permit(:content)
+      def sidebar_params
+        params.require(:sidebar).permit(:content)
       end
 
     end

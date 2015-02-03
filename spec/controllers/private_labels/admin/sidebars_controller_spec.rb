@@ -6,16 +6,16 @@ module PrivateLabels
     RSpec.describe SidebarsController, type: :controller do
       it { should be_a PrivateLabels::Admin::BaseController }
 
+      let(:private_label) { create(:private_label) }
+      let(:admin) { create :confirmed_person }
+
+      before(:each) do
+        Swayze.current_private_label = private_label
+        create(:private_label_person, person: admin, private_label: private_label, admin: true)
+        sign_in admin
+      end
+
       context 'GET #edit' do
-
-        let(:private_label) { create(:private_label) }
-        let(:admin) { create :confirmed_person }
-
-        before(:each) do
-          Swayze.current_private_label = private_label
-          create(:private_label_person, person: admin, private_label: private_label, admin: true)
-          sign_in admin
-        end
 
         context 'when the private label already has a persisted sidebar' do
           let!(:sidebar) { create :sidebar, private_label: private_label }
@@ -40,15 +40,6 @@ module PrivateLabels
 
       context 'POST #create' do
 
-        let(:private_label) { create(:private_label) }
-        let(:admin) { create :confirmed_person }
-
-        before(:each) do
-          Swayze.current_private_label = private_label
-          create(:private_label_person, person: admin, private_label: private_label, admin: true)
-          sign_in admin
-        end
-
         it 'creates a sidebar for the private label' do
           post 'create', private_labels_sidebar: { content: 'Test sidebar content' }
           expect(assigns(:sidebar)).to be_persisted
@@ -59,15 +50,6 @@ module PrivateLabels
       end
 
       context 'PUT #update' do
-
-        let(:private_label) { create(:private_label) }
-        let(:admin) { create :confirmed_person }
-
-        before(:each) do
-          Swayze.current_private_label = private_label
-          create(:private_label_person, person: admin, private_label: private_label, admin: true)
-          sign_in admin
-        end
 
         it 'creates a sidebar for the private label' do
           put 'update', private_labels_sidebar: { content: 'Test sidebar content' }
