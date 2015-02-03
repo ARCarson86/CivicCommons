@@ -1,21 +1,35 @@
 module PrivateLabels
   module Admin
     class ConversationsController < BaseController
+      load_and_authorize_resource
 
       def index
-        @conversations = Swayze.current_private_label.conversations
+      end
+
+      def edit
+      end
+
+      def update
+        if @conversation.update_attributes(params[:conversation])
+          redirect_to private_labels_admin_conversations_path, notice: 'Conversation updated successfully!'
+        else
+          render :edit
+        end
       end
 
       def show
-        @conversations = Swayze.current_private_label.conversations.find(params[:id])
       end
 
       def new
-        @conversation = Conversation.new()
       end
 
       def create
-        @conversation = Conversation.new(params[:conversation])
+        @conversation.person = current_person
+        if @conversation.save
+          redirect_to private_labels_admin_conversations_path, notice: 'Conversation created!'
+        else
+          render :edit
+        end
       end
     end
 
