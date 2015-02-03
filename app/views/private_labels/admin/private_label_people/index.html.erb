@@ -1,0 +1,27 @@
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Admin?</th>
+    <th>&nbsp;</th>
+  </tr>
+
+  <% @private_label_people.each do |p| %>
+    <tr>
+      <td><%= p.person.name %></td>
+      <td>
+        <% if can?(:update, p) %>
+          <%= form_for [:private_labels, :admin, p], url: toggle_admin_private_labels_admin_private_label_person_path(p), class: 'inline-form' do |f| %>
+            <%= f.check_box :admin, onclick: 'this.form.submit();' %>
+          <% end %>
+        <% else %>
+          <%= ( p.admin? ) ? 'true' : 'false' %>
+        <% end %>
+      </td>
+      <td>
+        <% if can?(:destroy, p) %>
+          <%= link_to 'Remove from this site', private_labels_admin_private_label_person_path(p), method: :delete, confirm: "Removing this person means they will no longer be able to log in to #{Swayze.current_private_label.name}. Are you sure?" %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
