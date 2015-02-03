@@ -30,7 +30,7 @@ Civiccommons::Application.routes.draw do
         end
         resources :conversations, except: [:destroy]
         resources :contributions
-        resources :pages, only: [:index, :new, :edit, :create, :update, :destroy]
+        resources :pages
         resource :sidebar, only: [:edit, :update, :create]
       end
       match '/search/results', to: 'search#results', as: 'search'
@@ -40,8 +40,9 @@ Civiccommons::Application.routes.draw do
           get 'tos', on: :member
           post 'tos', on: :member, action: :tos_flag
         end
-
       end
+
+      resources :pages, only: [:show]
 
       post 'contact', to: 'forms#contact'
       

@@ -1,0 +1,27 @@
+<%= form_for [:private_labels, :admin, @page], html: { class: "form-horizontal" } do |f| %>
+  <div class="form-group">
+    <%= f.label :title, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :content, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_area :content, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-5 col-sm-offset-2">
+      <div class="checkbox">
+        <%= f.label :sidebar, class: 'control-label' do %>
+          <%= f.check_box :sidebar %>
+          Show Sidebar on this page?
+        <% end %>
+      </div>
+    </div>
+    <div class="col-sm-5 text-right">
+      <%= f.submit "Save", class: 'btn btn-success' %>
+    </div>
+  </div>
+<% end %>
