@@ -1,0 +1,29 @@
+<%= link_to 'Add New Page', new_private_labels_admin_page_path, class: 'btn btn-success' %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Created</th>
+      <th>Updated</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @pages.each do |page| %>
+      <tr>
+        <td><%= link_to page.title, private_labels_admin_page_path(page) %></td>
+        <td><%= page.created_at.to_s :long %></td>
+        <td><%= page.updated_at.to_s :long %></td>
+        <td>
+          <%= link_to private_labels_admin_page_path page do %>
+            <i class="fa fa-edit"></i>
+          <% end %>
+          <%= link_to private_labels_admin_page_path(page), method: :delete, confirm: 'Are you sure?' do %>
+            <i class="fa fa-trash"></i>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
