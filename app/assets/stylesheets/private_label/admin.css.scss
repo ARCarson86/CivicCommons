@@ -49,7 +49,7 @@ input[readonly] {
 .pages-table {
   thead, tbody {
     tr {
-      th:first_child, td:first-child {
+      th:first-child, td:first-child {
         min-width: 300px;
       }
     }
