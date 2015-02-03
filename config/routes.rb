@@ -25,6 +25,11 @@ Civiccommons::Application.routes.draw do
       namespace "admin" do
         root to: 'dashboard#show'
         get '/dashboard', to: 'dashboard#show'
+
+        get '/private_label', to: 'private_label#show'
+        put '/private_label', to: 'private_label#update'
+        get '/private_label/edit', to: 'private_label#edit'
+
         resources :private_label_people, only: [:index, :destroy] do
           put 'toggle_admin', on: :member
         end
