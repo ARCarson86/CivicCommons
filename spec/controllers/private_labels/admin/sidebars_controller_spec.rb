@@ -41,7 +41,7 @@ module PrivateLabels
       context 'POST #create' do
 
         it 'creates a sidebar for the private label' do
-          post 'create', private_labels_sidebar: { content: 'Test sidebar content' }
+          post 'create', sidebar: { content: 'Test sidebar content' }
           expect(assigns(:sidebar)).to be_persisted
           expect(assigns(:sidebar).content).to eq('Test sidebar content')
           expect(response).to redirect_to(private_labels_admin_root_path)
@@ -52,7 +52,7 @@ module PrivateLabels
       context 'PUT #update' do
 
         it 'creates a sidebar for the private label' do
-          put 'update', private_labels_sidebar: { content: 'Test sidebar content' }
+          put 'update', sidebar: { content: 'Test sidebar content' }
           expect(assigns(:sidebar)).to be_persisted
           expect(assigns(:sidebar).content).to eq('Test sidebar content')
           expect(response).to redirect_to(private_labels_admin_root_path)
