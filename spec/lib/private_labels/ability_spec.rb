@@ -188,6 +188,18 @@ RSpec.describe PrivateLabels::Ability do
         expect(ability.can?(:read, @private_label_person)).to be_falsey
       end
 
+      it 'allows them to read a page' do
+        expect(ability.can?(:read, page)).to be_truthy
+      end
+
+      it 'does not allow them to read a page of a different private label' do
+        expect(ability.can?(:read, restricted_page)).to be_falsey
+      end
+
+      it 'does not allow them to manage a page' do
+        expect(ability.can?(:manage, page)).to be_falsey
+      end
+
     end
 
     context 'when anonymous' do
@@ -215,6 +227,18 @@ RSpec.describe PrivateLabels::Ability do
 
       it 'does not allow them to create a contribution' do
         expect(ability.can?(:create, Contribution)).to be_falsey
+      end
+
+      it 'allows them to read a page' do
+        expect(ability.can?(:read, page)).to be_truthy
+      end
+
+      it 'does not allow them to read a page of a different private label' do
+        expect(ability.can?(:read, restricted_page)).to be_falsey
+      end
+
+      it 'does not allow them to manage a page' do
+        expect(ability.can?(:manage, page)).to be_falsey
       end
 
     end

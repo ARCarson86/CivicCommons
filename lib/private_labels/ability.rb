@@ -31,9 +31,11 @@ module PrivateLabels
         can [:create, :update], Contribution, { conversation:  { private_label_id: private_label.id }, owner: user.id }
         can :read, Person, id: user.id
         can :update, Person, id: user.id
+        can :read, PrivateLabels::Page, private_label_id: private_label.id
       else
         can :read, Conversation, private_label_id: private_label.id
         can :read, Contribution, conversation: { private_label_id: private_label.id }
+        can :read, PrivateLabels::Page, private_label_id: private_label.id
       end
     end
   end
