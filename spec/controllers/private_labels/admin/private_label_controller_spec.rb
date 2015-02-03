@@ -20,6 +20,23 @@ module PrivateLabels
           get :show
           expect(response).to render_template(:show)
         end
+
+        it 'gets the current private label' do
+          get :show
+          expect(assigns[:private_label]).to eq(private_label)
+        end
+      end
+
+      describe 'GET #edit' do
+        it 'renders the correct template' do
+          get :edit
+          expect(response).to render_template(:edit)
+        end
+
+        it 'gets the current private label' do
+          get :edit
+          expect(assigns[:private_label]).to eq(private_label)
+        end
       end
 
     end

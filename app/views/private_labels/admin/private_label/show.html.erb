@@ -27,6 +27,30 @@
       No main image uploaded
     <%- end %>
   </dd>
+
+  <dt>Title:</dt>
+  <%= content_tag :dd, @private_label.title %>
+
+  <dt>Tagline:</dt>
+  <%= content_tag :dd, @private_label.tagline %>
+
+  <dt>Email:</dt>
+  <%= content_tag :dd, @private_label.email %>
+
+  <dt>Phone:</dt>
+  <%= content_tag :dd, @private_label.phone %>
+
+  <dt>Address:</dt>
+  <%= content_tag :dd, @private_label.address %>
+
+  <dt>Facebook URL:</dt>
+  <%= content_tag :dd, @private_label.facebook_url %>
+
+  <dt>Twitter URL:</dt>
+  <%= content_tag :dd, @private_label.twitter_url %>
+
+  <dt>LinkedIn URL:</dt>
+  <%= content_tag :dd, @private_label.linkedin_url %>
 </dl>
 
 <%= link_to 'Edit', private_labels_admin_private_label_edit_path, class: 'btn btn-primary' %>
