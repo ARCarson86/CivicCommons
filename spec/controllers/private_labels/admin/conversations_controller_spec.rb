@@ -150,34 +150,49 @@ module PrivateLabels
       end
 
       describe 'POST #create' do
-        let(:title)         { Faker::Lorem.sentence }
-        let(:summary)       { Faker::Lorem.paragraph }
-        let(:params)        { { title: title, summary: summary } }
+        context 'with valid params' do
+          let(:title)         { Faker::Lorem.sentence[0..40] }
+          let(:summary)       { Faker::Lorem.paragraph }
+          let(:params)        { { title: title, summary: summary } }
 
-        it 'saves the new object' do
-          post :create, conversation: params
-          new_convo = assigns[:conversation]
-          expect(new_convo).not_to be_new_record
-          expect(new_convo).to be_persisted
+          it 'saves the new object' do
+            post :create, conversation: params
+            expect(assigns[:conversation]).to be_persisted
+          end
+
+          it 'creates a conversation with the user input' do
+            post :create, conversation: params
+            new_convo = assigns[:conversation]
+            expect(new_convo.title).to eq(title)
+            expect(new_convo.summary).to eq(summary)
+          end
+
+          it 'sets the private label on the new conversation to the current private label' do
+            post :create, conversation: params
+            expect(assigns[:conversation].private_label).to eq(private_label)
+          end
+
+          it 'sets the owner to the currently logged in admin' do
+            post :create, conversation: params
+            convo = assigns[:conversation]
+            expect(convo.person).to eq(admin)
+            expect(convo.owner).to eq(admin.id)
+          end
         end
 
-        it 'creates a conversation with the user input' do
-          post :create, conversation: params
-          new_convo = assigns[:conversation]
-          expect(new_convo.title).to eq(title)
-          expect(new_convo.summary).to eq(summary)
-        end
+        context 'with invalid params' do
+          let(:summary)       { Faker::Lorem.paragraph }
+          let(:params)        { { summary: summary } }
 
-        it 'sets the private label on the new conversation to the current private label' do
-          post :create, conversation: params
-          expect(assigns[:conversation].private_label).to eq(private_label)
-        end
+          it 'does not save the object' do
+            post :create, conversation: params 
+            expect(assigns[:conversation]).not_to be_persisted
+          end
 
-        it 'sets the owner to the currently logged in admin' do
-          post :create, conversation: params
-          convo = assigns[:conversation]
-          expect(convo.person).to eq(admin)
-          expect(convo.owner).to eq(admin.id)
+          it 'renders the form again' do
+            post :create, conversation: params
+            expect(response).to render_template(:edit)
+          end
         end
       end
     
