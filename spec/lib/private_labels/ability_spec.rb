@@ -2,16 +2,18 @@ require 'rails_helper'
 require 'support/private_label_ability_shared_examples'
 
 RSpec.describe PrivateLabels::Ability do
-  let(:ability)                   { PrivateLabels::Ability.new(person) }
-  let(:private_label)             { create :private_label }
-  let(:restricted_private_label)  { create :private_label }
-  let(:conversation)              { create(:conversation, private_label: private_label) }
-  let(:restricted_conversation)   { create(:conversation, private_label: restricted_private_label) }
-  let(:contribution)              { create(:contribution, conversation: conversation, private_label: private_label) }
-  let(:restricted_contribution)   { create(:contribution, conversation: restricted_conversation, private_label: private_label) }
-  let(:other_person)              { create(:confirmed_person) }
-  let(:sidebar)                   { private_label.build_sidebar }
-  let(:restricted_sidebar)        { restricted_private_label.build_sidebar }
+  let(:ability)                  { PrivateLabels::Ability.new(person) }
+  let(:private_label)            { create :private_label }
+  let(:restricted_private_label) { create :private_label }
+  let(:conversation)             { create(:conversation, private_label: private_label) }
+  let(:restricted_conversation)  { create(:conversation, private_label: restricted_private_label) }
+  let(:contribution)             { create(:contribution, conversation: conversation, private_label: private_label) }
+  let(:restricted_contribution)  { create(:contribution, conversation: restricted_conversation, private_label: private_label) }
+  let(:other_person)             { create(:confirmed_person) }
+  let(:sidebar)                  { private_label.build_sidebar }
+  let(:restricted_sidebar)       { restricted_private_label.build_sidebar }
+  let(:page)                     { private_label.pages.build }
+  let(:restricted_page)          { restricted_private_label.pages.build }
 
   before(:each) do
     Swayze.current_private_label = private_label
@@ -57,6 +59,15 @@ RSpec.describe PrivateLabels::Ability do
     it 'allows them to manage PrivateLabelPerson records' do
       expect(ability.can?(:manage, PrivateLabelPerson)).to be_truthy
     end
+
+    it 'allows them to manage a page' do
+      expect(ability.can?(:manage, page)).to be_truthy
+    end
+
+    it 'does not allow them to manage a page of a different private label' do
+      expect(ability.can?(:manage, restricted_page)).to be_falsey
+    end
+
   end
 
   context 'when person is an administrator of the current private label' do
@@ -177,6 +188,18 @@ RSpec.describe PrivateLabels::Ability do
         expect(ability.can?(:read, @private_label_person)).to be_falsey
       end
 
+      it 'allows them to read a page' do
+        expect(ability.can?(:read, page)).to be_truthy
+      end
+
+      it 'does not allow them to read a page of a different private label' do
+        expect(ability.can?(:read, restricted_page)).to be_falsey
+      end
+
+      it 'does not allow them to manage a page' do
+        expect(ability.can?(:manage, page)).to be_falsey
+      end
+
     end
 
     context 'when anonymous' do
@@ -204,6 +227,18 @@ RSpec.describe PrivateLabels::Ability do
 
       it 'does not allow them to create a contribution' do
         expect(ability.can?(:create, Contribution)).to be_falsey
+      end
+
+      it 'allows them to read a page' do
+        expect(ability.can?(:read, page)).to be_truthy
+      end
+
+      it 'does not allow them to read a page of a different private label' do
+        expect(ability.can?(:read, restricted_page)).to be_falsey
+      end
+
+      it 'does not allow them to manage a page' do
+        expect(ability.can?(:manage, page)).to be_falsey
       end
 
     end

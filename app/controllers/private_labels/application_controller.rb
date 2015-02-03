@@ -15,7 +15,7 @@ module PrivateLabels
     protected
     def render_404
       respond_to do |f|
-        f.html { render 'private_label/pl/404', status: 404 }
+        f.html { render 'private_labels/shared/404', status: 404 }
       end
     end
 
