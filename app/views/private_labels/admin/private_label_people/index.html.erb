@@ -10,7 +10,7 @@
       <td><%= p.person.name %></td>
       <td>
         <% if can?(:update, p) %>
-          <%= form_for [:private_labels, :admin, p], class: 'inline-form' do |f| %>
+          <%= form_for [:private_labels, :admin, p], url: toggle_admin_private_labels_admin_private_label_person_path(p), class: 'inline-form' do |f| %>
             <%= f.check_box :admin, onclick: 'this.form.submit();' %>
           <% end %>
         <% else %>

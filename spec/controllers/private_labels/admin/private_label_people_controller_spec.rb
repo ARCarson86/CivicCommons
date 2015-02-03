@@ -33,19 +33,20 @@ module PrivateLabels
         end
       end
 
-      describe 'PUT #update' do
-        let!(:current_plp)        { create(:private_label_person, private_label: private_label) }
+      describe 'PUT #toggle_admin' do
+        let!(:current_plp)        { create(:private_label_person, private_label: private_label, admin: admin_value) }
         let!(:other_plp)          { create(:private_label_person, private_label: other_private_label) }
+        let(:admin_value)         { false }
         let(:new_value)           { 1 }
-        let(:params)              { { id: current_plp.id, private_label_person: { admin: new_value } } }
+        let(:params)              { { id: current_plp.id } }
 
         it 'fetches the record if it is in the current private label' do
-          put :update, params
+          put :toggle_admin, params
           expect(assigns[:private_label_person]).to eq(current_plp)
         end
 
         it 'does cannot find a record from another private label' do
-          expect { put :update, id: other_plp.id }.to raise_error(ActiveRecord::RecordNotFound)
+          expect { put :toggle_admin, id: other_plp.id }.to raise_error(ActiveRecord::RecordNotFound)
         end
 
         context 'when the record is updated successfully' do
@@ -54,13 +55,31 @@ module PrivateLabels
             expect(current_plp).to receive(:save).and_return(true)
           end
 
+          context 'and admin is true' do
+            let(:admin_value)         { true }
+
+            it 'sets admin to false' do
+              put :toggle_admin, params
+              expect(current_plp.admin).to be_falsey
+            end
+          end
+
+          context 'and admin is false' do
+            let(:admin_value)         { false }
+
+            it 'sets admin to true' do
+              put :toggle_admin, params
+              expect(current_plp.admin).to be_truthy
+            end
+          end
+
           it 'redirects to the index path' do
-            put :update, params
+            put :toggle_admin, params
             expect(response).to redirect_to(private_labels_admin_private_label_people_path)
           end
 
           it 'sets a success message in the flash notice' do
-            put :update, params
+            put :toggle_admin, params
             expect(flash.notice).to match(/.+success.+/)
           end
         end
@@ -72,12 +91,12 @@ module PrivateLabels
           end
 
           it 'redirects to the index path' do
-            put :update, params
+            put :toggle_admin, params
             expect(response).to redirect_to(private_labels_admin_private_label_people_path)
           end
 
           it 'sets a success message in the flash notice' do
-            put :update, params
+            put :toggle_admin, params
             expect(flash.notice).to match(/.+success.+/)
           end
         end
@@ -89,12 +108,12 @@ module PrivateLabels
           end
 
           it 'redirects to the index path' do
-            put :update, params
+            put :toggle_admin, params
             expect(response).to redirect_to(private_labels_admin_private_label_people_path)
           end
 
           it 'sets an error message in the flash' do
-            put :update, params
+            put :toggle_admin, params
             expect(flash.alert).to match(/.+error.+/)
           end
         end
