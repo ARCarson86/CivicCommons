@@ -25,7 +25,9 @@ Civiccommons::Application.routes.draw do
       namespace "admin" do
         root to: 'dashboard#show'
         get '/dashboard', to: 'dashboard#show'
-        resources :people
+        resources :private_label_people, only: [:index, :destroy] do
+          put 'toggle_admin', on: :member
+        end
         resources :conversations, except: [:destroy]
         resources :contributions
         resources :pages, only: [:index, :new, :edit, :create, :update, :destroy]

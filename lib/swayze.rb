@@ -25,4 +25,19 @@ class Swayze
   def self.private_label?
     !civic_commons?
   end
+
+  ##
+  # Convenience method to fetch the people associated with the 
+  # current private label. If no private label is set, then the
+  # default scope is used to fetch all people.
+  def self.people
+    if civic_commons?
+      Person.scoped
+    else
+      current_private_label.people
+    end
+  end
+
+  ##
+  # Conv
 end

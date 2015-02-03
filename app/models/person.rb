@@ -57,6 +57,7 @@ class Person < ActiveRecord::Base
   # Private Label Relations
   has_many :private_label_people, dependent: :destroy
   has_many :private_labels, :through => :private_label_people
+  accepts_nested_attributes_for :private_label_people
 
   has_many :authentications, :dependent => :destroy
   has_many :organization_members

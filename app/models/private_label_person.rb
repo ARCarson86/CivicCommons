@@ -1,4 +1,6 @@
 class PrivateLabelPerson < ActiveRecord::Base
+  include PrivateLabelScopable
+
   attr_accessible :admin, :person
 
   belongs_to :person
