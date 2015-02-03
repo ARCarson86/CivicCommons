@@ -6,6 +6,7 @@ module PrivateLabels
       load_and_authorize_resource
 
       def index
+        @private_label_people = @private_label_people.joins(:person).order('people.last_name, people.first_name')
       end
 
       ##
