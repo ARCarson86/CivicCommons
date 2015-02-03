@@ -28,7 +28,7 @@ Civiccommons::Application.routes.draw do
         resources :private_label_people, only: [:index, :destroy] do
           put 'toggle_admin', on: :member
         end
-        resources :conversations
+        resources :conversations, except: [:destroy]
         resources :contributions
         resources :pages
         resource :sidebar, only: [:edit, :update, :create]

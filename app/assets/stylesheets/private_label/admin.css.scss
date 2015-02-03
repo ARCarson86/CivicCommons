@@ -1,3 +1,5 @@
+@import "variables";
+
 .btn-file {
     position: relative;
     overflow: hidden;
@@ -20,4 +22,26 @@
 input[readonly] {
   background-color: white !important;
   cursor: text !important;
+}
+.private_labels-admin-dashboard, .private_labels-admin-sidebars, .private_labels-admin-pages, .private_labels-admin-private_label_people{
+    .header-second{
+        padding-top: 60px;
+        padding-bottom: 10px;
+    }
+    .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus{
+        background-color: $green;
+
+    }
+    .pl-content{
+        a{
+            color: $darkGray;
+            &:hover{
+                color: #000;
+            }
+        }    
+        .page-header{
+            margin-top: 0;
+            letter-spacing: 1px;
+        }
+    }  
 }

@@ -1,0 +1,20 @@
+<h1>Conversations</h1>
+<%= link_to 'Create New', new_private_labels_admin_conversation_path, class: 'btn btn-primary' %>
+<table class="table">
+  <tr>
+    <th>Date</th>
+    <th>Title</th>
+  </tr>
+  <%- @conversations.each do |convo| %>
+    <tr>
+      <td><%= convo.created_at.to_s(:long) %></td>
+      <td>
+        <%- if can? :update, convo %>
+          <%= link_to convo.title, edit_private_labels_admin_conversation_path(convo) %>
+        <%- else %>
+          <%= convo.title %>
+        <%- end %>
+      </td>
+    </tr>
+  <%- end %>
+</table>
