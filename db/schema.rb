@@ -620,7 +620,10 @@ ActiveRecord::Schema.define(:version => 20150203194720) do
     t.string   "facebook_url"
     t.string   "twitter_url"
     t.string   "linkedin_url"
+<<<<<<< HEAD
     t.string   "theme"
+=======
+>>>>>>> 924e1717793a1782512deef35843ea0affb990c8
   end
 
   create_table "private_labels_pages", :force => true do |t|
