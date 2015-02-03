@@ -26,7 +26,7 @@ Civiccommons::Application.routes.draw do
         root to: 'dashboard#show'
         get '/dashboard', to: 'dashboard#show'
         resources :people
-        resources :conversations
+        resources :conversations, except: [:destroy]
         resources :contributions
         resources :pages, only: [:index, :new, :edit, :create, :update, :destroy]
         resource :sidebar, only: [:edit, :update, :create]
