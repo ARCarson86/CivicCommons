@@ -1,4 +1,6 @@
 <%= form_for @sidebar, url: private_labels_admin_sidebar_path, namespace: :admin do |f| %>
-  <%= f.text_area :content %><br />
-  <%= f.submit 'Submit' %>
+  <div class="form-group">
+  	<%= f.text_area :content, :class => 'form-control' %><br />
+  </div>
+  <%= f.submit 'Submit', :class => 'btn btn-success' %>
 <% end %>
