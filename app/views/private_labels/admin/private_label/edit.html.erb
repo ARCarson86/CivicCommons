@@ -1,130 +1,149 @@
 <%= form_for [:private_labels, :admin, @private_label], html: { class: 'form-horizontal' } do |f| %>
-  <div class="form-group">
-    <%= f.label :name, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= f.text_field :name, class: 'form-control' %>
+  <div class="panel panel-default">
+    <div class="panel-heading"><h3 class="panel-title">Details</h3></div>
+    <div class="panel-body">
+      <div class="form-group">
+        <%= f.label :name, class: 'col-sm-2 control-label' %>
+        <div class="col-sm-10">
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :namespace, class: 'col-sm-2 control-label' %>
+        <div class="col-sm-10">
+          <%= f.text_field :namespace, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :domain, class: 'col-sm-2 control-label' %>
+        <div class="col-sm-10">
+          <%= f.text_field :domain, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :terms_of_service, class: 'col-sm-2 control-label' %>
+        <div class="col-sm-10">
+          <%= f.text_area :terms_of_service, class: 'form-control', rows: '3' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :title, 'Page Title', class: 'col-sm-2 control-label' %>
+        <div class="col-sm-10">
+          <%= f.text_field :title, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :tagline, class: 'col-sm-2 control-label' %>
+        <div class="col-sm-10">
+          <%= f.text_field :tagline, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :email, class: 'col-sm-2 control-label' %>
+        <div class="col-sm-10">
+          <%= f.email_field :email, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :phone, 'Phone Number', class: 'col-sm-2 control-label' %>
+        <div class="col-sm-10">
+          <%= f.phone_field :phone, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :address, class: 'col-sm-2 control-label' %>
+        <div class="col-sm-10">
+          <%= f.text_area :address, class: 'form-control', rows: '5' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading"><h3>Social Media</h3></div>
+    <div class="panel-body">
+      <div class="form-group">
+        <%= f.label :facebook_url, 'Facebook URL', class: 'col-sm-2 control-label' %>
+        <div class="col-sm-10">
+          <%= f.url_field :facebook_url, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :twitter_url, 'Twitter URL', class: 'col-sm-2 control-label' %>
+        <div class="col-sm-10">
+          <%= f.url_field :twitter_url, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :linkedin_url, 'LinkedIn URL', class: 'col-sm-2 control-label' %>
+        <div class="col-sm-10">
+          <%= f.url_field :linkedin_url, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading"><h3 class="panel-title">Images</h3></div>
+    <div class="panel-body">
+      <div class="form-group">
+        <%= f.label :logo, class: 'col-sm-2 control-label' %>
+
+        <div class="col-sm-5">
+          <%= f.file_field :logo, class: 'form-control' %>
+        </div>
+        <div class="col-md-5">
+          <%- if @private_label.logo.present? %>
+            <%= image_tag @private_label.logo.url(:normal) %>
+          <%- else %>
+            <p>No logo file uploaded</p>
+          <%- end %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :main_image, class: 'col-sm-2 control-label' %>
+        <div class="col-sm-5">
+          <%= f.file_field :main_image, class: 'form-control' %>
+        </div>
+        <div class="col-sm-5">
+          <%- if @private_label.main_image.present? %>
+            <%= image_tag @private_label.main_image.url(:thumb) %>
+          <%- else %>
+            <p>No image uploaded</p>
+          <%- end %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :favicon, class: 'col-sm-2 control-label' %>
+        <div class="col-md-5">
+          <%= f.file_field :favicon, class: 'form-control' %>
+        </div>
+        <div class="col-md-5">
+          <%- if @private_label.favicon.present? %>
+            <%= image_tag @private_label.favicon.url(:medium) %>
+          <%- else %>
+            <p>No favicon file uploaded</p>
+          <%- end %>
+        </div>
+      </div>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label :namespace, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= f.text_field :namespace, class: 'form-control' %>
+    <div class="col-sm-2 col-sm-offset-10 text-right">
+      <%= f.submit 'Save', class: 'btn btn-success' %>
     </div>
   </div>
-
-  <div class="form-group">
-    <%= f.label :domain, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= f.text_field :domain, class: 'form-control' %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :terms_of_service, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= f.text_area :terms_of_service, class: 'form-control', rows: '3' %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :title, 'Page Title', class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= f.text_field :title, class: 'form-control' %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :tagline, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= f.text_field :tagline, class: 'form-control' %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :email, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= f.email_field :email, class: 'form-control' %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :phone, 'Phone Number', class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= f.phone_field :phone, class: 'form-control' %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :address, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= f.text_area :address, class: 'form-control', rows: '5' %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :facebook_url, 'Facebook URL', class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= f.url_field :facebook_url, class: 'form-control' %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :twitter_url, 'Twitter URL', class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= f.url_field :twitter_url, class: 'form-control' %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :linkedin_url, 'LinkedIn URL', class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= f.url_field :linkedin_url, class: 'form-control' %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :logo, class: 'col-sm-2 control-label' %>
-
-    <div class="col-sm-5">
-      <%= f.file_field :logo, class: 'form-control' %>
-    </div>
-    <div class="col-md-5">
-      <%- if @private_label.logo.present? %>
-        <%= image_tag @private_label.logo.url(:normal) %>
-      <%- else %>
-        <p>No logo file uploaded</p>
-      <%- end %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :main_image, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-5">
-      <%= f.file_field :main_image, class: 'form-control' %>
-    </div>
-    <div class="col-sm-5">
-      <%- if @private_label.main_image.present? %>
-        <%= image_tag @private_label.main_image.url(:thumb) %>
-      <%- else %>
-        <p>No image uploaded</p>
-      <%- end %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :favicon, class: 'col-sm-2 control-label' %>
-    <div class="col-md-5">
-      <%= f.file_field :favicon, class: 'form-control' %>
-    </div>
-    <div class="col-md-5">
-      <%- if @private_label.favicon.present? %>
-        <%= image_tag @private_label.favicon.url(:medium) %>
-      <%- else %>
-        <p>No favicon file uploaded</p>
-      <%- end %>
-    </div>
-  </div>
-
-  <%= f.submit class: 'btn btn-primary' %>
 <% end %>
