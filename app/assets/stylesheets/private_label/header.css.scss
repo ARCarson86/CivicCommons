@@ -199,10 +199,12 @@
     opacity: .8;
     filter: none;
     -webkit-filter: grayscale(0%);
-	}
-  .placeholder{
-    height: 200px;
-    padding-top: 75px;
+    background-color: $green;
+  }
+	.placeholder{
+		background-color: #9cbe15;
+		padding-top: 75px;
+    padding-bottom: 25px;
   }
   .header-spacer {
     padding-top: 60px;
