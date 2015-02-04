@@ -22,5 +22,9 @@ module PrivateLabels
     def parameterized_model_name(record)
       record.class.model_name.parameterize
     end
+
+    def private_label_pages
+      Page.all
+    end
   end
 end
