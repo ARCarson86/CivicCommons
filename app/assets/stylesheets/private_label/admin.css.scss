@@ -23,7 +23,8 @@ input[readonly] {
   background-color: white !important;
   cursor: text !important;
 }
-.private_labels-admin-dashboard, .private_labels-admin-sidebars, .private_labels-admin-pages, .private_labels-admin-private_label_people, .private_labels-admin-conversations{
+
+body.private_labels.admin {
     .header-second{
         padding-top: 60px;
         padding-bottom: 10px;
@@ -53,6 +54,7 @@ input[readonly] {
 
 }
 
+.conversations-table,
 .pages-table {
   thead, tbody {
     tr {

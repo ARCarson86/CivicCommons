@@ -1,4 +1,6 @@
-<table class="table">
+<h1>People</h1>
+
+<table class="table table-striped">
   <tr>
     <th>Name</th>
     <th>Admin?</th>
@@ -19,7 +21,7 @@
       </td>
       <td>
         <% if can?(:destroy, p) %>
-          <%= link_to 'Remove from this site', private_labels_admin_private_label_person_path(p), method: :delete, confirm: "Removing this person means they will no longer be able to log in to #{Swayze.current_private_label.name}. Are you sure?" %>
+          <%= link_to '<i class="fa fa-trash"></i>'.html_safe, private_labels_admin_private_label_person_path(p), method: :delete, confirm: "Removing this person means they will no longer be able to log in to #{Swayze.current_private_label.name}. Are you sure?" %>
         <% end %>
       </td>
     </tr>

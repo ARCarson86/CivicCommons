@@ -1,21 +1,30 @@
-<%= link_to 'Create New', new_private_labels_admin_conversation_path, class: 'btn btn-success pull-right' %>
+<%- if can? :create, Conversation %>
+  <%= link_to new_private_labels_admin_conversation_path, class: 'btn btn-success pull-right' do %>
+    <i class="fa fa-plus"></i> New Conversation
+  <%- end %>
+<%- end %>
+
 <h1>Conversations</h1>
 
-<table class="table">
-  <tr>
-    <th>Date</th>
-    <th>Title</th>
-  </tr>
-  <%- @conversations.each do |convo| %>
+<table class="table table-striped conversations-table">
+  <thead>
     <tr>
-      <td><%= convo.created_at.to_s(:long) %></td>
-      <td>
-        <%- if can? :update, convo %>
-          <%= link_to convo.title, edit_private_labels_admin_conversation_path(convo) %>
-        <%- else %>
-          <%= convo.title %>
-        <%- end %>
-      </td>
+      <th>Date</th>
+      <th>Title</th>
     </tr>
-  <%- end %>
+  </thead>
+  <tbody>
+    <%- @conversations.each do |convo| %>
+      <tr>
+        <td><%= convo.created_at.to_s(:long) %></td>
+        <td>
+          <%- if can? :update, convo %>
+            <%= link_to convo.title, edit_private_labels_admin_conversation_path(convo) %>
+          <%- else %>
+            <%= convo.title %>
+          <%- end %>
+        </td>
+      </tr>
+    <%- end %>
+  </tbody>
 </table>
