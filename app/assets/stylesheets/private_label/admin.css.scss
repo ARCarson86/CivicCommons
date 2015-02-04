@@ -36,6 +36,12 @@ body.private_labels.admin {
     .pl-content{
         a{
             color: $darkGray;
+            &.btn{
+                color: #fff;
+                &:hover{
+                  color: #fff;
+                }
+            }
             &:hover{
                 color: #000;
             }
@@ -45,6 +51,7 @@ body.private_labels.admin {
             letter-spacing: 1px;
         }
     }  
+
 }
 
 .conversations-table,
