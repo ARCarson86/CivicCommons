@@ -489,3 +489,18 @@ label {
   content:"*";
   color:red;
 }
+
+.gigantic {
+  font-size: 200px;
+  font-family: $oswald;
+  font-weight: bold;
+  &.knocked-out {
+    background-color: $darkGray;
+    color: $lightGray;
+  }
+}
+
+
+.page-not-found {
+  text-align: center;
+}
