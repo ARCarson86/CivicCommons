@@ -3,6 +3,12 @@
 
 .content-area{
 	section{
+    &.static-page{
+      color: $darkGray;
+      h1,h2,h3,h4,h5,h6{
+        color: $darkGray;
+      }
+    }
 		background-color: #fff;
 		height: auto;
 		margin-bottom: 30px;
