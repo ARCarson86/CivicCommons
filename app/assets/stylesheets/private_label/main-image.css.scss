@@ -4,12 +4,15 @@
 	margin-bottom: 40px;
 	.private-label-details{
 		color: #fff;
-		background-color: #000;
+		background-color: $darkGray;
+		background-repeat: no-repeat;
+		background-size: cover;
 		padding: 30px;
 		min-height: 300px;
 		.header{
 			h1{
 				line-height: 40px;
+				color: #fff;
 			}
 			h2{
 				color: #fff;

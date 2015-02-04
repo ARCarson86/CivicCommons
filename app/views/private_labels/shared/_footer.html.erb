@@ -2,7 +2,9 @@
   <div id="footer-inner" class="container">
     <div class="row">
         <div class="col-md-3 col-sm-3 col-xs-12" id="footer-logo">
-          <a class="navbar-brand" href="#">Footer Logo</a>
+          <%= link_to '/', class: 'navbar-brand with-borders' do %>
+            <%= image_tag Swayze.current_private_label.logo.url(:footer) %>
+          <% end %>
         </div>
         <div class="col-md-9 col-sm-9 hidden-xs">
           

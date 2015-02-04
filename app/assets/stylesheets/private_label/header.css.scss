@@ -9,6 +9,9 @@
   top: 0;
   width: 100%;
   z-index: 1030;
+  .navbar-brand{
+    padding: 10px 15px;
+  }
   #profile-options{
         position: absolute;
         top: 50px;
@@ -173,13 +176,36 @@
 	letter-spacing: .7px;
 	margin-bottom: 40px;
   min-height: 50px;
-  background-color: $green;
+  color: #fff;
+  position: relative;
+  .header-image-background{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-filter: grayscale(100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+  }
+	.overlay{
+		background-color: $green;
+		position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    opacity: .8;
+    filter: none;
+    -webkit-filter: grayscale(0%);
+    background-color: $green;
+  }
 	.placeholder{
 		background-color: #9cbe15;
 		padding-top: 75px;
     padding-bottom: 25px;
-	}
-
+  }
   .header-spacer {
     padding-top: 60px;
     padding-bottom: 10px;
@@ -190,11 +216,12 @@
 		font-size: 36px;
 		color: #fff;
 		text-transform: uppercase;
+    color: #fff !important;
 	}
 	h2{
 		font-family: 'Oswald', sans-serif;
 		font-size: 20px;
-		color: #fff;
+		color: #fff !important;
 		.separator{
 			margin: 0 12px;
 		}
@@ -204,6 +231,7 @@
 		}
 		i{
       font-size: 26px;
+      color: #fff;
     }
 	}
 	.header-comment-count-wrapper{

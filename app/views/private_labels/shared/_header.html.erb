@@ -2,7 +2,9 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-    <a class="navbar-brand with-borders" href="#">Brand</a>
+    <%= link_to '/', class: 'navbar-brand with-borders' do %>
+      <%= image_tag Swayze.current_private_label.logo.url(:header) %>
+    <% end %>
     <div class="collapse-nav nav-hide">
         <ul class="nav navbar-nav ">
           <li>
