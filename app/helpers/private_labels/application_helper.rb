@@ -26,5 +26,12 @@ module PrivateLabels
     def private_label_pages
       Page.all
     end
+    
+    def private_label_page_title
+      parts = []
+      parts << @meta_info[:title] if @meta_info[:title]
+      parts << Swayze.current_private_label.name
+      parts.join ' | '
+    end
   end
 end
