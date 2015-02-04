@@ -13,7 +13,16 @@ module PrivateLabels
       ##
       # Edit the settings for the current private label
       def edit
+      end
 
+      ##
+      # Update the private label settings
+      def update
+        if @private_label.update_attributes(params[:private_label])
+          redirect_to private_labels_admin_private_label_path, notice: 'Private label settings updated successfully.'
+        else
+          render :edit
+        end
       end
 
       private ##################################################
