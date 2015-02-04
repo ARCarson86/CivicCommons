@@ -23,7 +23,7 @@ input[readonly] {
   background-color: white !important;
   cursor: text !important;
 }
-.private_labels-admin-dashboard, .private_labels-admin-sidebars, .private_labels-admin-pages, .private_labels-admin-private_label_people{
+.private_labels-admin-dashboard, .private_labels-admin-sidebars, .private_labels-admin-pages, .private_labels-admin-private_label_people, .private_labels-admin-conversations{
     .header-second{
         padding-top: 60px;
         padding-bottom: 10px;
@@ -35,6 +35,12 @@ input[readonly] {
     .pl-content{
         a{
             color: $darkGray;
+            &.btn{
+                color: #fff;
+                &:hover{
+                  color: #fff;
+                }
+            }
             &:hover{
                 color: #000;
             }
@@ -44,6 +50,7 @@ input[readonly] {
             letter-spacing: 1px;
         }
     }  
+
 }
 
 .pages-table {
