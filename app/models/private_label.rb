@@ -14,10 +14,10 @@ class PrivateLabel < ActiveRecord::Base
                   :twitter_url,
                   :linkedin_url
 
-  has_attached_file :logo, styles: { medium: "300x300>", thumb: "100x100>" }
+  has_attached_file :logo, styles: { medium: "300x300>", thumb: "100x100>", header: "x30", footer: "x40" }
   validates_attachment_content_type :logo, :content_type => /\Aimage\/.*\Z/
 
-  has_attached_file :main_image, styles: { medium: "300x300>", thumb: "100x100>" }
+  has_attached_file :main_image, styles: { medium: "300x300>", thumb: "100x100>", main: "1200x300#" }
   validates_attachment_content_type :main_image, :content_type => /\Aimage\/.*\Z/
 
   has_attached_file :favicon, styles: { medium: "16x16" }

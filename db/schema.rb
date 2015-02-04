@@ -620,6 +620,7 @@ ActiveRecord::Schema.define(:version => 20150203221508) do
     t.string   "facebook_url"
     t.string   "twitter_url"
     t.string   "linkedin_url"
+    t.string   "theme"
     t.string   "favicon_file_name"
     t.string   "favicon_content_type"
     t.integer  "favicon_file_size"

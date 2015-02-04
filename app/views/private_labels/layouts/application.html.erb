@@ -9,6 +9,7 @@
     <%= stylesheet_link_tag '_bootstrap' %>
     <%= stylesheet_link_tag 'private_label/application', :media => "screen, projection" %>
     <link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
+    
     <script>
       /* Google Analytics */
       var _gaq = _gaq || [];
@@ -29,6 +30,8 @@
   <body class="<%= page_classes %> color">
     <%= render partial: 'private_labels/shared/header' %>
     <div class="header-second">
+      <div class="header-image-background" style="background-image:url('<%= Swayze.current_private_label.main_image.url %>');"></div>
+      <div class="overlay"></div>
       <div class="row">
         <div class="col-md-12">
           <%= yield :header_second %>

@@ -193,4 +193,13 @@
     }
   }
 
+  .header-second{
+    .overlay{
+      background-color: $color;
+    }
+  }
+
+}
+body.color{
+  @include content($red);
 }
