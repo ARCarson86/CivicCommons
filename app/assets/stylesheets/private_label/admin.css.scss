@@ -52,3 +52,13 @@ input[readonly] {
     }  
 
 }
+
+.pages-table {
+  thead, tbody {
+    tr {
+      th:first-child, td:first-child {
+        min-width: 300px;
+      }
+    }
+  }
+}

@@ -98,7 +98,7 @@ module PrivateLabels
       context 'GET #show' do
 
         describe 'with an invalid id' do
-          specify { expect { get 'show', id: restricted_page.id }.to raise_error(CanCan::AccessDenied) }
+          specify { expect { get 'show', id: restricted_page.id }.to raise_error(ActiveRecord::RecordNotFound) }
         end
 
         describe 'with a valid page id' do
@@ -111,7 +111,7 @@ module PrivateLabels
 
       context 'DELETE #destroy' do
         describe 'with an invalid id' do
-          specify { expect { delete 'destroy', id: restricted_page.id }.to raise_error(CanCan::AccessDenied) }
+          specify { expect { delete 'destroy', id: restricted_page.id }.to raise_error(ActiveRecord::RecordNotFound) }
         end
 
         describe 'with a valid page id' do

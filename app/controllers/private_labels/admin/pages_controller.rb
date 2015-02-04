@@ -53,7 +53,7 @@ module PrivateLabels
       end
 
       def page_params
-        params.require(:page).permit :title, :content, :sidebar
+        params.require(:page).permit :title, :content, :sidebar, :meta_title, :meta_keywords, :meta_description
       end
 
       def create_params
