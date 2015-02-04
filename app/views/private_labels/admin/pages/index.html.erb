@@ -1,6 +1,8 @@
-<%= link_to new_private_labels_admin_page_path, class: 'btn btn-success pull-right' do %>
-  <i class="fa fa-plus"></i> New Page
-<% end %>
+<%- if can? :create, PrivateLabels::Page %>
+  <%= link_to new_private_labels_admin_page_path, class: 'btn btn-success pull-right' do %>
+    <i class="fa fa-plus"></i> New Page
+  <% end %>
+<%- end %>
 
 <h1>Pages</h1>
 
@@ -18,12 +20,17 @@
         <td><%= link_to page.title, private_labels_admin_page_path(page) %></td>
         <td><%= page.updated_at.to_s :short_full %></td>
         <td class="text-right">
-          <%= link_to private_labels_admin_page_path page do %>
-            <i class="fa fa-edit"></i>
-          <% end %>
-          <%= link_to private_labels_admin_page_path(page), method: :delete, confirm: 'Are you sure?' do %>
-            <i class="fa fa-trash"></i>
-          <% end %>
+          <%- if can? :update, page %>
+            <%= link_to private_labels_admin_page_path page do %>
+              <i class="fa fa-edit"></i>
+            <% end %>
+          <%- end %>
+
+          <%- if can? :destroy, page %>
+            <%= link_to private_labels_admin_page_path(page), method: :delete, confirm: 'Are you sure?' do %>
+              <i class="fa fa-trash"></i>
+            <% end %>
+          <%- end %>
         </td>
       </tr>
     <% end %>
