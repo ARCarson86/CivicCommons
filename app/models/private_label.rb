@@ -4,7 +4,15 @@ class PrivateLabel < ActiveRecord::Base
                   :domain,
                   :logo,
                   :main_image,
-                  :terms_of_service
+                  :terms_of_service,
+                  :email,
+                  :tagline,
+                  :title,
+                  :phone,
+                  :address,
+                  :facebook_url,
+                  :twitter_url,
+                  :linkedin_url
 
   has_attached_file :logo, styles: { medium: "300x300>", thumb: "100x100>" }
   validates_attachment_content_type :logo, :content_type => /\Aimage\/.*\Z/
