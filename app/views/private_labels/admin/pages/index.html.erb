@@ -1,21 +1,23 @@
-<%= link_to 'Add New Page', new_private_labels_admin_page_path, class: 'btn btn-success' %>
+<%= link_to new_private_labels_admin_page_path, class: 'btn btn-success pull-right' do %>
+  <i class="fa fa-plus"></i> New Page
+<% end %>
 
-<table class="table">
+<h1>Pages</h1>
+
+<table class="table table-striped pages-table">
   <thead>
     <tr>
       <th>Title</th>
-      <th>Created</th>
       <th>Updated</th>
-      <th>Actions</th>
+      <th class="text-right">Actions</th>
     </tr>
   </thead>
   <tbody>
     <% @pages.each do |page| %>
       <tr>
         <td><%= link_to page.title, private_labels_admin_page_path(page) %></td>
-        <td><%= page.created_at.to_s :long %></td>
-        <td><%= page.updated_at.to_s :long %></td>
-        <td>
+        <td><%= page.updated_at.to_s :short_full %></td>
+        <td class="text-right">
           <%= link_to private_labels_admin_page_path page do %>
             <i class="fa fa-edit"></i>
           <% end %>

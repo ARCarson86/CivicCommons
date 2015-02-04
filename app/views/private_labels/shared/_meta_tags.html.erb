@@ -1,0 +1,22 @@
+<%
+  meta_info = {
+    title: Swayze.current_private_label.name,
+    description: Swayze.current_private_label.tagline
+  }
+
+  if @meta_info.present?
+    meta_info[:title] = Sanitize.clean(@meta_info[:page_title], :remove_contents => ['style','script']) if @meta_info[:page_title].present? 
+    meta_info[:description] = Sanitize.clean(@meta_info[:meta_description], :remove_contents => ['style','script']) if @meta_info[:meta_description].present?
+    meta_info[:keywords] = Sanitize.clean(@meta_info[:meta_keywords], :remove_contents => ['style','script']) if @meta_info[:meta_keywords].present?
+    image = Sanitize.clean(@meta_info[:image_url], :remove_contents => ['style','script']) if @meta_info[:image_url].present?
+  end
+
+%>
+
+<meta name="medium" content="blog" />
+<% if not image.nil? %>
+  <link rel="image_src" href="<%= image %>" />
+<% end %>
+<% meta_info.each do |name, content| %>
+  <meta name="<%= name %>" content="<%=h content %>" />
+<% end %>

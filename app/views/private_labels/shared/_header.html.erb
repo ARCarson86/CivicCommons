@@ -5,13 +5,14 @@
     <a class="navbar-brand with-borders" href="#">Brand</a>
     <div class="collapse-nav nav-hide">
         <ul class="nav navbar-nav ">
-          <li><%= link_to 'The Civic Commons', root_url, :id => 'logo', :title => 'The Civic Commons' %></li>
-          <li>
-            <a href="/" title="Home">Home</a>
-          </li>
           <li>
             <a href="/conversations" title="Conversations">Conversations</a>
           </li>
+          <% private_label_pages.each do |page| %>
+            <li>
+              <%= link_to page.title, page %>
+            </li>
+          <% end %>
         </ul>
       </div>
       <div id="pl-search-form" class="hide header-util-item">
