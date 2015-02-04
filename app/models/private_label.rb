@@ -1,7 +1,7 @@
 class PrivateLabel < ActiveRecord::Base
   ##
   # The only valid values for the color theme
-  THEMES = ['green', 'teal', 'orange', 'red', 'brown', 'gray']
+  THEMES = ['green', 'blue', 'orange', 'red', 'gold', 'dark-blue']
 
 	attr_accessible :name,
                   :namespace,
@@ -16,7 +16,8 @@ class PrivateLabel < ActiveRecord::Base
                   :address,
                   :facebook_url,
                   :twitter_url,
-                  :linkedin_url
+                  :linkedin_url,
+                  :theme
 
   has_attached_file :logo, styles: { medium: "300x300>", thumb: "100x100>", header: "x30", footer: "x40" }
   validates_attachment_content_type :logo, :content_type => /\Aimage\/.*\Z/
