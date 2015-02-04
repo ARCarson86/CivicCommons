@@ -53,7 +53,7 @@ module PrivateLabels
 
           it 'redirects to the show settings page' do
             put :update, private_label: params
-            expect(response).to redirect_to(private_labels_admin_private_label_path)
+            expect(response).to render_template(:edit)
           end
 
           it 'provides a success message for the user' do
