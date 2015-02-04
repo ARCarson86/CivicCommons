@@ -22,7 +22,7 @@ module PrivateLabels
       end
 
       it 'should not allow access to pages on other private labels' do
-        expect { get 'show', id: restricted_page.id }.to raise_error(CanCan::AccessDenied)
+        expect { get 'show', id: restricted_page.id }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
 
