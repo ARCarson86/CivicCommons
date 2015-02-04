@@ -6,11 +6,6 @@ module PrivateLabels
       authorize_resource
 
       ##
-      # Display the settings for the current private label
-      def show
-      end
-
-      ##
       # Edit the settings for the current private label
       def edit
       end
