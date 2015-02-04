@@ -6,6 +6,10 @@ describe PrivateLabel, :type => :model do
   let(:private_label)   { FactoryGirl.create :private_label }
   let(:admin)           { FactoryGirl.create :person }
 
+  describe 'validation' do
+    it { should validate_inclusion_of(:theme).in_array(PrivateLabel::THEMES).allow_nil }
+  end
+
   describe "add_admin" do
     it "adds a person as a private label administrator" do
       private_label.add_admin admin

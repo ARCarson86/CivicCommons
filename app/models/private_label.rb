@@ -1,4 +1,8 @@
 class PrivateLabel < ActiveRecord::Base
+  ##
+  # The only valid values for the color theme
+  THEMES = ['green', 'teal', 'orange', 'red', 'brown', 'gray']
+
 	attr_accessible :name,
                   :namespace,
                   :domain,
@@ -22,6 +26,8 @@ class PrivateLabel < ActiveRecord::Base
 
   has_attached_file :favicon, styles: { medium: "16x16" }
   validates_attachment_content_type :favicon, content_type: /\Aimage\/.*\Z/
+
+  validates_inclusion_of :theme, in: THEMES, allow_nil: true
 
   has_many :private_label_people
   has_many :people, through: :private_label_people
