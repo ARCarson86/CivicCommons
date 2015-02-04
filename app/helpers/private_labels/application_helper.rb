@@ -5,7 +5,13 @@ module PrivateLabels
     end
 
     def page_classes
-      params[:controller].gsub('/', '-')
+      name = params[:controller]
+
+      full_controller_name = name.gsub('/', '-')
+
+      namespaces = name.split('/').reverse.drop(1)
+      namespaces << full_controller_name
+      return namespaces.join(' ')
     end
 
     def alert_icon(level)
