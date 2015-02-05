@@ -46,6 +46,17 @@ body.private_labels.admin {
                 color: #000;
             }
         }    
+        .panel{
+            .radio{
+                text-align: center;
+                .radio-btn{
+                    margin-bottom: 10px;
+                }
+                .theme-preview{
+                    margin-bottom: 20px;
+                }
+            }
+        }
         .page-header{
             margin-top: 0;
             letter-spacing: 1px;
