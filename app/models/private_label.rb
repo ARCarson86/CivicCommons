@@ -8,6 +8,7 @@ class PrivateLabel < ActiveRecord::Base
                   :domain,
                   :logo,
                   :main_image,
+                  :favicon,
                   :terms_of_service,
                   :email,
                   :tagline,
