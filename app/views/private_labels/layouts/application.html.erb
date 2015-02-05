@@ -27,7 +27,7 @@
     <%= yield :header %>
     <%= csrf_meta_tag %>
   </head>
-  <body class="<%= page_classes %> color">
+  <body class="<%= page_classes %> <%= Swayze.current_private_label.theme %>">
     <%= render partial: 'private_labels/shared/header' %>
     <div class="header-second">
       <div class="header-image-background" style="background-image:url('<%= Swayze.current_private_label.main_image.url %>');"></div>

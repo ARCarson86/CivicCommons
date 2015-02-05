@@ -15,18 +15,6 @@ module PrivateLabels
 
       it { should be_a PrivateLabels::Admin::BaseController }
 
-      describe 'GET #show' do
-        it 'renders the correct template' do
-          get :show
-          expect(response).to render_template(:show)
-        end
-
-        it 'gets the current private label' do
-          get :show
-          expect(assigns[:private_label]).to eq(private_label)
-        end
-      end
-
       describe 'GET #edit' do
         it 'renders the correct template' do
           get :edit
@@ -65,7 +53,7 @@ module PrivateLabels
 
           it 'redirects to the show settings page' do
             put :update, private_label: params
-            expect(response).to redirect_to(private_labels_admin_private_label_path)
+            expect(response).to render_template(:edit)
           end
 
           it 'provides a success message for the user' do

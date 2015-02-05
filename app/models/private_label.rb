@@ -1,4 +1,8 @@
 class PrivateLabel < ActiveRecord::Base
+  ##
+  # The only valid values for the color theme
+  THEMES = ['green', 'blue', 'orange', 'red', 'gold', 'dark-blue']
+
 	attr_accessible :name,
                   :namespace,
                   :domain,
@@ -12,7 +16,8 @@ class PrivateLabel < ActiveRecord::Base
                   :address,
                   :facebook_url,
                   :twitter_url,
-                  :linkedin_url
+                  :linkedin_url,
+                  :theme
 
   has_attached_file :logo, styles: { medium: "300x300>", thumb: "100x100>", header: "x30", footer: "x40" }
   validates_attachment_content_type :logo, :content_type => /\Aimage\/.*\Z/
@@ -25,6 +30,8 @@ class PrivateLabel < ActiveRecord::Base
 
   geocoded_by :address
   after_validation :geocode, :if => :address_changed?
+
+  validates_inclusion_of :theme, in: THEMES, allow_nil: true
 
   has_many :private_label_people
   has_many :people, through: :private_label_people

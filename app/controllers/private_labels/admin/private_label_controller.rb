@@ -6,11 +6,6 @@ module PrivateLabels
       authorize_resource
 
       ##
-      # Display the settings for the current private label
-      def show
-      end
-
-      ##
       # Edit the settings for the current private label
       def edit
       end
@@ -19,10 +14,9 @@ module PrivateLabels
       # Update the private label settings
       def update
         if @private_label.update_attributes(params[:private_label])
-          redirect_to private_labels_admin_private_label_path, notice: 'Private label settings updated successfully.'
-        else
-          render :edit
+          flash.notice = "Private label settings were updated successfully."
         end
+        render :edit
       end
 
       private ##################################################

@@ -240,6 +240,22 @@
     }
   }
 }
-body.color{
+
+body.red{
   @include content($red);
+}
+body.blue{
+  @include content($blue);
+}
+body.orange{
+  @include content($orange);
+}
+body.green{
+  @include content($green);
+}
+body.gold{
+  @include content($gold);
+}
+body.dark-blue{
+  @include content($darkBlue);
 }
