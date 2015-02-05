@@ -7,14 +7,17 @@
     <% end %>
     <div class="collapse-nav nav-hide">
         <ul class="nav navbar-nav ">
-          <li>
-            <a href="/conversations" title="Conversations">Conversations</a>
-          </li>
+          <% if !current_person %>
+              <%= render :partial => 'private_labels/shared/user-profiles/logged_out_mobile' %>
+            <% end %>
           <% private_label_pages.each do |page| %>
             <li>
               <%= link_to page.title, page %>
             </li>
           <% end %>
+          <li>
+            <%= link_to 'Contact', '/contact' %>
+          </li>
         </ul>
       </div>
       <div id="pl-search-form" class="hide header-util-item">

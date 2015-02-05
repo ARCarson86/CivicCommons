@@ -23,6 +23,9 @@ class PrivateLabel < ActiveRecord::Base
   has_attached_file :favicon, styles: { medium: "16x16" }
   validates_attachment_content_type :favicon, content_type: /\Aimage\/.*\Z/
 
+  geocoded_by :address
+  after_validation :geocode, :if => :address_changed?
+
   has_many :private_label_people
   has_many :people, through: :private_label_people
   has_many :admins, through: :private_label_people, source: :person, conditions: ['private_label_people.admin = ?', true]

@@ -7,10 +7,10 @@
       <%= link_to "Logout", destroy_person_session_path %>
     <% end %>
   <% else %>
-    <li class="left-border hidden-xs">
+    <li class="hidden-lg hidden-md hidden-sm">
       <%= link_to 'login', '#', :data => {:'toggle' => 'modal', :'target' => '#loginModal'} %>
     </li>
-    <li class="with-borders hidden-xs">
+    <li class="lg-hidden md-hidden sm-hidden">
       <%= link_to 'register', new_person_registration_path %>
     </li>
   <% end %>

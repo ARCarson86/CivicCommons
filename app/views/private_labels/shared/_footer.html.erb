@@ -32,38 +32,51 @@
             <% end %>
           </ul>
           <ul class="nav navbar-nav navbar-right footer-nav">
+            <% private_label_pages.each do |page| %>
+              <li>
+                <%= link_to page.title, page %>
+              </li>
+            <% end %>
             <li>
-              <%= link_to 'About Us', about_url %>
-            </li>
-            <li>
-              <%= link_to 'Terms of Service', team_url %>
+              <%= link_to 'Contact', '/contact' %>
             </li>
           </ul>
         </div>
-        <div class="col-xs-12 hidden-sm hidden-md hidden-lg">
+        <div class="col-xs-12 hidden-sm hidden-md hidden-lg footer-nav">
           <ul class="nav navbar-nav">
+            <% private_label_pages.each do |page| %>
+              <li>
+                <%= link_to page.title, page %>
+              </li>
+            <% end %>
             <li>
-              <%= link_to 'About Us', about_url %>
-            </li>
-            <li>
-              <%= link_to 'Terms of Service', team_url %>
+              <%= link_to 'Contact', '/contact' %>
             </li>
           </ul>
         </div>
-        <div class="col-xs-12 hidden-sm hidden-md hidden-lg">
-          <ul class="nav navbar-nav social-media navbar-right">
-            <li>
-              <a class="social-media-ico facebook_ico" href="http://www.facebook.com/pages/Civic-Commons/143930632284131">Facebook</a>
-            </li>
-            <li>
-              <a class="social-media-ico twitter_ico" href="http://twitter.com/civiccommons">Twitter</a>
-            </li>
-            <li>
-              <a class="social-media-ico youtube_ico" href="http://www.youtube.com/user/neociviccommons">YouTube</a>
-            </li>
-            <li>
-              <a class="social-media-ico rss_ico" href="<%= feeds_url %>">RSS</a>
-            </li>
+        <div class="col-xs-12 hidden-sm hidden-md hidden-lg footer-nav">
+          <ul class="nav navbar-nav social-media">
+            <% if !Swayze.current_private_label.facebook_url.blank? %>
+              <li>
+                <%= link_to Swayze.current_private_label.facebook_url, target: :blank, class: 'footer-social' do %>
+                  <i class="fa fa-facebook fa-lg"></i>
+                <% end %>
+              </li>
+            <% end %>
+            <% if !Swayze.current_private_label.twitter_url.blank? %>
+              <li>
+                <%= link_to Swayze.current_private_label.twitter_url, target: :blank, class: 'footer-social' do %>
+                  <i class="fa fa-twitter fa-lg"></i>
+                <% end %>
+              </li>
+            <% end %>
+            <% if !Swayze.current_private_label.linkedin_url.blank? %>
+              <li>
+                <%= link_to Swayze.current_private_label.linkedin_url, target: :blank, class: 'footer-social' do %>
+                  <i class="fa fa-linkedin fa-lg"></i>
+                <% end %>
+              </li>
+            <% end %>
           </ul>
         </div>
         
