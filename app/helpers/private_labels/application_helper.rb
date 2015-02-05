@@ -19,9 +19,9 @@ module PrivateLabels
       when :warning
         sanitize '<strong>!</strong>'
       when :error
-        sanitize '<i class="icon icon-remove"></i>'
+        sanitize '<i class="fa fa-times"></i>'
       else
-        sanitize '<i class="icon icon-ok"></i>'
+        sanitize '<i class="fa fa-check"></i>'
       end
     end
 
