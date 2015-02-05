@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150203221508) do
+ActiveRecord::Schema.define(:version => 20150204202920) do
 
   create_table "actions", :force => true do |t|
     t.integer  "conversation_id"
@@ -625,6 +625,8 @@ ActiveRecord::Schema.define(:version => 20150203221508) do
     t.string   "favicon_content_type"
     t.integer  "favicon_file_size"
     t.datetime "favicon_updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "private_labels_pages", :force => true do |t|

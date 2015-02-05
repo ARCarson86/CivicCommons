@@ -202,7 +202,6 @@
     background-color: $green;
   }
 	.placeholder{
-		background-color: #9cbe15;
 		padding-top: 75px;
     padding-bottom: 25px;
   }
@@ -308,6 +307,9 @@
             text-transform: uppercase;
             font-family: $oswald;
             display: block;
+            &:hover {
+              color: darken($green,5%);;
+            }
           }
         }
       }

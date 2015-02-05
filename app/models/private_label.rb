@@ -8,6 +8,7 @@ class PrivateLabel < ActiveRecord::Base
                   :domain,
                   :logo,
                   :main_image,
+                  :favicon,
                   :terms_of_service,
                   :email,
                   :tagline,
@@ -27,6 +28,9 @@ class PrivateLabel < ActiveRecord::Base
 
   has_attached_file :favicon, styles: { medium: "16x16" }
   validates_attachment_content_type :favicon, content_type: /\Aimage\/.*\Z/
+
+  geocoded_by :address
+  after_validation :geocode, :if => :address_changed?
 
   validates_inclusion_of :theme, in: THEMES, allow_nil: true
 

@@ -155,6 +155,7 @@ GEM
       activerecord (>= 3.0, < 4.0)
     fssm (0.2.10)
     gchart (1.0.0)
+    geocoder (1.2.7)
     geokit (1.6.5)
       multi_json
     gibbon (0.3.5)
@@ -443,6 +444,7 @@ DEPENDENCIES
   foreman
   friendly_id
   gchart
+  geocoder
   geokit
   gibbon
   highline

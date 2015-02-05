@@ -18,9 +18,14 @@
   // Modals
   .login-modal, .flag-modal {
     .modal-dialog {
-
       .modal-title {
         color: $color;
+        .modal-header-icon{
+          border-bottom: 2px solid $color;
+          span{
+            background-color: $color;
+          }
+        }
       }
     }
   }
@@ -187,11 +192,17 @@
       }
     }
   }
-  &.private_labels-admin-dashboard, &.private_labels-admin-sidebars, &.private_labels-admin-pages, &.private_labels-admin-private_label_people{
+
+  // Admin
+
+  &.private_labels.admin {
     .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus{
-      background-color: $color;
+        background-color: $color;
+
     }
   }
+  
+  // Header
 
   .header-second{
     .overlay{
@@ -199,6 +210,39 @@
     }
   }
 
+  @media all and (max-width: 992px){
+    #header-wrapper{
+      .collapse-nav{
+        .nav{
+          li{
+            a{
+              color: $color;
+              &:hover {
+                color: darken($color,5%);;
+              }
+            }
+          }
+        }      
+      }
+    }
+  }
+
+  // Contact Page
+
+  &.private_labels-homepage{
+    .content-area{
+      section{
+        &.contact{
+          .contact-info{
+            i{
+              color: $color;
+              border: 2px solid $color;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 body.red{

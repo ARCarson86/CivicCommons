@@ -18,6 +18,8 @@ group :assets do
 end
 gem 'jquery-rails'
 
+gem 'geocoder'
+
 gem 'newrelic_rpm'
 
 gem 'redis-rails'
