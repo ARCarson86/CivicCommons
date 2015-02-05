@@ -48,3 +48,29 @@ footer{
 		}
 	}
 }
+
+@media all and (max-width: 767px){
+	.footer-nav{
+		li{
+			display: inline-block;	
+			text-transform: uppercase;		
+		}
+		.social-media{
+			.footer-social{
+				i{
+					vertical-align: super;
+				}
+			}
+		} 
+	}
+  footer #footer-logo{
+    text-align: center;
+      .navbar-brand{
+      float: none;
+      display: inline-block;
+      img{
+        display: inline-block;
+      }
+    }
+  }
+}

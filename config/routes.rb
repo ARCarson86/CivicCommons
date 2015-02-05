@@ -48,7 +48,8 @@ Civiccommons::Application.routes.draw do
 
       resources :pages, only: [:show]
 
-      post 'contact', to: 'forms#contact'
+      get 'contact', to: 'homepage#contact'
+      post 'contact', to: 'homepage#contact_submit'
       
       get '*path', to: 'application#raise_routing_error'
     end

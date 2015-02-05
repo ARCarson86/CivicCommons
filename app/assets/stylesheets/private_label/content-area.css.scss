@@ -1,8 +1,55 @@
 @import "compass/css3/inline-block";
 @import "variables";
+.private_labels-homepage{
+  .content-area{
+    section{
+      &.contact{
+        padding: 30px;
+        .contact-info{
+          border-right: 1px solid $darkGray;
+          min-height: 338px;    
+          line-height: 30px; 
+          font-size: 16px;
+          color: $darkGray;
+          a{
+            color: $darkGray;
+          }
+          h2{
+            margin-bottom: 25px;
+          }
+          .row{
+            margin-bottom: 25px;
+          }
+          i{
+            display: inline-block;
+            color: $green;
+            border: 2px solid $green;
+            margin-right: 10px;
+            height: 30px;
+            width: 30px;
+            border-radius: 15px;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 25px;
+          }
+          .map-wrapper{
+            padding-right: 15px;
+            .map{
+              height: 125px;
+              background-size: contain;
+              background-position: left center;
+              background-repeat: no-repeat;
+            }
+          }
+        }
+      }
+    }  
+  }
+} 
 
 .content-area{
 	section{
+    
     &.static-page{
       color: $darkGray;
       h1,h2,h3,h4,h5,h6{
@@ -115,6 +162,9 @@
 				font-size: 13px;
 				text-transform: uppercase;
 				border-bottom: 1px solid $midGray;
+        .col-md-3{
+          padding: 0 5px;
+        }
 				a{
 					color: $green;	
 					text-decoration: none;
@@ -129,6 +179,7 @@
         }
 				.header-icon{
 					margin: 0 10px;
+          font-size: 10px;
           i{
             color: $green;
             &:hover{
@@ -259,4 +310,73 @@
       }
     }
   }
+}
+
+@media all and (max-width: 480px){
+  .private_labels-homepage{
+  .content-area{
+    section{
+      &.contact{
+        padding: 30px;
+        .contact-info{
+          border-bottom: 1px solid $darkGray;
+          border-right: 0 none;
+          margin-bottom: 25px;
+        }
+      }
+    }  
+  }
+}
+  .content-area{
+    .conversation-contributions{
+      .contribution-container{
+        .contribution-header{
+          padding: 0;
+          .contribution-info{
+            border-right: 0 none;
+            padding-left: 25px;
+            span{
+              margin-right: 0px;
+              &:first-child{
+                margin-left: 0px;
+              }
+              &:last-child{
+                margin-right: 0;
+              }
+            }
+          }
+        }    
+      }
+    } 
+  }
+  .content-area{
+    section{   
+      .user-image{      
+        img{
+          border-radius: 25px;
+          height: 50px;
+          width: 50px;
+        }
+      } 
+      .editable{
+        padding-top: 0px;
+        textarea{
+          width: 100%;
+          resize: none;
+          height: 150px;
+          line-height: 25px;
+          padding-top: 10px;
+          padding-left: 20px;
+          font-family: 'OpenSans', sans-serif;
+          font-size: 15px;
+          color: #3a3a3a;
+        }
+      }
+      .contribution-attachments{
+        input{
+          width: 160px;
+        }
+      }
+    }
+  }  
 }

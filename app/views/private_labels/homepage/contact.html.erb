@@ -1,0 +1,53 @@
+<% content_for :header_second do %>
+ 	<div class="placeholder">
+ 		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h1>Contact Us</h1>
+				</div>
+			</div>
+ 		</div>
+ 	</div>
+<% end %>
+<div class="row">
+	<div class="col-md-12">
+
+		<section class="contact">
+			<div class="row">
+				<div class="col-sm-6">
+          <div class="contact-info">
+          <h2>Contact Us</h2>
+          <div class="row">
+            <div class="col-sm-12">
+              <i class="fa fa-map-marker fa-lg"></i><%= Swayze.current_private_label.address %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <i class="fa fa-mobile fa-lg"></i><%= Swayze.current_private_label.phone %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <i class="fa fa-envelope"></i><%= mail_to Swayze.current_private_label.email %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+            <div class="map-wrapper">
+              <div class="map" style="background-image: url(<%= "https://maps.googleapis.com/maps/api/staticmap?size=525x125&sensor=false&zoom=16&markers=#{Swayze.current_private_label.latitude}%2C#{Swayze.current_private_label.longitude}" %>);"></div>
+            </div>
+            </div>
+          </div>
+          </div>
+				</div>
+
+				<div class="col-sm-6">
+          <%= render partial: 'private_labels/homepage/partials/contact_form' %>
+				</div>
+			</div>
+		</section>
+
+		
+	</div>
+</div>
