@@ -20,7 +20,12 @@
       border: 1px solid $orange;
       margin-right: 0.5em;
     }
-
+    &.notice{
+      color: $green;
+      .alert-icon{
+        border-color: $green;
+      }
+    }
     &.warning {
       color: $orange;
       .alert-icon {
