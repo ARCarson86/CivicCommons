@@ -192,9 +192,13 @@
       }
     }
   }
-  &.private_labels-admin-dashboard, &.private_labels-admin-sidebars, &.private_labels-admin-pages, &.private_labels-admin-private_label_people{
+
+  // Admin
+
+  &.private_labels.admin {
     .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus{
-      background-color: $color;
+        background-color: $color;
+
     }
   }
   
