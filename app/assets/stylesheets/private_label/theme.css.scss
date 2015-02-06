@@ -209,6 +209,18 @@
       background-color: $color;
     }
   }
+  
+  #header-wrapper{
+    #profile-options{
+      color: $color;
+      a{
+        color: $color;
+        &:hover{
+          color: darken($color, 5%);
+        }
+      }
+    }  
+  }
 
   @media all and (max-width: 992px){
     #header-wrapper{
