@@ -39,5 +39,10 @@ module PrivateLabels
       parts << Swayze.current_private_label.name
       parts.join ' | '
     end
+
+    def image_url(file)
+      request.protocol + request.host_with_port + path_to_image(file)
+    end
+
   end
 end

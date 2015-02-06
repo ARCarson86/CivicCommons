@@ -20,13 +20,25 @@ class PrivateLabel < ActiveRecord::Base
                   :linkedin_url,
                   :theme
 
-  has_attached_file :logo, styles: { medium: "300x300>", thumb: "100x100>", header: "x30", footer: "x40" }
+  has_attached_file :logo,
+                    styles: { medium: "300x300>", thumb: "100x100>", header: "x30", footer: "x40" },
+                    :storage => :s3,
+                    :s3_credentials => S3Config.credential_file,
+                    :path => IMAGE_ATTACHMENT_PATH
   validates_attachment_content_type :logo, :content_type => /\Aimage\/.*\Z/
 
-  has_attached_file :main_image, styles: { medium: "300x300>", thumb: "100x100>", main: "1200x300#" }
+  has_attached_file :main_image, 
+                    styles: { medium: "300x300>", thumb: "100x100>", main: "1200x300#" },
+                    :storage => :s3,
+                    :s3_credentials => S3Config.credential_file,
+                    :path => IMAGE_ATTACHMENT_PATH
   validates_attachment_content_type :main_image, :content_type => /\Aimage\/.*\Z/
 
-  has_attached_file :favicon, styles: { medium: "16x16" }
+  has_attached_file :favicon,
+                    styles: { medium: "16x16" },
+                    :storage => :s3,
+                    :s3_credentials => S3Config.credential_file,
+                    :path => IMAGE_ATTACHMENT_PATH
   validates_attachment_content_type :favicon, content_type: /\Aimage\/.*\Z/
 
   geocoded_by :address
