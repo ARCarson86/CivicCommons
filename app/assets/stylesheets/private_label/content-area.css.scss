@@ -3,6 +3,10 @@
 .private_labels-homepage{
   .content-area{
     section{
+      &.flash{
+        padding: 1em;
+        margin-top: 50px;
+      }
       &.contact{
         padding: 30px;
         .contact-info{
