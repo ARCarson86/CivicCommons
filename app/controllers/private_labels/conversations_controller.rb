@@ -13,6 +13,14 @@ module PrivateLabels
     def show
       @contributions = @conversation.contributions
       @newContribrution = Contribution.new
+
+      @meta_info = {
+        title: @conversation.page_title,
+        description: @conversation.meta_description,
+        keyswords: @conversation.meta_tags,
+        image_url: @conversation.image.url()
+      }
+
     end
 
     protected

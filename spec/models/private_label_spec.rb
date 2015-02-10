@@ -3,6 +3,10 @@ require 'rails_helper'
 describe PrivateLabel, :type => :model do
   it { should have_one(:sidebar).class_name('PrivateLabels::Sidebar') }
 
+  it { should have_attached_file(:logo) }
+  it { should have_attached_file(:main_image) }
+  it { should have_attached_file(:favicon) }
+
   let(:private_label)   { FactoryGirl.create :private_label }
   let(:admin)           { FactoryGirl.create :person }
 

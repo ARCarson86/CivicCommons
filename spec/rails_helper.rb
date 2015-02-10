@@ -1,10 +1,12 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
+require "paperclip/matchers"
 require 'rspec/rails'
 require 'shoulda/matchers'
 require 'spec_helper'
 require 'webmock/rspec'
+
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -53,6 +55,8 @@ RSpec.configure do |config|
 
   # Add the FactoryGirl methods as first-class citizens
   config.include FactoryGirl::Syntax::Methods
+
+  config.include Paperclip::Shoulda::Matchers
 
   config.before :suite do
     DatabaseCleaner.strategy = :transaction

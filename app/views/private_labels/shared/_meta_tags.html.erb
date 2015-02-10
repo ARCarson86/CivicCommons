@@ -1,7 +1,8 @@
 <%
   meta_info = {
     title: Swayze.current_private_label.name,
-    description: Swayze.current_private_label.tagline
+    description: Swayze.current_private_label.tagline,
+    image_url: Swayze.current_private_label.logo.url
   }
 
   if @meta_info.present?
@@ -20,3 +21,12 @@
 <% meta_info.each do |name, content| %>
   <meta name="<%= name %>" content="<%=h content %>" />
 <% end %>
+
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="<%= meta_info[:title] %>" /> 
+<meta property="og:description" content="<%= meta_info[:description] %>" /> 
+<meta property="og:url" content="<%= request.original_url %>" />
+<meta property="og:site_name" content="<%= Swayze.current_private_label.name %>" />
+<meta property="og:image" content="<%= image %>" />
+<meta name="google-site-verification" content="bPswxmwrwJsAW_gKXAgVZ1vyxQlrbtluLMdwTxYG1yU" />
