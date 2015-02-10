@@ -1,4 +1,9 @@
 <section>
+  <% if @conversation.image.present? %>
+    <div class="convo-img">
+      <%= image_tag @conversation.image.url(:panel) %>
+    </div>
+  <% end %>
 	<%= sanitize @conversation.summary %>
 
 	<% if !@conversation.starter.blank? %>
