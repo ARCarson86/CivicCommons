@@ -51,7 +51,32 @@ civicApp
         templateUrl: 'remote_pages/show.html'
         resolve:
           remotePage: ['$route', 'RemotePage', 'CivicApi', ($route, RemotePage, CivicApi) ->
+            RemotePage.registerObserverCallback (page) ->
+              CivicApi.setVar 'contributable_type', 'remote_pages'
+              CivicApi.setVar 'contributable_id', page.id
+
             RemotePage.get({remote_page_url: $route.current.params.remotePageAddress}).$promise
+          ]
+          users: ['$q', 'RemotePage', 'User', ($q, RemotePage, User) ->
+            deferred = $q.defer()
+            RemotePage.registerObserverCallback (page) ->
+              User.index {}, (data) ->
+                deferred.resolve(data)
+            deferred.promise
+          ]
+          account: ['$q', 'RemotePage', 'Account', ($q, RemotePage, Account) ->
+            deferred = $q.defer()
+            RemotePage.registerObserverCallback (page) ->
+              Account.get {}, (data) ->
+                deferred.resolve(data)
+            deferred.promise
+          ]
+          contributions: ['$q', 'RemotePage', 'Contribution', ($q, RemotePage, Contribution) ->
+            deferred = $q.defer()
+            RemotePage.registerObserverCallback (page) ->
+              Contribution.index {}, (data) ->
+                deferred.resolve data
+            deferred.promise
           ]
       }
       .when '/404', {

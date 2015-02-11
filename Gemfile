@@ -17,6 +17,7 @@ group :assets do
 end
 gem 'angular-rails-templates'
 gem 'coffee-rails'
+gem 'coffee-rails-source-maps'
 gem 'bower-rails'
 gem 'jquery-rails'
 
