@@ -1,16 +1,12 @@
 angular.module 'civic.controllers'
-  .controller 'RemotePageCtrl', ['$scope', '$routeParams', '$sce', '$rootScope', '$window', 'remotePage', 'CivicApi', 'Contribution', 'User', 'Account', ($scope,   $routeParams,   $sce,   $rootScope,   $window,   remotePage,   CivicApi,   Contribution, User, Account) ->
-    CivicApi.setVar 'contributable_type', 'remote_pages'
-    CivicApi.setVar 'contributable_id', remotePage.id
+  .controller 'RemotePageCtrl', ['$scope', '$sce', 'CivicApi', 'Account', 'remotePage', 'account', 'contributions', ($scope, $sce, CivicApi, Account, remotePage, account, contributions) ->
+    $scope.user = account
+    $scope.contributions = contributions
+    $scope.totalContributions = CivicApi.getVar 'totalContributions', 0
+    $scope.remotePage = remotePage
+    console.log $scope.remotePage
 
-    Account.registerObserverCallback 'sessionState', (data) ->
-      $scope.user = data
+    $scope.account = ->
+      Account.getAccount()
 
-    Contribution.registerObserverCallback ->
-      $scope.contributions = Contribution.getContributions()
-      $scope.totalContributions = CivicApi.getVar 'totalContributions', 0
-
-    User.index {}, (data) ->
-      Contribution.index {}, ->
-        $scope.contributions_loaded = true
   ]
