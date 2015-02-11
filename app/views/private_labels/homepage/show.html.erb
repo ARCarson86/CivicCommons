@@ -10,13 +10,16 @@
 			
 <div class="row">
 	
-	<div class="col-md-12 col-sm-12 col-xs-12">
-		<h2>About Us</h2>
-		<section>
-			<div class="placeholder"></div>
-		</section>
-	</div>
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <% if @page %>
+      <h2><%= @page.title %></h2>
+      <section class="home-content">
+        <%= simple_format @page.content %>
+      </section>
+    <% end %>
+  </div>
 </div>
+
 <%= render partial: 'private_labels/homepage/partials/home_conversations' %>
 		
 <% content_for :sidebar do %>
