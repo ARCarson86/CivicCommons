@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150204202920) do
+ActiveRecord::Schema.define(:version => 20150210144447) do
 
   create_table "actions", :force => true do |t|
     t.integer  "conversation_id"
@@ -640,6 +640,7 @@ ActiveRecord::Schema.define(:version => 20150204202920) do
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.integer  "private_label_id"
+    t.boolean  "is_home"
   end
 
   add_index "private_labels_pages", ["slug"], :name => "index_private_labels_pages_on_slug", :unique => true

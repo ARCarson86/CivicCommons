@@ -18,6 +18,7 @@ module PrivateLabels
       @contribution = @conversation.contributions.new(params[:contribution])
       @contribution.person = current_person
       @contribution.save validate: false # TODO: Fix validation
+      redirect_to @conversation, notice: 'Contribution Created Successfully'
     end
 
     def tos

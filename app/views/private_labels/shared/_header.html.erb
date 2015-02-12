@@ -24,6 +24,9 @@
         <%= render :partial => 'private_labels/search/search', locals: { filter_type: params[:filter] } %>
       </div>
       <div id="profile-options" class="hide header-util-item">
+        <%- if can? :manage, Swayze.current_private_label %>
+          <%= link_to('Admin', private_labels_admin_root_path) %> | 
+        <%- end %>
         <%- unless current_person.nil? %>
           <%= link_to_settings(current_person).html_safe %> |
         <%- end %>

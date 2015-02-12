@@ -65,6 +65,14 @@ body.private_labels.admin {
 
 }
 
+.preview-image {
+  text-align: center;
+  padding: 2em;
+  img {
+    border: 2px solid $gray;
+  }
+}
+
 .conversations-table,
 .pages-table {
   thead, tbody {
