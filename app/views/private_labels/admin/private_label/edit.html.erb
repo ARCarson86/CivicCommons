@@ -13,6 +13,7 @@
         <%= f.label :namespace, class: 'col-sm-2 control-label' %>
         <div class="col-sm-10">
           <%= f.text_field :namespace, class: 'form-control' %>
+          <span class="help-block">Only enter a value if Civic Commons is hosting your site. This is the name for your site on theciviccommons.com</span>
         </div>
       </div>
 
@@ -20,6 +21,7 @@
         <%= f.label :domain, class: 'col-sm-2 control-label' %>
         <div class="col-sm-10">
           <%= f.text_field :domain, class: 'form-control' %>
+          <span class="help-block">Only enter a value if you are hosting your own site. This needs to be the fully qualified domain name (i.e., yoursite.com)</span>
         </div>
       </div>
 
@@ -27,6 +29,7 @@
         <%= f.label :terms_of_service, class: 'col-sm-2 control-label' %>
         <div class="col-sm-10">
           <%= f.text_area :terms_of_service, class: 'form-control', rows: '3' %>
+          <span class="help-block">These are the terms that users must agree to when registering for your site.</span>
         </div>
       </div>
 
@@ -44,6 +47,12 @@
         </div>
       </div>
 
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading"><h3>Contact Information</h3></div>
+    <div class="panel-body">
       <div class="form-group">
         <%= f.label :email, class: 'col-sm-2 control-label' %>
         <div class="col-sm-10">
@@ -101,6 +110,7 @@
 
         <div class="col-sm-5">
           <%= f.file_field :logo, class: 'form-control' %>
+          <span class="help-block">Needs to be at least 300px wide and 300px high</span>
         </div>
         <div class="col-md-5">
           <%- if @private_label.logo.present? %>
@@ -115,6 +125,7 @@
         <%= f.label :main_image, class: 'col-sm-2 control-label' %>
         <div class="col-sm-5">
           <%= f.file_field :main_image, class: 'form-control' %>
+          <span class="help-block">Needs to be at least 1200px wide and 300px high</span>
         </div>
         
           <%- if @private_label.main_image.present? %>
@@ -132,6 +143,7 @@
         <%= f.label :favicon, class: 'col-sm-2 control-label' %>
         <div class="col-md-5">
           <%= f.file_field :favicon, class: 'form-control' %>
+          <span class="help-block">Should be 16px wide and 16px high</span>
         </div>
         <div class="col-md-5">
           <%- if @private_label.favicon.present? %>

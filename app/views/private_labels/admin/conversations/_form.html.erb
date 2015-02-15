@@ -24,13 +24,15 @@
       <div class="form-group">
         <%= f.label :summary, class: 'col-sm-2 control-label' %>
         <div class="col-sm-10">
-          <%= f.text_area :summary, class: "form-control" %>
+          <%= f.text_area :summary, class: "form-control", rows: '5' %>
+          <span class="help-block">Two or three short sentences that describe what the conversation is about</span>
         </div>
       </div>
       <div class="form-group">
         <%= f.label :starter, 'Conversation Starter', class: 'col-sm-2 control-label' %>
         <div class="col-sm-10">
-          <%= f.text_area :starter, class: "form-control" %>
+          <%= f.text_area :starter, class: "form-control", rows: '5' %>
+          <span class="help-block">The one or two statements or questions that you want others to respond to</span>
         </div>
       </div>
     </div>
@@ -52,6 +54,7 @@
         <%= f.label :image, class: 'col-sm-2 control-label' %>
         <div class="col-sm-10">
           <%= f.file_field :image, class: 'form-control' %>
+          <span class="help-block">Add an image to illustrate your conversation</span>
           <%- if @conversation.image.exists? %>
             <div class="preview-image">
               <%= image_tag @conversation.image.url(:normal) %>
@@ -64,18 +67,21 @@
 <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title">Meta Information</h3>
+      <span class="help-block">This content will not be visible to the visitor, but will be used by search engines when indexing your page.</span>
     </div>
     <div class="panel-body">
       <div class="form-group">
         <%= f.label :page_title, class: 'col-sm-2 control-label' %>
         <div class="col-sm-10">
           <%= f.text_field :page_title, class: 'form-control' %>
+          <span class="help-block">The title of the page to be displayed in search engine results and in the browser window</span>
         </div> 
       </div> 
       <div class="form-group">
         <%= f.label :meta_description, class: 'col-sm-2 control-label' %>
         <div class="col-sm-10">
           <%= f.text_field :meta_description, class: 'form-control' %>
+          <span class="help-block">A short description of the content of your page that may be displayed in search engine results</span>
         </div> 
       </div>
       <div class="form-group">

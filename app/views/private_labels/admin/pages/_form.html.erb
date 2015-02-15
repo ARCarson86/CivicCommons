@@ -8,11 +8,13 @@
         <%= f.label :title, class: 'col-sm-2 control-label' %>
         <div class="col-sm-10">
           <%= f.text_field :title, class: "form-control" %>
+          <span class="help-block">This is the title of the page. It will also be used as the link to the page in the header.</span>
         </div>
       </div>
       <div class="form-group">
         <%= f.label :content, class: 'col-sm-2 control-label' %>
         <div class="col-sm-10">
+          <span class="help-block">Enter below the content for the main part of the page.  This should be text marked up with HTML.</span>
           <%= f.text_area :content, class: "form-control" %>
         </div>
       </div>
@@ -38,12 +40,14 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title">Meta Information</h3>
+      <span class="help-block">This content will not be visible to the visitor, but will be used by search engines when indexing your page.</span>
     </div>
     <div class="panel-body">
       <div class="form-group">
         <%= f.label :meta_title, 'Title', class: 'col-sm-2 control-label' %>
         <div class="col-sm-10">
           <%= f.text_field :meta_title, class: "form-control" %>
+          <span class="help-block">The title of the page to be displayed in search engine results and in the browser window</span>
         </div>
       </div>
       <div class="form-group">
@@ -56,6 +60,7 @@
         <%= f.label :meta_description, 'Description', class: 'col-sm-2 control-label' %>
         <div class="col-sm-10">
           <%= f.text_field :meta_description, class: "form-control" %>
+          <span class="help-block">A short description of the content of your page that may be displayed in search engine results</span>
         </div>
       </div>
     </div>
