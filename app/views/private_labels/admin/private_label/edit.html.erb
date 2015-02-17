@@ -3,17 +3,18 @@
     <div class="panel-heading"><h3 class="panel-title">Details</h3></div>
     <div class="panel-body">
       <div class="form-group">
-        <%= f.label :name, class: 'col-sm-2 control-label' %>
+        <%= f.label :name, 'Private Label Name', class: 'col-sm-3 control-label' %>
         <div class="col-sm-10">
           <%= f.text_field :name, class: 'form-control' %>
+          <span class="help-block">This will also be displayed in the browser window as part of the page title</span>
         </div>
       </div>
 
       <div class="form-group">
-        <%= f.label :namespace, class: 'col-sm-2 control-label' %>
+        <%= f.label :namespace, 'Subdomain Name', class: 'col-sm-2 control-label' %>
         <div class="col-sm-10">
           <%= f.text_field :namespace, class: 'form-control' %>
-          <span class="help-block">Only enter a value if Civic Commons is hosting your site. This is the name for your site on theciviccommons.com</span>
+          <span class="help-block">Only enter a value if Civic Commons is hosting your site</span>
         </div>
       </div>
 
@@ -29,19 +30,19 @@
         <%= f.label :terms_of_service, class: 'col-sm-2 control-label' %>
         <div class="col-sm-10">
           <%= f.text_area :terms_of_service, class: 'form-control', rows: '3' %>
-          <span class="help-block">These are the terms that users must agree to when registering for your site.</span>
+          <span class="help-block">These are the terms specific to your private label that users must agree to</span>
         </div>
       </div>
 
       <div class="form-group">
-        <%= f.label :title, 'Page Title', class: 'col-sm-2 control-label' %>
+        <%= f.label :title, 'Homepage Header', class: 'col-sm-2 control-label' %>
         <div class="col-sm-10">
           <%= f.text_field :title, class: 'form-control' %>
         </div>
       </div>
 
       <div class="form-group">
-        <%= f.label :tagline, class: 'col-sm-2 control-label' %>
+        <%= f.label :tagline, 'Homepage Tagline', class: 'col-sm-2 control-label' %>
         <div class="col-sm-10">
           <%= f.text_field :tagline, class: 'form-control' %>
         </div>
@@ -123,9 +124,9 @@
 
       <div class="form-group">
         <%= f.label :main_image, class: 'col-sm-2 control-label' %>
-        <div class="col-sm-5">
+        <div class="col-sm-10">
           <%= f.file_field :main_image, class: 'form-control' %>
-          <span class="help-block">Needs to be at least 1200px wide and 300px high</span>
+          <span class="help-block">Needs to be at least 1200px wide and 300px high; this will be used as homepage header image, and as the background image on all pages</span>
         </div>
         
           <%- if @private_label.main_image.present? %>
@@ -133,7 +134,7 @@
               <%= image_tag @private_label.main_image.url(:main), class: 'img-responsive' %>
             </div>
           <%- else %>
-            <div class="col-sm-5">
+            <div class="col-sm-10">
               <p>No image uploaded</p>
             </div>
           <%- end %>
