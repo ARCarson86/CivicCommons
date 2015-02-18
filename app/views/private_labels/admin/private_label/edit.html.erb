@@ -4,46 +4,46 @@
     <div class="panel-body">
       <div class="form-group">
         <%= f.label :name, 'Private Label Name', class: 'col-sm-3 control-label' %>
-        <div class="col-sm-10">
+        <div class="col-sm-9">
           <%= f.text_field :name, class: 'form-control' %>
           <span class="help-block">This will also be displayed in the browser window as part of the page title</span>
         </div>
       </div>
 
       <div class="form-group">
-        <%= f.label :namespace, 'Subdomain Name', class: 'col-sm-2 control-label' %>
-        <div class="col-sm-10">
+        <%= f.label :namespace, 'Subdomain Name', class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
           <%= f.text_field :namespace, class: 'form-control' %>
           <span class="help-block">Only enter a value if Civic Commons is hosting your site</span>
         </div>
       </div>
 
       <div class="form-group">
-        <%= f.label :domain, class: 'col-sm-2 control-label' %>
-        <div class="col-sm-10">
+        <%= f.label :domain, class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
           <%= f.text_field :domain, class: 'form-control' %>
           <span class="help-block">Only enter a value if you are hosting your own site. This needs to be the fully qualified domain name (i.e., yoursite.com)</span>
         </div>
       </div>
 
       <div class="form-group">
-        <%= f.label :terms_of_service, class: 'col-sm-2 control-label' %>
-        <div class="col-sm-10">
+        <%= f.label :terms_of_service, class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
           <%= f.text_area :terms_of_service, class: 'form-control', rows: '3' %>
           <span class="help-block">These are the terms specific to your private label that users must agree to</span>
         </div>
       </div>
 
       <div class="form-group">
-        <%= f.label :title, 'Homepage Header', class: 'col-sm-2 control-label' %>
-        <div class="col-sm-10">
+        <%= f.label :title, 'Homepage Header', class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
           <%= f.text_field :title, class: 'form-control' %>
         </div>
       </div>
 
       <div class="form-group">
-        <%= f.label :tagline, 'Homepage Tagline', class: 'col-sm-2 control-label' %>
-        <div class="col-sm-10">
+        <%= f.label :tagline, 'Homepage Tagline', class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
           <%= f.text_field :tagline, class: 'form-control' %>
         </div>
       </div>
@@ -55,22 +55,22 @@
     <div class="panel-heading"><h3>Contact Information</h3></div>
     <div class="panel-body">
       <div class="form-group">
-        <%= f.label :email, class: 'col-sm-2 control-label' %>
-        <div class="col-sm-10">
+        <%= f.label :email, class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
           <%= f.email_field :email, class: 'form-control' %>
         </div>
       </div>
 
       <div class="form-group">
-        <%= f.label :phone, 'Phone Number', class: 'col-sm-2 control-label' %>
-        <div class="col-sm-10">
+        <%= f.label :phone, 'Phone Number', class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
           <%= f.phone_field :phone, class: 'form-control' %>
         </div>
       </div>
 
       <div class="form-group">
-        <%= f.label :address, class: 'col-sm-2 control-label' %>
-        <div class="col-sm-10">
+        <%= f.label :address, class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
           <%= f.text_area :address, class: 'form-control', rows: '5' %>
         </div>
       </div>
@@ -81,22 +81,22 @@
     <div class="panel-heading"><h3>Social Media</h3></div>
     <div class="panel-body">
       <div class="form-group">
-        <%= f.label :facebook_url, 'Facebook URL', class: 'col-sm-2 control-label' %>
-        <div class="col-sm-10">
+        <%= f.label :facebook_url, 'Facebook URL', class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
           <%= f.url_field :facebook_url, class: 'form-control' %>
         </div>
       </div>
 
       <div class="form-group">
-        <%= f.label :twitter_url, 'Twitter URL', class: 'col-sm-2 control-label' %>
-        <div class="col-sm-10">
+        <%= f.label :twitter_url, 'Twitter URL', class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
           <%= f.url_field :twitter_url, class: 'form-control' %>
         </div>
       </div>
 
       <div class="form-group">
-        <%= f.label :linkedin_url, 'LinkedIn URL', class: 'col-sm-2 control-label' %>
-        <div class="col-sm-10">
+        <%= f.label :linkedin_url, 'LinkedIn URL', class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
           <%= f.url_field :linkedin_url, class: 'form-control' %>
         </div>
       </div>
@@ -107,9 +107,9 @@
     <div class="panel-heading"><h3 class="panel-title">Images</h3></div>
     <div class="panel-body">
       <div class="form-group">
-        <%= f.label :logo, class: 'col-sm-2 control-label' %>
+        <%= f.label :logo, class: 'col-sm-3 control-label' %>
 
-        <div class="col-sm-5">
+        <div class="col-sm-4">
           <%= f.file_field :logo, class: 'form-control' %>
           <span class="help-block">Needs to be at least 300px wide and 300px high</span>
         </div>
@@ -123,30 +123,30 @@
       </div>
 
       <div class="form-group">
-        <%= f.label :main_image, class: 'col-sm-2 control-label' %>
-        <div class="col-sm-10">
+        <%= f.label :main_image, class: 'col-sm-3 control-label' %>
+        <div class="col-sm-5">
           <%= f.file_field :main_image, class: 'form-control' %>
           <span class="help-block">Needs to be at least 1200px wide and 300px high; this will be used as homepage header image, and as the background image on all pages</span>
         </div>
         
           <%- if @private_label.main_image.present? %>
-            <div class="col-sm-offset-2 col-sm-10" style="padding-top: 10px;">
+            <div class="col-sm-offset-3 col-sm-9" style="padding-top: 10px;">
               <%= image_tag @private_label.main_image.url(:main), class: 'img-responsive' %>
             </div>
           <%- else %>
-            <div class="col-sm-10">
+            <div class="col-sm-9">
               <p>No image uploaded</p>
             </div>
           <%- end %>
       </div>
 
       <div class="form-group">
-        <%= f.label :favicon, class: 'col-sm-2 control-label' %>
-        <div class="col-md-5">
+        <%= f.label :favicon, class: 'col-sm-3 control-label' %>
+        <div class="col-md-4">
           <%= f.file_field :favicon, class: 'form-control' %>
           <span class="help-block">Should be 16px wide and 16px high</span>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-4">
           <%- if @private_label.favicon.present? %>
             <%= image_tag @private_label.favicon.url(:medium) %>
           <%- else %>
@@ -181,7 +181,7 @@
   </div>
 
   <div class="form-group">
-    <div class="col-sm-2 col-sm-offset-10 text-right">
+    <div class="col-sm-3 col-sm-offset-10 text-right">
       <%= f.submit 'Save', class: 'btn btn-success' %>
     </div>
   </div>
