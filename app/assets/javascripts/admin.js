@@ -1,5 +1,6 @@
 //=require 'jquery'
-//=require 'jquery/jquery-ui-1.8.16'
+//=require 'jquery/jquery-migrate'
+//=require 'jquery/jquery-ui'
 //=require 'jquery_ujs'
 //=require 'tiny_mce/jquery.tinymce.js'
 //=require 'jquery/jquery.tablesorter.min'
