@@ -50,12 +50,20 @@ civicApp
         controller: 'RemotePageCtrl'
         templateUrl: 'remote_pages/show.html'
         resolve:
-          remotePage: ['$route', 'RemotePage', 'CivicApi', ($route, RemotePage, CivicApi) ->
+          remotePage: ['$q', '$route', 'RemotePage', 'CivicApi', ($q, $route, RemotePage, CivicApi) ->
+            deferred = $q.defer()
+
             RemotePage.registerObserverCallback (page) ->
               CivicApi.setVar 'contributable_type', 'remote_pages'
               CivicApi.setVar 'contributable_id', page.id
 
-            RemotePage.get({remote_page_url: $route.current.params.remotePageAddress}).$promise
+            RemotePage.get {remote_page_url: $route.current.params.remotePageAddress}, (data) ->
+              unless data.conversation
+                deferred.resolve data
+              else
+                deferred.reject status: 301, conversation: data.conversation
+
+            deferred.promise
           ]
           users: ['$q', 'RemotePage', 'User', ($q, RemotePage, User) ->
             deferred = $q.defer()
@@ -89,4 +97,5 @@ civicApp
   .run ['$rootScope', '$location', 'IframeHeight', ($rootScope, $location, IframeHeight) ->
     $rootScope.$on '$routeChangeError', (angularEvent, current, previous, rejection) ->
       $location.path '/404' if rejection.status == 404
+      $location.path "/conversations/#{rejection.conversation.slug}" if rejection.status = 301 and rejection.conversation
   ]

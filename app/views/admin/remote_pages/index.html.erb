@@ -1,0 +1,24 @@
+<h2>Remote Pages</h2>
+
+<table class="tablesorter">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Contributions</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @remote_pages.each do |remote_page| %>
+      <tr>
+        <td><%= link_to (remote_page.title || "Page at: #{remote_page.url}"), remote_page.url, target: '_blank' %></td>
+        <td><%= remote_page.contributions.count %></td>
+        <td>
+          <%= link_to 'view conversation', [:convert, :admin, remote_page] if remote_page.conversation %>
+          <%= link_to 'convert to conversation', [:convert, :admin, remote_page] unless remote_page.conversation %>
+          | <%= link_to 'delete', [:admin, remote_page], method: 'delete', confirm: 'Are you sure?' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -10,6 +10,7 @@ class Api::V1::ContributionsController < Api::V1::BaseController
   end
 
   def create
+    @contribution.confirmed = true
     @contribution.save!
     render 'show'
   end

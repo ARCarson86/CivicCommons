@@ -261,6 +261,12 @@ Civiccommons::Application.routes.draw do
       put  'update_display_names', on: :member
     end
     resources :redirects
+    resources :remote_pages, only: [:index, :destroy] do
+      member do
+        get 'convert', to: :new_conversation
+        post 'convert', to: :create_conversation
+      end
+    end
   end
 
   namespace :api do

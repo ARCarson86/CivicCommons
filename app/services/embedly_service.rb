@@ -28,6 +28,7 @@ class EmbedlyService
     objs = @embedly.objectify(opts)
     @properties = objs[0].marshal_dump
     raise @properties[:error_message] if @properties.has_key?(:error_message)
+    @properties
   rescue => error
     @error = error.message
     if not @properties.nil? and @properties.has_key?(:error_code)
