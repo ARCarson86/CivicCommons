@@ -51,9 +51,9 @@ module PrivateLabels
             expect(private_label).not_to be_changed
           end
 
-          it 'redirects to the show settings page' do
+          it 'redirects to the edit settings page' do
             put :update, private_label: params
-            expect(response).to render_template(:edit)
+            expect(response).to redirect_to(private_labels_admin_private_label_edit_path)
           end
 
           it 'provides a success message for the user' do

@@ -15,8 +15,10 @@ module PrivateLabels
       def update
         if @private_label.update_attributes(params[:private_label])
           flash.notice = "Private label settings were updated successfully."
+          redirect_to private_labels_admin_private_label_edit_path
+        else
+          render :edit
         end
-        redirect_to private_labels_admin_private_label_edit_path
       end
 
       private ##################################################
