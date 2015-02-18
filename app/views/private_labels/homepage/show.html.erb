@@ -1,7 +1,6 @@
 <% content_for :main_image do %>
  	<div class="private-label-details" style="background-image:url('<%= Swayze.current_private_label.main_image.url(:main) %>');">
 		<div class="header">
-			<div class="project-icon"><%= image_tag 'private_labels/folder-wh.png' %>Project /</div>
 			<h1><%= Swayze.current_private_label.title %></h1>
 			<h2><%= Swayze.current_private_label.tagline %></h2>
 		</div>
