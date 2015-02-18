@@ -1,6 +1,7 @@
 <h1>Sidebar</h1>
 
 <%= form_for @sidebar, url: private_labels_admin_sidebar_path, namespace: :admin do |f| %>
+  <p class="help-block">The sidebar content is optional for all static pages. You can enter HTML and it will appear on the page correctly.</p>
   <div class="form-group">
   	<%= f.text_area :content, :class => 'form-control' %><br />
   </div>
