@@ -32,7 +32,7 @@
             <% Conversation.unscoped do %>
               <%= link_to activity.conversation.title, activity.conversation %>
             <% end %>
-            <%= truncate(simple_format(activity.content), length: 125, omission: '...') %>
+            <%= truncate(strip_tags(activity.content), length: 125, omission: '...') %>
           </div>
         </div>
       </div>
