@@ -32,16 +32,16 @@ RSpec.describe PrivateLabels::Ability do
       expect(ability.can? :manage, conversation).to be_truthy
     end
 
-    it 'allows them to manage a conversation for another private label' do
-      expect(ability.can? :manage, restricted_conversation).to be_truthy
+    it 'does not allow them to manage a conversation for another private label' do
+      expect(ability.can? :manage, restricted_conversation).to be_falsey
     end
 
     it 'allows them to manage a contribution for the current private label' do
       expect(ability.can? :manage, contribution).to be_truthy
     end
 
-    it 'allows them to manage a contribution for a different private label' do
-      expect(ability.can? :manage, restricted_contribution).to be_truthy
+    it 'does not allow them to manage a contribution for a different private label' do
+      expect(ability.can? :manage, restricted_contribution).to be_falsey
     end
 
     it 'allows them to read another person' do
