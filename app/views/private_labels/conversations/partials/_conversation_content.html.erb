@@ -5,7 +5,7 @@
         <%= image_tag @conversation.image.url(:panel) %>
       </div>
     <% end %>
-    <%= sanitize @conversation.summary %>
+    <%= simple_format @conversation.summary %>
   </div>
 
   <% if !@conversation.starter.blank? %>
