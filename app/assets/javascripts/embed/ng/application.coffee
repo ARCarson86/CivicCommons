@@ -77,7 +77,11 @@ civicApp
             RemotePage.registerObserverCallback (page) ->
               Account.get {}, (data) ->
                 deferred.resolve(data)
-            deferred.promise
+              , (rejection) ->
+                if rejection.status == 401
+                  deferred.resolve(null)
+                else
+                  deferred.reject(rejection)
           ]
           contributions: ['$q', 'RemotePage', 'Contribution', ($q, RemotePage, Contribution) ->
             deferred = $q.defer()
