@@ -4,7 +4,6 @@ angular.module 'civic.controllers'
     $scope.contributions = contributions
     $scope.totalContributions = CivicApi.getVar 'totalContributions', 0
     $scope.remotePage = remotePage
-    console.log $scope.remotePage
 
     Contribution.registerObserverCallback (data, headers) ->
       $scope.contributions = Contribution.getContributions()

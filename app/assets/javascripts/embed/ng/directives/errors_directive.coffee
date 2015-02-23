@@ -31,7 +31,6 @@ angular.module 'civic.directives'
     scope:
       messages: '='
     link: (scope, element, attrs) ->
-      console.log 'testing'
       scope.dismiss = ->
         scope.messages = []
 
