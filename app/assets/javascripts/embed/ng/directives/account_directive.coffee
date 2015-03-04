@@ -29,7 +29,7 @@ angular.module 'civic.directives'
     transclude: true
     scope: {}
     template: [
-      '<a href ng-click="openAuthWindow()" ng-hide="account" ng-transclude="true" >',
+      '<a href ng-click="openAuthWindow()" ng-hide="account" ng-transclude="true" class="sign-in-link" >',
       '</a>',
     ].join ''
     link: (scope, element, attrs) ->
