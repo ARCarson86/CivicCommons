@@ -206,7 +206,6 @@ ActiveRecord::Schema.define(:version => 20150218151616) do
     t.string   "embedly_type"
     t.boolean  "top_level_contribution",                        :default => false
     t.boolean  "moderator_post"
-    t.integer  "private_label_id"
     t.string   "contributable_type"
   end
 
@@ -252,7 +251,6 @@ ActiveRecord::Schema.define(:version => 20150218151616) do
     t.boolean  "permission_to_use_image"
     t.text     "starter"
     t.boolean  "expanded"
-    t.integer  "private_label_id"
   end
 
   add_index "conversations", ["cached_slug"], :name => "index_conversations_on_cached_slug", :unique => true
@@ -590,69 +588,6 @@ ActiveRecord::Schema.define(:version => 20150218151616) do
 
   add_index "petitions", ["conversation_id"], :name => "index_petitions_on_conversation_id"
   add_index "petitions", ["person_id"], :name => "index_petitions_on_person_id"
-
-  create_table "private_label_people", :force => true do |t|
-    t.integer  "private_label_id"
-    t.integer  "person_id"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
-    t.boolean  "admin",            :default => false
-  end
-
-  create_table "private_labels", :force => true do |t|
-    t.string   "name"
-    t.string   "namespace"
-    t.string   "domain"
-    t.text     "terms_of_service"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
-    t.string   "logo_file_name"
-    t.string   "logo_content_type"
-    t.integer  "logo_file_size"
-    t.datetime "logo_updated_at"
-    t.string   "main_image_file_name"
-    t.string   "main_image_content_type"
-    t.integer  "main_image_file_size"
-    t.datetime "main_image_updated_at"
-    t.string   "title"
-    t.string   "tagline"
-    t.string   "email"
-    t.string   "phone"
-    t.string   "address"
-    t.string   "facebook_url"
-    t.string   "twitter_url"
-    t.string   "linkedin_url"
-    t.string   "theme"
-    t.string   "favicon_file_name"
-    t.string   "favicon_content_type"
-    t.integer  "favicon_file_size"
-    t.datetime "favicon_updated_at"
-    t.float    "latitude"
-    t.float    "longitude"
-  end
-
-  create_table "private_labels_pages", :force => true do |t|
-    t.string   "title"
-    t.string   "slug"
-    t.text     "content"
-    t.boolean  "sidebar"
-    t.string   "meta_title"
-    t.string   "meta_keywords"
-    t.string   "meta_description"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-    t.integer  "private_label_id"
-    t.boolean  "is_home"
-  end
-
-  add_index "private_labels_pages", ["slug"], :name => "index_private_labels_pages_on_slug", :unique => true
-
-  create_table "private_labels_sidebars", :force => true do |t|
-    t.text     "content"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-    t.integer  "private_label_id"
-  end
 
   create_table "rating_descriptors", :force => true do |t|
     t.string   "title"
