@@ -90,6 +90,7 @@ p {
       border-collapse: collapse;
       padding: 0;
       width: auto;
+      z-index: 2;
       li {
         border-bottom: 1px solid $lightGray;
         box-sizing: border-box;
@@ -556,6 +557,9 @@ footer {
   }
 }
 
+.sign-in-link {
+  text-decoration: none;
+}
 .sign-in-on-conversation {
   margin-bottom: 1em;
   overflow: hidden;
