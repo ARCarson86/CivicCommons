@@ -73,9 +73,14 @@ embedObj = ->
     src.push "#{@settings.embedType}/" if @settings.embedType in availableEmbedTypes
     src.push @settings.conversationId if @settings.conversationId
     src.push "?remotePageAddress=#{@settings.remotePageAddress}" if @settings.remotePageAddress
-    iframe.src = src.join ''
     iframe.style.border = @settings.borderStyling
     iframe.style.width = "100%"
+
+    # prevent back button from breaking the comment embed
+    setTimeout ->
+      iframe.src = src.join ''
+    , 0
+
     iframe
   @initialize = (options = {}) ->
     return if @initialized
