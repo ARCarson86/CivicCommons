@@ -38,7 +38,6 @@ class EmbedlyService
       @error = "Server Issues"
     end
     @properties = nil
-    Rails.logger.error error.message
   end
 
   def fetch_and_merge_params!(params)

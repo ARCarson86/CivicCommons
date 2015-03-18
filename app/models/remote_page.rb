@@ -15,7 +15,9 @@ class RemotePage < ActiveRecord::Base
   def create_embeddly_info
     embedly = EmbedlyService.new
     info = embedly.fetch(url)
-    update_attributes title: info[:title], description: info[:description]
+    unless info.blank?
+      update_attributes title: info[:title], description: info[:description]
+    end
   end
 
 end
