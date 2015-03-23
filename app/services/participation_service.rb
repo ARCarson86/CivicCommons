@@ -36,7 +36,8 @@ class ParticipationService
     inner join
       conversations c
     on
-      t.conversation_id = c.id
+      t.contributable_type = 'Conversation' AND
+      t.contributable_id = c.id
     where
       t.confirmed = 1
     group by
