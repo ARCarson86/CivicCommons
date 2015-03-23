@@ -185,7 +185,7 @@ class Contribution < ActiveRecord::Base
     conversation = nil
     issue = nil
     if item.is_a?(Conversation)
-      self.conversation = item
+      self.contributable = item
     elsif item.is_a?(Issue)
       self.issue = item
     end
