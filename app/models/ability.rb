@@ -29,7 +29,7 @@ class Ability
       ]
     
   
-  def initialize(user)
+  def initialize(user, private_label={})
 
     user ||= Person.new # guest user (not logged in)
 
@@ -47,6 +47,7 @@ class Ability
       can :manage, PrivateLabel
       can :manage, Conversation.where(private_label_id: private_label.id).first
     end
+
     if user.admin?
       can :manage,  :all
       can :moderate, Contribution

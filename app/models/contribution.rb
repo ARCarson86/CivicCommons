@@ -14,6 +14,7 @@ class Contribution < ActiveRecord::Base
     integer :region_metrocodes, :multiple => true
   end
 
+  attr_accessible :contributable
   attr_accessor :top_level, :owner_id
   validates :content,  presence: true, obscenity: { sanitize: true, replacement: :vowels }
   # nested contributions are destroyed via callbacks
@@ -137,6 +138,10 @@ class Contribution < ActiveRecord::Base
 
   def conversation
     contributable if contributable_type == 'Conversation'
+  end
+
+  def conversation=(conversation)
+    contributable = conversation
   end
 
   #############################################################################
