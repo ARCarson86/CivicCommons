@@ -21,7 +21,7 @@
 </div>
 
 <%= render partial: 'private_labels/homepage/partials/home_conversations' %>
-		
+<%= will_paginate @conversations, next_label: '&#10095;', previous_label: '&#10094;' %>
 <% content_for :sidebar do %>
  	<div class="row">
 		<div class="col-md-12 col-sm-12 col-xs-12">

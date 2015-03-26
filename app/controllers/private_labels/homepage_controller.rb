@@ -3,7 +3,7 @@ module PrivateLabels
 
     def show
       @people = Swayze.current_private_label.people
-      @conversations = Swayze.current_private_label.conversations
+      @conversations = Swayze.current_private_label.conversations.paginate(page: params[:page], per_page: 6)
       @page = Page.home_page.first
 
       @meta_info = {
