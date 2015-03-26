@@ -4,7 +4,7 @@
     <% cache ["sub_level_contribution", contribution.id, contribution.updated_at] do %>
       <%= render :partial => '/user/author_card', locals: {author:contribution.owner, conversation_created_at: contribution.created_at} %>
       <a class="show-contribution" href="#show-contribution-<%= contribution.id %>" title="Show this response">
-        <i class="icon-reply"></i>
+        <i class="fa fa-reply"></i>
       </a>
       <div class="content">
         <%= render partial: '/contributions/content', locals: {contribution:contribution} %>

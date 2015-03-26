@@ -200,6 +200,11 @@
               <%= link_to "Private Labels", admin_private_labels_path %>
             </li>
           <% end %>
+          <% if can? :manage, :remote_pages %>
+            <li>
+              <%= link_to "Remote Pages", admin_remote_pages_path %>
+            </li>
+          <% end %>
         </ul>
       </div>
       <div id="main">

@@ -20,10 +20,8 @@ var selectOptionCheckBoxBehavior = function(){
   var $checked_boxes = $('input.option-checkbox:checked');
   var checked_count = $checked_boxes.length;
   if(checked_count < 1 || checked_count > 1){
-    // console.log('show the tab');
     showRankOptionTab();
   }else{
-    // console.log('hide the tab');
     hideRankOptionTab();
   };
 }

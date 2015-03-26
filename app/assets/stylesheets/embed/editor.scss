@@ -1,0 +1,108 @@
+@import 'compass/utilities/general/clearfix';
+@import 'variables';
+
+.editor {
+  border: 2px solid $lightGray;
+  border-radius: 2px;
+  background-color: white;
+  margin-bottom: 5px;
+  .editor-toolbar {
+    @include pie-clearfix;
+    height: 2em;
+    line-height: 2em;
+    &, a {
+      color: $editorIconColor;
+    }
+    border-bottom: 1px solid $lightGray;
+    .editor-button {
+      display: inline-block;
+      text-align: center;
+      padding: 0.2em;
+      margin: 0 0.2em;
+      line-height: normal;
+      &.active {
+        background-color: $lightGray;
+      }
+    }
+  }
+  .editor-body {
+    outline: none;
+    min-height: 3em;
+    padding: 5px;
+
+    > p {
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+  }
+  .editor-attachments {
+    .badge {
+      border-right: 1px solid $lightGray;
+      border-bottom: 1px solid $lightGray;
+      margin-bottom: -1px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 26px;
+      width: 26px;
+      line-height: 26px;
+      text-align: center;
+    }
+
+    .hint {
+      color: $gray;
+    }
+
+    > div {
+      position: relative;
+      min-height: 25px;
+      line-height: 15px;
+      border-top: 1px solid $lightGray;
+      padding: 5px 5px 5px 30px;
+    }
+
+    .editor-link {
+      padding: 0 0 0 30px;
+      input {
+        height: 25px;
+        margin: 0;
+        border: 0 none;
+        outline: none;
+        width: 100%;
+      }
+    }
+
+    .editor-images {
+
+      &.hover {
+        background-color: $lightGray;
+        border: 3px dotted $gray;
+      }
+
+      .attachment-info {
+        line-height: 50px;
+        vertical-align: top;
+        @include pie-clearfix;
+
+        &, .preview, .filename {
+          display: inline-block;
+        }
+
+        .preview {
+          background: no-repeat left;
+          background-size: contain;
+          height: 50px;
+          margin-right: 1em;
+          float: left;
+          img {
+            height: 50px;
+            width: auto;
+          }
+        }
+      }
+
+    }
+  }
+}

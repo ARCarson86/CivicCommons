@@ -11,7 +11,9 @@ end
 
 module Civiccommons
   class Application < Rails::Application
-    config.assets.initialize_on_precompile = false
+    require "#{Rails.root}/config/initializers/bower_rails.rb"
+
+    config.assets.initialize_on_precompile = true
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -72,8 +74,7 @@ module Civiccommons
 
     config.assets.logger = Logger.new(STDOUT)
 
-    config.assets.precompile += %w( admin.js conversations/activities.embed.js conversations/show_embed.js tiny_mce/**/*.js tiny_mce/*.js )
-    config.assets.precompile += %w( editor.css petition.print.css admin.css widget.css tiny_mce/**/*.css)
+    config.assets.paths << Rails.root.join('spec/karma')
 
   end
 end

@@ -1,0 +1,38 @@
+<div id="conversation-{{conversation.slug}}" class="conversation">
+
+  <h1>{{conversation.title}}</h1>
+  <div class="authoring-information">
+    <user-avatar user="conversation.author"></user-avatar>
+    <div class="authoring-information-primary">
+      <user user="conversation.author"></user>
+      <div class="created-date">{{conversation.created_at | date : 'MMMM d, y h:mm a'}}</div>
+    </div>
+  </div>
+
+  <read-more>
+    <div ng-bind-html="conversation.summary"></div>
+  </read-more>
+  <!--<div read-more content="conversation.summary"></div>-->
+
+  <div class="starter" ng-show="conversation.starter">
+    <h2>Conversation Starter</h2>
+    <div ng-bind-html="conversation.starter"></div>
+  </div>
+
+  <div class="new-contribution">
+    <div class='contribute-placeholder' ng-hide="contributionActive && account()">
+      <account-avatar ng-show="account()"></account-avatar>
+      <sign-in-link href >
+        <span class="sign-in-on-conversation" ng-show="!account()"><i class="fa fa-sign-in"></i>Log in to post what you think.</span>
+      </sign-in-link>
+      <a href class="what-do-you-think" ng-show="account()" ng-click="contributionActive = !contributionActive">What do you think?</a>
+    </div>
+    <contribute contribution="newContribution" ng-show="contributionActive && account()" active-variable="contributionActive"></contribute>
+  </div>
+
+  <div class="contributions-list">
+    <div class="contribution-count"> Displaying {{contributions.length}} of {{conversation.number_of_top_level_contributions}} </div>
+    <div class="contributions" ng-include="'contributions/contributions.html'"></div>
+  </div>
+
+</div>

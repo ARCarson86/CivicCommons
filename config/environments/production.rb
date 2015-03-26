@@ -2,7 +2,7 @@ require File.expand_path('./config/initializers/civic_commons.rb')
 
 Civiccommons::Application.configure do
   # Settings specified here will take precedence over those in config/environment.rb
-  config.assets.initialize_on_precompile = false
+  config.assets.initialize_on_precompile = true
 
   # The production environment is meant for finished, "live" apps.
   # Code is not reloaded between requests
@@ -81,6 +81,11 @@ Civiccommons::Application.configure do
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
+
+  config.assets.precompile = [ Proc.new{ |path| !File.extname(path).in?(['.js', '.css', '.map', '.gzip']) }, /(?:\/|\\|\A)application\.(css|js)$/ ]
+
+  config.assets.precompile << %w( admin.js conversations/activities.embed.js conversations/show_embed.js tiny_mce/**/*.js tiny_mce/*.js )
+  config.assets.precompile << %w( reset.css master.css ie.css petition.print.css admin.css widget.css tiny_mce/**/*.css)
 
   if (File.exist? Rails.root.join('config/redis.yml'))
     redis_config = YAML.load_file(Rails.root.join('config/redis.yml'))

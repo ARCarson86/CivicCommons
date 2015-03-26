@@ -20,7 +20,7 @@ class RatingGroup < ActiveRecord::Base
   }
 
   def set_conversation_id
-    self.conversation_id = contribution.conversation_id if conversation_id.blank?
+    self.conversation_id = contribution.conversation.id if conversation_id.blank?
   end
 
   def self.cached_rating_descriptors

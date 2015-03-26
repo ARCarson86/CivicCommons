@@ -1,0 +1,15 @@
+<div class="new-contribution">
+  <div class='contribute-placeholder' ng-hide="contributionActive && account()">
+    <account-avatar ng-show="account()"></account-avatar>
+    <sign-in-link href >
+      <span class="sign-in-on-conversation" ng-show="!account()"><i class="fa fa-sign-in"></i>Log in to post what you think.</span>
+    </sign-in-link>
+    <a href class="what-do-you-think" ng-show="account()" ng-click="contributionActive = !contributionActive">What do you think?</a>
+  </div>
+  <contribute contribution="newContribution" ng-show="contributionActive && account()" active-variable="contributionActive"></contribute>
+</div>
+
+<div class="contributions-list">
+  <div class="contribution-count"> Displaying {{contributions.length}} of {{remotePage.number_of_top_level_contributions}} </div>
+  <div class="contributions" ng-include="'contributions/contributions.html'"></div>
+</div>

@@ -181,7 +181,7 @@ module ConversationsHelper
 
   def format_comment(contribution)
     text = contribution.content.gsub(/([^\n]\n)(?=[^\n])/, ' ')
-    sanitize(auto_link(text, html: {target: "_blank"}, sanitize: false), tags: %w(strong em span p ul ol li a), attributes: %w(href title target))
+    sanitize(auto_link(text, html: {target: "_blank"}, sanitize: false), tags: %w(strong em span p ul ol li a b i u), attributes: %w(href title target))
   end
 
   def respond_button_text(contribution)

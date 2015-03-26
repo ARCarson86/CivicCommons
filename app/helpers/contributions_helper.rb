@@ -33,4 +33,8 @@ module ContributionsHelper
         "Edit"
       end
   end
+
+  def contributable
+    @conversation || @remote_page
+  end
 end

@@ -1,0 +1,5 @@
+<h2>Convert <%= @remote_page.title.inspect %> to a new conversation</h2>
+<%= form_for @conversation, url: convert_admin_remote_page_path(@remote_page), :html =>{:multipart => true} do |conversation| %>
+  <%= render partial: 'admin/conversations/form_fields', locals: {conversation: conversation} %>
+<% end %>
+<%= render :partial => "/conversations/region_autocomplete" %>

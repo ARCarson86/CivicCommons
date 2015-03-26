@@ -54,7 +54,6 @@ jQuery(function ($) {
         connectWith: '.selected-survey-options .sortable',
         cursor: 'crosshair',
         receive: function(event,ui){
-          console.log(this);
           $(ui.item).equalHeights();
         },
         placeholder: "survey-option-locator",
