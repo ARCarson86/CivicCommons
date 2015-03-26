@@ -27,23 +27,34 @@ class Ability
       :admin_user_registrations,
       :admin_redirects
       ]
-
+    
+  
   def initialize(user, private_label={})
 
-    unless user.blank?
-      if user.private_labels.include? private_label
-        can :manage, PrivateLabelPerson
-        can :manage, PrivateLabel
-        can :manage, Conversation.where(private_label_id: private_label.id).first
-      end
-      # CanCan is curently used only on the admin controller.
-      if user.admin?
-        can :manage,  :all
-      elsif user.blog_admin?
-        can :manage,  :admin_dashboard
-        can :manage, ContentItem
-        can :manage, :admin_blog_posts
-      end
+    user ||= Person.new # guest user (not logged in)
+
+    can :read, :all
+
+    can :flag, Contribution
+    can :index, Contribution, parent_id: nil
+
+    if user.persisted?
+      can [:create, :update, :destroy], Contribution, owner: user.id
+    end
+
+    if user.private_labels.include? private_label
+      can :manage, PrivateLabelPerson
+      can :manage, PrivateLabel
+      can :manage, Conversation.where(private_label_id: private_label.id).first
+    end
+
+    if user.admin?
+      can :manage,  :all
+      can :moderate, Contribution
+    elsif user.blog_admin?
+      can :manage,  :admin_dashboard
+      can :manage, ContentItem
+      can :manage, :admin_blog_posts
     end
 
     # Define abilities for the passed in user here. For example:

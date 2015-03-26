@@ -11,7 +11,7 @@ Civiccommons::Application.configure do
 
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
-  config.action_controller.perform_caching = false
+  config.action_controller.perform_caching = true
 
   # DO care if the mailer can't send!
   config.action_mailer.delivery_method = :sendmail
@@ -39,5 +39,7 @@ Civiccommons::Application.configure do
 
   redis_config = YAML.load_file(Rails.root.join('config/redis.yml'))
   config.cache_store = :redis_store, "redis://#{redis_config[Rails.env]["host"]}:#{redis_config[Rails.env]["port"]}/0/cache"
+
+  config.angular_templates.ignore_prefix = ['embed/ng/templates/', 'templates']
 
 end

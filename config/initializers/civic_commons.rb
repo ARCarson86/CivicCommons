@@ -1,3 +1,6 @@
+require 'multi_json'
+MultiJson.use :yajl
+
 if !defined?(Civiccommons::Config)
 
   require 'config/configurator'

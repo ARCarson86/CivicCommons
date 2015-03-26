@@ -22,9 +22,9 @@ module PrivateLabels
           civic_conversation = create(:conversation)
           another_conversation = create(:conversation, private_label: another_private_label)
 
-          @contribution = create(:contribution, conversation: @conversation, private_label: private_label)
-          create(:contribution, conversation: another_conversation, private_label: another_private_label)
-          create(:contribution, conversation: civic_conversation)
+          @contribution = create(:contribution, contributable: @conversation, private_label: private_label)
+          create(:contribution, contributable: another_conversation, private_label: another_private_label)
+          create(:contribution, contributable: civic_conversation)
         end
 
         it 'fetches only the admins for the current private label' do

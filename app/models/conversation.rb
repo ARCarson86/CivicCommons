@@ -14,6 +14,7 @@ require 'obscenity/active_model'
   has_many :actions, :dependent => :destroy
   has_many :activities
   has_many :notifications
+  has_one :remote_page
 
   searchable :ignore_attribute_changes_of => [ :total_visits, :recent_visits, :last_visit_date, :updated_at, :recent_rating ] do
     text :title, :boost => 3, :default_boost => 3
@@ -26,22 +27,19 @@ require 'obscenity/active_model'
     integer :region_metrocodes, :multiple => true
     integer :private_label_id
   end
-  has_many :contributions, :dependent => :destroy
-  has_many :confirmed_contributions, :class_name => 'Contribution',
-           :conditions => ['confirmed = ?', true]
+  has_many :contributions, dependent: :destroy, as: :contributable
+  alias_method :confirmed_contributions, :contributions
+  has_many :participants, through: :contributions, uniq: true, source: :person, order: 'contributions.created_at DESC'
+  alias_method :contributors, :participants
+
   accepts_nested_attributes_for :contributions, :allow_destroy => true
 
   has_many :subscriptions, :as => :subscribable, :dependent => :destroy
   has_many :featured_opportunities, :dependent => :nullify
 
   def top_level_contributions
-    Contribution.where(:conversation_id => self.id, :top_level_contribution => true)
+    contributions.where parent_id: nil
   end
-
-  # any person that has made a contribution to the convo
-  has_many :contributors, :through => :confirmed_contributions,
-           :source => :person, :uniq => true,
-           :order => "contributions.created_at ASC"
 
   has_many :petitions, :dependent => :destroy
   has_many :reflections, :dependent => :destroy
@@ -169,11 +167,20 @@ require 'obscenity/active_model'
     people.collect{ |person| person.id }
   end
 
-  # Number of Participants in related to the Talk portion of this Conversation
-  def participants
-    persons = Person.select("people.*, MAX(contributions.created_at) as most_recent_contribution").joins(:contributions).where("contributions.conversation_id = ?", self.id).order("most_recent_contribution DESC").group("people.id")
-    persons.flatten.uniq.reject(&:blank?)
+  def conversation
+    contributable
   end
+
+  # Number of Participants in related to the Talk portion of this Conversation
+  #def participants
+  #  persons = Person
+  #    .select("people.*, MAX(contributions.created_at) as most_recent_contribution")
+  #    .joins(:contributions)
+  #    .where("contributions.conversation_id = ?", self.id)
+  #    .order("most_recent_contribution DESC")
+  #    .group("people.id")
+  #  persons.flatten.uniq.reject(&:blank?)
+  #end
   # Number of Action Participants Related to this Conversation
   #
   # * Originator of Action
@@ -234,21 +241,17 @@ require 'obscenity/active_model'
 
   # Display Conversations by Most Active
   def self.most_active(options = {})
-    options.reverse_merge!(filter:0)
     daysago = options.delete(:daysago)
 
-    filter = options[:filter]
-    filter = [filter] unless options[:filter].respond_to?(:flatten) || filter.nil?
-    filter.flatten!
-
-    results = Conversation.select('conversations.*, COUNT(*) AS count_all, MAX(contributions.created_at) AS max_contributions_created_at').
-                     joins('LEFT OUTER JOIN contributions ON conversations.id = contributions.conversation_id').
-                     where("conversations.id not in (?)", filter).
-                     group('conversations.id').
-                     order('count_all DESC, max_contributions_created_at DESC')
+    results = Conversation.
+      select('conversations.*, COUNT(*) AS count_all, MAX(contributions.created_at) AS max_contributions_created_at').
+      joins(:contributions).
+      group('conversations.id').
+      order('count_all DESC, max_contributions_created_at DESC')
 
     results = results.where("contributions.created_at > ?", Time.now - daysago.days) if daysago
     results = results.where("conversations.created_at > ?", Time.now - daysago.days) if daysago
+
     return results
   end
 

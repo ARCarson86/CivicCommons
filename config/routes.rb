@@ -161,6 +161,8 @@ Civiccommons::Application.routes.draw do
     get  "/organizations/register/new", :to => "registrations#new_organization", :as => "new_organization_registration"
     post "/organizations/register", :to => "registrations#create_organization", :as => "organization_registration"
     get '/session_status', to: 'sessions#status', as: 'session_status', defaults: { format: :json }
+    get '/people/login/compact', :to=>'sessions#new_compact'
+    post '/people/login/compact', to: 'sessions#create_compact'
   end
 
   #Sort and Filters
@@ -302,7 +304,50 @@ Civiccommons::Application.routes.draw do
       put  'update_display_names', on: :member
     end
     resources :redirects
+    resources :remote_pages, only: [:index, :destroy] do
+      member do
+        get 'convert', to: :new_conversation
+        post 'convert', to: :create_conversation
+      end
+    end
   end
+
+  namespace :api do
+    api_version(:module => "V1", path: { value: "v1" }, defaults: {format: :json}) do
+      get 'me', controller: "users"
+      resources :users, only: [:show] do
+        collection do
+          get 'me'
+        end
+      end
+      resources :conversations do
+        resources :contributions do
+          member do
+            post :flag
+            post :moderate
+          end
+        end
+        resources :users
+      end
+      resources :remote_pages do
+        resources :contributions do
+          member do
+            post :flag
+            post :moderate
+          end
+        end
+        resources :users
+      end
+      devise_scope :person do
+        post :sessions, to: 'sessions#create'
+        delete :sessions, to: 'sessions#destroy'
+      end
+    end
+  end
+
+  resources :embed, only: [:index]
+
+  get '/embed/*path', to: 'embed#index'
 
   get '*path', to: 'redirects#show'
 

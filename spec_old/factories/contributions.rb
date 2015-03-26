@@ -4,10 +4,11 @@ FactoryGirl.define do
     f.association :person, :factory => :registered_user
     f.top_level false
     f.parent nil
-    f.association :conversation, :factory => :conversation
-    f.content "Basic Contributions"
+    #f.association :conversation, :factory => :conversation
+    f.content { "<p>#{Faker::Lorem.paragraphs(2).join("</p><p>")}</p>" }
     f.override_confirmed true
     f.url nil
+    f.conversation_id nil
   end
 
   factory :top_level_contribution, :parent => :contribution do |f|

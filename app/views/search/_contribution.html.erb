@@ -3,7 +3,7 @@
     title =  hit.result.title || "This contribution has no title"
     user_name = ("%s %s" % [hit.result.person.first_name, hit.result.person.last_name]).strip
 
-    if(hit.result.conversation_id)
+    if(hit.result.conversation)
       title = short_title(hit.result.conversation.title)
     %>
       <h4><%= link_to user_name + " said on " + title , conversation_node_path(hit.result) %></h4>

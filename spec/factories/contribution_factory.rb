@@ -6,7 +6,7 @@ FactoryGirl.define do
     override_confirmed    true
     url                   nil
 
-    conversation
+    contributable nil
     person
 
     factory :top_level_contribution do

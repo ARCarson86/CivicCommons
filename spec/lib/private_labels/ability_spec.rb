@@ -7,8 +7,8 @@ RSpec.describe PrivateLabels::Ability do
   let(:restricted_private_label) { create :private_label }
   let(:conversation)             { create(:conversation, private_label: private_label) }
   let(:restricted_conversation)  { create(:conversation, private_label: restricted_private_label) }
-  let(:contribution)             { create(:contribution, conversation: conversation, private_label: private_label) }
-  let(:restricted_contribution)  { create(:contribution, conversation: restricted_conversation, private_label: private_label) }
+  let(:contribution)             { create(:contribution, contributable: conversation, private_label: private_label) }
+  let(:restricted_contribution)  { create(:contribution, contributable: restricted_conversation, private_label: private_label) }
   let(:other_person)             { create(:confirmed_person) }
   let(:sidebar)                  { private_label.build_sidebar }
   let(:restricted_sidebar)       { restricted_private_label.build_sidebar }
@@ -134,7 +134,7 @@ RSpec.describe PrivateLabels::Ability do
   context 'when a person is not an administrator' do
     context 'and the user has registered for the current private label' do
       let (:person) { create :person }
-      let (:updatable_contribution) { create :contribution, person: person, conversation: conversation }
+      let (:updatable_contribution) { create :contribution, person: person, contributable: conversation }
 
       before(:each) do
         @private_label_person = create :private_label_person, person: person, private_label: private_label
@@ -169,7 +169,7 @@ RSpec.describe PrivateLabels::Ability do
       end
 
       it 'allows them to create a contribution' do
-        expect(ability.can?(:create, Contribution.new(conversation: conversation, person: person))).to be_truthy
+        expect(ability.can?(:create, Contribution.new(contributable: conversation, person: person))).to be_truthy
       end
 
       it 'allows them to create a contribution' do

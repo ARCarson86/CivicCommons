@@ -1,0 +1,35 @@
+{
+  "name": "CivicCommons",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Turning talk into action.",
+  "license": "Private",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CivicCommons/CivicCommons.git"
+  },
+  "dependencies": {
+    "bower": "^1.3.12"
+  },
+  "devDependencies": {
+    "karma": ">= 0.12.16",
+    "karma-coffee-preprocessor": ">= 0.2.1",
+    "karma-jasmine": ">= 0.2.2",
+    "karma-junit-reporter": "git://github.com/monterail/karma-ng-html2js-preprocessor#feature/strip-sufix",
+    "karma-mocha-reporter": ">= 0.3.1",
+    "karma-ng-html2js-preprocessor": "git://github.com/monterail/karma-ng-html2js-preprocessor#feature/strip-sufix",
+    "karma-phantomjs-launcher": ">= 0.1.4",
+    "karma-slim-preprocessor": ">= 0.0.1"
+  },
+  "scripts": {
+    "prestart": "npm install",
+    "start": "rails s",
+    "pretest": "npm install",
+    "test": "karma start karma.conf.js",
+    "test-single-run": "karma start karma.conf.js  --single-run",
+    "preupdate-webdriver": "npm install",
+    "update-webdriver": "webdriver-manager update",
+    "preprotractor": "npm run update-webdriver",
+    "protractor": "protractor e2e-tests/protractor.conf.js"
+  }
+}
