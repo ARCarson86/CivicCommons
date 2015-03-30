@@ -87,6 +87,8 @@ Civiccommons::Application.configure do
   config.assets.precompile << %w( admin.js conversations/activities.embed.js conversations/show_embed.js tiny_mce/**/*.js tiny_mce/*.js )
   config.assets.precompile << %w( reset.css master.css ie.css petition.print.css admin.css widget.css tiny_mce/**/*.css)
 
+  config.angular_templates.ignore_prefix = ['embed/ng/templates/', 'templates'] if config.angular_templates
+
   if (File.exist? Rails.root.join('config/redis.yml'))
     redis_config = YAML.load_file(Rails.root.join('config/redis.yml'))
     config.cache_store = :redis_store, "redis://#{redis_config[Rails.env]["host"]}:#{redis_config[Rails.env]["port"]}/0/cache", {expires_in: 7.days }
