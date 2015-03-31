@@ -71,7 +71,7 @@ Civiccommons::Application.configure do
 
   # fallback to assets pipeline if a precompiled asset is missed
   # must be set to true, because there is bug in rails 3.1.0 http://stackoverflow.com/questions/7252872/upgrade-to-rails-3-1-0-from-rc6-asset-precompile-fails
-  config.assets.compile = false
+  config.assets.compile = true
 
   # Generate digests for assets URLs.
   config.assets.digest = true
