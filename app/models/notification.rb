@@ -56,7 +56,7 @@ class Notification < ActiveRecord::Base
         person_id: attributes.person.id
       }
       if attributes.respond_to?(:contributable_type) && attributes.contributable_type == 'Conversation'
-        attr[:conversation_id] = attributes.conributable_id
+        attr[:conversation_id] = attributes.contributable_id
       elsif attributes.respond_to?(:issue_id) && !attributes.issue_id.nil?
         attr[:issue_id] = attributes.issue_id
       elsif attributes.is_a?(Conversation)
