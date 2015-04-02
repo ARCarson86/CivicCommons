@@ -35,7 +35,7 @@ Civiccommons::Application.configure do
 
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
-  config.serve_static_assets = false
+  # config.serve_static_assets = false
 
   # Enable serving of images, stylesheets, and javascripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
@@ -71,7 +71,7 @@ Civiccommons::Application.configure do
 
   # fallback to assets pipeline if a precompiled asset is missed
   # must be set to true, because there is bug in rails 3.1.0 http://stackoverflow.com/questions/7252872/upgrade-to-rails-3-1-0-from-rc6-asset-precompile-fails
-  config.assets.compile = false
+  config.assets.compile = true
 
   # Generate digests for assets URLs.
   config.assets.digest = true
@@ -86,6 +86,8 @@ Civiccommons::Application.configure do
 
   config.assets.precompile << %w( admin.js conversations/activities.embed.js conversations/show_embed.js tiny_mce/**/*.js tiny_mce/*.js )
   config.assets.precompile << %w( reset.css master.css ie.css petition.print.css admin.css widget.css tiny_mce/**/*.css)
+
+  config.angular_templates.ignore_prefix = ['embed/ng/templates/', 'templates'] if config.angular_templates
 
   if (File.exist? Rails.root.join('config/redis.yml'))
     redis_config = YAML.load_file(Rails.root.join('config/redis.yml'))
