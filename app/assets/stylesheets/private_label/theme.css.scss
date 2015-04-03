@@ -39,11 +39,28 @@
 
   // Pagination
   .pagination {
+    .current{
+      color: #fff;
+      font-style: normal;
+      &:hover{
+        background-color: $midGray;
+      }
+    }
     .previous_page, .next_page {
+      
       background-color: $color;
+      color: #fff;
+      font-size: 20px;
+      line-height: 40px;
+      &:hover {
+        background-color: $color;
+      }
     }
     > * {
       color: $color;
+      &:hover {
+        background-color: $gray;
+      }
     }
   }
 

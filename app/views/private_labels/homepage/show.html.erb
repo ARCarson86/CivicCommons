@@ -20,11 +20,12 @@
 </div>
 
 <%= render partial: 'private_labels/homepage/partials/home_conversations' %>
-		
+<%= will_paginate @conversations, next_label: '<i class="fa fa-chevron-right"></i>', previous_label: '<i class="fa fa-chevron-left"></i>' %>
 <% content_for :sidebar do %>
  	<div class="row">
 		<div class="col-md-12 col-sm-12 col-xs-12">
 			<%= render partial: 'private_labels/shared/sidebars/home_recent_activities' %>
+			<%= raw @sidebar.css('.visible-front') %>
     </div>
   </div>
   
