@@ -41,6 +41,8 @@ class PrivateLabel < ActiveRecord::Base
                     :path => IMAGE_ATTACHMENT_PATH
   validates_attachment_content_type :favicon, content_type: /\Aimage\/.*\Z/
 
+  validate :image_dimensions
+
   geocoded_by :address
   after_validation :geocode, :if => :address_changed?
 
@@ -62,4 +64,22 @@ class PrivateLabel < ActiveRecord::Base
     private_label_people.create person: person, admin: true
   end
 
+  private ##################################################
+
+  ##
+  # Make sure that the logo and the main image are big enough
+  def image_dimensions
+    validate_image_dimensions(:logo, 300, 300)
+    validate_image_dimensions(:main_image, 300, 300)
+  end
+
+  def validate_image_dimensions(image, height, width)
+    obj = self.send(image)
+    changed = self.send("#{image}_updated_at_changed?".to_sym)
+
+    return if obj.nil? || !changed
+    dimensions = Paperclip::Geometry.from_file(self.send(image).queued_for_write[:original].path)
+    errors.add(image, "width must be at least #{width}px") unless dimensions.width >= width
+    errors.add(image, "height must be at least #{height}px") unless dimensions.height >= height
+  end
 end

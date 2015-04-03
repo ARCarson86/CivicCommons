@@ -3,6 +3,7 @@ require 'rails_helper'
 module PrivateLabels
 
   RSpec.describe HomepageController do
+    render_views
     it { should be_a PrivateLabels::ApplicationController }
 
     describe 'GET #show' do
@@ -12,6 +13,7 @@ module PrivateLabels
       let(:conversations)           { create_list(:conversation, 3) }
       let(:civic_conversations)     { create_list(:conversation, 3) }
       let(:other_conversations)     { create_list(:conversation, 3) }
+      let!(:sidebar)                { create(:sidebar, private_label: private_label, content: '<div class="visible-front">should_be_visible</div><div>should_not_be_visible</div>') }
 
       before(:each) do
         Swayze.current_private_label = private_label
@@ -47,6 +49,13 @@ module PrivateLabels
       it 'does not fetch conversations for other private labels' do
         get :show
         other_conversations.each { |c| expect(assigns[:people]).not_to include(c) }
+      end
+
+      it 'shows correct sidebar on homepage' do
+        get :show
+        
+        expect(response.body).to include("should_be_visible")
+        expect(response.body).to_not include("should_not_be_visible")
       end
     end
   end
