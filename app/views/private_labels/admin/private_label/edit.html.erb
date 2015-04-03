@@ -115,7 +115,7 @@
         </div>
         <div class="col-md-5">
           <%- if @private_label.logo.present? %>
-            <%= image_tag @private_label.logo.url(:normal) %>
+            <%= image_tag @private_label.logo.url(:thumb) %>
           <%- else %>
             <p>No logo file uploaded</p>
           <%- end %>
