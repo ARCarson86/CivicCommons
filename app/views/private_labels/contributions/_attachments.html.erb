@@ -1,0 +1,17 @@
+<% if contribution.url.present? and contribution.embedly_type %>
+  <h3>Attached Link</h3>
+  <div class='row'>
+    <div class="col-sm-4">
+      <%= raw EmbedlyService.to_embed_or_fancybox(contribution, 150) %>
+    </div>
+    <div class='col-sm-8'>
+      <h3><%= link_to contribution.title, contribution.url, target: "_blank" %><span class="source"> - <%= link_to contribution.base_url.sub(/https?:\/\//i, ''), contribution.base_url, target: "_blank" %></span></h3>
+      <%= simple_format contribution.description %>
+    </div>
+  </div>
+<% end %>
+
+<% if contribution.attachment %>
+  <h3>Attached Image</h3>
+  <%= image_tag contribution.attachment.url(:medium), class: 'img-responsive' %>
+<% end %>

@@ -21,6 +21,8 @@ gem 'coffee-rails-source-maps'
 gem 'bower-rails'
 gem 'jquery-rails'
 
+gem 'geocoder'
+
 gem 'newrelic_rpm'
 
 gem 'redis-rails'
@@ -94,8 +96,11 @@ gem 'jbuilder'
 gem 'jpbuilder'
 gem 'yajl-ruby'
 
+gem 'strong_parameters'
+
 group :development, :test do
   gem 'pry'
+  gem 'pry-rails'
   gem 'pry-doc'
   gem 'pry-remote'
   gem 'pry-stack_explorer'
@@ -113,7 +118,9 @@ group :development do
 end
 
 group :test do
-  gem 'shoulda-matchers'
+  # Addressable Required by WebMock but breaks everything at 2.2.5
+  # Can use latest addressable when pull request is accepted: https://github.com/sporkmonger/addressable/pull/33
+  gem 'shoulda-matchers', require: false
   gem "database_cleaner"
   gem "factory_girl_rails"
   gem 'timecop'

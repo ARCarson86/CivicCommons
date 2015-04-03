@@ -1,0 +1,99 @@
+<% content_for :header_second do %>
+  <div class="placeholder">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Register for an Account</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<h2>Our Guiding Principles</h1>
+<p>The first thing you should know: This place operates by a few key principles and we'd like you to agree to them.</p>
+
+<%= form_for resource, url: person_registration_path, :method => "post", "data-remote" => 'true', :html => { :multipart => 'true', :class => "register" } do |f| %>
+
+  <%= render partial: 'tos', locals: { form: f } %>
+
+  <div class="row">
+    <div class="col-md-7">
+      <section>
+        <h3>Register for an Account</h3>
+        <p>Choose this if you want to create an account. You'll be able to start and contribute to conversations and interact with other community members.</p>
+        <div class="register-options">
+          <a class="btn btn-success register-with-email" href="#">Register with an Email Address</a>
+
+          <div class="register-options-group">
+            <div class="register-separator"><span>OR</span></div>
+            <% Authentication::PROVIDERS.each do |provider| %>
+              <%= link_to person_omniauth_authorize_url(provider.to_sym, host: "civic.dev", private_label: request.host), class: "social-register-button #{provider}" do %>
+                <i class="icon icon-<%=provider%> icon-2x"></i>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="col-md-5">
+      <section>
+        <h3>Already Have a Civic Commons Account?</h3>
+        <p>Choose this if you already have an account with Civic Commons.</p>
+        <div class="register-options">
+          <%= link_to 'Sign in with Civic Commons', '#', class: 'btn btn-success', :data => {:'toggle' => 'modal', :'target' => '#loginModal'} %>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <section class="register-form <%= "hide" unless resource.changed? %>">
+    <%= f.fields_for :authentications do |authentication_form| %>
+      <%= authentication_form.hidden_field :token %>
+      <%= authentication_form.hidden_field :uid %>
+      <%= authentication_form.hidden_field :provider %>
+    <% end %>
+    <div class="row">
+      <div class="form-group col-md-6 form-required">
+        <%= f.label :first_name, 'Your Name' %>
+        <div class="row">
+          <div class="col-md-6">
+            <%= f.text_field :first_name, :class => 'form-control' %>
+          </div>
+          <div class="col-md-6">
+            <%= f.text_field :last_name, :class => 'form-control' %>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-6 form-required">
+        <%= f.label :email, 'Email Address' %>
+        <%= f.text_field :email, :class => 'form-control' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-6 form-required">
+        <%= f.label :password %>
+        <%= f.password_field :password, :class=> 'form-control' %>
+      </div>
+      <div class="form-group col-md-6 form-required">
+        <%= f.label :password_confirmation, 'Password Again' %>
+        <%= f.password_field :password_confirmation, :class=> 'form-control' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-6">
+        <%= f.label :avatar, "Your Photo:" %>
+        <%= f.file_field :avatar, :class => 'textbox' %>
+      </div>
+      <div class="form-group col-md-6 form-required">
+        <%= f.label :zip_code, 'Zipcode' %>
+        <%= f.text_field :zip_code, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-block regular-reg show">
+      <%= f.submit "Register", class: 'btn btn-success btn-wide' %>&nbsp;&nbsp;&nbsp;
+      <%= link_to 'Cancel', '/', :class=> 'btn btn-default' %>
+    </div>
+  </section>
+<% end %>

@@ -1,0 +1,32 @@
+<% content_for :main_image do %>
+ 	<div class="private-label-details" style="background-image:url('<%= Swayze.current_private_label.main_image.url(:main) %>');">
+		<div class="header">
+			<div class="project-icon"><%= image_tag 'private_labels/folder-wh.png' %>Project /</div>
+			<h1><%= Swayze.current_private_label.title %></h1>
+			<h2><%= Swayze.current_private_label.tagline %></h2>
+		</div>
+ 	</div>
+<% end %>
+			
+<div class="row">
+	
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <% if @page %>
+      <h2><%= @page.title %></h2>
+      <section class="home-content">
+        <%= simple_format @page.content %>
+      </section>
+    <% end %>
+  </div>
+</div>
+
+<%= render partial: 'private_labels/homepage/partials/home_conversations' %>
+		
+<% content_for :sidebar do %>
+ 	<div class="row">
+		<div class="col-md-12 col-sm-12 col-xs-12">
+			<%= render partial: 'private_labels/shared/sidebars/home_recent_activities' %>
+    </div>
+  </div>
+  
+<% end %>

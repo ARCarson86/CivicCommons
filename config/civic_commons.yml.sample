@@ -1,0 +1,174 @@
+development:
+  devise:
+    email: "The Civic Commons <admin@somewhere.com>"
+    mailer_host: "development.somewhere.com"
+    pepper: "somereallylongstringtoemcryptuserspasswords"
+  email:
+    default_email: "myemail@example.com"
+    support_email: "support@example.com"
+    products_services_email: 'products_services@example.com'
+  embedly:
+    key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  facebook:
+    api_key: 'crazyfacebookid'
+    app_secret: 'facebooksecretsauce'
+    page_access_token: 'facebookPageTokenThatNeverExpires'
+  google_oauth2:
+    client_id: 'id'
+    client_secret: 'secret'
+  linkedin:
+    api_key: 'key'
+    secret_key: 'key'
+  mailer:
+    mailchimp: true
+    api_token: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-us1"
+    intercept: true
+    intercept_email: "myemail@example.com"
+    weekly_newsletter_list_id: "1234abcd"
+  omniauth:
+    full_host: 'http://localhost:3000'
+  rails_secret_token: "randonStuffThatsAtLeast30CharachtersYo128DirtyWithTh"
+  smtp:
+    address: "smtp.sendsomemail.net"
+    domain: "somewhere.com"
+    username: "someadmin@somewhere.com"
+    password: "somethingsupercryptic"
+  security:
+    ssl_login: false
+  twitter:
+    username: "CivicCommons"
+
+test:
+  devise:
+    email: "The Civic Commons <admin@somewhere.com>"
+    mailer_host: "test.somewhere.com"
+    pepper: "somereallylongstringtoemcryptuserspasswords"
+  email:
+    default_email: "my_default_email@example.com"
+    support_email: "my_support_email@example.com"
+    products_services_email: 'products_services@example.com'
+  embedly:
+    key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  facebook:
+    api_key: 'crazyfacebookid'
+    app_secret: 'facebooksecretsauce'
+    page_access_token: 'facebookPageTokenThatNeverExpires'
+  mailer:
+    mailchimp: true
+    api_token: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-us1"
+    intercept: false
+    intercept_email: "my_intercept_email@example.com"
+    weekly_newsletter_list_id: "1234abcd"
+  omniauth:
+    full_host: 'http://test.com'
+  rails_secret_token: "randonStuffThatsAtLeast30CharachtersYo128DirtyWithTh"
+  smtp:
+    address: "smtp.sendsomemail.net"
+    domain: "somewhere.com"
+    username: "someadmin@somewhere.com"
+    password: "somethingsupercryptic"
+  security:
+    ssl_login: false
+  twitter:
+    username: "CivicCommons"
+
+integration:
+  devise:
+    email: "The Civic Commons <admin@somewhere.com>"
+    mailer_host: "integration.somewhere.com"
+    pepper: "somereallylongstringtoemcryptuserspasswords"
+  email:
+    default_email: "myemail@example.com"
+    support_email: "support@example.com"
+    products_services_email: 'products_services@example.com'
+  embedly:
+    key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  facebook:
+    api_key: 'crazyfacebookid'
+    app_secret: 'facebooksecretsauce'
+  mailer:
+    mailchimp: true
+    api_token: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-us1"
+    intercept: true
+    intercept_email: "myemail@example.com"
+    weekly_newsletter_list_id: "1234abcd"
+  omniauth:
+    full_host: 'https://integration.com'
+  rails_secret_token: "randonStuffThatsAtLeast30CharachtersYo128DirtyWithTh"
+  smtp:
+    address: "smtp.sendsomemail.net"
+    domain: "somewhere.com"
+    username: "someadmin@somewhere.com"
+    password: "somethingsupercryptic"
+  security:
+    ssl_login: true
+  twitter:
+    username: "CivicCommons"
+
+staging:
+  devise:
+    email: "The Civic Commons <admin@somewhere.com>"
+    mailer_host: "staging.somewhere.com"
+    pepper: "somereallylongstringtoemcryptuserspasswords"
+  email:
+    default_email: "myemail@example.com"
+    support_email: "support@example.com"
+    products_services_email: 'products_services@example.com'
+  embedly:
+    key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  facebook:
+    api_key: 'crazyfacebookid'
+    app_secret: 'facebooksecretsauce'
+    page_access_token: 'facebookPageTokenThatNeverExpires'
+  mailer:
+    mailchimp: true
+    api_token: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-us1"
+    intercept: true
+    intercept_email: "myemail@example.com"
+    weekly_newsletter_list_id: "1234abcd"
+  omniauth:
+    full_host: 'https://staging.com'
+  rails_secret_token: "randonStuffThatsAtLeast30CharachtersYo128DirtyWithTh"
+  smtp:
+    address: "smtp.sendsomemail.net"
+    domain: "somewhere.com"
+    username: "someadmin@somewhere.com"
+    password: "somethingsupercryptic"
+  security:
+    ssl_login: true
+  twitter:
+    username: "CivicCommons"
+
+production:
+  devise:
+    email: "The Civic Commons <admin@somewhere.com>"
+    mailer_host: "production.somewhere.com"
+    pepper: "somereallylongstringtoemcryptuserspasswords"
+  email:
+    default_email: "myemail@example.com"
+    support_email: "support@example.com"
+    products_services_email: 'products_services@example.com'
+  embedly:
+    key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  facebook:
+    api_key: 'crazyfacebookid'
+    app_secret: 'facebooksecretsauce'
+  mailer:
+    mailchimp: true
+    api_token: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-us1"
+    intercept: false
+    intercept_email: "myemail@example.com"
+    weekly_newsletter_list_id: "1234abcd"
+  omniauth:
+    full_host: 'https://production.com'
+  rails_secret_token: "randonStuffThatsAtLeast30CharachtersYo128DirtyWithTh"
+  smtp:
+    address: "smtp.sendsomemail.net"
+    domain: "somewhere.com"
+    username: "someadmin@somewhere.com"
+    password: "somethingsupercryptic"
+  security:
+    ssl_login: true
+  twitter:
+    username: "CivicCommons"
+

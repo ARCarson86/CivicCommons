@@ -1,0 +1,45 @@
+<h2>Meta Information</h2>
+<dl class="dl-horizontal">
+  <dt>Page Title:</dt>
+  <%= content_tag :dd, @conversation.page_title %>
+
+  <dt>Page Description:</dt>
+  <%= content_tag :dd, @conversation.meta_description %>
+
+  <dt>Page Tags:</dt>
+  <%= content_tag :dd, @conversation.meta_tags %>
+</dl>
+
+<h2>Other information</h2>
+<dl class="dl-horizontal">
+  <dt>Title:</dt>
+  <%= content_tag :dd, @conversation.title %>
+
+  <dt>Summary:</dt>
+  <%= content_tag :dd, @conversation.summary %>
+
+  <dt>Image:</dt>
+  <dd><%= image_tag @conversation.image.url(:normal) %></dd>
+
+  <dt>Conversation Starter:</dt>
+  <%= content_tag :dd, @conversation.starter %>
+
+  <dt>Link</dt>
+  <%= content_tag :dd, @conversation.link %>
+
+  <dt>Top Contributions:</dt>
+  <dd>
+    <%- if @conversation.contributions.any? %>
+      <ul>
+        <% @conversation.top_level_contributions.each do |c| %>
+          <li><%= c.person.name %> : <%= raw c.content %></li>
+        <% end %>
+      </ul>
+    <%- else %>
+      No contributions yet!
+    <%- end %>
+  </dd>
+
+  <dt>Started at:</dt>
+  <%= content_tag :dd, @conversation.created_at.to_s(:long) %>
+</dl>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= private_label_page_title %></title>
+    <%= render :partial => 'private_labels/shared/meta_tags' %>
+    <%= javascript_include_tag 'private_label/application.js' %>
+    <%= javascript_tag '$.fx.off = true;' if Rails.env.test? %>
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css'>
+    <%= stylesheet_link_tag '_bootstrap' %>
+    <%= stylesheet_link_tag 'private_label/application', :media => "screen, projection" %>
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
+    <%= favicon_link_tag Swayze.current_private_label.favicon %>
+    <script>
+      /* Google Analytics */
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-19685339-1']);
+      _gaq.push(['_setDomainName', '.theciviccommons.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    <%= yield :header %>
+    <%= csrf_meta_tag %>
+  </head>
+  <body class="<%= page_classes %> <%= Swayze.current_private_label.theme %>">
+    <%= render partial: 'private_labels/shared/header' %>
+    <div class="header-second">
+      <div class="header-image-background" style="background-image:url('<%= Swayze.current_private_label.main_image.url %>');"></div>
+      <div class="overlay"></div>
+      <div class="row">
+        <div class="col-md-12">
+          <%= yield :header_second %>
+        </div>
+      </div>
+    </div>
+    <div class="pl-content container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="pl-main-image">
+            <%= yield :main_image %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="<%= content_area_column_width_class %>">
+          <div class="content-area">
+            <%= render partial: 'private_labels/shared/flash', locals: { flash: flash } if flash.any? %>
+            <%= content_for?(:content) ? yield(:content) : yield %>
+          </div>
+        </div>
+        <% if content_for?(:sidebar) %>
+          <div class="col-md-4 col-xs-12">
+            <div class="sidebar">
+              <%= yield :sidebar %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <%= render partial: 'private_labels/shared/footer' %>
+
+    <% if flash[:notice] %>
+      <div class="flash-notice" style="display:none;">
+        <%= flash[:notice] %>
+        <%= image_tag 'flash-close.png' %>
+      </div>
+    <% end %>
+    
+    <%= render partial: 'private_labels/shared/modals/flag' %>
+
+    <%= render partial: 'private_labels/shared/modals/login' %>
+
+  </body>
+
+</html>

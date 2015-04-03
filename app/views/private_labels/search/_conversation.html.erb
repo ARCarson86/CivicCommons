@@ -1,0 +1,11 @@
+<div class="search-result <%= parameterized_model_name conversation %>">
+  <h3><%= link_to conversation.title, conversation %></h3>
+
+  <% if hit.highlights.any? %>
+    <% hit.highlights.each do |highlight| %>
+      <%= sanitize highlight.format { |word| content_tag(:span, word, class: 'search-highlight') } %>
+    <% end %>
+  <% else %>
+    <%= sanitize(truncate(conversation.summary, length: 200)) %>
+  <% end %>
+</div>

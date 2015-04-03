@@ -1,0 +1,53 @@
+<section class="people-mods">
+  <h2><div class="sidebar-header-icon"><span><%= image_tag('private_labels/users-wh.png') %></span></div>Moderators</h2>
+  <div id="carousel-moderators" class="carousel slide" data-ride="carousel">
+    <div class="row">
+      <div class="carousel-inner" role="listbox">
+        <% @conversation.moderators.each_slice(2).with_index do |array_of_2_items, i| %>
+            <div class="item <%= "active" if i == 0 %>">
+              <% array_of_2_items.each do |moderator|%>
+                <div class="col-md-6 col-sm-3 col-xs-3">
+                  <div class="user-image"><%= user_profile(moderator).html_safe %></div>
+                  <span><%= moderator.first_name %><br/><%= moderator.last_name %></span>
+                </div>
+              <% end %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+      <a class="left carousel-control" href="#carousel-moderators" role="button" data-slide="prev">
+        <i class="fa fa-chevron-left fa-lg"></i>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#carousel-moderators" role="button" data-slide="next">
+        <i class="fa fa-chevron-right fa-lg"></i>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+
+  <h2><div class="sidebar-header-icon"><span><%= image_tag('private_labels/users-wh.png') %></span></div>Participants</h2>
+  <div id="carousel-participants" class="carousel slide" data-ride="carousel" data-interval="false">
+    <div class="row">
+      <div class="carousel-inner" role="listbox">
+        <% @conversation.participants.each_slice(4).with_index do |array_of_4_items, i| %>
+            <div class="item <%= "active" if i == 0 %>">
+              <% array_of_4_items.each.with_index do |contributor, index|%>
+                <div class="col-md-6 col-sm-3 col-xs-3" style="<%= 'margin-bottom: 20px' if index == 0 || index == 1 %>">
+                  <div class="user-image"><%= user_profile(contributor).html_safe %></div>
+                  <span><%= contributor.first_name %><br/><%= contributor.last_name %></span>
+                </div>
+              <% end %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+    <a class="left carousel-control" href="#carousel-participants" role="button" data-slide="prev">
+      <i class="fa fa-chevron-left fa-lg"></i>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#carousel-participants" role="button" data-slide="next">
+      <i class="fa fa-chevron-right fa-lg"></i>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</section>

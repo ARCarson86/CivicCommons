@@ -1,0 +1,44 @@
+<%- if can? :create, Conversation %>
+  <%= link_to new_private_labels_admin_conversation_path, class: 'btn btn-success pull-right' do %>
+    <i class="fa fa-plus"></i> New Conversation
+  <%- end %>
+<%- end %>
+
+<h1>Conversations</h1>
+
+<table class="table table-striped conversations-table pages-table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Date</th>
+      <th class="text-right">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%- @conversations.each do |convo| %>
+      <tr>
+        <td>
+          <%- if can? :update, convo %>
+            <%= link_to convo.title, edit_private_labels_admin_conversation_path(convo) %>
+          <%- else %>
+            <%= convo.title %>
+          <%- end %>
+        </td>
+        <td><%= convo.created_at.to_s(:long) %></td>
+        <td class="text-right">
+          <%- if can? :update, convo %>
+            <%= link_to edit_private_labels_admin_conversation_path convo do %>
+              <i class="fa fa-edit"></i>
+            <% end %>
+          <%- end %>
+
+          <%- if can? :destroy, convo %>
+            <%= link_to private_labels_admin_conversation_path(convo), method: :delete, confirm: 'Are you sure?' do %>
+              <i class="fa fa-trash"></i>
+            <% end %>
+          <%- end %>
+        </td>
+      </tr>
+    <%- end %>
+  </tbody>
+</table>

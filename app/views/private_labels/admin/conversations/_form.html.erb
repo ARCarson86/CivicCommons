@@ -1,0 +1,104 @@
+<%= form_for [:private_labels, :admin, @conversation], html: { class: "form-horizontal" } do |f| %>
+  <% if @conversation.errors.any? %>
+    <div class="errors">
+      <h2><%= pluralize(@conversation.errors.full_messages.count, 'error') %> prohibited this conversation from being saved: </h2>
+      <ul>
+        <%- @conversation.errors.full_messages.each do |msg| %>
+          <%= content_tag :li, msg %>
+        <%- end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Content</h3>
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+        <%= f.label :title, 'Conversation Title', class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
+          <%= f.text_field :title, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :summary, class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
+          <%= f.text_area :summary, class: "form-control", rows: '5' %>
+          <span class="help-block">Two or three short sentences that describe what the conversation is about</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :starter, 'Conversation Starter', class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
+          <%= f.text_area :starter, class: "form-control", rows: '5' %>
+          <span class="help-block">The one or two statements or questions that you want visitors to respond to</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Attachments</h3>
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+        <%= f.label :link, class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
+          <%= f.text_field :link, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :image, class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
+          <%= f.file_field :image, class: 'form-control' %>
+          <span class="help-block">Add an image to illustrate your conversation</span>
+          <%- if @conversation.image.exists? %>
+            <div class="preview-image">
+              <%= image_tag @conversation.image.url(:normal) %>
+            </div>
+          <%- end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Meta Information</h3>
+      <span class="help-block">This content will not be visible to the visitor, but will be used by search engines when indexing your page.</span>
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+        <%= f.label :page_title, class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
+          <%= f.text_field :page_title, class: 'form-control' %>
+          <span class="help-block">The title of the page to be displayed in search engine results and in the browser window</span>
+        </div> 
+      </div> 
+      <div class="form-group">
+        <%= f.label :meta_description, class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
+          <%= f.text_field :meta_description, class: 'form-control' %>
+          <span class="help-block">A short description of the content of your page that may be displayed in search engine results</span>
+        </div> 
+      </div>
+      <div class="form-group">
+        <%= f.label :meta_tags, class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
+          <%= f.text_field :meta_tags, class: 'form-control' %>
+          <span class="help-block">A short description of the content of your page that may be displayed in search engine results</span>
+        </div> 
+      </div>
+
+      <div class="form-group"></div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-4 col-sm-offset-8 text-right">
+      <%= f.submit class: 'btn btn-success' %>
+    </div>
+  </div>
+<% end %>
+

@@ -7,7 +7,7 @@ module AuthenticationHelper
 
   def person_omniauth_authorize_url(provider, params = {})
     if Devise.omniauth_configs[provider.to_sym]
-      "#{root_url(:protocol => params.delete(:protocol))}people/auth/#{provider}#{'?'+params.to_param if params.present?}"
+      "#{root_url(:protocol => params.delete(:protocol), host: params.delete(:host))}people/auth/#{provider}#{'?'+params.to_param if params.present?}"
     else
       raise ArgumentError, "Could not find omniauth provider #{provider.inspect}"
     end

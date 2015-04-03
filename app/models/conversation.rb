@@ -7,6 +7,7 @@ require 'obscenity/active_model'
   include GeometryForStyle
   include HomepageFeaturable
   include Thumbnail
+  include PrivateLabelScopable
 
   attr_accessor :agree_to_be_civil, :other_topic
 
@@ -20,7 +21,11 @@ require 'obscenity/active_model'
     text :summary, :stored => true, :boost => 2, :default_boost => 2 do
       Sanitize.clean(summary, :remove_contents => ['style','script'])
     end
+    text :starter, :stored => true, :boost => 2, :default_boost => 2 do
+      Sanitize.clean(summary, :remove_contents => ['style','script'])
+    end
     integer :region_metrocodes, :multiple => true
+    integer :private_label_id
   end
   has_many :contributions, dependent: :destroy, as: :contributable
   alias_method :confirmed_contributions, :contributions
@@ -43,7 +48,7 @@ require 'obscenity/active_model'
 
   has_many :conversations_topics, :dependent => :destroy
   has_many :topics, :through => :conversations_topics, :uniq => true
-  validates_length_of :topics, :minimum => 1, :message => 'Please select at least one topic for your conversation', :if => 'self.other_topic.nil?'
+  validates_length_of :topics, :minimum => 1, :message => 'Please select at least one topic for your conversation', :if => 'self.other_topic.nil? && self.private_label_id.nil?'
 
   accepts_nested_attributes_for :topics
 
@@ -66,6 +71,7 @@ require 'obscenity/active_model'
 
   belongs_to :person, :foreign_key => "owner"
   belongs_to :metro_region
+  belongs_to :private_label
 
   delegate :name, :to => :person, :prefix => true
   delegate :standard_issue, :to => :issues
@@ -90,15 +96,15 @@ require 'obscenity/active_model'
   validates_length_of :title, :maximum => 50, :message => 'Please enter a title with less than 50 characters', :on => :create
   validates_presence_of :summary, :message => "Please give us a short summary."
   validates_format_of :link, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix, :on => :create, :allow_blank => true, :message => "Link must look like a url (example http://google.com)."
-  validates_presence_of :zip_code, :message => "Please give us a zip code for a little geographic context."
-  validates_presence_of :metro_region_id, :message => 'Please give us a Location name.'
+  validates_presence_of :zip_code, :message => "Please give us a zip code for a little geographic context.", :if => 'self.private_label_id.nil?'
+  validates_presence_of :metro_region_id, :message => 'Please give us a Location name.', :if => 'self.private_label_id.nil?'
   validates :title,  obscenity: { sanitize: true, replacement: :vowels }
   validates :summary,  obscenity: { sanitize: true, replacement: :vowels }
 
-  after_create :set_initial_position, :subscribe_creator
-  around_create :send_notification_on_other_topic
+  #around_create :send_notification_on_other_topic
 
   friendly_id :title, :use => :slugged
+
   def should_generate_new_friendly_id?
     new_record? || slug.nil?
   end
@@ -117,7 +123,6 @@ require 'obscenity/active_model'
 
   # Filters by metro region, if metrocode parameter is supplied, otherwise, ignores it.
   scope :filter_metro_region, lambda{|metrocode| joins(:metro_region).where(:metro_regions=>{metrocode: metrocode}) if metrocode.present?}
-
 
   # position starts from 0, and so forth
   def move_to_position(new_position)

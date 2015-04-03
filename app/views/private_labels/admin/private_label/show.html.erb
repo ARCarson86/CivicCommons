@@ -1,0 +1,56 @@
+<%= content_tag :h1, @private_label.name %>
+
+<dl class="dl-horizontal">
+  <dt>Domain:</dt>
+  <%= content_tag :dd, @private_label.domain %>
+
+  <dt>Namespace:</dt>
+  <%= content_tag :dd, @private_label.namespace %>
+
+  <dt>Terms of Service:</dt>
+  <%= content_tag :dd, @private_label.terms_of_service %>
+
+  <dt>Logo:</dt>
+  <dd>
+    <%- if @private_label.logo.present? %>
+      <%= image_tag @private_label.logo.url(:thumb) %></dd>
+    <%- else %>
+      No logo uploaded
+    <%- end %>
+  </dd>
+
+  <dt>Main Image:</dt>
+  <dd>
+    <%- if @private_label.main_image.present? %>
+      <%= image_tag @private_label.main_image.url(:thumb) %></dd>
+    <%- else %>
+      No main image uploaded
+    <%- end %>
+  </dd>
+
+  <dt>Title:</dt>
+  <%= content_tag :dd, @private_label.title %>
+
+  <dt>Tagline:</dt>
+  <%= content_tag :dd, @private_label.tagline %>
+
+  <dt>Email:</dt>
+  <%= content_tag :dd, @private_label.email %>
+
+  <dt>Phone:</dt>
+  <%= content_tag :dd, @private_label.phone %>
+
+  <dt>Address:</dt>
+  <%= content_tag :dd, @private_label.address %>
+
+  <dt>Facebook URL:</dt>
+  <%= content_tag :dd, @private_label.facebook_url %>
+
+  <dt>Twitter URL:</dt>
+  <%= content_tag :dd, @private_label.twitter_url %>
+
+  <dt>LinkedIn URL:</dt>
+  <%= content_tag :dd, @private_label.linkedin_url %>
+</dl>
+
+<%= link_to 'Edit', private_labels_admin_private_label_edit_path, class: 'btn btn-success' %>
