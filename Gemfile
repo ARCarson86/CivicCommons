@@ -15,6 +15,7 @@ group :assets do
   gem "font-awesome-rails"
   gem 'turbo-sprockets-rails3'
 end
+gem 'tinymce-rails', '~> 3.5.8.3'
 gem 'angular-rails-templates'
 gem 'coffee-rails'
 gem 'coffee-rails-source-maps'

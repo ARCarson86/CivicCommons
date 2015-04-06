@@ -109,13 +109,13 @@
       <div class="form-group">
         <%= f.label :logo, class: 'col-sm-3 control-label' %>
 
-        <div class="col-sm-4">
+        <div class="col-sm-5">
           <%= f.file_field :logo, class: 'form-control' %>
-          <span class="help-block">Needs to be at least 300px wide and 300px high</span>
+          <span class="help-block">Needs to be at least 100px wide and 50px high</span>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-4">
           <%- if @private_label.logo.present? %>
-            <%= image_tag @private_label.logo.url(:thumb) %>
+            <%= image_tag @private_label.logo.url(:thumb), class: 'img-responsive' %>
           <%- else %>
             <p>No logo file uploaded</p>
           <%- end %>
@@ -142,7 +142,7 @@
 
       <div class="form-group">
         <%= f.label :favicon, class: 'col-sm-3 control-label' %>
-        <div class="col-md-4">
+        <div class="col-md-5">
           <%= f.file_field :favicon, class: 'form-control' %>
           <span class="help-block">Should be 16px wide and 16px high</span>
         </div>
