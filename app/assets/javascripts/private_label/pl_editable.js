@@ -1,6 +1,6 @@
 (function($) {
   var defaults = {
-    script_url : '/assets/tiny_mce/tiny_mce_src.js',
+    script_url : '/assets/tinymce/tiny_mce_src.js',
     theme : "advanced",
     skin : 'private_label',
     plugins : "autolink,inlinepopups,mention,noneditable",
@@ -14,38 +14,60 @@
     extended_valid_elements: "a[title|href|target=_blank|title|class=mceNonEditable|data-mention-id]",
     content_css: '/assets/private_label/editor.css',
     setup : function(ed) {
-        
-        // Add a custom button
-        ed.addButton('pllink', {
-            title : 'Link',
-            image : '/assets/private_labels/link-icon.png',
-            onclick : function() {
-                // Add you own code to execute something on click
-                ed.focus();
-                $(ed.formElement).find('.contribution-attachments').removeClass('hide');
-                if ($(ed.formElement).find('.contribution-attachments .add-file').hasClass('hide') == false){
-                  $(ed.formElement).find('.contribution-attachments .add-file').addClass('hide');
-                  $(ed.formElement).find('#contribute-text_plimage').removeClass('mceButtonActive');
-                }
-                $(ed.formElement).find('#contribute-text_pllink').toggleClass('mceButtonActive');
-                $(ed.formElement).find('.contribution-attachments .add-link').toggleClass('hide');
-            }
-        });
-        ed.addButton('plimage', {
-            title : 'Image',
-            image : '/assets/private_labels/image-icon.png',
-            onclick : function() {
-                // Add you own code to execute something on click
-                ed.focus();
-                $(ed.formElement).find('.contribution-attachments').removeClass('hide');
-                if ($(ed.formElement).find('.contribution-attachments .add-link').hasClass('hide') == false){
-                  $(ed.formElement).find('.contribution-attachments .add-link').addClass('hide');
-                  $(ed.formElement).find('#contribute-text_pllink').removeClass('mceButtonActive');
-                }
-                $(ed.formElement).find('#contribute-text_plimage').toggleClass('mceButtonActive');
-                $(ed.formElement).find('.contribution-attachments .add-file').toggleClass('hide');
-            }
-        });
+      var linkActive = false;
+      var imageActive = false;
+
+      function toggleAttachments() {
+        $(ed.formElement).find('.mce_pllink').removeClass('mceButtonActive');
+        $(ed.formElement).find('.contribution-attachments .add-link').addClass('hide');
+
+        $(ed.formElement).find('.mce_plimage').removeClass('mceButtonActive');
+        $(ed.formElement).find('.contribution-attachments .add-file').addClass('hide');
+
+        if (linkActive) {
+          $(ed.formElement).find('.mce_pllink').addClass('mceButtonActive');
+          $(ed.formElement).find('.contribution-attachments .add-link').removeClass('hide');
+          $(ed.formElement).find('.contribution-attachments').removeClass('hide');
+
+          $(ed.formElement).find('.contribution-attachments .add-link #contribution_url').focus();
+        }
+        else if (imageActive) {
+          $(ed.formElement).find('.mce_plimage').addClass('mceButtonActive');
+          $(ed.formElement).find('.contribution-attachments .add-file').removeClass('hide');
+          $(ed.formElement).find('.contribution-attachments').removeClass('hide');
+        }
+        else {
+          $(ed.formElement).find('.contribution-attachments').addClass('hide');
+        }
+
+        if (!linkActive) {
+          setTimeout(function() {
+            ed.focus();
+          }, 100);
+        }
+
+      }
+
+      ed.addButton('pllink', {
+        title : 'Link',
+        image : '/assets/private_labels/link-icon.png',
+        onclick : function() {
+          imageActive = false;
+          linkActive = !linkActive;
+          toggleAttachments();
+        }
+      });
+
+      ed.addButton('plimage', {
+        title : 'Image',
+        image : '/assets/private_labels/image-icon.png',
+        onclick : function() {
+          linkActive = false;
+          imageActive = !imageActive;
+          toggleAttachments();
+        }
+      });
+
     },
     mentions: {
       source: function(query, process) {

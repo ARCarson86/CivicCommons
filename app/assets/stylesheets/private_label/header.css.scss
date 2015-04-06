@@ -11,6 +11,10 @@
   z-index: 1030;
   .navbar-brand{
     padding: 10px 15px;
+    img {
+      max-height: 30px;
+      width: auto;
+    }
   }
   #profile-options{
         position: absolute;

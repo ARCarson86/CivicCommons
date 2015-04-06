@@ -11,7 +11,7 @@
   </div>
 <% end %>
 
-<% if contribution.attachment %>
+<% if contribution.attachment.present? %>
   <h3>Attached Image</h3>
   <%= image_tag contribution.attachment.url(:medium), class: 'img-responsive' %>
 <% end %>

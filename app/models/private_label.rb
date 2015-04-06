@@ -22,9 +22,10 @@ class PrivateLabel < ActiveRecord::Base
 
   has_attached_file :logo,
                     styles: { medium: "300x300>", thumb: "100x100>", header: "x30", footer: "x40" },
-                    :storage => :s3,
-                    :s3_credentials => S3Config.credential_file,
-                    :path => IMAGE_ATTACHMENT_PATH
+                    storage: :s3,
+                    s3_credentials: S3Config.credential_file,
+                    path: IMAGE_ATTACHMENT_PATH,
+                    default_url: '/assets/mark.png'
   validates_attachment_content_type :logo, :content_type => /\Aimage\/.*\Z/
 
   has_attached_file :main_image, 
@@ -38,7 +39,8 @@ class PrivateLabel < ActiveRecord::Base
                     styles: { medium: "16x16" },
                     :storage => :s3,
                     :s3_credentials => S3Config.credential_file,
-                    :path => IMAGE_ATTACHMENT_PATH
+                    :path => IMAGE_ATTACHMENT_PATH,
+                    default_url: '/assets/mark.png'
   validates_attachment_content_type :favicon, content_type: /\Aimage\/.*\Z/
 
   validate :image_dimensions
@@ -69,7 +71,7 @@ class PrivateLabel < ActiveRecord::Base
   ##
   # Make sure that the logo and the main image are big enough
   def image_dimensions
-    validate_image_dimensions(:logo, 300, 300)
+    validate_image_dimensions(:logo, 50, 100)
     validate_image_dimensions(:main_image, 300, 300)
   end
 
