@@ -2,7 +2,7 @@
 //=require 'jquery/jquery-migrate'
 //=require 'jquery/jquery-ui'
 //=require 'jquery_ujs'
-//=require 'tiny_mce/jquery.tinymce.js'
+//=require 'tinymce-jquery'
 //=require 'jquery/jquery.tablesorter.min'
 //=require 'ckeditor/init'
 //=require 'master'
