@@ -84,8 +84,8 @@ Civiccommons::Application.configure do
 
   config.assets.precompile = [ Proc.new{ |path| !File.extname(path).in?(['.js', '.css', '.map', '.gzip']) }, /(?:\/|\\|\A)application\.(css|js)$/ ]
 
-  config.assets.precompile << %w( admin.js conversations/activities.embed.js conversations/show_embed.js )
-  config.assets.precompile << %w( reset.css master.css ie.css petition.print.css admin.css widget.css )
+  config.assets.precompile << %w( admin.js conversations/activities.embed.js conversations/show_embed.js private_label/application.js )
+  config.assets.precompile << %w( reset.css master.css ie.css petition.print.css admin.css widget.css _bootstrap.css)
 
   config.assets.precompile << "tinymce/themes/advanced/skins/private_label/*.css"
 
