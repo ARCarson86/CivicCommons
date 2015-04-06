@@ -37,7 +37,7 @@
 
 //= require ckeditor/init
 
-//= require tiny_mce/jquery.tinymce.js
+//= require tinymce-jquery
 
 //= require issues/show
 //= require subscriptions/show
