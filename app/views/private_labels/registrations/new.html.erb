@@ -29,7 +29,7 @@
             <div class="register-separator"><span>OR</span></div>
             <% Authentication::PROVIDERS.each do |provider| %>
               <%= link_to person_omniauth_authorize_url(provider.to_sym, host: "civic.dev", private_label: request.host), class: "social-register-button #{provider}" do %>
-                <i class="icon icon-<%=provider%> icon-2x"></i>
+                <i class="fa fa-<%=provider%> fa-2x"></i>
               <% end %>
             <% end %>
           </div>
