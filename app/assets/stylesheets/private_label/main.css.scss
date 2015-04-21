@@ -505,5 +505,11 @@ label {
 
 
 .page-not-found {
-  text-align: center;
+  background-color: white;
+  padding: 20px 40px;
+  h4 { 
+    margin: 0;
+    font-size: 16px;
+    text-transform: uppercase;
+  }
 }
