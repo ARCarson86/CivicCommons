@@ -57,7 +57,11 @@ module ApplicationHelper
     if contribution.issue
       issue_url( contribution.item )
     elsif contribution.conversation
-      conversation_url( contribution.item )
+      if contribution.conversation.remote_page
+        contribution.conversation.remote_page.url
+      else
+        conversation_url( contribution.item )
+      end
     end
   end
 
