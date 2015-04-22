@@ -1,6 +1,5 @@
 module PrivateLabels
   class HomepageController < ApplicationController
-
     def show
       @people = Swayze.current_private_label.people
       @conversations = Swayze.current_private_label.conversations.paginate(page: params[:page], per_page: 6)
@@ -10,13 +9,12 @@ module PrivateLabels
         image_url: Swayze.current_private_label.main_image.url
       }
     end
-	def contact
+    def contact
 
-	end
+    end
 
-	def contact_submit
+    def contact_submit
 
-	end
+    end
   end
-
-end # PrivateLabels module
+end

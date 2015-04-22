@@ -20,4 +20,4 @@ module PrivateLabels
     end
 
   end
-end # PrivateLabels module
+end
