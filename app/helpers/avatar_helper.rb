@@ -18,6 +18,8 @@ module AvatarHelper
       link_to_profile(person) do
         person.name
       end
+    else
+      ""
     end
   end
 
