@@ -44,5 +44,13 @@ module PrivateLabels
       request.protocol + request.host_with_port + path_to_image(file)
     end
 
+    def contributor_name(contribution)
+      if contribution && contribution.person
+        contribution.person.name
+      else
+        ""
+      end
+    end
+
   end
 end
