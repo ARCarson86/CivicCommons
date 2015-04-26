@@ -1,5 +1,5 @@
 module PrivateLabels
-  class ConversationsController < ApplicationController
+  class ConversationsController < PrivateLabels::ApplicationController
     before_filter :find_conversation, only: [:show, :edit, :update, :destroy]
     before_filter :set_meta, only: [:show]
     load_and_authorize_resource

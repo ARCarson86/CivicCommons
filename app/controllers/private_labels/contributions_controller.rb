@@ -1,5 +1,5 @@
 module PrivateLabels
-  class ContributionsController < ApplicationController
+  class ContributionsController < PrivateLabels::ApplicationController
     before_filter :get_conversation, except: [:index]
 
     def index

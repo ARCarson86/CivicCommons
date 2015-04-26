@@ -1,5 +1,5 @@
 module PrivateLabels
-  class HomepageController < ApplicationController
+  class HomepageController < PrivateLabels::ApplicationController
     def show
       @people = Swayze.current_private_label.people
       @conversations = Swayze.current_private_label.conversations.paginate(page: params[:page], per_page: 6)

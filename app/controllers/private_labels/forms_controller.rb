@@ -1,5 +1,5 @@
 module PrivateLabels
-  class FormsController < ApplicationController
+  class FormsController < PrivateLabels::ApplicationController
 
     def contact
 

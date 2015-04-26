@@ -1,5 +1,5 @@
 module PrivateLabels
-  class SearchController < ApplicationController
+  class SearchController < PrivateLabels::ApplicationController
 
     def results
       @search = Sunspot.search [Conversation, Contribution] do

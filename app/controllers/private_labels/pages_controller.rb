@@ -1,5 +1,5 @@
 module PrivateLabels
-  class PagesController < ApplicationController
+  class PagesController < PrivateLabels::ApplicationController
     load_and_authorize_resource class: 'PrivateLabels::Page'
 
     def show
