@@ -9,14 +9,17 @@ module PrivateLabels
         image_url: Swayze.current_private_label.main_image.url
       }
     end
+
     def contact
       @contact_us_message = PrivateLabels::ContactUsMessage.new
     end
 
     def contact_submit
       @contact_us_message = PrivateLabels::ContactUsMessage.new(params[:contact_us_message])
+
       if @contact_us_message.valid?
         PrivateLabels::Contact.send_contact_email(@contact_us_message).deliver!
+        redirect_to root_path, notice: "Your message was sent successfully"
       else
         render :contact
       end
