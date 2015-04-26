@@ -6,9 +6,8 @@ class PrivateLabels::Contact < ActionMailer::Base
     @private_label = Swayze.current_private_label
     @message = message
     headers['X-SMTPAPI'] = '{"category": "private_label_contact"}'
-    mail(:subject => "Contact Us Submission On: #{@private_label.name}",
-         :from => "contactus@#{@private_label.domain}",
-         :to => @private_label.email)
+    mail(subject: "Contact Us Submission On: #{@private_label.name}",
+         from: "contactus@#{@private_label.domain}",
+         to: @private_label.email)
   end
-
 end
