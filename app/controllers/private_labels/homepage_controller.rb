@@ -10,11 +10,16 @@ module PrivateLabels
       }
     end
     def contact
-
+      @contact_us_message = PrivateLabels::ContactUsMessage.new
     end
 
     def contact_submit
-
+      @contact_us_message = PrivateLabels::ContactUsMessage.new(params[:contact_us_message])
+      if @contact_us_message.valid?
+        PrivateLabels::Contact.send_contact_email(@contact_us_message).deliver!
+      else
+        render :contact
+      end
     end
   end
 end
