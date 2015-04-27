@@ -26,7 +26,7 @@ module PrivateLabels
     def last_sign_in(person)
       return "Never" if person.nil? || person.last_sign_in_at.nil?
 
-      return person.last_sign_in.to_formatted_s(:long_friendly)
+      person.last_sign_in.to_formatted_s(:long_friendly)
     end
   end
 end

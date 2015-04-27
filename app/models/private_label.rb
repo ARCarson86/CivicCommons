@@ -2,6 +2,7 @@ class PrivateLabel < ActiveRecord::Base
   ##
   # The only valid values for the color theme
   THEMES = ['green', 'blue', 'orange', 'red', 'gold', 'dark-blue']
+  EMAIL_FORMAT = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
 
 	attr_accessible :name,
                   :namespace,
@@ -52,7 +53,7 @@ class PrivateLabel < ActiveRecord::Base
 
   validates :name, presence: true
   validates :email, presence: true
-  validates :email, format: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, allow_blank: true
+  validates :email, format: EMAIL_FORMAT, allow_blank: true
   validates :namespace, private_label_domain: true
 
   has_many :private_label_people

@@ -518,12 +518,12 @@ label {
   .fa-lg { 
     vertical-align: inherit;
   }
+
   .fa-facebook {
     margin-left: 3px;
   }
 }
 
 .validation-error {
-  color: red;
+  color: $validation;
 }
-

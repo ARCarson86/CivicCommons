@@ -55,6 +55,5 @@ module PrivateLabels
     def google_maps_url
       "http://maps.google.com/maps?q=#{Swayze.current_private_label.latitude},#{Swayze.current_private_label.longitude}&ll=#{Swayze.current_private_label.latitude},#{Swayze.current_private_label.longitude}&z=17"
     end
-
   end
 end
