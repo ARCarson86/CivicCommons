@@ -1,0 +1,70 @@
+ <div class="wrapper">
+    <div class="main section">
+      <h1>Settings</h1>
+      <div class="tab-content">
+        <div id="your-info" class="tab active">
+          <%= form_for @person, :url => secure_user_url(@person), :method => :put, :html=> {:multipart => true} do |person| %>
+            <fieldset class="form-group">
+              <div class="form-block">
+                <%= person.label :name, name_label_text %>
+                <%= person.text_field :name, :class => 'textbox' %>
+              </div>
+              <div class="form-block">
+                <%= person.label :title, title_label_text %>
+                <%= person.text_field :title, :class => 'textbox' %>
+              </div>
+              <div class="form-block">
+                <%= person.label :email, "Email" %>
+                <%= person.text_field :email, :class => 'textbox' %>
+              </div>
+              <div class="form-block">
+                <%= person.label :zip_code %>
+                <%= person.text_field :zip_code, :class => 'textbox' %>
+              </div>
+              <% unless @person.social_authenticated?("facebook") %>
+                <fieldset class="form-group">
+                  <div class="form-block">
+                    <%= person.label :password %>
+                    <%= person.password_field :password, :class => 'textbox' %>
+                  </div>
+                  <div class="form-block">
+                    <%= person.label :password_again %>
+                    <%= person.password_field :password_confirmation, :class => 'textbox' %>
+                  </div>
+                </fieldset>
+              <% end %>
+              <div class="form-block">
+                <%= person.label 'curr_image', current_image_label_text %>
+                <div class="curr_image form-label-offset">
+                  <a id="profileImage" href="<%= user_path(@person) %>">
+                    <%= profile_image @person, 70 %>
+                  </a>
+                  <%= link_to remove_avatar_text, destroy_avatar_user_path(@person), id: "delete", remote: true, method: :delete, confirm: "Are you sure?" if @person.avatar? %>
+                </div>
+              </div>
+              <div class="form-block">
+                <%= person.label :avatar, avatar_label_text %>
+                <%= person.file_field :avatar, :class => 'textbox' %>
+              </div>
+              <div class="form-block">
+                <%= person.label bio_label_text %>
+                <%= person.text_area :bio, :class => 'short textbox', :cols => 20, :rows => 10 %>
+              </div>
+              <div class="form-block">
+                <%= person.label :website %>
+                <%= person.text_field :website, :class => 'textbox' %>
+              </div>
+              <div class="form-block">
+                <%= person.label :twitter_username, 'Twitter' %>
+                <%= person.text_field :twitter_username, :class => 'textbox' %>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+        <fieldset class="footer">
+              <%= person.submit :class => 'submit', :value => 'Update Settings' %>
+            </fieldset>
+          <% end %>
+      </div>
+    </div>
+  </div>

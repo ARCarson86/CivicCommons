@@ -29,6 +29,7 @@ Civiccommons::Application.routes.draw do
         get '/private_label/edit', to: 'private_label#edit'
         put '/private_label', to: 'private_label#update'
 
+
         resources :private_label_people, only: [:index, :destroy] do
           put 'toggle_admin', on: :member
         end
@@ -39,6 +40,7 @@ Civiccommons::Application.routes.draw do
       end
       match '/search/results', to: 'search#results', as: 'search'
       resources :people, only: [:show, :new, :create, :edit, :update]
+      resources :user, only: [:show, :update, :edit]
       resources :conversations, only: [:index, :show] do
         resources :contributions do
           get 'tos', on: :member
@@ -50,7 +52,7 @@ Civiccommons::Application.routes.draw do
 
       get 'contact', to: 'homepage#contact'
       post 'contact', to: 'homepage#contact_submit'
-      
+
       get '*path', to: 'application#raise_routing_error'
     end
   end
