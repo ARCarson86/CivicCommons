@@ -513,3 +513,17 @@ label {
     text-transform: uppercase;
   }
 }
+
+.social-media {
+  .fa-lg { 
+    vertical-align: inherit;
+  }
+  .fa-facebook {
+    margin-left: 3px;
+  }
+}
+
+.validation-error {
+  color: red;
+}
+
