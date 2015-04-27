@@ -20,7 +20,7 @@
             <% if Swayze.current_private_label.address.present? %>
               <div class="row">
                 <div class="col-sm-12">
-                  <i class="fa fa-map-marker fa-lg"></i><%= Swayze.current_private_label.address %>
+                  <i class="fa fa-map-marker fa-lg"></i><a href="<%= google_maps_url %>" target="_blanke"><%= Swayze.current_private_label.address %></a>
                 </div>
               </div>
             <% end %>
@@ -42,7 +42,7 @@
               <div class="row">
                 <div class="col-sm-12">
                   <div class="map-wrapper">
-                    <div class="map" style="background-image: url(<%= "https://maps.googleapis.com/maps/api/staticmap?size=525x125&sensor=false&zoom=16&markers=#{Swayze.current_private_label.latitude}%2C#{Swayze.current_private_label.longitude}" %>);"></div>
+                    <a class="map" href="<%= google_maps_url %>" target="_blank" style="background-image: url(<%= "https://maps.googleapis.com/maps/api/staticmap?size=525x125&sensor=false&zoom=16&markers=#{Swayze.current_private_label.latitude}%2C#{Swayze.current_private_label.longitude}" %>);"></a>
                   </div>
                 </div>
               </div>
