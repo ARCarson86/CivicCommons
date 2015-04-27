@@ -126,7 +126,7 @@
         <%= f.label :main_image, class: 'col-sm-3 control-label' %>
         <div class="col-sm-5">
           <%= f.file_field :main_image, class: 'form-control' %>
-          <span class="help-block">Needs to be at least 1200px wide and 300px high; this will be used as homepage header image, and as the background image on all pages</span>
+          <span class="help-block">Needs to be at least 1200px wide and 300px high; this will be used as homepage header image, and as the background image on all pages and will be cropped from the right on smaller screens / browser windows.</span>
         </div>
         
           <%- if @private_label.main_image.present? %>
