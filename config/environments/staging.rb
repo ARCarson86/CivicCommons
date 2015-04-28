@@ -62,6 +62,7 @@ Civiccommons::Application.configure do
   config.assets.precompile << %w( reset.css master.css ie.css petition.print.css admin.css widget.css _bootstrap.css)
 
   config.assets.precompile << "tinymce/themes/advanced/skins/private_label/*.css"
+  config.assets.precompile << "tinymce/plugins/plugins/mention/editor_plugin.js"
 
   config.angular_templates.ignore_prefix = ['embed/ng/templates/', 'templates'] if config.angular_templates
 
