@@ -32,7 +32,9 @@ Civiccommons::Application.routes.draw do
         resources :private_label_people, only: [:index, :destroy] do
           put 'toggle_admin', on: :member
         end
-        resources :conversations, except: [:destroy]
+        resources :conversations, except: [:destroy] do
+          resources :conversations_people, :only => [:index, :new, :create, :destroy], :path => 'moderators'
+        end
         resources :contributions
         resources :pages
         resource :sidebar, only: [:edit, :update, :create]
@@ -41,6 +43,8 @@ Civiccommons::Application.routes.draw do
       resources :people, only: [:show, :new, :create, :edit, :update]
       resources :conversations, only: [:index, :show] do
         resources :contributions do
+          get '/moderate', to: 'contributions#moderate', on: :member
+          put '/moderate', to: 'contributions#moderated', on: :member
           get 'tos', on: :member
           post 'tos', on: :member, action: :tos_flag
         end

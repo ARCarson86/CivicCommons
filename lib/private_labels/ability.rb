@@ -9,6 +9,7 @@ module PrivateLabels
 
       if user.admin?
         can :manage, PrivateLabel
+        can :manage, ConversationsPerson
         can :manage, Conversation, private_label_id: private_label.id
         can :manage, Contribution, conversation: { private_label_id: private_label.id }
         can :read, Person

@@ -30,6 +30,16 @@ module PrivateLabels
       @contribution = @conversation.contributions.find(params[:id])
     end
 
+     def moderate
+      @contribution = @conversation.contributions.find(params[:id])
+    end
+
+    def moderated
+      @contribution = @conversation.contributions.find(params[:id])
+      @contribution.moderate_content(params, current_person)
+      redirect_to conversation_path(@conversation)
+    end
+
     protected ##################################################
 
     def get_conversation
