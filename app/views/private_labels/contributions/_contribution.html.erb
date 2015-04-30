@@ -27,6 +27,13 @@
             </div>
           </div>
           <div class="col-md-3 col-sm-3 hidden-xs text-left">
+            <% if current_person.try(:admin?) %>
+              <span class="header-icon">
+                <%= link_to moderate_conversation_contribution_path(contribution.conversation, contribution),  :class => 'moderate' do %>
+                  <i class="fa fa-ban fa-2x"></i>
+                <% end %>
+              </span>
+            <% end %>
             <span class="header-icon"><%= link_to tos_private_labels_conversation_contribution_path(@conversation, contribution), remote: true, data: {'toggle' => 'modal', 'target' => '#flagModal'} do %>
               <i class="fa fa-flag fa-2x"></i>
             <% end %>

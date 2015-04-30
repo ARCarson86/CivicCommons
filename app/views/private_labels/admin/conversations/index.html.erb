@@ -10,6 +10,7 @@
   <thead>
     <tr>
       <th>Title</th>
+      <th># Moderators</th>
       <th>Date</th>
       <th class="text-right">Actions</th>
     </tr>
@@ -24,8 +25,12 @@
             <%= convo.title %>
           <%- end %>
         </td>
+        <td><%= convo.moderators.count %></td>
         <td><%= convo.created_at.to_s(:long) %></td>
         <td class="text-right">
+          <%= link_to private_labels_admin_conversation_conversations_people_path convo do %>
+            <i class="fa fa-plus"></i>
+          <% end %>
           <%- if can? :update, convo %>
             <%= link_to edit_private_labels_admin_conversation_path convo do %>
               <i class="fa fa-edit"></i>
