@@ -1,0 +1,13 @@
+<h1>Forgot your password?</h1>
+<%= form_for(resource, :as => resource_name, :url => password_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+  <div>Forgot your password? Just tell us what email address you used when you registered and we’ll help you out.</div>
+  <br>
+  <div class="form-block">
+    <%= f.label :email %>
+    <%= f.text_field :email, :placeholder => 'me@johnnyappleseed.com',  :class => 'textbox small' %>
+  </div>
+  <br>
+  <%= f.submit "Send me reset password instructions", :class => 'btn btn-success' %>   OR   <%= link_to "Cancel", new_session_path(resource_name), class: "btn btn-success" %>
+<% end %>
+<%= render(:partial => '/shared/show_colorbox.js', :locals => {:path => fb_auth_forgot_password_path}) if @fb_auth_forgot_password == true %>
