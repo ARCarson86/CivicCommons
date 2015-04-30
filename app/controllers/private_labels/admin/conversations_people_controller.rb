@@ -24,7 +24,7 @@ module PrivateLabels
         @conversation = Conversation.find(params[:conversation_id])
         @moderator = ConversationsPerson.new(conversation_id:@conversation.id, person_id:params[:person_id])
         if @moderator.save
-          redirect_to admin_conversation_conversations_people_path(params[:conversation_id]) #@conversation)
+          redirect_to admin_conversation_conversations_people_path(params[:conversation_id])
         else
           @conversations = Conversation.all
           render :action => :new
