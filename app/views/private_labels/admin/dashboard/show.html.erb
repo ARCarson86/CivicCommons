@@ -11,7 +11,7 @@
       <tr>
         <td><%= link_to person.name %></td>
         <td><%= person.email %></td>
-        <td><%= person.last_sign_in_at.to_s %></td>
+        <td><%= last_sign_in(person) %></td>
       </tr>
       <% end %>
     </table>
