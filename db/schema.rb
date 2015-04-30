@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150218151618) do
+ActiveRecord::Schema.define(:version => 20150218151616) do
 
   create_table "actions", :force => true do |t|
     t.integer  "conversation_id"
@@ -206,8 +206,8 @@ ActiveRecord::Schema.define(:version => 20150218151618) do
     t.string   "embedly_type"
     t.boolean  "top_level_contribution",                        :default => false
     t.boolean  "moderator_post"
-    t.integer  "private_label_id"
     t.string   "contributable_type"
+    t.integer  "private_label_id"
   end
 
   add_index "contributions", ["contributable_id"], :name => "index_contributions_on_conversation_id"

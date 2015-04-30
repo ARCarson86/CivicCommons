@@ -1,0 +1,15 @@
+<div class="wrapper profile">
+  <div class="content-container">
+      <h1><%= @person.name %></h1>
+      <% if @person.title %>
+        <p class="subtitle"><%= @person.title %></p>
+      <% end %>
+    <div class="main-content">
+      <div class="offset-1 profile-mast">
+        <%= profile_image(@person, 70) %>
+        <p><%= simple_format(sanitize(@person.bio, tags: %w(p br li)), {}, sanitize: false) %></p>
+        <div>Email: <%= @person.email %></div>
+      </div>
+    </div>
+  </div>
+</div>

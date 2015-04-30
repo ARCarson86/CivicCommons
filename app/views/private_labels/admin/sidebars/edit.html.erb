@@ -1,9 +1,17 @@
 <h1>Sidebar</h1>
 
 <%= form_for @sidebar, url: private_labels_admin_sidebar_path, namespace: :admin do |f| %>
-  <p class="help-block">The sidebar content is optional for all static pages. You can enter HTML and it will appear on the page correctly.</p>
+  <p class="help-block">The sidebar content is optional for all static pages. You can enter HTML and it will appear on the page correctly. The sidebar will be 360 pixels by default, but is responsive so size will change.</p>
   <div class="form-group">
   	<%= f.text_area :content, :class => 'form-control' %><br />
   </div>
   <%= f.submit 'Submit', :class => 'btn btn-success' %>
 <% end %>
+
+<script type="text/javascript">
+	$(function() {
+   $('.notice').delay(500).fadeIn('normal', function() {
+      $(this).delay(5000).fadeOut();
+   });
+});
+</script>

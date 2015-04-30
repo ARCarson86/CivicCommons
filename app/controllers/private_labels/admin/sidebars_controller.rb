@@ -15,7 +15,8 @@ module PrivateLabels
 
       def update
         @sidebar.update_attributes sidebar_params
-        redirect_to private_labels_admin_root_path
+        flash[:notice] = "Sidebar content has been updated"
+        redirect_to :back
       end
 
       protected

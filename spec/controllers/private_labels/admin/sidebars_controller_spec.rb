@@ -13,6 +13,7 @@ module PrivateLabels
         Swayze.current_private_label = private_label
         create(:private_label_person, person: admin, private_label: private_label, admin: true)
         sign_in admin
+        request.env["HTTP_REFERER"] = "edit sidebar"
       end
 
       context 'GET #edit' do
@@ -55,7 +56,8 @@ module PrivateLabels
           put 'update', sidebar: { content: 'Test sidebar content' }
           expect(assigns(:sidebar)).to be_persisted
           expect(assigns(:sidebar).content).to eq('Test sidebar content')
-          expect(response).to redirect_to(private_labels_admin_root_path)
+          expect(response).to redirect_to "edit sidebar"
+          expect(flash[:notice]).to be_present
         end
 
       end
