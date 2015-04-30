@@ -27,7 +27,7 @@ Civiccommons::Application.routes.draw do
         get '/dashboard', to: 'dashboard#show'
 
         get '/private_label/edit', to: 'private_label#edit'
-        put '/private_label', to: 'private_label#update'
+        put "/private_label", to: "private_label#update", as: :update_settings
 
         resources :private_label_people, only: [:index, :destroy] do
           put 'toggle_admin', on: :member
