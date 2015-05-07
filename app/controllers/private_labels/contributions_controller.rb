@@ -1,6 +1,7 @@
 module PrivateLabels
   class ContributionsController < PrivateLabels::ApplicationController
     before_filter :get_conversation, except: [:index]
+    before_filter :require_user, only: [ :create ]
 
     def index
       @contributions = Swayze.current_private_label.contributions

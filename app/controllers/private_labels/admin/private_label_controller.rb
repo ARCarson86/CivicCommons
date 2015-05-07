@@ -17,6 +17,7 @@ module PrivateLabels
           flash.notice = "Private label settings were updated successfully."
           redirect_to private_labels_admin_private_label_edit_path
         else
+          flash[:error] = "There were errors that prevented the private label settings from being saved"
           render :edit
         end
       end

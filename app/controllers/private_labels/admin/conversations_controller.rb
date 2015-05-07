@@ -31,6 +31,11 @@ module PrivateLabels
           render :edit
         end
       end
+
+      def destroy
+        @conversation.destroy
+        redirect_to private_labels_admin_conversations_path, notice: 'Conversation was deleted!'
+      end
     end
 
   end # Admin module

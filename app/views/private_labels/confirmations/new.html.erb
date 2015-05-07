@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col-sm-12">
+    <h1>Thanks, go check your email.</h1>
+    <div class="subtitle">Please check your email and click on confirmation link.</div>
+    <div class="main-content">
+      <h3>Didn't get an email?</h3>
+      <ol>
+        <li><strong>Check your spam folder.</strong> Sometimes these emails get flagged as spam, so check your spam folder to see if it's there.</li>
+        <li><strong>Keep waiting.</strong> Sometimes it can take a few minutes for the email to arrive.</li>
+        <li><strong>Didn't receive the email?</strong> Follow the instructions below and we'll send the email again.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <h1>Resend confirmation instructions</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <a name="resend_confirmation_email"></a>
+    <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+      <br>
+      <div class="form-block">
+        <%= f.label :email %>
+        <%= f.text_field :email, :placeholder => 'me@johnnyappleseed.com',  :class => 'textbox small' %>
+      </div>
+      <br>
+      <%= f.submit "Resend confirmation instructions", :class => 'btn btn-success' %> OR <%= link_to "cancel", new_session_path(resource_name), class: "btn btn-success" %>
+    <% end %>
+  </div>
+</div>
