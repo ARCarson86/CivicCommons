@@ -1,18 +1,20 @@
 <section>
-  <div>
-    <% if @conversation.image.present? %>
-      <div class="convo-img">
-        <%= image_tag @conversation.image.url(:panel) %>
-      </div>
-    <% end %>
-    <%= simple_format @conversation.summary %>
-  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <% if @conversation.image.present? %>
+        <div class="convo-img">
+          <%= image_tag @conversation.image.url(:panel) %>
+        </div>
+      <% end %>
+      <%= simple_format @conversation.summary %>
 
-  <% if @conversation.link %>
-    <div class="conversation-link">
-      Link: <%= link_to @conversation.link, @conversation.link %>
+      <% if @conversation.link %>
+        <div class="conversation-link">
+          Link: <%= link_to @conversation.link, @conversation.link %>
+        </div>
+      <% end %>
     </div>
-  <% end %>
+  </div>
 
   <% if !@conversation.starter.blank? %>
       <div class="convo-starter">
