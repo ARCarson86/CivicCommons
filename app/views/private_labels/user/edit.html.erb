@@ -1,116 +1,113 @@
- <div class="wrapper">
-    <div class="main section">
-      <h1>Settings</h1>
-      <div class="tab-content">
-        <div id="your-info" class="tab active">
-          <%= form_for @person, :url => secure_user_url(@person), :method => :put, :html=> {:multipart => true} do |person| %>
-            <fieldset class="form-group user-edit-form">
-              <div class="row">
-                <div class="col-sm-2" style="text-align: right;">
-                  <%= person.label :name, name_label_text %>
-                </div>
-                <div class="col-sm-10">
-                  <%= person.text_field :name, :class => 'textbox' %>
-                </div>
+<div class="wrapper">
+  <div class="main section">
+    <h1>Settings</h1>
+    <div class="tab-content">
+      <div id="your-info" class="tab active">
+        <%= form_for @person, :url => secure_user_url(@person), :method => :put, :html=> {:multipart => true} do |person| %>
+          <fieldset class="form-group user-edit-form">
+            <div class="row">
+              <div class="col-sm-2" style="text-align: right;">
+                <%= person.label :name, name_label_text %>
               </div>
-              <div class="row">
-                <div class="col-sm-2" style="text-align: right;">
-                  <%= person.label :title, title_label_text %>
-                </div>
-                <div class="col-sm-10">
-                  <%= person.text_field :title, :class => 'textbox' %>
-                </div>
+              <div class="col-sm-10">
+                <%= person.text_field :name, :class => 'textbox' %>
               </div>
-              <div class="row">
-                <div class="col-sm-2" style="text-align: right;">
-                  <%= person.label :email, "Email" %>
-                </div>
-                <div class="col-sm-10">
-                  <%= person.text_field :email, :class => 'textbox' %>
-                </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-2" style="text-align: right;">
+                <%= person.label :title, title_label_text %>
               </div>
-              <div class="row">
-                <div class="col-sm-2" style="text-align: right;">
-                  <%= person.label :zip_code %>
-                </div>
-                <div class="col-sm-10">
-                  <%= person.text_field :zip_code, :class => 'textbox' %>
-                </div>
+              <div class="col-sm-10">
+                <%= person.text_field :title, :class => 'textbox' %>
               </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-2" style="text-align: right;">
+                <%= person.label :email, "Email" %>
+              </div>
+              <div class="col-sm-10">
+                <%= person.text_field :email, :class => 'textbox' %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-2" style="text-align: right;">
+                <%= person.label :zip_code %>
+              </div>
+              <div class="col-sm-10">
+                <%= person.text_field :zip_code, :class => 'textbox' %>
+              </div>
+            </div>
 
-              <% unless @person.social_authenticated?("facebook") && @person.password.present? %>
-                <div class="row">
-                  <div class="col-sm-2" style="text-align: right;">
-                    <%= person.label :password %>
-                  </div>
-                  <div class="col-sm-10">
-                    <%= person.password_field :password, :class => 'textbox' %>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-2" style="text-align: right;">
-                    <%= person.label :password_again %>
-                  </div>
-                  <div class="col-sm-10">
-                    <%= person.password_field :password_confirmation, :class => 'textbox' %>
-                   </div>
-                </div>
-              <% end %>
-
+            <% unless @person.social_authenticated?("facebook") && @person.password.present? %>
               <div class="row">
                 <div class="col-sm-2" style="text-align: right;">
-                  <%= person.label 'curr_image', current_image_label_text %>
-                </div>
-                  <div class="curr_image col-sm-10 form-label-offset">
-                    <a id="profileImage" href="<%= user_path(@person) %>">
-                      <%= profile_image @person, 70 %>
-                    </a>
-                    <%= link_to remove_avatar_text, destroy_avatar_user_path(@person), id: "delete", remote: true, method: :delete, confirm: "Are you sure?" if @person.avatar? %>
-                  </div>
-              </div>
-
-              <div class="row">
-                <div class="col-sm-2" style="text-align: right;">
-                  <%= person.label :avatar, avatar_label_text %>
+                  <%= person.label :password %>
                 </div>
                 <div class="col-sm-10">
-                  <%= person.file_field :avatar, :class => 'textbox' %>
+                  <%= person.password_field :password, :class => 'textbox' %>
                 </div>
               </div>
-
               <div class="row">
                 <div class="col-sm-2" style="text-align: right;">
-                  <%= person.label bio_label_text %>
+                  <%= person.label :password_again %>
                 </div>
                 <div class="col-sm-10">
-                  <%= person.text_area :bio, :class => 'short textbox', :cols => 20, :rows => 10 %>
+                  <%= person.password_field :password_confirmation, :class => 'textbox' %>
                 </div>
               </div>
+            <% end %>
 
-              <div class="row">
-                <div class="col-sm-2" style="text-align: right;">
-                  <%= person.label :website %>
-                </div>
-                <div class="col-sm-10">
-                  <%= person.text_field :website, :class => 'textbox' %>
-                </div>
+            <div class="row">
+              <div class="col-sm-2" style="text-align: right;">
+                <%= person.label 'curr_image', current_image_label_text %>
               </div>
+              <div class="curr_image col-sm-10 form-label-offset">
+                <a id="profileImage" href="<%= user_path(@person) %>">
+                  <%= profile_image @person, 70 %>
+                </a>
+                <%= link_to remove_avatar_text, destroy_avatar_user_path(@person), id: "delete", remote: true, method: :delete, confirm: "Are you sure?" if @person.avatar? %>
+              </div>
+            </div>
 
-              <div class="row">
-                <div class="col-sm-2" style="text-align: right;">
-                  <%= person.label :twitter_username, 'Twitter' %>
-                </div>
-                <div class="col-sm-10">
-                  <%= person.text_field :twitter_username, :class => 'textbox' %>
-                </div>
+            <div class="row">
+              <div class="col-sm-2" style="text-align: right;">
+                <%= person.label :avatar, avatar_label_text %>
               </div>
-            </fieldset>
-          </div>
-        </div>
-        <div class="col-sm-10 col-sm-offset-2">
-          <%= person.submit :class => 'btn btn-success', :value => 'Update Settings' %>
-        </div>
-      <% end %>
+              <div class="col-sm-10">
+                <%= person.file_field :avatar  %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-2" style="text-align: right;">
+                <%= person.label :bio, bio_label_text %>
+              </div>
+              <div class="col-sm-10">
+                <%= person.text_area :bio, :cols => 20, :rows => 10  %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-2" style="text-align: right;">
+                <%= person.label :website %>
+              </div>
+              <div class="col-sm-10">
+                <%= person.text_field :website %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-2" style="text-align: right;">
+                <%= person.label :twitter_username, "Twitter" %>
+              </div>
+              <div class="col-sm-10">
+                <%= person.text_field :twitter_username %>
+              </div>
+            </div>
+
+            <div class="col-sm-10 col-sm-offset-2">
+            <%= person.submit :class => 'btn btn-success', :value => 'Update Settings' %>
+            </div>
+          </fieldset>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
