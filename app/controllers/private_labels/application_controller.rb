@@ -12,6 +12,14 @@ module PrivateLabels
       raise ActionController::RoutingError.new "No route matches [#{request.method}] #{request.path.inspect}"
     end
 
+    def require_user
+      if current_person.nil?
+        return false
+      else
+        return true
+      end
+    end
+
     protected
     def render_404
       respond_to do |f|
