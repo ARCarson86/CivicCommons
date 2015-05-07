@@ -254,7 +254,17 @@
               }
             }
           }
-        }      
+        }
+      }
+    }
+  }
+
+  // User Settings
+  .user-edit-form {
+    .row {
+      margin-bottom: 10px;
+      label {
+        color: $color;
       }
     }
   }
