@@ -8,7 +8,7 @@
       <% end %>
       <%= simple_format @conversation.summary %>
 
-      <% if @conversation.link %>
+      <% if @conversation.link.present? %>
         <div class="conversation-link">
           Link: <%= link_to @conversation.link, @conversation.link %>
         </div>
@@ -16,7 +16,7 @@
     </div>
   </div>
 
-  <% if !@conversation.starter.blank? %>
+  <% if @conversation.starter.present? %>
       <div class="convo-starter">
         <h2>Conversation Starter</h2>
         <%= sanitize @conversation.starter %>
