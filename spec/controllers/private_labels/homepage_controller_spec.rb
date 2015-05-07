@@ -87,7 +87,7 @@ module PrivateLabels
 
           post :contact_submit, :contact_us_message => {:name => "Test User", :email => "test.user@example.com", :body => "This is the body"}
 
-          expect(response).to redirect_to root_path
+          expect(response).to redirect_to private_labels_contact_path
         end
       end
 
