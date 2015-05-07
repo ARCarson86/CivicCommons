@@ -8,7 +8,8 @@
     <%= simple_format @conversation.summary %>
   </div>
 
-  <% if @conversation.link %>
+  <% if @conversation.link.present?
+   %>
     <div class="conversation-link">
       Link: <%= link_to @conversation.link, @conversation.link %>
     </div>
