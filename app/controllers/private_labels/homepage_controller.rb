@@ -19,7 +19,7 @@ module PrivateLabels
 
       if @contact_us_message.valid?
         PrivateLabels::Contact.send_contact_email(@contact_us_message).deliver!
-        redirect_to root_path, notice: "Your message was sent successfully"
+        render :contact, notice: "Your message was sent successfully"
       else
         render :contact
       end
