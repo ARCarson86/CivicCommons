@@ -14,7 +14,7 @@ Civiccommons::Application.routes.draw do
 
   #Private Label Routes
   constraints PrivateLabelConstraint do
-    devise_for :people, :controllers => { :registrations => 'private_labels/registrations', :confirmations => 'private_labels/confirmations', :sessions => 'private_labels/sessions', :omniauth_callbacks => "private_labels/registrations/omniauth_callbacks", :passwords => 'passwords'},
+    devise_for :people, :controllers => { :registrations => 'private_labels/registrations', :confirmations => 'private_labels/confirmations', :sessions => 'private_labels/sessions', :omniauth_callbacks => "private_labels/registrations/omniauth_callbacks", :passwords => 'private_labels/passwords'},
       :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :registration => 'register', :sign_up => 'new' }
     devise_scope :person do
       get "/registrations/agree_to_terms", to: "private_labels/registrations#present_terms", as: "agree_to_terms"
@@ -33,7 +33,7 @@ Civiccommons::Application.routes.draw do
         resources :private_label_people, only: [:index, :destroy] do
           put 'toggle_admin', on: :member
         end
-        resources :conversations, except: [:destroy] do
+        resources :conversations do
           resources :conversations_people, :only => [:index, :new, :create, :destroy], :path => 'moderators'
         end
         resources :contributions

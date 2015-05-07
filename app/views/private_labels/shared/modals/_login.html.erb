@@ -6,14 +6,13 @@
         <h4 class="modal-title" id="myModalLabel">
           <div class="modal-header-icon"><span><%= image_tag('private_labels/user-wh-sm.png') %></span></div>
           Login
-          
         </h4>
       </div>
       <div class="modal-body">
         <h3>Did you register with a social network?</h3>
         <div class="social-holder">
           <div class="title">Sign in with</div>
-          <% Authentication::PROVIDERS.each do |provider| %><%= link_to person_omniauth_authorize_url(provider.to_sym, host: "localhost:3000", private_label: request.host), class: "social-sign-in-button #{provider}" do %><div class="social-link-sign <%= provider %>"></div><% end %><% end %>
+          <% Authentication::PROVIDERS.each do |provider| %><%= link_to person_omniauth_authorize_url(provider.to_sym, host: request.host, private_label: request.host), class: "social-sign-in-button #{provider}" do %><div class="social-link-sign <%= provider %>"></div><% end %><% end %>
         </div>
 
         <h3>if not, login with your username and password:</h3>

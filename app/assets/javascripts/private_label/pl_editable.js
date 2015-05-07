@@ -3,7 +3,7 @@
     script_url : '/assets/tinymce/tiny_mce_src.js',
     theme : "advanced",
     skin : 'private_label',
-    plugins : "autolink,inlinepopups,mention,noneditable",
+    plugins : "autolink,inlinepopups,noneditable",
     width : '100%',
     theme_advanced_buttons1 : "bold,italic,underline,pllink,plimage",
     theme_advanced_buttons2 : "",
