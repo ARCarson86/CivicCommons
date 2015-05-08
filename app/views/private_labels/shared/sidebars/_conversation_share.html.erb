@@ -4,7 +4,7 @@
     <!-- Follow -->  
     <a href="#" class="social private-label" target="_blank"><div class="share-icon-wrapper"><i class="fa fa-plus fa-2x"></i></div><div>Follow</div></a>
     <!-- Email -->
-    <%= link_to "mailto:?to=&subject=#{u email_share_subject(@conversation)}&body=#{email_share_body(@conversation).html_safe}", class: "social private-label", target: "_blank" do %>
+    <%= link_to "mailto:?to=&subject=#{u email_share_subject(@conversation)}&body=#{email_share_body(@conversation).html_safe}", class: "social private-label" do %>
     <div class="share-icon-wrapper"><i class="fa fa-envelope fa-2x"></i></div><div>Email</div>
     <% end %>
     <!-- Facebook -->
