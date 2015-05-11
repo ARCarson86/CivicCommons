@@ -19,5 +19,5 @@
 <% end %>
 
 <section class="static-page">
-  <%= simple_format @page.content %>
+  <%= simple_format(@page.content, {}, {:sanitize => false}) %>
 </section>
