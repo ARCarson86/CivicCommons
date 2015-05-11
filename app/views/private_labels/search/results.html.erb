@@ -20,8 +20,12 @@
   <% Conversation.unscoped do %>
     <% Contribution.unscoped do %>
       <% unless @search.blank? %>
-        <% @search.each_hit_with_result do |hit| %>
-          <%= render partial: 'hit', locals: { hit: hit } %>
+        <% if @search.results.present? %>
+          <% @search.each_hit_with_result do |hit| %>
+            <%= render partial: 'hit', locals: { hit: hit } %>
+          <% end %>
+        <% else %>
+          <div>No results found.</div>
         <% end %>
       <% end %>
     <% end %>
