@@ -56,6 +56,8 @@ module ApplicationHelper
   def contribution_item_url(contribution)
     if contribution.issue
       issue_url( contribution.item )
+    elsif contribution.contributable && contribution.contributable.is_a?(RemotePage)
+      contribution.contributable.url
     elsif contribution.conversation
       if contribution.conversation.remote_page
         contribution.conversation.remote_page.url
