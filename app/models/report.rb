@@ -33,8 +33,8 @@ class Report < ActiveRecord::Base
         c.total_visits as 'Visits',
         date(c.last_visit_date) as 'Last Visit',
         if(c.staff_pick = 1, 'Y', '') as 'Staff Pick?',
-        (select count(distinct owner) from contributions where conversation_id = c.id) as '# of Participants',
-        (select count(*) from contributions where conversation_id = c.id) as 'Contributions',
+        (select count(distinct owner) from contributions where contributable_type='Conversation' AND contributable_id = c.id) as '# of Participants',
+        (select count(*) from contributions where contributable_type='Conversation' AND contributable_id = c.id) as 'Contributions',
         (select count(*) from surveys where type = 'Vote' and surveyable_type = 'Conversation' and surveyable_id = c.id) as 'Votes',
         (select count(distinct sr.person_id) from survey_responses as sr join surveys as s on s.id = sr.survey_id where s.surveyable_type = 'Conversation' and s.type = 'Vote' and s.surveyable_id = c.id) as 'Unique Members Voting',
         (select count(*) from petitions where conversation_id = c.id) as 'Petitions',
@@ -55,7 +55,7 @@ class Report < ActiveRecord::Base
       (select count(sso.id) from selected_survey_options as sso join survey_options as so on sso.survey_option_id = so.id join surveys as s on s.id = so.survey_id where s.surveyable_type = 'Conversation' and s.surveyable_id = c.id) as 'Total Vote Responses',
       (select count(*) from petitions where conversation_id = c.id) as 'Petitions',
       (select count(*) from petition_signatures as ps join petitions as p on p.id = ps.petition_id where p.conversation_id = c.id) as 'Petition Signatures',
-      (select count(*) from contributions where conversation_id = c.id) as 'Contributions',
+      (select count(*) from contributions where contributable_type='Conversation' AND contributable_id = c.id) as 'Contributions',
       (select count(*) from subscriptions where subscribable_type = 'Conversation' and subscribable_id = c.id) as 'Subscriptions',
       (select count(*) from visits where visitable_type = 'Conversation' and visitable_id = c.id) as 'Visits'
       from conversations as c
@@ -80,7 +80,7 @@ class Report < ActiveRecord::Base
       if(contrib.parent_id is NULL, 0, 1) as 'Sort Level'
       from conversations as convo
       join conversations_issues as ci on ci.conversation_id = convo.id and ci.issue_id = #{id}
-      left outer join contributions as contrib on contrib.conversation_id = convo.id
+      left outer join contributions as contrib on contrib.contributable_type = 'Conversation' AND contrib.contributable_id = convo.id
       left outer join people as p on p.id = contrib.owner"
     ActiveRecord::Base.connection.execute(sql)
 	end
@@ -93,7 +93,7 @@ class Report < ActiveRecord::Base
         (select count(sso.id) from selected_survey_options as sso join survey_options as so on sso.survey_option_id = so.id join surveys as s on s.id = so.survey_id where s.surveyable_type = 'Conversation' and s.surveyable_id = c.id) as 'Total Vote Responses',
         (select count(*) from petitions where conversation_id = c.id) as 'Petitions',
         (select count(*) from petition_signatures as ps join petitions as p on p.id = ps.petition_id where p.conversation_id = c.id) as 'Petition Signatures',
-        (select count(*) from contributions where conversation_id = c.id) as 'Contributions',
+        (select count(*) from contributions where contributable_type='Conversation' AND contributable_id = c.id) as 'Contributions',
         (select count(*) from subscriptions where subscribable_type = 'Conversation' and subscribable_id = c.id) as 'Subscriptions',    
         (select count(*) from visits where visitable_type = 'Conversation' and visitable_id = c.id) as 'Visits'
         from conversations as c
