@@ -19,6 +19,7 @@ Civiccommons::Application.routes.draw do
     devise_scope :person do
       get "/registrations/agree_to_terms", to: "private_labels/registrations#present_terms", as: "agree_to_terms"
       post "/registrations/agree_to_terms", to: "private_labels/registrations#agree_to_terms"
+      get '/session_status', to: 'sessions#status', as: 'session_status', defaults: { format: :json }
     end
     namespace :private_labels, path: '' do
       root to: 'homepage#show'
