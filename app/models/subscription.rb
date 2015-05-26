@@ -17,7 +17,7 @@ class Subscription < ActiveRecord::Base
   def self.subscribe(subscription_type, subscription_id, subscriber)
     if self.subscribable?(subscription_type)
       subscribable_model = subscription_type.camelize.constantize
-      subscribable_model.find(subscription_id).subscribe(subscriber)
+      subscribable_model.unscoped.find(subscription_id).subscribe(subscriber)
     else
       raise(ArgumentError, "Invalid attempt made to subscribe to:#{subscription_type}. #{subscription_type} must implement subscribable.")
     end
@@ -26,7 +26,7 @@ class Subscription < ActiveRecord::Base
   def self.unsubscribe(subscription_type, subscription_id, subscriber)
     if self.subscribable?(subscription_type)
       subscribable_model = subscription_type.camelize.constantize
-      subscribable_model.find(subscription_id).unsubscribe(subscriber)
+      subscribable_model.unscoped.find(subscription_id).unsubscribe(subscriber)
     else
       raise(ArgumentError, "#{model}'s can not be subscribed to.")
     end
