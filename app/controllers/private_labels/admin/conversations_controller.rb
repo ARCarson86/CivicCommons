@@ -33,6 +33,7 @@ module PrivateLabels
       end
 
       def destroy
+        Contribution.unscoped.where(contributable_id: @conversation.id).delete_all
         @conversation.destroy
         redirect_to private_labels_admin_conversations_path, notice: 'Conversation was deleted!'
       end

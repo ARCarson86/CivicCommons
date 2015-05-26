@@ -41,6 +41,11 @@ module PrivateLabels
       redirect_to conversation_path(@conversation)
     end
 
+    def destroy
+      @contribution = @conversation.contributions.find(params[:id])
+      @contribution.destroy
+    end
+
     protected ##################################################
 
     def get_conversation
