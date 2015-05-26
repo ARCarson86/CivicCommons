@@ -189,10 +189,6 @@ class Contribution < ActiveRecord::Base
     end
   end
 
-  def self.delete_all(*args)
-    self.send(:with_exclusive_scope) { super(*args) }
-  end
-
   #############################################################################
   # Item
 

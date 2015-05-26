@@ -17,10 +17,6 @@ module PrivateLabels
       def create
         @contribution = Contribution.new(params[:contribution])
       end
-
-      def destroy
-
-      end
     end
 
   end # Admin module
