@@ -1,8 +1,12 @@
 <section>
   <h2><div class="sidebar-header-icon"><span><%= image_tag('private_labels/share-wh.png') %></span></div>Share</h2>
   <div class="share-buttons">
-    <!-- Follow -->  
-    <a href="#" class="social private-label" target="_blank"><div class="share-icon-wrapper"><i class="fa fa-plus fa-2x"></i></div><div>Follow</div></a>
+    <!-- Follow -->
+    <% unless current_person && ! @conversation.subscribers.include?(current_person).blank? %>
+      <a href="/subscriptions/subscribe?type=Conversation&id=<%= @conversation.id %>" title="Follow" class="social private-label" data-remote="true" data-method="POST" data-target="#subscription" rel="nofollow"><div class="share-icon-wrapper"><i class="fa fa-plus fa-2x"></i></div><div>Follow</div></a>
+    <% else %>
+      <a href="/subscriptions/unsubscribe?type=Conversation&id=<%= @conversation.id %>" title="Follow" class="social private-label" data-remote="true" data-method="POST" data-target="#subscription" rel="nofollow"><div class="share-icon-wrapper"><i class="fa fa-plus fa-2x"></i></div><div>Unfollow</div></a>
+    <% end %>
     <!-- Email -->
     <%= link_to "mailto:?to=&subject=#{u email_share_subject(@conversation)}&body=#{email_share_body(@conversation).html_safe}", class: "social private-label" do %>
     <div class="share-icon-wrapper"><i class="fa fa-envelope fa-2x"></i></div><div>Email</div>
@@ -12,7 +16,7 @@
     <!-- Twitter -->
     <a href="http://twitter.com/home?status=<%= request.original_url %>" title="Share on Twitter" target="_blank" class="social twitter"><div class="share-icon-wrapper"><i class="fa fa-twitter fa-2x"></i></div><div>Twitter</div></a>
 
-    <!-- LinkedIn --> 
+    <!-- LinkedIn -->
     <a href="http://www.linkedin.com/shareArticle?mini=true&url=<%= request.original_url %>&title=&summary=<%= request.original_url %>" title="Share on LinkedIn" target="_blank" class="social linkedin"><div class="share-icon-wrapper"><i class="fa fa-linkedin fa-2x"></i></div><div>LinkedIn</div></a>
 
   </div>

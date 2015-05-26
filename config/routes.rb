@@ -23,6 +23,9 @@ Civiccommons::Application.routes.draw do
     end
     namespace :private_labels, path: '' do
       root to: 'homepage#show'
+      post '/subscriptions/subscribe',                     to: 'subscriptions#subscribe'
+      post '/subscriptions/unsubscribe',                   to: 'subscriptions#unsubscribe'
+
       namespace "admin" do
         root to: 'dashboard#show'
         get '/dashboard', to: 'dashboard#show'
