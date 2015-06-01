@@ -42,4 +42,6 @@ Civiccommons::Application.configure do
 
   config.angular_templates.ignore_prefix = ['embed/ng/templates/', 'templates']
 
+  config.assets.precompile = [ Proc.new{ |path| !File.extname(path).in?(['.js', '.css', '.map', '.gzip']) }, /(?:\/|\\|\A)application\.(css|js)$/ ]
+
 end
