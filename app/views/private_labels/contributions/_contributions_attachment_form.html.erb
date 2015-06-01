@@ -1,0 +1,18 @@
+<div class="contribution-attachments hide <%= "link" if contribution && contribution.url.present? %> <%= "file" if contribution && contribution.attachment_file_name.present? %>">
+  <div href="#" class="add-link button tertiary hide" rel="link">
+    <div class="input">
+      <i class="fa fa-link fa-lg"></i> <p class="help-text">Add a link to a related website</p>
+      <%= form.text_field :url, :class => 'form-control input-sm', :size => 30 %>
+      <i class="fa fa-times fa-lg close hidden-xs"></i>
+    </div>
+  </div>
+
+  <div href="#" class="add-file button tertiary hide" rel="file">
+    <div class="input">
+      <i class="fa fa-picture-o fa-lg"></i> <p class="help-text">Upload a photograph, document, or other file</p>
+      <%= form.file_field :attachment, :class => 'form-control input-sm', :size => 30 %>
+      <i class="fa fa-times fa-lg close hidden-xs"></i>
+    </div>
+  </div>
+</div>
+

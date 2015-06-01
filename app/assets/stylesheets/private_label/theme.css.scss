@@ -1,0 +1,315 @@
+@import "compass/css3/inline-block";
+@import "variables";
+
+@mixin content($color) {
+	// Main Themes
+  h1, h2, h3 {
+    color: $color;
+  }
+  h4 {
+    color: $midGray;
+  }
+  .btn-success {
+    background-color: $color;
+    border-color: $color;
+
+    &:hover {
+      background-color: darken($color,5%);;
+      border-color: darken($color,5%);;
+    }
+  }
+  // Modals
+  .login-modal, .flag-modal {
+    .modal-dialog {
+      .modal-title {
+        color: $color;
+        .modal-header-icon{
+          border-bottom: 2px solid $color;
+          span{
+            background-color: $color;
+          }
+        }
+      }
+    }
+  }
+
+  // Search
+  .search-highlight {
+    background-color: transparentize($color, 0.5);
+    padding: 0 0.4em;
+    font-style: italic;
+  }
+
+  // Pagination
+  .pagination {
+    .current{
+      color: #fff;
+      font-style: normal;
+      &:hover{
+        background-color: $midGray;
+      }
+    }
+    .previous_page, .next_page {
+      
+      background-color: $color;
+      color: #fff;
+      font-size: 20px;
+      line-height: 40px;
+      &:hover {
+        background-color: $color;
+      }
+    }
+    > * {
+      color: $color;
+      &:hover {
+        background-color: $gray;
+      }
+    }
+  }
+
+  // Sidebar
+
+  &.private_labels-homepage{
+    .sidebar{
+      section{
+        &.recent-activities{
+          .recent-activities-list{
+            .item{
+              .item-header{
+                .reply{
+                  a{
+                    color: $color;  
+                    &:hover{
+                      color: darken($color, 5%);
+                    }
+                  }
+                  
+                }
+              }
+              .item-content{
+                a{
+                  color: $color;
+                  &:hover{
+                    color: darken($color, 5%);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.private_labels-conversations{
+    .sidebar{
+      section{
+        h2{
+          .sidebar-header-icon{
+            border-bottom: 2px solid $color;
+            span{
+              background-color: $color;
+            }
+          }
+        }
+        &.recent-activities{
+          .recent-activities-list{
+            .item{
+              .item-header{
+                .reply{
+                  a{
+                    color: $color;  
+                    &:hover{
+                      color: darken($color, 5%);
+                    }
+                  }  
+                }
+              }
+              .item-content{
+                h5{
+                  color: $color;
+                  &:hover{
+                    color: darken($color, 5%);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // HomePage Content Section
+
+  &.private_labels-homepage{
+    .content-area{
+      section{
+        .section-content{
+          a{
+            color: $color;
+            &:hover{
+              color: darken($color, 5%);
+            }
+          }
+          .conversation-info{
+            color: $color; 
+          }
+        }
+      }
+    }
+  }
+
+  // Conversation Content Section
+
+  .content-area{
+    .contribution-logged-out-links {
+      padding: 40px;
+      font-size: 16px;
+    a {
+      color: $color;
+    }
+  }
+    section{
+      &.top-level-contribution{
+        border-left: 5px solid $color;
+      }
+      .contribute-actions{
+        .button{
+          &.submit{
+            background-color: $color;
+          }
+        }
+      }
+    }
+    .conversation-contributions{
+      .contribution-container{
+        .contribution-header{
+          color: $color;  
+          a{
+            color: $color;  
+            &:hover{
+              color: darken($color, 5%);
+            }
+          }
+          .header-icon{
+            i{
+              color: $color;
+              &:hover{
+                color: darken($color, 5%);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Social Buttons
+
+  .share-buttons{
+    .social{
+      &.private-label{
+        color: $color;
+        border-color: $color;
+        &:hover{
+          color: darken($color, 5%);
+          border-color: darken($color, 5%);
+        }
+      }
+    }
+  }
+
+  // Admin
+
+  &.private_labels.admin {
+    .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus{
+        background-color: $color;
+
+    }
+  }
+  
+  // Header
+
+  .header-second{
+    .overlay{
+      background-color: $color;
+    }
+  }
+  
+  #header-wrapper{
+    #profile-options{
+      color: $color;
+      a{
+        color: $color;
+        &:hover{
+          color: darken($color, 5%);
+        }
+      }
+    }  
+  }
+
+  @media all and (max-width: 992px){
+    #header-wrapper{
+      .collapse-nav{
+        .nav{
+          li{
+            a{
+              color: $color;
+              &:hover {
+                color: darken($color,5%);;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // User Settings
+  .user-edit-form {
+    .row {
+      margin-bottom: 10px;
+      label {
+        color: $color;
+      }
+    }
+  }
+
+  // Contact Page
+
+  &.private_labels-homepage{
+    .content-area{
+      section{
+        &.contact{
+          .contact-info{
+            i{
+              color: $color;
+              border: 2px solid $color;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+body.red{
+  @include content($red);
+}
+body.blue{
+  @include content($blue);
+}
+body.orange{
+  @include content($orange);
+}
+body.green{
+  @include content($green);
+}
+body.gold{
+  @include content($gold);
+}
+body.dark-blue{
+  @include content($darkBlue);
+}

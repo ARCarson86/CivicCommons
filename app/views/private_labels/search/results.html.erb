@@ -1,0 +1,32 @@
+<% content_for :header_second do %>
+  <div class="placeholder">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1>Search Results</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<section>
+  <h2>Search results for: <%= content_tag :em, params[:q] %></h2>
+  <div class="search-results">
+  <% Conversation.unscoped do %>
+    <% Contribution.unscoped do %>
+      <% unless @search.blank? %>
+        <% if @search.results.present? %>
+          <% @search.each_hit_with_result do |hit| %>
+            <%= render partial: 'hit', locals: { hit: hit } %>
+          <% end %>
+        <% else %>
+          <div>No results found.</div>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+  </div>
+</section>
+
+<%= will_paginate @search.hits, previous_label: '<i class="icon icon-chevron-left"></i>', next_label: '<i class="icon icon-chevron-right"></i>' %>

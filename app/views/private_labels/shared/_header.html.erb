@@ -1,0 +1,58 @@
+<nav id="header-wrapper" class="navbar navbar-default">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <%= link_to '/', class: 'navbar-brand with-borders' do %>
+          <%= image_tag Swayze.current_private_label.logo.url(:header) %>
+        <% end %>
+        <div class="collapse-nav nav-hide">
+          <ul class="nav navbar-nav ">
+            <% if !current_person %>
+              <%= render :partial => 'private_labels/shared/user-profiles/logged_out_mobile' %>
+            <% end %>
+            <% private_label_pages.each do |page| %>
+              <li>
+                <%= link_to page.title, page %>
+              </li>
+            <% end %>
+            <li>
+              <%= link_to 'Contact', '/contact' %>
+            </li>
+          </ul>
+        </div>
+        <div id="pl-search-form" class="hide header-util-item">
+          <%= render :partial => 'private_labels/search/search', locals: { filter_type: params[:filter] } %>
+        </div>
+        <div id="profile-options" class="hide header-util-item">
+          <%- if can? :manage, Swayze.current_private_label %>
+            <%= link_to('Admin', private_labels_admin_root_path) %> | 
+          <%- end %>
+          <%- unless current_person.nil? %>
+            <%= link_to_settings(current_person).html_safe %> |
+          <%- end %>
+          <%= link_to "Logout", destroy_person_session_path, :class => 'user-link' %>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li id="nav-search" class="left-border">
+            <a href="#" id="pl-search"><i class="fa fa-search fa-lg"></i></a>
+
+          </li>
+          <% if current_person %>
+            <%= render :partial => 'private_labels/shared/user-profiles/logged_in' %>
+          <% else %>
+            <%= render :partial => 'private_labels/shared/user-profiles/logged_out' %>
+          <% end %>
+          <li class="toggle-btn hidden-md hidden-lg">
+            <a href="#" class="toggle-nav"><i class="fa fa-bars fa-2x"></i></a>
+          </li>
+        </ul>
+
+
+      </div>
+    </div>
+  </div>
+  <div class="header-utilities hide">
+    
+  </div>
+</nav>
+

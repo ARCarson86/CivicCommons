@@ -1,0 +1,23 @@
+<% if @page.sidebar? && Swayze.current_private_label.sidebar.present? %>
+  <% content_for :sidebar do %>
+    <section>
+      <%= render partial: 'private_labels/shared/sidebar' %>
+    </section>
+  <% end %>
+<% end %>
+
+<% content_for :header_second do %>
+  <div class="placeholder">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+           <h1><%= @page.title %></h1>
+        </div>
+    </div>
+  </div>
+  </div>
+<% end %>
+
+<section class="static-page">
+  <%= simple_format(@page.content, {}, {:sanitize => false}) %>
+</section>

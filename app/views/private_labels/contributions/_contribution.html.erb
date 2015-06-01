@@ -1,0 +1,80 @@
+<section class="<%= contribution.parent.blank? ? "top-level-contribution" : "contribution-reply" %>" id="contribution-<%= contribution.id %>">
+  <div class="row">
+    <div class="col-md-2 col-sm-2 col-xs-3">
+      <div class="user-image">
+        <%= user_profile(contribution.owner).html_safe %>
+      </div>
+    </div>
+    <div class="col-md-10 col-sm-10 col-xs-9">
+      <div class="contribution-container">
+        <div class="contribution-header row">
+          <div class="col-md-9 col-sm-9 col-xs-12 contribution-info">
+            <div>
+              <span class="visible-xs-block visible-sm-inline visible-lg-inline visible-lg-inline">
+                <%= image_tag('private_labels/user-gray.png') %>
+                <%= contributor_name(contribution) %>
+              </span>
+              <span class="visible-xs-block visible-sm-inline visible-lg-inline visible-lg-inline">
+                <i class="fa fa-clock-o fa-2x"></i>
+                <%= contribution.created_at.strftime("%b %e, %Y") %>
+              </span>
+              <div class="visible-xs-block">
+                <span class="header-icon"><%= link_to tos_private_labels_conversation_contribution_path(@conversation, contribution), remote: true, data: {'toggle' => 'modal', 'target' => '#flagModal'} do %>
+                  <i class="fa fa-flag fa-2x"></i>
+                <% end %>
+                <span class="header-icon"><a href="#" class="reply-to-contribution"><i class="fa fa-share fa-2x"></i></a></span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-3 hidden-xs text-left">
+            <% if current_person.try(:admin?) %>
+              <span class="header-icon">
+                <%= link_to moderate_conversation_contribution_path(contribution.conversation, contribution),  :class => 'moderate' do %>
+                  <i class="fa fa-ban fa-2x"></i>
+                <% end %>
+              </span>
+            <% end %>
+            <span class="header-icon"><%= link_to tos_private_labels_conversation_contribution_path(@conversation, contribution), remote: true, data: {'toggle' => 'modal', 'target' => '#flagModal'} do %>
+              <i class="fa fa-flag fa-2x"></i>
+            <% end %>
+            <span class="header-icon"><a href="#" class="reply-to-contribution"><i class="fa fa-share fa-2x"></i> <%= contribution.children.count %> Replies</a></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="contribution-content">
+              <%= sanitize contribution.content %>
+              <%= render partial: 'private_labels/contributions/attachments', locals: { contribution: contribution } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<div class="row">
+  <div class="col-md-offset-1 col-md-11 col-sm-offset-1 col-sm-11 col-xs-offset-1 col-xs-11">
+    <%= render contribution.children %>
+  </div>
+</div>
+
+<% if contribution.parent.blank? && current_person.present? %>
+  <div class="row reply-form">
+    <div class="col-md-offset-1 col-md-11 col-sm-offset-1 col-sm-11 col-xs-offset-1 col-xs-11">
+      <section class="contribution-reply">
+        <div class="row">
+          <div class="col-md-2 col-sm-2 col-xs-3">
+            <div class="user-image">
+              <%= user_profile(current_person).html_safe %>
+            </div>
+          </div>
+          <div class="col-md-10 col-sm-10 col-xs-9">
+            <%= render partial: 'private_labels/contributions/form', locals: { contribution: contribution } %>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+<% end %>

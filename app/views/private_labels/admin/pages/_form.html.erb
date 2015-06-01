@@ -1,0 +1,68 @@
+<%= form_for [:private_labels, :admin, @page], html: { class: "form-horizontal" } do |f| %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Page Content</h3>
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+        <%= f.label :title, class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
+          <%= f.text_field :title, class: "form-control" %>
+          <span class="help-block">This is the title of the page. It will also be used as the link to the page in the header.</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :content, class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
+          <span class="help-block">Enter below the content for the main part of the page.  This should be HTML.</span>
+          <%= f.text_area :content, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-9 col-sm-offset-3">
+          <div class="checkbox">
+            <%= f.label :sidebar, class: 'control-label' do %>
+              <%= f.check_box :sidebar %>
+              Show Sidebar on this page?
+            <% end %>
+          </div>
+          <div class="checkbox">
+            <%= f.label :is_home, class: 'control-label' do %>
+              <%= f.check_box :is_home %>
+              Also display this content on the home page below the main image?
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Meta Information</h3>
+      <span class="help-block">This content will not be visible to the visitor, but will be used by search engines when indexing your page.</span>
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+        <%= f.label :meta_keywords, 'Keywords', class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
+          <%= f.text_field :meta_keywords, class: "form-control" %>
+          <span class="help-block">A comma-separated list of words describing your page that is used by some search engines</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :meta_description, 'Description', class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
+          <%= f.text_field :meta_description, class: "form-control" %>
+          <span class="help-block">A short description of the content of your page that may be displayed in search engine results</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-4 col-sm-offset-8 text-right">
+      <%= f.submit "Save", class: 'btn btn-success' %>
+    </div>
+  </div>
+<% end %>

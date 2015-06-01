@@ -2,6 +2,7 @@ require 'parent_validator'
 require 'obscenity/active_model'
 class Contribution < ActiveRecord::Base
   include Visitable
+  include PrivateLabelScopable
 
   searchable :include => [:person, :contributable, :issue], :ignore_attribute_changes_of => [ :total_visits, :recent_visits, :last_visit_date, :updated_at, :recent_rating ] do
     text :title
@@ -9,9 +10,11 @@ class Contribution < ActiveRecord::Base
     text :content, :stored => true, :boost => 1, :default_boost => 1 do
       Sanitize.clean(content, :remove_contents => ['style','script'])
     end
+    integer :private_label_id
     integer :region_metrocodes, :multiple => true
   end
 
+  attr_accessible :contributable
   attr_accessor :top_level, :owner_id
   validates :content,  presence: true, obscenity: { sanitize: true, replacement: :vowels }
   # nested contributions are destroyed via callbacks
@@ -29,6 +32,8 @@ class Contribution < ActiveRecord::Base
   delegate :title, :to => :item, :prefix => true
   delegate :name, :to => :person, :prefix => true
 
+  # Private Label Relations
+  belongs_to :private_label
   #############################################################################
   # Validations
 
@@ -63,6 +68,8 @@ class Contribution < ActiveRecord::Base
     end
     true
   end
+
+  before_save :ensure_private_label
 
   #############################################################################
   # Embedly
@@ -131,6 +138,10 @@ class Contribution < ActiveRecord::Base
 
   def conversation
     contributable if contributable_type == 'Conversation'
+  end
+
+  def conversation=(conversation)
+    contributable = conversation
   end
 
   #############################################################################
@@ -327,6 +338,10 @@ class Contribution < ActiveRecord::Base
 
   def set_person_from_item
     self.person = item.person unless item.nil?
+  end
+
+  def ensure_private_label
+    self.private_label_id = self.conversation.private_label_id unless private_label_id
   end
 
 end

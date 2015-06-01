@@ -1,0 +1,27 @@
+<h1>
+  <%= link_to @conversation.title, conversation_path(@conversation) %>
+</h1>
+
+<h2>Moderators</h2>
+
+<table class="tablesorter conversations_people" summary="List of Moderators">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  <thead>
+  <tbody>
+    <% @conversation.conversations_people.each do |convo_person| %>
+      <% person = convo_person.person %>
+      <tr>
+        <td><%= link_to person.name, admin_person_path(person) %></td>
+        <td><%= link_to "Remove this Moderator", admin_conversation_conversations_person_path(@conversation, convo_person), method: :delete, confirm: "Are you sure?" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br />
+
+<p><%= link_to 'Add Moderator', new_admin_conversation_conversations_person_path(@conversation) %></p>
+<p><%= link_to 'Back to Conversations', admin_conversations_path %></p>

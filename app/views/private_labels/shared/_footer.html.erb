@@ -1,0 +1,93 @@
+<footer class="footer">
+  <div id="footer-inner" class="container">
+    <div class="row">
+        <div class="col-md-3 col-sm-3 col-xs-12" id="footer-logo">
+          <%= link_to '/', class: 'navbar-brand with-borders' do %>
+            <%= image_tag Swayze.current_private_label.logo.url(:footer) %>
+          <% end %>
+        </div>
+        <div class="col-md-9 col-sm-9 hidden-xs">
+          <ul class="nav navbar-nav social-media navbar-right">
+            <% if !Swayze.current_private_label.facebook_url.blank? %>
+              <li>
+                <%= link_to Swayze.current_private_label.facebook_url, target: :blank, class: 'footer-social' do %>
+                  <i class="fa fa-facebook fa-lg"></i>
+                <% end %>
+              </li>
+            <% end %>
+            <% if !Swayze.current_private_label.twitter_url.blank? %>
+              <li>
+                <%= link_to Swayze.current_private_label.twitter_url, target: :blank, class: 'footer-social' do %>
+                  <i class="fa fa-twitter fa-lg"></i>
+                <% end %>
+              </li>
+            <% end %>
+            <% if !Swayze.current_private_label.linkedin_url.blank? %>
+              <li>
+                <%= link_to Swayze.current_private_label.linkedin_url, target: :blank, class: 'footer-social' do %>
+                  <i class="fa fa-linkedin fa-lg"></i>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+          <ul class="nav navbar-nav navbar-right footer-nav">
+            <% private_label_pages.each do |page| %>
+              <li>
+                <%= link_to page.title.upcase, page %>
+              </li>
+            <% end %>
+            <li>
+              <%= link_to 'CONTACT', '/contact' %>
+            </li>
+          </ul>
+        </div>
+        <div class="col-xs-12 hidden-sm hidden-md hidden-lg footer-nav text-center">
+          <ul class="nav navbar-nav">
+            <% private_label_pages.each do |page| %>
+              <li>
+                <%= link_to page.title.upcase, page %>
+              </li>
+            <% end %>
+            <li>
+              <%= link_to 'CONTACT', '/contact' %>
+            </li>
+          </ul>
+        </div>
+        <div class="col-xs-12 hidden-sm hidden-md hidden-lg footer-nav text-center">
+          <ul class="nav navbar-nav social-media">
+            <% if !Swayze.current_private_label.facebook_url.blank? %>
+              <li>
+                <%= link_to Swayze.current_private_label.facebook_url, target: :blank, class: 'footer-social' do %>
+                  <i class="fa fa-facebook fa-lg"></i>
+                <% end %>
+              </li>
+            <% end %>
+            <% if !Swayze.current_private_label.twitter_url.blank? %>
+              <li>
+                <%= link_to Swayze.current_private_label.twitter_url, target: :blank, class: 'footer-social' do %>
+                  <i class="fa fa-twitter fa-lg"></i>
+                <% end %>
+              </li>
+            <% end %>
+            <% if !Swayze.current_private_label.linkedin_url.blank? %>
+              <li>
+                <%= link_to Swayze.current_private_label.linkedin_url, target: :blank, class: 'footer-social' do %>
+                  <i class="fa fa-linkedin fa-lg"></i>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+        
+    </div>
+  </div>
+</footer>
+<div class="footer-legal">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        Conversation text and related responses copyright &copy; The Civic Commons and are available under the <u>Creative Commons Attribution- NonCommercial- ShareAlike License;</u> additional terms may  apply.
+      </div>
+    </div>
+  </div>
+</div>

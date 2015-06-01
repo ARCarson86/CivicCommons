@@ -12,6 +12,59 @@ Civiccommons::Application.routes.draw do
 
   delete "/users/:id/:provider/unlink" => "unlink#delete", as: :unlink
 
+  #Private Label Routes
+  constraints PrivateLabelConstraint do
+    devise_for :people, :controllers => { :registrations => 'private_labels/registrations', :confirmations => 'private_labels/confirmations', :sessions => 'private_labels/sessions', :omniauth_callbacks => "private_labels/registrations/omniauth_callbacks", :passwords => 'private_labels/passwords'},
+      :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :registration => 'register', :sign_up => 'new' }
+    devise_scope :person do
+      get "/registrations/agree_to_terms", to: "private_labels/registrations#present_terms", as: "agree_to_terms"
+      post "/registrations/agree_to_terms", to: "private_labels/registrations#agree_to_terms"
+      get '/session_status', to: 'sessions#status', as: 'session_status', defaults: { format: :json }
+    end
+    namespace :private_labels, path: '' do
+      root to: 'homepage#show'
+      post '/subscriptions/subscribe',                     to: 'subscriptions#subscribe'
+      post '/subscriptions/unsubscribe',                   to: 'subscriptions#unsubscribe'
+
+      namespace "admin" do
+        root to: 'dashboard#show'
+        get '/dashboard', to: 'dashboard#show'
+
+        get '/private_label/edit', to: 'private_label#edit'
+        put "/private_label", to: "private_label#update", as: :update_settings
+
+
+        resources :private_label_people, only: [:index, :destroy] do
+          put 'toggle_admin', on: :member
+        end
+        resources :conversations do
+          resources :conversations_people, :only => [:index, :new, :create, :destroy], :path => 'moderators'
+        end
+        resources :contributions
+        resources :pages
+        resource :sidebar, only: [:edit, :update, :create]
+      end
+      match '/search/results', to: 'search#results', as: 'search'
+      resources :people, only: [:show, :new, :create, :edit, :update]
+      resources :user, only: [:show, :update, :edit]
+      resources :conversations, only: [:index, :show] do
+        resources :contributions do
+          get '/moderate', to: 'contributions#moderate', on: :member
+          put '/moderate', to: 'contributions#moderated', on: :member
+          get 'tos', on: :member
+          post 'tos', on: :member, action: :tos_flag
+        end
+      end
+
+      resources :pages, only: [:show]
+
+      get 'contact', to: 'homepage#contact'
+      post 'contact', to: 'homepage#contact_submit'
+
+      get '*path', to: 'application#raise_routing_error'
+    end
+  end
+
   #Application Root
   root to: "homepage#show"
 
@@ -117,10 +170,9 @@ Civiccommons::Application.routes.draw do
     get '/registrations/principles', to: 'registrations#principles'
     get  "/organizations/register/new", :to => "registrations#new_organization", :as => "new_organization_registration"
     post "/organizations/register", :to => "registrations#create_organization", :as => "organization_registration"
-
+    get '/session_status', to: 'sessions#status', as: 'session_status', defaults: { format: :json }
     get '/people/login/compact', :to=>'sessions#new_compact'
     post '/people/login/compact', to: 'sessions#create_compact'
-
   end
 
   #Sort and Filters
@@ -209,6 +261,7 @@ Civiccommons::Application.routes.draw do
   namespace "admin" do
     root      to: "dashboard#show"
     resources :articles
+    resources :private_labels, only: [:index, :new, :create, :edit, :update, :destroy]
     resources :content_items do#, only: [:index, :show, :new, :create, :update, :destroy]
       resources :content_items_people, :only => [:index, :new, :create, :destroy], :path => 'people'
       resources :content_item_links, :path => 'links'

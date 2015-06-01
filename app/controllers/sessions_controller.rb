@@ -9,6 +9,8 @@ class SessionsController < Devise::SessionsController
   skip_before_filter :require_no_ssl
   after_filter :update_signin_cookie
 
+  respond_to :json, only: [:status]
+
   def new
     super
     if RedirectHelper.valid?(request.headers['Referer'])
@@ -28,13 +30,16 @@ class SessionsController < Devise::SessionsController
     render :partial => 'sessions/new', :layout => false
   end
 
+  def status
+    @person = current_person
+  end
+
   # POST /resource/ajax_login
   def ajax_create
     Rails.logger.info 'ajax create'
     resource = warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#new")
     sign_in(resource_name, resource)
     if session.has_key?(:close_modal_on_exit) and session[:close_modal_on_exit]
-      raise session.inspect
       @notice = "You have successfully logged in."
       respond_to do |format|
         format.js {render :partial => 'sessions/close_modal_on_exit', :layout => false}

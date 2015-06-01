@@ -1,0 +1,39 @@
+<h2>Private Labels</h2>
+<table class="private-label-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Domain</th>
+      <th>Namespace</th>
+      <th>Created</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @private_labels.each do |pl| %>
+      <tr>
+        <td>
+          <%= pl.name %>
+        </td>
+        <td>
+          <%= pl.domain %>
+        </td>
+        <td>
+          <%= pl.namespace %>
+        </td>
+        <td>
+          <%= pl.created_at %>
+        </td>
+        <td class="list-actions">
+          <%= link_to [:edit, :admin, pl], title: "Edit" do %>
+            <i class="fa fa-edit"></i>
+          <% end %>
+          <%= link_to [:admin, pl], title: "Delete", method: :delete, confirm: "Are you sure?" do %>
+            <i class="fa fa-trash"></i>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br/>
+<%= link_to "Create New Private Label", new_admin_private_label_path %>

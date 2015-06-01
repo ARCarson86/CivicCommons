@@ -68,10 +68,10 @@ module UserHelper
     if contribution.issue && ! ( controller.controller_name == 'issues' && controller.action_name == 'show' )
       issue_node_url( contribution )
     elsif contribution.contributable && contribution.contributable.is_a?(RemotePage)
-      contribution.contributable.url
+      "#{contribution.contributable.url}#node-#{contribution.id}"
     elsif contribution.conversation
       if contribution.conversation.remote_page
-        contribution.conversation.remote_page.url
+        "#{contribution.conversation.remote_page.url}#node-#{contribution.converation.id}"
       else
         conversation_node_url( contribution )
       end

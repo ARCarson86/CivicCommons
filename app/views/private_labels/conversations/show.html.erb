@@ -1,0 +1,58 @@
+<% content_for :header_second do %>
+ 	<div class="placeholder">
+ 		<div class="container">
+			<div class="row">
+				<div class="col-md-9 col-sm-9 col-xs-9">
+					<h1><%= @conversation.title %>
+					<h2>
+            <div class="visible-md-inline visible-sm-block visible-xs-block visible-lg-inline">
+              <i class="fa fa-clock-o"></i>
+              <%= @conversation.created_at.strftime("%^B %e, %Y") %>
+              <span class="separator">/</span>
+            </div>
+            <div class="visible-lg-inline visible-md-inline visible-sm-block visible-xs-block">
+              <%= image_tag('private_labels/user-wh.png', height: '26') %>
+              <%= Swayze.current_private_label.name %>
+              <span class="separator">/</span>
+            </div>
+          </h2>
+				</div>
+				<div class="col-md-3 col-sm-3 col-xs-3">
+					<div class="header-comment-count-wrapper pull-right">
+						<div class="header-comment-count"><%= @conversation.contributions.count %></div>
+						<i class="fa fa-comments-o"></i>
+					</div>
+				</div>
+			</div>
+ 		</div>
+ 	</div>
+<% end %>
+<div class="row">
+	<div class="col-md-12">
+
+		<%= render partial: 'private_labels/conversations/partials/conversation_content' %>
+    <%= render partial: 'private_labels/conversations/partials/conversation_contribute_form' %>
+    <%= render partial: 'private_labels/conversations/partials/conversation_contributions' %>
+
+	</div>
+</div>
+
+<% content_for :sidebar do %>
+
+  <div class="row">
+    <div class="col-md-12">
+      <%= render partial: 'private_labels/shared/sidebars/conversation_share' %>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-md-12">
+        <%= render partial: 'private_labels/shared/sidebars/conversation_people_moderators' %>
+      </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <%= render partial: 'private_labels/shared/sidebars/conversation_recent_activities' %>
+    </div>
+  </div>
+<% end %>

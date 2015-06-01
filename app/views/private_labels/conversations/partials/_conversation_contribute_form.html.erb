@@ -1,0 +1,30 @@
+<h2>What do you think?</h2>
+<section class="comment-section">
+  <div class="row">
+    <div class="col-md-2 col-sm-2 col-xs-2">
+      <div class="user-image">
+        <%= user_profile(current_person).html_safe %>
+      </div>
+    </div>
+    <div class="col-md-10 col-sm-10 col-xs-10">
+      <% if current_person.present? %>
+      	<%= form_for [:private_labels, @conversation, @newContribrution], :html => { :class => 'contribute-form', multipart: true } do |f| %>
+      		<div class="editable">
+            <%= f.text_area :content, rows: 1, placeholder: "Click here to respond to #{Swayze.current_private_label.name}", id: "contribute-text"  %>
+            <div class="pre-actions hidden-xs">
+              <a href="#" class="upload-image"><i class="fa fa-camera-retro fa-2x"></i></a>
+              <a href="#" class="upload-link"><i class="fa fa-link fa-2x"></i></a>
+            </div>
+          </div>
+            <%= render partial: 'private_labels/contributions/contributions_attachment_form', locals: {form: f, contribution: @newContribrution} %>
+      		<div class="contribute-actions pull-right hide">
+            <a href="#" class="btn-default btn cancel">Cancel</a>
+            <%= f.submit "Comment", class: "btn-success btn submit", disable_with: "Posting..." %>
+          </div>
+      	<% end %>
+      <% else %>
+        <div class="contribution-logged-out-links"> <%= link_to 'Login', '#', :data => {:'toggle' => 'modal', :'target' => '#loginModal'} %> or <%= link_to 'Register', new_person_registration_path %> to contribute to this conversation</div>
+      <% end %>
+    </div>
+  </div>
+</section>

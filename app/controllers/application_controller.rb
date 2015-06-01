@@ -28,6 +28,7 @@ class ApplicationController < ActionController::Base
   end
 
 protected
+
   def verify_admin
     if require_user and not current_person.admin?
       flash[:error] = "You must be an admin to view this page."

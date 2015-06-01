@@ -1,0 +1,189 @@
+<%= form_for [:private_labels, :admin, @private_label], url: private_labels_admin_update_settings_path, html: { class: 'form-horizontal' } do |f| %>
+  <div class="panel panel-default">
+    <div class="panel-heading"><h3 class="panel-title">Details</h3></div>
+    <div class="panel-body">
+      <div class="form-group">
+        <%= f.label :name, 'Private Label Name', class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
+          <%= f.text_field :name, class: 'form-control' %>
+          <span class="help-block">This will also be displayed in the browser window as part of the page title</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :namespace, 'Subdomain Name', class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
+          <%= f.text_field :namespace, class: 'form-control' %>
+          <span class="help-block">Only enter a value if Civic Commons is hosting your site</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :domain, class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
+          <%= f.text_field :domain, class: 'form-control' %>
+          <span class="help-block">Only enter a value if you are hosting your own site. This needs to be the fully qualified domain name (i.e., yoursite.com)</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :terms_of_service, class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
+          <%= f.text_area :terms_of_service, class: 'form-control', rows: '3' %>
+          <span class="help-block">These are the terms specific to your private label that users must agree to</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :title, 'Homepage Header Name', class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
+          <%= f.text_field :title, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :tagline, 'Homepage Tagline', class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
+          <%= f.text_field :tagline, class: 'form-control' %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading"><h3>Contact Information</h3></div>
+    <div class="panel-body">
+      <div class="form-group">
+        <%= f.label :email, class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
+          <%= f.email_field :email, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :phone, 'Phone Number', class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
+          <%= f.phone_field :phone, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :address, class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
+          <%= f.text_area :address, class: 'form-control', rows: '5' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading"><h3>Social Media</h3></div>
+    <div class="panel-body">
+      <div class="form-group">
+        <%= f.label :facebook_url, 'Facebook URL', class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
+          <%= f.url_field :facebook_url, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :twitter_url, 'Twitter URL', class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
+          <%= f.url_field :twitter_url, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :linkedin_url, 'LinkedIn URL', class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
+          <%= f.url_field :linkedin_url, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading"><h3 class="panel-title">Images</h3></div>
+    <div class="panel-body">
+      <p class="alert alert-info">Supported image types include .PNG, .GIF, .JPG and .JPEG</p>
+      <div class="form-group">
+        <%= f.label :logo, class: 'col-sm-3 control-label' %>
+
+        <div class="col-sm-5">
+          <%= f.file_field :logo, class: 'form-control' %>
+          <span class="help-block">Needs to be at least 100px wide and 50px high</span>
+        </div>
+        <div class="col-md-4">
+          <%- if @private_label.logo.present? %>
+            <%= image_tag @private_label.logo.url(:thumb), class: 'img-responsive' %>
+          <%- else %>
+            <p>No logo file uploaded</p>
+          <%- end %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :main_image, class: 'col-sm-3 control-label' %>
+        <div class="col-sm-5">
+          <%= f.file_field :main_image, class: 'form-control' %>
+          <span class="help-block">Needs to be at least 1200px wide and 300px high; this will be used as homepage header image, and as the background image on all pages and will be cropped from the right on smaller screens / browser windows.</span>
+        </div>
+        
+          <%- if @private_label.main_image.present? %>
+            <div class="col-sm-offset-3 col-sm-9" style="padding-top: 10px;">
+              <%= image_tag @private_label.main_image.url(:main), class: 'img-responsive' %>
+            </div>
+          <%- else %>
+            <div class="col-sm-9">
+              <p>No image uploaded</p>
+            </div>
+          <%- end %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :favicon, class: 'col-sm-3 control-label' %>
+        <div class="col-md-5">
+          <%= f.file_field :favicon, class: 'form-control' %>
+          <span class="help-block">Should be 16px wide and 16px high</span>
+        </div>
+        <div class="col-md-4">
+          <%- if @private_label.favicon.present? %>
+            <%= image_tag @private_label.favicon.url(:medium) %>
+          <%- else %>
+            <p>No favicon file uploaded</p>
+          <%- end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading"><h3 class="panel-title">Theme</h3></div>
+    <div class="panel-body">
+      <div class="radio row">
+        <%- PrivateLabel::THEMES.each do |theme| %>
+          
+            <div class="col-sm-6">
+              <label>
+                <div class="radio-btn">
+                  <%= f.radio_button :theme, theme %>
+                  <%= theme.titleize.gsub('-',' ') %>
+                </div>
+                <div class="theme-preview">
+                  <%= image_tag("private_labels/#{theme}.jpg", class: 'img-responsive') %>
+                </div>
+              </label>
+            </div>
+          
+        <%- end %>
+      </div>
+    </div> 
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-4 col-sm-offset-8 text-right">
+      <%= f.submit 'Save', class: 'btn btn-success' %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,57 @@
+<div class="row">
+	<h2 class="col-md-12">Recent Converstations</h2>
+	<% @conversations.each do |conversation| %>
+		<div class="col-md-4 col-sm-4 col-xs-12 t-grid call-out">
+			<section>
+        <div class="section-img">
+  				<a href="<%= conversation_path(conversation)%>">
+  					<%= image_tag conversation.image.url(:panel), :class => 'main-img img-responsive', :alt => short_title(conversation.title), :height => 140 %>
+  				</a>
+        </div>
+        <span class="arrow-up"></span>
+				<div class="section-content">
+          <a href="<%= conversation_path(conversation)%>">
+					 <h4><%= short_title(conversation.title) %></h4>
+          </a>
+          <div class="conversation-info">
+            <span>
+              <i class="fa fa-clock-o fa-lg"></i>
+              <%= conversation.created_at.strftime("%^b %e") %>              
+            </span>
+            <span>
+              <i class="fa fa-comments-o fa-lg"></i>
+              <%= conversation.contributions.count %>
+            </span>
+          </div>
+					<div class="photobank">
+						<div id="carousel-participants" class="carousel slide" data-ride="carousel" data-interval="false">
+	            <div class="row">
+	              <div class="carousel-inner" role="listbox">
+	                <% conversation.participants.each_slice(3).with_index do |array_of_3_items, i| %>
+	                    <div class="item <%= "active" if i == 0 %>">
+	                      <% array_of_3_items.each.with_index do |participant, index|%>
+	                        <div class="col-md-4 col-sm-4 col-xs-4 <%= 'text-right' if index == 0%> <%= 'text-left' if index == 2 %>">
+	                          <div class="user-image"><%= conversation_profile(participant).html_safe %></div>
+	                        </div>
+	                      <% end %>
+	                    </div>
+	                <% end %>
+	              </div>
+	            </div>
+	              <a class="left carousel-control" href="#carousel-participants" role="button" data-slide="prev">
+	                <i class="fa fa-chevron-left"></i>
+	                <span class="sr-only">Previous</span>
+	              </a>
+	              <a class="right carousel-control" href="#carousel-participants" role="button" data-slide="next">
+	                <i class="fa fa-chevron-right"></i>
+	                <span class="sr-only">Next</span>
+	              </a>
+            </div>
+					</div>
+				</div>
+			</section>
+		</div>
+	<% end %>
+	</div>
+
+	

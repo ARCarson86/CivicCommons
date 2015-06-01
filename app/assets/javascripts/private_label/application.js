@@ -1,0 +1,12 @@
+//= require jquery
+//= require jquery_ujs
+//= require ./session_status
+//= require bootstrap/modal
+//= require bootstrap/transition
+//= require bootstrap/carousel
+//= require bootstrap/collapse
+//= require tinymce-jquery
+//= require private_label/pl_editable.js
+//= require private_label/header.js
+//= require private_label/register.js
+//= require jump

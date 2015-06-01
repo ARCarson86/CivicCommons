@@ -1,0 +1,63 @@
+<% content_for :header_second do %>
+ 	<div class="placeholder">
+ 		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h1>Contact Us</h1>
+				</div>
+			</div>
+ 		</div>
+ 	</div>
+<% end %>
+<div class="row">
+	<div class="col-md-12">
+
+		<section class="contact">
+			<div class="row">
+				<div class="col-sm-6">
+          <div class="contact-info">
+            <h2>Contact Us</h2>
+            <% if Swayze.current_private_label.address.present? %>
+              <div class="row">
+                <div class="col-sm-12">
+                  <i class="fa fa-map-marker fa-lg"></i><a href="<%= google_maps_url %>" target="_blanke"><%= Swayze.current_private_label.address %></a>
+                </div>
+              </div>
+            <% end %>
+            <% if Swayze.current_private_label.phone.present? %>
+              <div class="row">
+                <div class="col-sm-12">
+                  <i class="fa fa-mobile fa-lg"></i><%= Swayze.current_private_label.phone %>
+                </div>
+              </div>
+            <% end %>
+            <% if Swayze.current_private_label.email.present? %>
+              <div class="row">
+                <div class="col-sm-12">
+                  <i class="fa fa-envelope"></i><%= mail_to Swayze.current_private_label.email %>
+                </div>
+              </div>
+            <% end %>
+            <% if Swayze.current_private_label.latitude.present? && Swayze.current_private_label.longitude.present? && Swayze.current_private_label.address.present? %>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="map-wrapper">
+                    <a class="map" href="<%= google_maps_url %>" target="_blank" style="background-image: url(<%= "https://maps.googleapis.com/maps/api/staticmap?size=525x125&sensor=false&zoom=16&markers=#{Swayze.current_private_label.latitude}%2C#{Swayze.current_private_label.longitude}" %>);"></a>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+				</div>
+
+        <% if Swayze.current_private_label.email.present? %>
+          <div class="col-sm-6">
+            <%= render partial: 'private_labels/homepage/partials/contact_form' %>
+          </div>
+        <% end %>
+			</div>
+		</section>
+
+		
+	</div>
+</div>

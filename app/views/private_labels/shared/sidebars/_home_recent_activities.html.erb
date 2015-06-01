@@ -1,0 +1,41 @@
+<h2>Recent Activity</h2>
+<section class="recent-activities">  	
+	<div class="recent-activities-list">
+		<% Swayze.current_private_label.contributions.most_recent.limit(6).each do |activity| %>
+  		<div class="item" id="contribution-<%= activity.id %>">
+  			<div class="row">
+        <div class="item-header">
+          <div class="col-md-10 col-sm-10 col-xs-10">
+          	<div class="user">
+                <div class="user-image">
+                    <%= user_profile(activity.owner).html_safe %>
+                </div>
+                <span class="user-name"><%= text_profile(activity.owner).html_safe %></span>
+              </div>
+          
+            <span class="time">
+                <i class="fa fa-clock-o fa-2x"></i>
+                <%= activity.created_at.strftime("%-m/%e/%y") %>
+            </span>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-2 text-right reply">
+            <% Conversation.unscoped do %>
+          		<%= link_to conversation_path(activity.conversation, :anchor => "reply-#{activity.id}") do %>
+  										<i class="fa fa-share fa-lg"></i>
+          		<% end %>
+        		<% end %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="item-content col-md-12">
+            <% Conversation.unscoped do %>
+              <%= link_to activity.conversation.title, activity.conversation %>
+            <% end %>
+            <%= truncate(strip_tags(activity.content), length: 125, omission: '...') %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>

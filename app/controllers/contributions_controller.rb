@@ -8,7 +8,6 @@ class ContributionsController < ApplicationController
 
   def create
     @conversation = Conversation.find(params[:conversation_id])
-    Rails.logger.info @conversation
 
     unless params[:contribution][:url].blank?
       embedly = EmbedlyService.new
