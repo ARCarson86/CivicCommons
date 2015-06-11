@@ -340,7 +340,7 @@ Civiccommons::Application.routes.draw do
         resources :users
       end
       resources :remote_pages do
-        resources :contributions do
+        resources :contributions, controller: "remote_pages/contributions" do
           member do
             post :flag
             post :moderate
