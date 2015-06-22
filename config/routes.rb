@@ -315,10 +315,7 @@ Civiccommons::Application.routes.draw do
     end
     resources :redirects
     resources :remote_pages, only: [:index, :destroy] do
-      member do
-        get 'convert', to: :new_conversation
-        post 'convert', to: :create_conversation
-      end
+      resources :conversations, only: [:new, :create], controller: "remote_pages/conversations"
     end
   end
 

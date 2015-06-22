@@ -14,11 +14,13 @@
         <td><%= link_to (remote_page.title || "Page at: #{remote_page.url}"), remote_page.url, target: '_blank' %></td>
         <td><%= remote_page.contributions.count %></td>
         <td>
-          <%= link_to 'view conversation', [:convert, :admin, remote_page] if remote_page.conversation %>
-          <%= link_to 'convert to conversation', [:convert, :admin, remote_page] unless remote_page.conversation %>
+          <%= link_to 'view conversation', admin_conversation_path(remote_page.conversation) if remote_page.conversation %>
+          <%= link_to 'convert to conversation', new_admin_remote_page_conversation_path(remote_page) unless remote_page.conversation %>
           | <%= link_to 'delete', [:admin, remote_page], method: 'delete', confirm: 'Are you sure?' %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= will_paginate @remote_pages %>
