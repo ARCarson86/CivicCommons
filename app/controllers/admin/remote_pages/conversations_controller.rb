@@ -14,7 +14,7 @@ class Admin::RemotePages::ConversationsController < Admin::DashboardController
       redirect_to(admin_conversation_path(@conversation), :notice => 'Your conversation has been created!')
     end
   rescue ActiveRecord::RecordInvalid
-    render :new_conversation
+    render :new
   end
 
   protected
