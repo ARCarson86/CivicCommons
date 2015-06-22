@@ -5,6 +5,7 @@ class RemotePage < ActiveRecord::Base
 
   has_many :contributions, dependent: :destroy, as: :contributable
   has_many :participants, through: :contributions, source: :person, order: 'contributions.created_at DESC'
+
   alias_method :contributors, :participants
   after_create :create_embeddly_info
 

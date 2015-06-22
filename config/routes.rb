@@ -328,7 +328,7 @@ Civiccommons::Application.routes.draw do
         end
       end
       resources :conversations do
-        resources :contributions do
+        resources :contributions, controller: "conversations/contributions" do
           member do
             post :flag
             post :moderate

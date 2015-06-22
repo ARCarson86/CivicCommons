@@ -1,6 +1,6 @@
-class Api::V1::RemotePages::ContributionsController < Api::V1::BaseController
-  load_resource :remote_page
-  load_and_authorize_resource :contribution, through: [:remote_page]
+class Api::V1::Conversations::ContributionsController < Api::V1::BaseController
+  load_resource :conversation
+  load_and_authorize_resource :contribution, through: [:conversation]
 
   before_filter :update_embedly_attributes, only: [:create, :update]
 
