@@ -16,6 +16,7 @@ class Article < ActiveRecord::Base
     :storage => :s3,
     :s3_credentials => S3Config.credential_file,
     :path => "articles/:attachment/:id/:style/:filename"
+  do_not_validate_attachment_file_type :image
   
   ['homepage', 'conversation', 'issue'].each do |type|
     scope :"#{type}_main_article", where(:current => true, :main => true, :"#{type}_article" => true)
