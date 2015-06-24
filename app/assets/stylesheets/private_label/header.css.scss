@@ -280,6 +280,12 @@
 		}
 	}
 }
+@media all and (max-width: 1199px){
+  #header-wrapper.navbar-default .navbar-nav>li>a {
+    padding: 0px 10px;
+  }
+}
+
 @media all and (max-width: 992px){
   #header-wrapper{
     .col-md-12{
