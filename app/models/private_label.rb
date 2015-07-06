@@ -19,7 +19,16 @@ class PrivateLabel < ActiveRecord::Base
                   :facebook_url,
                   :twitter_url,
                   :linkedin_url,
-                  :theme
+                  :theme,
+                  :fb_api_key,
+                  :fb_app_secret,
+                  :google_client_id,
+                  :google_client_secret,
+                  :linkedin_api_key,
+                  :linkedin_secret_key,
+                  :twitter_api_key,
+                  :twitter_api_secret
+
 
   has_attached_file :logo,
                     styles: { medium: "300x300>", thumb: "100x100>", header: "x30", footer: "x40" },
@@ -70,6 +79,26 @@ class PrivateLabel < ActiveRecord::Base
   # @return the PrivateLabel to which the administrator was added
   def add_admin(person)
     private_label_people.create person: person, admin: true
+  end
+
+  def has_facebook_login?
+    self.fb_app_secret.present? && self.fb_api_key.present?
+  end
+
+  def has_google_plus_login?
+    self.google_client_secret.present? && self.google_client_id.present?
+  end
+
+  def has_linkedin_login?
+    self.linkedin_secret_key.present? && self.linkedin_api_key.present?
+  end
+
+  def has_twitter_login?
+    self.twitter_api_secret.present? && self.twitter_api_key.present?
+  end
+
+  def has_social_login?
+    self.has_facebook_login? || self.has_google_plus_login? || self.has_linkedin_login? || self.has_twitter_login?
   end
 
   private ##################################################
