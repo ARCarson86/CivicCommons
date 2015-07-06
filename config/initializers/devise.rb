@@ -178,23 +178,43 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
   config.omniauth :facebook, :scope => "email", :display => "popup", :setup => lambda { |env|
-    env['omniauth.strategy'].options[:client_id] = Civiccommons::Config.facebook['api_key']
-    env['omniauth.strategy'].options[:client_secret] = Civiccommons::Config.facebook['app_secret']
+    if Swayze.current_private_label.present?
+      env['omniauth.strategy'].options[:client_id] = Swayze.current_private_label.fb_api_key
+      env['omniauth.strategy'].options[:client_secret] = Swayze.current_private_label.fb_app_secret
+    else
+      env['omniauth.strategy'].options[:client_id] = Civiccommons::Config.facebook['api_key']
+      env['omniauth.strategy'].options[:client_secret] = Civiccommons::Config.facebook['app_secret']
+    end
   }
 
   config.omniauth :twitter, :scope => 'email', :setup => lambda { |env|
-    env['omniauth.strategy'].options[:consumer_key] = Civiccommons::Config.twitter['api_key']
-    env['omniauth.strategy'].options[:consumer_secret] = Civiccommons::Config.twitter['api_secret']
+    if Swayze.current_private_label.present?
+      env['omniauth.strategy'].options[:client_id] = Swayze.current_private_label.twitter_api_key
+      env['omniauth.strategy'].options[:client_secret] = Swayze.current_private_label.twitter_api_secret
+    else
+      env['omniauth.strategy'].options[:consumer_key] = Civiccommons::Config.twitter['api_key']
+      env['omniauth.strategy'].options[:consumer_secret] = Civiccommons::Config.twitter['api_secret']
+    end
   }
 
   config.omniauth :linkedin, :scope => 'r_emailaddress r_basicprofile', :setup => lambda { |env|
-    env['omniauth.strategy'].options[:consumer_key] = Civiccommons::Config.linkedin['api_key']
-    env['omniauth.strategy'].options[:consumer_secret] = Civiccommons::Config.linkedin['secret_key']
-  }
+    if Swayze.current_private_label.present?
+      env['omniauth.strategy'].options[:client_id] = Swayze.current_private_label.linkedin_api_key
+      env['omniauth.strategy'].options[:client_secret] = Swayze.current_private_label.linkedin_secret_key
+    else
+      env['omniauth.strategy'].options[:consumer_key] = Civiccommons::Config.linkedin['api_key']
+      env['omniauth.strategy'].options[:consumer_secret] = Civiccommons::Config.linkedin['secret_key']
+    end
+}
 
   config.omniauth :google_oauth2, :scope => 'email', :display => 'popup', :name => 'google_plus', :setup => lambda { |env|
-    env['omniauth.strategy'].options[:client_id] = Civiccommons::Config.google_oauth2['client_id']
-    env['omniauth.strategy'].options[:client_secret] = Civiccommons::Config.google_oauth2['client_secret']
+    if Swayze.current_private_label.present?
+      env['omniauth.strategy'].options[:client_id] = Swayze.current_private_label.google_client_id
+      env['omniauth.strategy'].options[:client_secret] = Swayze.current_private_label.google_client_secret
+    else
+      env['omniauth.strategy'].options[:client_id] = Civiccommons::Config.google_oauth2['client_id']
+      env['omniauth.strategy'].options[:client_secret] = Civiccommons::Config.google_oauth2['client_secret']
+    end
   }
 
   # ==> Warden configuration
