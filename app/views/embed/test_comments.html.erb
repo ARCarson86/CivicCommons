@@ -1,3 +1,3 @@
 <% content_for :main_body do %>
-  <iframe src="<%= "/embed/comments?remotePageAddress=#{@remote_page.url}" %>" style="height: 589px; border: 0px none; width: 100%;"></iframe>
+  <iframe src="<%= "/embed/comments?remotePageAddress=#{@remote_page.url}" %>" style="height: 589px; border: 0px none; width: <%= params[:frame_width] || 100 %>%;"></iframe>
 <% end %>

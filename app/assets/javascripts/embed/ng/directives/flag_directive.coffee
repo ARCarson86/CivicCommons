@@ -37,7 +37,8 @@ angular.module 'civic.directives'
       scope.close = ->
         scope.$parent.$parent.moderateActive = false
 
-      element[0].style.top = "#{parent[0].offsetTop + 30}px"
+      frameHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+      element[0].style.top = "#{parent[0].scrollTop + ((frameHeight/2) - 140)}px"
 
   ]
   .directive 'flagContribution', ['$timeout', 'Contribution', ($timeout, Contribution) ->
@@ -78,6 +79,6 @@ angular.module 'civic.directives'
       scope.close = ->
         scope.$parent.$parent.flagActive = false
 
-      element[0].style.top = "#{parent[0].offsetTop + 30}px"
-
+      frameHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+      element[0].style.top = "#{parent[0].scrollTop + ((frameHeight/2) - 140)}px"
   ]
