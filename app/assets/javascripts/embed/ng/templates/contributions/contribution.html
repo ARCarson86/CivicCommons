@@ -1,4 +1,4 @@
-<div class="contribution row" ng-show="contribution.id" id="contribution-{{contribution.id}}">
+<div ng-class="{moderator: contribution.moderator_post}" class="contribution row" ng-show="contribution.id" id="contribution-{{contribution.id}}">
   <user-avatar user="contribution.author()"></user-avatar>
   <div class="content">
     <header>
@@ -19,7 +19,7 @@
           <i class="fa fa-flag"></i>
         </a>
       </div>
-      <user user="contribution.author()" ng-show="contribution.author()"></user>
+      <user user="contribution.author()" ng-show="contribution.author()" moderator="contribution.moderator_post"></user>
       <span class="created-date">{{contribution.created_at | date : 'MMM d, y h:mm a'}}</span>
     </header>
 
