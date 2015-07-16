@@ -117,6 +117,60 @@ p {
 }
 
 .conversation {
+  h1 {
+    color: #555;
+    font-size: 2em;
+    line-height: 1em;
+    margin-bottom: 10px;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.85);
+    font-weight: bold;
+  }
+  h2 {
+    text-transform: none;
+    font-weight: bold;
+    border-bottom: 1px solid #cdcdcd;
+    font-size: 1.167em;
+    line-height: 1.4em;
+    margin-bottom: .8em;
+    padding-bottom: .5em;
+  }
+  .title-container {
+    margin-bottom: 15px;
+    .main-img {
+      width: 140px;
+      height: 80px;
+      float: left;
+      margin-right: 15px;
+      -webkit-box-shadow: 0px 1px 3px rgba(0,0,0,.5);
+        -moz-box-shadow: 0px 1px 3px rgba(0,0,0,.5);
+          -o-box-shadow: 0px 1px 3px rgba(0,0,0,.5);
+              box-shadow: 0px 1px 3px rgba(0,0,0,.5);
+    }
+  }
+
+  .authoring-information {
+    .user-avatar {
+      img {
+        height: 40px;
+        width: 40px;
+        -webkit-box-shadow: 0px 1px 3px rgba(0,0,0,.5);
+          -moz-box-shadow: 0px 1px 3px rgba(0,0,0,.5);
+            -o-box-shadow: 0px 1px 3px rgba(0,0,0,.5);
+                box-shadow: 0px 1px 3px rgba(0,0,0,.5);
+      }
+    }
+  }
+  .starter {
+    padding: 10px;
+    border-left: 10px solid rgb(136,184,204);
+    background-color: rgba(136,184,204,.3);
+    h2 {
+      border-bottom-color: rgb(136,184,204);
+    }
+    .body {
+      padding: 0 10px;
+    }
+  }
   .authoring-information {
     margin-bottom: 1em;
     .authoring-information-primary {

@@ -352,7 +352,12 @@ Civiccommons::Application.routes.draw do
     end
   end
 
-  resources :embed, only: [:index]
+  resources :embed, only: [:index] do
+    collection do
+      get :test_comments, to: 'embed#test_comments'
+      get :test_conversation, to: 'embed#test_conversation'
+    end
+  end
 
   get '/embed/*path', to: 'embed#index'
 

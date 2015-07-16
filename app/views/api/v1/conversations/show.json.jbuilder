@@ -1,6 +1,8 @@
-json.(@conversation, :id, :slug, :title, :starter, :created_at)
+json.(@conversation, :id, :slug, :title, :starter, :created_at, :link)
 
-json.summary sanitize(auto_link(@conversation.summary, html: {target: "_blank"}, sanitize: false), tags: %w(strong em span p ul ol li a), attributes: %w(href title target style))
+json.summary sanitize(auto_link(@conversation.summary, html: {target: "_blank"}, sanitize: false), tags: %w(strong em span p ul ol li a br), attributes: %w(href title target style))
+
+json.panel_image image_url(@conversation.image.url(:panel))
 
 json.author do |json|
   json.partial! @conversation.person
