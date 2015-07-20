@@ -332,6 +332,7 @@ Civiccommons::Application.routes.draw do
           member do
             post :flag
             post :moderate
+            put :toggle_rating
           end
         end
         resources :users
@@ -341,6 +342,7 @@ Civiccommons::Application.routes.draw do
           member do
             post :flag
             post :moderate
+            put :toggle_rating
           end
         end
         resources :users

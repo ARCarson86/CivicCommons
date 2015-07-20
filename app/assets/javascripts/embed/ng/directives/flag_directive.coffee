@@ -82,3 +82,50 @@ angular.module 'civic.directives'
       frameHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
       element[0].style.top = "#{parent[0].scrollTop + ((frameHeight/2) - 140)}px"
   ]
+  .directive 'markContribution', ['$timeout', 'Contribution', ($timeout, Contribution) ->
+    restrict: 'E'
+    template: [
+      '<div class="overlay">',
+        '<div class="add-rating">',
+          '<a href class="pull-right" ng-click="close()"><i class="fa fa-close"></i></a>',
+          '<h2>Mark Reply As:</h2>',
+          '<ul>',
+          '<li><a href ng-click="toggle(\'Persuasive\')">Persuasive <span id="persuasive-count-{{contribution.id}}" class="count">{{contribution.ratings["Persuasive"]["total"]}}<span></a></li>',
+          '<li><a href ng-click="toggle(\'Informative\')">Informative <span id="informative-count-{{contribution.id}}" class="count">{{contribution.ratings["Informative"]["total"]}}<span></a></li>',
+          '<li><a href ng-click="toggle(\'Inspiring\')">Inspiring <span id="inspiring-count-{{contribution.id}}" class="count">{{contribution.ratings["Inspiring"]["total"]}}<span></a></li>',
+        '</div>',
+      '</div>'
+    ].join ''
+    replace: true
+    scope:
+      contribution: '='
+      user: '='
+    link: (scope, overlay, attrs) ->
+      element = angular.element overlay.children()[0]
+      parent = angular.element(overlay.parent())
+      scope.messages = []
+      scope.errors = []
+      scope.toggle = (title) ->
+        if scope.user
+          scope.contribution.toggle {title: title}, (data, headers) ->
+            link = document.getElementById("#{title.toLowerCase()}-count-#{scope.contribution.id}")
+            if data["ratings"][scope.contribution.id]
+              link.innerHTML = data["ratings"][scope.contribution.id][title]["total"]
+            else
+              link.innerHTML = 0
+          , (data) ->
+            scope.errors.push 'An unknown error occurred'
+
+      # scope.markInspiring = ->
+      #   scope.toggle("Inspiring")
+      # scope.markInformative = ->
+      #   scope.toggle("Informative")
+      # scope.markPersuasive = ->
+      #   scope.toggle("Persuasive")
+
+      scope.close = ->
+        scope.$parent.$parent.markContribution = false
+
+      frameHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+      element[0].style.top = "#{parent[0].scrollTop + ((frameHeight/2) - 140)}px"
+  ]

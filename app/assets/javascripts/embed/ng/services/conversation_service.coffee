@@ -6,7 +6,6 @@ angular.module 'civic.services'
           id: ->
             CivicApi.getVar 'conversation_id'
         transformResponse: (data, headers) ->
-          console.log(data)
           conversation = angular.fromJson data
           conversation.summary = $filter('linkTarget')(conversation.summary, '_blank')
           conversation.starter = $filter('linkTarget')(conversation.starter, '_blank')

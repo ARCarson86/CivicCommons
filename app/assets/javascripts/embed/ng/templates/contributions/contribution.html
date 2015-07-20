@@ -3,6 +3,9 @@
   <div class="content">
     <header>
       <div class="actions pull-right" ng-show="showactions">
+        <a href ng-click="markContribution = !markContribution" title="Mark Reply as Persuasive, Informative or Inspiring">
+          <i class="fa fa-star"></i>
+        </a>
         <a href ng-click="editContribution = !editContribution" ng-show="user.admin || (user.id == contribution.owner_id && contribution.editable())" title="Edit post">
           <i class="fa fa-edit"></i>
         </a>
@@ -75,4 +78,5 @@
 
   <moderate-contribution contribution="contribution" ng-if="moderateActive"></moderate-contribution>
   <flag-contribution contribution="contribution" ng-if="flagActive"></flag-contribution>
+  <mark-contribution contribution="contribution" user="user" ng-if="markContribution"></mark-contribution>
 </div>
