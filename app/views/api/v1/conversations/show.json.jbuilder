@@ -8,6 +8,10 @@ json.author do |json|
   json.partial! @conversation.person
 end
 
+
+json.participants @conversation.participants, partial: "/api/v1/people/person", as: :person
+json.moderators @conversation.moderators, partial: "/api/v1/people/person", as: :person
+
 json.number_of_top_level_contributions @conversation.top_level_contributions.count
 json.number_of_contributions @conversation.contributions.count
 json.ratings @ratings
