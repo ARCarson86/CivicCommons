@@ -11,3 +11,6 @@ end
 json.number_of_top_level_contributions @conversation.top_level_contributions.count
 json.number_of_contributions @conversation.contributions.count
 json.ratings @ratings
+json.email_subject u email_share_subject(@conversation)
+json.email_body @html_content.html_safe
+json.conversation_url conversation_url(@conversation)

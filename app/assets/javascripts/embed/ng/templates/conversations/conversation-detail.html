@@ -13,6 +13,20 @@
     </div>
   </div>
 
+  <div class="share-buttons">
+    <div class="share-button email">
+      <a href="mailto:?to=&subject={{conversation.email_subject}}&body={{conversation.email_body}}" class="button button-mini tertiary">
+        <div class="share-icon-wrapper"><i class="fa fa-envelope"></i></div><div>Email</div>
+      </a>
+    </div>
+    <div class="share-button twitter">
+      <a href="http://twitter.com/home?status={{conversation.conversation_url}}" title="Share on Twitter" target="_blank" class="social twitter"><div class="share-icon-wrapper"><i class="fa fa-twitter"></i></div><div>Twitter</div></a>
+    </div>
+    <div class="share-button facebook">
+      <a href="https://www.facebook.com/sharer/sharer.php?u={{conversation.conversation_url}}" title="Share on Facebook" target="_blank" class="social facebook"><div class="share-icon-wrapper"><i class="fa fa-facebook"></i></div><div>Facebook</div></a>
+    </div>
+  </div>
+
   <read-more>
     <div ng-bind-html="conversation.summary"></div>
     <p ng-show="conversation.link">

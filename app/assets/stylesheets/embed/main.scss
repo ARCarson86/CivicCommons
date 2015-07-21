@@ -5,6 +5,10 @@
 @import 'compass/utilities/general/clearfix';
 @import 'variables';
 @import "compass/css3/images";
+@import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
+@import "compass/css3/box-sizing";
+@import "compass/css3/inline-block";
 
 * {
   box-sizing: border-box;
@@ -149,6 +153,10 @@ p {
   }
 
   .authoring-information {
+    .authoring-information-primary {
+      float: left; 
+      margin-bottom: 10px;
+    }
     .user-avatar {
       img {
         height: 40px;
@@ -607,6 +615,7 @@ footer {
 }
 
 .read-more-container {
+  clear: both;
   position: relative;
   max-height: 10em;
   transition: max-height 0.3s;
@@ -677,5 +686,21 @@ footer {
   a {
     text-decoration: none;
     font-size: 18px;
+  }
+}
+
+.share-buttons {
+  float: left;
+  margin: 0 0 0 15px;
+  .share-button {
+    text-align: center;
+    float: left;
+    margin-right: 10px;
+    i {
+      font-size: 1.5em;
+    }
+    a {
+      text-decoration: none;
+    }
   }
 }
