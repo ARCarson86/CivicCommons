@@ -39,6 +39,12 @@
     <div ng-bind-html="conversation.starter"></div>
   </div>
 
+  <div class='participants-outer-container'>
+    <participants participants="conversation.moderators" heading="'Moderators'"></participants>
+    <participants participants="conversation.participants" heading="'Participants'"></participants>
+  </div>
+
+
   <div class="new-contribution">
     <div class='contribute-placeholder' ng-hide="contributionActive && account()">
       <account-avatar ng-show="account()"></account-avatar>
