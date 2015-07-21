@@ -1,18 +1,38 @@
 <div id="conversation-{{conversation.slug}}" class="conversation">
 
-  <h1>{{conversation.title}}</h1>
+  <div class='title-container'>
+    <img ng-src="{{conversation.panel_image}}" alt='{{conversation.title}}' class='featured main-img' />
+    <h1>{{conversation.title}}</h1>
+  </div>
+
   <div class="authoring-information">
     <user-avatar user="conversation.author"></user-avatar>
     <div class="authoring-information-primary">
       <user user="conversation.author"></user>
-      <div class="created-date">{{conversation.created_at | date : 'MMMM d, y h:mm a'}}</div>
+      <div class="created-date">on {{conversation.created_at | date : 'MMM d, yyyy'}}</div>
+    </div>
+  </div>
+
+  <div class="share-buttons">
+    <div class="share-button email">
+      <a href="mailto:?to=&subject={{conversation.email_subject}}&body={{conversation.email_body}}" class="button button-mini tertiary">
+        <div class="share-icon-wrapper"><i class="fa fa-envelope"></i></div><div>Email</div>
+      </a>
+    </div>
+    <div class="share-button twitter">
+      <a href="http://twitter.com/home?status={{conversation.conversation_url}}" title="Share on Twitter" target="_blank" class="social twitter"><div class="share-icon-wrapper"><i class="fa fa-twitter"></i></div><div>Twitter</div></a>
+    </div>
+    <div class="share-button facebook">
+      <a href="https://www.facebook.com/sharer/sharer.php?u={{conversation.conversation_url}}" title="Share on Facebook" target="_blank" class="social facebook"><div class="share-icon-wrapper"><i class="fa fa-facebook"></i></div><div>Facebook</div></a>
     </div>
   </div>
 
   <read-more>
     <div ng-bind-html="conversation.summary"></div>
+    <p ng-show="conversation.link">
+      <a ng-attr-href="{{conversation.link}}" class="link" target="_blank">{{conversation.link}}</a>
+    </p>
   </read-more>
-  <!--<div read-more content="conversation.summary"></div>-->
 
   <div class="starter" ng-show="conversation.starter">
     <h2>Conversation Starter</h2>

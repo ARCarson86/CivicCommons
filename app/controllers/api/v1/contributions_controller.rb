@@ -41,6 +41,14 @@ class Api::V1::ContributionsController < Api::V1::BaseController
     render :show
   end
 
+  def toggle_rating
+    @rating_descriptor = RatingDescriptor.find_by_title(params[:title])
+    @rating_group = RatingGroup.toggle_rating!(current_person, @contribution, @rating_descriptor)
+    render json: {
+      success: true
+    }
+  end
+
   private
 
   def update_embedly_attributes

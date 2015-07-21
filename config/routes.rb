@@ -315,10 +315,7 @@ Civiccommons::Application.routes.draw do
     end
     resources :redirects
     resources :remote_pages, only: [:index, :destroy] do
-      member do
-        get 'convert', to: :new_conversation
-        post 'convert', to: :create_conversation
-      end
+      resources :conversations, only: [:new, :create], controller: "remote_pages/conversations"
     end
   end
 
@@ -331,10 +328,11 @@ Civiccommons::Application.routes.draw do
         end
       end
       resources :conversations do
-        resources :contributions do
+        resources :contributions, controller: "conversations/contributions" do
           member do
             post :flag
             post :moderate
+            put :toggle_rating
           end
         end
         resources :users
@@ -344,6 +342,7 @@ Civiccommons::Application.routes.draw do
           member do
             post :flag
             post :moderate
+            put :toggle_rating
           end
         end
         resources :users
@@ -355,7 +354,12 @@ Civiccommons::Application.routes.draw do
     end
   end
 
-  resources :embed, only: [:index]
+  resources :embed, only: [:index] do
+    collection do
+      get :test_comments, to: 'embed#test_comments'
+      get :test_conversation, to: 'embed#test_conversation'
+    end
+  end
 
   get '/embed/*path', to: 'embed#index'
 
