@@ -5,6 +5,7 @@ angular.module 'civic.directives'
     replace: true
     scope:
       contribution: '='
+      conversation: '='
     compile: (cElement) ->
       RecursionHelper.compile cElement, (scope, element, attrs) ->
         scope.createReply = ->

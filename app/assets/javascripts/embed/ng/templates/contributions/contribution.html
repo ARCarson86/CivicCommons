@@ -3,7 +3,7 @@
   <div class="content">
     <header>
       <div class="actions pull-right" ng-show="showactions">
-        <a href ng-click="markContribution = !markContribution" title="Mark Reply as Persuasive, Informative or Inspiring">
+        <a href ng-click="markContribution = !markContribution" title="Mark Reply as Persuasive, Informative or Inspiring" ng-show="conversation">
           <i class="fa fa-star"></i>
         </a>
         <a href ng-click="editContribution = !editContribution" ng-show="user.admin || (user.id == contribution.owner_id && contribution.editable())" title="Edit post">
@@ -69,7 +69,7 @@
 
     <div class="contributions" ng-hide="minimized" ng-if="contribution.contributions.length > 0">
       <contributions>
-        <contribution contribution="contribution" ng-repeat="contribution in contribution.contributions"></contribution>
+        <contribution contribution="contribution" conversation="conversation" ng-repeat="contribution in contribution.contributions"></contribution>
       </contributions>
     </div>
 
