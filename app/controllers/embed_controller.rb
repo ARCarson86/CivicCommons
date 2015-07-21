@@ -10,11 +10,13 @@ class EmbedController < ApplicationController
 
   def test_comments
     @remote_page = RemotePage.where(conversation_id: nil).first
+    @url = params[:url] || @remote_page.url
     render layout: "application"
   end
 
   def test_conversation
     @remote_page = RemotePage.where("conversation_id is not null").first
+    @url = params[:url] || @remote_page.url
     render layout: "application"
   end
 end
