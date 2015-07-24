@@ -11,6 +11,7 @@ class Api::V1::Conversations::ContributionsController < Api::V1::BaseController
 
   def create
     @contribution.confirmed = true
+    @contribution.attachment_file_name = attachment_file_name if @contribution.attachment.present?
     @contribution.save!
     render 'show'
   end
@@ -56,6 +57,19 @@ class Api::V1::Conversations::ContributionsController < Api::V1::BaseController
     unless @contribution.url.blank?
       embedly = EmbedlyService.new
       embedly.fetch_and_update_attributes(@contribution)
+    end
+  end
+
+  def attachment_file_name
+    case @contribution.attachment_content_type
+    when "image/jpeg"
+      "image.jpg"
+    when "image/jpg"
+      "image.jpg"
+    when "image/png"
+      "image.png"
+    else
+      "image.jpg"
     end
   end
 end
