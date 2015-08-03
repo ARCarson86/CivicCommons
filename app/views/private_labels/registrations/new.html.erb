@@ -25,14 +25,19 @@
         <div class="register-options">
           <a class="btn btn-success register-with-email" href="#">Register with an Email Address</a>
 
-          <div class="register-options-group">
-            <div class="register-separator"><span>OR</span></div>
-            <% Authentication::PROVIDERS.each do |provider| %>
-              <%= link_to person_omniauth_authorize_url(provider.to_sym, host: request.host, private_label: request.host), class: "social-register-button #{provider}" do %>
-                <i class="fa fa-<%=provider%> fa-2x"></i>
+
+          <% if Swayze.current_private_label.has_social_login? %>
+            <div class="register-options-group">
+              <div class="register-separator"><span>OR</span></div>
+              <% Authentication::PROVIDERS.each do |provider| %>
+                <% if Swayze.current_private_label.send("has_#{provider}_login?") %>
+                  <%= link_to person_omniauth_authorize_url(provider.to_sym, host: request.host, private_label: request.host), class: "social-register-button #{provider}" do %>
+                    <i class="fa fa-<%=provider%> fa-2x"></i>
+                  <% end %>
+                <% end %>
               <% end %>
-            <% end %>
-          </div>
+            </div>
+          <% end %>
         </div>
       </section>
     </div>
