@@ -3,8 +3,7 @@ class Admin::RemotePagesController < Admin::DashboardController
 
   def index
     @q = RemotePage.ransack(params[:q])
-    @q.sorts = 'title asc' if @q.sorts.empty?
-    @remote_pages = @q.result.paginate(page: params[:page])
+    @remote_pages = @q.result.order("ISNULL(title), title asc").paginate(page: params[:page])
   end
 
   def destroy
