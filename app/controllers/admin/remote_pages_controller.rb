@@ -2,7 +2,8 @@ class Admin::RemotePagesController < Admin::DashboardController
   before_filter :get_remote_page, only: [:destroy]
 
   def index
-    @remote_pages = RemotePage.order("created_at desc").paginate(page: params[:page])
+    @q = RemotePage.ransack(params[:q])
+    @remote_pages = @q.result.order("ISNULL(title), title asc").paginate(page: params[:page])
   end
 
   def destroy
