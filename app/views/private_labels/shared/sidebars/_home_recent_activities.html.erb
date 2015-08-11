@@ -20,9 +20,11 @@
             </div>
             <div class="col-md-2 col-sm-2 col-xs-2 text-right reply">
             <% Conversation.unscoped do %>
-          		<%= link_to conversation_path(activity.conversation, :anchor => "reply-#{activity.id}") do %>
-  										<i class="fa fa-share fa-lg"></i>
-          		<% end %>
+              <% unless activity.conversation.nil? %>
+                <%= link_to conversation_path(activity.conversation, :anchor => "reply-#{activity.id}") do %>
+                        <i class="fa fa-share fa-lg"></i>
+                <% end %>
+              <% end %>
         		<% end %>
             </div>
           </div>
@@ -30,7 +32,9 @@
         <div class="row">
           <div class="item-content col-md-12">
             <% Conversation.unscoped do %>
-              <%= link_to activity.conversation.title, activity.conversation %>
+              <% unless activity.conversation.nil? %>
+                <%= link_to activity.conversation.title, activity.conversation %>
+              <% end %>
             <% end %>
             <%= truncate(strip_tags(activity.content), length: 125, omission: '...') %>
           </div>
