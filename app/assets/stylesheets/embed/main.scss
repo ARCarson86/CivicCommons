@@ -5,6 +5,10 @@
 @import 'compass/utilities/general/clearfix';
 @import 'variables';
 @import "compass/css3/images";
+@import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
+@import "compass/css3/box-sizing";
+@import "compass/css3/inline-block";
 
 * {
   box-sizing: border-box;
@@ -117,6 +121,64 @@ p {
 }
 
 .conversation {
+  h1 {
+    color: #555;
+    font-size: 2em;
+    line-height: 1em;
+    margin-bottom: 10px;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.85);
+    font-weight: bold;
+  }
+  h2 {
+    text-transform: none;
+    font-weight: bold;
+    border-bottom: 1px solid #cdcdcd;
+    font-size: 1.167em;
+    line-height: 1.4em;
+    margin-bottom: .8em;
+    padding-bottom: .5em;
+  }
+  .title-container {
+    margin-bottom: 15px;
+    .main-img {
+      width: 140px;
+      height: 80px;
+      float: left;
+      margin-right: 15px;
+      -webkit-box-shadow: 0px 1px 3px rgba(0,0,0,.5);
+        -moz-box-shadow: 0px 1px 3px rgba(0,0,0,.5);
+          -o-box-shadow: 0px 1px 3px rgba(0,0,0,.5);
+              box-shadow: 0px 1px 3px rgba(0,0,0,.5);
+    }
+  }
+
+  .authoring-information {
+    .authoring-information-primary {
+      float: left; 
+      margin-bottom: 10px;
+    }
+    .user-avatar {
+      img {
+        height: 40px;
+        width: 40px;
+        -webkit-box-shadow: 0px 1px 3px rgba(0,0,0,.5);
+          -moz-box-shadow: 0px 1px 3px rgba(0,0,0,.5);
+            -o-box-shadow: 0px 1px 3px rgba(0,0,0,.5);
+                box-shadow: 0px 1px 3px rgba(0,0,0,.5);
+      }
+    }
+  }
+  .starter {
+    padding: 10px;
+    border-left: 10px solid rgb(136,184,204);
+    background-color: rgba(136,184,204,.3);
+    h2 {
+      border-bottom-color: rgb(136,184,204);
+    }
+    .body {
+      padding: 0 10px;
+    }
+  }
   .authoring-information {
     margin-bottom: 1em;
     .authoring-information-primary {
@@ -125,6 +187,10 @@ p {
     .created-date {
       font-size: 0.85em;
     }
+  }
+  .contribution.moderator {
+    padding: 10px;
+    background-color: rgba(136, 204, 136, 0.3);
   }
 }
 
@@ -476,7 +542,8 @@ footer {
   }
 }
 
-.flag-contribution {
+.flag-contribution,
+.add-rating {
   position: absolute;
   top: 0;
   margin: 0 auto;
@@ -500,17 +567,55 @@ footer {
   overflow: visible;
 }
 
+.add-rating {
+  width: 150px;
+  padding: 0;
+  border: 2px solid #88b8cc;
+  border-radius: 5px;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+  > h2 {
+    font-weight: bold;
+    border-bottom: 2px solid #88b8cc;
+    text-indent: 5px;
+    font-size: 12px;
+    line-height: 12px;
+    padding-top: 4px;
+    margin-bottom: 0;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin:0;
+    li {
+      padding: 3px 5px;
+      border-bottom: 1px solid #88b8cc;
+      a {
+        text-decoration: none;
+        width: 100%;
+        display: block;
+        color: #444;
+        .count { 
+          float: right;
+        }
+      }
+    }
+  }
+}
+
 .overlay {
   position: fixed;
   width: 100%;
   height: 100%;
   top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-color: rgba(0,0,0,.6) ;
   z-index: 999;
-  margin-left: -0.7em;
 }
 
 .read-more-container {
+  clear: both;
   position: relative;
   max-height: 10em;
   transition: max-height 0.3s;
@@ -581,5 +686,59 @@ footer {
   a {
     text-decoration: none;
     font-size: 18px;
+  }
+}
+
+.share-buttons {
+  float: left;
+  margin: 0 0 0 15px;
+  .share-button {
+    text-align: center;
+    float: left;
+    margin-right: 10px;
+    i {
+      font-size: 1.5em;
+    }
+    a {
+      text-decoration: none;
+    }
+  }
+}
+
+.participants-outer-container {
+  margin-top: 10px;
+  @include pie-clearfix;
+}
+
+.participants-container {
+  width: 50%;
+  float: left;
+
+  .collapsed {
+    display: none;
+  }
+
+  h2 {
+    font-size: 1.0em;
+    margin-bottom: 0.5em;
+    .expand-link { 
+      text-decoration: none;
+      font-size: 1.0em;
+      float: right;
+      margin-right: 15px;
+      i {
+        margin-left: 5px;
+      }
+    }
+  }
+  .participant {
+    width: 45%;
+    float: left;
+    overflow: hidden;
+    img {
+      height: 40px;
+      float: left;
+      margin: 3px 3px 3px 0;
+    }
   }
 }

@@ -4,6 +4,7 @@ angular.module 'civic.directives'
     templateUrl: 'users/user.html'
     scope:
       user: '='
+      moderator: '='
     link: (scope, element, attrs) ->
   .directive 'userAvatar', ->
     restrict: 'E'

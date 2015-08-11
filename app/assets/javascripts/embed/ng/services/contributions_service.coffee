@@ -71,6 +71,13 @@ angular.module 'civic.services'
         method: 'POST'
         cache: false
 
+      toggle:
+        params: {
+          action: 'toggle_rating'
+        }
+        method: 'PUT'
+        cache: false
+
       update:
         method: 'PUT'
         cache: false
@@ -138,6 +145,11 @@ angular.module 'civic.services'
       contribution = new Contribution
         id: @id
       contribution.$flag params, success, failure
+
+    Contribution.prototype.toggle = (params, success, failure) ->
+      contribution = new Contribution
+        id: @id
+      contribution.$toggle params, success, failure
 
     Contribution.prototype.reply = ->
       if @parent_id

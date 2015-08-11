@@ -1,3 +1,4 @@
 <div class="user">
-  <a href="http://theciviccommons.com/user/{{user.slug}}" target="_blank">{{user.name}}</a>
+  <a href="http://theciviccommons.com/user/{{user.slug}}" target="_blank" ng-if="moderator === true">From the Moderator: {{user.name}}</a>
+  <a href="http://theciviccommons.com/user/{{user.slug}}" target="_blank" ng-if="moderator != true">{{user.name}}</a>
 </div>

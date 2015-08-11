@@ -1,7 +1,6 @@
-class Api::V1::ContributionsController < Api::V1::BaseController
-  load_resource :conversation
+class Api::V1::RemotePages::ContributionsController < Api::V1::BaseController
   load_resource :remote_page
-  load_and_authorize_resource :contribution, through: [:conversation, :remote_page]
+  load_and_authorize_resource :contribution, through: [:remote_page]
 
   before_filter :update_embedly_attributes, only: [:create, :update]
 
@@ -41,14 +40,6 @@ class Api::V1::ContributionsController < Api::V1::BaseController
     render :show
   end
 
-  def toggle_rating
-    @rating_descriptor = RatingDescriptor.find_by_title(params[:title])
-    @rating_group = RatingGroup.toggle_rating!(current_person, @contribution, @rating_descriptor)
-    render json: {
-      success: true
-    }
-  end
-
   private
 
   def update_embedly_attributes
@@ -57,6 +48,4 @@ class Api::V1::ContributionsController < Api::V1::BaseController
       embedly.fetch_and_update_attributes(@contribution)
     end
   end
-
-
 end

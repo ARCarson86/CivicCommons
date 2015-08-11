@@ -23,6 +23,7 @@ gem 'bower-rails'
 gem 'jquery-rails'
 
 gem 'geocoder'
+gem 'ransack'
 
 gem 'newrelic_rpm'
 

@@ -108,7 +108,7 @@ class Contribution < ActiveRecord::Base
     :s3_credentials => S3Config.credential_file,
     :path => IMAGE_ATTACHMENT_PATH,
     :styles => {:thumb => "75x75>", :medium => "300x300>", :large => "800x800>"}
-  
+  do_not_validate_attachment_file_type :attachment
 
   before_attachment_post_process :is_image?
 
@@ -341,7 +341,8 @@ class Contribution < ActiveRecord::Base
   end
 
   def ensure_private_label
-    self.private_label_id = self.conversation.private_label_id unless private_label_id
+    if self.conversation.present?
+      self.private_label_id = self.conversation.private_label_id unless private_label_id
+    end
   end
-
 end

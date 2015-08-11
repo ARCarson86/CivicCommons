@@ -71,7 +71,7 @@ module UserHelper
       "#{contribution.contributable.url}#node-#{contribution.id}"
     elsif contribution.conversation
       if contribution.conversation.remote_page
-        "#{contribution.conversation.remote_page.url}#node-#{contribution.converation.id}"
+        "#{contribution.conversation.remote_page.url}#node-#{contribution.conversation.id}"
       else
         conversation_node_url( contribution )
       end

@@ -1,0 +1,16 @@
+<div class="participants-container" ng-show="participants.length > 0">
+  <h2>
+    {{heading}} ({{participants.length}})
+
+    <a href ng-click="toggle()" class="expand-link">{{actionText}}<i class="fa" ng-class="actionIcon"></i></a>
+
+  </h2>
+  <div class="collapsed" ng-repeat="participant in participants" ng-class="state" state="collapsed">
+    <div class="participant">
+      <a href="{{participant.location}}" title="{{participant.name}}" target="_blank">
+        <img src="{{participant.avatar}}" alt="{{particpant.name}}" title="{{participant.name}}" />
+        {{participant.name}}
+      </a>
+    </div>
+  </div>
+</div>

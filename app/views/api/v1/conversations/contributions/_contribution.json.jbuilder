@@ -1,8 +1,5 @@
 json.(contribution, :id, :content, :created_at, :parent_id, :url)
 
-json.moderator_post contribution.moderator_post?
-json.ratings @ratings.present? ? @ratings[contribution.id] : nil
-
 if contribution.attachment_file_name
   json.attachment contribution.attachment.url :medium
   json.attachment_full contribution.attachment.url :full

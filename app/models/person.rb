@@ -68,7 +68,7 @@ class Person < ActiveRecord::Base
 
   has_one :facebook_authentication, :class_name => 'Authentication', :conditions => {:provider => 'facebook'}, :dependent => :destroy
   has_one :twitter_authentication, :class_name => 'Authentication', :conditions => {:provider => 'twitter'}, :dependent => :destroy
-  has_one :google_authentication, :class_name => 'Authentication', :conditions => {:provider => 'google_oauth2'}, :dependent => :destroy
+  has_one :google_authentication, :class_name => 'Authentication', :conditions => {:provider => ['google_oauth2', 'google_plus']}, :dependent => :destroy
   has_one :linkedin_authentication, :class_name => 'Authentication', :conditions => {:provider => 'linkedin'}, :dependent => :destroy
   has_many :notifications
 
@@ -340,6 +340,8 @@ class Person < ActiveRecord::Base
         self.twitter_authentication.destroy
       when "google_oauth2"
         self.google_authentication.destroy
+      when "google_plus"
+        self.google_authentication.destroy
       when "linkedin"
         self.linkedin_authentication.destroy
       end
@@ -382,6 +384,8 @@ class Person < ActiveRecord::Base
       !twitter_authentication.blank?
     when "google_oauth2"
       !google_authentication.blank?
+    when "google_plus"
+      !google_authentication.blank?
     when "linkedin"
       !linkedin_authentication.blank?
     end
@@ -398,6 +402,8 @@ class Person < ActiveRecord::Base
     when "twitter"
       twitter_authentication
     when "google_oauth2"
+      google_authentication
+    when "google_plus"
       google_authentication
     when "linkedin"
       linkedin_authentication

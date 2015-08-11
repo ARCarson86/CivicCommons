@@ -1,16 +1,17 @@
-class Api::V1::ContributionsController < Api::V1::BaseController
+class Api::V1::Conversations::ContributionsController < Api::V1::BaseController
   load_resource :conversation
-  load_resource :remote_page
-  load_and_authorize_resource :contribution, through: [:conversation, :remote_page]
+  load_and_authorize_resource :contribution, through: [:conversation]
 
   before_filter :update_embedly_attributes, only: [:create, :update]
 
   def index
     @contributions = @contributions.where(parent_id: nil).includes(:person, children: [:person]).order("created_at DESC").paginate(page: params[:page], per_page: 20)
+    @ratings = RatingGroup.ratings_for_conversation_by_contribution_with_count(@conversation, current_person)
   end
 
   def create
     @contribution.confirmed = true
+    @contribution.attachment_file_name = attachment_file_name if @contribution.attachment.present?
     @contribution.save!
     render 'show'
   end
@@ -36,17 +37,18 @@ class Api::V1::ContributionsController < Api::V1::BaseController
     }
   end
 
-  def moderate
-    @contribution.moderate_content(params[:reason], current_person)
-    render :show
-  end
-
   def toggle_rating
     @rating_descriptor = RatingDescriptor.find_by_title(params[:title])
     @rating_group = RatingGroup.toggle_rating!(current_person, @contribution, @rating_descriptor)
-    render json: {
-      success: true
-    }
+
+    @ratings = RatingGroup.ratings_for_conversation_by_contribution_with_count(@conversation, current_person)
+    @contribution.touch
+    render json: { success: true, ratings: @ratings }
+  end
+
+  def moderate
+    @contribution.moderate_content(params[:reason], current_person)
+    render :show
   end
 
   private
@@ -58,5 +60,16 @@ class Api::V1::ContributionsController < Api::V1::BaseController
     end
   end
 
-
+  def attachment_file_name
+    case @contribution.attachment_content_type
+    when "image/jpeg"
+      "image.jpg"
+    when "image/jpg"
+      "image.jpg"
+    when "image/png"
+      "image.png"
+    else
+      "image.jpg"
+    end
+  end
 end
