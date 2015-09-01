@@ -155,7 +155,7 @@ class Activity < ActiveRecord::Base
   # it is possible to get less than the requested amount of activity
   # items.
   def self.most_recent_activity_items(options = {})
-    options.reverse_merge!(limit: nil, offset:nil, order:'DESC', exclude_conversation: false, exclude_rating: true, exclude_remote_page_contributions: true)
+    options.reverse_merge!(limit: nil, offset:nil, order:'DESC', exclude_conversation: false, exclude_rating: true, exclude_remote_page_contributions: false)
     options[:order] = 'DESC' if options[:order].nil?
 
     activities = nil
