@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150629002217) do
+ActiveRecord::Schema.define(:version => 20150918135113) do
 
   create_table "actions", :force => true do |t|
     t.integer  "conversation_id"
@@ -734,6 +734,8 @@ ActiveRecord::Schema.define(:version => 20150629002217) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.integer  "conversation_id"
+    t.string   "source_key"
+    t.string   "root_domain"
   end
 
   create_table "revision_records", :force => true do |t|

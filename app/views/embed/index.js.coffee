@@ -29,6 +29,8 @@ embedObj = ->
     host: null
     embedType: 'comments'
     remotePageAddress: window.location.href
+    sourceKey: ''
+    rootDomain: ''
     autoInit: true
   @log = (message) ->
     logArr = ['Civic Embed: '].concat arguments
@@ -72,7 +74,10 @@ embedObj = ->
     src.push "#{@settings.host}/embed/"
     src.push "#{@settings.embedType}/" if @settings.embedType in availableEmbedTypes
     src.push @settings.conversationId if @settings.conversationId
-    src.push "?remotePageAddress=#{@settings.remotePageAddress}" if @settings.remotePageAddress
+    src.push "?" if @settings.remotePageAddress || @settings.rootDomain || @settings.sourceKey
+    src.push "remotePageAddress=#{@settings.remotePageAddress}&" if @settings.remotePageAddress
+    src.push "rootDomain=#{@settings.rootDomain}&" if @settings.rootDomain
+    src.push "sourceKey=#{@settings.sourceKey}&" if @settings.sourceKey
     iframe.style.border = @settings.borderStyling
     iframe.style.width = "100%"
 

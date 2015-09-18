@@ -57,7 +57,11 @@ civicApp
               CivicApi.setVar 'contributable_type', 'remote_pages'
               CivicApi.setVar 'contributable_id', page.id
 
-            RemotePage.get {remote_page_url: $route.current.params.remotePageAddress}, (data) ->
+            RemotePage.get {
+              remote_page_url: $route.current.params.remotePageAddress,
+              root_domain: $route.current.params.rootDomain,
+              source_key: $route.current.params.sourceKey
+            }, (data) ->
               unless data.conversation
                 deferred.resolve data
               else
